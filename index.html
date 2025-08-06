@@ -122,7 +122,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(3, 105, 161, 0.6);
+            background: rgba(3, 105, 161, 0.2);
             z-index: 2;
         }
         
@@ -788,11 +788,13 @@
         <video class="hero-video" autoplay muted loop playsinline preload="auto">
             <source src="Peaceful_lake_scene_cropped_v2.mp4" type="video/mp4">
             <source src="Peaceful_lake_scene.mov" type="video/quicktime">
-            <!-- GIF Fallback -->
-            <img src="Peaceful_lake_scene_web.gif" alt="Peaceful Lake Scene" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-            <!-- Final Fallback for browsers that don't support video or GIF fails -->
-            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 50%, #0369a1 100%); display: none;"></div>
         </video>
+        
+        <!-- GIF Fallback for when video fails -->
+        <img class="hero-video" src="Peaceful_lake_scene_web.gif" alt="Peaceful Lake Scene" style="display: none;" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+        
+        <!-- Final Fallback Background -->
+        <div class="hero-video" style="display: none; background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 50%, #0369a1 100%);"></div>
         
         <!-- Video Overlay -->
         <div class="hero-overlay"></div>
@@ -1448,8 +1450,35 @@
             runSequence();
         }
         
+        // Video fallback handling
+        function setupVideoFallback() {
+            const video = document.querySelector('.hero video');
+            const gifFallback = document.querySelector('.hero img');
+            const gradientFallback = document.querySelector('.hero div[style*="background: linear-gradient"]');
+            
+            // Check if video can play
+            video.addEventListener('error', function() {
+                console.log('Video failed to load, trying GIF fallback');
+                video.style.display = 'none';
+                gifFallback.style.display = 'block';
+            });
+            
+            // Check if video data is loaded
+            video.addEventListener('loadeddata', function() {
+                console.log('Video loaded successfully');
+            });
+            
+            // Fallback to gradient if both video and GIF fail
+            gifFallback.addEventListener('error', function() {
+                console.log('GIF fallback failed, using gradient background');
+                gifFallback.style.display = 'none';
+                gradientFallback.style.display = 'block';
+            });
+        }
+
         // Initialize hero animation when page loads
         document.addEventListener('DOMContentLoaded', function() {
+            setupVideoFallback();
             setTimeout(startHeroAnimation, 1000); // Start after 1 second delay
         });
     </script>
