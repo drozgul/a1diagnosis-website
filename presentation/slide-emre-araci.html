@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Associate Professor Emre Araci - Team Slide</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f0fdfa 0%, #ccfbf1 50%, #f0fdfa 100%);
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+        }
+
+        .slide-container {
+            width: 100%;
+            max-width: 1400px;
+            min-height: 700px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            display: flex;
+            padding: 40px;
+            gap: 40px;
+            position: relative;
+            overflow: hidden;
+            animation: slideIn 1.2s ease-out;
+        }
+
+        @keyframes slideIn {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .slide-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: linear-gradient(90deg, #14b8a6, #0d9488, #0f766e);
+            overflow: hidden;
+        }
+
+        .slide-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -40%;
+            width: 40%;
+            height: 8px;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(255, 255, 255, 0.4) 30%, 
+                rgba(255, 255, 255, 0.9) 50%, 
+                rgba(255, 255, 255, 0.4) 70%, 
+                transparent 100%);
+            animation: lightPass 8s ease-in-out infinite;
+            filter: blur(0.5px);
+        }
+
+        @keyframes lightPass {
+            0% {
+                left: -40%;
+                opacity: 0;
+            }
+            5% {
+                opacity: 1;
+            }
+            95% {
+                opacity: 1;
+            }
+            100% {
+                left: 100%;
+                opacity: 0;
+            }
+        }
+
+        .left-section {
+            flex: 0.8;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            animation: fadeInLeft 1.5s ease-out 0.3s both;
+        }
+
+        @keyframes fadeInLeft {
+            0% {
+                opacity: 0;
+                transform: translateX(-40px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .profile-image {
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 6px solid #f0fdfa;
+            box-shadow: 0 15px 40px rgba(20, 184, 166, 0.3);
+            margin-bottom: 25px;
+            animation: profileAppear 1.8s ease-out 0.9s both;
+            transition: all 0.3s ease;
+        }
+
+        .profile-image:hover {
+            transform: scale(1.02);
+            box-shadow: 0 20px 50px rgba(20, 184, 166, 0.15);
+        }
+
+        @keyframes profileAppear {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .name-title {
+            margin-bottom: 20px;
+        }
+
+        .member-name {
+            font-size: 2.4rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            line-height: 1.1;
+            animation: nameAppear 1.2s ease-out 1.2s both;
+        }
+
+        .member-role {
+            font-size: 1.4rem;
+            color: #14b8a6;
+            font-weight: 500;
+            margin-bottom: 6px;
+            animation: roleAppear 1.2s ease-out 1.4s both;
+        }
+
+        @keyframes nameAppear {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes roleAppear {
+            0% {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .role-status {
+            font-size: 1.1rem;
+            color: #7f8c8d;
+            font-style: italic;
+            margin-bottom: 12px;
+        }
+
+        .company-badge {
+            background: linear-gradient(135deg, rgba(20, 184, 166, 0.9), rgba(13, 148, 136, 0.95));
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 10px 18px;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: none;
+            letter-spacing: 0.5px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: flex-start;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            gap: 8px;
+            width: fit-content;
+            box-shadow: 0 4px 15px rgba(20, 184, 166, 0.1);
+            position: relative;
+            overflow: hidden;
+            animation: badgeAppear 1.2s ease-out 1.6s both;
+        }
+
+        @keyframes badgeAppear {
+            0% {
+                opacity: 0;
+                transform: translateY(10px) scale(0.95);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .company-badge::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .company-badge:hover::before {
+            left: 100%;
+        }
+
+        .company-badge:hover {
+            background: linear-gradient(135deg, #0d9488, #0f766e);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(20, 184, 166, 0.4);
+        }
+
+        .right-section {
+            flex: 1.5;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-left: 30px;
+            animation: fadeInRight 1.5s ease-out 0.6s both;
+        }
+
+        @keyframes fadeInRight {
+            0% {
+                opacity: 0;
+                transform: translateX(40px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .section-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.8rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            text-align: center;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+            letter-spacing: 1px;
+            animation: titleAppear 1.3s ease-out 0.9s both;
+        }
+
+        .bio-content {
+            font-family: Arial, sans-serif;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #5a6c7d;
+            text-align: justify;
+            margin-bottom: 30px;
+            animation: contentAppear 1.3s ease-out 1.2s both;
+        }
+
+        @keyframes titleAppear {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes contentAppear {
+            0% {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .highlights {
+            background: #f0fdfa;
+            border-left: 6px solid #14b8a6;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(20, 184, 166, 0.1);
+            animation: highlightsAppear 1.3s ease-out 1.5s both;
+        }
+
+        .highlight-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+            font-size: 1.1rem;
+            color: #2c3e50;
+            position: relative;
+            padding-left: 15px;
+            opacity: 0;
+            animation: highlightItemAppear 0.8s ease-out both;
+            transition: all 0.3s ease;
+        }
+
+        .highlight-item:hover {
+            transform: translateX(5px);
+            color: #14b8a6;
+        }
+
+        .highlight-item:nth-child(1) { animation-delay: 1.8s; }
+        .highlight-item:nth-child(2) { animation-delay: 2.0s; }
+        .highlight-item:nth-child(3) { animation-delay: 2.2s; }
+        .highlight-item:nth-child(4) { animation-delay: 2.4s; }
+        .highlight-item:nth-child(5) { animation-delay: 2.6s; }
+        .highlight-item:nth-child(6) { animation-delay: 2.8s; }
+
+        @keyframes highlightsAppear {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes highlightItemAppear {
+            0% {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .highlight-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .highlight-icon {
+            width: 14px;
+            height: 14px;
+            background: linear-gradient(135deg, #14b8a6, #0d9488);
+            border-radius: 3px;
+            margin-right: 18px;
+            flex-shrink: 0;
+            position: relative;
+            transform: rotate(45deg);
+            box-shadow: 0 2px 8px rgba(20, 184, 166, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .highlight-item:hover .highlight-icon {
+            transform: rotate(45deg) scale(1.1);
+            box-shadow: 0 4px 12px rgba(20, 184, 166, 0.4);
+        }
+
+        .highlight-icon::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 6px;
+            height: 6px;
+            background: white;
+            border-radius: 1px;
+            transform: translate(-50%, -50%) rotate(-45deg);
+        }
+
+        .watermark {
+            position: absolute;
+            bottom: 30px;
+            right: 40px;
+            font-size: 1.2rem;
+            color: #bdc3c7;
+            font-style: italic;
+            animation: watermarkAppear 1.5s ease-out 3s both;
+        }
+
+        @keyframes watermarkAppear {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .back-button {
+            position: absolute;
+            top: 40px;
+            left: 40px;
+            background: linear-gradient(135deg, #14b8a6, #0d9488);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            gap: 8px;
+            display: inline-flex;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(20, 184, 166, 0.3);
+            border: none;
+            z-index: 1000;
+            animation: backButtonAppear 1s ease-out 0.2s both;
+        }
+
+        @keyframes backButtonAppear {
+            0% {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .back-button:hover {
+            background: linear-gradient(135deg, #0d9488, #0f766e);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(20, 184, 166, 0.4);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .slide-container {
+                max-width: 1200px;
+                padding: 30px;
+                gap: 30px;
+            }
+            
+            .profile-image {
+                width: 240px;
+                height: 240px;
+            }
+            
+            .member-name {
+                font-size: 2.1rem;
+            }
+            
+            .section-title {
+                font-size: 2.4rem;
+            }
+        }
+
+        @media (max-width: 900px) {
+            body {
+                padding: 15px;
+            }
+            
+            .slide-container {
+                flex-direction: column;
+                text-align: center;
+                max-width: 800px;
+                padding: 25px;
+            }
+            
+            .left-section {
+                flex: none;
+            }
+            
+            .right-section {
+                padding-left: 0;
+                padding-top: 20px;
+            }
+            
+            .profile-image {
+                width: 200px;
+                height: 200px;
+            }
+            
+            .member-name {
+                font-size: 1.8rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .bio-content {
+                font-size: 1rem;
+                text-align: left;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .slide-container {
+                padding: 20px;
+            }
+            
+            .profile-image {
+                width: 160px;
+                height: 160px;
+            }
+            
+            .member-name {
+                font-size: 1.5rem;
+            }
+            
+            .member-role {
+                font-size: 1.2rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .highlight-item {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="back-button" onclick="window.location.href='presentation.html#ekibimiz'">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.42-1.41L7.83 13H20v-2z"/>
+        </svg>
+        Ekip Listesine Dönebilirsiniz
+    </button>
+    <div class="slide-container">
+        <div class="left-section">
+            <img src="Emre Araci.jpeg" alt="Associate Professor Emre Araci" class="profile-image">
+            <div class="name-title">
+                <h1 class="member-name">Associate Professor Emre Araci</h1>
+                <p class="member-role">Potansiyel Teknoloji Danışmanı</p>
+                <p class="role-status">Santa Clara University & Smartlens Inc.</p>
+                <a href="https://www.linkedin.com/in/i-emre-araci-28457540/" target="_blank" class="company-badge">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                    <span>LinkedIn Profili</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="right-section">
+            <h2 class="section-title">Akademi & Girişimcilik</h2>
+            
+            <div class="bio-content">
+                <p>✨ Santa Clara University Biyomühendislik Bölümü Associate Professor'u ve Smartlens Inc. Co-Founder'ı. 13+ yıldır sürekli sağlık izleme cihaz teknolojileri geliştirmektedir.</p>
+                
+                <p>✨ Stanford University'de Howard Hughes Medical Institute postdoc araştırmacısı olarak çalıştıktan sonra, glokom yönetimi için kontakt lens geliştiren Smartlens Inc.'i 2016'da kurdu ve 2023'te Series A fonuna ulaştırdı.</p>
+                
+                <p>✨ 2021'de NSF CAREER Award, 2022'de SCU Engineering School Researcher of the Year ödüllerini aldı. Nature Medicine'de yayınlanan implante mikroakışkan göz içi basıncı sensörü çalışması medyada geniş yankı buldu.</p>
+            </div>
+
+            <div class="highlights">
+                <div class="highlight-item">
+                    <div class="highlight-icon"></div>
+                    <span><strong>Smartlens Inc. Co-Founder</strong> - 2016'dan beri, 2023 Series A funding</span>
+                </div>
+                <div class="highlight-item">
+                    <div class="highlight-icon"></div>
+                    <span><strong>Stanford Postdoc</strong> - Howard Hughes Medical Institute (2010-2016)</span>
+                </div>
+                <div class="highlight-item">
+                    <div class="highlight-icon"></div>
+                    <span><strong>NSF CAREER Award 2021</strong> - İnsan hareketi destekli kapillarik cihazlar</span>
+                </div>
+                <div class="highlight-item">
+                    <div class="highlight-icon"></div>
+                    <span><strong>Nature Medicine 2014</strong> - İmplante göz içi basıncı sensörü (medyada öne çıkan)</span>
+                </div>
+                <div class="highlight-item">
+                    <div class="highlight-icon"></div>
+                    <span><strong>Mikroakışkan Biosensörler</strong> - Giyilebilir sağlık izleme teknolojileri</span>
+                </div>
+                <div class="highlight-item">
+                    <div class="highlight-icon"></div>
+                    <span><strong>SCU Researcher of the Year 2022</strong> - 13+ yıl cihaz geliştirme deneyimi</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="watermark">Proaktif Görme Riski Analiz Platformu</div>
+    </div>
+</body>
+</html>
