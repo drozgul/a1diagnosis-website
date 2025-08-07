@@ -704,13 +704,30 @@
         
         /* Mobile Base Styles (default for mobile) */
         .container {
-            padding: 0 15px;
+            padding: 0 20px;
+            max-width: 100%;
         }
         
         /* Full width container for hero video */
         .hero .container {
             padding: 0;
             max-width: 100%;
+        }
+        
+        /* Professional Mobile Improvements */
+        .section-title {
+            font-size: 2.2rem !important;
+            line-height: 1.2 !important;
+            margin-bottom: 1rem !important;
+            text-align: center !important;
+        }
+        
+        .section-subtitle {
+            font-size: 1.1rem !important;
+            line-height: 1.5 !important;
+            margin-bottom: 2rem !important;
+            text-align: center !important;
+            padding: 0 10px !important;
         }
         
         /* Mobile Navigation */
@@ -788,23 +805,26 @@
         /* Mobile Hero Section */
         .hero {
             padding: 100px 0 60px;
-            min-height: 85vh;
+            min-height: 90vh;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
         }
         
         /* Mobile Video Container */
         .hero-video-container {
             position: relative;
-            width: 100%;
-            max-width: none;
-            height: 280px;
-            margin: 0 0 2rem 0;
-            border-radius: 0;
+            width: 95%;
+            max-width: 400px;
+            height: 250px;
+            margin: 0 auto 2rem auto;
+            border-radius: 16px;
             overflow: hidden;
-            box-shadow: none;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
             z-index: 2;
+            border: 2px solid rgba(255, 255, 255, 0.2);
         }
         
         .hero-video {
@@ -828,24 +848,33 @@
         }
         
         .hero h1 {
-            font-size: 2rem !important;
-            line-height: 1.2;
-            margin-bottom: 1rem;
-            text-align: center;
+            font-size: 2.2rem !important;
+            line-height: 1.2 !important;
+            margin-bottom: 1rem !important;
+            text-align: center !important;
+            font-weight: 800 !important;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+            padding: 0 15px !important;
         }
         
         .hero h2 {
-            font-size: 1.8rem !important;
-            line-height: 1.3;
-            margin: 1rem 0;
-            text-align: center;
+            font-size: 1.9rem !important;
+            line-height: 1.3 !important;
+            margin: 1rem 0 !important;
+            text-align: center !important;
+            font-weight: 700 !important;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+            padding: 0 15px !important;
         }
         
         .hero .subtitle {
-            font-size: 1rem !important;
-            line-height: 1.5;
-            padding: 0 10px;
-            text-align: center;
+            font-size: 1.1rem !important;
+            line-height: 1.5 !important;
+            padding: 0 20px !important;
+            text-align: center !important;
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2) !important;
+            max-width: 90% !important;
+            margin: 0 auto !important;
         }
         
         .hero-content {
@@ -871,25 +900,30 @@
         
         /* Mobile Ticker */
         .ticker-section {
-            padding: 15px 0;
+            padding: 20px 0 !important;
         }
         
         .ticker-item {
-            padding: 15px 20px !important;
+            padding: 18px 25px !important;
             display: block !important;
             text-align: center !important;
-            min-width: 250px !important;
+            min-width: 280px !important;
+            border-right: 1px solid rgba(255, 255, 255, 0.2) !important;
         }
         
         .ticker-item span:first-child {
-            font-size: 1.3rem !important;
+            font-size: 1.4rem !important;
             display: block !important;
             margin-right: 0 !important;
             margin-bottom: 8px !important;
+            font-weight: 800 !important;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
         }
         
         .ticker-item span:last-child {
-            font-size: 0.85rem !important;
+            font-size: 0.9rem !important;
+            opacity: 0.95 !important;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
         }
         
         /* Mobile Sections */
@@ -1167,45 +1201,73 @@
         /* Large Mobile / Small Tablet */
         @media (max-width: 480px) {
             .container {
-                padding: 0 10px;
+                padding: 0 15px;
             }
             
             .hero h1 {
-                font-size: 1.7rem !important;
+                font-size: 1.8rem !important;
+                padding: 0 10px !important;
             }
             
             .hero h2 {
-                font-size: 1.5rem !important;
+                font-size: 1.6rem !important;
+                padding: 0 10px !important;
             }
             
             .section-title {
-                font-size: 1.6rem !important;
+                font-size: 1.8rem !important;
+                padding: 0 10px !important;
+            }
+            
+            .section-subtitle {
+                font-size: 1rem !important;
+                padding: 0 15px !important;
             }
             
             .vision-card {
                 padding: 1.5rem 1rem !important;
+                margin: 0 5px !important;
             }
             
-            /* Full width video for small screens */
+            /* Optimized video for small screens */
             .hero-video-container {
-                width: 100% !important;
+                width: 96% !important;
                 height: 220px !important;
-                max-width: none !important;
+                max-width: 380px !important;
+                border-radius: 12px !important;
             }
             
             /* Second video mobile sizing for small screens */
             .mobile-vision-video-container {
-                height: 250px !important;
+                height: 240px !important;
+                width: 96% !important;
+                max-width: 380px !important;
             }
             
             /* Problem section mobile adjustments for small screens */
-            .problem-section .container > div:first-child h2 {
-                font-size: 1.8rem !important;
+            .problem-section h2 {
+                font-size: 1.9rem !important;
+                padding: 0 10px !important;
             }
             
-            .problem-section .container > div:first-child p {
+            .problem-section p {
                 font-size: 1rem !important;
-                padding: 0 5px !important;
+                padding: 0 10px !important;
+            }
+            
+            /* CTA Section small screen adjustments */
+            .cta-section h2 {
+                font-size: 1.8rem !important;
+                padding: 0 10px !important;
+            }
+            
+            .cta-section p {
+                font-size: 1rem !important;
+                padding: 0 15px !important;
+            }
+            
+            .cta-buttons {
+                max-width: 280px !important;
             }
         }
         
@@ -1538,78 +1600,68 @@
     </section>
 
     <!-- Problem Section -->
-    <section class="problem-section" id="problem" style="padding: 100px 0; background: linear-gradient(135deg, #f0fdfa 0%, #ccfbf1 50%, #a7f3d0 100%);">
+    <section class="problem-section" id="problem" style="padding: 80px 0; background: linear-gradient(135deg, #f0fdfa 0%, #ccfbf1 50%, #a7f3d0 100%);">
         <div class="container">
-            <!-- Enhanced Header -->
-            <div style="text-align: center; margin-bottom: 4rem;">
-                <h2 class="section-title scroll-fade" style="color: #065f46; font-size: 3rem; font-weight: 800; margin-bottom: 1.5rem;">The Critical Problem</h2>
-                <p class="section-subtitle scroll-fade" style="color: #047857; font-size: 1.3rem; font-weight: 500; max-width: 800px; margin: 0 auto; line-height: 1.6;">Current detection methods identify the disease only after irreversible damage has occurred, when treatment options are limited and costly.</p>
+            <!-- Mobile-Optimized Header -->
+            <div style="text-align: center; margin-bottom: 3rem;">
+                <h2 class="section-title scroll-fade" style="color: #065f46; font-size: 2.2rem; font-weight: 800; margin-bottom: 1rem; line-height: 1.2;">The Critical Problem</h2>
+                <p class="section-subtitle scroll-fade" style="color: #047857; font-size: 1.1rem; font-weight: 500; max-width: 90%; margin: 0 auto; line-height: 1.5; padding: 0 10px;">Current detection methods identify AMD only after irreversible damage has occurred, when treatment options are limited and costly.</p>
             </div>
             
-            <!-- Enhanced Content Grid -->
-            <div class="scroll-fade" style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-top: 3rem; align-items: start;">
-                <!-- Problem Content -->
-                <div style="background: white; padding: 3rem; border-radius: 24px; box-shadow: 0 20px 50px rgba(5, 150, 105, 0.15); border: 1px solid rgba(167, 243, 208, 0.3);">
-                    <h3 style="color: #064e3b; font-size: 1.5rem; font-weight: 700; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem;">
-                        <span style="width: 50px; height: 50px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem; font-weight: bold;">!</span>
-                        Late Detection = Lost Vision
-                    </h3>
-                    <ul style="list-style: none; padding-left: 0; margin-bottom: 2rem;">
-                        <li style="position: relative; padding-left: 2rem; margin-bottom: 0.8rem; color: #047857; font-size: 1.1rem; line-height: 1.7;">
-                            <span style="position: absolute; left: 0; top: 0.6em; width: 10px; height: 10px; background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); border-radius: 50%; box-shadow: 0 2px 4px rgba(59, 130, 246, 0.3);"></span>
-                            Currently, patients must visit specialized retina specialists or ophthalmologists to detect AMD
-                        </li>
-                        <li style="position: relative; padding-left: 2rem; margin-bottom: 0.8rem; color: #047857; font-size: 1.1rem; line-height: 1.7;">
-                            <span style="position: absolute; left: 0; top: 0.6em; width: 10px; height: 10px; background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); border-radius: 50%; box-shadow: 0 2px 4px rgba(59, 130, 246, 0.3);"></span>
-                            As a result, most Americans only seek eye care after vision loss has already begun
-                        </li>
-                    </ul>
-                    
-                    <!-- Enhanced Challenge Box -->
-                    <div style="background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%); padding: 2rem; border-radius: 16px; border-left: 5px solid #10b981; box-shadow: 0 8px 25px rgba(16, 185, 129, 0.1);">
-                        <p style="color: #064e3b; font-size: 1rem; font-weight: 600; margin: 0; line-height: 1.6;"><strong style="color: #059669;">Critical Challenge:</strong> Progressive and irreversible vision loss occurs over time. When vision problems become apparent, the damage is permanent and irreversible.</p>
+            <!-- Mobile-First Content Layout -->
+            <div class="scroll-fade" style="display: block;">
+                <!-- Problem Content Card - Mobile Optimized -->
+                <div style="background: white; padding: 2rem 1.5rem; border-radius: 20px; box-shadow: 0 15px 35px rgba(5, 150, 105, 0.12); border: 1px solid rgba(167, 243, 208, 0.3); margin-bottom: 2rem;">
+                    <div style="text-align: center; margin-bottom: 1.5rem;">
+                        <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.8rem; font-weight: bold; margin: 0 auto 1rem;">!</div>
+                        <h3 style="color: #064e3b; font-size: 1.4rem; font-weight: 700; margin: 0; line-height: 1.3;">Late Detection = Lost Vision</h3>
                     </div>
                     
-                    <!-- Disease Progression Info -->
-                    <div style="margin-top: 2rem; padding: 1.5rem; background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); border-radius: 12px; border: 1px solid #bae6fd;">
-                        <h4 style="color: #0369a1; font-size: 1.1rem; font-weight: 600; margin-bottom: 1rem;">AMD Progression Stages:</h4>
-                        <ul style="color: #0284c7; font-size: 0.95rem; line-height: 1.6; margin: 0; padding-left: 1.5rem;">
-                            <li>Early Stage (mild central vision changes)</li>
-                            <li>Intermediate Stage (increasing central vision loss)</li>
-                            <li>Advanced Dry AMD (significant central vision loss)</li>
-                            <li>Advanced Wet AMD (severe central vision loss)</li>
-                        </ul>
+                    <div style="margin-bottom: 1.5rem;">
+                        <div style="display: flex; align-items: flex-start; margin-bottom: 1rem; padding: 0 5px;">
+                            <div style="width: 12px; height: 12px; background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); border-radius: 50%; margin-top: 6px; margin-right: 12px; flex-shrink: 0; box-shadow: 0 2px 4px rgba(59, 130, 246, 0.3);"></div>
+                            <p style="color: #047857; font-size: 1rem; line-height: 1.6; margin: 0;">Currently, patients must visit specialized retina specialists or ophthalmologists to detect AMD</p>
+                        </div>
+                        <div style="display: flex; align-items: flex-start; margin-bottom: 1rem; padding: 0 5px;">
+                            <div style="width: 12px; height: 12px; background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); border-radius: 50%; margin-top: 6px; margin-right: 12px; flex-shrink: 0; box-shadow: 0 2px 4px rgba(59, 130, 246, 0.3);"></div>
+                            <p style="color: #047857; font-size: 1rem; line-height: 1.6; margin: 0;">As a result, most Americans only seek eye care after vision loss has already begun</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Enhanced Challenge Box -->
+                    <div style="background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%); padding: 1.5rem; border-radius: 16px; border-left: 4px solid #10b981; box-shadow: 0 8px 25px rgba(16, 185, 129, 0.1); margin-top: 1rem;">
+                        <p style="color: #064e3b; font-size: 0.95rem; font-weight: 600; margin: 0; line-height: 1.5;"><strong style="color: #059669;">Critical Challenge:</strong> Progressive and irreversible vision loss occurs over time. When vision problems become apparent, the damage is permanent.</p>
                     </div>
                 </div>
                 
-                <!-- Enhanced Statistics -->
-                <div style="display: flex; flex-direction: column; gap: 2rem;">
+                <!-- Mobile Statistics Grid -->
+                <div style="display: grid; grid-template-columns: 1fr; gap: 1.5rem;">
                     <!-- Stat Card 1 -->
-                    <div style="background: white; padding: 3rem 2.5rem; border-radius: 24px; text-align: center; box-shadow: 0 20px 50px rgba(6, 182, 212, 0.15); border: 1px solid rgba(103, 232, 249, 0.3); position: relative; overflow: hidden;">
-                        <div style="position: absolute; top: -50%; right: -50%; width: 200px; height: 200px; background: radial-gradient(circle, rgba(6, 182, 212, 0.08) 0%, transparent 70%); border-radius: 50%;"></div>
+                    <div style="background: white; padding: 2rem 1.5rem; border-radius: 20px; text-align: center; box-shadow: 0 12px 30px rgba(6, 182, 212, 0.12); border: 1px solid rgba(103, 232, 249, 0.2); position: relative; overflow: hidden;">
+                        <div style="position: absolute; top: -30%; right: -30%; width: 120px; height: 120px; background: radial-gradient(circle, rgba(6, 182, 212, 0.06) 0%, transparent 70%); border-radius: 50%;"></div>
                         <div style="position: relative; z-index: 2;">
-                            <div style="color: #0891b2; font-size: 3.5rem; font-weight: 900; margin-bottom: 1rem; text-shadow: 0 2px 4px rgba(6, 182, 212, 0.1);">20 Million</div>
-                            <div style="color: #155e75; font-size: 1.1rem; font-weight: 600; line-height: 1.4;">Americans with AMD diagnosis</div>
-                            <div style="width: 60px; height: 3px; background: linear-gradient(90deg, #06b6d4, #0891b2); margin: 1rem auto; border-radius: 2px;"></div>
-                            <p style="color: #0e7490; font-size: 0.9rem; margin-top: 1rem;">Each year, more people join this growing number</p>
+                            <div style="color: #0891b2; font-size: 2.8rem; font-weight: 900; margin-bottom: 0.5rem; text-shadow: 0 2px 4px rgba(6, 182, 212, 0.1);">20M</div>
+                            <div style="color: #155e75; font-size: 1rem; font-weight: 600; line-height: 1.3; margin-bottom: 0.5rem;">Americans with AMD</div>
+                            <div style="width: 40px; height: 2px; background: linear-gradient(90deg, #06b6d4, #0891b2); margin: 0.8rem auto; border-radius: 1px;"></div>
+                            <p style="color: #0e7490; font-size: 0.85rem; margin: 0;">Growing annually</p>
                         </div>
                     </div>
                     
                     <!-- Stat Card 2 -->
-                    <div style="background: white; padding: 3rem 2.5rem; border-radius: 24px; text-align: center; box-shadow: 0 20px 50px rgba(20, 184, 166, 0.15); border: 1px solid rgba(153, 246, 228, 0.3); position: relative; overflow: hidden;">
-                        <div style="position: absolute; top: -50%; left: -50%; width: 200px; height: 200px; background: radial-gradient(circle, rgba(20, 184, 166, 0.08) 0%, transparent 70%); border-radius: 50%;"></div>
+                    <div style="background: white; padding: 2rem 1.5rem; border-radius: 20px; text-align: center; box-shadow: 0 12px 30px rgba(20, 184, 166, 0.12); border: 1px solid rgba(153, 246, 228, 0.2); position: relative; overflow: hidden;">
+                        <div style="position: absolute; top: -30%; left: -30%; width: 120px; height: 120px; background: radial-gradient(circle, rgba(20, 184, 166, 0.06) 0%, transparent 70%); border-radius: 50%;"></div>
                         <div style="position: relative; z-index: 2;">
-                            <div style="color: #14b8a6; font-size: 3.5rem; font-weight: 900; margin-bottom: 1rem; text-shadow: 0 2px 4px rgba(20, 184, 166, 0.1);">200 Million</div>
-                            <div style="color: #134e4a; font-size: 1.1rem; font-weight: 600; line-height: 1.4;">People affected globally</div>
-                            <div style="width: 60px; height: 3px; background: linear-gradient(90deg, #14b8a6, #0d9488); margin: 1rem auto; border-radius: 2px;"></div>
-                            <p style="color: #0f766e; font-size: 0.9rem; margin-top: 1rem;">A worldwide health challenge</p>
+                            <div style="color: #14b8a6; font-size: 2.8rem; font-weight: 900; margin-bottom: 0.5rem; text-shadow: 0 2px 4px rgba(20, 184, 166, 0.1);">200M</div>
+                            <div style="color: #134e4a; font-size: 1rem; font-weight: 600; line-height: 1.3; margin-bottom: 0.5rem;">Affected globally</div>
+                            <div style="width: 40px; height: 2px; background: linear-gradient(90deg, #14b8a6, #0d9488); margin: 0.8rem auto; border-radius: 1px;"></div>
+                            <p style="color: #0f766e; font-size: 0.85rem; margin: 0;">Worldwide challenge</p>
                         </div>
                     </div>
                     
-                    <!-- Additional Impact Card -->
-                    <div style="background: linear-gradient(135deg, #ffffff 0%, #f0fdf4 100%); padding: 2.5rem; border-radius: 20px; border: 2px solid #bbf7d0; text-align: center;">
-                        <h4 style="color: #166534; font-size: 1.3rem; font-weight: 700; margin-bottom: 1rem;">The Hidden Cost</h4>
-                        <p style="color: #15803d; font-size: 1rem; line-height: 1.6; margin: 0;">Most vision loss from AMD could be detected with our proactive risk assessment platform that provides early intervention opportunity</p>
+                    <!-- Impact Summary Card -->
+                    <div style="background: linear-gradient(135deg, #ffffff 0%, #f0fdf4 100%); padding: 1.8rem 1.5rem; border-radius: 18px; border: 2px solid #bbf7d0; text-align: center;">
+                        <h4 style="color: #166534; font-size: 1.1rem; font-weight: 700; margin-bottom: 0.8rem; line-height: 1.2;">Early Detection Opportunity</h4>
+                        <p style="color: #15803d; font-size: 0.9rem; line-height: 1.5; margin: 0;">Our proactive risk assessment platform enables early intervention before vision loss occurs</p>
                     </div>
                 </div>
             </div>
@@ -1617,28 +1669,30 @@
     </section>
 
     <!-- Solution Section -->
-    <section class="solution-section" id="solution">
+    <section class="solution-section" id="solution" style="padding: 80px 0; background: white;">
         <div class="container">
-            <h2 class="section-title scroll-fade">Our Revolutionary Solution</h2>
-            <p class="section-subtitle scroll-fade">What if we could predict vision loss years before it happens?</p>
+            <div style="text-align: center; margin-bottom: 3rem;">
+                <h2 class="section-title scroll-fade" style="color: #1e293b; font-size: 2.2rem; font-weight: 800; margin-bottom: 1rem;">Our Revolutionary Solution</h2>
+                <p class="section-subtitle scroll-fade" style="color: #64748b; font-size: 1.1rem; font-weight: 500; max-width: 90%; margin: 0 auto; line-height: 1.5;">Predict vision loss years before it happens</p>
+            </div>
             
-            <div class="solution-grid scroll-fade">                
-                <div class="process-steps" style="grid-column: 1 / -1; display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3rem;">
-                    <div class="process-step">
-                        <div class="step-icon">1</div>
-                        <div class="step-title">Simple Blood Test</div>
-                        <div class="step-desc">During your regular family doctor visit. No specialists needed. No complex procedures. Just a simple test that could change everything.</div>
-                    </div>
-                    <div class="process-step">
-                        <div class="step-icon">2</div>
-                        <div class="step-title">AI-Powered Analysis</div>
-                        <div class="step-desc">Advanced algorithms analyze your blood to predict AMD risk years before symptoms appear, giving you time to take action.</div>
-                    </div>
-                    <div class="process-step">
-                        <div class="step-icon">3</div>
-                        <div class="step-title">Clear, Actionable Results</div>
-                        <div class="step-desc">Easy-to-understand risk assessment that you and your doctor can use to make informed decisions about your eye health.</div>
-                    </div>
+            <div class="scroll-fade" style="display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin-top: 2rem;">
+                <div class="process-step" style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); padding: 2rem 1.5rem; border-radius: 20px; border: 1px solid #bae6fd; transition: all 0.3s ease; position: relative; overflow: hidden;">
+                    <div class="step-icon" style="width: 50px; height: 50px; background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1.2rem; margin: 0 auto 1.5rem;">1</div>
+                    <div class="step-title" style="font-size: 1.2rem; font-weight: 700; color: #1e40af; margin-bottom: 1rem; text-align: center;">Simple Blood Test</div>
+                    <div class="step-desc" style="font-size: 1rem; color: #475569; line-height: 1.6; text-align: center;">During your regular family doctor visit. No specialists needed. Just a simple test that could change everything.</div>
+                </div>
+                
+                <div class="process-step" style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); padding: 2rem 1.5rem; border-radius: 20px; border: 1px solid #bbf7d0; transition: all 0.3s ease; position: relative; overflow: hidden;">
+                    <div class="step-icon" style="width: 50px; height: 50px; background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1.2rem; margin: 0 auto 1.5rem;">2</div>
+                    <div class="step-title" style="font-size: 1.2rem; font-weight: 700; color: #166534; margin-bottom: 1rem; text-align: center;">AI-Powered Analysis</div>
+                    <div class="step-desc" style="font-size: 1rem; color: #475569; line-height: 1.6; text-align: center;">Advanced algorithms analyze your blood to predict AMD risk years before symptoms appear.</div>
+                </div>
+                
+                <div class="process-step" style="background: linear-gradient(135deg, #fefce8 0%, #fef3c7 100%); padding: 2rem 1.5rem; border-radius: 20px; border: 1px solid #fde68a; transition: all 0.3s ease; position: relative; overflow: hidden;">
+                    <div class="step-icon" style="width: 50px; height: 50px; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1.2rem; margin: 0 auto 1.5rem;">3</div>
+                    <div class="step-title" style="font-size: 1.2rem; font-weight: 700; color: #92400e; margin-bottom: 1rem; text-align: center;">Clear, Actionable Results</div>
+                    <div class="step-desc" style="font-size: 1rem; color: #475569; line-height: 1.6; text-align: center;">Easy-to-understand risk assessment for informed decisions about your eye health.</div>
                 </div>
             </div>
         </div>
@@ -1837,15 +1891,15 @@
     </section>
 
     <!-- Call to Action -->
-    <section class="cta-section" id="contact">
+    <section class="cta-section" id="contact" style="padding: 80px 0; background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 50%, #0369a1 100%); color: white; text-align: center; position: relative; overflow: hidden;">
         <div class="container">
-            <div class="cta-content">
-                <h2>Ready to See the Future Clearly?</h2>
-                <p>Join us in revolutionizing vision care through early AMD risk assessment. This investment opportunity represents the convergence of significant unmet medical need, proven technology platform, experienced leadership, and clear regulatory and reimbursement pathways.</p>
+            <div class="cta-content" style="position: relative; z-index: 2;">
+                <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: 1.5rem; line-height: 1.2; padding: 0 15px;">Ready to See the Future Clearly?</h2>
+                <p style="font-size: 1.1rem; margin-bottom: 2.5rem; opacity: 0.95; max-width: 90%; margin-left: auto; margin-right: auto; line-height: 1.6; padding: 0 20px;">Join us in revolutionizing vision care through early AMD risk assessment. A proven investment opportunity with experienced leadership and clear pathways.</p>
                 
-                <div class="cta-buttons">
-                    <a href="/presentation/presentation.html" class="btn-primary">View Full Presentation</a>
-                    <a href="mailto:mdozgul@gmail.com" class="btn-secondary">Contact Us</a>
+                <div class="cta-buttons" style="display: flex; flex-direction: column; gap: 1rem; align-items: center; max-width: 300px; margin: 0 auto;">
+                    <a href="/presentation/presentation.html" class="btn-primary" style="background: rgba(255, 255, 255, 0.15); color: white; padding: 16px 32px; border: 2px solid rgba(255, 255, 255, 0.3); border-radius: 50px; font-weight: 600; text-decoration: none; transition: all 0.3s ease; backdrop-filter: blur(10px); width: 100%; text-align: center; font-size: 1rem;">View Full Presentation</a>
+                    <a href="mailto:mdozgul@gmail.com" class="btn-secondary" style="background: white; color: #0ea5e9; padding: 16px 32px; border: none; border-radius: 50px; font-weight: 600; text-decoration: none; transition: all 0.3s ease; width: 100%; text-align: center; font-size: 1rem;">Contact Us Today</a>
                 </div>
             </div>
         </div>

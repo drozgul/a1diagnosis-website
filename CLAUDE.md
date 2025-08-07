@@ -193,6 +193,34 @@
 - **Repository**: https://github.com/01data01/01data-website
 - **Authentication**: Separate credentials required
 
+## Mobile Website Structure (index-mobile.html)
+**File Overview**: 2,207 lines total - Mobile-optimized A1 Diagnosis website
+
+**Structure Breakdown**:
+1. **HTML Head** (lines 1-1240): Meta tags, mobile optimizations, extensive CSS styling
+2. **Navigation** (lines 1243-1269): Mobile-responsive navbar with hamburger menu
+3. **Hero Section** (lines 1272-1304): Video background with animated text
+4. **Ticker Band** (lines 1306-1324): Scrolling statistics
+5. **Vision Protection Video** (lines 1327-1344): Second video section
+6. **Vision Cards Section** (lines 1346-1538): Interactive content cards
+7. **Problem Section** (lines 1540-1617): AMD statistics and challenges
+8. **Solution Section** (lines 1619-1645): Three-step process
+9. **Value Proposition** (lines 1647-1676): Key benefits
+10. **Benefits Section** (lines 1680-1778): Stakeholder benefits
+11. **Path Forward** (lines 1780-1837): Call-to-action sections
+12. **Contact/CTA** (lines 1839-1852): Final call-to-action
+13. **Footer** (lines 1854-1870): Site navigation links
+14. **JavaScript** (lines 1872-2205): Mobile interactions and animations
+
+**Key Mobile Features**:
+- Mobile-first responsive design with specific breakpoints
+- Touch-optimized buttons and navigation
+- Video fallback system (MP4 → GIF → gradient)
+- Cinematic text animations synchronized with video
+- Mobile menu with hamburger icon
+- Scroll-based animations and effects
+- Performance optimizations for mobile devices
+
 ## Important Reminders
 - **CRITICAL**: At the beginning of each conversation, ask which website we're working on and confirm the correct local folder
 - Always verify which project we're working on before making changes
