@@ -9,9 +9,10 @@
     
     <!-- Desktop Device Detection & Auto-Redirect -->
     <script>
-        (function() {
+        // Run desktop detection after page loads to avoid CSS interference
+        document.addEventListener('DOMContentLoaded', function() {
             // Enhanced desktop detection - check screen size, user agent, and touch capability
-            const isDesktop = (window.innerWidth > 768 && window.innerHeight > 768) && 
+            const isDesktop = (window.screen.width > 768 && window.screen.height > 768) && 
                              !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|CriOS/i.test(navigator.userAgent);
             
             // Check if we're already on the desktop version to prevent redirect loops
@@ -25,7 +26,7 @@
             if ((isDesktop || isNonTouchDevice) && !isAlreadyDesktop) {
                 window.location.href = 'presentation.html';
             }
-        })();
+        });
     </script>
     
     <style>
@@ -1822,7 +1823,7 @@
         /* Better mobile typography */
         h1, h2, h3, h4 {
             word-wrap: break-word;
-            hyphens: auto;
+            hyphens: none; /* Prevent hyphenation for headings to avoid "As-sessment" issue */
         }
         
         /* Mobile scrolling optimizations */
