@@ -836,18 +836,37 @@
             display: none;
         }
         
-        .hero h1,
-        .hero .subtitle {
-            font-size: 2rem !important;
+        .hero h1 {
+            font-size: 2.2rem !important;
             line-height: 1.2 !important;
             margin: 0 !important;
             text-align: center !important;
             font-weight: 800 !important;
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4) !important;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
             padding: 0 !important;
             color: white !important;
-            position: absolute !important;
-            width: 100% !important;
+        }
+        
+        .hero h2 {
+            font-size: 1.9rem !important;
+            line-height: 1.3 !important;
+            margin: 0 !important;
+            text-align: center !important;
+            font-weight: 700 !important;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+            padding: 0 !important;
+            color: white !important;
+        }
+        
+        .hero .subtitle {
+            font-size: 1.1rem !important;
+            line-height: 1.5 !important;
+            padding: 0 !important;
+            text-align: center !important;
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2) !important;
+            max-width: 100% !important;
+            margin: 0 !important;
+            color: white !important;
         }
         
         .hero-content {
@@ -1182,11 +1201,19 @@
                 padding: 0 15px;
             }
             
-            .hero h1,
-            .hero .subtitle {
+            .hero h1 {
                 font-size: 1.7rem !important;
-                line-height: 1.2 !important;
-                margin: 0 !important;
+                margin-bottom: 0.8rem !important;
+            }
+            
+            .hero h2 {
+                font-size: 1.4rem !important;
+                margin-bottom: 0.8rem !important;
+            }
+            
+            .hero .subtitle {
+                font-size: 0.9rem !important;
+                line-height: 1.4 !important;
             }
             
             .hero-content {
@@ -1331,19 +1358,16 @@
                 <div class="hero-video" style="display: none; background: linear-gradient(135deg, #67e8f9 0%, #38bdf8 50%, #0ea5e9 100%);"></div>
             </div>
             
-            <div class="hero-content" style="padding: 20px 15px; margin-top: 20px; position: relative;">
-                <!-- All texts positioned at the same H1 location -->
-                <div style="position: relative; min-height: 120px; display: flex; align-items: center; justify-content: center;">
-                    
-                    <!-- Phase 1: 0-6 seconds - "See the Future Clearly" -->
-                    <h1 id="title-1" class="animated-text" style="position: absolute; opacity: 0; color: white; margin: 0; text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4), 0 4px 16px rgba(0, 0, 0, 0.2); font-size: 2rem; font-weight: 800; line-height: 1.2; text-align: center; width: 100%;">See the Future Clearly</h1>
-                    
-                    <!-- Phase 2: 6-12 seconds - "Let's Assess AMD Risk Years Before Vision Loss" -->
-                    <h1 id="title-2" class="animated-text" style="position: absolute; opacity: 0; color: white; margin: 0; text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4), 0 4px 16px rgba(0, 0, 0, 0.2); font-size: 2rem; font-weight: 800; line-height: 1.2; text-align: center; width: 100%;">Let's Assess AMD Risk Years Before Vision Loss</h1>
-                    
-                    <!-- Phase 3: 12-25 seconds - Description with typewriter effect -->
-                    <h1 id="description" class="subtitle animated-text" style="position: absolute; opacity: 0; color: white; margin: 0; text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4); font-size: 2rem; font-weight: 800; line-height: 1.2; text-align: center; width: 100%;"><span id="typewriter-text"></span></h1>
-                    
+            <div class="hero-content" style="padding: 20px 15px; margin-top: 20px;">
+                <!-- Phase 1: 0-6 seconds -->
+                <h1 id="title-1" class="animated-text" style="opacity: 0; color: white; margin-bottom: 1rem; text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4), 0 4px 16px rgba(0, 0, 0, 0.2); font-size: 2rem; font-weight: 800; line-height: 1.2; text-align: center;">See the Future Clearly</h1>
+                
+                <!-- Phase 2: 6-12 seconds -->
+                <h2 id="title-2" class="animated-text" style="opacity: 0; color: white; margin-bottom: 1rem; text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4), 0 4px 16px rgba(0, 0, 0, 0.2); font-size: 1.7rem; font-weight: 700; line-height: 1.3; text-align: center;">Let's Assess AMD Risk Years Before Vision Loss</h2>
+                
+                <!-- Phase 3: 12-25 seconds -->
+                <div style="margin-top: 1.5rem; padding: 0 10px;">
+                    <p id="description" class="subtitle animated-text" style="opacity: 0; color: white; margin: 0; text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4); font-size: 1rem; line-height: 1.5; text-align: center; max-width: 100%; word-wrap: break-word;"><span id="typewriter-text"></span></p>
                 </div>
             </div>
         </div>
