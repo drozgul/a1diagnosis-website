@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proactive Vision Risk Analysis Platform</title>
+    <title>Proaktif Görme Riski Analiz Platformu</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
     
     <!-- Mobile Device Detection & Auto-Redirect -->
@@ -14,11 +14,11 @@
                             /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
             
             // Check if we're already on the mobile version to prevent redirect loops
-            const isAlreadyMobile = window.location.pathname.includes('presentation-mobile-english.html');
+            const isAlreadyMobile = window.location.pathname.includes('presentation-mobile.html');
             
-            // Redirect mobile users to English mobile version
+            // Redirect mobile users to mobile version
             if (isMobile && !isAlreadyMobile) {
-                window.location.href = 'presentation-mobile-english.html';
+                window.location.href = 'presentation-mobile.html';
             }
         })();
     </script>
@@ -1801,48 +1801,48 @@
     <div class="navigation-container">
         <div class="navigation-title">Sunum Bölümleri</div>
         <div class="navigation-buttons">
-            <button class="nav-button active" onclick="showSection('yonetici-ozeti')">💡 Executive Summary</button>
-            <button class="nav-button" onclick="showSection('kritik-problem')">💡 Critical Problem</button>
-            <button class="nav-button" onclick="showSection('cigir-acan-cozum')">💡 Our Breakthrough Solution</button>
-            <button class="nav-button" onclick="showSection('amd-risk-demo')">💡 Sample AMD Risk Assessment Report</button>
-            <button class="nav-button" onclick="showSection('kanıtlanmis-is-modeli')">💡 Proven Business Model</button>
-            <button class="nav-button" onclick="showSection('pazar-firsati')">💡 Market Opportunity Analysis</button>
-            <button class="nav-button" onclick="showSection('finansal-projeksiyonlar')">💡 Financial Projections</button>
-            <button class="nav-button" onclick="showSection('medicare-geri-odeme')">💡 US Insurance Reimbursement Pathway</button>
-            <button class="nav-button" onclick="showSection('gelistirme-asamalari')">💡 Development Phases and Timeline</button>
-            <button class="nav-button" onclick="showSection('asama-1-detayli')">💡 Phase 1 Detailed Milestones</button>
-            <button class="nav-button" onclick="showSection('yatirim-gereksinimleri')">💡 Phase 1 Investment Requirements</button>
-            <button class="nav-button" onclick="showSection('ekibimiz')">💡 Our Team</button>
-            <button class="nav-button" onclick="showSection('yatirim-gerekce')">💡 Investment Rationale</button>
+            <button class="nav-button active" onclick="showSection('yonetici-ozeti')">💡 Yönetici Özeti</button>
+            <button class="nav-button" onclick="showSection('kritik-problem')">💡 Kritik Problem</button>
+            <button class="nav-button" onclick="showSection('cigir-acan-cozum')">💡 Çığır Açan Çözümümüz</button>
+            <button class="nav-button" onclick="showSection('amd-risk-demo')">💡 Örnek AMD Risk Değerlendirme Raporu</button>
+            <button class="nav-button" onclick="showSection('kanıtlanmis-is-modeli')">💡 Kanıtlanmış İş Modeli</button>
+            <button class="nav-button" onclick="showSection('pazar-firsati')">💡 Pazar Fırsatı Analizi</button>
+            <button class="nav-button" onclick="showSection('finansal-projeksiyonlar')">💡 Finansal Projeksiyonlar</button>
+            <button class="nav-button" onclick="showSection('medicare-geri-odeme')">💡 Amerika'da Sigorta Ödeme Yolu</button>
+            <button class="nav-button" onclick="showSection('gelistirme-asamalari')">💡 Geliştirme Aşamaları ve Zaman Çizelgesi</button>
+            <button class="nav-button" onclick="showSection('asama-1-detayli')">💡 Aşama 1 Detaylı Kilometre Taşları</button>
+            <button class="nav-button" onclick="showSection('yatirim-gereksinimleri')">💡 Aşama 1 Yatırım Gereksinimleri</button>
+            <button class="nav-button" onclick="showSection('ekibimiz')">💡 Ekibimiz</button>
+            <button class="nav-button" onclick="showSection('yatirim-gerekce')">💡 Yatırım Gerekçesi</button>
             <button class="nav-button" onclick="showSection('iletisim-bilgileri')" style="background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%); position: relative; overflow: hidden;">
                 <span style="position: relative; z-index: 2; display: flex; align-items: center; gap: 8px;">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="opacity: 0.9;">
                         <path d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2ZM21 9V7L15 1H5C3.89 1 3 1.89 3 3V19C3 20.1 3.9 21 5 21H11V19H5V3H13V9H21ZM17 13C15.34 13 14 14.34 14 16S15.34 19 17 19 20 17.66 20 16 18.66 13 17 13ZM24 17H22V15H20V17H18V19H20V21H22V19H24V17Z"/>
                     </svg>
-                    Investment Opportunity Contact
+                    Yatırım Fırsatı İletişim
                 </span>
                 <div style="position: absolute; top: -2px; right: -2px; width: 6px; height: 6px; background: rgba(255, 255, 255, 0.4); border-radius: 50%; animation: pulse 2s ease-in-out infinite;"></div>
             </button>
-            <button class="nav-button" onclick="showSection('detayli-notlar-1')" style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border: 1px solid #bbf7d0; color: #166534; opacity: 0.9; font-size: 12px; font-style: italic;">📋 Appendix - Detailed Notes</button>
-            <button class="nav-button" onclick="showSection('fda-duzenleyici')" style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border: 1px solid #bbf7d0; color: #166534; opacity: 0.9; font-size: 12px; font-style: italic;">📋 Appendix - FDA Regulatory Strategy</button>
+            <button class="nav-button" onclick="showSection('detayli-notlar-1')" style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border: 1px solid #bbf7d0; color: #166534; opacity: 0.9; font-size: 12px; font-style: italic;">📋 Ek - Detaylı Notlar</button>
+            <button class="nav-button" onclick="showSection('fda-duzenleyici')" style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border: 1px solid #bbf7d0; color: #166534; opacity: 0.9; font-size: 12px; font-style: italic;">📋 Ek - FDA Düzenleyici Stratejisi</button>
         </div>
     </div>
     
     <div class="document">
         <div class="section active" id="yonetici-ozeti">
             <div class="header">
-                <h1>AMD Risk Assessment</h1>
-                <div class="subtitle">See the Future Clearly<br><br>Let's Assess AMD Risk Years Before Vision Loss</div>
+                <h1>Proaktif Görme Riski Analiz Platformu</h1>
+                <div class="subtitle">Geleceği Net Görmek İstiyor musunuz?<br>Görme Kaybı Oluşmadan Hastalık Riskinizi Öğrenmek İster misiniz?</div>
             </div>
-            <h2>💡 Executive Summary</h2>
+            <h2>💡 Yönetici Özeti</h2>
             <div style="margin-bottom: 20px;">
                 <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 15px;">
                     <span style="color: #3b82f6; font-size: 18px; flex-shrink: 0; margin-top: 2px;">✨</span>
-                    <p style="margin: 0; color: #374151; font-size: 14px; line-height: 1.6;">Age-related Macular Degeneration (AMD) is the #1 cause of vision impairment and severe vision loss among elderly people in the United States.</p>
+                    <p style="margin: 0; color: #374151; font-size: 14px; line-height: 1.6;">Amerika Birleşik Devletleri'nde yaşlılarda görme bozukluğunun ve büyük ölçüde görme kaybının 1 numaralı nedeni olan Yaşa Bağlı Makula Dejenerasyonu (AMD) hastalığıdır.</p>
                 </div>
                 <div style="display: flex; align-items: flex-start; gap: 12px;">
                     <span style="color: #3b82f6; font-size: 18px; flex-shrink: 0; margin-top: 2px;">✨</span>
-                    <p style="margin: 0; color: #374151; font-size: 14px; line-height: 1.6;">Our groundbreaking solution enables disease risk determination years before vision loss.</p>
+                    <p style="margin: 0; color: #374151; font-size: 14px; line-height: 1.6;">Çığırlar açan çözümümüz, görme kaybı meydana gelmeden yıllar önce hastalık riskinin belirlenmesini sağlayarak gelecekte hayata net bakabilmeyi sağlayabilecek platformu geliştiriyoruz.</p>
                 </div>
             </div>
             
@@ -1857,13 +1857,13 @@
                 <div class="process-grid" id="process-steps-summary">
                     <div class="process-step" id="step-summary-1" data-step="1">
                         <div class="process-icon">1</div>
-                        <div class="process-title">Family Doctor Visit</div>
+                        <div class="process-title">Aile Doktoru Ziyareti</div>
                         <div class="process-desc">Rutin kontrol sırasında (40+ yaş)</div>
                     </div>
                     <div class="process-step process-step-alt" id="step-summary-2" data-step="2">
                         <div class="process-icon process-icon-alt">2</div>
-                        <div class="process-title process-title-alt">Blood Analysis</div>
-                        <div class="process-desc">Advanced biomarker detection</div>
+                        <div class="process-title process-title-alt">Kan Analizi</div>
+                        <div class="process-desc">Gelişmiş biyobelirteç tespiti</div>
                     </div>
                     <div class="process-step" id="step-summary-3" data-step="3">
                         <div class="process-icon">3</div>
@@ -1872,60 +1872,60 @@
                     </div>
                     <div class="process-step process-step-alt" id="step-summary-4" data-step="4">
                         <div class="process-icon process-icon-alt">4</div>
-                        <div class="process-title process-title-alt">Risk Assessment</div>
-                        <div class="process-desc">Early Intervention and Monitoring Opportunity</div>
+                        <div class="process-title process-title-alt">Erken Müdahale</div>
+                        <div class="process-desc">Risk belirleme ve izleme</div>
                     </div>
                 </div>
             </div>
             
             <div class="value-proposition">
-                <h4>Unique Value Proposition</h4>
+                <h4>Benzersiz Değer Önerisi</h4>
                 <div class="value-item">
                     <div class="value-bullet">✨</div>
-                    <div class="value-text">The market's first blood test opportunity for AMD risk assessment before vision loss begins</div>
+                    <div class="value-text">Herhangi bir görme bozukluğu başlamadan AMD için ilk kan analizi ile risk belirleme</div>
                 </div>
                 <div class="value-item">
                     <div class="value-bullet">✨</div>
-                    <div class="value-text">Proprietary AI-powered algorithm</div>
+                    <div class="value-text">Özel AI destekli risk tahmin algoritması</div>
                 </div>
                 <div class="value-item">
                     <div class="value-bullet">✨</div>
-                    <div class="value-text">AMD Risk Assessment using blood samples in Primary Care</div>
+                    <div class="value-text">Aile Hekimliğinde kan örnekleri kullanarak AMD Risk Değerlendirmesi</div>
                 </div>
                 <div class="value-item">
                     <div class="value-bullet">✨</div>
-                    <div class="value-text">Medicare reimbursement opportunity under existing preventive care frameworks</div>
+                    <div class="value-text">Önleyici bakım kapsamı ile net Medicare (Devlet Sigortası) geri ödeme imkanı olası</div>
                 </div>
             </div>
             
             <div class="key-metrics">
-                <h4>Critical Investment Metrics</h4>
+                <h4>Yatırım Öne Çıkanları</h4>
                 <div class="metrics-row">
                     <div class="metric">
-                        <div class="metric-value">$42.3 Billion</div>
-                        <div class="metric-label">Total Addressable Market</div>
+                        <div class="metric-value">$42.3 Milyar</div>
+                        <div class="metric-label">Toplam Erişilebilir Pazar</div>
                     </div>
                     <div class="metric">
                         <div class="metric-value">94-95%</div>
-                        <div class="metric-label">Test Accuracy Rate</div>
+                        <div class="metric-label">Test Doğruluk Oranı</div>
                     </div>
                     <div class="metric">
-                        <div class="metric-value">169 Million</div>
-                        <div class="metric-label">Target Population (Americans 35+)</div>
+                        <div class="metric-value">169 Milyon</div>
+                        <div class="metric-label">Hedef Popülasyon (35+ Amerikalı)</div>
                     </div>
                 </div>
             </div>
             
             <div class="highlight-box-modern">
-                <p><strong>Market Opportunity:</strong> Inspired by the Exact Sciences model ($9.90 billion market value, $2.76 billion annual revenue), we are positioned to capture significant market share in the high-impact healthcare sector.</p>
+                <p><strong>Pazar Fırsatı:</strong> Exact Sciences modelini (9.90 milyar dolar piyasa değeri, 2.76 milyar dolar yıllık gelir) ilham alarak, yüksek etkili sağlık sektöründe önemli pazar payı elde etme imkanı konumundayız.</p>
             </div>
         </div>
         
         <div class="section" id="asama-1-detayli">
-            <h2>💡 Phase 1 Detailed Milestones</h2>
+            <h2>💡 Aşama 1 Detaylı Kilometre Taşları</h2>
             
             <div style="text-align: center; margin-bottom: 30px;">
-                <h3 style="color: #64748b; font-size: 16px; margin: 0;">Phase 1: Validation and Regulatory Strategy Preparation</h3>
+                <h3 style="color: #64748b; font-size: 16px; margin: 0;">Aşama 1: Doğrulama ve Düzenleyici Strateji Hazırlığı</h3>
             </div>
             
             <div style="margin-bottom: 40px;">
@@ -1959,17 +1959,17 @@
                     
                     <div style="background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); padding: 15px 20px; border-radius: 8px; border-left: 4px solid #3b82f6; display: flex; align-items: center; gap: 12px;">
                         <span style="color: #3b82f6; font-size: 18px; font-weight: bold;">✓</span>
-                        <span style="color: #1e40af; font-weight: 500;">Provisional patent applications for AMD algorithm</span>
+                        <span style="color: #1e40af; font-weight: 500;">AMD algoritması için geçici patent başvurularının yapılması</span>
                     </div>
                     
                     <div style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); padding: 15px 20px; border-radius: 8px; border-left: 4px solid #22c55e; display: flex; align-items: center; gap: 12px;">
                         <span style="color: #22c55e; font-size: 18px; font-weight: bold;">✓</span>
-                        <span style="color: #166534; font-weight: 500;">Analysis of 240 new blood samples from at least 3 centers (Asymptomatic early AMD, early AMD with vision symptoms, Dry AMD, Wet AMD)</span>
+                        <span style="color: #166534; font-weight: 500;">En az 3 merkezden 240 yeni kan örneğinin analizi (Semptomları olmayan erken AMD, görme semptomları olan erken AMD, Kuru AMD, Yaş AMD)</span>
                     </div>
                     
                     <div style="background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); padding: 15px 20px; border-radius: 8px; border-left: 4px solid #3b82f6; display: flex; align-items: center; gap: 12px;">
                         <span style="color: #3b82f6; font-size: 18px; font-weight: bold;">✓</span>
-                        <span style="color: #1e40af; font-weight: 500;">Algorithm accuracy improvement using comprehensive training data</span>
+                        <span style="color: #1e40af; font-weight: 500;">Kapsamlı eğitim verisi kullanarak algoritma doğruluğunun artırılması</span>
                     </div>
                     
                     <div style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); padding: 15px 20px; border-radius: 8px; border-left: 4px solid #22c55e; display: flex; align-items: center; gap: 12px;">
@@ -2008,41 +2008,41 @@
         
         <div class="section" id="kritik-problem">
             <div class="header">
-                <h1>AMD Risk Assessment</h1>
-                <div class="subtitle">See the Future Clearly<br><br>Let's Assess AMD Risk Years Before Vision Loss</div>
+                <h1>Proaktif Görme Riski Analiz Platformu</h1>
+                <div class="subtitle">Geleceği Net Görmek İstiyor musunuz?<br>Görme Kaybı Oluşmadan Hastalık Riskinizi Öğrenmek İster misiniz?</div>
             </div>
-            <h2>💡 Critical Problem</h2>
-            <p>Current detection methods identify the disease only after irreversible damage has occurred, when treatment options are limited and costly.</p>
+            <h2>💡 Kritik Problem</h2>
+            <p>Yaşa Bağlı Makula Dejenerasyonu tanı almış 20 milyon Amerikalıyı etkiler ve küresel olarak 200 milyon kişi görme kaybı ilerlemesinden etkilenir. Mevcut tespit yöntemleri hastalığı ancak geri dönüşümsüz hasar oluştuktan sonra, tedavi seçeneklerinin sınırlı ve maliyetli olduğu dönemde tespit eder.</p>
             
             <div class="stats-grid">
                 <div class="stat-item-contemporary">
-                    <span class="stat-number-contemporary">20 Million</span>
-                    <div class="stat-label-contemporary">Americans with AMD diagnosis</div>
+                    <span class="stat-number-contemporary">20 Milyon</span>
+                    <div class="stat-label-contemporary">AMD tanılı Amerikalı</div>
                 </div>
                 <div class="stat-item-contemporary">
-                    <span class="stat-number-contemporary">200 Million</span>
-                    <div class="stat-label-contemporary">People affected globally</div>
+                    <span class="stat-number-contemporary">200 Milyon</span>
+                    <div class="stat-label-contemporary">Küresel olarak etkilenen kişi</div>
                 </div>
             </div>
             
-            <h3>Disease Progression Stages</h3>
-            <p>AMD progresses through four distinct stages: Early Stage (mild central vision changes), Intermediate Stage (increasing central vision loss), Advanced Dry AMD (significant central vision loss), and Advanced Wet AMD (severe central vision loss with rapid progression). Current screening methods detect the disease far too late in this progression.</p>
+            <h3>Hastalık İlerleme Evreleri</h3>
+            <p>AMD dört farklı evreden geçer: Erken Evre (hafif merkezi görme değişiklikleri), Orta Evre (artan merkezi görme kaybı), Şiddetli Evre (önemli merkezi görme kaybı) ve İleri AMD (ciddi merkezi görme kaybı). Mevcut tarama yöntemleri hastalığı bu ilerlemede çok geç tespit eder.</p>
             
             <div class="highlight-box">
-                <p><strong>Critical Challenge:</strong> Progressive and irreversible vision loss occurs over time. When vision problems become apparent, the damage is permanent and irreversible.</p>
+                <p><strong>Kritik Zorluk:</strong> İlerleyici ve geri dönüşümsüz görme kaybı zaman içinde meydana gelir. Görme sorunları belirgin hale geldiğinde, hasar kalıcıdır ve geri dönüşüm mümkün değildir.</p>
             </div>
         </div>
         
         <div class="section" id="cigir-acan-cozum">
-            <h2>💡 Our Breakthrough Solution</h2>
+            <h2>💡 Çığır Açan Çözümümüz</h2>
             <div style="margin-bottom: 20px;">
                 <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 15px;">
                     <span style="color: #3b82f6; font-size: 18px; flex-shrink: 0; margin-top: 2px;">✨</span>
-                    <p style="margin: 0; color: #374151; font-size: 14px; line-height: 1.6;">The current standard of care is symptom-driven—people seek treatment only after vision loss occurs.</p>
+                    <p style="margin: 0; color: #374151; font-size: 14px; line-height: 1.6;">Normalde insanlar göz ile bozukluğu olduğunda göz doktoruna gider.</p>
                 </div>
                 <div style="display: flex; align-items: flex-start; gap: 12px;">
                     <span style="color: #3b82f6; font-size: 18px; flex-shrink: 0; margin-top: 2px;">✨</span>
-                    <p style="margin: 0; color: #374151; font-size: 14px; line-height: 1.6;">Our platform enables early risk assessment through a simple blood test during routine family doctor visits.</p>
+                    <p style="margin: 0; color: #374151; font-size: 14px; line-height: 1.6;">Ama bizim yöntemimizde, sadece bir aile hekimliği ziyaretinde, göz hastalığı riskini bir kan testi ile öğrenebilir hastalar.</p>
                 </div>
             </div>
             
@@ -2057,13 +2057,13 @@
                 <div class="process-grid" id="process-steps">
                     <div class="process-step" id="step-1" data-step="1">
                         <div class="process-icon">1</div>
-                        <div class="process-title">Family Doctor Visit</div>
+                        <div class="process-title">Aile Doktoru Ziyareti</div>
                         <div class="process-desc">Rutin kontrol sırasında (40+ yaş)</div>
                     </div>
                     <div class="process-step process-step-alt" id="step-2" data-step="2">
                         <div class="process-icon process-icon-alt">2</div>
-                        <div class="process-title process-title-alt">Blood Analysis</div>
-                        <div class="process-desc">Advanced biomarker detection</div>
+                        <div class="process-title process-title-alt">Kan Analizi</div>
+                        <div class="process-desc">Gelişmiş biyobelirteç tespiti</div>
                     </div>
                     <div class="process-step" id="step-3" data-step="3">
                         <div class="process-icon">3</div>
@@ -2072,44 +2072,44 @@
                     </div>
                     <div class="process-step process-step-alt" id="step-4" data-step="4">
                         <div class="process-icon process-icon-alt">4</div>
-                        <div class="process-title process-title-alt">Risk Assessment</div>
-                        <div class="process-desc">Early Intervention and Monitoring Opportunity</div>
+                        <div class="process-title process-title-alt">Erken Müdahale</div>
+                        <div class="process-desc">Risk belirleme ve izleme</div>
                     </div>
                 </div>
             </div>
             
             <div class="value-proposition">
-                <h4>Unique Value Proposition</h4>
+                <h4>Benzersiz Değer Önerisi</h4>
                 <div class="value-item">
                     <div class="value-bullet">✨</div>
-                    <div class="value-text">The market's first blood test opportunity for AMD risk assessment before vision loss begins</div>
+                    <div class="value-text">Herhangi bir görme bozukluğu başlamadan AMD için ilk kan analizi ile risk belirleme</div>
                 </div>
                 <div class="value-item">
                     <div class="value-bullet">✨</div>
-                    <div class="value-text">Proprietary AI-powered algorithm</div>
+                    <div class="value-text">Özel AI destekli risk tahmin algoritması</div>
                 </div>
                 <div class="value-item">
                     <div class="value-bullet">✨</div>
-                    <div class="value-text">AMD Risk Assessment using blood samples in Primary Care</div>
+                    <div class="value-text">Aile Hekimliğinde kan örnekleri kullanarak AMD Risk Değerlendirmesi</div>
                 </div>
                 <div class="value-item">
                     <div class="value-bullet">✨</div>
-                    <div class="value-text">Medicare reimbursement opportunity under existing preventive care frameworks</div>
+                    <div class="value-text">Önleyici bakım kapsamı ile net Medicare (Devlet Sigortası) geri ödeme imkanı olası</div>
                 </div>
             </div>
         </div>
         
         <div class="section" id="kanıtlanmis-is-modeli">
-            <h2>💡 Proven Business Model</h2>
-            <p>Our business model is inspired by the highly successful Exact Sciences model, which achieved a $9.90 billion market value and $2.76 billion annual revenue through blood-based diagnostic tests.</p>
+            <h2>💡 Kanıtlanmış İş Modeli</h2>
+            <p>İş stratejimiz doğrudan 9.90 milyar dolarlık piyasa değeri ve kan tabanlı tanı testleri yoluyla yıllık 2.76 milyar dolarlık gelir elde eden son derece başarılı Exact Sciences modelinden ilham almaktayız.</p>
             
             <!-- Enhanced Strategic Analysis Header -->
             <div style="margin-bottom: 30px; text-align: center; padding-bottom: 20px; animation: fadeInUp 1s ease-out;">
                 <div style="background: linear-gradient(135deg, #3b82f6 0%, #14b8a6 100%); padding: 1px; border-radius: 20px; box-shadow: 0 8px 30px rgba(59, 130, 246, 0.25); margin-bottom: 20px;">
                     <div style="background: white; border-radius: 19px; padding: 30px 40px;">
-                        <h1 style="font-size: 3rem; font-weight: 900; background: linear-gradient(135deg, #3b82f6 0%, #14b8a6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 8px; letter-spacing: -0.02em; animation: slideInFromTop 1.2s ease-out;">Inspiration for Our Business Strategy</h1>
+                        <h1 style="font-size: 3rem; font-weight: 900; background: linear-gradient(135deg, #3b82f6 0%, #14b8a6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 8px; letter-spacing: -0.02em; animation: slideInFromTop 1.2s ease-out;">İş Stratejimizin İlham Kaynağı</h1>
                         <div style="width: 96px; height: 4px; background: linear-gradient(135deg, #3b82f6 0%, #14b8a6 100%); margin: 16px auto; border-radius: 2px;"></div>
-                        <p style="font-size: 1.5rem; color: #374151; font-weight: 600; margin: 0; text-align: center;">Exact Sciences Analysis - 2025 Growth Strategy</p>
+                        <p style="font-size: 1.5rem; color: #374151; font-weight: 600; margin: 0; text-align: center;">Exact Sciences Analizi - 2025 Büyüme Stratejisi</p>
                     </div>
                 </div>
             </div>
@@ -2118,34 +2118,34 @@
             <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 30px 0;">
                 <!-- Metric 1 - Blue Theme -->
                 <div style="background: linear-gradient(135deg, #f0f9ff 0%, #dbeafe 100%); padding: 20px 16px; border-radius: 12px; text-align: center; box-shadow: 0 2px 4px rgba(59, 130, 246, 0.1); border: 1px solid #bfdbfe; animation: fadeInUp 1s ease-out 0.2s both; transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 8px 20px rgba(59, 130, 246, 0.2)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(59, 130, 246, 0.1)'">
-                    <div style="color: #3b82f6; font-size: 24px; font-weight: 800; margin-bottom: 8px;">4M+ Tests</div>
-                    <div style="color: #374151; font-size: 11px; font-weight: 500; line-height: 1.3;">Tests Completed in 2024</div>
+                    <div style="color: #3b82f6; font-size: 24px; font-weight: 800; margin-bottom: 8px;">4 Milyon +</div>
+                    <div style="color: #374151; font-size: 11px; font-weight: 500; line-height: 1.3;">2024'te Tamamlanan Test Sayısı</div>
                 </div>
                 
                 <!-- Metric 2 - Teal Theme -->
                 <div style="background: linear-gradient(135deg, #f0fdfa 0%, #ccfbf1 100%); padding: 20px 16px; border-radius: 12px; text-align: center; box-shadow: 0 2px 4px rgba(20, 184, 166, 0.1); border: 1px solid #99f6e4; animation: fadeInUp 1s ease-out 0.4s both; transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 8px 20px rgba(20, 184, 166, 0.2)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(20, 184, 166, 0.1)'">
-                    <div style="color: #14b8a6; font-size: 24px; font-weight: 800; margin-bottom: 8px;">$2.76B Revenue</div>
-                    <div style="color: #374151; font-size: 11px; font-weight: 500; line-height: 1.3;">2024 Total Revenue</div>
+                    <div style="color: #14b8a6; font-size: 24px; font-weight: 800; margin-bottom: 8px;">2,76 Milyar $</div>
+                    <div style="color: #374151; font-size: 11px; font-weight: 500; line-height: 1.3;">2024 Toplam Gelir</div>
                 </div>
                 
                 <!-- Metric 3 - Cyan Theme -->
                 <div style="background: linear-gradient(135deg, #ecfeff 0%, #cffafe 100%); padding: 20px 16px; border-radius: 12px; text-align: center; box-shadow: 0 2px 4px rgba(6, 182, 212, 0.1); border: 1px solid #a5f3fc; animation: fadeInUp 1s ease-out 0.6s both; transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 8px 20px rgba(6, 182, 212, 0.2)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(6, 182, 212, 0.1)'">
-                    <div style="color: #06b6d4; font-size: 24px; font-weight: 800; margin-bottom: 8px;">$315M+ EBITDA</div>
-                    <div style="color: #374151; font-size: 11px; font-weight: 500; line-height: 1.3;">2024 Adjusted EBITDA</div>
+                    <div style="color: #06b6d4; font-size: 24px; font-weight: 800; margin-bottom: 8px;">315+ Milyon $</div>
+                    <div style="color: #374151; font-size: 11px; font-weight: 500; line-height: 1.3;">2024 Düzeltilmiş FAVÖK</div>
                 </div>
                 
                 <!-- Metric 4 - Blue Theme -->
                 <div style="background: linear-gradient(135deg, #f0f9ff 0%, #dbeafe 100%); padding: 20px 16px; border-radius: 12px; text-align: center; box-shadow: 0 2px 4px rgba(59, 130, 246, 0.1); border: 1px solid #bfdbfe; animation: fadeInUp 1s ease-out 0.8s both; transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 8px 20px rgba(59, 130, 246, 0.2)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(59, 130, 246, 0.1)'">
-                    <div style="color: #3b82f6; font-size: 24px; font-weight: 800; margin-bottom: 8px;">$9.90B Market Value</div>
-                    <div style="color: #374151; font-size: 11px; font-weight: 500; line-height: 1.3;">Company Market Value</div>
+                    <div style="color: #3b82f6; font-size: 24px; font-weight: 800; margin-bottom: 8px;">9,90 Milyar $</div>
+                    <div style="color: #374151; font-size: 11px; font-weight: 500; line-height: 1.3;">Firmanın Piyasa Değeri</div>
                 </div>
             </div>
             
             <!-- EBITDA Açıklaması -->
             <div class="phase-modern" style="padding: 20px 25px 20px 80px; margin: 20px 0; animation: fadeInUp 1s ease-out 1s both; position: relative;">
                 <div class="phase-icon-modern" style="left: -5px; top: 18px;">💡</div>
-                <h4>Understanding EBITDA Growth</h4>
-                <p style="color: #1e40af; font-weight: 500; line-height: 1.5; margin: 0;">$315M+ Adjusted EBITDA in 2024 represents earnings before interest, taxes, depreciation and amortization, adjusted for non-recurring items. 44% annual growth demonstrates strong operational performance and improved profitability compared to 2023.</p>
+                <h4>FAVÖK Büyümesini Anlamak</h4>
+                <p style="color: #1e40af; font-weight: 500; line-height: 1.5; margin: 0;">2024'te 315+ Milyon $ Düzeltilmiş FAVÖK, faiz, vergi, amortisman ve itfa payından önceki kazançları temsil eder ve tekrar etmeyen kalemlere göre düzeltilmiştir. Yıllık %44'lük büyüme, güçlü operasyonel performansı ve 2023'e kıyasla gelişmiş karlılığı göstermektedir.</p>
             </div>
             
             <!-- Enhanced Healthcare System Savings -->
@@ -2155,8 +2155,8 @@
                         <div style="color: #22c55e; font-size: 32px;">📈</div>
                     </div>
                     <div>
-                        <div style="color: #15803d; font-size: 2rem; font-weight: 800; margin-bottom: 4px;">$22 Billion</div>
-                        <div style="color: #166534; font-size: 1.125rem; font-weight: 600;">Total US Healthcare System Savings</div>
+                        <div style="color: #15803d; font-size: 2rem; font-weight: 800; margin-bottom: 4px;">22 Milyar $</div>
+                        <div style="color: #166534; font-size: 1.125rem; font-weight: 600;">Toplam ABD Sağlık Sistemi Tasarrufu</div>
                     </div>
                 </div>
             </div>
@@ -2164,7 +2164,7 @@
             <!-- Enhanced Revenue Distribution Chart -->
             <div style="background: white; border-radius: 12px; padding: 24px; margin: 30px 0; border: 1px solid #e5e7eb; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); animation: fadeInUp 1.2s ease-out 1.2s both;">
                 <h3 style="color: #374151; margin-bottom: 20px; font-size: 20px; font-weight: 600; display: flex; align-items: center; gap: 8px;">
-                    2024 Revenue Distribution
+                    2024 Gelir Dağılımı
                 </h3>
                 
                 <!-- Modern Chart Container -->
@@ -2201,7 +2201,7 @@
                             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
                                 <div style="display: flex; align-items: center;">
                                     <div style="width: 12px; height: 12px; border-radius: 2px; background: linear-gradient(135deg, #a7f3d0, #10b981); margin-right: 8px;"></div>
-                                    <span style="font-size: 14px; font-weight: 500; color: #374151;">Healthcare Pre-Assessment Screening Tests</span>
+                                    <span style="font-size: 14px; font-weight: 500; color: #374151;">Sağlık Ön Değerlendirme Tarama Testleri</span>
                                 </div>
                                 <span style="font-size: 14px; font-weight: 700; color: #1f2937;">76%</span>
                             </div>
@@ -2215,7 +2215,7 @@
                             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
                                 <div style="display: flex; align-items: center;">
                                     <div style="width: 12px; height: 12px; border-radius: 2px; background: linear-gradient(135deg, #bfdbfe, #3b82f6); margin-right: 8px;"></div>
-                                    <span style="font-size: 14px; font-weight: 500; color: #374151;">Targeted Personalized Tests</span>
+                                    <span style="font-size: 14px; font-weight: 500; color: #374151;">Hedefe Yönelik Kişiselleştirilmiş Testler</span>
                                 </div>
                                 <span style="font-size: 14px; font-weight: 700; color: #1f2937;">24%</span>
                             </div>
@@ -2231,7 +2231,7 @@
             <div class="phase-modern" style="padding: 20px 25px 20px 80px; margin: 30px 0; animation: fadeInUp 1.5s ease-out 1.8s both; position: relative;">
                 <div class="phase-icon-modern" style="left: -5px; top: 18px;">💡</div>
                 <h4 style="margin-bottom: 20px;">
-                    2025 Product Portfolio: $58B Target Market Volume
+                    2025 Ürün Yelpazesi: 58 Milyar $ Hedef Pazar Hacmi
                 </h4>
                 
                 <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
@@ -2241,8 +2241,8 @@
                             <div style="width: 8px; height: 8px; border-radius: 50%; background: #22c55e;"></div>
                             <div style="color: #1f2937; font-size: 18px; font-weight: 600;">Cologuard Plus™</div>
                         </div>
-                        <div style="color: #14b8a6; font-size: 24px; font-weight: 700; margin-bottom: 4px;">$18B</div>
-                        <div style="color: #6b7280; font-size: 12px;">Launch: Q2 2025 Start</div>
+                        <div style="color: #14b8a6; font-size: 24px; font-weight: 700; margin-bottom: 4px;">18 Milyar $</div>
+                        <div style="color: #6b7280; font-size: 12px;">Lansman: 2025 2. Çeyrek Başı</div>
                     </div>
                     
                     <!-- Product 2 - Oncodetect -->
@@ -2251,8 +2251,8 @@
                             <div style="width: 8px; height: 8px; border-radius: 50%; background: #3b82f6;"></div>
                             <div style="color: #1f2937; font-size: 18px; font-weight: 600;">Oncodetect™</div>
                         </div>
-                        <div style="color: #14b8a6; font-size: 24px; font-weight: 700; margin-bottom: 4px;">$15B</div>
-                        <div style="color: #6b7280; font-size: 12px;">Launch: Q2 2025</div>
+                        <div style="color: #14b8a6; font-size: 24px; font-weight: 700; margin-bottom: 4px;">15 Milyar $</div>
+                        <div style="color: #6b7280; font-size: 12px;">Lansman: 2025 2. Çeyrek</div>
                     </div>
                     
                     <!-- Product 3 - Cancerguard -->
@@ -2261,8 +2261,8 @@
                             <div style="width: 8px; height: 8px; border-radius: 50%; background: #14b8a6;"></div>
                             <div style="color: #1f2937; font-size: 18px; font-weight: 600;">Cancerguard™</div>
                         </div>
-                        <div style="color: #14b8a6; font-size: 24px; font-weight: 700; margin-bottom: 4px;">$25B</div>
-                        <div style="color: #6b7280; font-size: 12px;">Launch: H2 2025</div>
+                        <div style="color: #14b8a6; font-size: 24px; font-weight: 700; margin-bottom: 4px;">25 Milyar $</div>
+                        <div style="color: #6b7280; font-size: 12px;">Lansman: 2025 2. Yarı</div>
                     </div>
                 </div>
             </div>
@@ -2270,11 +2270,11 @@
         </div>
         
         <div class="section" id="medicare-geri-odeme">
-            <h2>💡 US Insurance Reimbursement Pathway</h2>
+            <h2>💡 Amerika'da Sigorta Ödeme Yolu</h2>
             <div style="margin-bottom: 20px;">
                 <div style="display: flex; align-items: flex-start; gap: 12px;">
                     <span style="color: #3b82f6; font-size: 18px; flex-shrink: 0; margin-top: 2px;">✨</span>
-                    <p style="margin: 0; color: #374151; font-size: 14px; line-height: 1.6;">In US, Medicare covers the cost of tests performed before disease onset. Our AMD risk assessment test can also be covered after necessary procedures.</p>
+                    <p style="margin: 0; color: #374151; font-size: 14px; line-height: 1.6;">Amerika'da Medicare (devlet sigortası), hastalık olmadan önce yapılan testlerin bedelini ödemektedir. AMD testimiz için de ödeme kapsamına alınabilir gerekli işlemlerden sonra.</p>
                 </div>
             </div>
             
@@ -2317,7 +2317,7 @@
                             </div>
                             <div>
                                 <div style="color: #92400e; font-weight: 700; font-size: 16px; margin-bottom: 5px;">Kardiyovasküler Hastalık</div>
-                                <div style="color: #78350f; font-size: 14px; line-height: 1.4;">Annual behavioral therapy (similar risk assessment model)</div>
+                                <div style="color: #78350f; font-size: 14px; line-height: 1.4;">Yıllık davranışsal terapi (benzer risk değerlendirme modeli)</div>
                             </div>
                         </div>
                     </div>
@@ -2331,7 +2331,7 @@
                             </div>
                             <div>
                                 <div style="color: #1e40af; font-weight: 700; font-size: 16px; margin-bottom: 5px;">Diyabet</div>
-                                <div style="color: #3730a3; font-size: 14px; line-height: 1.4;">Up to 2 screenings per year if at risk</div>
+                                <div style="color: #3730a3; font-size: 14px; line-height: 1.4;">Risk altındaysa yılda 2'ye kadar tarama</div>
                             </div>
                         </div>
                     </div>
@@ -2344,7 +2344,7 @@
                                 <span style="font-size: 24px;">🧬</span>
                             </div>
                             <div>
-                                <div style="color: #7c3aed; font-weight: 700; font-size: 16px; margin-bottom: 5px;">Cancer Screening</div>
+                                <div style="color: #7c3aed; font-weight: 700; font-size: 16px; margin-bottom: 5px;">Kanser Taraması</div>
                                 <div style="color: #6d28d9; font-size: 14px; line-height: 1.4;">Çeşitli kan tabanlı ve biyobelirteç testleri kapsanır</div>
                             </div>
                         </div>
@@ -2359,7 +2359,7 @@
                             </div>
                             <div>
                                 <div style="color: #15803d; font-weight: 700; font-size: 16px; margin-bottom: 5px;">Önleyici Hizmetler</div>
-                                <div style="color: #166534; font-size: 14px; line-height: 1.4;">Comprehensive coverage for early detection programs</div>
+                                <div style="color: #166534; font-size: 14px; line-height: 1.4;">Erken tespit programları için kapsamlı kapsama</div>
                             </div>
                         </div>
                     </div>
@@ -2368,7 +2368,7 @@
         </div>
         
         <div class="section" id="pazar-firsati">
-            <h2>💡 Market Opportunity Analysis</h2>
+            <h2>💡 Pazar Fırsatı Analizi</h2>
             
             <!-- Market Opportunity Pie Chart -->
             <div style="margin: 30px 0;">
@@ -2416,7 +2416,7 @@
                                         <div style="width: 24px; height: 24px; margin-right: 12px; border-radius: 50%; background: linear-gradient(135deg, #BFDBFE, #3B82F6); box-shadow: 0 2px 4px rgba(13, 148, 136, 0.2);"></div>
                                         <span style="font-size: 1.5rem; font-weight: bold;">%1</span>
                                     </div>
-                                    <p style="font-size: 1.25rem; margin: 0; margin-left: 36px;">Target market share within 5 years</p>
+                                    <p style="font-size: 1.25rem; margin: 0; margin-left: 36px;">5 yıl içinde hedef pazar payı</p>
                                 </div>
                                 
                                 <div>
@@ -2424,14 +2424,14 @@
                                         <div style="width: 24px; height: 24px; margin-right: 12px; border-radius: 50%; background: linear-gradient(135deg, #99F6E4, #0D9488); box-shadow: 0 2px 4px rgba(13, 148, 136, 0.2);"></div>
                                         <span style="font-size: 1.5rem; font-weight: bold;">%99</span>
                                     </div>
-                                    <p style="font-size: 1.25rem; margin: 0; margin-left: 36px;">Remaining Market Share</p>
+                                    <p style="font-size: 1.25rem; margin: 0; margin-left: 36px;">Kalan Pazar Payı</p>
                                 </div>
                             </div>
                         </div>
                         
                         <!-- Footer -->
                         <div style="padding: 20px 48px; background: linear-gradient(to right, #f0fdfa, #ccfbf1); border-top: 1px solid #e5e7eb;">
-                            <p style="color: #134e4a; font-size: 1.25rem; font-weight: 600; margin: 0;">Small slice. Big opportunity.</p>
+                            <p style="color: #134e4a; font-size: 1.25rem; font-weight: 600; margin: 0;">Küçük dilim. Büyük fırsat.</p>
                         </div>
                     </div>
                 </div>
@@ -2439,31 +2439,31 @@
             
             <div class="stats-grid">
                 <div class="stat-item-contemporary">
-                    <span class="stat-number-contemporary">$42.3 Billion</span>
-                    <div class="stat-label-contemporary">Total Market Opportunity</div>
+                    <span class="stat-number-contemporary">$42.3 Milyar</span>
+                    <div class="stat-label-contemporary">Toplam Pazar Fırsatı</div>
                 </div>
                 <div class="stat-item-contemporary">
-                    <span class="stat-number-contemporary">169.1 Million</span>
-                    <div class="stat-label-contemporary">Target Population (Americans 35+)</div>
+                    <span class="stat-number-contemporary">169.1 Milyon</span>
+                    <div class="stat-label-contemporary">Hedef Popülasyon (35+ Amerikalı)</div>
                 </div>
             </div>
             
             <div class="stats-grid">
                 <div class="stat-item-contemporary">
-                    <span class="stat-number-contemporary">4.5 Million</span>
-                    <div class="stat-label-contemporary">New Users Turning 35 Each Year</div>
+                    <span class="stat-number-contemporary">4.5 Milyon</span>
+                    <div class="stat-label-contemporary">Her Yıl 35 Yaşına Yeni Gelen Yeni Kullanıcı</div>
                 </div>
                 <div class="stat-item-contemporary">
                     <span class="stat-number-contemporary">$250</span>
-                    <div class="stat-label-contemporary">Test Price</div>
+                    <div class="stat-label-contemporary">Test Fiyatı</div>
                 </div>
             </div>
             
-            <p><strong>Market Calculation:</strong> 169.1 million target population × $250 test price = $42.3 billion total addressable market</p>
+            <p><strong>Pazar Hesaplaması:</strong> 169.1 milyon hedef popülasyon × $250 test fiyatı = $42.3 milyar toplam erişilebilir pazar</p>
         </div>
         
         <div class="section" id="finansal-projeksiyonlar">
-            <h2>💡 Financial Projections</h2>
+            <h2>💡 Finansal Projeksiyonlar</h2>
             
             <!-- Enhanced Market Share Growth Chart with Chart.js -->
             <div style="padding: 40px; margin: 30px 0; border-radius: 16px;">
@@ -2472,10 +2472,10 @@
                     <div style="padding: 32px 40px; background: linear-gradient(135deg, #f0fdfa 0%, #ccfbf1 50%, #99f6e4 100%); position: relative; overflow: hidden;">
                         <div style="position: absolute; top: -50%; right: -10%; width: 200px; height: 200px; background: radial-gradient(circle, rgba(13, 148, 136, 0.1) 0%, transparent 70%); border-radius: 50%;"></div>
                         <h3 style="font-size: 2rem; font-weight: 800; color: #134e4a; margin: 0; position: relative; z-index: 2;">
-                            Market Share Growth
+                            Pazar Payı Büyümesi
                         </h3>
                         <p style="font-size: 1.25rem; font-weight: 500; color: #0f766e; margin: 8px 0 0 0; position: relative; z-index: 2;">
-                            Achieving approximately 1% market share by Year 5
+                            5. Yıl itibariyle yaklaşık %1 pazar payına ulaşma
                         </p>
                     </div>
                     
@@ -2498,7 +2498,7 @@
                             Büyüme Öngörüleri
                         </h3>
                         <p style="font-size: 1.25rem; font-weight: 500; color: #1e40af; margin: 8px 0 0 0; position: relative; z-index: 2;">
-                            Revenue and Annual Test Volume
+                            Gelir ve Yıllık Test Büyüklüğü
                         </p>
                     </div>
                     
@@ -2512,43 +2512,43 @@
             </div>
             
             <div class="financial-projection-modern">
-                <h4>5-Year Revenue and Test Volume Growth</h4>
-                <p>Conservative projections show steady growth from market launch to 1% market penetration, with revenue scaling to $400M+ by Year 5 after initial clinical launch.</p>
+                <h4>5 Yıllık Gelir ve Test Hacmi Büyümesi</h4>
+                <p>Muhafazakar projeksiyonlar pazar lansmanından %1 pazar penetrasyonuna kadar istikrarlı büyümeyi gösterir, gelir ilk klinik lansmanından 5. Yıl sonunda $400M+'ya kadar ölçeklenir.</p>
                 
                 <div class="revenue-table-modern">
                     <table>
                         <tr>
-                            <th>Year</th>
-                            <th>Market Share</th>
-                            <th>Annual Tests</th>
+                            <th>Yıl</th>
+                            <th>Pazar Payı</th>
+                            <th>Yıllık Test</th>
                             <th>Tahmini Gelir</th>
                         </tr>
                         <tr>
-                            <td>Year 1</td>
+                            <td>1. Yıl</td>
                             <td>%0.02</td>
                             <td>50,000</td>
                             <td>$12.5M</td>
                         </tr>
                         <tr>
-                            <td>Year 2</td>
+                            <td>2. Yıl</td>
                             <td>%0.1</td>
                             <td>200,000</td>
                             <td>$50M</td>
                         </tr>
                         <tr>
-                            <td>Year 3</td>
+                            <td>3. Yıl</td>
                             <td>%0.3</td>
                             <td>500,000</td>
                             <td>$125M</td>
                         </tr>
                         <tr>
-                            <td>Year 4</td>
+                            <td>4. Yıl</td>
                             <td>%0.6</td>
                             <td>1,000,000</td>
                             <td>$250M</td>
                         </tr>
                         <tr>
-                            <td>Year 5</td>
+                            <td>5. Yıl</td>
                             <td>%1.0</td>
                             <td>1,600,000</td>
                             <td>$400M</td>
@@ -2559,8 +2559,8 @@
         </div>
         
         <div class="section" id="fda-duzenleyici">
-            <h2>💡 FDA Regulatory Strategy and Timeline</h2>
-            <p>Our comprehensive regulatory roadmap follows established FDA pathways for AI-based diagnostic devices, utilizing proven precedents and expert guidance to ensure efficient approval.</p>
+            <h2>💡 FDA Düzenleyici Stratejisi ve Zaman Çizelgesi</h2>
+            <p>Kapsamlı düzenleyici yol haritamız, AI tabanlı tanı cihazları için belirlenmiş FDA yollarını takip eder, verimli onay sağlamak için kanıtlanmış emsalleri ve uzman rehberliğini kullanır.</p>
             
             <div class="de-novo-modern">
                 <h4>De Novo Sınıflandırma Yolu - Onay için Optimal Rota</h4>
@@ -2575,29 +2575,29 @@
                 <li><strong>21 CFR 862.1840:</strong> Kütle spektrometresi test sistemleri (özel kontroller ile Sınıf II)</li>
                 <li><strong>21 CFR 886.1100:</strong> Retinal tanı yazılım cihazı (özel kontroller ile Sınıf II)</li>
                 <li><strong>21 CFR 809:</strong> In Vitro Tanı (IVD) etiketleme gereksinimleri</li>
-                <li><strong>IMDRF SaMD Category III:</strong> Medium-high risk software that informs healthcare decisions</li>
+                <li><strong>IMDRF SaMD Kategori III:</strong> Sağlık kararlarını yönlendiren orta-yüksek riskli yazılım</li>
             </ul>
             
             <div class="market-analysis">
-                <h4>FDA AI/ML Guidance Compliance</h4>
-                <p>Our development follows the latest FDA guidance including "AI-Enabled Device Software Functions: Lifecycle Management" (January 2025) and "Good Machine Learning Practice for Medical Device Development" (October 2021), ensuring comprehensive oversight and future-ready regulatory compliance.</p>
+                <h4>FDA AI/ML Rehberlik Uyumu</h4>
+                <p>Gelişimimiz "Yapay Zeka Destekli Cihaz Yazılım İşlevleri: Yaşam Döngüsü Yönetimi" (Ocak 2025) ve "Tıbbi Cihaz Geliştirme için İyi Makine Öğrenmesi Pratiği" (Ekim 2021) dahil en son FDA rehberliğini takip eder, kapsamlı gözetim ve geleceğe hazır düzenleyici uyum sağlar.</p>
             </div>
             
             <div class="highlight-box">
-                <p><strong>Regulatory Timeline Advantages:</strong> FDA De Novo review process provides 150-day timeline with performance goals established under MDUFA V. Small business fee reductions (50% for companies with ≤$100M revenue) and free CDRH statistical consultation minimize regulatory costs while ensuring compliance.</p>
+                <p><strong>Düzenleyici Zaman Çizelgesi Avantajları:</strong> FDA De Novo inceleme süreci, MDUFA V altında belirlenen performans hedefleri ile 150 günlük zaman çizelgesi sağlar. Küçük işletme ücret indirimleri (≤$100M gelirli şirketler için %50) ve ücretsiz CDRH istatistiksel danışmanlık, uyum sağlarken düzenleyici maliyetleri minimize eder.</p>
             </div>
         </div>
         
         <div class="section" id="gelistirme-asamalari">
-            <h2>💡 Development Phases and Timeline</h2>
+            <h2>💡 Geliştirme Aşamaları ve Zaman Çizelgesi</h2>
             <div style="margin-bottom: 20px;">
                 <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 15px;">
                     <span style="color: #3b82f6; font-size: 18px; flex-shrink: 0; margin-top: 2px;">✨</span>
-                    <p style="margin: 0; color: #374151; font-size: 14px; line-height: 1.6;">Our structured three-phase development approach aims to provide systematic progression from clinical validation to commercial launch.</p>
+                    <p style="margin: 0; color: #374151; font-size: 14px; line-height: 1.6;">Yapılandırılmış üç aşamalı geliştirme yaklaşımımız, klinik öncesi doğrulamadan ticari lansmanıyla kadar sistematik ilerleme sağlamayı hedeflemektedir.</p>
                 </div>
                 <div style="display: flex; align-items: flex-start; gap: 12px;">
                     <span style="color: #3b82f6; font-size: 18px; flex-shrink: 0; margin-top: 2px;">✨</span>
-                    <p style="margin: 0; color: #374151; font-size: 14px; line-height: 1.6;">Each phase will have clear milestones and regulatory checkpoints.</p>
+                    <p style="margin: 0; color: #374151; font-size: 14px; line-height: 1.6;">Her aşamada net kilometre taşları ve düzenleyici kontrol noktaları bulunacaktır.</p>
                 </div>
             </div>
             
@@ -2607,7 +2607,7 @@
                     <h4>Aşama 1: Klinik Öncesi Doğrulama ve FDA Danışmanlığı (9 - 24 ay)</h4>
                     <ul>
                         <li>De Novo yol onayı ve istatistiksel rehberlik için FDA Q-Başvurusu</li>
-                        <li>Sample collection and analysis for algorithm validation (minimum 240 samples)</li>
+                        <li>Algoritma doğrulaması için örnek toplama ve analizi (minimum 240 örnek)</li>
                         <li>Kalite Yönetim Sistemi uygulaması (ISO 13485:2016 uyumu)</li>
                         <li>CDRH istatistiksel danışmanlık ile klinik doğrulama çalışması tasarımı</li>
                         <li>FDA kütle spektrometresi rehberliğini takip eden analitik doğrulama</li>
@@ -2621,19 +2621,19 @@
                         <li>%80 istatistiksel güç ile minimum 3 sitede çok merkezli klinik çalışmalar</li>
                         <li>Özel kontrol önerileri ile De Novo sınıflandırma talebinin sunumu</li>
                         <li>FDA inceleme süreci (MDUFA V performans hedefleri altında 150 günlük zaman çizelgesi)</li>
-                        <li>Predetermined Change Control Plan (PCCP) development for algorithm updates</li>
-                        <li>Post-market surveillance system establishment</li>
+                        <li>Algoritma güncellemeleri için Önceden Belirlenen Değişiklik Kontrol Planı (PCCP) gelişimi</li>
+                        <li>Pazar sonrası gözetim sistemi kurulumu</li>
                     </ul>
                 </div>
                 
                 <div class="phase-modern phase-modern-teal">
                     <div class="phase-icon-modern phase-icon-teal">3</div>
-                    <h4>Phase 3: Commercial Launch and Market Penetration (1 year)</h4>
+                    <h4>Aşama 3: Ticari Lansman ve Pazar Penetrasyonu (1 yıl)</h4>
                     <ul>
                         <li>CLIA laboratuvar sertifikasyonu ve ticari ortaklıklar</li>
                         <li>Medicare kapsam belirleme başvurusu ve özel sigorta müzakereleri</li>
-                        <li>Healthcare provider training and market access programs</li>
-                        <li>Real-world performance monitoring and algorithm optimization</li>
+                        <li>Sağlık sağlayıcısı eğitimi ve pazar erişim programları</li>
+                        <li>Gerçek dünya performans izleme ve algoritma optimizasyonu</li>
                         <li>Ek retinal hastalıklara (glokom, diyabetik retinopati) platform genişlemesi</li>
                     </ul>
                 </div>
@@ -2641,8 +2641,8 @@
         </div>
         
         <div class="section" id="yatirim-gereksinimleri">
-            <h2>💡 Phase 1 Investment Requirements</h2>
-            <p>$654,875 initial funding requirement for comprehensive validation study and regulatory preparation, structured to meet FDA requirements and minimize regulatory risk.</p>
+            <h2>💡 Aşama 1 Yatırım Gereksinimleri</h2>
+            <p>Kapsamlı doğrulama çalışması ve düzenleyici hazırlık için $654,875 başlangıç finansman gereksinimi, FDA gereksinimlerini karşılamak ve düzenleyici riski minimize etmek için yapılandırılmış.</p>
             
             <div class="stats-grid">
                 <div class="stat-item-contemporary">
@@ -2651,7 +2651,7 @@
                 </div>
                 <div class="stat-item-contemporary">
                     <span class="stat-number-contemporary">$150,000</span>
-                    <div class="stat-label-contemporary">Personnel (1.5 years) - Algorithm development and validation</div>
+                    <div class="stat-label-contemporary">Personel (1.5 yıl) - Algoritma geliştirme ve doğrulama</div>
                 </div>
             </div>
             
@@ -2672,11 +2672,11 @@
         </div>
         
         <div class="section" id="ekibimiz">
-            <h2>💡 Our Team</h2>
+            <h2>💡 Ekibimiz</h2>
             <div style="margin-bottom: 30px;">
                 <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 15px;">
                     <span style="color: #3b82f6; font-size: 18px; flex-shrink: 0; margin-top: 2px;">✨</span>
-                    <p style="margin: 0; color: #374151; font-size: 14px; line-height: 1.6;">Our experienced leadership team combines deep scientific expertise with proven entrepreneurial success in health innovation.</p>
+                    <p style="margin: 0; color: #374151; font-size: 14px; line-height: 1.6;">Deneyimli liderlik ekibimiz, sağlık inovasyonunda kanıtlanmış girişimcilik başarısı ile derin bilimsel uzmanlığı birleştirir.</p>
                 </div>
             </div>
             
@@ -2706,7 +2706,7 @@
                     <p style="font-size: 14px; color: #374151; line-height: 1.5; margin: 0; text-align: center;">
                         <strong>Kurucu & CEO</strong><br>
                         UC Irvine AMD Araştırmacısı<br>
-                        6 years experience
+                        6 yıl deneyim
                     </p>
                 </div>
                 
@@ -2763,7 +2763,7 @@
                     <p style="font-size: 14px; color: #374151; line-height: 1.5; margin: 0; text-align: center;">
                         <strong>Stratejik İş Danışmanı</strong><br>
                         BayPay Forum Kurucusu<br>
-                        20+ years Fintech Experience
+                        20+ yıl Fintech Deneyimi
                     </p>
                 </div>
                 
@@ -2788,8 +2788,8 @@
                     <h4 style="font-size: 18px; font-weight: 700; color: #166534; margin-bottom: 8px; text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8), 0 -1px 1px rgba(22, 101, 52, 0.1);">Prof. Prashanth Asuri</h4>
                     
                     <p style="font-size: 14px; color: #374151; line-height: 1.5; margin: 0; text-align: center;">
-                        <strong>Health Innovation Advisor</strong><br>
-                        Santa Clara University<br>
+                        <strong>Sağlık İnovasyonu Danışmanı</strong><br>
+                        Santa Clara Üniversitesi<br>
                         Eski Genentech Koçu
                     </p>
                 </div>
@@ -2903,7 +2903,7 @@
                     
                     <p style="font-size: 14px; color: #374151; line-height: 1.5; margin: 0; text-align: center;">
                         <strong>Teknoloji Danışmanı</strong><br>
-                        Santa Clara University<br>
+                        Santa Clara Üniversitesi<br>
                         Smartlens Inc. Co-Founder
                     </p>
                 </div>
@@ -2930,23 +2930,23 @@
                 </div>
                 <div class="value-item">
                     <div class="value-bullet">🧠</div>
-                    <div class="value-text"><strong>Clinical Neuro-Oncology:</strong> MD Anderson experience, brain tumor treatment, TTFields technology</div>
+                    <div class="value-text"><strong>Klinik Nöro-Onkoloji:</strong> MD Anderson deneyimi, beyin tümörü tedavisi, TTFields teknolojisi</div>
                 </div>
                 <div class="value-item">
                     <div class="value-bullet">💰</div>
-                    <div class="value-text"><strong>Fintech Experience:</strong> Payment systems, Medicare reimbursement strategies</div>
+                    <div class="value-text"><strong>Fintech Deneyimi:</strong> Ödeme sistemleri, Medicare geri ödeme stratejileri</div>
                 </div>
                 <div class="value-item">
                     <div class="value-bullet">🏥</div>
-                    <div class="value-text"><strong>Health Innovation:</strong> FDA processes, bioengineering, 3D bioprinting</div>
+                    <div class="value-text"><strong>Sağlık İnovasyonu:</strong> FDA süreçleri, biyomühendislik, 3D bioprinting</div>
                 </div>
                 <div class="value-item">
                     <div class="value-bullet">🤖</div>
-                    <div class="value-text"><strong>AI & ML:</strong> 5,000+ molecule analysis, machine learning algorithms</div>
+                    <div class="value-text"><strong>AI & ML:</strong> 5.000+ molekül analizi, makine öğrenmesi algoritmaları</div>
                 </div>
                 <div class="value-item">
                     <div class="value-bullet">⚡</div>
-                    <div class="value-text"><strong>Technology Innovation:</strong> Continuous health monitoring devices, Smartlens technology, bioengineering</div>
+                    <div class="value-text"><strong>Teknoloji İnovasyonu:</strong> Sürekli sağlık izleme cihazları, Smartlens teknolojisi, biyomühendislik</div>
                 </div>
                 <div class="value-item">
                     <div class="value-bullet">📊</div>
@@ -2960,7 +2960,7 @@
                 <div class="metrics-row">
                     <div class="metric">
                         <div class="metric-value">108+ Yıl</div>
-                        <div class="metric-label">Combined Experience</div>
+                        <div class="metric-label">Toplam Deneyim</div>
                     </div>
                     <div class="metric">
                         <div class="metric-value">$115M+</div>
@@ -2974,26 +2974,26 @@
             </div>
             
             <div class="highlight-box-modern">
-                <p><strong>Competitive Advantage:</strong> Our team offers a unique combination in medical research, technology commercialization, fintech experience and health innovation. With proven startup successes and strong industry connections, we have an ideal team structure to bring the AMD risk analysis platform to market.</p>
+                <p><strong>Rekabetçi Avantaj:</strong> Ekibimiz tıbbi araştırma, teknoloji ticarileştirme, fintech deneyimi ve sağlık inovasyonu alanlarında benzersiz bir kombinasyon sunmaktadır. Kanıtlanmış startup başarıları ve güçlü endüstri bağlantıları ile AMD risk analiz platformunu pazara çıkarma konusunda ideal bir ekip yapısına sahibiz.</p>
             </div>
         </div>
         
         <div class="section" id="yatirim-gerekce">
-            <h2>💡 Investment Rationale</h2>
+            <h2>💡 Yatırım Gerekçesi</h2>
             
             <div class="highlight-box-modern">
-                <p><strong>Investment Opportunity:</strong> This investment opportunity represents the convergence of significant unmet medical need, proven technology platform, experienced leadership, and clear regulatory and reimbursement pathways.</p>
+                <p><strong>Yatırım Fırsatı:</strong> Bu yatırım fırsatı, önemli karşılanmamış tıbbi ihtiyaç, kanıtlanmış teknoloji platformu, deneyimli liderlik ve net düzenleyici ve geri ödeme yollarının bir araya gelmesini temsil eder.</p>
             </div>
             
             <div class="value-proposition">
                 <h4>Neden Şimdi?</h4>
                 <div class="value-item">
                     <div class="value-bullet">🚀</div>
-                    <div class="value-text"><strong>Market First:</strong> First mover advantage for blood-based AMD test</div>
+                    <div class="value-text"><strong>Pazarda İlk Olma Avantajı:</strong> Mevcut kan tabanlı AMD tarama testi bulunmuyor</div>
                 </div>
                 <div class="value-item">
                     <div class="value-bullet">📊</div>
-                    <div class="value-text"><strong>Proven Model:</strong> Validated by Exact Sciences success</div>
+                    <div class="value-text"><strong>Doğrulanmış İş Modeli:</strong> Exact Sciences'ın 9.7 milyar dolarlık başarısı pazar uygunluğunu gösterir</div>
                 </div>
                 <div class="value-item">
                     <div class="value-bullet">💡</div>
@@ -3001,7 +3001,7 @@
                 </div>
                 <div class="value-item">
                     <div class="value-bullet">👥</div>
-                    <div class="value-text"><strong>Experienced Leadership:</strong> Team with proven success track record in diagnostics and health entrepreneurship</div>
+                    <div class="value-text"><strong>Deneyimli Liderlik:</strong> Tanı ve sağlık girişimciliğinde kanıtlanmış başarı geçmişi olan ekip</div>
                 </div>
                 <div class="value-item">
                     <div class="value-bullet">🔬</div>
@@ -3009,24 +3009,24 @@
                 </div>
                 <div class="value-item">
                     <div class="value-bullet">💎</div>
-                    <div class="value-text"><strong>Large Market:</strong> $42.3 billion opportunity</div>
+                    <div class="value-text"><strong>Büyük Pazar Fırsatı:</strong> Minimal mevcut rekabet ile 42.3 milyar dolarlık erişilebilir pazar</div>
                 </div>
             </div>
             
             <div class="key-metrics">
-                <h4>Critical Investment Metrics</h4>
+                <h4>Yatırım Öne Çıkanları</h4>
                 <div class="metrics-row">
                     <div class="metric">
-                        <div class="metric-value">$42.3 Billion</div>
-                        <div class="metric-label">Total Addressable Market</div>
+                        <div class="metric-value">$42.3 Milyar</div>
+                        <div class="metric-label">Toplam Erişilebilir Pazar</div>
                     </div>
                     <div class="metric">
                         <div class="metric-value">94-95%</div>
-                        <div class="metric-label">Test Accuracy Rate</div>
+                        <div class="metric-label">Test Doğruluk Oranı</div>
                     </div>
                     <div class="metric">
-                        <div class="metric-value">169 Million</div>
-                        <div class="metric-label">Target Population</div>
+                        <div class="metric-value">169 Milyon</div>
+                        <div class="metric-label">Hedef Popülasyon</div>
                     </div>
                 </div>
             </div>
@@ -3041,13 +3041,13 @@
                 <div class="process-grid">
                     <div class="process-step">
                         <div class="process-icon">🏆</div>
-                        <div class="process-title">Market First</div>
+                        <div class="process-title">Pazarda İlk</div>
                         <div class="process-desc">Kan tabanlı AMD testi için ilk mover avantajı</div>
                     </div>
                     <div class="process-step process-step-alt">
                         <div class="process-icon process-icon-alt">💰</div>
-                        <div class="process-title process-title-alt">Proven Model</div>
-                        <div class="process-desc">Validated by Exact Sciences success</div>
+                        <div class="process-title process-title-alt">Kanıtlanmış Model</div>
+                        <div class="process-desc">Exact Sciences başarısı ile doğrulanmış</div>
                     </div>
                     <div class="process-step">
                         <div class="process-icon">📋</div>
@@ -3056,19 +3056,19 @@
                     </div>
                     <div class="process-step process-step-alt">
                         <div class="process-icon process-icon-alt">📈</div>
-                        <div class="process-title process-title-alt">Large Market</div>
-                        <div class="process-desc">$42.3 billion opportunity</div>
+                        <div class="process-title process-title-alt">Büyük Pazar</div>
+                        <div class="process-desc">42.3 milyar dolarlık fırsat</div>
                     </div>
                 </div>
             </div>
         </div>
         
         <div class="section" id="amd-risk-demo">
-            <h2>💡 Sample AMD Risk Assessment Report</h2>
+            <h2>💡 Örnek AMD Risk Değerlendirme Raporu</h2>
             <div style="margin-bottom: 20px;">
                 <div style="display: flex; align-items: flex-start; gap: 12px;">
                     <span style="color: #3b82f6; font-size: 18px; flex-shrink: 0; margin-top: 2px;">✨</span>
-                    <p style="margin: 0; color: #374151; font-size: 14px; line-height: 1.6;">Below you can see an example of blood analysis results related to eye disease.</p>
+                    <p style="margin: 0; color: #374151; font-size: 14px; line-height: 1.6;">Aşağıda göz hastalığı ile ilgili kan analiz sonucunun bir örneğini görebilirsiniz.</p>
                 </div>
             </div>
             
@@ -3080,18 +3080,18 @@
                 <div style="position: absolute; bottom: 20px; left: 20px; width: 60px; height: 60px; background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, transparent 70%); border-radius: 50%; animation: float 4s ease-in-out infinite reverse;"></div>
                 
                 <!-- Main content with z-index -->
-                <h1 style="font-size: 3rem; font-weight: bold; color: white; margin-bottom: 10px; position: relative; z-index: 2; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); animation: slideInFromTop 1.2s ease-out;">AMD Risk Assessment</h1>
-                <p style="font-size: 1.2rem; color: #bfdbfe; margin: 0; text-align: center; position: relative; z-index: 2; text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); animation: fadeInUp 1.5s ease-out 0.3s both;">Early Risk Analysis Platform with Next-Generation Algorithms</p>
+                <h1 style="font-size: 3rem; font-weight: bold; color: white; margin-bottom: 10px; position: relative; z-index: 2; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); animation: slideInFromTop 1.2s ease-out;">AMD Risk Değerlendirmesi</h1>
+                <p style="font-size: 1.2rem; color: #bfdbfe; margin: 0; text-align: center; position: relative; z-index: 2; text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); animation: fadeInUp 1.5s ease-out 0.3s both;">Akıllı Algoritmalar ile Erken Risk Analiz Platformu</p>
             </div>
 
             <!-- Current Analysis Results Section -->
             <div style="background: white; border-radius: 20px; padding: 40px; margin-bottom: 40px; border: 1px solid #e5e7eb; box-shadow: 0 10px 25px -5px rgba(30, 144, 255, 0.25), 0 8px 10px -6px rgba(30, 144, 255, 0.1);">
-                <h3 style="font-size: 1.5rem; font-weight: bold; margin-bottom: 30px; color: #374151;">Analysis Result</h3>
+                <h3 style="font-size: 1.5rem; font-weight: bold; margin-bottom: 30px; color: #374151;">Analiz Sonucu</h3>
                 
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
                     <div style="font-size: 4rem; font-weight: 900; color: #0f172a;">99.3%</div>
                     <div style="padding: 15px 30px; border-radius: 50px; font-size: 1.1rem; font-weight: 600; color: white; background-color: #dc2626; box-shadow: 0 10px 15px -3px rgba(220, 38, 38, 0.3), 0 4px 6px -2px rgba(220, 38, 38, 0.2);">
-                        High Risk
+                        Yüksek Risk
                     </div>
                 </div>
                 
@@ -3103,27 +3103,27 @@
                 <!-- Patient Information Grid -->
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 40px;">
                     <div style="padding: 20px; border-left: 4px solid #3b82f6; padding-left: 25px;">
-                        <div style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; color: #6b7280; margin-bottom: 8px;">Patient Name</div>
+                        <div style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; color: #6b7280; margin-bottom: 8px;">Hasta Adı</div>
                         <div style="font-weight: 600; filter: blur(8px); user-select: none; background-color: #f3f4f6; display: inline-block; padding: 8px 15px; border-radius: 8px;">Sarah Wilson Thompson</div>
                     </div>
                     <div style="padding: 20px; border-left: 4px solid #3b82f6; padding-left: 25px;">
-                        <div style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; color: #6b7280; margin-bottom: 8px;">Patient Number</div>
+                        <div style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; color: #6b7280; margin-bottom: 8px;">Hasta Numarası</div>
                         <div style="font-weight: 600; filter: blur(8px); user-select: none; background-color: #f3f4f6; display: inline-block; padding: 8px 15px; border-radius: 8px;">#7-8345-8921-489</div>
                     </div>
                     <div style="padding: 20px; border-left: 4px solid #3b82f6; padding-left: 25px;">
-                        <div style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; color: #6b7280; margin-bottom: 8px;">Sample Collection</div>
-                        <div style="font-weight: 600;">January 18, 2025</div>
+                        <div style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; color: #6b7280; margin-bottom: 8px;">Örnek Toplama</div>
+                        <div style="font-weight: 600;">15 Ocak 2025</div>
                     </div>
                     <div style="padding: 20px; border-left: 4px solid #3b82f6; padding-left: 25px;">
-                        <div style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; color: #6b7280; margin-bottom: 8px;">Analysis Date</div>
-                        <div style="font-weight: 600;">January 20, 2025</div>
+                        <div style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; color: #6b7280; margin-bottom: 8px;">Analiz Tarihi</div>
+                        <div style="font-weight: 600;">27 Ocak 2025</div>
                     </div>
                 </div>
             </div>
 
             <!-- Risk Progression Analysis Section -->
             <div style="background: white; border-radius: 20px; padding: 40px; border: 1px solid #e5e7eb; box-shadow: 0 10px 25px -5px rgba(30, 144, 255, 0.25), 0 8px 10px -6px rgba(30, 144, 255, 0.1);">
-                <h3 style="font-size: 1.5rem; font-weight: bold; margin-bottom: 30px; color: #374151;">Risk Analysis Based on Previous Results</h3>
+                <h3 style="font-size: 1.5rem; font-weight: bold; margin-bottom: 30px; color: #374151;">Önceki Sonuçlara Göre Risk Analizi</h3>
                 
                 <!-- Bar Chart -->
                 <div style="height: 300px; padding: 30px 0;">
@@ -3164,27 +3164,27 @@
                     <!-- Month/Year labels -->
                     <div style="display: flex; justify-content: space-between;">
                         <div style="text-align: center; width: 16.66%;">
-                            <div style="font-size: 1rem; font-weight: 300;">Jan</div>
+                            <div style="font-size: 1rem; font-weight: 300;">Ocak</div>
                             <div style="font-size: 1rem; font-weight: 500;">2020</div>
                         </div>
                         <div style="text-align: center; width: 16.66%;">
-                            <div style="font-size: 1rem; font-weight: 300;">Feb</div>
+                            <div style="font-size: 1rem; font-weight: 300;">Şubat</div>
                             <div style="font-size: 1rem; font-weight: 500;">2021</div>
                         </div>
                         <div style="text-align: center; width: 16.66%;">
-                            <div style="font-size: 1rem; font-weight: 300;">Mar</div>
+                            <div style="font-size: 1rem; font-weight: 300;">Mart</div>
                             <div style="font-size: 1rem; font-weight: 500;">2022</div>
                         </div>
                         <div style="text-align: center; width: 16.66%;">
-                            <div style="font-size: 1rem; font-weight: 300;">Apr</div>
+                            <div style="font-size: 1rem; font-weight: 300;">Nisan</div>
                             <div style="font-size: 1rem; font-weight: 500;">2023</div>
                         </div>
                         <div style="text-align: center; width: 16.66%;">
-                            <div style="font-size: 1rem; font-weight: 300;">May</div>
+                            <div style="font-size: 1rem; font-weight: 300;">Mayıs</div>
                             <div style="font-size: 1rem; font-weight: 500;">2024</div>
                         </div>
                         <div style="text-align: center; width: 16.66%;">
-                            <div style="font-size: 1rem; font-weight: 300;">Jan</div>
+                            <div style="font-size: 1rem; font-weight: 300;">Ocak</div>
                             <div style="font-size: 1rem; font-weight: 500;">2025</div>
                         </div>
                     </div>
@@ -3193,15 +3193,15 @@
                 <!-- Risk Categories -->
                 <div style="display: flex; gap: 20px; margin-top: 30px;">
                     <div style="color: white; padding: 20px 25px; border-radius: 15px; text-align: center; flex: 1; background: linear-gradient(135deg, #22c55e, #16a34a); box-shadow: 0 4px 6px -1px rgba(34, 197, 94, 0.3); transition: transform 0.3s ease;">
-                        <div style="font-weight: 500; margin-bottom: 5px;">Low Risk</div>
+                        <div style="font-weight: 500; margin-bottom: 5px;">Düşük Risk</div>
                         <div style="font-size: 0.9rem; opacity: 0.9;">(&lt;33%)</div>
                     </div>
                     <div style="color: white; padding: 20px 25px; border-radius: 15px; text-align: center; flex: 1; background: linear-gradient(135deg, #f59e0b, #d97706); box-shadow: 0 4px 6px -1px rgba(245, 158, 11, 0.3); transition: transform 0.3s ease;">
-                        <div style="font-weight: 500; margin-bottom: 5px;">Medium Risk</div>
+                        <div style="font-weight: 500; margin-bottom: 5px;">Orta Risk</div>
                         <div style="font-size: 0.9rem; opacity: 0.9;">(33-66%)</div>
                     </div>
                     <div style="color: white; padding: 20px 25px; border-radius: 15px; text-align: center; flex: 1; background: linear-gradient(135deg, #dc2626, #b91c1c); box-shadow: 0 4px 6px -1px rgba(220, 38, 38, 0.3); transition: transform 0.3s ease;">
-                        <div style="font-weight: 500; margin-bottom: 5px;">High Risk</div>
+                        <div style="font-weight: 500; margin-bottom: 5px;">Yüksek Risk</div>
                         <div style="font-size: 0.9rem; opacity: 0.9;">(&gt;66%)</div>
                     </div>
                 </div>
@@ -3209,11 +3209,11 @@
             
             <!-- Footer -->
             <div style="text-align: center; color: #9ca3af; font-size: 0.9rem; margin-top: 40px;">
-                © 2025 AMD Risk Assessment Platform • Company name will be determined with investors and board of directors
+                © 2025 AMD Risk Değerlendirme Platformu • Şirket adı yatırımcılar ve yönetim kurulu ile belirlenecektir
             </div>
             
             <div class="highlight-box-modern" style="margin-top: 30px;">
-                <p><strong>Demo Explanation:</strong> This demo screen shows the user interface of our AMD risk assessment platform that will be applied to real patients. After blood analysis results are processed by the AI algorithm, patients and doctors will receive this type of clear risk assessment.</p>
+                <p><strong>Demo Açıklaması:</strong> Bu demo ekranı, gerçek hastalara uygulanacak AMD risk değerlendirme platformumuzun kullanıcı arayüzünü göstermektedir. Kan analizi sonuçları AI algoritması tarafından işlendikten sonra, hastalar ve doktorlar bu tür net bir risk değerlendirmesi alacaklardır.</p>
             </div>
         </div>
         
@@ -3308,7 +3308,7 @@
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
                                 </svg>
-                                Get In Touch
+                                İletişime Geç
                             </button>
                             <button style="background: rgba(255, 255, 255, 0.95); border: none; color: #0891b2; padding: 15px 30px; border-radius: 50px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; animation: fadeInUp 1s ease-out 3.6s both; display: flex; align-items: center; gap: 8px;" onmouseover="this.style.background='white'; this.style.transform='translateY(-3px)'; this.style.boxShadow='0 15px 35px rgba(0, 0, 0, 0.15)'" onmouseout="this.style.background='rgba(255, 255, 255, 0.95)'; this.style.transform='translateY(0)'; this.style.boxShadow='none'">
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
@@ -3333,7 +3333,7 @@
                     <li>Gelişmiş algoritma performans metrikleri</li>
                     <li>Klinik çalışma detayları ve sonuçları</li>
                     <li>Düzenleyici onay süreci dokumentasyonu</li>
-                    <li>Market research and competitive analysis</li>
+                    <li>Pazar araştırması ve rekabet analizi</li>
                     <li>Teknoloji platformu mimarisi</li>
                 </ul>
             </div>
@@ -3486,7 +3486,7 @@
                     data: {
                         labels: marketShareData.map(item => item.year),
                         datasets: [{
-                            label: 'Market Share (%)',
+                            label: 'Pazar Payı (%)',
                             data: marketShareData.map(item => item.marketShare),
                             borderColor: '#0D9488',
                             backgroundColor: 'rgba(13, 148, 136, 0.1)',
@@ -3537,7 +3537,7 @@
                                         return 'Yıl: ' + tooltipItems[0].label;
                                     },
                                     label: function(context) {
-                                        return 'Market Share: ' + context.parsed.y + '%';
+                                        return 'Pazar Payı: %' + context.parsed.y;
                                     }
                                 }
                             }
