@@ -925,6 +925,46 @@
             font-size: 2rem;
         }
         
+        /* Enhanced Mobile Problem Section Styling */
+        .problem-section .container > div:last-child > div {
+            padding: 2rem 1.5rem !important;
+            margin-bottom: 1.5rem !important;
+        }
+        
+        .problem-section .container > div:last-child > div > div[style*="font-size: 3.5rem"] {
+            font-size: 2.5rem !important;
+        }
+        
+        .problem-section .container > div:last-child > div > div:nth-child(2) > div {
+            font-size: 1rem !important;
+        }
+        
+        /* Mobile Problem Content Card */
+        .problem-section .container > div:last-child > div:first-child {
+            padding: 2rem 1.5rem !important;
+        }
+        
+        .problem-section .container > div:last-child > div:first-child h3 {
+            font-size: 1.3rem !important;
+            flex-direction: column !important;
+            text-align: center !important;
+            gap: 1rem !important;
+        }
+        
+        .problem-section .container > div:last-child > div:first-child ul li {
+            font-size: 1rem !important;
+            padding-left: 1.5rem !important;
+        }
+        
+        .problem-section .container > div:last-child > div:first-child > div:nth-of-type(2) {
+            padding: 1.5rem !important;
+        }
+        
+        .problem-section .container > div:last-child > div:first-child > div:last-child {
+            padding: 1.5rem !important;
+            margin-top: 1.5rem !important;
+        }
+        
         /* Mobile Process Steps */
         .process-steps {
             grid-template-columns: 1fr !important;
@@ -1009,29 +1049,7 @@
             gap: 1rem;
         }
         
-        /* Desktop Version Link for Mobile */
-        .desktop-version-link {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: rgba(14, 165, 233, 0.9);
-            color: white;
-            padding: 10px 15px;
-            border-radius: 25px;
-            text-decoration: none;
-            font-size: 0.8rem;
-            font-weight: 600;
-            box-shadow: 0 4px 15px rgba(14, 165, 233, 0.3);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            transition: all 0.3s ease;
-        }
-        
-        .desktop-version-link:hover {
-            background: rgba(14, 165, 233, 1);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(14, 165, 233, 0.4);
-        }
+        /* Desktop Version Link removed for cleaner mobile experience */
         
         /* Mobile Vision Cards */
         .vision-card {
@@ -1066,6 +1084,34 @@
         
         .hero {
             padding: 100px 0 60px !important;
+        }
+        
+        /* Mobile Second Video Section (Vision We Protect) */
+        section[style*="min-height: 100vh"] {
+            padding: 80px 0 !important;
+            min-height: auto !important;
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+        }
+        
+        /* Mobile Second Video Container */
+        .mobile-vision-video-container {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            margin: 0 0 3rem 0;
+            overflow: hidden;
+            z-index: 2;
+        }
+        
+        /* Second Video Mobile Styling */
+        #vision-video {
+            position: relative !important;
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover !important;
+            z-index: 1 !important;
         }
         
         /* Mobile Typography */
@@ -1146,6 +1192,21 @@
                 height: 220px !important;
                 max-width: none !important;
             }
+            
+            /* Second video mobile sizing for small screens */
+            .mobile-vision-video-container {
+                height: 250px !important;
+            }
+            
+            /* Problem section mobile adjustments for small screens */
+            .problem-section .container > div:first-child h2 {
+                font-size: 1.8rem !important;
+            }
+            
+            .problem-section .container > div:first-child p {
+                font-size: 1rem !important;
+                padding: 0 5px !important;
+            }
         }
         
         /* Very Large Mobile Screens */
@@ -1154,6 +1215,11 @@
                 width: 100%;
                 height: 300px;
                 max-width: none;
+            }
+            
+            /* Second video for larger mobile screens */
+            .mobile-vision-video-container {
+                height: 320px;
             }
         }
         
@@ -1258,47 +1324,22 @@
 
     <!-- The Vision We Protect Section -->
     <section style="padding: 120px 0; position: relative; overflow: hidden; min-height: 100vh;">
-        <!-- Background Video -->
-        <video id="vision-video" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1;" autoplay muted loop playsinline preload="auto">
-            <source src="presentation/A1-English.mov" type="video/quicktime">
-            <source src="presentation/A1-English.mov" type="video/mp4">
-            <!-- Fallback to original image if video fails -->
-            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: url('Image_1.png') center center / cover no-repeat;"></div>
-        </video>
-        
-        <!-- Future Steps Overlay -->
-        <div id="future-steps-overlay" style="position: absolute; top: 50px; left: 0; background: linear-gradient(135deg, rgba(56, 189, 248, 0.9) 0%, rgba(14, 165, 233, 0.8) 100%); padding: 25px 30px; border-radius: 0 15px 15px 0; z-index: 2; opacity: 0; transform: translateX(-100%); transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3); width: 660px; height: 175px; display: flex; align-items: center; justify-content: center;">
-            <span style="font-size: 1.6rem; font-weight: 700; color: white; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; text-align: center; line-height: 1.3;">Future Steps: Advanced Vision Risk Analysis</span>
+        <div class="container">
+            <!-- Mobile Video Container -->
+            <div class="mobile-vision-video-container">
+                <video id="vision-video" autoplay muted loop playsinline preload="auto">
+                    <source src="presentation/A1-English.mov" type="video/quicktime">
+                    <source src="presentation/A1-English.mov" type="video/mp4">
+                    <!-- Fallback to original image if video fails -->
+                    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: url('Image_1.png') center center / cover no-repeat;"></div>
+                </video>
+            </div>
+            
+            <!-- Mobile Overlay Text -->
+            <div style="background: linear-gradient(135deg, rgba(56, 189, 248, 0.9) 0%, rgba(14, 165, 233, 0.8) 100%); padding: 20px; border-radius: 15px; margin-bottom: 2rem; backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);">
+                <span style="font-size: 1.2rem; font-weight: 700; color: white; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; text-align: center; line-height: 1.3; display: block;">Future Steps: Advanced Vision Risk Analysis</span>
+            </div>
         </div>
-        
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                const video = document.getElementById('vision-video');
-                const overlay = document.getElementById('future-steps-overlay');
-                
-                if (video && overlay) {
-                    video.addEventListener('timeupdate', function() {
-                        const currentTime = video.currentTime;
-                        
-                        // Show overlay from 21 seconds to end of video (around 35 seconds)
-                        if (currentTime >= 21 && currentTime <= 35) {
-                            if (overlay.style.opacity === '0' || !overlay.style.opacity) {
-                                // Animate in
-                                overlay.style.opacity = '1';
-                                overlay.style.transform = 'translateX(0)';
-                            }
-                        } else {
-                            if (overlay.style.opacity === '1') {
-                                // Animate out
-                                overlay.style.opacity = '0';
-                                overlay.style.transform = 'translateX(-100%)';
-                            }
-                        }
-                    });
-                }
-            });
-        </script>
-        
     </section>
 
     <!-- Vision Protection Content Section - Redesigned -->
@@ -1795,9 +1836,6 @@
         </div>
     </footer>
 
-    <!-- Desktop Version Link (Mobile Only) -->
-    <a href="index.html?desktop=true" class="desktop-version-link">🖥️ Desktop Version</a>
-
     <script>
         // Mobile Menu Functions
         function toggleMobileMenu() {
@@ -2126,57 +2164,11 @@
             setupVideoFallback();
             setupMobileVideoOptimizations();
             
-            // Check if device is mobile to optimize performance
-            const isMobile = window.innerWidth <= 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-            
-            if (isMobile) {
-                // Simplified animation for mobile
-                setTimeout(startMobileHeroAnimation, 1000);
-            } else {
-                setTimeout(startHeroAnimation, 1000);
-            }
+            // Use full cinematic animation on mobile (same as desktop)
+            setTimeout(startHeroAnimation, 1000);
         });
         
-        // Simplified mobile hero animation
-        function startMobileHeroAnimation() {
-            const title1 = document.getElementById('title-1');
-            const title2 = document.getElementById('title-2');
-            const description = document.getElementById('description');
-            const typewriterText = document.getElementById('typewriter-text');
-            
-            if (!title1 || !title2 || !description || !typewriterText) {
-                console.warn('Mobile hero animation elements not found');
-                return;
-            }
-            
-            // Simple mobile text display (no complex animations)
-            const mobileDescription = "Blood-based AMD risk assessment test to detect vision risk years before symptoms appear.";
-            
-            // Show title 1 immediately
-            title1.style.opacity = '1';
-            title1.classList.add('fade-in');
-            
-            setTimeout(() => {
-                title1.style.opacity = '0';
-                title2.style.opacity = '1';
-                title2.classList.add('fade-in');
-            }, 4000);
-            
-            setTimeout(() => {
-                title2.style.opacity = '0';
-                description.style.opacity = '1';
-                description.classList.add('fade-in');
-                typewriterText.textContent = mobileDescription;
-            }, 8000);
-            
-            // Restart after 20 seconds
-            setTimeout(() => {
-                title1.style.opacity = '0';
-                title2.style.opacity = '0';
-                description.style.opacity = '0';
-                startMobileHeroAnimation();
-            }, 20000);
-        }
+        // Mobile now uses the same cinematic animation as desktop
     </script>
 </body>
 </html>
