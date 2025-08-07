@@ -6,6 +6,28 @@
     <title>AMD Risk Analysis Platform - Mobile</title>
     <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiByeD0iNCIgZmlsbD0iIzNiODJmNiIvPgo8dGV4dCB4PSIxNiIgeT0iMjIiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMCIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5BPC90ZXh0Pgo8L3N2Zz4K" type="image/svg+xml">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    
+    <!-- Desktop Device Detection & Auto-Redirect -->
+    <script>
+        (function() {
+            // Enhanced desktop detection - check screen size, user agent, and touch capability
+            const isDesktop = (window.innerWidth > 768 && window.innerHeight > 768) && 
+                             !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|CriOS/i.test(navigator.userAgent);
+            
+            // Check if we're already on the desktop version to prevent redirect loops
+            const isAlreadyDesktop = window.location.pathname.includes('presentation.html') && 
+                                   !window.location.pathname.includes('presentation-mobile.html');
+            
+            // Additional check for non-touch devices (likely desktop)
+            const isNonTouchDevice = !('ontouchstart' in window) && navigator.maxTouchPoints === 0;
+            
+            // Redirect desktop users to desktop version
+            if ((isDesktop || isNonTouchDevice) && !isAlreadyDesktop) {
+                window.location.href = 'presentation.html';
+            }
+        })();
+    </script>
+    
     <style>
         * {
             margin: 0;
