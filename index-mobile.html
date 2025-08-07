@@ -2,7 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>A1 Diagnosis - Proactive Vision Risk Analysis Platform</title>
     <meta name="description" content="The world's first blood-based AMD risk assessment test. See the Future Clearly - Let's Assess AMD Risk Years Before Vision Loss.">
     
@@ -691,63 +694,392 @@
             font-size: 0.9rem;
         }
         
-        /* Mobile Responsiveness */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
+        /* Mobile-First Responsive Design */
+        
+        /* Mobile Base Styles (default for mobile) */
+        .container {
+            padding: 0 15px;
+        }
+        
+        /* Mobile Navigation */
+        .navbar {
+            padding: 10px 0;
+        }
+        
+        .navbar-content {
+            padding: 0.8rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .logo {
+            font-size: 1.3rem;
+        }
+        
+        .nav-links {
+            display: none;
+        }
+        
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            display: block;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #374151;
+            cursor: pointer;
+            padding: 5px;
+        }
+        
+        .mobile-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            display: none;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .mobile-menu.active {
+            display: block;
+        }
+        
+        .mobile-nav-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .mobile-nav-links li {
+            margin-bottom: 15px;
+        }
+        
+        .mobile-nav-links a {
+            color: #374151;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            display: block;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .cta-button {
+            padding: 8px 16px;
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+        
+        /* Mobile Hero Section */
+        .hero {
+            padding: 100px 0 60px;
+            min-height: 85vh;
+        }
+        
+        .hero h1 {
+            font-size: 2rem !important;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+        
+        .hero h2 {
+            font-size: 1.8rem !important;
+            line-height: 1.3;
+            margin: 1rem 0;
+        }
+        
+        .hero .subtitle {
+            font-size: 1rem !important;
+            line-height: 1.5;
+            padding: 0 10px;
+        }
+        
+        .hero-stats {
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .stat-card {
+            padding: 1.2rem;
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+        }
+        
+        /* Mobile Ticker */
+        .ticker-section {
+            padding: 15px 0;
+        }
+        
+        .ticker-item {
+            padding: 15px 20px !important;
+            display: block !important;
+            text-align: center !important;
+            min-width: 250px !important;
+        }
+        
+        .ticker-item span:first-child {
+            font-size: 1.3rem !important;
+            display: block !important;
+            margin-right: 0 !important;
+            margin-bottom: 8px !important;
+        }
+        
+        .ticker-item span:last-child {
+            font-size: 0.85rem !important;
+        }
+        
+        /* Mobile Sections */
+        .section-title {
+            font-size: 1.8rem !important;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+        
+        .section-subtitle {
+            font-size: 1rem !important;
+            line-height: 1.5;
+            margin-bottom: 2rem;
+            padding: 0 10px;
+        }
+        
+        /* Mobile Problem Section */
+        .problem-section {
+            padding: 80px 0;
+        }
+        
+        .problem-grid,
+        .solution-grid {
+            grid-template-columns: 1fr !important;
+            gap: 2rem;
+        }
+        
+        .problem-stat {
+            padding: 1.5rem;
+        }
+        
+        .problem-stat-number {
+            font-size: 2rem;
+        }
+        
+        /* Mobile Process Steps */
+        .process-steps {
+            grid-template-columns: 1fr !important;
+            gap: 1.5rem;
+        }
+        
+        .process-step {
+            padding: 1.5rem;
+        }
+        
+        .step-icon {
+            width: 40px;
+            height: 40px;
+            font-size: 1rem;
+        }
+        
+        /* Mobile Value Grid */
+        .value-grid {
+            grid-template-columns: 1fr !important;
+            gap: 1.5rem;
+        }
+        
+        .value-card {
+            padding: 1.5rem;
+        }
+        
+        .value-icon {
+            width: 50px;
+            height: 50px;
+            font-size: 1.3rem;
+        }
+        
+        /* Mobile Benefits Section */
+        #benefits > .container > div {
+            grid-template-columns: 1fr !important;
+            gap: 1.5rem;
+        }
+        
+        /* Mobile Path Forward Section */
+        section:has(.scroll-fade[style*="background: linear-gradient(135deg, #f0fdf4"]) .container > div {
+            grid-template-columns: 1fr !important;
+            gap: 2rem;
+        }
+        
+        /* Mobile CTA Section */
+        .cta-section {
+            padding: 80px 0;
+        }
+        
+        .cta-section h2 {
+            font-size: 1.8rem !important;
+            line-height: 1.2;
+        }
+        
+        .cta-section p {
+            font-size: 1rem !important;
+            line-height: 1.5;
+            padding: 0 10px;
+        }
+        
+        .cta-buttons {
+            flex-direction: column !important;
+            gap: 1rem;
+            align-items: center;
+        }
+        
+        .btn-primary,
+        .btn-secondary {
+            width: 100%;
+            max-width: 280px;
+            text-align: center;
+            padding: 15px 20px;
+        }
+        
+        /* Mobile Footer */
+        .footer {
+            padding: 40px 0 20px;
+        }
+        
+        .footer-links {
+            flex-direction: column !important;
+            gap: 1rem;
+        }
+        
+        /* Desktop Version Link for Mobile */
+        .desktop-version-link {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(14, 165, 233, 0.9);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(14, 165, 233, 0.3);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .desktop-version-link:hover {
+            background: rgba(14, 165, 233, 1);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(14, 165, 233, 0.4);
+        }
+        
+        /* Mobile Vision Cards */
+        .vision-card {
+            margin: 0 !important;
+            padding: 2rem 1.5rem !important;
+        }
+        
+        .vision-card h3 {
+            font-size: 1.5rem !important;
+        }
+        
+        .vision-card p {
+            font-size: 1rem !important;
+        }
+        
+        /* Mobile Touch Optimizations */
+        .cta-button,
+        .btn-primary,
+        .btn-secondary,
+        a[href^="mailto"],
+        a[href^="/presentation"] {
+            min-height: 44px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Mobile Spacing Adjustments */
+        section {
+            padding: 60px 0 !important;
+        }
+        
+        .hero {
+            padding: 100px 0 60px !important;
+        }
+        
+        /* Mobile Typography */
+        h2 {
+            font-size: 2rem !important;
+        }
+        
+        h3 {
+            font-size: 1.5rem !important;
+        }
+        
+        h4 {
+            font-size: 1.2rem !important;
+        }
+        
+        p, li {
+            font-size: 0.95rem !important;
+            line-height: 1.6 !important;
+        }
+        
+        /* Tablet Breakpoint */
+        @media (min-width: 768px) and (max-width: 1024px) {
+            .container {
+                padding: 0 30px;
             }
             
             .hero h1 {
-                font-size: 2.5rem;
+                font-size: 2.5rem !important;
             }
             
-            .hero .subtitle {
-                font-size: 1.1rem;
+            .hero h2 {
+                font-size: 2rem !important;
             }
             
-            .hero-stats {
-                grid-template-columns: 1fr;
+            .section-title {
+                font-size: 2.2rem !important;
             }
             
             .problem-grid,
             .solution-grid {
                 grid-template-columns: 1fr;
-                gap: 2rem;
             }
             
             .process-steps {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .value-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        /* Large Mobile / Small Tablet */
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 10px;
+            }
+            
+            .hero h1 {
+                font-size: 1.7rem !important;
+            }
+            
+            .hero h2 {
+                font-size: 1.5rem !important;
             }
             
             .section-title {
-                font-size: 2rem;
+                font-size: 1.6rem !important;
             }
             
-            .cta-section h2 {
-                font-size: 2rem;
-            }
-            
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            /* Mobile Ticker */
-            .ticker-item {
-                padding: 15px 25px !important;
-                display: block !important;
-                text-align: center !important;
-            }
-            
-            .ticker-item span:first-child {
-                font-size: 1.4rem !important;
-                display: block !important;
-                margin-right: 0 !important;
-                margin-bottom: 5px !important;
-            }
-            
-            .ticker-item span:last-child {
-                font-size: 0.8rem !important;
+            .vision-card {
+                padding: 1.5rem 1rem !important;
             }
         }
         
@@ -770,6 +1102,7 @@
         <div class="container">
             <div class="navbar-content">
                 <div class="logo">A1 Diagnosis</div>
+                <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
                 <ul class="nav-links">
                     <li><a href="#home">Home</a></li>
                     <li><a href="#problem">Problem</a></li>
@@ -778,6 +1111,17 @@
                     <li><a href="#contact">Contact</a></li>
                 </ul>
                 <a href="/presentation/presentation.html" class="cta-button">View Presentation</a>
+            </div>
+            <!-- Mobile Menu -->
+            <div class="mobile-menu" id="mobile-menu">
+                <ul class="mobile-nav-links">
+                    <li><a href="#home" onclick="closeMobileMenu()">Home</a></li>
+                    <li><a href="#problem" onclick="closeMobileMenu()">Problem</a></li>
+                    <li><a href="#solution" onclick="closeMobileMenu()">Solution</a></li>
+                    <li><a href="#benefits" onclick="closeMobileMenu()">Benefits</a></li>
+                    <li><a href="#contact" onclick="closeMobileMenu()">Contact</a></li>
+                    <li><a href="/presentation/presentation.html" onclick="closeMobileMenu()" style="color: #0ea5e9; font-weight: 600;">View Presentation</a></li>
+                </ul>
             </div>
         </div>
     </nav>
@@ -1373,23 +1717,40 @@
         </div>
     </footer>
 
+    <!-- Desktop Version Link (Mobile Only) -->
+    <a href="index.html?desktop=true" class="desktop-version-link">🖥️ Desktop Version</a>
+
     <script>
-        // Mobile Device Detection and Redirect
-        (function() {
-            // Check if user is on mobile device
-            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || 
-                           window.innerWidth <= 768;
+        // Mobile Menu Functions
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuBtn = document.querySelector('.mobile-menu-btn');
             
-            // Check if already on mobile page or if redirect should be bypassed
-            const isAlreadyMobile = window.location.pathname.includes('mobile');
-            const bypassRedirect = window.location.search.includes('desktop=true');
-            
-            // Redirect to mobile version if on mobile device
-            if (isMobile && !isAlreadyMobile && !bypassRedirect) {
-                window.location.href = 'index-mobile.html';
-                return;
+            if (mobileMenu.classList.contains('active')) {
+                mobileMenu.classList.remove('active');
+                menuBtn.textContent = '☰';
+            } else {
+                mobileMenu.classList.add('active');
+                menuBtn.textContent = '✕';
             }
-        })();
+        }
+        
+        function closeMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuBtn = document.querySelector('.mobile-menu-btn');
+            mobileMenu.classList.remove('active');
+            menuBtn.textContent = '☰';
+        }
+        
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const navbar = document.getElementById('navbar');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (!navbar.contains(event.target) && mobileMenu.classList.contains('active')) {
+                closeMobileMenu();
+            }
+        });
         
         // Navbar scroll effect
         window.addEventListener('scroll', function() {
@@ -1646,11 +2007,61 @@
             });
         }
 
-        // Initialize hero animation when page loads
+        // Mobile-optimized initialization
         document.addEventListener('DOMContentLoaded', function() {
             setupVideoFallback();
-            setTimeout(startHeroAnimation, 1000); // Start after 1 second delay
+            
+            // Check if device is mobile to optimize performance
+            const isMobile = window.innerWidth <= 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            
+            if (isMobile) {
+                // Simplified animation for mobile
+                setTimeout(startMobileHeroAnimation, 1000);
+            } else {
+                setTimeout(startHeroAnimation, 1000);
+            }
         });
+        
+        // Simplified mobile hero animation
+        function startMobileHeroAnimation() {
+            const title1 = document.getElementById('title-1');
+            const title2 = document.getElementById('title-2');
+            const description = document.getElementById('description');
+            const typewriterText = document.getElementById('typewriter-text');
+            
+            if (!title1 || !title2 || !description || !typewriterText) {
+                console.warn('Mobile hero animation elements not found');
+                return;
+            }
+            
+            // Simple mobile text display (no complex animations)
+            const mobileDescription = "Blood-based AMD risk assessment test to detect vision risk years before symptoms appear.";
+            
+            // Show title 1 immediately
+            title1.style.opacity = '1';
+            title1.classList.add('fade-in');
+            
+            setTimeout(() => {
+                title1.style.opacity = '0';
+                title2.style.opacity = '1';
+                title2.classList.add('fade-in');
+            }, 4000);
+            
+            setTimeout(() => {
+                title2.style.opacity = '0';
+                description.style.opacity = '1';
+                description.classList.add('fade-in');
+                typewriterText.textContent = mobileDescription;
+            }, 8000);
+            
+            // Restart after 20 seconds
+            setTimeout(() => {
+                title1.style.opacity = '0';
+                title2.style.opacity = '0';
+                description.style.opacity = '0';
+                startMobileHeroAnimation();
+            }, 20000);
+        }
     </script>
 </body>
 </html>
