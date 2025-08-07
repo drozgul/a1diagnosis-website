@@ -777,24 +777,69 @@
         .hero {
             padding: 100px 0 60px;
             min-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        /* Mobile Video Container */
+        .hero-video-container {
+            position: relative;
+            width: 90%;
+            max-width: 400px;
+            height: 250px;
+            margin: 0 auto 2rem auto;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            z-index: 2;
+        }
+        
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 20px;
+        }
+        
+        /* Reduce overlay opacity for better video visibility */
+        .hero-overlay {
+            background: rgba(3, 105, 161, 0.1) !important;
+        }
+        
+        /* Disable rotating animation on mobile for better performance */
+        .hero::before {
+            display: none;
         }
         
         .hero h1 {
             font-size: 2rem !important;
             line-height: 1.2;
             margin-bottom: 1rem;
+            text-align: center;
         }
         
         .hero h2 {
             font-size: 1.8rem !important;
             line-height: 1.3;
             margin: 1rem 0;
+            text-align: center;
         }
         
         .hero .subtitle {
             font-size: 1rem !important;
             line-height: 1.5;
             padding: 0 10px;
+            text-align: center;
+        }
+        
+        .hero-content {
+            text-align: center;
+            z-index: 3;
+            position: relative;
         }
         
         .hero-stats {
@@ -1081,6 +1126,43 @@
             .vision-card {
                 padding: 1.5rem 1rem !important;
             }
+            
+            /* Smaller video for small screens */
+            .hero-video-container {
+                width: 95% !important;
+                height: 200px !important;
+                max-width: 350px !important;
+            }
+        }
+        
+        /* Very Large Mobile Screens */
+        @media (min-width: 481px) and (max-width: 768px) {
+            .hero-video-container {
+                width: 85%;
+                height: 280px;
+                max-width: 450px;
+            }
+        }
+        
+        /* Add a subtle play button overlay for better UX */
+        .hero-video-container::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 3;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+        }
+        
+        .hero-video-container:hover::after,
+        .hero-video-container.playing::after {
+            opacity: 0;
         }
         
         /* Scroll animations */
@@ -1128,23 +1210,25 @@
 
     <!-- Hero Section -->
     <section class="hero" id="home">
-        <!-- Background Video (Primary) -->
-        <video class="hero-video" autoplay muted loop playsinline preload="auto">
-            <source src="Peaceful_lake_scene_cropped_final.mp4" type="video/mp4">
-            <source src="Peaceful_lake_scene_cropped_v2.mp4" type="video/mp4">
-            <source src="Peaceful_lake_scene.mov" type="video/quicktime">
-        </video>
-        
-        <!-- GIF Fallback for when video fails -->
-        <img class="hero-video" src="Peaceful_lake_scene_web.gif" alt="Peaceful Lake Scene" style="display: none;" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-        
-        <!-- Final Fallback Background -->
-        <div class="hero-video" style="display: none; background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 50%, #0369a1 100%);"></div>
-        
-        <!-- Video Overlay -->
+        <!-- Background -->
         <div class="hero-overlay"></div>
         
         <div class="container">
+            <!-- Video Container (Mobile-Optimized) -->
+            <div class="hero-video-container">
+                <video class="hero-video" autoplay muted loop playsinline preload="auto">
+                    <source src="Peaceful_lake_scene_cropped_final.mp4" type="video/mp4">
+                    <source src="Peaceful_lake_scene_cropped_v2.mp4" type="video/mp4">
+                    <source src="Peaceful_lake_scene.mov" type="video/quicktime">
+                </video>
+                
+                <!-- GIF Fallback for when video fails -->
+                <img class="hero-video" src="Peaceful_lake_scene_web.gif" alt="Peaceful Lake Scene" style="display: none;" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                
+                <!-- Final Fallback Background -->
+                <div class="hero-video" style="display: none; background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 50%, #0369a1 100%);"></div>
+            </div>
+            
             <div class="hero-content">
                 <!-- Phase 1: 0-6 seconds -->
                 <h1 id="title-1" class="animated-text" style="opacity: 0; text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 255, 255, 0.4);">See the Future Clearly</h1>
@@ -2007,9 +2091,46 @@
             });
         }
 
+        // Enhanced video setup for mobile
+        function setupMobileVideoOptimizations() {
+            const videoContainer = document.querySelector('.hero-video-container');
+            const video = document.querySelector('.hero-video video');
+            
+            if (video && videoContainer) {
+                // Add playing class when video starts
+                video.addEventListener('play', function() {
+                    videoContainer.classList.add('playing');
+                });
+                
+                // Remove playing class when paused
+                video.addEventListener('pause', function() {
+                    videoContainer.classList.remove('playing');
+                });
+                
+                // Ensure video plays on mobile (some browsers require user interaction)
+                video.addEventListener('canplay', function() {
+                    if (video.paused) {
+                        video.play().catch(function(error) {
+                            console.log('Video autoplay failed:', error);
+                        });
+                    }
+                });
+                
+                // Add click to play/pause functionality
+                videoContainer.addEventListener('click', function() {
+                    if (video.paused) {
+                        video.play();
+                    } else {
+                        video.pause();
+                    }
+                });
+            }
+        }
+        
         // Mobile-optimized initialization
         document.addEventListener('DOMContentLoaded', function() {
             setupVideoFallback();
+            setupMobileVideoOptimizations();
             
             // Check if device is mobile to optimize performance
             const isMobile = window.innerWidth <= 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
