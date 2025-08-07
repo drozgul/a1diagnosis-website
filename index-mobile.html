@@ -1277,6 +1277,7 @@
             <!-- Video Container (Mobile-Optimized) -->
             <div class="hero-video-container">
                 <video class="hero-video" autoplay muted loop playsinline preload="auto">
+                    <source src="Peaceful_lake_scene_cropped_no_bars.mp4" type="video/mp4">
                     <source src="Peaceful_lake_scene_cropped_final.mp4" type="video/mp4">
                     <source src="Peaceful_lake_scene_cropped_v2.mp4" type="video/mp4">
                     <source src="Peaceful_lake_scene.mov" type="video/quicktime">
@@ -1462,42 +1463,74 @@
         </style>
         
         <script>
-            // Snowfall letter animation for subtitle
+            // Mobile-optimized text animation for subtitle
             document.addEventListener('DOMContentLoaded', function() {
                 const text = "Precious moments that make life beautiful";
                 const element = document.getElementById('typewriter-subtitle');
                 
-                // Clear the element and set up for letter animation
-                element.innerHTML = '';
-                element.style.position = 'relative';
-                element.style.height = '60px';
-                element.style.overflow = 'visible';
+                if (!element) return;
                 
-                // Create individual letter elements
-                let letterIndex = 0;
-                for (let i = 0; i < text.length; i++) {
-                    const char = text[i];
-                    const letterSpan = document.createElement('span');
+                // Check if mobile device
+                const isMobile = window.innerWidth <= 768;
+                
+                if (isMobile) {
+                    // Simple fade-in animation for mobile (no complex letter animations)
+                    element.innerHTML = '';
+                    element.style.position = 'relative';
+                    element.style.height = 'auto';
+                    element.style.minHeight = '3rem';
+                    element.style.overflow = 'hidden';
+                    element.style.display = 'flex';
+                    element.style.alignItems = 'center';
+                    element.style.justifyContent = 'center';
+                    element.style.padding = '0 10px';
+                    element.style.lineHeight = '1.4';
                     
-                    if (char === ' ') {
-                        letterSpan.innerHTML = '&nbsp;';
-                    } else {
-                        letterSpan.textContent = char;
-                    }
+                    element.textContent = text;
+                    element.style.opacity = '0';
+                    element.style.transform = 'translateY(20px)';
+                    element.style.transition = 'all 1.5s ease-out';
+                    element.style.textShadow = '0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.4)';
                     
-                    // Style each letter
-                    letterSpan.style.display = 'inline-block';
-                    letterSpan.style.position = 'relative';
-                    letterSpan.style.transform = 'translateY(-200px)';
-                    letterSpan.style.opacity = '0';
-                    letterSpan.style.textShadow = '0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.4)';
-                    letterSpan.style.marginRight = char === ' ' ? '0.5rem' : '0.1rem';
-                    letterSpan.style.animation = `snowfall 2.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) ${letterIndex * 150}ms forwards`;
+                    // Animate in after a short delay
+                    setTimeout(() => {
+                        element.style.opacity = '1';
+                        element.style.transform = 'translateY(0)';
+                    }, 500);
                     
-                    element.appendChild(letterSpan);
+                } else {
+                    // Original snowfall animation for desktop
+                    element.innerHTML = '';
+                    element.style.position = 'relative';
+                    element.style.height = '60px';
+                    element.style.overflow = 'visible';
                     
-                    if (char !== ' ') {
-                        letterIndex++;
+                    // Create individual letter elements
+                    let letterIndex = 0;
+                    for (let i = 0; i < text.length; i++) {
+                        const char = text[i];
+                        const letterSpan = document.createElement('span');
+                        
+                        if (char === ' ') {
+                            letterSpan.innerHTML = '&nbsp;';
+                        } else {
+                            letterSpan.textContent = char;
+                        }
+                        
+                        // Style each letter
+                        letterSpan.style.display = 'inline-block';
+                        letterSpan.style.position = 'relative';
+                        letterSpan.style.transform = 'translateY(-200px)';
+                        letterSpan.style.opacity = '0';
+                        letterSpan.style.textShadow = '0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.4)';
+                        letterSpan.style.marginRight = char === ' ' ? '0.5rem' : '0.1rem';
+                        letterSpan.style.animation = `snowfall 2.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) ${letterIndex * 150}ms forwards`;
+                        
+                        element.appendChild(letterSpan);
+                        
+                        if (char !== ' ') {
+                            letterIndex++;
+                        }
                     }
                 }
             });
