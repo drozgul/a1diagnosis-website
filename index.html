@@ -835,111 +835,209 @@
     </section>
 
     <!-- The Vision We Protect Section -->
-    <section style="padding: 120px 0; background: url('Image_1.png') center center / cover no-repeat; position: relative; overflow: hidden; min-height: 100vh;">
-        <!-- Semi-transparent overlay -->
-        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(2px);"></div>
+    <section style="padding: 120px 0; position: relative; overflow: hidden; min-height: 100vh;">
+        <!-- Background Video -->
+        <video id="vision-video" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1;" autoplay muted loop playsinline preload="auto">
+            <source src="presentation/A1-English.mov" type="video/quicktime">
+            <source src="presentation/A1-English.mov" type="video/mp4">
+            <!-- Fallback to original image if video fails -->
+            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: url('Image_1.png') center center / cover no-repeat;"></div>
+        </video>
         
-        <div class="container" style="position: relative; z-index: 2;">
-            <!-- Header -->
-            <div class="scroll-fade" style="text-align: center; margin-bottom: 5rem;">
-                <h2 style="font-size: 4rem; font-weight: 900; color: white; margin-bottom: 2rem; line-height: 1.1; text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; letter-spacing: -1px;">The Vision We Protect</h2>
-                <p style="font-size: 1.5rem; color: rgba(255, 255, 255, 0.9); max-width: 700px; margin: 0 auto; line-height: 1.6; font-weight: 400; text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);">These are the moments that matter most. All deserve to be seen always and clearly.</p>
+        <!-- Future Steps Overlay -->
+        <div id="future-steps-overlay" style="position: absolute; top: 50px; left: 0; background: linear-gradient(135deg, rgba(56, 189, 248, 0.9) 0%, rgba(14, 165, 233, 0.8) 100%); padding: 25px 30px; border-radius: 0 15px 15px 0; z-index: 2; opacity: 0; transform: translateX(-100%); transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3); width: 660px; height: 175px; display: flex; align-items: center; justify-content: center;">
+            <span style="font-size: 1.6rem; font-weight: 700; color: white; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; text-align: center; line-height: 1.3;">Future Steps: Advanced Vision Risk Analysis</span>
+        </div>
+        
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const video = document.getElementById('vision-video');
+                const overlay = document.getElementById('future-steps-overlay');
+                
+                if (video && overlay) {
+                    video.addEventListener('timeupdate', function() {
+                        const currentTime = video.currentTime;
+                        
+                        // Show overlay from 21 seconds to end of video (around 35 seconds)
+                        if (currentTime >= 21 && currentTime <= 35) {
+                            if (overlay.style.opacity === '0' || !overlay.style.opacity) {
+                                // Animate in
+                                overlay.style.opacity = '1';
+                                overlay.style.transform = 'translateX(0)';
+                            }
+                        } else {
+                            if (overlay.style.opacity === '1') {
+                                // Animate out
+                                overlay.style.opacity = '0';
+                                overlay.style.transform = 'translateX(-100%)';
+                            }
+                        }
+                    });
+                }
+            });
+        </script>
+        
+    </section>
+
+    <!-- Vision Protection Content Section - Redesigned -->
+    <section style="padding: 120px 0; background: linear-gradient(135deg, #fefeff 0%, #f0fdfa 30%, #e6fffa 60%, #f8fafc 100%); position: relative; overflow: hidden;">
+        <!-- Animated Background Elements -->
+        <div class="floating-elements">
+            <div class="float-circle" style="position: absolute; top: 10%; left: 10%; width: 80px; height: 80px; background: radial-gradient(circle, rgba(94, 234, 212, 0.1) 0%, transparent 70%); border-radius: 50%; animation: float 6s ease-in-out infinite;"></div>
+            <div class="float-circle" style="position: absolute; top: 60%; right: 15%; width: 120px; height: 120px; background: radial-gradient(circle, rgba(56, 189, 248, 0.08) 0%, transparent 70%); border-radius: 50%; animation: float 8s ease-in-out infinite reverse;"></div>
+            <div class="float-circle" style="position: absolute; bottom: 20%; left: 20%; width: 60px; height: 60px; background: radial-gradient(circle, rgba(125, 211, 252, 0.12) 0%, transparent 70%); border-radius: 50%; animation: float 7s ease-in-out infinite;"></div>
+        </div>
+
+        <div class="container">
+            <!-- Enhanced Header with breathing animation -->
+            <div class="scroll-fade" style="text-align: center; margin-bottom: 6rem;">
+                <h2 style="font-size: 3.5rem; font-weight: 800; color: #0f766e; margin-bottom: 2rem; line-height: 1.2; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; letter-spacing: -0.5px; animation: breathe 4s ease-in-out infinite;">The Vision We Protect</h2>
+                <div style="width: 80px; height: 4px; background: linear-gradient(90deg, #14b8a6 0%, #06b6d4 100%); margin: 0 auto 2rem; border-radius: 2px; animation: pulse 2s ease-in-out infinite;"></div>
+                <p id="typewriter-subtitle" style="font-size: 1.4rem; color: #0d9488; max-width: 650px; margin: 0 auto; line-height: 1.7; font-weight: 400; min-height: 4rem; display: flex; align-items: flex-end; justify-content: center; text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.4); text-align: center;"></p>
             </div>
             
-            <!-- White Glowing Progress Indicator -->
-            <div style="width: 100%; max-width: 500px; margin: 0 auto 4rem; position: relative; padding: 1rem;">
-                <!-- Progress track with white glow -->
-                <div style="width: 100%; height: 3px; background: rgba(255, 255, 255, 0.2); border-radius: 20px; position: relative; overflow: hidden; box-shadow: 0 0 8px rgba(255, 255, 255, 0.3), inset 0 1px 2px rgba(0, 0, 0, 0.1);">
-                    <!-- Active progress trail with white glow -->
-                    <div style="position: absolute; top: 0; left: 0; height: 100%; width: 25%; background: rgba(255, 255, 255, 0.6); border-radius: 20px; box-shadow: 0 0 12px rgba(255, 255, 255, 0.5);"></div>
-                    
-                    <!-- Moving white light indicator -->
-                    <div id="light-circle" style="position: absolute; top: -6px; left: 0; width: 15px; height: 15px; background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.9) 60%, rgba(255, 255, 255, 0.7) 100%); border-radius: 50%; box-shadow: 0 0 25px rgba(255, 255, 255, 1), 0 0 50px rgba(255, 255, 255, 0.6), 0 0 75px rgba(255, 255, 255, 0.3), 0 2px 8px rgba(0, 0, 0, 0.2); transition: none; border: 1px solid rgba(255, 255, 255, 1);"></div>
-                </div>
+            <!-- Modern Card Layout with Gentle Animations -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2.5rem; max-width: 1200px; margin: 0 auto;">
                 
-                <!-- Subtle progress dots with white glow -->
-                <div style="display: flex; justify-content: space-between; margin-top: 1rem; opacity: 0.7;">
-                    <div style="width: 3px; height: 3px; background: rgba(255, 255, 255, 0.8); border-radius: 50%; box-shadow: 0 0 4px rgba(255, 255, 255, 0.5);"></div>
-                    <div style="width: 3px; height: 3px; background: rgba(255, 255, 255, 0.8); border-radius: 50%; box-shadow: 0 0 4px rgba(255, 255, 255, 0.5);"></div>
-                    <div style="width: 3px; height: 3px; background: rgba(255, 255, 255, 0.8); border-radius: 50%; box-shadow: 0 0 4px rgba(255, 255, 255, 0.5);"></div>
+                <!-- Grandchildren's Faces Card -->
+                <div class="vision-card" style="background: linear-gradient(145deg, rgba(255, 255, 255, 0.9) 0%, rgba(240, 253, 250, 0.8) 100%); padding: 3rem 2.5rem; border-radius: 20px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.05); border: 1px solid rgba(94, 234, 212, 0.1); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); backdrop-filter: blur(10px); animation: slideInUp 0.8s ease-out;">
+                    <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #5eead4 0%, #14b8a6 100%); border-radius: 16px; margin: 0 auto 2rem; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(94, 234, 212, 0.3);"></div>
+                    <h3 style="font-size: 1.8rem; font-weight: 700; color: #0f766e; margin-bottom: 1.5rem; text-align: center; line-height: 1.3;">Your Grandchildren's Faces</h3>
+                    <p style="font-size: 1.1rem; color: #0d9488; line-height: 1.8; text-align: center; font-weight: 300;">Bedtime stories, first steps, birthday smiles. The precious expressions that light up your world and create lifelong memories worth preserving.</p>
+                </div>
+
+                <!-- Life's Beautiful Details Card -->
+                <div class="vision-card" style="background: linear-gradient(145deg, rgba(255, 255, 255, 0.9) 0%, rgba(240, 253, 250, 0.8) 100%); padding: 3rem 2.5rem; border-radius: 20px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.05); border: 1px solid rgba(94, 234, 212, 0.1); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); backdrop-filter: blur(10px); animation: slideInUp 0.8s ease-out 0.2s both;">
+                    <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #38bdf8 0%, #0ea5e9 100%); border-radius: 16px; margin: 0 auto 2rem; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(56, 189, 248, 0.3);"></div>
+                    <h3 style="font-size: 1.8rem; font-weight: 700; color: #0f766e; margin-bottom: 1.5rem; text-align: center; line-height: 1.3;">Life's Beautiful Details</h3>
+                    <p style="font-size: 1.1rem; color: #0d9488; line-height: 1.8; text-align: center; font-weight: 300;">Morning sunrises, favorite books, your partner's loving glances. The world's beauty deserves to be seen in perfect clarity.</p>
+                </div>
+
+                <!-- Your Independence Card -->
+                <div class="vision-card" style="background: linear-gradient(145deg, rgba(255, 255, 255, 0.9) 0%, rgba(240, 253, 250, 0.8) 100%); padding: 3rem 2.5rem; border-radius: 20px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.05); border: 1px solid rgba(94, 234, 212, 0.1); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); backdrop-filter: blur(10px); animation: slideInUp 0.8s ease-out 0.4s both;">
+                    <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #7dd3fc 0%, #0284c7 100%); border-radius: 16px; margin: 0 auto 2rem; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(125, 211, 252, 0.3);"></div>
+                    <h3 style="font-size: 1.8rem; font-weight: 700; color: #0f766e; margin-bottom: 1.5rem; text-align: center; line-height: 1.3;">Your Independence</h3>
+                    <p style="font-size: 1.1rem; color: #0d9488; line-height: 1.8; text-align: center; font-weight: 300;">Driving confidently, reading without help, navigating your home with ease. Vision loss doesn't have to limit your freedom.</p>
                 </div>
             </div>
-            
-            <!-- Rotating Content - One at a Time -->
-            <div style="text-align: center; max-width: 800px; margin: 0 auto; min-height: 200px; display: flex; align-items: center; justify-content: center;">
-                
-                <!-- Your Grandchildren's Faces -->
-                <div id="vision-1" class="vision-item" style="opacity: 1; transition: all 1s ease-in-out; position: absolute;">
-                    <h3 style="font-size: 2.5rem; font-weight: 700; color: white; margin-bottom: 2rem; line-height: 1.3; text-shadow: 0 3px 15px rgba(0, 0, 0, 0.4);">Your Grandchildren's Faces</h3>
-                    <p style="font-size: 1.3rem; color: rgba(255, 255, 255, 0.9); line-height: 1.8; margin: 0; text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); font-weight: 300; max-width: 600px;">Bedtime stories, first steps, birthday smiles. The precious expressions that light up your world and create lifelong memories.</p>
-                </div>
 
-                <!-- Life's Beautiful Details -->
-                <div id="vision-2" class="vision-item" style="opacity: 0; transition: all 1s ease-in-out; position: absolute;">
-                    <h3 style="font-size: 2.5rem; font-weight: 700; color: white; margin-bottom: 2rem; line-height: 1.3; text-shadow: 0 3px 15px rgba(0, 0, 0, 0.4);">Life's Beautiful Details</h3>
-                    <p style="font-size: 1.3rem; color: rgba(255, 255, 255, 0.9); line-height: 1.8; margin: 0; text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); font-weight: 300; max-width: 600px;">Morning sunrises, favorite books, your partner's loving glances. The world's beauty deserves to be seen in full clarity.</p>
-                </div>
-
-                <!-- Your Independence -->
-                <div id="vision-3" class="vision-item" style="opacity: 0; transition: all 1s ease-in-out; position: absolute;">
-                    <h3 style="font-size: 2.5rem; font-weight: 700; color: white; margin-bottom: 2rem; line-height: 1.3; text-shadow: 0 3px 15px rgba(0, 0, 0, 0.4);">Your Independence</h3>
-                    <p style="font-size: 1.3rem; color: rgba(255, 255, 255, 0.9); line-height: 1.8; margin: 0; text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); font-weight: 300; max-width: 600px;">Driving confidently, reading without help, navigating your home with ease. Vision loss doesn't have to steal your freedom.</p>
+            <!-- Inspirational Call-to-Action -->
+            <div style="text-align: center; margin-top: 5rem; padding: 3rem; background: linear-gradient(135deg, rgba(94, 234, 212, 0.05) 0%, rgba(56, 189, 248, 0.05) 100%); border-radius: 24px; border: 1px solid rgba(94, 234, 212, 0.1);">
+                <h4 style="font-size: 1.6rem; font-weight: 600; color: #0f766e; margin-bottom: 1rem;">Early Detection, Brighter Tomorrow</h4>
+                <p style="font-size: 1.2rem; color: #0d9488; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">Our advanced AMD risk analysis helps protect these precious moments before symptoms appear.</p>
+                <div style="display: flex; justify-content: center; gap: 1rem;">
+                    <div style="width: 8px; height: 8px; background: #14b8a6; border-radius: 50%; animation: pulse 1.5s ease-in-out infinite;"></div>
+                    <div style="width: 8px; height: 8px; background: #06b6d4; border-radius: 50%; animation: pulse 1.5s ease-in-out infinite 0.3s;"></div>
+                    <div style="width: 8px; height: 8px; background: #0284c7; border-radius: 50%; animation: pulse 1.5s ease-in-out infinite 0.6s;"></div>
                 </div>
             </div>
         </div>
         
         <style>
-            /* Vision rotation animation */
-            .vision-item {
-                width: 100%;
-                max-width: 600px;
-                margin: 0 auto;
+            /* Calming Animations */
+            @keyframes float {
+                0%, 100% { transform: translateY(0px) rotate(0deg); }
+                50% { transform: translateY(-20px) rotate(5deg); }
+            }
+            
+            @keyframes breathe {
+                0%, 100% { transform: scale(1); }
+                50% { transform: scale(1.02); }
+            }
+            
+            @keyframes pulse {
+                0%, 100% { opacity: 1; transform: scale(1); }
+                50% { opacity: 0.7; transform: scale(1.1); }
+            }
+            
+            @keyframes slideInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            
+            @keyframes snowfall {
+                0% {
+                    transform: translateY(-200px);
+                    opacity: 0;
+                }
+                10% {
+                    opacity: 1;
+                }
+                100% {
+                    transform: translateY(0);
+                    opacity: 1;
+                }
+            }
+            
+            /* Card Hover Effects */
+            .vision-card:hover {
+                transform: translateY(-8px);
+                box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.08);
+                border-color: rgba(94, 234, 212, 0.2);
+            }
+            
+            /* Responsive Design */
+            @media (max-width: 768px) {
+                .container {
+                    padding: 0 1rem;
+                }
+                
+                h2 {
+                    font-size: 2.5rem !important;
+                }
+                
+                .vision-card {
+                    margin: 0 1rem;
+                }
             }
         </style>
         
         <script>
-            // Vision rotation animation - 11 seconds each
-            let currentVision = 1;
-            const totalVisions = 3;
-            
-            function rotateVisions() {
-                // Hide all visions
-                for (let i = 1; i <= totalVisions; i++) {
-                    const element = document.getElementById(`vision-${i}`);
-                    if (element) {
-                        element.style.opacity = '0';
+            // Snowfall letter animation for subtitle
+            document.addEventListener('DOMContentLoaded', function() {
+                const text = "Precious moments that make life beautiful";
+                const element = document.getElementById('typewriter-subtitle');
+                
+                // Clear the element and set up for letter animation
+                element.innerHTML = '';
+                element.style.position = 'relative';
+                element.style.height = '60px';
+                element.style.overflow = 'visible';
+                
+                // Create individual letter elements
+                let letterIndex = 0;
+                for (let i = 0; i < text.length; i++) {
+                    const char = text[i];
+                    const letterSpan = document.createElement('span');
+                    
+                    if (char === ' ') {
+                        letterSpan.innerHTML = '&nbsp;';
+                    } else {
+                        letterSpan.textContent = char;
+                    }
+                    
+                    // Style each letter
+                    letterSpan.style.display = 'inline-block';
+                    letterSpan.style.position = 'relative';
+                    letterSpan.style.transform = 'translateY(-200px)';
+                    letterSpan.style.opacity = '0';
+                    letterSpan.style.textShadow = '0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.4)';
+                    letterSpan.style.marginRight = char === ' ' ? '0.5rem' : '0.1rem';
+                    letterSpan.style.animation = `snowfall 2.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) ${letterIndex * 150}ms forwards`;
+                    
+                    element.appendChild(letterSpan);
+                    
+                    if (char !== ' ') {
+                        letterIndex++;
                     }
                 }
-                
-                // Show current vision
-                const currentElement = document.getElementById(`vision-${currentVision}`);
-                if (currentElement) {
-                    currentElement.style.opacity = '1';
-                }
-                
-                // Reset and animate white light indicator
-                const lightCircle = document.getElementById('light-circle');
-                if (lightCircle) {
-                    // Reset position to left
-                    lightCircle.style.left = '0px';
-                    lightCircle.style.transition = 'none';
-                    
-                    // Start animation after a brief delay
-                    setTimeout(() => {
-                        lightCircle.style.transition = 'left 11s cubic-bezier(0.4, 0, 0.2, 1)';
-                        lightCircle.style.left = 'calc(100% - 15px)'; // Move to right edge (15px circle)
-                    }, 150);
-                }
-                
-                // Move to next vision
-                currentVision = currentVision >= totalVisions ? 1 : currentVision + 1;
-            }
-            
-            // Start the rotation every 11 seconds
-            setInterval(rotateVisions, 11000);
-            
-            // Initialize - show first vision and start light animation
-            rotateVisions();
+            });
         </script>
     </section>
 

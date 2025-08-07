@@ -178,9 +178,25 @@
 - **A1 Diagnosis**: This file contains basic website information and development reminders
 - **01data**: Comprehensive CLAUDE.md exists in `/Users/mariaolvera/Desktop/01data website/CLAUDE.md` with detailed technical documentation, git history, AI chatbot systems, and project status
 
+## Git Configuration & Credentials
+### A1 Diagnosis Website (Current Repository)
+- **Git Username**: `drozgul`
+- **Git Email**: `aimldrozgul@gmail.com`
+- **GitHub Account**: https://github.com/drozgul
+- **Repository**: https://github.com/drozgul/a1diagnosis-website
+- **Authentication**: Personal access token configured
+
+### 01Data Website 
+- **Git Username**: `01data01`
+- **Git Email**: `support@01data.org`  
+- **GitHub Account**: https://github.com/01data01
+- **Repository**: https://github.com/01data01/01data-website
+- **Authentication**: Separate credentials required
+
 ## Important Reminders
 - **CRITICAL**: At the beginning of each conversation, ask which website we're working on and confirm the correct local folder
 - Always verify which project we're working on before making changes
 - Check repository URLs before pushing changes
+- Ensure correct git credentials are configured for each project
 - Both sites have different target audiences and functionality requirements
 - Confirm local directory matches the intended website before any file operations
