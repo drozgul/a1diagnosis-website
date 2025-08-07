@@ -22,6 +22,12 @@
             color: #333;
             background: white;
             overflow-x: hidden;
+            width: 100%;
+        }
+        
+        html {
+            width: 100%;
+            overflow-x: hidden;
         }
         
         .container {
@@ -701,6 +707,12 @@
             padding: 0 15px;
         }
         
+        /* Full width container for hero video */
+        .hero .container {
+            padding: 0;
+            max-width: 100%;
+        }
+        
         /* Mobile Navigation */
         .navbar {
             padding: 10px 0;
@@ -785,13 +797,13 @@
         /* Mobile Video Container */
         .hero-video-container {
             position: relative;
-            width: 90%;
-            max-width: 400px;
-            height: 250px;
-            margin: 0 auto 2rem auto;
-            border-radius: 20px;
+            width: 100%;
+            max-width: none;
+            height: 280px;
+            margin: 0 0 2rem 0;
+            border-radius: 0;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            box-shadow: none;
             z-index: 2;
         }
         
@@ -802,7 +814,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            border-radius: 20px;
+            border-radius: 0;
         }
         
         /* Reduce overlay opacity for better video visibility */
@@ -840,6 +852,7 @@
             text-align: center;
             z-index: 3;
             position: relative;
+            padding: 0 15px;
         }
         
         .hero-stats {
@@ -1127,20 +1140,20 @@
                 padding: 1.5rem 1rem !important;
             }
             
-            /* Smaller video for small screens */
+            /* Full width video for small screens */
             .hero-video-container {
-                width: 95% !important;
-                height: 200px !important;
-                max-width: 350px !important;
+                width: 100% !important;
+                height: 220px !important;
+                max-width: none !important;
             }
         }
         
         /* Very Large Mobile Screens */
         @media (min-width: 481px) and (max-width: 768px) {
             .hero-video-container {
-                width: 85%;
-                height: 280px;
-                max-width: 450px;
+                width: 100%;
+                height: 300px;
+                max-width: none;
             }
         }
         
