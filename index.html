@@ -109,6 +109,7 @@
             padding: 0 20px;
         }
         
+
         /* Header Navigation */
         .navbar {
             background: rgba(255, 255, 255, 0.95);
@@ -167,13 +168,34 @@
             border-radius: 50px;
             font-weight: 600;
             text-decoration: none;
-            transition: all 0.3s ease;
+            transition: all 0.6s ease;
             box-shadow: 0 4px 15px rgba(14, 165, 233, 0.3);
+            animation: alternateButtonText 20s ease-in-out infinite;
+            min-width: 160px;
+            text-align: center;
+            perspective: 1000px;
+            transform-style: preserve-3d;
+            backface-visibility: hidden;
         }
         
         .cta-button:hover {
-            transform: translateY(-2px);
+            transform: translateY(-2px) rotateY(0deg);
             box-shadow: 0 8px 25px rgba(14, 165, 233, 0.4);
+        }
+
+        @keyframes alternateButtonText {
+            0% {
+                background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+                box-shadow: 0 4px 15px rgba(14, 165, 233, 0.3);
+            }
+            50% {
+                background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+                box-shadow: 0 4px 15px rgba(14, 165, 233, 0.3);
+            }
+            100% {
+                background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+                box-shadow: 0 4px 15px rgba(14, 165, 233, 0.3);
+            }
         }
         
         /* Hero Section */
@@ -1008,7 +1030,7 @@
             <!-- Inspirational Call-to-Action -->
             <div style="text-align: center; margin-top: 5rem; padding: 3rem; background: linear-gradient(135deg, rgba(94, 234, 212, 0.05) 0%, rgba(56, 189, 248, 0.05) 100%); border-radius: 24px; border: 1px solid rgba(94, 234, 212, 0.1);">
                 <h4 style="font-size: 1.6rem; font-weight: 600; color: #0f766e; margin-bottom: 1rem;">Early Detection, Brighter Tomorrow</h4>
-                <p style="font-size: 1.2rem; color: #0d9488; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">Our advanced AMD risk analysis helps protect these precious moments before symptoms appear.</p>
+                <p style="font-size: 1.2rem; color: #0d9488; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">Our advanced AMD risk analysis helps identify at-risk patients early, enabling timely intervention to protect these precious moments - your vision, independence, and time with loved ones - before symptoms appear.</p>
                 <div style="display: flex; justify-content: center; gap: 1rem;">
                     <div style="width: 8px; height: 8px; background: #14b8a6; border-radius: 50%; animation: pulse 1.5s ease-in-out infinite;"></div>
                     <div style="width: 8px; height: 8px; background: #06b6d4; border-radius: 50%; animation: pulse 1.5s ease-in-out infinite 0.3s;"></div>
@@ -2351,6 +2373,37 @@
             setupVideoFallback();
             setTimeout(startHeroAnimation, 1000); // Start after 1 second delay
         });
+
+        // Alternate button text every 10 seconds with turn-around animation
+        function alternateButtonText() {
+            const button = document.querySelector('.cta-button');
+            if (button) {
+                let isPreseedText = false;
+                
+                setInterval(() => {
+                    // Start turn-around animation
+                    button.style.transform = 'rotateY(90deg)';
+                    
+                    // Change text at the middle of the animation
+                    setTimeout(() => {
+                        if (isPreseedText) {
+                            button.textContent = 'View Presentation';
+                            isPreseedText = false;
+                        } else {
+                            button.textContent = 'Pre-seed Round Open';
+                            isPreseedText = true;
+                        }
+                        
+                        // Complete the turn-around animation
+                        button.style.transform = 'rotateY(0deg)';
+                    }, 300); // Wait 300ms (half of transition time)
+                    
+                }, 10000); // 10 seconds = 10000 milliseconds
+            }
+        }
+
+        // Start button text alternation when page loads
+        document.addEventListener('DOMContentLoaded', alternateButtonText);
     </script>
 </body>
 </html>
