@@ -1699,7 +1699,7 @@
                     <div class="card-content">
                         <h3 class="card-title">Phase 1 Funding</h3>
                         <p class="card-value">$654,875</p>
-                        <div style="color: #0f766e; font-size: 1rem; font-weight: 600; margin-top: 0.8rem; opacity: 0.8;">+240 Samples Analysis for FDA Application</div>
+                        <div style="color: #0f766e; font-size: 1rem; font-weight: 600; margin-top: 0.8rem; opacity: 0.8;">Clinical Sample Analysis for FDA</div>
                     </div>
                 </div>
                 
@@ -2218,7 +2218,7 @@
             }
             
             // Safe typewriter effect function
-            function typeWriter(text, element, speed = 80) {
+            function typeWriter(text, element, speed = 60) {
                 return new Promise((resolve) => {
                     if (!element || !text) {
                         resolve();
@@ -2291,7 +2291,7 @@
                 timeouts.push(setTimeout(() => {
                     if (animationRunning && description && typewriterText) {
                         description.classList.add('fade-in');
-                        typeWriter(fullDescription, typewriterText, 80);
+                        typeWriter(fullDescription, typewriterText, 60);
                     }
                 }, 12500));
                 
