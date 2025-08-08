@@ -1425,84 +1425,310 @@
     </section>
 
     <!-- Investment Opportunity Overview -->
-    <section class="investment-summary-section" style="padding: 80px 0; background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);">
+    <section class="investment-summary-section" style="padding: 80px 0; background: white;">
         <div class="container">
             <div style="text-align: center; margin-bottom: 3rem;">
                 <h2 style="color: #1e293b; font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem;">Investment Opportunity Overview</h2>
             </div>
             
-            <!-- Key Investment Facts - Premium Design with Shine Animation -->
+            <!-- Advanced Investment Cards with Morphing Glass Effect -->
             <style>
                 .investment-card {
-                    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 30%, #bae6fd 60%, #7dd3fc 100%);
-                    padding: 1.5rem;
-                    border-radius: 16px;
-                    border: 1px solid #38bdf8;
-                    box-shadow: 0 10px 30px rgba(56, 189, 248, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.9), inset 0 -1px 0 rgba(0, 0, 0, 0.03);
+                    background: rgba(255, 255, 255, 0.95);
+                    backdrop-filter: blur(10px);
+                    -webkit-backdrop-filter: blur(10px);
+                    padding: 2.5rem 2rem;
+                    border-radius: 24px;
+                    border: 1px solid rgba(6, 182, 212, 0.2);
+                    box-shadow: 
+                        0 25px 50px rgba(6, 182, 212, 0.08),
+                        0 10px 30px rgba(20, 184, 166, 0.05),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.3);
                     position: relative;
                     overflow: hidden;
                     text-align: center;
-                    transition: all 0.3s ease;
+                    transform: perspective(1000px) rotateX(15deg) translateY(40px);
+                    opacity: 0;
+                    animation: cardMorph 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+                    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                    cursor: pointer;
+                }
+                
+                .investment-card:nth-child(1) { animation-delay: 0.2s; }
+                .investment-card:nth-child(2) { animation-delay: 0.5s; }
+                .investment-card:nth-child(3) { animation-delay: 0.8s; }
+                
+                @keyframes cardMorph {
+                    0% {
+                        transform: perspective(1000px) rotateX(15deg) translateY(40px);
+                        opacity: 0;
+                        filter: blur(8px);
+                    }
+                    60% {
+                        transform: perspective(1000px) rotateX(-2deg) translateY(-5px);
+                        opacity: 0.8;
+                        filter: blur(2px);
+                    }
+                    100% {
+                        transform: perspective(1000px) rotateX(0deg) translateY(0px);
+                        opacity: 1;
+                        filter: blur(0px);
+                    }
                 }
                 
                 .investment-card::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: -100%;
+                    width: 100%;
+                    height: 100%;
+                    background: linear-gradient(
+                        90deg,
+                        transparent,
+                        rgba(6, 182, 212, 0.1),
+                        rgba(20, 184, 166, 0.15),
+                        rgba(0, 206, 209, 0.1),
+                        transparent
+                    );
+                    transition: left 0.8s ease;
+                    z-index: 1;
+                }
+                
+                .investment-card::after {
                     content: '';
                     position: absolute;
                     top: -50%;
                     left: -50%;
                     width: 200%;
                     height: 200%;
-                    background: linear-gradient(
-                        45deg,
-                        transparent,
-                        transparent,
-                        rgba(255, 255, 255, 0.3),
-                        transparent,
-                        transparent
+                    background: conic-gradient(
+                        from 0deg,
+                        transparent 0deg,
+                        rgba(6, 182, 212, 0.3) 60deg,
+                        rgba(20, 184, 166, 0.4) 120deg,
+                        rgba(0, 206, 209, 0.3) 180deg,
+                        rgba(103, 232, 249, 0.2) 240deg,
+                        transparent 300deg,
+                        transparent 360deg
                     );
-                    transform: rotate(45deg);
-                    animation: shine 3s infinite;
-                    z-index: 1;
+                    opacity: 0;
+                    animation: haloRotate 4s linear infinite;
+                    border-radius: 50%;
+                    z-index: -1;
+                    transition: opacity 0.6s ease;
                 }
                 
-                @keyframes shine {
-                    0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-                    50% { transform: translateX(100%) translateY(100%) rotate(45deg); }
-                    100% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+                @keyframes haloRotate {
+                    0% { transform: rotate(0deg); }
+                    100% { transform: rotate(360deg); }
                 }
                 
                 .investment-card:hover {
+                    transform: perspective(1000px) rotateX(-5deg) translateY(-15px) scale(1.03);
+                    box-shadow: 
+                        0 40px 80px rgba(6, 182, 212, 0.15),
+                        0 20px 50px rgba(20, 184, 166, 0.1),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+                    border-color: rgba(6, 182, 212, 0.4);
+                }
+                
+                .investment-card:hover::before {
+                    left: 100%;
+                }
+                
+                .investment-card:hover::after {
+                    opacity: 1;
+                }
+                
+                .investment-card .card-content {
+                    position: relative;
+                    z-index: 2;
+                }
+                
+                .investment-card .card-title {
+                    color: #0f766e;
+                    font-size: 1.2rem;
+                    font-weight: 800;
+                    margin-bottom: 1.2rem;
+                    text-shadow: 0 2px 4px rgba(255, 255, 255, 0.8);
+                    transition: all 0.4s ease;
+                    position: relative;
+                    overflow: hidden;
+                }
+                
+                .investment-card .card-title::after {
+                    content: '';
+                    position: absolute;
+                    bottom: 0;
+                    left: -100%;
+                    width: 100%;
+                    height: 2px;
+                    background: linear-gradient(90deg, #06b6d4, #14b8a6, #00ced1);
+                    transition: left 0.4s ease;
+                }
+                
+                .investment-card .card-value {
+                    color: #134e4a;
+                    font-weight: 900;
+                    font-size: 2.2rem;
+                    margin-bottom: 0.8rem;
+                    background: linear-gradient(135deg, #0f766e 0%, #14b8a6 50%, #06b6d4 100%);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                    background-size: 200% 200%;
+                    animation: valueShimmer 3s ease-in-out infinite;
+                    transition: all 0.4s ease;
+                    position: relative;
+                }
+                
+                @keyframes valueShimmer {
+                    0%, 100% { 
+                        background-position: 0% 50%;
+                    }
+                    50% { 
+                        background-position: 100% 50%;
+                    }
+                }
+                
+                .investment-card:hover .card-title {
+                    color: #06b6d4;
                     transform: translateY(-3px);
-                    box-shadow: 0 15px 40px rgba(56, 189, 248, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.95), inset 0 -1px 0 rgba(0, 0, 0, 0.05);
+                    text-shadow: 0 4px 8px rgba(6, 182, 212, 0.3);
+                }
+                
+                .investment-card:hover .card-title::after {
+                    left: 0;
+                }
+                
+                .investment-card:hover .card-value {
+                    transform: scale(1.08);
+                    filter: drop-shadow(0 5px 15px rgba(6, 182, 212, 0.4));
+                }
+                
+                .investment-card .floating-elements {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    pointer-events: none;
+                    z-index: 1;
+                }
+                
+                .investment-card .floating-particle {
+                    position: absolute;
+                    width: 4px;
+                    height: 4px;
+                    background: linear-gradient(45deg, #06b6d4, #14b8a6);
+                    border-radius: 50%;
+                    opacity: 0.6;
+                }
+                
+                .investment-card .floating-particle:nth-child(1) {
+                    top: 20%;
+                    left: 15%;
+                    animation: particleFloat1 4s ease-in-out infinite;
+                }
+                
+                .investment-card .floating-particle:nth-child(2) {
+                    top: 60%;
+                    right: 20%;
+                    animation: particleFloat2 3.5s ease-in-out infinite 0.5s;
+                }
+                
+                .investment-card .floating-particle:nth-child(3) {
+                    bottom: 30%;
+                    left: 25%;
+                    animation: particleFloat3 4.2s ease-in-out infinite 1s;
+                }
+                
+                @keyframes particleFloat1 {
+                    0%, 100% { transform: translateY(0px) translateX(0px) scale(1); opacity: 0.6; }
+                    50% { transform: translateY(-20px) translateX(10px) scale(1.5); opacity: 1; }
+                }
+                
+                @keyframes particleFloat2 {
+                    0%, 100% { transform: translateY(0px) translateX(0px) scale(1); opacity: 0.4; }
+                    50% { transform: translateY(15px) translateX(-15px) scale(1.3); opacity: 0.8; }
+                }
+                
+                @keyframes particleFloat3 {
+                    0%, 100% { transform: translateY(0px) translateX(0px) scale(1); opacity: 0.5; }
+                    50% { transform: translateY(-10px) translateX(20px) scale(1.4); opacity: 0.9; }
+                }
+                
+                .investment-card:nth-child(2) .floating-particle {
+                    background: linear-gradient(45deg, #14b8a6, #00ced1);
+                }
+                
+                .investment-card:nth-child(3) .floating-particle {
+                    background: linear-gradient(45deg, #00ced1, #67e8f9);
+                }
+                
+                .investment-card .pulse-ring {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    width: 100px;
+                    height: 100px;
+                    border: 2px solid rgba(6, 182, 212, 0.3);
+                    border-radius: 50%;
+                    transform: translate(-50%, -50%) scale(0);
+                    opacity: 0;
+                    transition: all 0.6s ease;
+                    z-index: 0;
+                }
+                
+                .investment-card:hover .pulse-ring {
+                    transform: translate(-50%, -50%) scale(2);
+                    opacity: 0.8;
+                    border-color: rgba(6, 182, 212, 0.1);
                 }
             </style>
             
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-bottom: 3rem;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.5rem; margin-bottom: 4rem;">
                 <div class="investment-card">
-                    <!-- Decorative elements -->
-                    <div style="position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.9), transparent); z-index: 2;"></div>
-                    <div style="position: absolute; top: -20px; right: -20px; width: 70px; height: 70px; background: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, transparent 70%); border-radius: 50%; z-index: 2;"></div>
-                    
-                    <h3 style="color: #0369a1; font-size: 1.1rem; font-weight: 600; margin-bottom: 0.8rem; text-shadow: 0 2px 4px rgba(255, 255, 255, 0.8); position: relative; z-index: 3;">Phase 1 Funding</h3>
-                    <p style="color: #0c4a6e; font-weight: 700; margin-bottom: 0.3rem; font-size: 1.4rem; position: relative; z-index: 3;">$654,875</p>
+                    <div class="floating-elements">
+                        <div class="floating-particle"></div>
+                        <div class="floating-particle"></div>
+                        <div class="floating-particle"></div>
+                    </div>
+                    <div class="pulse-ring"></div>
+                    <div class="card-content">
+                        <h3 class="card-title">Phase 1 Funding</h3>
+                        <p class="card-value">$654,875</p>
+                        <div style="color: #0f766e; font-size: 1rem; font-weight: 600; margin-top: 0.8rem; opacity: 0.8;">+240 Samples Analysis for FDA Application</div>
+                    </div>
                 </div>
                 
-                <div class="investment-card" style="animation-delay: 1s;">
-                    <!-- Decorative elements -->
-                    <div style="position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.9), transparent); z-index: 2;"></div>
-                    <div style="position: absolute; top: -20px; right: -20px; width: 70px; height: 70px; background: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, transparent 70%); border-radius: 50%; z-index: 2;"></div>
-                    
-                    <h3 style="color: #0369a1; font-size: 1.1rem; font-weight: 600; margin-bottom: 0.8rem; text-shadow: 0 2px 4px rgba(255, 255, 255, 0.8); position: relative; z-index: 3;">Current Stage</h3>
-                    <p style="color: #0c4a6e; font-weight: 700; margin-bottom: 0.3rem; font-size: 1.4rem; position: relative; z-index: 3;">Pre-Seed</p>
+                <div class="investment-card">
+                    <div class="floating-elements">
+                        <div class="floating-particle"></div>
+                        <div class="floating-particle"></div>
+                        <div class="floating-particle"></div>
+                    </div>
+                    <div class="pulse-ring"></div>
+                    <div class="card-content">
+                        <h3 class="card-title">Current Stage</h3>
+                        <p class="card-value">Pre-Seed</p>
+                        <div style="color: #0f766e; font-size: 1rem; font-weight: 600; margin-top: 0.8rem; opacity: 0.8;">Ready for Growth Capital</div>
+                    </div>
                 </div>
                 
-                <div class="investment-card" style="animation-delay: 2s;">
-                    <!-- Decorative elements -->
-                    <div style="position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.9), transparent); z-index: 2;"></div>
-                    <div style="position: absolute; top: -20px; right: -20px; width: 70px; height: 70px; background: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, transparent 70%); border-radius: 50%; z-index: 2;"></div>
-                    
-                    <h3 style="color: #0369a1; font-size: 1.1rem; font-weight: 600; margin-bottom: 0.8rem; text-shadow: 0 2px 4px rgba(255, 255, 255, 0.8); position: relative; z-index: 3;">Team Strength</h3>
-                    <p style="color: #0c4a6e; font-weight: 700; margin-bottom: 0.3rem; font-size: 1.4rem; position: relative; z-index: 3;">8 Members</p>
+                <div class="investment-card">
+                    <div class="floating-elements">
+                        <div class="floating-particle"></div>
+                        <div class="floating-particle"></div>
+                        <div class="floating-particle"></div>
+                    </div>
+                    <div class="pulse-ring"></div>
+                    <div class="card-content">
+                        <h3 class="card-title">Team Strength</h3>
+                        <p class="card-value">8 Members</p>
+                        <div style="color: #0f766e; font-size: 1rem; font-weight: 600; margin-top: 0.8rem; opacity: 0.8;">Distinguished Team</div>
+                    </div>
                 </div>
             </div>
             
