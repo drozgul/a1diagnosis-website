@@ -728,8 +728,8 @@
         
         /* Footer */
         .footer {
-            background: #1e293b;
-            color: white;
+            background: white;
+            color: #1e293b;
             padding: 50px 0 30px;
             text-align: center;
         }
@@ -757,7 +757,7 @@
         }
         
         .footer-links a {
-            color: #94a3b8;
+            color: #64748b;
             text-decoration: none;
             transition: color 0.3s ease;
         }
@@ -767,7 +767,7 @@
         }
         
         .footer-bottom {
-            border-top: 1px solid #334155;
+            border-top: 1px solid #e2e8f0;
             padding-top: 2rem;
             color: #64748b;
             font-size: 0.9rem;
@@ -1431,33 +1431,78 @@
                 <h2 style="color: #1e293b; font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem;">Investment Opportunity Overview</h2>
             </div>
             
-            <!-- Key Investment Facts - Premium Design -->
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 3rem;">
-                <div style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 30%, #bae6fd 60%, #7dd3fc 100%); padding: 2rem; border-radius: 20px; border: 1px solid #38bdf8; box-shadow: 0 15px 50px rgba(56, 189, 248, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.9), inset 0 -1px 0 rgba(0, 0, 0, 0.03); position: relative; overflow: hidden; text-align: center;">
+            <!-- Key Investment Facts - Premium Design with Shine Animation -->
+            <style>
+                .investment-card {
+                    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 30%, #bae6fd 60%, #7dd3fc 100%);
+                    padding: 1.5rem;
+                    border-radius: 16px;
+                    border: 1px solid #38bdf8;
+                    box-shadow: 0 10px 30px rgba(56, 189, 248, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.9), inset 0 -1px 0 rgba(0, 0, 0, 0.03);
+                    position: relative;
+                    overflow: hidden;
+                    text-align: center;
+                    transition: all 0.3s ease;
+                }
+                
+                .investment-card::before {
+                    content: '';
+                    position: absolute;
+                    top: -50%;
+                    left: -50%;
+                    width: 200%;
+                    height: 200%;
+                    background: linear-gradient(
+                        45deg,
+                        transparent,
+                        transparent,
+                        rgba(255, 255, 255, 0.3),
+                        transparent,
+                        transparent
+                    );
+                    transform: rotate(45deg);
+                    animation: shine 3s infinite;
+                    z-index: 1;
+                }
+                
+                @keyframes shine {
+                    0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+                    50% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+                    100% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+                }
+                
+                .investment-card:hover {
+                    transform: translateY(-3px);
+                    box-shadow: 0 15px 40px rgba(56, 189, 248, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.95), inset 0 -1px 0 rgba(0, 0, 0, 0.05);
+                }
+            </style>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-bottom: 3rem;">
+                <div class="investment-card">
                     <!-- Decorative elements -->
-                    <div style="position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.9), transparent);"></div>
-                    <div style="position: absolute; top: -30px; right: -30px; width: 100px; height: 100px; background: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, transparent 70%); border-radius: 50%;"></div>
+                    <div style="position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.9), transparent); z-index: 2;"></div>
+                    <div style="position: absolute; top: -20px; right: -20px; width: 70px; height: 70px; background: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, transparent 70%); border-radius: 50%; z-index: 2;"></div>
                     
-                    <h3 style="color: #0369a1; font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; text-shadow: 0 2px 4px rgba(255, 255, 255, 0.8); position: relative; z-index: 2;">Phase 1 Funding</h3>
-                    <p style="color: #0c4a6e; font-weight: 700; margin-bottom: 0.5rem; font-size: 1.8rem; position: relative; z-index: 2;">$654,875</p>
+                    <h3 style="color: #0369a1; font-size: 1.1rem; font-weight: 600; margin-bottom: 0.8rem; text-shadow: 0 2px 4px rgba(255, 255, 255, 0.8); position: relative; z-index: 3;">Phase 1 Funding</h3>
+                    <p style="color: #0c4a6e; font-weight: 700; margin-bottom: 0.3rem; font-size: 1.4rem; position: relative; z-index: 3;">$654,875</p>
                 </div>
                 
-                <div style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 30%, #bae6fd 60%, #7dd3fc 100%); padding: 2rem; border-radius: 20px; border: 1px solid #38bdf8; box-shadow: 0 15px 50px rgba(56, 189, 248, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.9), inset 0 -1px 0 rgba(0, 0, 0, 0.03); position: relative; overflow: hidden; text-align: center;">
+                <div class="investment-card" style="animation-delay: 1s;">
                     <!-- Decorative elements -->
-                    <div style="position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.9), transparent);"></div>
-                    <div style="position: absolute; top: -30px; right: -30px; width: 100px; height: 100px; background: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, transparent 70%); border-radius: 50%;"></div>
+                    <div style="position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.9), transparent); z-index: 2;"></div>
+                    <div style="position: absolute; top: -20px; right: -20px; width: 70px; height: 70px; background: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, transparent 70%); border-radius: 50%; z-index: 2;"></div>
                     
-                    <h3 style="color: #0369a1; font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; text-shadow: 0 2px 4px rgba(255, 255, 255, 0.8); position: relative; z-index: 2;">Current Stage</h3>
-                    <p style="color: #0c4a6e; font-weight: 700; margin-bottom: 0.5rem; font-size: 1.8rem; position: relative; z-index: 2;">Pre-Seed</p>
+                    <h3 style="color: #0369a1; font-size: 1.1rem; font-weight: 600; margin-bottom: 0.8rem; text-shadow: 0 2px 4px rgba(255, 255, 255, 0.8); position: relative; z-index: 3;">Current Stage</h3>
+                    <p style="color: #0c4a6e; font-weight: 700; margin-bottom: 0.3rem; font-size: 1.4rem; position: relative; z-index: 3;">Pre-Seed</p>
                 </div>
                 
-                <div style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 30%, #bae6fd 60%, #7dd3fc 100%); padding: 2rem; border-radius: 20px; border: 1px solid #38bdf8; box-shadow: 0 15px 50px rgba(56, 189, 248, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.9), inset 0 -1px 0 rgba(0, 0, 0, 0.03); position: relative; overflow: hidden; text-align: center;">
+                <div class="investment-card" style="animation-delay: 2s;">
                     <!-- Decorative elements -->
-                    <div style="position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.9), transparent);"></div>
-                    <div style="position: absolute; top: -30px; right: -30px; width: 100px; height: 100px; background: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, transparent 70%); border-radius: 50%;"></div>
+                    <div style="position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.9), transparent); z-index: 2;"></div>
+                    <div style="position: absolute; top: -20px; right: -20px; width: 70px; height: 70px; background: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, transparent 70%); border-radius: 50%; z-index: 2;"></div>
                     
-                    <h3 style="color: #0369a1; font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; text-shadow: 0 2px 4px rgba(255, 255, 255, 0.8); position: relative; z-index: 2;">Team Strength</h3>
-                    <p style="color: #0c4a6e; font-weight: 700; margin-bottom: 0.5rem; font-size: 1.8rem; position: relative; z-index: 2;">8 Members</p>
+                    <h3 style="color: #0369a1; font-size: 1.1rem; font-weight: 600; margin-bottom: 0.8rem; text-shadow: 0 2px 4px rgba(255, 255, 255, 0.8); position: relative; z-index: 3;">Team Strength</h3>
+                    <p style="color: #0c4a6e; font-weight: 700; margin-bottom: 0.3rem; font-size: 1.4rem; position: relative; z-index: 3;">8 Members</p>
                 </div>
             </div>
             
