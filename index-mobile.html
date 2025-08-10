@@ -1131,9 +1131,11 @@
         /* Mobile Second Video Container */
         .mobile-vision-video-container {
             position: relative;
-            width: 100%;
+            width: 100vw;
             height: 300px;
-            margin: 0 0 3rem 0;
+            margin: 0;
+            left: 50%;
+            transform: translateX(-50%);
             overflow: hidden;
             z-index: 2;
         }
@@ -1251,8 +1253,11 @@
             /* Second video mobile sizing for small screens */
             .mobile-vision-video-container {
                 height: 240px !important;
-                width: 96% !important;
-                max-width: 380px !important;
+                width: 100vw !important;
+                max-width: none !important;
+                left: 50% !important;
+                transform: translateX(-50%) !important;
+                margin: 0 !important;
             }
             
             /* Problem section mobile adjustments for small screens */
@@ -1296,6 +1301,10 @@
             /* Second video for larger mobile screens */
             .mobile-vision-video-container {
                 height: 320px;
+                width: 100vw;
+                left: 50%;
+                transform: translateX(-50%);
+                margin: 0;
             }
         }
         
