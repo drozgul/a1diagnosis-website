@@ -1381,20 +1381,14 @@
 
     <!-- Investor Ticker Band -->
     <section class="ticker-section" style="background: linear-gradient(135deg, #67e8f9 0%, #38bdf8 50%, #0ea5e9 100%); border-top: 2px solid rgba(255, 255, 255, 0.3); border-bottom: 2px solid rgba(255, 255, 255, 0.3); overflow: hidden; padding: 0; position: relative; box-shadow: 0 4px 20px rgba(14, 165, 233, 0.2);">
-        <div class="ticker-wrap" style="white-space: nowrap; overflow: hidden; position: relative;">
-            <div class="ticker-move" style="display: inline-block; padding-left: 100%; animation: ticker 30s linear infinite;">
-                <div class="ticker-item" style="display: inline-block; padding: 20px 60px; color: white; font-weight: 600; border-right: 1px solid rgba(255, 255, 255, 0.3);">
-                    <span style="font-size: 1.8rem; font-weight: 800; color: white; text-shadow: 0 0 6px rgba(255, 255, 255, 0.4), 0 0 12px rgba(255, 255, 255, 0.2); margin-right: 15px;">$42.3 Billion</span>
-                    <span style="font-size: 1rem; color: rgba(255, 255, 255, 0.9); font-weight: 500; text-shadow: 0 0 4px rgba(255, 255, 255, 0.3), 0 0 8px rgba(255, 255, 255, 0.1);">Total Addressable Market</span>
-                </div>
-                <div class="ticker-item" style="display: inline-block; padding: 20px 60px; color: white; font-weight: 600; border-right: 1px solid rgba(255, 255, 255, 0.3);">
-                    <span style="font-size: 1.8rem; font-weight: 800; color: white; text-shadow: 0 0 6px rgba(255, 255, 255, 0.4), 0 0 12px rgba(255, 255, 255, 0.2); margin-right: 15px;">94-95%</span>
-                    <span style="font-size: 1rem; color: rgba(255, 255, 255, 0.9); font-weight: 500; text-shadow: 0 0 4px rgba(255, 255, 255, 0.3), 0 0 8px rgba(255, 255, 255, 0.1);">Test Accuracy Rate</span>
-                </div>
-                <div class="ticker-item" style="display: inline-block; padding: 20px 60px; color: white; font-weight: 600; border-right: 1px solid rgba(255, 255, 255, 0.3);">
-                    <span style="font-size: 1.8rem; font-weight: 800; color: white; text-shadow: 0 0 6px rgba(255, 255, 255, 0.4), 0 0 12px rgba(255, 255, 255, 0.2); margin-right: 15px;">169 Million</span>
-                    <span style="font-size: 1rem; color: rgba(255, 255, 255, 0.9); font-weight: 500; text-shadow: 0 0 4px rgba(255, 255, 255, 0.3), 0 0 8px rgba(255, 255, 255, 0.1);">Target Population Americans 35+</span>
-                </div>
+        <div class="single-ticker-wrap" style="text-align: center; position: relative; padding: 30px 20px;">
+            <div class="single-ticker-item active" style="opacity: 1; transition: opacity 1s ease-in-out;">
+                <div style="font-size: 2.2rem; font-weight: 800; color: white; text-shadow: 0 0 8px rgba(255, 255, 255, 0.5), 0 0 16px rgba(255, 255, 255, 0.3); margin-bottom: 8px;">$42.3 Billion</div>
+                <div style="font-size: 1.1rem; color: rgba(255, 255, 255, 0.95); font-weight: 600; text-shadow: 0 0 6px rgba(255, 255, 255, 0.4), 0 0 12px rgba(255, 255, 255, 0.2);">Total Addressable Market</div>
+            </div>
+            <div class="single-ticker-item" style="opacity: 0; position: absolute; top: 30px; left: 20px; right: 20px; transition: opacity 1s ease-in-out;">
+                <div style="font-size: 2.2rem; font-weight: 800; color: white; text-shadow: 0 0 8px rgba(255, 255, 255, 0.5), 0 0 16px rgba(255, 255, 255, 0.3); margin-bottom: 8px;">94-95%</div>
+                <div style="font-size: 1.1rem; color: rgba(255, 255, 255, 0.95); font-weight: 600; text-shadow: 0 0 6px rgba(255, 255, 255, 0.4), 0 0 12px rgba(255, 255, 255, 0.2);">Test Accuracy Rate</div>
             </div>
         </div>
     </section>
@@ -2270,6 +2264,28 @@
         });
         
         // Mobile now uses the same cinematic animation as desktop
+        
+        // Single ticker cycling animation
+        function cycleTicker() {
+            const items = document.querySelectorAll('.single-ticker-item');
+            let currentIndex = 0;
+            
+            setInterval(() => {
+                // Hide current item
+                items[currentIndex].style.opacity = '0';
+                
+                // Move to next item
+                currentIndex = (currentIndex + 1) % items.length;
+                
+                // Show next item after transition
+                setTimeout(() => {
+                    items[currentIndex].style.opacity = '1';
+                }, 500);
+            }, 4000); // Switch every 4 seconds
+        }
+        
+        // Start ticker cycling when DOM is loaded
+        document.addEventListener('DOMContentLoaded', cycleTicker);
     </script>
 </body>
 </html>
