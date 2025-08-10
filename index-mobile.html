@@ -805,10 +805,12 @@
         /* Mobile Video Container */
         .hero-video-container {
             position: relative;
-            width: 100%;
+            width: 100vw;
             max-width: none;
             height: 250px;
-            margin: 0 auto 2rem auto;
+            margin: 0;
+            left: 50%;
+            transform: translateX(-50%);
             border-radius: 0;
             overflow: hidden;
             box-shadow: none;
@@ -1239,10 +1241,11 @@
             
             /* Optimized video for small screens */
             .hero-video-container {
-                width: 96% !important;
+                width: 100% !important;
                 height: 220px !important;
-                max-width: 380px !important;
-                border-radius: 12px !important;
+                max-width: none !important;
+                border-radius: 0 !important;
+                margin: 0 !important;
             }
             
             /* Second video mobile sizing for small screens */
@@ -1282,9 +1285,12 @@
         /* Very Large Mobile Screens */
         @media (min-width: 481px) and (max-width: 768px) {
             .hero-video-container {
-                width: 100%;
+                width: 100vw;
                 height: 300px;
                 max-width: none;
+                left: 50%;
+                transform: translateX(-50%);
+                margin: 0;
             }
             
             /* Second video for larger mobile screens */
