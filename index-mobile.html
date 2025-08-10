@@ -2315,8 +2315,10 @@
                 // Unmute the video
                 video.muted = false;
                 
-                // Request fullscreen
-                if (video.requestFullscreen) {
+                // For iOS Safari - use webkitEnterFullscreen for video elements
+                if (video.webkitEnterFullscreen) {
+                    video.webkitEnterFullscreen();
+                } else if (video.requestFullscreen) {
                     video.requestFullscreen();
                 } else if (video.webkitRequestFullscreen) {
                     video.webkitRequestFullscreen();
@@ -2336,12 +2338,14 @@
                     video.muted = true;
                     document.removeEventListener('fullscreenchange', exitFullscreen);
                     document.removeEventListener('webkitfullscreenchange', exitFullscreen);
+                    document.removeEventListener('webkitendfullscreen', exitFullscreen);
                     document.removeEventListener('mozfullscreenchange', exitFullscreen);
                     document.removeEventListener('MSFullscreenChange', exitFullscreen);
                 };
                 
                 document.addEventListener('fullscreenchange', exitFullscreen);
                 document.addEventListener('webkitfullscreenchange', exitFullscreen);
+                document.addEventListener('webkitendfullscreen', exitFullscreen); // iOS specific
                 document.addEventListener('mozfullscreenchange', exitFullscreen);
                 document.addEventListener('MSFullscreenChange', exitFullscreen);
             }
@@ -2354,8 +2358,10 @@
                 // Unmute the video
                 video.muted = false;
                 
-                // Request fullscreen
-                if (video.requestFullscreen) {
+                // For iOS Safari - use webkitEnterFullscreen for video elements
+                if (video.webkitEnterFullscreen) {
+                    video.webkitEnterFullscreen();
+                } else if (video.requestFullscreen) {
                     video.requestFullscreen();
                 } else if (video.webkitRequestFullscreen) {
                     video.webkitRequestFullscreen();
@@ -2375,12 +2381,14 @@
                     video.muted = true;
                     document.removeEventListener('fullscreenchange', exitFullscreen);
                     document.removeEventListener('webkitfullscreenchange', exitFullscreen);
+                    document.removeEventListener('webkitendfullscreen', exitFullscreen);
                     document.removeEventListener('mozfullscreenchange', exitFullscreen);
                     document.removeEventListener('MSFullscreenChange', exitFullscreen);
                 };
                 
                 document.addEventListener('fullscreenchange', exitFullscreen);
                 document.addEventListener('webkitfullscreenchange', exitFullscreen);
+                document.addEventListener('webkitendfullscreen', exitFullscreen); // iOS specific
                 document.addEventListener('mozfullscreenchange', exitFullscreen);
                 document.addEventListener('MSFullscreenChange', exitFullscreen);
             }
