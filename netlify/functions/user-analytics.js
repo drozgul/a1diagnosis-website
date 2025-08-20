@@ -4,10 +4,8 @@
  * Tracks: section viewing time, scroll patterns, engagement metrics
  */
 
-const { getStore } = require('@netlify/blobs');
-
 const headers = {
-    'Access-Control-Allow-Origin': 'https://a1diagnosis.com',
+    'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Headers': 'Content-Type, Authorization',
     'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
     'Content-Type': 'application/json'
@@ -15,22 +13,37 @@ const headers = {
 
 exports.handler = async (event, context) => {
     console.log('📊 A1 Diagnosis User Analytics Function');
+    console.log('Method:', event.httpMethod);
+    console.log('Headers:', event.headers);
     
     if (event.httpMethod === 'OPTIONS') {
         return { statusCode: 200, headers, body: '' };
     }
 
-    if (event.httpMethod === 'POST') {
-        return await saveAnalyticsData(event);
-    } else if (event.httpMethod === 'GET') {
-        return await getAnalyticsData(event);
-    }
+    try {
+        if (event.httpMethod === 'POST') {
+            return await saveAnalyticsData(event);
+        } else if (event.httpMethod === 'GET') {
+            return await getAnalyticsData(event);
+        }
 
-    return {
-        statusCode: 405,
-        headers,
-        body: JSON.stringify({ error: 'Method not allowed' })
-    };
+        return {
+            statusCode: 405,
+            headers,
+            body: JSON.stringify({ error: 'Method not allowed' })
+        };
+    } catch (error) {
+        console.error('❌ Function error:', error);
+        return {
+            statusCode: 500,
+            headers,
+            body: JSON.stringify({ 
+                error: 'Internal server error',
+                details: error.message,
+                stack: process.env.NODE_ENV === 'development' ? error.stack : undefined
+            })
+        };
+    }
 };
 
 async function saveAnalyticsData(event) {
@@ -43,6 +56,7 @@ async function saveAnalyticsData(event) {
         });
 
         // Configure Netlify Blobs storage
+        const { getStore } = await import('@netlify/blobs');
         const store = getStore({ name: 'a1-diagnosis-analytics' });
         
         // Generate unique session ID with timestamp
@@ -135,10 +149,19 @@ async function getAnalyticsData(event) {
         console.log('📈 Fetching analytics data:', { days, format, section });
 
         // Configure Netlify Blobs storage
+        const { getStore } = await import('@netlify/blobs');
         const store = getStore({ name: 'a1-diagnosis-analytics' });
         
         // List all analytics sessions
-        const { blobs } = await store.list();
+        let blobs = [];
+        try {
+            const result = await store.list();
+            blobs = result.blobs || [];
+        } catch (error) {
+            console.log('📝 No analytics data found yet (first time):', error.message);
+            blobs = [];
+        }
+        
         console.log(`📁 Found ${blobs.length} analytics sessions`);
         
         const sessions = [];
