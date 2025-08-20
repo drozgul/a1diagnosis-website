@@ -1,0 +1,30 @@
+{
+  "name": "a1-diagnosis-website",
+  "version": "1.0.0",
+  "description": "A1 Diagnosis - Proactive Vision Risk Analysis Platform",
+  "main": "index.html",
+  "scripts": {
+    "build": "echo 'No build step required'",
+    "dev": "npx serve .",
+    "test": "echo 'No tests specified'"
+  },
+  "dependencies": {
+    "@netlify/blobs": "^8.1.0"
+  },
+  "devDependencies": {
+    "serve": "^14.2.0"
+  },
+  "keywords": [
+    "medical",
+    "amd",
+    "vision",
+    "healthcare",
+    "analytics"
+  ],
+  "author": "A1 Diagnosis Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/drozgul/a1diagnosis-website.git"
+  }
+}
