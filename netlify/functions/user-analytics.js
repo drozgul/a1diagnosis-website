@@ -72,10 +72,12 @@ async function saveAnalyticsData(event) {
 
             const storeOptions = { name: 'a1-diagnosis-analytics' };
             
-            // Add manual configuration if environment variables are not auto-injected
+            // Use explicit Site ID from header or environment variable
+            const explicitSiteId = '22d6cc06-98bf-4c11-8e05-b1c37cc42562';
+            
             if (!process.env.NETLIFY_SITE_ID) {
-                console.log('⚠️ NETLIFY_SITE_ID not found, using manual configuration');
-                storeOptions.siteID = process.env.NETLIFY_BLOBS_SITE_ID;
+                console.log('⚠️ NETLIFY_SITE_ID not found, using explicit Site ID');
+                storeOptions.siteID = explicitSiteId;
                 storeOptions.token = process.env.NETLIFY_BLOBS_TOKEN;
                 console.log('🔧 Manual store options:', { 
                     name: storeOptions.name, 
@@ -207,10 +209,13 @@ async function getAnalyticsData(event) {
             // Configure Netlify Blobs with manual environment setup if needed (01data pattern)
             const storeOptions = { name: 'a1-diagnosis-analytics' };
             
+            // Use explicit Site ID from header or environment variable
+            const explicitSiteId = '22d6cc06-98bf-4c11-8e05-b1c37cc42562';
+            
             // Add manual configuration if environment variables are not auto-injected
             if (!process.env.NETLIFY_SITE_ID) {
-                console.log('⚠️ NETLIFY_SITE_ID not found, using manual configuration');
-                storeOptions.siteID = process.env.NETLIFY_BLOBS_SITE_ID;
+                console.log('⚠️ NETLIFY_SITE_ID not found, using explicit Site ID');
+                storeOptions.siteID = explicitSiteId;
                 storeOptions.token = process.env.NETLIFY_BLOBS_TOKEN;
             } else {
                 console.log('✅ Using auto-injected NETLIFY_SITE_ID');
