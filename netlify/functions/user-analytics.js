@@ -57,35 +57,37 @@ async function saveAnalyticsData(event) {
             totalTime: data.totalSessionTime
         });
 
-        // Configure Netlify Blobs with manual environment setup if needed (01data pattern)
-        console.log('📋 Environment check:', {
-            NETLIFY_SITE_ID: process.env.NETLIFY_SITE_ID ? 'Available' : 'Not found',
-            NETLIFY_BLOBS_SITE_ID: process.env.NETLIFY_BLOBS_SITE_ID ? 'Available' : 'Not found',
-            NETLIFY_BLOBS_TOKEN: process.env.NETLIFY_BLOBS_TOKEN ? 'Available' : 'Not found'
-        });
-
-        const storeOptions = { name: 'a1-diagnosis-analytics' };
-        
-        // Add manual configuration if environment variables are not auto-injected
-        if (!process.env.NETLIFY_SITE_ID) {
-            console.log('⚠️ NETLIFY_SITE_ID not found, using manual configuration');
-            storeOptions.siteID = process.env.NETLIFY_BLOBS_SITE_ID;
-            storeOptions.token = process.env.NETLIFY_BLOBS_TOKEN;
-            console.log('🔧 Manual store options:', { 
-                name: storeOptions.name, 
-                siteID: storeOptions.siteID ? 'Set' : 'Missing',
-                token: storeOptions.token ? 'Set' : 'Missing'
-            });
-        } else {
-            console.log('✅ Using auto-injected NETLIFY_SITE_ID');
-        }
-        
-        const store = getStore(storeOptions);
-        console.log('✅ Netlify Blobs store created successfully');
-        
         // Generate unique session ID with timestamp
         const sessionId = data.sessionId || `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
         const timestamp = new Date().toISOString();
+
+        // Try to save to Netlify Blobs, gracefully handle if not available
+        try {
+            // Configure Netlify Blobs with manual environment setup if needed (01data pattern)
+            console.log('📋 Environment check:', {
+                NETLIFY_SITE_ID: process.env.NETLIFY_SITE_ID ? 'Available' : 'Not found',
+                NETLIFY_BLOBS_SITE_ID: process.env.NETLIFY_BLOBS_SITE_ID ? 'Available' : 'Not found',
+                NETLIFY_BLOBS_TOKEN: process.env.NETLIFY_BLOBS_TOKEN ? 'Available' : 'Not found'
+            });
+
+            const storeOptions = { name: 'a1-diagnosis-analytics' };
+            
+            // Add manual configuration if environment variables are not auto-injected
+            if (!process.env.NETLIFY_SITE_ID) {
+                console.log('⚠️ NETLIFY_SITE_ID not found, using manual configuration');
+                storeOptions.siteID = process.env.NETLIFY_BLOBS_SITE_ID;
+                storeOptions.token = process.env.NETLIFY_BLOBS_TOKEN;
+                console.log('🔧 Manual store options:', { 
+                    name: storeOptions.name, 
+                    siteID: storeOptions.siteID ? 'Set' : 'Missing',
+                    token: storeOptions.token ? 'Set' : 'Missing'
+                });
+            } else {
+                console.log('✅ Using auto-injected NETLIFY_SITE_ID');
+            }
+            
+            const store = getStore(storeOptions);
+            console.log('✅ Netlify Blobs store created successfully');
         
         // Prepare analytics data structure
         const analyticsData = {
@@ -150,6 +152,12 @@ async function saveAnalyticsData(event) {
             engagementScore: analyticsData.metadata.engagement_score
         });
 
+        } catch (blobsError) {
+            console.warn('⚠️ Netlify Blobs not available for saving, analytics not persisted:', blobsError.message);
+            console.log('💡 Analytics tracking will work once Blobs are enabled in Netlify UI.');
+            // Continue - don't fail the request if Blobs aren't available yet
+        }
+
         return {
             statusCode: 200,
             headers,
@@ -186,57 +194,67 @@ async function getAnalyticsData(event) {
         console.log('📈 Fetching analytics data:', { days, format, section });
         console.log('Node version:', process.version);
 
-        // Check if we're in a supported environment
-        if (!process.version.startsWith('v18') && !process.version.startsWith('v20')) {
-            console.warn('⚠️ Netlify Blobs requires Node.js 18+, current version:', process.version);
-        }
+        // Environment debugging
+        console.log('📋 Environment check:', {
+            NETLIFY_SITE_ID: process.env.NETLIFY_SITE_ID ? 'Available' : 'Not found',
+            NETLIFY_BLOBS_SITE_ID: process.env.NETLIFY_BLOBS_SITE_ID ? 'Available' : 'Not found',
+            NETLIFY_BLOBS_TOKEN: process.env.NETLIFY_BLOBS_TOKEN ? 'Available' : 'Not found'
+        });
 
-        // Configure Netlify Blobs with manual environment setup if needed (01data pattern)
-        const storeOptions = { name: 'a1-diagnosis-analytics' };
-        
-        // Add manual configuration if environment variables are not auto-injected
-        if (!process.env.NETLIFY_SITE_ID) {
-            console.log('⚠️ NETLIFY_SITE_ID not found, using manual configuration');
-            storeOptions.siteID = process.env.NETLIFY_BLOBS_SITE_ID;
-            storeOptions.token = process.env.NETLIFY_BLOBS_TOKEN;
-        } else {
-            console.log('✅ Using auto-injected NETLIFY_SITE_ID');
-        }
-        
-        const store = getStore(storeOptions);
-        console.log('✅ Netlify Blobs store initialized');
-        
-        // List all analytics sessions
-        let blobs = [];
+        // Try to use Netlify Blobs, fallback to empty data if not available
+        let sessions = [];
         try {
-            const result = await store.list();
-            blobs = result.blobs || [];
-        } catch (error) {
-            console.log('📝 No analytics data found yet (first time):', error.message);
-            blobs = [];
-        }
-        
-        console.log(`📁 Found ${blobs.length} analytics sessions`);
-        
-        const sessions = [];
-        const daysAgo = parseInt(days);
-        const cutoffDate = new Date(Date.now() - (daysAgo * 24 * 60 * 60 * 1000));
-        
-        // Read and filter sessions
-        for (const blob of blobs) {
-            try {
-                const session = await store.get(blob.key, { type: 'json' });
-                
-                if (session && new Date(session.timestamp) >= cutoffDate) {
-                    sessions.push(session);
-                }
-            } catch (error) {
-                console.error(`Error reading session ${blob.key}:`, error);
-                continue;
+            // Configure Netlify Blobs with manual environment setup if needed (01data pattern)
+            const storeOptions = { name: 'a1-diagnosis-analytics' };
+            
+            // Add manual configuration if environment variables are not auto-injected
+            if (!process.env.NETLIFY_SITE_ID) {
+                console.log('⚠️ NETLIFY_SITE_ID not found, using manual configuration');
+                storeOptions.siteID = process.env.NETLIFY_BLOBS_SITE_ID;
+                storeOptions.token = process.env.NETLIFY_BLOBS_TOKEN;
+            } else {
+                console.log('✅ Using auto-injected NETLIFY_SITE_ID');
             }
-        }
+            
+            const store = getStore(storeOptions);
+            console.log('✅ Netlify Blobs store initialized');
 
-        console.log(`✅ Loaded ${sessions.length} sessions from last ${days} days`);
+            // List all analytics sessions
+            let blobs = [];
+            try {
+                const result = await store.list();
+                blobs = result.blobs || [];
+            } catch (error) {
+                console.log('📝 No analytics data found yet (first time):', error.message);
+                blobs = [];
+            }
+            
+            console.log(`📁 Found ${blobs.length} analytics sessions`);
+            
+            const daysAgo = parseInt(days);
+            const cutoffDate = new Date(Date.now() - (daysAgo * 24 * 60 * 60 * 1000));
+            
+            // Read and filter sessions
+            for (const blob of blobs) {
+                try {
+                    const session = await store.get(blob.key, { type: 'json' });
+                    
+                    if (session && new Date(session.timestamp) >= cutoffDate) {
+                        sessions.push(session);
+                    }
+                } catch (error) {
+                    console.error(`Error reading session ${blob.key}:`, error);
+                    continue;
+                }
+            }
+
+            console.log(`✅ Loaded ${sessions.length} sessions from last ${days} days`);
+
+        } catch (blobsError) {
+            console.warn('⚠️ Netlify Blobs not available yet, returning empty data:', blobsError.message);
+            console.log('💡 This is normal for first-time setup. Analytics will work once Blobs are enabled.');
+            sessions = [];
+        }
 
         // Generate analytics based on format
         let analyticsResult;

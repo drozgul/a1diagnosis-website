@@ -3,6 +3,7 @@
 
 [build.environment]
   NODE_VERSION = "18"
+  NETLIFY_SITE_ID = "22d6cc06-98bf-4c11-8e05-b1c37cc42562"
 
 # User Analytics Function
 [functions.user-analytics]
