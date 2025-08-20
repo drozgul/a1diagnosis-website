@@ -55,9 +55,16 @@ async function saveAnalyticsData(event) {
             totalTime: data.totalSessionTime
         });
 
-        // Configure Netlify Blobs storage
-        const { getStore } = await import('@netlify/blobs');
-        const store = getStore({ name: 'a1-diagnosis-analytics' });
+        // Configure Netlify Blobs storage with error handling
+        let store;
+        try {
+            const { getStore } = await import('@netlify/blobs');
+            store = getStore({ name: 'a1-diagnosis-analytics' });
+            console.log('✅ Netlify Blobs store initialized for saving');
+        } catch (importError) {
+            console.error('❌ Failed to import @netlify/blobs for saving:', importError);
+            throw new Error('Netlify Blobs not available: ' + importError.message);
+        }
         
         // Generate unique session ID with timestamp
         const sessionId = data.sessionId || `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
@@ -147,10 +154,23 @@ async function getAnalyticsData(event) {
         } = queryParams;
 
         console.log('📈 Fetching analytics data:', { days, format, section });
+        console.log('Node version:', process.version);
 
-        // Configure Netlify Blobs storage
-        const { getStore } = await import('@netlify/blobs');
-        const store = getStore({ name: 'a1-diagnosis-analytics' });
+        // Check if we're in a supported environment
+        if (!process.version.startsWith('v18') && !process.version.startsWith('v20')) {
+            console.warn('⚠️ Netlify Blobs requires Node.js 18+, current version:', process.version);
+        }
+
+        // Configure Netlify Blobs storage with error handling
+        let store;
+        try {
+            const { getStore } = await import('@netlify/blobs');
+            store = getStore({ name: 'a1-diagnosis-analytics' });
+            console.log('✅ Netlify Blobs store initialized');
+        } catch (importError) {
+            console.error('❌ Failed to import @netlify/blobs:', importError);
+            throw new Error('Netlify Blobs not available: ' + importError.message);
+        }
         
         // List all analytics sessions
         let blobs = [];

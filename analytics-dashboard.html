@@ -503,8 +503,32 @@
         document.getElementById('timeRange').addEventListener('change', loadAnalytics);
         document.getElementById('dataFormat').addEventListener('change', loadAnalytics);
         
+        // Test function deployment first
+        async function testFunction() {
+            try {
+                console.log('🧪 Testing Netlify function deployment...');
+                const response = await fetch('/.netlify/functions/test');
+                const data = await response.json();
+                console.log('✅ Test function result:', data);
+                return true;
+            } catch (error) {
+                console.error('❌ Test function failed:', error);
+                return false;
+            }
+        }
+
         // Load analytics on page load
-        document.addEventListener('DOMContentLoaded', loadAnalytics);
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Test function deployment first
+            const testPassed = await testFunction();
+            if (testPassed) {
+                console.log('✅ Functions are deployed, loading analytics...');
+                loadAnalytics();
+            } else {
+                console.log('⚠️ Function test failed, trying analytics anyway...');
+                loadAnalytics();
+            }
+        });
         
         // Auto-refresh every 5 minutes
         setInterval(loadAnalytics, 5 * 60 * 1000);
