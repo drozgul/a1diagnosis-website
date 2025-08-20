@@ -4,6 +4,8 @@
  * Tracks: section viewing time, scroll patterns, engagement metrics
  */
 
+const { getStore } = require('@netlify/blobs');
+
 const headers = {
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Headers': 'Content-Type, Authorization',
@@ -55,16 +57,31 @@ async function saveAnalyticsData(event) {
             totalTime: data.totalSessionTime
         });
 
-        // Configure Netlify Blobs storage with error handling
-        let store;
-        try {
-            const { getStore } = await import('@netlify/blobs');
-            store = getStore({ name: 'a1-diagnosis-analytics' });
-            console.log('✅ Netlify Blobs store initialized for saving');
-        } catch (importError) {
-            console.error('❌ Failed to import @netlify/blobs for saving:', importError);
-            throw new Error('Netlify Blobs not available: ' + importError.message);
+        // Configure Netlify Blobs with manual environment setup if needed (01data pattern)
+        console.log('📋 Environment check:', {
+            NETLIFY_SITE_ID: process.env.NETLIFY_SITE_ID ? 'Available' : 'Not found',
+            NETLIFY_BLOBS_SITE_ID: process.env.NETLIFY_BLOBS_SITE_ID ? 'Available' : 'Not found',
+            NETLIFY_BLOBS_TOKEN: process.env.NETLIFY_BLOBS_TOKEN ? 'Available' : 'Not found'
+        });
+
+        const storeOptions = { name: 'a1-diagnosis-analytics' };
+        
+        // Add manual configuration if environment variables are not auto-injected
+        if (!process.env.NETLIFY_SITE_ID) {
+            console.log('⚠️ NETLIFY_SITE_ID not found, using manual configuration');
+            storeOptions.siteID = process.env.NETLIFY_BLOBS_SITE_ID;
+            storeOptions.token = process.env.NETLIFY_BLOBS_TOKEN;
+            console.log('🔧 Manual store options:', { 
+                name: storeOptions.name, 
+                siteID: storeOptions.siteID ? 'Set' : 'Missing',
+                token: storeOptions.token ? 'Set' : 'Missing'
+            });
+        } else {
+            console.log('✅ Using auto-injected NETLIFY_SITE_ID');
         }
+        
+        const store = getStore(storeOptions);
+        console.log('✅ Netlify Blobs store created successfully');
         
         // Generate unique session ID with timestamp
         const sessionId = data.sessionId || `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
@@ -111,8 +128,21 @@ async function saveAnalyticsData(event) {
             }
         };
 
-        // Save to Netlify Blobs
+        // Save to Netlify Blobs (01data pattern)
         await store.setJSON(sessionId, analyticsData);
+        
+        // Verify the save by attempting to read it back (01data pattern)
+        try {
+            const savedData = await store.getWithMetadata(sessionId, { type: 'json' });
+            console.log('✅ VERIFICATION SUCCESS: Analytics data readable from Netlify Blobs');
+            console.log('📋 Saved data preview:', {
+                id: savedData.data?.id,
+                sections: savedData.data?.sections?.length,
+                totalTime: savedData.data?.totalSessionTime
+            });
+        } catch (verifyError) {
+            console.error('❌ VERIFICATION FAILED: Could not read back saved analytics:', verifyError);
+        }
         
         console.log('✅ Analytics data saved successfully:', {
             sessionId: sessionId,
@@ -161,16 +191,20 @@ async function getAnalyticsData(event) {
             console.warn('⚠️ Netlify Blobs requires Node.js 18+, current version:', process.version);
         }
 
-        // Configure Netlify Blobs storage with error handling
-        let store;
-        try {
-            const { getStore } = await import('@netlify/blobs');
-            store = getStore({ name: 'a1-diagnosis-analytics' });
-            console.log('✅ Netlify Blobs store initialized');
-        } catch (importError) {
-            console.error('❌ Failed to import @netlify/blobs:', importError);
-            throw new Error('Netlify Blobs not available: ' + importError.message);
+        // Configure Netlify Blobs with manual environment setup if needed (01data pattern)
+        const storeOptions = { name: 'a1-diagnosis-analytics' };
+        
+        // Add manual configuration if environment variables are not auto-injected
+        if (!process.env.NETLIFY_SITE_ID) {
+            console.log('⚠️ NETLIFY_SITE_ID not found, using manual configuration');
+            storeOptions.siteID = process.env.NETLIFY_BLOBS_SITE_ID;
+            storeOptions.token = process.env.NETLIFY_BLOBS_TOKEN;
+        } else {
+            console.log('✅ Using auto-injected NETLIFY_SITE_ID');
         }
+        
+        const store = getStore(storeOptions);
+        console.log('✅ Netlify Blobs store initialized');
         
         // List all analytics sessions
         let blobs = [];
