@@ -193,7 +193,8 @@ async function getAnalyticsData(event) {
             section = null 
         } = queryParams;
 
-        console.log('📈 Fetching analytics data:', { days, format, section });
+        const daysAgo = parseInt(days);
+        console.log('📈 Fetching analytics data:', { days, format, section, daysAgo });
         console.log('Node version:', process.version);
 
         // Environment debugging
@@ -236,7 +237,6 @@ async function getAnalyticsData(event) {
             
             console.log(`📁 Found ${blobs.length} analytics sessions`);
             
-            const daysAgo = parseInt(days);
             const cutoffDate = new Date(Date.now() - (daysAgo * 24 * 60 * 60 * 1000));
             
             // Read and filter sessions
