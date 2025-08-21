@@ -72,18 +72,22 @@ async function saveAnalyticsData(event) {
 
             const storeOptions = { name: 'a1-diagnosis-analytics' };
             
-            // Use explicit Site ID from header or environment variable
+            // Use explicit Site ID and token (following Netlify docs for manual configuration)
             const explicitSiteId = '22d6cc06-98bf-4c11-8e05-b1c37cc42562';
             
             if (!process.env.NETLIFY_SITE_ID) {
-                console.log('⚠️ NETLIFY_SITE_ID not found, using explicit Site ID');
+                console.log('⚠️ NETLIFY_SITE_ID not found, using manual configuration');
                 storeOptions.siteID = explicitSiteId;
                 storeOptions.token = process.env.NETLIFY_BLOBS_TOKEN;
                 console.log('🔧 Manual store options:', { 
                     name: storeOptions.name, 
                     siteID: storeOptions.siteID ? 'Set' : 'Missing',
-                    token: storeOptions.token ? 'Set' : 'Missing'
+                    token: storeOptions.token ? 'Set (length: ' + (storeOptions.token?.length || 0) + ')' : 'Missing'
                 });
+                
+                if (!storeOptions.token) {
+                    throw new Error('NETLIFY_BLOBS_TOKEN environment variable is required for manual Blobs configuration. Please add your Personal Access Token to Netlify environment variables.');
+                }
             } else {
                 console.log('✅ Using auto-injected NETLIFY_SITE_ID');
             }
@@ -210,14 +214,23 @@ async function getAnalyticsData(event) {
             // Configure Netlify Blobs with manual environment setup if needed (01data pattern)
             const storeOptions = { name: 'a1-diagnosis-analytics' };
             
-            // Use explicit Site ID from header or environment variable
+            // Use explicit Site ID and token (following Netlify docs for manual configuration)
             const explicitSiteId = '22d6cc06-98bf-4c11-8e05-b1c37cc42562';
             
             // Add manual configuration if environment variables are not auto-injected
             if (!process.env.NETLIFY_SITE_ID) {
-                console.log('⚠️ NETLIFY_SITE_ID not found, using explicit Site ID');
+                console.log('⚠️ NETLIFY_SITE_ID not found, using manual configuration');
                 storeOptions.siteID = explicitSiteId;
                 storeOptions.token = process.env.NETLIFY_BLOBS_TOKEN;
+                console.log('🔧 Manual store options:', { 
+                    name: storeOptions.name, 
+                    siteID: storeOptions.siteID ? 'Set' : 'Missing',
+                    token: storeOptions.token ? 'Set (length: ' + (storeOptions.token?.length || 0) + ')' : 'Missing'
+                });
+                
+                if (!storeOptions.token) {
+                    throw new Error('NETLIFY_BLOBS_TOKEN environment variable is required for manual Blobs configuration. Please add your Personal Access Token to Netlify environment variables.');
+                }
             } else {
                 console.log('✅ Using auto-injected NETLIFY_SITE_ID');
             }
