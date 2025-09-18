@@ -1,0 +1,3882 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Y Combinator SAFE Belgeleri Açıklandı</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: white;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            color: #2c5282;
+            margin-bottom: 40px;
+            padding: 40px 0;
+            background: linear-gradient(135deg, #a0d8ef 0%, #7dd3fc 50%, #4dd0e1 100%);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(77, 208, 225, 0.2);
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            color: #1a365d;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            color: #2c5282;
+        }
+
+        /* Navigation Buttons */
+        .navigation {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(77, 208, 225, 0.1);
+            border: 2px solid #e6fffa;
+        }
+
+        .navigation h2 {
+            text-align: center;
+            font-size: 2rem;
+            color: #2c5282;
+            margin-bottom: 25px;
+            background: linear-gradient(135deg, #4dd0e1, #26d0ce);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+        }
+
+        .nav-button {
+            display: block;
+            padding: 18px 25px;
+            text-decoration: none;
+            border-radius: 15px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.5s;
+        }
+
+        .nav-button:hover::before {
+            left: 100%;
+        }
+
+        .nav-button-1 {
+            background: linear-gradient(135deg, #e6fffa 0%, #b2f5ea 100%);
+            color: #2c5282;
+            border-color: #4dd0e1;
+        }
+
+        .nav-button-1:hover {
+            background: linear-gradient(135deg, #4dd0e1 0%, #26d0ce 100%);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(77, 208, 225, 0.3);
+        }
+
+        .nav-button-2 {
+            background: linear-gradient(135deg, #f0fff4 0%, #c6f6d5 100%);
+            color: #2d5a2d;
+            border-color: #48bb78;
+        }
+
+        .nav-button-2:hover {
+            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(72, 187, 120, 0.3);
+        }
+
+        .nav-button-3 {
+            background: linear-gradient(135deg, #e6f7ff 0%, #bae7ff 100%);
+            color: #1e3a8a;
+            border-color: #3b82f6;
+        }
+
+        .nav-button-3:hover {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+        }
+
+        .nav-button-4 {
+            background: linear-gradient(135deg, #f0fdfa 0%, #ccfbf1 100%);
+            color: #134e4a;
+            border-color: #14b8a6;
+        }
+
+        .nav-button-4:hover {
+            background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(20, 184, 166, 0.3);
+        }
+
+        .nav-button-5 {
+            background: linear-gradient(135deg, #ecfeff 0%, #cffafe 100%);
+            color: #155e75;
+            border-color: #0891b2;
+        }
+
+        .nav-button-5:hover {
+            background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(8, 145, 178, 0.3);
+        }
+
+        .nav-button-6 {
+            background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 100%);
+            color: #831843;
+            border-color: #be185d;
+        }
+
+        .nav-button-6:hover {
+            background: linear-gradient(135deg, #be185d 0%, #9d174d 100%);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(190, 24, 93, 0.3);
+        }
+
+        /* Key Terms Section */
+        .key-terms-section {
+            margin-bottom: 50px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(77, 208, 225, 0.1);
+            border: 2px solid #e6fffa;
+        }
+
+        .key-terms-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #2c5282;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #4dd0e1, #26d0ce);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .terms-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+        }
+
+        .term-card {
+            background: linear-gradient(135deg, #f0fdfa 0%, #e6fffa 100%);
+            border-radius: 15px;
+            padding: 25px;
+            border: 2px solid #b2f5ea;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .term-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #4dd0e1, #26d0ce);
+        }
+
+        .term-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(77, 208, 225, 0.2);
+            border-color: #4dd0e1;
+        }
+
+        .term-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #2c5282;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #b2f5ea;
+        }
+
+        .term-definition {
+            color: #2d3748;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+
+        .term-example {
+            background: #ffffff;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #4dd0e1;
+            font-size: 0.95rem;
+            color: #2d3748;
+            box-shadow: 0 2px 10px rgba(77, 208, 225, 0.1);
+        }
+
+        .safe-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .safe-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .safe-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+        }
+
+        .safe-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #4dd0e1, #26d0ce);
+        }
+
+        .safe-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #ecf0f1;
+        }
+
+        .safe-section {
+            margin-bottom: 25px;
+        }
+
+        .safe-section h4 {
+            color: #34495e;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .safe-section h4::before {
+            content: '▶';
+            color: #4dd0e1;
+            margin-right: 8px;
+            font-size: 0.8rem;
+        }
+
+        .safe-list {
+            list-style: none;
+            margin-left: 20px;
+        }
+
+        .safe-list li {
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .safe-list li::before {
+            content: '•';
+            color: #4dd0e1;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .example-box {
+            background: linear-gradient(135deg, #e6fffa 0%, #b2f5ea 100%);
+            border-left: 4px solid #4dd0e1;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+
+        .calculation {
+            background: #2c5282;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            margin: 10px 0;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .when-to-use {
+            background: linear-gradient(135deg, #f0fff4 0%, #c6f6d5 100%);
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #48bb78;
+            font-style: italic;
+            color: #1a202c;
+        }
+
+        .comparison-table {
+            width: 100%;
+            margin-top: 40px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .comparison-table h3 {
+            background: linear-gradient(135deg, #4dd0e1 0%, #26d0ce 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 1.8rem;
+        }
+
+        .table-content {
+            padding: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ecf0f1;
+        }
+
+        th {
+            background: #e6fffa;
+            font-weight: bold;
+            color: #2c5282;
+        }
+
+        tr:hover {
+            background: #f0fdfa;
+        }
+
+        .founder-friendly {
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+        .investor-friendly {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+
+        .neutral {
+            color: #f39c12;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .safe-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .terms-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-buttons {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .key-terms-section h2 {
+                font-size: 2rem;
+            }
+            
+            .safe-card {
+                padding: 20px;
+            }
+        }
+
+        .interactive-demo {
+            background: linear-gradient(135deg, #f0fdfa 0%, #e6fffa 50%, #f0f9ff 100%);
+            border-radius: 24px;
+            padding: 40px;
+            margin-top: 40px;
+            box-shadow: 0 25px 50px rgba(6, 182, 212, 0.08), 0 8px 16px rgba(14, 165, 233, 0.04);
+            border: 1px solid rgba(103, 232, 249, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .interactive-demo::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #06b6d4, #0ea5e9, #14b8a6, #22d3ee);
+        }
+
+        .calculator-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(240,253,250,0.9));
+            border-radius: 20px;
+            border: 1px solid rgba(103, 232, 249, 0.3);
+        }
+
+        .calculator-header h2 {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #0891b2, #14b8a6, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
+
+        .calculator-header p {
+            color: #0f766e;
+            font-size: 1.1rem;
+            opacity: 0.8;
+        }
+
+        .demo-inputs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .input-group {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 20px;
+            border: 1px solid rgba(103, 232, 249, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .input-group::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #06b6d4, #14b8a6);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .input-group:hover::before {
+            transform: scaleX(1);
+        }
+
+        .input-group:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(6, 182, 212, 0.1);
+            border-color: rgba(103, 232, 249, 0.4);
+        }
+
+        .input-group label {
+            font-weight: 600;
+            color: #0f766e;
+            margin-bottom: 8px;
+            font-size: 1rem;
+            display: block;
+        }
+
+        .input-group input, .input-group select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e0f2fe;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.9);
+            color: #0f766e;
+            font-weight: 500;
+        }
+
+        .input-group input:focus, .input-group select:focus {
+            outline: none;
+            border-color: #06b6d4;
+            box-shadow: 0 0 0 3px rgba(103, 232, 249, 0.1);
+            background: white;
+        }
+
+        .input-shortcuts {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .shortcut-btn {
+            background: linear-gradient(135deg, #e0f2fe, #f0f9ff);
+            border: 1px solid #7dd3fc;
+            color: #0369a1;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-weight: 500;
+        }
+
+        .shortcut-btn:hover {
+            background: linear-gradient(135deg, #0ea5e9, #06b6d4);
+            color: white;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(14, 165, 233, 0.2);
+        }
+
+        .calculate-btn {
+            background: linear-gradient(135deg, #0891b2, #14b8a6);
+            color: white;
+            padding: 16px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(8, 145, 178, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .calculate-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .calculate-btn:hover::before {
+            left: 100%;
+        }
+
+        .calculate-btn:hover {
+            background: linear-gradient(135deg, #0e7490, #0f766e);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(8, 145, 178, 0.4);
+        }
+
+        .demo-result {
+            background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(240,253,250,0.95));
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(103, 232, 249, 0.3);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            margin-top: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .demo-result::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #06b6d4, #0ea5e9, #14b8a6, #22d3ee);
+        }
+
+        .result-percentage {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #0891b2, #14b8a6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+        }
+
+        .result-scenario {
+            color: #0f766e;
+            font-size: 1.1rem;
+            font-weight: 500;
+            opacity: 0.9;
+        }
+
+        .formula-explanation {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(103, 232, 249, 0.3);
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .formula-explanation::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #06b6d4, #14b8a6);
+        }
+
+        .formula-box {
+            background: linear-gradient(135deg, #0891b2, #14b8a6);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            text-align: center;
+            margin: 15px 0;
+            font-size: 1.1rem;
+            box-shadow: 0 8px 20px rgba(8, 145, 178, 0.2);
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            border: 1px solid #f59e0b;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 25px 0;
+            border-left: 4px solid #f59e0b;
+        }
+
+        .warning-box strong {
+            color: #92400e;
+        }
+
+        .terms-grid-calculator {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .term-box {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(103, 232, 249, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            border-left: 4px solid #06b6d4;
+            transition: all 0.3s ease;
+        }
+
+        .term-box:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(6, 182, 212, 0.1);
+        }
+
+        .term-box strong {
+            color: #0f766e;
+            font-size: 1.1rem;
+        }
+
+        .term-box p {
+            color: #0f766e;
+            margin-top: 8px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* Section visibility control */
+        .content-section {
+            display: block;
+            transition: opacity 0.3s ease;
+        }
+        
+        .content-section.hidden {
+            display: none;
+        }
+
+        /* Active button styling */
+        .nav-button.active {
+            background: linear-gradient(135deg, #4dd0e1 0%, #26d0ce 100%) !important;
+            color: white !important;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(77, 208, 225, 0.4) !important;
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #4dd0e1 0%, #26d0ce 100%);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 10px 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(77, 208, 225, 0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+        }
+
+        .back-to-top:hover {
+            background: linear-gradient(135deg, #26d0ce 0%, #14b8a6 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(77, 208, 225, 0.4);
+        }
+
+        .back-to-top:active {
+            transform: translateY(-1px);
+        }
+
+        /* Hide on mobile when too small */
+        @media (max-width: 480px) {
+            .back-to-top {
+                bottom: 20px;
+                right: 20px;
+                padding: 8px 12px;
+                font-size: 0.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Y Combinator SAFE Belgeleri</h1>
+            <p>Gelecekteki Hisse Senedi için Basit Anlaşmanın Dört Türünü Anlamak</p>
+        </div>
+
+        <!-- Navigation Section -->
+        <div class="navigation">
+            <h2>📍 Hızlı Navigasyon</h2>
+            <div class="nav-buttons">
+                <button onclick="showSection('what-is-safe')" class="nav-button nav-button-1">
+                    💡 SAFE Nedir?
+                </button>
+                <button onclick="showSection('safe-types')" class="nav-button nav-button-2">
+                    📊 Y Combinator'ın Resmi 4 SAFE Türü (2023)
+                </button>
+                <button onclick="showSection('startup-terms')" class="nav-button nav-button-3">
+                    📚 Silikon Vadisi Startup Terimleri
+                </button>
+                <button onclick="showSection('funding-stages')" class="nav-button nav-button-4">
+                    🚀 Startup Fonlama Aşamaları
+                </button>
+                <button onclick="showSection('valuation-409a')" class="nav-button nav-button-6">
+                    💰 409A Değerlemesi Nedir?
+                </button>
+                <button onclick="showSection('calculator')" class="nav-button nav-button-5">
+                    🧮 İnteraktif SAFE Hesaplayıcısı
+                </button>
+            </div>
+            <div style="text-align: center; margin-top: 20px;">
+                <button onclick="showAllSections()" class="nav-button" style="background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%); color: #1a202c; border-color: #ffd700; font-weight: bold;">
+                    📋 Bütün Detayları Göster
+                </button>
+            </div>
+        </div>
+
+        <!-- Quick SAFE Calculator at Top -->
+        <div id="top-calculator" style="background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-radius: 20px; padding: 30px; margin-bottom: 40px; box-shadow: 0 10px 30px rgba(77, 208, 225, 0.1); border: 2px solid #e6fffa; display: none;">
+            <h2 style="text-align: center; font-size: 2rem; color: #2c5282; margin-bottom: 25px; background: linear-gradient(135deg, #4dd0e1, #26d0ce); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">🧮 İnteraktif SAFE Hesaplayıcısı</h2>
+            <p style="text-align: center; color: #2c5282; margin-bottom: 30px;">Y Combinator SAFE formüllerini kullanarak sahiplik yüzdenizi hesaplayın</p>
+            
+            <div class="demo-inputs">
+                <div class="input-group">
+                    <label for="investment-top">Yatırım Miktarı ($)</label>
+                    <input type="text" id="investment-top" value="1,000,000" placeholder="1,000,000">
+                    <div class="input-shortcuts">
+                        <button onclick="setInvestmentTop(100000)" class="shortcut-btn">100 bin</button>
+                        <button onclick="setInvestmentTop(200000)" class="shortcut-btn">200 bin</button>
+                        <button onclick="setInvestmentTop(300000)" class="shortcut-btn">300 bin</button>
+                        <button onclick="setInvestmentTop(400000)" class="shortcut-btn">400 bin</button>
+                        <button onclick="setInvestmentTop(500000)" class="shortcut-btn">500 bin</button>
+                        <button onclick="setInvestmentTop(1000000)" class="shortcut-btn">1 Milyon</button>
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <label for="cap-top">Post-Money Değerleme Üst Sınırı (Post-Money Cap) ($)</label>
+                    <input type="text" id="cap-top" value="10,000,000" placeholder="10,000,000">
+                    <div class="input-shortcuts">
+                        <button onclick="setCapTop(3000000)" class="shortcut-btn">3M</button>
+                        <button onclick="setCapTop(5000000)" class="shortcut-btn">5M</button>
+                        <button onclick="setCapTop(8000000)" class="shortcut-btn">8M</button>
+                        <button onclick="setCapTop(10000000)" class="shortcut-btn">10M</button>
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <label for="series-a-top">Seri A yatırım öncesi startup değerlemesi ($)</label>
+                    <input type="text" id="series-a-top" value="50,000,000" placeholder="50,000,000">
+                    <div class="input-shortcuts">
+                        <button onclick="setSeriesATop(8000000)" class="shortcut-btn">8M</button>
+                        <button onclick="setSeriesATop(10000000)" class="shortcut-btn">10M</button>
+                        <button onclick="setSeriesATop(15000000)" class="shortcut-btn">15M</button>
+                        <button onclick="setSeriesATop(20000000)" class="shortcut-btn">20M</button>
+                        <button onclick="setSeriesATop(50000000)" class="shortcut-btn">50M</button>
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <label for="discount-top">İndirim (%)</label>
+                    <input type="number" id="discount-top" value="0" min="0" max="50" placeholder="0">
+                    <div class="input-shortcuts">
+                        <button onclick="setDiscountTop(0)" class="shortcut-btn">0% (sadece üst sınır)</button>
+                        <button onclick="setDiscountTop(10)" class="shortcut-btn">10%</button>
+                        <button onclick="setDiscountTop(15)" class="shortcut-btn">15%</button>
+                        <button onclick="setDiscountTop(20)" class="shortcut-btn">20%</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin: 30px 0;">
+                <button onclick="calculateOwnershipTop()" class="calculate-btn">
+                    🧮 Sahipliği Hesapla
+                </button>
+            </div>
+            
+            <div class="demo-result" id="result-top">
+                <div class="result-percentage">Sahiplik yüzdesini görmek için "Hesapla"ya tıklayın</div>
+            </div>
+        </div>
+
+        <!-- SAFE Nedir Section -->
+        <div class="content-section" id="what-is-safe-section" style="display: block;">
+            <!-- Add the new styles for this section -->
+            <style>
+                @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+                
+                /* Performance Optimizations for SAFE Nedir section */
+                #what-is-safe-section * {
+                    margin: 0;
+                    padding: 0;
+                    box-sizing: border-box;
+                }
+
+                /* GPU Acceleration for animations */
+                #what-is-safe-section .hero-icon,
+                #what-is-safe-section .trust-circle,
+                #what-is-safe-section .floating-shape,
+                #what-is-safe-section .floating-element,
+                #what-is-safe-section .refresh-circle-feature,
+                #what-is-safe-section .lightning-container-feature,
+                #what-is-safe-section .target-container-feature,
+                #what-is-safe-section .certificate-container-feature {
+                    will-change: transform;
+                    transform: translateZ(0);
+                }
+
+                #what-is-safe-section {
+                    --primary-cyan: #00D4FF;
+                    --deep-cyan: #00BCD4;
+                    --turquoise: #1DE9B6;
+                    --light-blue: #E1F5FE;
+                    --soft-blue: #B3E5FC;
+                    --success-green: #E8F8F5;
+                    --accent-green: #00C851;
+                    --light-pink: #FCE4EC;
+                    --white: #FFFFFF;
+                    --text-dark: #0D1421;
+                    --text-secondary: #2D3748;
+                    --text-muted: #718096;
+                    --border-light: #E2E8F0;
+                    --glass-bg: rgba(255, 255, 255, 0.25);
+                    --glass-border: rgba(255, 255, 255, 0.3);
+                    
+                    /* Animation timings */
+                    --animation-fast: 0.3s;
+                    --animation-normal: 0.6s;
+                    --animation-slow: 1.2s;
+                    --easing-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+                    --easing-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+                }
+
+                #what-is-safe-section {
+                    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+                    background: linear-gradient(135deg, var(--light-blue) 0%, var(--white) 25%, var(--soft-blue) 75%, var(--primary-cyan) 100%);
+                    color: var(--text-dark);
+                    line-height: 1.6;
+                    min-height: 100vh;
+                    overflow-x: hidden;
+                    position: relative;
+                    padding: 0;
+                    margin: 0;
+                }
+
+                #what-is-safe-section .safe-container {
+                    max-width: 1400px;
+                    margin: 0 auto;
+                    padding: 0 32px;
+                }
+
+                /* Animated Background Elements */
+                #what-is-safe-section .bg-decoration {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    pointer-events: none;
+                    z-index: -1;
+                    overflow: hidden;
+                }
+
+                #what-is-safe-section .floating-shape {
+                    position: absolute;
+                    border-radius: 50%;
+                    background: linear-gradient(135deg, var(--primary-cyan), var(--turquoise));
+                    opacity: 0.1;
+                    animation: float 6s ease-in-out infinite;
+                }
+
+                #what-is-safe-section .floating-shape:nth-child(1) {
+                    width: 120px;
+                    height: 120px;
+                    top: 20%;
+                    left: 10%;
+                    animation-delay: 0s;
+                }
+
+                #what-is-safe-section .floating-shape:nth-child(2) {
+                    width: 80px;
+                    height: 80px;
+                    top: 60%;
+                    right: 15%;
+                    animation-delay: 2s;
+                }
+
+                #what-is-safe-section .floating-shape:nth-child(3) {
+                    width: 200px;
+                    height: 200px;
+                    bottom: 20%;
+                    left: 70%;
+                    animation-delay: 4s;
+                }
+
+                /* Optimized Inspiring White Floating Circles */
+                #what-is-safe-section .floating-trust-circles {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    pointer-events: none;
+                    z-index: 1;
+                    overflow: hidden;
+                }
+
+                #what-is-safe-section .trust-circle {
+                    position: absolute;
+                    border-radius: 50%;
+                    background: rgba(255, 255, 255, 0.8);
+                    box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+                    animation: floatUpTrust linear infinite;
+                    will-change: transform, opacity;
+                }
+
+                /* Reduced to 6 circles for better performance */
+                #what-is-safe-section .trust-circle:nth-child(1) {
+                    width: 6px;
+                    height: 6px;
+                    left: 15%;
+                    animation-duration: 15s;
+                    animation-delay: 0s;
+                }
+
+                #what-is-safe-section .trust-circle:nth-child(2) {
+                    width: 8px;
+                    height: 8px;
+                    left: 35%;
+                    animation-duration: 12s;
+                    animation-delay: 3s;
+                }
+
+                #what-is-safe-section .trust-circle:nth-child(3) {
+                    width: 5px;
+                    height: 5px;
+                    left: 55%;
+                    animation-duration: 18s;
+                    animation-delay: 6s;
+                }
+
+                #what-is-safe-section .trust-circle:nth-child(4) {
+                    width: 7px;
+                    height: 7px;
+                    left: 75%;
+                    animation-duration: 14s;
+                    animation-delay: 2s;
+                }
+
+                #what-is-safe-section .trust-circle:nth-child(5) {
+                    width: 4px;
+                    height: 4px;
+                    left: 25%;
+                    animation-duration: 16s;
+                    animation-delay: 8s;
+                }
+
+                #what-is-safe-section .trust-circle:nth-child(6) {
+                    width: 6px;
+                    height: 6px;
+                    left: 65%;
+                    animation-duration: 13s;
+                    animation-delay: 5s;
+                }
+
+                @keyframes floatUpTrust {
+                    0% {
+                        transform: translate3d(0, 100vh, 0) scale(0);
+                        opacity: 0;
+                    }
+                    10% {
+                        opacity: 1;
+                        transform: translate3d(0, 90vh, 0) scale(1);
+                    }
+                    90% {
+                        opacity: 1;
+                        transform: translate3d(0, -10vh, 0) scale(1);
+                    }
+                    100% {
+                        transform: translate3d(0, -20vh, 0) scale(0);
+                        opacity: 0;
+                    }
+                }
+
+                @keyframes float {
+                    0%, 100% { transform: translateY(0px) rotate(0deg); }
+                    50% { transform: translateY(-20px) rotate(180deg); }
+                }
+
+                /* Header */
+                #what-is-safe-section .hero-section {
+                    padding: 80px 0 60px;
+                    background: linear-gradient(135deg, var(--white) 0%, var(--light-blue) 100%);
+                    position: relative;
+                    overflow: hidden;
+                }
+
+                #what-is-safe-section .hero-section::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background: url('data:image/svg+xml,<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g fill="%2300D4FF" fill-opacity="0.05"><circle cx="30" cy="30" r="2"/></g></svg>');
+                    opacity: 0.3;
+                }
+
+                #what-is-safe-section .hero-icon-container {
+                    position: relative;
+                    display: inline-block;
+                    margin-bottom: 32px;
+                    text-align: center;
+                    width: 100%;
+                }
+
+                #what-is-safe-section .hero-icon {
+                    width: 120px;
+                    height: 120px;
+                    background: linear-gradient(135deg, var(--primary-cyan), var(--turquoise));
+                    border-radius: 32px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin: 0 auto;
+                    font-size: 48px;
+                    box-shadow: 
+                        0 20px 40px rgba(0, 212, 255, 0.3),
+                        0 8px 16px rgba(0, 188, 212, 0.2);
+                    animation: pulse 2s ease-in-out infinite alternate;
+                    position: relative;
+                }
+
+                #what-is-safe-section .hero-icon::before {
+                    content: '';
+                    position: absolute;
+                    top: -8px;
+                    left: -8px;
+                    right: -8px;
+                    bottom: -8px;
+                    background: linear-gradient(135deg, var(--primary-cyan), var(--turquoise));
+                    border-radius: 40px;
+                    opacity: 0.3;
+                    z-index: -1;
+                    animation: pulse-ring 2s ease-in-out infinite;
+                }
+
+                @keyframes pulse {
+                    0% { transform: scale(1); }
+                    100% { transform: scale(1.05); }
+                }
+
+                @keyframes pulse-ring {
+                    0% { transform: scale(1); opacity: 0.3; }
+                    100% { transform: scale(1.1); opacity: 0; }
+                }
+
+                /* Hero Background Elements */
+                #what-is-safe-section .hero-background-elements {
+                    position: absolute;
+                    inset: 0;
+                    overflow: hidden;
+                }
+
+                #what-is-safe-section .floating-element {
+                    position: absolute;
+                    border-radius: 50%;
+                    opacity: 0.1;
+                    animation: float 6s ease-in-out infinite;
+                }
+
+                #what-is-safe-section .element-1 {
+                    width: 120px;
+                    height: 120px;
+                    background: linear-gradient(45deg, var(--primary-cyan), var(--turquoise));
+                    top: 10%;
+                    left: 5%;
+                    animation-delay: 0s;
+                }
+
+                #what-is-safe-section .element-2 {
+                    width: 80px;
+                    height: 80px;
+                    background: linear-gradient(45deg, #68d391, #48bb78);
+                    top: 60%;
+                    right: 10%;
+                    animation-delay: 2s;
+                }
+
+                #what-is-safe-section .element-3 {
+                    width: 100px;
+                    height: 100px;
+                    background: linear-gradient(45deg, #90cdf4, #63b3ed);
+                    bottom: 20%;
+                    left: 15%;
+                    animation-delay: 4s;
+                }
+
+                #what-is-safe-section .element-4 {
+                    width: 60px;
+                    height: 60px;
+                    background: linear-gradient(45deg, #f093fb, #e879f9);
+                    top: 30%;
+                    right: 25%;
+                    animation-delay: 1s;
+                }
+
+                #what-is-safe-section .hero-container {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    max-width: 1200px;
+                    margin: 0 auto;
+                    padding: 0 40px;
+                    position: relative;
+                    z-index: 2;
+                }
+
+                #what-is-safe-section .hero-content {
+                    flex: 1;
+                    max-width: 650px;
+                    text-align: left;
+                }
+
+                #what-is-safe-section .hero-badge {
+                    display: inline-flex;
+                    align-items: center;
+                    background: linear-gradient(135deg, var(--primary-cyan), var(--turquoise));
+                    color: white;
+                    padding: 12px 24px;
+                    border-radius: 50px;
+                    font-size: 0.9rem;
+                    font-weight: 600;
+                    margin-bottom: 32px;
+                    box-shadow: 0 4px 20px rgba(79, 209, 199, 0.3);
+                    position: relative;
+                    overflow: hidden;
+                    animation: badgeGlow 2s ease-in-out infinite alternate;
+                }
+
+                #what-is-safe-section .hero-badge::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: -100%;
+                    width: 100%;
+                    height: 100%;
+                    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+                    animation: badgeShine 3s ease-in-out infinite;
+                }
+
+                @keyframes badgeGlow {
+                    0% {
+                        box-shadow: 0 4px 20px rgba(79, 209, 199, 0.3);
+                        transform: scale(1);
+                    }
+                    100% {
+                        box-shadow: 0 6px 30px rgba(79, 209, 199, 0.5);
+                        transform: scale(1.02);
+                    }
+                }
+
+                @keyframes badgeShine {
+                    0% {
+                        left: -100%;
+                        opacity: 0;
+                    }
+                    30% {
+                        opacity: 1;
+                    }
+                    70% {
+                        opacity: 1;
+                    }
+                    100% {
+                        left: 100%;
+                        opacity: 0;
+                    }
+                }
+
+                #what-is-safe-section .premium-title {
+                    font-size: 4.5rem;
+                    font-weight: 800;
+                    color: var(--text-dark);
+                    margin-bottom: 20px;
+                    line-height: 1.1;
+                    letter-spacing: -0.02em;
+                    position: relative;
+                }
+
+                #what-is-safe-section .title-highlight {
+                    background: linear-gradient(135deg, var(--primary-cyan) 0%, var(--turquoise) 50%, #319795 100%);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                    position: relative;
+                    overflow: hidden;
+                    filter: drop-shadow(0 2px 4px rgba(0, 212, 255, 0.3));
+                }
+
+                #what-is-safe-section .title-highlight::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: -100%;
+                    width: 100%;
+                    height: 100%;
+                    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+                    animation: glossSweep 3s ease-in-out infinite;
+                    z-index: 1;
+                }
+
+                #what-is-safe-section .safe-highlight {
+                    background: linear-gradient(135deg, var(--primary-cyan) 0%, var(--turquoise) 50%, #319795 100%);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                    position: relative;
+                    overflow: hidden;
+                    filter: drop-shadow(0 2px 4px rgba(0, 212, 255, 0.3));
+                }
+
+                #what-is-safe-section .safe-highlight::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: -100%;
+                    width: 100%;
+                    height: 100%;
+                    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+                    animation: glossSweep 3s ease-in-out infinite 1.5s;
+                    z-index: 1;
+                }
+
+                @keyframes glossSweep {
+                    0% {
+                        left: -100%;
+                        opacity: 0;
+                    }
+                    20% {
+                        opacity: 1;
+                    }
+                    50% {
+                        left: 100%;
+                        opacity: 1;
+                    }
+                    100% {
+                        left: 100%;
+                        opacity: 0;
+                    }
+                }
+
+                #what-is-safe-section .premium-subtitle {
+                    font-size: 1.8rem;
+                    color: var(--primary-cyan);
+                    font-weight: 700;
+                    margin-bottom: 28px;
+                    font-style: italic;
+                }
+
+                #what-is-safe-section .hero-description {
+                    font-size: 1.4rem;
+                    color: var(--text-secondary);
+                    line-height: 1.7;
+                    margin-bottom: 40px;
+                }
+
+                #what-is-safe-section .description-line {
+                    display: flex;
+                    align-items: center;
+                    gap: 12px;
+                    margin-bottom: 8px;
+                }
+
+                #what-is-safe-section .description-emoji {
+                    font-size: 1.2rem;
+                    filter: drop-shadow(0 2px 4px rgba(255, 215, 0, 0.3));
+                }
+
+                #what-is-safe-section .description-highlight {
+                    background: linear-gradient(135deg, var(--primary-cyan), var(--turquoise));
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                    font-weight: 700;
+                }
+
+                #what-is-safe-section .trust-indicators {
+                    display: grid;
+                    gap: 16px;
+                }
+
+                #what-is-safe-section .trust-item {
+                    display: flex;
+                    align-items: center;
+                    gap: 12px;
+                    font-size: 1.1rem;
+                    color: var(--text-dark);
+                    font-weight: 600;
+                }
+
+                #what-is-safe-section .trust-icon {
+                    background: linear-gradient(135deg, #68d391, #48bb78);
+                    color: white;
+                    width: 24px;
+                    height: 24px;
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 0.8rem;
+                    font-weight: bold;
+                }
+
+                #what-is-safe-section .hero-visual {
+                    margin-left: 60px;
+                    position: relative;
+                }
+
+                #what-is-safe-section .visual-container {
+                    background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(240,253,250,0.9) 100%);
+                    border-radius: 24px;
+                    padding: 40px;
+                    border: 1px solid rgba(79, 209, 199, 0.2);
+                    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+                    backdrop-filter: blur(10px);
+                }
+
+                #what-is-safe-section .chart-visual {
+                    position: relative;
+                    margin-bottom: 30px;
+                }
+
+                #what-is-safe-section .chart-bars {
+                    display: flex;
+                    align-items: end;
+                    gap: 8px;
+                    height: 120px;
+                    margin-bottom: 20px;
+                }
+
+                #what-is-safe-section .bar {
+                    width: 20px;
+                    border-radius: 4px 4px 0 0;
+                    animation: growBar 2s ease-out;
+                }
+
+                #what-is-safe-section .bar-1 { height: 40%; background: linear-gradient(to top, var(--primary-cyan), var(--turquoise)); }
+                #what-is-safe-section .bar-2 { height: 60%; background: linear-gradient(to top, #68d391, #48bb78); }
+                #what-is-safe-section .bar-3 { height: 80%; background: linear-gradient(to top, #90cdf4, #63b3ed); }
+                #what-is-safe-section .bar-4 { height: 100%; background: linear-gradient(to top, var(--primary-cyan), #319795); }
+                #what-is-safe-section .bar-5 { height: 70%; background: linear-gradient(to top, #f093fb, #e879f9); }
+
+                @keyframes growBar {
+                    from { height: 0; }
+                }
+
+                #what-is-safe-section .growth-arrow {
+                    position: absolute;
+                    top: -20px;
+                    right: -20px;
+                    font-size: 2.5rem;
+                    animation: bounce 2s infinite;
+                }
+
+                @keyframes bounce {
+                    0%, 100% { transform: translateY(0); }
+                    50% { transform: translateY(-10px); }
+                }
+
+                #what-is-safe-section .visual-stats {
+                    display: flex;
+                    justify-content: space-around;
+                }
+
+                #what-is-safe-section .mini-stat {
+                    text-align: center;
+                }
+
+                #what-is-safe-section .mini-number {
+                    font-size: 1.5rem;
+                    font-weight: 700;
+                    color: var(--primary-cyan);
+                }
+
+                #what-is-safe-section .mini-label {
+                    font-size: 0.8rem;
+                    color: var(--text-secondary);
+                    font-weight: 500;
+                }
+
+                /* Glass Card Sections */
+                #what-is-safe-section .glass-section {
+                    background: var(--glass-bg);
+                    backdrop-filter: blur(20px);
+                    border: 1px solid var(--glass-border);
+                    margin: 40px 0;
+                    border-radius: 24px;
+                    overflow: hidden;
+                    box-shadow: 
+                        0 8px 32px rgba(0, 0, 0, 0.1),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+                    transition: all 0.3s ease;
+                }
+
+                #what-is-safe-section .glass-section:hover {
+                    transform: translateY(-8px);
+                    box-shadow: 
+                        0 24px 48px rgba(0, 0, 0, 0.15),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+                }
+
+                /* Hero Definition Card */
+                #what-is-safe-section .definition-hero {
+                    background: linear-gradient(135deg, var(--primary-cyan), var(--turquoise));
+                    color: white;
+                    padding: 64px 48px;
+                    text-align: center;
+                    border: none;
+                    margin: 60px 0;
+                    position: relative;
+                    overflow: hidden;
+                }
+
+                #what-is-safe-section .definition-hero::before {
+                    content: '';
+                    position: absolute;
+                    top: -50%;
+                    left: -50%;
+                    width: 200%;
+                    height: 200%;
+                    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+                    transform: rotate(45deg);
+                    animation: shine 3s ease-in-out infinite;
+                }
+
+                @keyframes shine {
+                    0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+                    50% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+                    100% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+                }
+
+                #what-is-safe-section .definition-hero h2 {
+                    font-size: 42px;
+                    font-weight: 700;
+                    margin-bottom: 24px;
+                    line-height: 1.2;
+                    position: relative;
+                    z-index: 2;
+                }
+
+                #what-is-safe-section .definition-hero p {
+                    font-size: 20px;
+                    opacity: 0.95;
+                    max-width: 800px;
+                    margin: 0 auto;
+                    position: relative;
+                    z-index: 2;
+                }
+
+                /* Section Headers */
+                #what-is-safe-section .section-header {
+                    padding: 48px 48px 24px;
+                    text-align: center;
+                }
+
+                #what-is-safe-section .section-title {
+                    font-size: 36px;
+                    font-weight: 700;
+                    color: var(--text-dark);
+                    margin-bottom: 16px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 16px;
+                }
+
+                #what-is-safe-section .section-emoji {
+                    font-size: 40px;
+                    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+                }
+
+                #what-is-safe-section .section-subtitle {
+                    font-size: 18px;
+                    color: var(--text-muted);
+                    font-weight: 400;
+                }
+
+                #what-is-safe-section .section-content {
+                    padding: 24px 48px 48px;
+                }
+
+                /* Feature Grid */
+                #what-is-safe-section .features-grid {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+                    gap: 32px;
+                }
+
+                #what-is-safe-section .feature-card {
+                    background: var(--white);
+                    padding: 32px;
+                    border-radius: 20px;
+                    border: 1px solid var(--border-light);
+                    transition: all 0.3s ease;
+                    position: relative;
+                    overflow: hidden;
+                }
+
+                #what-is-safe-section .feature-card::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 4px;
+                    background: linear-gradient(90deg, var(--primary-cyan), var(--turquoise));
+                    transform: scaleX(0);
+                    transition: transform 0.3s ease;
+                }
+
+                #what-is-safe-section .feature-card:hover::before {
+                    transform: scaleX(1);
+                }
+
+                #what-is-safe-section .feature-card:hover {
+                    transform: translateY(-8px);
+                    box-shadow: 0 20px 40px rgba(0, 212, 255, 0.15);
+                }
+
+                #what-is-safe-section .feature-card:hover .refresh-circle-feature {
+                    animation: rotate 3s linear infinite !important;
+                }
+
+                #what-is-safe-section .feature-card:hover .lightning-container-feature::before {
+                    animation: lightning-shine 2s ease-in-out infinite !important;
+                }
+
+                /* Animated Icons */
+                #what-is-safe-section .convertible-icon-feature {
+                    width: 64px;
+                    height: 64px;
+                    position: relative;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin-bottom: 24px;
+                }
+
+                #what-is-safe-section .refresh-circle-feature {
+                    width: 64px;
+                    height: 64px;
+                    border: 4px solid transparent;
+                    border-radius: 50%;
+                    background: linear-gradient(var(--white), var(--white)) padding-box,
+                                linear-gradient(135deg, var(--primary-cyan), var(--turquoise)) border-box;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    animation: rotate 3s linear infinite !important;
+                }
+
+                @keyframes rotate {
+                    from { transform: rotate(0deg); }
+                    to { transform: rotate(360deg); }
+                }
+
+                #what-is-safe-section .refresh-arrows-feature {
+                    position: relative;
+                    width: 32px;
+                    height: 32px;
+                }
+
+                #what-is-safe-section .arrow-feature {
+                    position: absolute;
+                    width: 12px;
+                    height: 12px;
+                    border: 2px solid var(--primary-cyan);
+                    border-left: transparent;
+                    border-bottom: transparent;
+                    border-radius: 0 2px 0 0;
+                }
+
+                #what-is-safe-section .arrow-feature:first-child {
+                    top: 4px;
+                    left: 10px;
+                    transform: rotate(-45deg);
+                }
+
+                #what-is-safe-section .arrow-feature:last-child {
+                    bottom: 4px;
+                    right: 10px;
+                    transform: rotate(135deg);
+                }
+
+                #what-is-safe-section .energy-icon-feature {
+                    width: 64px;
+                    height: 64px;
+                    position: relative;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin-bottom: 24px;
+                }
+
+                #what-is-safe-section .lightning-container-feature {
+                    width: 64px;
+                    height: 64px;
+                    background: linear-gradient(135deg, var(--primary-cyan), var(--turquoise));
+                    border-radius: 16px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    position: relative;
+                    overflow: hidden;
+                    box-shadow: 0 4px 12px rgba(0, 212, 255, 0.3);
+                }
+
+                #what-is-safe-section .lightning-container-feature::before {
+                    content: '';
+                    position: absolute;
+                    top: -50%;
+                    left: -50%;
+                    width: 200%;
+                    height: 200%;
+                    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+                    transform: rotate(45deg);
+                    animation: lightning-shine 2s ease-in-out infinite !important;
+                }
+
+                @keyframes lightning-shine {
+                    0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+                    50% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+                    100% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+                }
+
+                #what-is-safe-section .center-symbol-feature {
+                    width: 32px;
+                    height: 32px;
+                    position: relative;
+                    z-index: 2;
+                }
+
+                #what-is-safe-section .symbol-svg-feature {
+                    width: 100%;
+                    height: 100%;
+                }
+
+                /* Target Icon for Gelecek Odaklı */
+                #what-is-safe-section .target-icon-feature {
+                    width: 64px;
+                    height: 64px;
+                    position: relative;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin-bottom: 24px;
+                }
+
+                #what-is-safe-section .target-container-feature {
+                    width: 64px;
+                    height: 64px;
+                    background: linear-gradient(135deg, var(--primary-cyan), var(--turquoise));
+                    border-radius: 16px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    position: relative;
+                    overflow: hidden;
+                    box-shadow: 0 4px 12px rgba(0, 212, 255, 0.3);
+                }
+
+                #what-is-safe-section .target-rings {
+                    position: relative;
+                    width: 40px;
+                    height: 40px;
+                    z-index: 2;
+                }
+
+                #what-is-safe-section .target-ring {
+                    position: absolute;
+                    border: 2px solid white;
+                    border-radius: 50%;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                }
+
+                #what-is-safe-section .target-ring:nth-child(1) {
+                    width: 36px;
+                    height: 36px;
+                    animation: pulse-ring 2s ease-in-out infinite;
+                }
+
+                #what-is-safe-section .target-ring:nth-child(2) {
+                    width: 24px;
+                    height: 24px;
+                    animation: pulse-ring 2s ease-in-out infinite 0.5s;
+                }
+
+                #what-is-safe-section .target-ring:nth-child(3) {
+                    width: 12px;
+                    height: 12px;
+                    animation: pulse-ring 2s ease-in-out infinite 1s;
+                }
+
+                #what-is-safe-section .target-center {
+                    position: absolute;
+                    width: 6px;
+                    height: 6px;
+                    background: white;
+                    border-radius: 50%;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    z-index: 3;
+                }
+
+                /* Certificate Icon for Endüstri Standardı */
+                #what-is-safe-section .certificate-icon-feature {
+                    width: 64px;
+                    height: 64px;
+                    position: relative;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin-bottom: 24px;
+                }
+
+                #what-is-safe-section .certificate-container-feature {
+                    width: 64px;
+                    height: 64px;
+                    background: linear-gradient(135deg, var(--primary-cyan), var(--turquoise));
+                    border-radius: 16px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    position: relative;
+                    overflow: hidden;
+                    box-shadow: 0 4px 12px rgba(0, 212, 255, 0.3);
+                    animation: certificate-glow 3s ease-in-out infinite;
+                }
+
+                @keyframes certificate-glow {
+                    0%, 100% { box-shadow: 0 4px 12px rgba(0, 212, 255, 0.3); }
+                    50% { box-shadow: 0 8px 24px rgba(0, 212, 255, 0.5); }
+                }
+
+                #what-is-safe-section .certificate-container-feature::before {
+                    content: '';
+                    position: absolute;
+                    top: -50%;
+                    left: -50%;
+                    width: 200%;
+                    height: 200%;
+                    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+                    transform: rotate(45deg);
+                    animation: certificate-shine 4s ease-in-out infinite;
+                }
+
+                @keyframes certificate-shine {
+                    0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+                    25% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+                    100% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+                }
+
+                #what-is-safe-section .certificate-symbol {
+                    width: 32px;
+                    height: 32px;
+                    position: relative;
+                    z-index: 2;
+                }
+
+                #what-is-safe-section .certificate-svg {
+                    width: 100%;
+                    height: 100%;
+                }
+
+                /* Regular feature icons for remaining cards */
+                #what-is-safe-section .feature-icon {
+                    width: 64px;
+                    height: 64px;
+                    background: linear-gradient(135deg, var(--light-blue), var(--soft-blue));
+                    border-radius: 16px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 28px;
+                    margin-bottom: 24px;
+                }
+
+                #what-is-safe-section .feature-title {
+                    font-size: 22px;
+                    font-weight: 600;
+                    color: var(--text-dark);
+                    margin-bottom: 12px;
+                }
+
+                #what-is-safe-section .feature-description {
+                    font-size: 16px;
+                    color: var(--text-secondary);
+                    line-height: 1.6;
+                }
+
+                /* Stats Section */
+                #what-is-safe-section .stats-hero {
+                    background: linear-gradient(135deg, var(--success-green), var(--white));
+                    border: 2px solid var(--accent-green);
+                }
+
+                #what-is-safe-section .stats-grid {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                    gap: 48px;
+                }
+
+                #what-is-safe-section .stat-card {
+                    text-align: center;
+                    padding: 32px;
+                    background: var(--white);
+                    border-radius: 16px;
+                    box-shadow: 0 8px 24px rgba(0, 200, 81, 0.1);
+                    transition: transform 0.3s ease;
+                }
+
+                #what-is-safe-section .stat-card:hover {
+                    transform: translateY(-4px);
+                }
+
+                #what-is-safe-section .stat-number {
+                    font-size: 48px;
+                    font-weight: 800;
+                    color: var(--accent-green);
+                    display: block;
+                    line-height: 1;
+                    margin-bottom: 12px;
+                }
+
+                #what-is-safe-section .stat-label {
+                    font-size: 18px;
+                    color: var(--text-secondary);
+                    font-weight: 500;
+                }
+
+                /* Advantages */
+                #what-is-safe-section .advantages-grid {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                    gap: 24px;
+                }
+
+                #what-is-safe-section .advantage-card {
+                    background: var(--white);
+                    padding: 24px;
+                    border-radius: 16px;
+                    border-left: 6px solid var(--accent-green);
+                    box-shadow: 0 4px 16px rgba(0, 200, 81, 0.1);
+                    display: flex;
+                    align-items: center;
+                    gap: 16px;
+                    transition: all 0.3s ease;
+                }
+
+                #what-is-safe-section .advantage-card:hover {
+                    transform: translateX(8px);
+                    box-shadow: 0 8px 24px rgba(0, 200, 81, 0.2);
+                }
+
+                #what-is-safe-section .advantage-icon {
+                    width: 32px;
+                    height: 32px;
+                    background: var(--accent-green);
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: white;
+                    font-size: 16px;
+                    font-weight: 600;
+                    flex-shrink: 0;
+                }
+
+                #what-is-safe-section .advantage-text {
+                    font-size: 16px;
+                    color: var(--text-dark);
+                    font-weight: 500;
+                }
+
+                /* SAFE Types */
+                #what-is-safe-section .safe-types-grid {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                    gap: 24px;
+                }
+
+                #what-is-safe-section .safe-type-card {
+                    background: var(--white);
+                    padding: 32px;
+                    border-radius: 16px;
+                    text-align: center;
+                    border: 2px solid var(--light-blue);
+                    transition: all 0.3s ease;
+                    position: relative;
+                    overflow: hidden;
+                }
+
+                #what-is-safe-section .safe-type-card::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: -100%;
+                    width: 100%;
+                    height: 100%;
+                    background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.1), transparent);
+                    transition: left 0.5s ease;
+                }
+
+                #what-is-safe-section .safe-type-card:hover::before {
+                    left: 100%;
+                }
+
+                #what-is-safe-section .safe-type-card:hover {
+                    border-color: var(--primary-cyan);
+                    transform: translateY(-4px);
+                    box-shadow: 0 16px 32px rgba(0, 212, 255, 0.2);
+                }
+
+                #what-is-safe-section .safe-type-title {
+                    font-size: 20px;
+                    font-weight: 600;
+                    color: var(--text-dark);
+                    margin-bottom: 12px;
+                }
+
+                #what-is-safe-section .safe-type-description {
+                    font-size: 15px;
+                    color: var(--text-secondary);
+                }
+
+                /* Post-Money Info */
+                #what-is-safe-section .post-money-section {
+                    background: linear-gradient(135deg, var(--light-pink), var(--white));
+                    border: 1px solid rgba(244, 143, 177, 0.3);
+                }
+
+                #what-is-safe-section .post-money-grid {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                    gap: 20px;
+                }
+
+                #what-is-safe-section .post-money-item {
+                    background: var(--white);
+                    padding: 20px;
+                    border-radius: 12px;
+                    display: flex;
+                    align-items: flex-start;
+                    gap: 16px;
+                    box-shadow: 0 4px 12px rgba(244, 143, 177, 0.1);
+                }
+
+                #what-is-safe-section .post-money-bullet {
+                    width: 12px;
+                    height: 12px;
+                    background: #F48FB1;
+                    border-radius: 50%;
+                    margin-top: 4px;
+                    flex-shrink: 0;
+                }
+
+                #what-is-safe-section .post-money-text {
+                    font-size: 15px;
+                    color: var(--text-dark);
+                    line-height: 1.5;
+                }
+
+                /* Quote Section */
+                #what-is-safe-section .quote-section {
+                    background: linear-gradient(135deg, var(--light-blue), var(--soft-blue));
+                    padding: 64px 48px;
+                    text-align: center;
+                    border: 2px solid var(--primary-cyan);
+                    position: relative;
+                }
+
+                #what-is-safe-section .quote-mark {
+                    font-size: 80px;
+                    color: var(--primary-cyan);
+                    opacity: 0.3;
+                    position: absolute;
+                    top: 20px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                }
+
+                #what-is-safe-section .quote-text {
+                    font-size: 28px;
+                    font-weight: 600;
+                    color: var(--text-dark);
+                    font-style: italic;
+                    margin-bottom: 24px;
+                    line-height: 1.4;
+                    position: relative;
+                    z-index: 2;
+                }
+
+                #what-is-safe-section .quote-author {
+                    font-size: 18px;
+                    font-weight: 600;
+                    color: var(--deep-cyan);
+                }
+
+                /* CTA Section */
+                #what-is-safe-section .cta-section {
+                    background: linear-gradient(135deg, var(--text-dark), var(--text-secondary));
+                    color: white;
+                    text-align: center;
+                    padding: 80px 48px;
+                    border-radius: 24px;
+                    margin: 80px 0;
+                    position: relative;
+                    overflow: hidden;
+                }
+
+                #what-is-safe-section .cta-section::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background: linear-gradient(135deg, var(--primary-cyan), var(--turquoise));
+                    opacity: 0.1;
+                }
+
+                #what-is-safe-section .cta-title {
+                    font-size: 40px;
+                    font-weight: 700;
+                    margin-bottom: 20px;
+                    position: relative;
+                    z-index: 2;
+                }
+
+                #what-is-safe-section .cta-description {
+                    font-size: 20px;
+                    opacity: 0.9;
+                    position: relative;
+                    z-index: 2;
+                }
+
+                /* Responsive Design */
+                @media (max-width: 1024px) {
+                    #what-is-safe-section .hero-container {
+                        flex-direction: column;
+                        text-align: left;
+                        gap: 40px;
+                    }
+
+                    #what-is-safe-section .hero-visual {
+                        margin-left: 0;
+                    }
+                }
+
+                @media (max-width: 768px) {
+                    #what-is-safe-section .hero-section {
+                        padding: 60px 0 40px;
+                    }
+                    
+                    #what-is-safe-section .hero-container {
+                        padding: 0 20px;
+                        text-align: left;
+                    }
+                    
+                    #what-is-safe-section .hero-icon-container {
+                        text-align: center;
+                    }
+                    
+                    #what-is-safe-section .premium-title {
+                        font-size: 3rem;
+                    }
+                    
+                    #what-is-safe-section .premium-subtitle {
+                        font-size: 1.4rem;
+                    }
+                    
+                    #what-is-safe-section .hero-description {
+                        font-size: 1.2rem;
+                    }
+                    
+                    #what-is-safe-section .trust-indicators {
+                        gap: 12px;
+                    }
+                    
+                    #what-is-safe-section .trust-item {
+                        font-size: 1rem;
+                    }
+                    
+                    #what-is-safe-section .visual-container {
+                        padding: 24px;
+                    }
+                    
+                    #what-is-safe-section .stat-number {
+                        font-size: 36px;
+                    }
+                }
+
+                @media (max-width: 480px) {
+                    #what-is-safe-section .hero-icon-container {
+                        text-align: center;
+                    }
+                    
+                    #what-is-safe-section .premium-title {
+                        font-size: 2.5rem;
+                    }
+                    
+                    #what-is-safe-section .premium-subtitle {
+                        font-size: 1.2rem;
+                    }
+                    
+                    #what-is-safe-section .hero-description {
+                        font-size: 1rem;
+                    }
+                    
+                    #what-is-safe-section .hero-badge {
+                        font-size: 0.8rem;
+                        padding: 10px 20px;
+                    }
+                    
+                    #what-is-safe-section .stat-number {
+                        font-size: 28px;
+                    }
+                        
+                    #what-is-safe-section .section-content {
+                        padding: 24px;
+                    }
+                    
+                    #what-is-safe-section .definition-hero {
+                        padding: 48px 24px;
+                    }
+                    
+                    #what-is-safe-section .definition-hero h2 {
+                        font-size: 32px;
+                    }
+                    
+                    #what-is-safe-section .features-grid {
+                        grid-template-columns: 1fr;
+                    }
+                    
+                    #what-is-safe-section .stats-grid {
+                        grid-template-columns: 1fr;
+                    }
+                    
+                    #what-is-safe-section .advantages-grid {
+                        grid-template-columns: 1fr;
+                    }
+                    
+                    #what-is-safe-section .safe-types-grid {
+                        grid-template-columns: 1fr;
+                    }
+                    
+                    #what-is-safe-section .quote-text {
+                        font-size: 24px;
+                    }
+                    
+                    #what-is-safe-section .cta-title {
+                        font-size: 32px;
+                    }
+                }
+
+                /* Scroll Animations */
+                #what-is-safe-section .animate-on-scroll {
+                    opacity: 0;
+                    transform: translateY(30px);
+                    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+                }
+
+                #what-is-safe-section .animate-on-scroll.animate {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            </style>
+
+            <div class="bg-decoration">
+                <div class="floating-shape"></div>
+                <div class="floating-shape"></div>
+                <div class="floating-shape"></div>
+            </div>
+
+            <div class="floating-trust-circles">
+                <div class="trust-circle"></div>
+                <div class="trust-circle"></div>
+                <div class="trust-circle"></div>
+                <div class="trust-circle"></div>
+                <div class="trust-circle"></div>
+                <div class="trust-circle"></div>
+            </div>
+
+            <section class="hero-section">
+                <div class="hero-background-elements">
+                    <div class="floating-element element-1"></div>
+                    <div class="floating-element element-2"></div>
+                    <div class="floating-element element-3"></div>
+                    <div class="floating-element element-4"></div>
+                </div>
+                <div class="safe-container">
+                    <div class="hero-icon-container">
+                        <div class="hero-icon">💡</div>
+                    </div>
+                    <div class="hero-container">
+                        <div class="hero-content">
+                            <div class="hero-badge">
+                                <span>Y Combinator Standardı</span>
+                            </div>
+                            <h1 class="premium-title">
+                                <span class="safe-highlight">SAFE</span> <span class="title-highlight">Nedir?</span>
+                            </h1>
+                            <p class="premium-subtitle">Simple Agreement for Future Equity</p>
+                            <div class="hero-description">
+                                <div class="description-line">
+                                    <span class="description-emoji">✨</span>
+                                    <span><span class="description-highlight">Gelecekteki hisse için basit anlaşma</span></span>
+                                </div>
+                                <div class="description-line">
+                                    <span class="description-emoji">✨</span>
+                                    <span>Startup ekosisteminin en güvenilir ve etkili fonlama aracı</span>
+                                </div>
+                            </div>
+                            <div class="trust-indicators">
+                                <div class="trust-item">
+                                    <span class="trust-icon">✓</span>
+                                    <span>5,000+ Startup Tarafından Kullanıldı</span>
+                                </div>
+                                <div class="trust-item">
+                                    <span class="trust-icon">✓</span>
+                                    <span>+ $800 Milyar Toplam Değerleme</span>
+                                </div>
+                                <div class="trust-item">
+                                    <span class="trust-icon">✓</span>
+                                    <span>Silicon Vadisi'nin en güvenilir startup yatırım aracı</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hero-visual">
+                            <div class="visual-container">
+                                <div class="chart-visual">
+                                    <div class="chart-bars">
+                                        <div class="bar bar-1"></div>
+                                        <div class="bar bar-2"></div>
+                                        <div class="bar bar-3"></div>
+                                        <div class="bar bar-4"></div>
+                                        <div class="bar bar-5"></div>
+                                    </div>
+                                    <div class="growth-arrow">📈</div>
+                                </div>
+                                <div class="visual-stats">
+                                    <div class="mini-stat">
+                                        <div class="mini-number">2013</div>
+                                        <div class="mini-label">Tanıtım</div>
+                                    </div>
+                                    <div class="mini-stat">
+                                        <div class="mini-number">5K+</div>
+                                        <div class="mini-label">Startup</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="safe-container">
+                <!-- Hero Definition -->
+                <section class="glass-section definition-hero animate-on-scroll curtain-reveal">
+                    <h2>SAFE = "Gelecekteki Hisse için Basit Anlaşma"</h2>
+                    <p>Yatırımcıya gelecekte şirketin gerçek hisselerini alma hakkı veren, modern startup fonlamasının altın standardı</p>
+                </section>
+
+                <!-- Core Features -->
+                <section class="glass-section animate-on-scroll split-reveal">
+                    <div class="section-header">
+                        <h2 class="section-title">
+                            Temel Özellikler
+                        </h2>
+                        <p class="section-subtitle">SAFE'in başarısını getiren temel özellikler</p>
+                    </div>
+                    <div class="section-content">
+                        <div class="features-grid">
+                            <div class="feature-card">
+                                <div class="convertible-icon-feature">
+                                    <div class="refresh-circle-feature">
+                                        <div class="refresh-arrows-feature">
+                                            <div class="arrow-feature"></div>
+                                            <div class="arrow-feature"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <h3 class="feature-title">Dönüştürülebilir Yapı</h3>
+                                <p class="feature-description">Gelecekte hisseye dönüşen finansal belge</p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="energy-icon-feature">
+                                    <div class="lightning-container-feature">
+                                        <div class="center-symbol-feature">
+                                            <svg class="symbol-svg-feature" viewBox="0 0 24 24" fill="none">
+                                                <path d="M5 12H19" stroke="white" stroke-width="3"/>
+                                                <path d="M13 18L19 12L13 6" stroke="white" stroke-width="3" fill="none"/>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                                <h3 class="feature-title">Sıfır Yükümlülük</h3>
+                                <p class="feature-description">Vade tarihi, faiz oranı veya geri ödeme yok</p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="target-icon-feature">
+                                    <div class="target-container-feature">
+                                        <div class="target-rings">
+                                            <div class="target-ring"></div>
+                                            <div class="target-ring"></div>
+                                            <div class="target-ring"></div>
+                                            <div class="target-center"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <h3 class="feature-title">Gelecek Odaklı</h3>
+                                <p class="feature-description">Series A sırasında hisselere dönüşür</p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="certificate-icon-feature">
+                                    <div class="certificate-container-feature">
+                                        <div class="certificate-symbol">
+                                            <svg class="certificate-svg" viewBox="0 0 24 24" fill="none">
+                                                <rect x="4" y="4" width="16" height="12" rx="2" fill="white"/>
+                                                <path d="M6 6H18V14H6V6Z" fill="var(--primary-cyan)" opacity="0.3"/>
+                                                <path d="M8 8H16M8 10H14M8 12H12" stroke="var(--primary-cyan)" stroke-width="1"/>
+                                                <circle cx="18" cy="18" r="3" fill="var(--primary-cyan)"/>
+                                                <path d="M16.5 18L17.5 19L19.5 17" stroke="white" stroke-width="1" fill="none"/>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                                <h3 class="feature-title">Silicon Vadisi Standardı</h3>
+                                <p class="feature-description">Y Combinator tarafından geliştirildi</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Y Combinator Stats -->
+                <section class="glass-section stats-hero animate-on-scroll">
+                    <div class="section-header">
+                        <h2 class="section-title">
+                            Kanıtlanmış Başarı
+                        </h2>
+                        <p class="section-subtitle">Y Combinator'ın etkileyici SAFE başarı hikayesi</p>
+                    </div>
+                    <div class="section-content">
+                        <div class="stats-grid stats-dramatic">
+                            <div class="stat-card">
+                                <span class="stat-number">5,000+</span>
+                                <div class="stat-label">Desteklenen Şirket</div>
+                            </div>
+                            <div class="stat-card">
+                                <span class="stat-number">+ $800 Milyar</span>
+                                <div class="stat-label">Toplam Değerleme</div>
+                            </div>
+                            <div class="stat-card">
+                                <span class="stat-number">2013</span>
+                                <div class="stat-label">Başlangıç Yılı</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Investor Advantages -->
+                <section class="glass-section animate-on-scroll">
+                    <div class="section-header">
+                        <h2 class="section-title">
+                            <span class="section-emoji">✨</span>
+                            Yatırımcı Avantajları
+                        </h2>
+                        <p class="section-subtitle">Neden dünya çapında tercih ediliyor?</p>
+                    </div>
+                    <div class="section-content">
+                        <div class="advantages-grid slide-up-reveal">
+                            <div class="advantage-card">
+                                <div class="advantage-icon">✓</div>
+                                <div class="advantage-text">Hızlı kapanış (1-2 hafta)</div>
+                            </div>
+                            <div class="advantage-card">
+                                <div class="advantage-icon">✓</div>
+                                <div class="advantage-text">Düşük hukuki maliyetler</div>
+                            </div>
+                            <div class="advantage-card">
+                                <div class="advantage-icon">✓</div>
+                                <div class="advantage-text">5 sayfalık standart belge</div>
+                            </div>
+                            <div class="advantage-card">
+                                <div class="advantage-icon">✓</div>
+                                <div class="advantage-text">Değerleme üst sınırı koruması</div>
+                            </div>
+                            <div class="advantage-card">
+                                <div class="advantage-icon">✓</div>
+                                <div class="advantage-text">Board karmaşası yok</div>
+                            </div>
+                            <div class="advantage-card">
+                                <div class="advantage-icon">✓</div>
+                                <div class="advantage-text">Şeffaflık ve basitlik</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Post-Money SAFE -->
+                <section class="glass-section post-money-section animate-on-scroll">
+                    <div class="section-header">
+                        <h2 class="section-title">
+                            Post-Money SAFE (2018+)
+                        </h2>
+                        <p class="section-subtitle">Gelişmiş versiyon ile daha net hesaplamalar</p>
+                    </div>
+                    <div class="section-content">
+                        <div class="post-money-grid">
+                            <div class="post-money-item">
+                                <div class="post-money-bullet"></div>
+                                <div class="post-money-text">SAFE'ler Company Capitalization'a dahil</div>
+                            </div>
+                            <div class="post-money-item">
+                                <div class="post-money-bullet"></div>
+                                <div class="post-money-text">Öngörülebilir sahiplik hesaplamaları</div>
+                            </div>
+                            <div class="post-money-item">
+                                <div class="post-money-bullet"></div>
+                                <div class="post-money-text">SAFE'ler birbirini seyreltemez</div>
+                            </div>
+                            <div class="post-money-item">
+                                <div class="post-money-bullet"></div>
+                                <div class="post-money-text"><strong>Basit Formula:</strong> Yatırım ÷ Post-Money Cap = Sahiplik %</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SAFE Types -->
+                <section class="glass-section animate-on-scroll">
+                    <div class="section-header">
+                        <h2 class="section-title">
+                            <span class="section-emoji">📋</span>
+                            4 Resmi SAFE Türü
+                        </h2>
+                        <p class="section-subtitle">İhtiyacınıza en uygun modeli seçin</p>
+                    </div>
+                    <div class="section-content">
+                        <div class="safe-types-grid flip-reveal">
+                            <div class="safe-type-card">
+                                <h3 class="safe-type-title">Valuation Cap Only</h3>
+                                <p class="safe-type-description">Sadece değerleme üst sınırı koruması</p>
+                            </div>
+                            <div class="safe-type-card">
+                                <h3 class="safe-type-title">Cap + Discount</h3>
+                                <p class="safe-type-description">Üst Sınır + İndirim çift koruması</p>
+                            </div>
+                            <div class="safe-type-card">
+                                <h3 class="safe-type-title">Discount Only</h3>
+                                <p class="safe-type-description">Sadece indirim avantajı</p>
+                            </div>
+                            <div class="safe-type-card">
+                                <h3 class="safe-type-title">MFN Only</h3>
+                                <p class="safe-type-description">Most Favored Nation hakkı</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <script>
+                // Performance optimizations for SAFE Nedir section
+                const SafePerformance = {
+                    // Cache DOM elements
+                    elements: {
+                        animatedElements: null,
+                        featureCards: null,
+                        floatingShapes: null,
+                        rotatingElement: null,
+                        targetRings: null,
+                        certificateContainer: null
+                    },
+
+                    // Debounce function for scroll events
+                    debounce(func, wait) {
+                        let timeout;
+                        return function executedFunction(...args) {
+                            const later = () => {
+                                clearTimeout(timeout);
+                                func(...args);
+                            };
+                            clearTimeout(timeout);
+                            timeout = setTimeout(later, wait);
+                        };
+                    },
+
+                    // Initialize cached elements
+                    init() {
+                        const section = document.getElementById('what-is-safe-section');
+                        if (!section) return;
+                        
+                        this.elements.animatedElements = section.querySelectorAll('.animate-on-scroll');
+                        this.elements.featureCards = section.querySelectorAll('.feature-card');
+                        this.elements.floatingShapes = section.querySelectorAll('.floating-shape');
+                        this.elements.rotatingElement = section.querySelector('.refresh-circle-feature');
+                        this.elements.targetRings = section.querySelectorAll('.target-ring');
+                        this.elements.certificateContainer = section.querySelector('.certificate-container-feature');
+                    }
+                };
+
+                // Enhanced Intersection Observer for impressive scroll animations
+                const observerOptions = {
+                    threshold: 0.2,
+                    rootMargin: '0px 0px -100px 0px'
+                };
+
+                // Optimized animations observer
+                const impressiveObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            // Use requestAnimationFrame for smooth animations
+                            requestAnimationFrame(() => {
+                                const target = entry.target;
+                                
+                                // Basic animate
+                                if (target.classList.contains('animate-on-scroll')) {
+                                    target.classList.add('animate');
+                                }
+                                
+                                // Optimized animation triggers with minimal delays
+                                const animationMap = [
+                                    { class: 'curtain-reveal', action: () => target.classList.add('opened'), delay: 150 },
+                                    { class: 'split-reveal', action: () => target.classList.add('revealed'), delay: 200 },
+                                    { class: 'quote-dramatic', action: () => target.classList.add('revealed'), delay: 100 }
+                                ];
+
+                                animationMap.forEach(({ class: className, action, delay }) => {
+                                    if (target.classList.contains(className)) {
+                                        setTimeout(action, delay);
+                                    }
+                                });
+
+                                // Handle nested elements efficiently
+                                const nestedSelectors = [
+                                    { selector: '.stats-dramatic', delay: 250 },
+                                    { selector: '.slide-up-reveal', delay: 150 },
+                                    { selector: '.flip-reveal', delay: 200 }
+                                ];
+
+                                nestedSelectors.forEach(({ selector, delay }) => {
+                                    const element = target.querySelector(selector);
+                                    if (element) {
+                                        setTimeout(() => element.classList.add('revealed'), delay);
+                                    }
+                                });
+                            });
+                            
+                            // Unobserve after animation to improve performance
+                            impressiveObserver.unobserve(entry.target);
+                        }
+                    });
+                }, observerOptions);
+
+                // Optimized parallax with requestAnimationFrame
+                let isScrolling = false;
+                const optimizedParallax = SafePerformance.debounce(() => {
+                    if (!isScrolling) {
+                        requestAnimationFrame(() => {
+                            const scrolled = window.pageYOffset;
+                            
+                            if (SafePerformance.elements.floatingShapes) {
+                                SafePerformance.elements.floatingShapes.forEach((shape, index) => {
+                                    const speed = 0.3 + (index * 0.1); // Reduced speed for better performance
+                                    shape.style.transform = `translate3d(0, ${scrolled * speed}px, 0)`;
+                                });
+                            }
+                            
+                            isScrolling = false;
+                        });
+                        isScrolling = true;
+                    }
+                }, 16); // ~60fps
+
+                // Initialize when DOM is ready
+                document.addEventListener('DOMContentLoaded', function() {
+                    // Initialize performance cache
+                    SafePerformance.init();
+
+                    // Observe all animated elements
+                    if (SafePerformance.elements.animatedElements) {
+                        SafePerformance.elements.animatedElements.forEach(el => {
+                            impressiveObserver.observe(el);
+                        });
+                    }
+
+                    // Optimized hover effects
+                    if (SafePerformance.elements.featureCards) {
+                        SafePerformance.elements.featureCards.forEach(card => {
+                            card.addEventListener('mouseenter', function() {
+                                this.style.transform = 'translateY(-8px)';
+                            }, { passive: true });
+                            
+                            card.addEventListener('mouseleave', function() {
+                                this.style.transform = 'translateY(0)';
+                            }, { passive: true });
+                        });
+                    }
+
+                    // Ensure core animations are running with GPU acceleration
+                    if (SafePerformance.elements.rotatingElement) {
+                        SafePerformance.elements.rotatingElement.style.animation = 'rotate 3s linear infinite';
+                    }
+                    
+                    if (SafePerformance.elements.targetRings && SafePerformance.elements.targetRings.length > 0) {
+                        SafePerformance.elements.targetRings.forEach((ring, index) => {
+                            ring.style.animation = `pulse-ring 2s ease-in-out infinite ${index * 0.5}s`;
+                        });
+                    }
+                    
+                    if (SafePerformance.elements.certificateContainer) {
+                        SafePerformance.elements.certificateContainer.style.animation = 'certificate-glow 3s ease-in-out infinite';
+                    }
+                });
+
+                // Optimized scroll listener
+                window.addEventListener('scroll', optimizedParallax, { passive: true });
+
+                // Performance monitoring (optional - can be removed in production)
+                if (typeof performance !== 'undefined' && performance.mark) {
+                    performance.mark('safe-page-interactive');
+                }
+            </script>
+        </div>
+
+        <!-- SAFE Types Section -->
+        <div class="content-section" id="safe-types-section" style="display: none;">
+            <div style="margin-bottom: 50px;">
+                <h2 style="text-align: center; font-size: 2.5rem; color: #2c5282; margin-bottom: 30px; background: linear-gradient(135deg, #4dd0e1, #26d0ce); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">📊 Y Combinator'ın Resmi 4 SAFE Türü</h2>
+                
+                <div class="safe-grid">
+                    <!-- SAFE 1: Değerleme Üst Sınırı, İndirim Yok (Standard) -->
+                    <div class="safe-card">
+                        <div class="safe-title">1. Standard SAFE: Post-Money Değerleme Üst Sınırı (En Yaygın)</div>
+                        
+                        <div class="safe-section">
+                            <h4>Y Combinator Resmi Tanımı:</h4>
+                            <div style="margin-left: 20px;">
+                                <strong>Post-Money Valuation Cap:</strong> Tüm SAFE yatırımları SONRASI şirket değeri. Series A parasını içermez!
+                                <br><br>
+                                <strong>Müzakere Süreci:</strong> Kurucular ve yatırımcılar arasında anlaşılır - bağımsız şirket hesaplamaz.
+                                <br><br>
+                                <strong>Pre-seed için tipik:</strong> $2M - $10M post-money valuation cap aralığı
+                                <br><br>
+                                <strong>Formula:</strong> Safe Price = Post-Money Cap ÷ Company Capitalization
+                            </div>
+                        </div>
+
+                        <div class="safe-section">
+                            <h4>Y Combinator Örneği:</h4>
+                            <div class="example-box">
+                                <div style="margin-bottom: 15px;">
+                                    ✨ <strong>SAFE:</strong> $200K yatırım, $4M post-money cap
+                                    <br><br>
+                                    ✨ <strong>Company Capitalization:</strong> 11.76M hisse (tüm hisseler + opsiyonlar + SAFE'ler + pools dahil)
+                                    <br><br>
+                                    ✨ <strong>Safe Price:</strong> $4M ÷ 11.76M = $0.34 per share
+                                    <br><br>
+                                    ✨ <strong>SAFE Hisseleri:</strong> $200K ÷ $0.34 = 588,235 hisse ≈ %5 sahiplik
+                                </div>
+                                
+                                <div style="background: #ffffff; padding: 15px; border-radius: 10px; margin-top: 15px;">
+                                    <strong>🔥 Kritik Avantaj:</strong>
+                                    <br><br>
+                                    Series A $15M pre-money'de olursa:<br>
+                                    ✅ <strong>SAFE yatırımcısı:</strong> %5 sahiplik (önceden kilitli)<br>
+                                    ✅ <strong>Series A yatırımcısı:</strong> Daha az sahiplik (yüksek değerleme)<br>
+                                    ✅ <strong>Early bird advantage!</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SAFE 2: İndirim, Değerleme Üst Sınırı Yok -->
+                    <div class="safe-card">
+                        <div class="safe-title">2. SAFE: İndirim, Post-Money Değerleme Üst Sınırı Yok</div>
+                        
+                        <div class="safe-section">
+                            <h4>Y Combinator Resmi Tanımı:</h4>
+                            <ul class="safe-list">
+                                <li>Yatırımcı yeni yatırımcılara kıyasla <strong>Discount Rate</strong> ile indirimli hisse alır</li>
+                                <li>Değerleme üzerinde üst sınır yok - company upside'dan tam faydalanır</li>
+                                <li>Discount Rate = 100 eksi indirim yüzdesi (20% indirim = 80% Discount Rate)</li>
+                                <li>Tipik indirimler %10-30 arasında</li>
+                            </ul>
+                        </div>
+
+                        <div class="safe-section">
+                            <h4>Y Combinator Formülü:</h4>
+                            <div class="example-box">
+                                <strong>Equity Financing'de:</strong>
+                                <ul class="safe-list">
+                                    <li>Standard Preferred Stock fiyatı: $1.00</li>
+                                    <li>%20 Discount Rate = %20 indirim</li>
+                                    <li>SAFE Discount Price: $1.00 × 80% = $0.80</li>
+                                    <li>$100K SAFE = 125,000 Safe Preferred Stock hissesi</li>
+                                </ul>
+                                <div class="calculation">
+                                    Liquidity Event'te: Cash-Out Amount vs Conversion Amount'ın büyüğü
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="when-to-use">
+                            <strong>Ne zaman kullanılır:</strong> Yatırımcılar şirketin büyük upside potansiyeline inandığında ve erken yatırım indirimi alırken yüksek değerlemelerden faydalanmak istediklerinde.
+                        </div>
+                    </div>
+
+                    <!-- SAFE 3: MFN -->
+                    <div class="safe-card">
+                        <div class="safe-title">3. SAFE: MFN (Most Favored Nation) - Değerleme Üst Sınırı ve İndirim Yok</div>
+                        
+                        <div class="safe-section">
+                            <h4>Y Combinator Resmi Tanımı:</h4>
+                            <ul class="safe-list">
+                                <li><strong>Hiçbir Post-Money Valuation Cap ve Discount yok</strong></li>
+                                <li>Sonraki Equity Financing ile aynı fiyattan dönüşüm</li>
+                                <li><strong>"MFN Amendment Provision":</strong> Şirket daha sonra daha iyi şartlı SAFE çıkarırsa otomatik güncelleme</li>
+                                <li>Sadece <strong>bir kez</strong> güncelleme hakkı - "cherry-picking" yok</li>
+                            </ul>
+                        </div>
+
+                        <div class="safe-section">
+                            <h4>Y Combinator Örneği:</h4>
+                            <div class="example-box">
+                                <strong>MFN Süreci:</strong>
+                                <ul class="safe-list">
+                                    <li>Yatırımcı MFN ile $100K yatırır</li>
+                                    <li>Şirket sonra $4M cap'li SAFE çıkarır</li>
+                                    <li>MFN holder 10 gün içinde kararını verir</li>
+                                    <li>Kabul ederse: Tamamen aynı şartlar ($4M cap)</li>
+                                    <li>Ret ederse: Series A fiyatından dönüşüm</li>
+                                </ul>
+                                <div style="background: #fff3cd; padding: 10px; border-radius: 5px; margin-top: 10px;">
+                                    <strong>⚠️ Dikkat:</strong> Amendment sonrası MFN hakkı kalkar!
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="when-to-use">
+                            <strong>Ne zaman kullanılır:</strong> Çok erken yatırımcılar, bridge rounds, veya kurucular minimal dilution isterken yatırımcılar gelecekte koruma istediğinde.
+                        </div>
+                    </div>
+
+                    <!-- SAFE 4: Cap + Discount (Artık Kullanılmıyor) -->
+                    <div class="safe-card" style="border: 2px dashed #e74c3c; opacity: 0.7;">
+                        <div class="safe-title" style="color: #e74c3c;">4. ❌ SAFE: Post-Money Cap + Discount (V1.1'de Kaldırıldı)</div>
+                        
+                        <div class="safe-section">
+                            <h4 style="color: #e74c3c;">Y Combinator Açıklaması:</h4>
+                            <div style="background: #fff5f5; padding: 15px; border-radius: 10px; border-left: 4px solid #e74c3c;">
+                                <ul class="safe-list">
+                                    <li><strong>Ağustos 2021'de resmi olarak kaldırıldı</strong></li>
+                                    <li>Y Combinator: "Founders için cap only veya discount only tercih ediliyordu"</li>
+                                    <li>Kombination versiyonu tercih edilmiyordu</li>
+                                    <li>Karmaşıklık yaratıyordu - <strong>artık standart değil</strong></li>
+                                </ul>
+                                
+                                <div style="margin-top: 15px; padding: 10px; background: #fee; border-radius: 5px;">
+                                    <strong>🚫 Sonuç:</strong> Y Combinator artık sadece 3 SAFE türü öneriyor
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pro Rata Side Letter (İsteğe Bağlı Ek) -->
+                    <div class="safe-card" style="border: 2px dashed #4dd0e1; opacity: 0.8;">
+                        <div class="safe-title" style="color: #2c5282;">📋 İsteğe Bağlı Ek: Pro Rata Side Letter</div>
+                        
+                        <div class="safe-section">
+                            <h4 style="color: #2c5282;">Y Combinator Resmi Tanımı:</h4>
+                            <ul class="safe-list">
+                                <li>SAFE'e ek olarak <strong>ayrı belge</strong> - SAFE türü değil</li>
+                                <li>Equity Financing'deki (Series A) pro rata hakkı</li>
+                                <li>Sahiplik yüzdesini koruma hakkı</li>
+                                <li>Sadece Post-Money Valuation Cap'li SAFE'lerle kullanılabilir</li>
+                                <li>Company'nin takdirine bağlı - universal standart yok</li>
+                            </ul>
+                        </div>
+
+                        <div class="safe-section">
+                            <h4 style="color: #2c5282;">Y Combinator Örneği:</h4>
+                            <div class="example-box">
+                                <strong>Pro Rata Calculation:</strong>
+                                <ul class="safe-list">
+                                    <li>$800K SAFE, $8M post-money cap = %10 sahiplik</li>
+                                    <li>Series A: $5M round</li>
+                                    <li>Pro rata hakkı: $5M × %10 = $500K'ya kadar yatırım hakkı</li>
+                                    <li>%10 sahipliği koruma imkanı</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="when-to-use">
+                            <strong>Y Combinator Tavsiyesi:</strong> Minimum investment thresholds, selective allocation, veya projected Series A dilution targets ile kullanın.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Startup Terms Section -->
+        <div class="content-section" id="startup-terms-section" style="display: none;">
+            <div class="key-terms-section">
+                <h2>📚 Silikon Vadisi Startup Terimleri</h2>
+                <div class="terms-grid">
+                    <div class="term-card">
+                        <div class="term-title">Post-Money vs Pre-Money: Kritik Fark</div>
+                        <div class="term-definition">
+                            ✨ <strong>Pre-Money (Eski SAFE, 2013-2018):</strong><br>
+                            • Yatırım ÖNCESİ şirket değeri<br>
+                            • SAFE'ler birbirini seyrelir<br>
+                            • Sahiplik belirsiz (Series A opsiyon havuzu bilinmiyor)<br>
+                            • Karmaşık hesaplamalar
+                            <br><br>
+                            ✨ <strong>Post-Money (Güncel SAFE, 2018'den beri):</strong><br>
+                            • Tüm SAFE yatırımları SONRASI şirket değeri<br>
+                            • SAFE'ler birbirini seyreltemez<br>
+                            • Sahiplik öngörülebilir<br>
+                            • Basit hesaplama: Yatırım ÷ Post-Money Cap = Sahiplik %
+                            <br><br>
+                            ✨ <strong>Önemli:</strong> Post-money cap, Series A parasını içermez!
+                        </div>
+                        <div class="term-example">
+                            <strong>Y Combinator 2018 Değişimi:</strong> "SAFE'ler artık bağımsız fon turları olarak görülüyor, Series A'ya köprü değil."
+                        </div>
+                    </div>
+
+                    <div class="term-card">
+                        <div class="term-title">A Serisi Ön-Para Değerlemesi</div>
+                        <div class="term-definition">
+                            A Serisi turunda yeni para gelmeden <strong>önceki</strong> şirketin üzerinde anlaşılan değeri. 
+                            Bu, yatırımcılar ve kurucuların "adil piyasa değeri" olarak müzakere ettiği değerdir.
+                        </div>
+                        <div class="term-example">
+                            <strong>Örnek:</strong> Şirket 8M$ ön-para değerlemesi + 2M$ yatırım = 10M$ sonrası-para değerlemesi.
+                            Yatırımcılar 2M$ ÷ 10M$ = şirketin %20'sine sahip olur.
+                        </div>
+                    </div>
+
+                    <div class="term-card">
+                        <div class="term-title">SAFE Dönüşümü</div>
+                        <div class="term-definition">
+                            ✨ SAFE anlaşmanızın <strong>gerçek şirket hisselerine dönüştüğü</strong> an, 
+                            genellikle fiyatlandırılmış hisse senedi turu (A Serisi gibi) sırasında olur.
+                        </div>
+                        <div class="term-example">
+                            <strong>Örnek:</strong> 100K$ SAFE'iniz, 2$/hisse fiyatından 50.000 hisseye dönüşür, 
+                            size şirkette belirli bir sahiplik yüzdesi verir.
+                        </div>
+                    </div>
+
+                    <div class="term-card">
+                        <div class="term-title">İndirim Oranı</div>
+                        <div class="term-definition">
+                            ✨ SAFE sahiplerinin fiyatlandırılmış turdaki yeni yatırımcılara kıyasla 
+                            hisse başına aldığı <strong>yüzde indirimi</strong>.
+                        </div>
+                        <div class="term-example">
+                            <strong>Örnek:</strong> %20 indirim, yeni yatırımcılar 1$/hisse öderse, 
+                            siz sadece 0.80$/hisse ödersiniz (aynı para için %25 daha fazla hisse alırsınız).
+                        </div>
+                    </div>
+
+                    <div class="term-card">
+                        <div class="term-title">Seyreltme (Dilution)</div>
+                        <div class="term-definition">
+                            Şirket diğer yatırımcılara veya çalışanlara yeni hisseler çıkardığında 
+                            <strong>sahiplik yüzdenizin azalması</strong>.
+                        </div>
+                        <div class="term-example">
+                            <strong>Örnek:</strong> 1M hisseden %10'una sahipsiniz. Şirket 1M daha hisse çıkarır. 
+                            Hala 100K hisseniz var ama şimdi 2M toplam hisseden sadece %5'i.
+                        </div>
+                    </div>
+
+                    <div class="term-card">
+                        <div class="term-title">Company Capitalization</div>
+                        <div class="term-definition">
+                            <strong>Company Capitalization:</strong> Şirketin toplam menkul kıymet sayısı - tüm hisseler, opsiyonlar ve SAFE'ler dahil.
+                            <br><br>
+                            <strong>Y Combinator Formülü:</strong><br>
+                            Company Capitalization = Hisseler + Opsiyonlar + Promised Options + Unissued Pool + Tüm SAFE'ler
+                        </div>
+                        <div class="term-example">
+                            <strong>Örnek:</strong> 9M hisse + 1M opsiyon + 1.5M SAFE = 11.5M Company Capitalization
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Funding Stages Section -->
+        <div class="content-section" id="funding-stages-section" style="display: none;">
+            <div class="key-terms-section">
+                <h2>🚀 Startup Fonlama Aşamaları</h2>
+                <div class="terms-grid">
+                    <div class="term-card">
+                        <div class="term-title">Startup Fonlama Aşamaları (ABD Ekosistemi)</div>
+                        <div class="term-definition">
+                            ✨ ABD'deki startup'lar büyüdükçe farklı aşamalarda fon toplar. Her aşama farklı risk seviyeleri ve yatırımcı tipleri içerir.
+                            <br><br>
+                            <div style="background: linear-gradient(135deg, #f0fdfa 0%, #e6fffa 100%); padding: 20px; border-radius: 15px; border-left: 4px solid #4dd0e1; margin: 15px 0;">
+                                <h4 style="color: #2c5282; margin-bottom: 15px; font-size: 1.2rem;">📊 Fonlama Aşamaları:</h4>
+                                
+                                <div style="display: grid; gap: 12px;">
+                                    <div style="display: flex; align-items: center; padding: 10px; background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(77, 208, 225, 0.1);">
+                                        <span style="background: #4dd0e1; color: white; width: 25px; height: 25px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-right: 12px; font-size: 0.9rem;">1</span>
+                                        <span style="flex: 1;"><strong>Tohum Öncesi (Pre-Seed)</strong></span>
+                                        <span style="background: #e6fffa; padding: 4px 12px; border-radius: 15px; color: #2c5282; font-weight: bold;">$500K - $1M</span>
+                                    </div>
+                                    
+                                    <div style="display: flex; align-items: center; padding: 10px; background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(77, 208, 225, 0.1);">
+                                        <span style="background: #26d0ce; color: white; width: 25px; height: 25px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-right: 12px; font-size: 0.9rem;">2</span>
+                                        <span style="flex: 1;"><strong>Tohum (Seed)</strong></span>
+                                        <span style="background: #e6fffa; padding: 4px 12px; border-radius: 15px; color: #2c5282; font-weight: bold;">$1M - $5M</span>
+                                    </div>
+                                    
+                                    <div style="display: flex; align-items: center; padding: 10px; background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(77, 208, 225, 0.1); border-left: 3px solid #f39c12;">
+                                        <span style="background: #f39c12; color: white; width: 25px; height: 25px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-right: 12px; font-size: 0.8rem;">2+</span>
+                                        <span style="flex: 1;"><strong>Series A Fonu</strong> <em>(2. Aşama devamı)</em></span>
+                                        <span style="background: #fef3e2; padding: 4px 12px; border-radius: 15px; color: #f39c12; font-weight: bold;">$5M - $15M</span>
+                                    </div>
+                                    
+                                    <div style="display: flex; align-items: center; padding: 10px; background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(77, 208, 225, 0.1);">
+                                        <span style="background: #48bb78; color: white; width: 25px; height: 25px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-right: 12px; font-size: 0.9rem;">3</span>
+                                        <span style="flex: 1;"><strong>Lansman (Series B Fonu)</strong></span>
+                                        <span style="background: #f0fff4; padding: 4px 12px; border-radius: 15px; color: #48bb78; font-weight: bold;">$15M - $50M</span>
+                                    </div>
+                                    
+                                    <div style="display: flex; align-items: center; padding: 10px; background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(77, 208, 225, 0.1);">
+                                        <span style="background: #9f7aea; color: white; width: 25px; height: 25px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-right: 12px; font-size: 0.9rem;">4</span>
+                                        <span style="flex: 1;"><strong>Series C+ Fonu ve Çıkış Stratejileri</strong></span>
+                                        <span style="background: #faf5ff; padding: 4px 12px; border-radius: 15px; color: #9f7aea; font-weight: bold;">$25M+</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="term-card">
+                        <div class="term-title">1. Aşama (Tohum Öncesi, Pre-Seed) - $500K - $1M</div>
+                        <div class="term-definition">
+                            ✨ <strong>En erken aşama:</strong> Fikir var, bilimsel/teknik uzmanlık mevcut. Şirket kurulacak ve AMD risk tespiti için AI algoritması ile 240 hasta örneğiyle çalışması yapılacak. FDA pre-submission meeting yapılacak.
+                            <br><br>
+                            ✨ <strong>Biotech/MedTech için tipik:</strong> Proof-of-concept çalışmaları, patent başvuruları, ilk partnerships kurma.
+                            <br><br>
+                            ✨ <strong>Süre:</strong> 9-24 ay | <strong>Araç:</strong> SAFE veya convertible note
+                        </div>
+                        <div class="term-example">
+                            <strong>Hedef:</strong> Teknik geçerlilik kanıtlama ve sonraki aşamalara (Series ve Seed) hazırlık.
+                        </div>
+                    </div>
+
+                    <div class="term-card">
+                        <div class="term-title">2. Aşama (Tohum, Seed) - $1M-$5M</div>
+                        <div class="term-definition">
+                            240 kişinin analizleri protokollere göre tamamlanmış olacak, Ekibin büyük bir kısmı belirlenmiş olacak.
+                            <br><br>
+                            FDA ile ilgili bütün aşamalar belirlenecek ve FDA onay başvurusu yapılacak.
+                            <br><br>
+                            Hastaneler, aile hekimleri, devlet sigortası (Medicare, Medicaid) ve özel sigorta şirketleri ilk partnerships kurulacak.
+                        </div>
+                        <div class="term-example">
+                            <strong>Hedef:</strong> FDA breakthrough device designation veya 510(k) submission.
+                        </div>
+                    </div>
+
+                    <div class="term-card">
+                        <div class="term-title">2. Aşama devamı (Series A Fonu) - $5M-$15M</div>
+                        <div class="term-definition">
+                            FDA onay sürecinde veya markete giriş aşamasında. Professional board oluşumu.
+                            <br><br>
+                            <strong>Biotech için:</strong> FDA onayı bu aşamada tamamlanacak.
+                            <br><br>
+                            <strong>Yatırımcılar:</strong> Tier-1 VCs (Andreessen Horowitz, NEA, etc.), strategic corporates
+                        </div>
+                        <div class="term-example">
+                            <strong>Hedef:</strong><br>
+                            Markete giriş için planlar yapılacak ve satış ekibi kurulacak.<br>
+                            Daha fazla hastaneler, aile hekimleri, devlet sigortası (Medicare, Medicaid) ve özel sigorta şirketleri partnerships kurulacak.
+                        </div>
+                    </div>
+
+                    <div class="term-card">
+                        <div class="term-title">3. Aşama (Lansman, Series B) - $10M - $50M</div>
+                        <div class="term-definition">
+                            Lansman yapılacak. Ürün markete çıkacak. Başlangıç gelirleri elde edilecek.
+                            <br><br>
+                            Şimdi market penetration, coğrafi genişleme (Avrupa, Asya), ürün line extension'a odaklanır.
+                            <br><br>
+                            <strong>Biotech için:</strong> Ticarileştirilmiş ürün, çoklu endikasyonlar, uluslararası genişleme.
+                            <br><br>
+                            <strong>Yatırımcılar:</strong> Büyüme sermayesi şirketleri, stratejik ilaç/cihaz şirketleri
+                            <br><br>
+                            <strong>ARR Açıklaması:</strong> Annual Recurring Revenue (Yıllık Tekrarlayan Gelir) - şirketin yıllık bazda düzenli olarak elde ettiği gelir
+                        </div>
+                        <div class="term-example">
+                            <strong>Örnek:</strong><br>
+                            80+ kişilik takım, $5M ARR, 100+ hastane müşterisi, EU CE mark alınmış.<br>
+                            $25M Series B ile uluslararası genişleme ve Ar-Ge.<br>
+                            <br>
+                            <strong>Hedef:</strong><br>
+                            $50M+ ARR, dominant pazar pozisyonu, satın alma hazırlığı.
+                        </div>
+                    </div>
+
+                    <div class="term-card">
+                        <div class="term-title">4. Aşama Series C+ Fonu ve Çıkış Stratejileri</div>
+                        <div class="term-definition">
+                            ✨ <strong>Olgunluk Aşaması:</strong> Şirket artık köklü bir işletme haline gelmiştir. Birden fazla ürünü vardır ve küresel varlık gösterir. 
+                            <br><br>
+                            ✨ Bu aşamada şirketler genellikle satın alma (büyük ilaç/cihaz şirketleri tarafından) veya halka arz (IPO) için hazırlanır.
+                            <br><br>
+                            ✨ <strong>Çıkış Seçenekleri:</strong><br>
+                            • Stratejik satın alma: $100M-$1B+ (büyük şirketlere satış)<br>
+                            • Halka arz (IPO): NASDAQ'da işlem görme<br>
+                            • Birleşme: Benzer şirketlerle birleşme
+                            <br><br>
+                            ✨ <strong>Başarı Örnekleri:</strong><br>
+                            • Exact Sciences (kanser tarama, halka arz)<br>
+                            • Guardant Health (sıvı biyopsi, halka arz)<br>
+                            • Flatiron Health (onkoloji AI, Roche tarafından $1.9B'a satın alındı)
+                            <br><br>
+
+                        </div>
+                        <div class="term-example">
+                            <strong>Başarı örnekleri:</strong> Exact Sciences (kanser tarama, halka arz), Guardant Health (sıvı biyopsi, halka arz), Flatiron Health (onkoloji AI, Roche tarafından $1.9B'a satın alındı).
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 409A Valuation Section -->
+        <div class="content-section" id="valuation-409a-section" style="display: none;">
+            <div class="key-terms-section">
+                <h2>💰 409A Değerlemesi</h2>
+                <div class="terms-grid">
+                    <div class="term-card">
+                        <div class="term-title">409A Değerlemesi Nedir?</div>
+                        <div class="term-definition">
+                            ✨ **409A değerlemesi**, özel şirketlerin hisse senedinin (common stock) adil piyasa değerini (fair market value) belirlemek için bağımsız kuruluşlar tarafından yapılan bir değerlendirmedir.
+                            <br><br>
+                            ✨ <strong>Amaç:</strong> Çalışan hisse senedi opsiyonları için "kullanım fiyatı" (strike price) belirlemek
+                            <br><br>
+                            ✨ <strong>IRS Uyumu:</strong> Amerika'da hisse bazlı tazminatın uygun şekilde değerlenmesi ve vergilendirilmesi için gereklidir (İç Gelir Kanunu 409A Bölümü)
+                            <br><br>
+                            ✨ <strong>"Safe Harbor" Koruma:</strong> IRS, değerlemenin makul olduğunu varsayar (aksi kanıtlanana kadar)
+                        </div>
+                        <div class="term-example">
+                            <strong>409A vs Tam İş Değerlemesi:</strong><br>
+                            • 409A: Çalışan opsiyon uyumu için → $1K-25K<br>
+                            • Tam değerleme: M&A/yasal işlemler için → $30K-50K
+                        </div>
+                    </div>
+
+                    <div class="term-card">
+                        <div class="term-title">409A Değerlemesi Ne Zaman Gerekli?</div>
+                        <div class="term-definition">
+                            ✨ <strong>1. İlk Çalışan Hisse Opsiyonlarından Önce</strong><br>
+                            Herhangi bir çalışana hisse opsiyonu vermeden önce 409A gereklidir
+                            <br><br>
+                            ✨ <strong>2. Büyük Olaylardan Sonra (Tetikleyici Olaylar)</strong><br>
+                            • Fon turları sonrası (en yaygın tetikleyici)<br>
+                            • Büyük kilometre taşları veya iş modeli değişiklikleri<br>
+                            • IPO, M&A veya tasfiye olayları öncesi
+                            <br><br>
+                            ✨ <strong>3. Yıllık Güncellemeler</strong><br>
+                            409A değerlemeleri maksimum 12 ay geçerlidir - yıllık güncelleme zorunludur
+                        </div>
+                        <div class="term-example">
+                            <strong>Startup Zaman Çizelgesi Örneği:</strong><br>
+                            • Yıl 0: Pre-seed SAFE (409A henüz gerekli değil)<br>
+                            • Yıl 0.5: İlk çalışan işe alımı → 409A gerekli ($5K)<br>
+                            • Yıl 1: Seed turu sonrası → Yeni 409A ($7K)<br>
+                            • Yıl 2: Yıllık güncelleme → Yeni 409A ($10K)<br>
+                            • Yıl 3: Profesyonel iş değerlemesi ($40K)
+                        </div>
+                    </div>
+
+                    <div class="term-card">
+                        <div class="term-title">409A Değerleme Maliyeti ve Sağlayıcıları</div>
+                        <div class="term-definition">
+                            ✨ <strong>Maliyet Aralığı:</strong> $1,000 - $25,000
+                            <br><br>
+                            ✨ <strong>Çoğu startup için:</strong> $3,000 - $10,000<br>
+                            ✨ <strong>Erken aşama:</strong> Alt seviye ($1K-5K)<br>
+                            ✨ <strong>İleri aşama:</strong> Üst seviye ($10K-25K)
+                            <br><br>
+                            ✨ <strong>Popüler Sağlayıcılar:</strong><br>
+                            • Carta (startup'lar için en popüler)<br>
+                            • Eqvista ($990'dan başlayan)<br>
+                            • Shareworks, Pulley<br>
+                            • Big 4 muhasebe firmaları (daha pahalı ama yüksek güvenilirlik)
+                            <br><br>
+                            ✨ <strong>Gerekli Sertifikalar:</strong> Certified Valuation Analyst (CVA) veya Accredited Senior Appraiser (ASA)
+                        </div>
+                        <div class="term-example">
+                            <strong>Maliyet Etkileyen Faktörler:</strong><br>
+                            • Şirket karmaşıklığı ve büyüklüğü<br>
+                            • Sektör (biotech daha karmaşık)<br>
+                            • Veri analizi gereksinimleri<br>
+                            • Sağlayıcı seçimi
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Interactive Calculator Section -->
+        <div class="content-section" id="calculator-section" style="display: none;">
+        <div class="interactive-demo section" id="calculator" style="margin-top: 120px;">
+            <!-- Detailed Educational Content -->
+            <div class="formula-explanation">
+                <h4 style="color: #0f766e; margin-bottom: 15px; text-align: center; font-size: 1.5rem;">📚 Y Combinator SAFE Formüllerinin Detaylı Açıklaması</h4>
+                
+                <!-- Safe Price Açıklaması -->
+                <div style="background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(240,253,250,0.95)); padding: 30px; border-radius: 20px; border: 2px solid rgba(103, 232, 249, 0.3); margin-bottom: 30px; position: relative; overflow: hidden;">
+                    <div style="position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #e74c3c, #ff6b6b);"></div>
+                    
+                    <h3 style="color: #e74c3c; margin-bottom: 20px; font-size: 1.8rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                        💎 Safe Price Formülü
+                    </h3>
+                    
+                    <div class="formula-box" style="margin: 25px 0; font-size: 1.2rem;">
+                        Safe Price = Post-Money Valuation Cap ÷ Company Capitalization
+                    </div>
+                    
+                    <div style="display: grid; gap: 20px; margin-top: 25px;">
+                        <div style="background: rgba(255,255,255,0.8); padding: 20px; border-radius: 15px; border-left: 4px solid #06b6d4;">
+                            <h4 style="color: #0f766e; font-size: 1.3rem; margin-bottom: 10px; font-weight: 600;">📋 SAFE Price Açıklaması</h4>
+                            <p style="color: #0f766e; font-size: 1rem; line-height: 1.6;">Her bir SAFE hissesinin teorik fiyatına SAFE Price denir.</p>
+                        </div>
+                        
+                        <div style="background: rgba(255,255,255,0.8); padding: 20px; border-radius: 15px; border-left: 4px solid #14b8a6;">
+                            <h4 style="color: #0f766e; font-size: 1.3rem; margin-bottom: 10px; font-weight: 600;">💰 Post-money cap nedir</h4>
+                            <p style="color: #0f766e; font-size: 1rem; line-height: 1.6;">SAFE'lerin Hisse Senedine dönüşeceği zaman şirketin değerlemesidir. "Y Combinator" belgesinde verilen örnekte, startup şirketi 5 milyon dolar post-money cap değerlemesindedir.</p>
+                        </div>
+                        
+                        <div style="background: rgba(255,255,255,0.8); padding: 20px; border-radius: 15px; border-left: 4px solid #22d3ee;">
+                            <h4 style="color: #0f766e; font-size: 1.3rem; margin-bottom: 10px; font-weight: 600;">🏢 Company Capitalization nedir</h4>
+                            <p style="color: #0f766e; font-size: 1rem; line-height: 1.6;">Toplam Hisse Miktarı, bu şirket örneğinde 12.5 milyon hissedir. Bu miktar Y Combinator belgesinin örneğidir.</p>
+                        </div>
+                        
+                        <div style="background: linear-gradient(135deg, #e6fffa, #f0fdfa); padding: 25px; border-radius: 15px; border: 2px solid #06b6d4;">
+                            <h4 style="color: #0f766e; font-size: 1.4rem; margin-bottom: 15px; font-weight: 700;">🧮 Y Combinator bunu şöyle hesaplıyor</h4>
+                            <p style="color: #0f766e; font-size: 1.1rem; line-height: 1.7; margin-bottom: 15px;">
+                                Startup şirketi'nin <strong>5 milyon dolar post-money cap</strong> değerini <strong>12.5 milyon olan toplam hisse miktarına</strong> böler. Bu şekilde her bir SAFE'in hissesinin fiyatını bulur.
+                            </p>
+                            <p style="color: #0f766e; font-size: 1.1rem; line-height: 1.7;">
+                                Bu fiyat, SAFE'inizin Equity Financing sırasında kaç hisseye dönüşeceğini belirler.
+                            </p>
+                        </div>
+                        
+                        <div style="background: linear-gradient(135deg, #f0f9ff, #e0f2fe); padding: 25px; border-radius: 15px; border: 2px solid #0ea5e9;">
+                            <h4 style="color: #0369a1; font-size: 1.4rem; margin-bottom: 15px; font-weight: 700;">📊 Örnek Hesaplama</h4>
+                            <div style="background: rgba(255,255,255,0.9); padding: 20px; border-radius: 12px; margin: 15px 0;">
+                                <p style="color: #0369a1; font-size: 1.2rem; font-weight: 600; text-align: center;">
+                                    $5M post-money cap ÷ 12.5M Company Capitalization = $0.40 Safe Price
+                                </p>
+                            </div>
+                            <p style="color: #0369a1; font-size: 1.1rem; line-height: 1.7;">
+                                <strong>Açıklama:</strong> 5 milyon dolar post-money cap değerlemesinde olan firmanın 12.5 milyon hissesi vardır. Şirketin her bir hissesinin fiyatı 0.40 $
+                            </p>
+                        </div>
+                        
+                        <div style="background: linear-gradient(135deg, #fff3cd, #fef3c7); padding: 20px; border-radius: 15px; border: 2px solid #f59e0b; border-left: 6px solid #f59e0b;">
+                            <h4 style="color: #92400e; font-size: 1.3rem; margin-bottom: 10px; font-weight: 700;">⚠️ Önemli Not</h4>
+                            <p style="color: #92400e; font-size: 1rem; line-height: 1.6;">
+                                Bu fiyat (0.40 $) Series A öncesinde belirlenir. Series A hisse fiyatından farklı olabilir.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Company Capitalization Açıklaması -->
+                <div style="background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(255,251,235,0.95)); padding: 30px; border-radius: 20px; border: 2px solid rgba(245, 158, 11, 0.3); margin-bottom: 30px; position: relative; overflow: hidden;">
+                    <div style="position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #f39c12, #fbbf24);"></div>
+                    
+                    <h3 style="color: #f39c12; margin-bottom: 20px; font-size: 1.8rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                        🏢 Company Capitalization (Y Combinator'ın Resmi Tanımı)
+                    </h3>
+                    
+                    <div class="formula-box" style="margin: 25px 0; font-size: 1.2rem;">
+                        Company Capitalization = Capital Stock + Converting Securities + Options + Unissued Pool
+                    </div>
+                    
+                    <div style="background: linear-gradient(135deg, #fef3c7, #fde68a); padding: 25px; border-radius: 15px; border: 2px solid #f59e0b; margin: 25px 0;">
+                        <h4 style="color: #92400e; font-size: 1.4rem; margin-bottom: 15px; font-weight: 700;">📋 Y Combinator'ın Detaylı Açıklaması</h4>
+                    </div>
+                    
+                    <div style="display: grid; gap: 20px; margin-top: 25px;">
+                        <div style="background: rgba(255,255,255,0.8); padding: 20px; border-radius: 15px; border-left: 4px solid #06b6d4;">
+                            <h4 style="color: #0f766e; font-size: 1.3rem; margin-bottom: 10px; font-weight: 600;">1️⃣ Capital Stock</h4>
+                            <p style="color: #0f766e; font-size: 1rem; line-height: 1.6;">Şirketin çıkardığı tüm adi hisseler (common stock) ve imtiyazlı hisseler (preferred stock)</p>
+                        </div>
+                        
+                        <div style="background: rgba(255,255,255,0.8); padding: 20px; border-radius: 15px; border-left: 4px solid #14b8a6;">
+                            <h4 style="color: #0f766e; font-size: 1.3rem; margin-bottom: 10px; font-weight: 600;">2️⃣ Converting Securities</h4>
+                            <p style="color: #0f766e; font-size: 1rem; line-height: 1.6;">SAFE'ler, convertible notes ve diğer dönüştürülebilir menkul kıymetler dahil</p>
+                        </div>
+                        
+                        <div style="background: rgba(255,255,255,0.8); padding: 20px; border-radius: 15px; border-left: 4px solid #22d3ee;">
+                            <h4 style="color: #0f766e; font-size: 1.3rem; margin-bottom: 10px; font-weight: 600;">3️⃣ Options</h4>
+                            <p style="color: #0f766e; font-size: 1rem; line-height: 1.6;">Çalışanlara verilmiş (issued & outstanding) ve vaat edilmiş (promised) hisse opsiyonları</p>
+                        </div>
+                        
+                        <div style="background: rgba(255,255,255,0.8); padding: 20px; border-radius: 15px; border-left: 4px solid #0ea5e9;">
+                            <h4 style="color: #0f766e; font-size: 1.3rem; margin-bottom: 10px; font-weight: 600;">4️⃣ Unissued Option Pool</h4>
+                            <p style="color: #0f766e; font-size: 1rem; line-height: 1.6;">Henüz dağıtılmamış opsiyon havuzu</p>
+                        </div>
+                        
+                        <div style="background: linear-gradient(135deg, #fef2f2, #fee2e2); padding: 25px; border-radius: 15px; border: 2px solid #ef4444; border-left: 6px solid #ef4444;">
+                            <h4 style="color: #dc2626; font-size: 1.3rem; margin-bottom: 10px; font-weight: 700;">🚫 DAHİL DEĞİL</h4>
+                            <p style="color: #dc2626; font-size: 1rem; line-height: 1.6;">Series A ile birlikte gelen opsiyon havuzu artışı (option pool increase)</p>
+                        </div>
+                        
+                        <div style="background: linear-gradient(135deg, #ecfdf5, #d1fae5); padding: 25px; border-radius: 15px; border: 2px solid #10b981;">
+                            <h4 style="color: #047857; font-size: 1.4rem; margin-bottom: 15px; font-weight: 700;">💡 Y Combinator'ın Mantığı</h4>
+                            <p style="color: #047857; font-size: 1.1rem; line-height: 1.7;">
+                                "SAFE'ler bağımsız bir tur olarak görülmeli. Series A'nın option pool artışı SAFE'leri seyreltemez çünkü o para Series A ile gelir."
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SAFE Hisseleri Açıklaması -->
+                <div style="background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(251,245,255,0.95)); padding: 30px; border-radius: 20px; border: 2px solid rgba(155, 89, 182, 0.3); margin-bottom: 30px; position: relative; overflow: hidden;">
+                    <div style="position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #9b59b6, #c084fc);"></div>
+                    
+                    <h3 style="color: #9b59b6; margin-bottom: 20px; font-size: 1.8rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                        📊 SAFE Hisseleri Hesaplama
+                    </h3>
+                    
+                    <div class="formula-box" style="margin: 25px 0; font-size: 1.2rem;">
+                        SAFE Hisseleri = Purchase Amount (Yatırım) ÷ Safe Price
+                    </div>
+                    
+                    <div style="display: grid; gap: 20px; margin-top: 25px;">
+                        <div style="background: linear-gradient(135deg, #faf5ff, #f3e8ff); padding: 25px; border-radius: 15px; border: 2px solid #9b59b6;">
+                            <h4 style="color: #7c3aed; font-size: 1.4rem; margin-bottom: 15px; font-weight: 700;">💡 Açıklama</h4>
+                            <p style="color: #7c3aed; font-size: 1.1rem; line-height: 1.7;">
+                                Bu formül, SAFE yatırımınızın Equity Financing sırasında kaç hisseye dönüşeceğini gösterir. Y Combinator'a göre bu hesaplama post-money SAFE'lerin en büyük avantajıdır çünkü sonuç öngörülebilir.
+                            </p>
+                        </div>
+                        
+                        <div style="background: linear-gradient(135deg, #f0f9ff, #e0f2fe); padding: 25px; border-radius: 15px; border: 2px solid #0ea5e9;">
+                            <h4 style="color: #0369a1; font-size: 1.4rem; margin-bottom: 15px; font-weight: 700;">🧮 Pratik Örnek</h4>
+                            <div style="background: rgba(255,255,255,0.9); padding: 20px; border-radius: 12px; margin: 15px 0;">
+                                <div style="display: grid; gap: 10px; font-size: 1.1rem; color: #0369a1;">
+                                    <p><strong>• Yatırım:</strong> $200,000</p>
+                                    <p><strong>• Safe Price:</strong> $0.40 (yukarıdaki örnekten)</p>
+                                    <p><strong>• SAFE Hisseleri:</strong> $200,000 ÷ $0.40 = 500,000 hisse</p>
+                                </div>
+                            </div>
+                            <div style="background: linear-gradient(135deg, #0ea5e9, #06b6d4); color: white; padding: 15px; border-radius: 12px; text-align: center; font-size: 1.2rem; font-weight: 600;">
+                                Sahiplik Yüzdesi: 500,000 ÷ 12,500,000 = %4 sahiplik
+                            </div>
+                        </div>
+                        
+                        <div style="background: linear-gradient(135deg, #ecfdf5, #d1fae5); padding: 25px; border-radius: 15px; border: 2px solid #10b981; border-left: 6px solid #10b981;">
+                            <h4 style="color: #047857; font-size: 1.4rem; margin-bottom: 15px; font-weight: 700;">🎯 Y Combinator'ın Vurgusu</h4>
+                            <p style="color: #047857; font-size: 1.1rem; line-height: 1.7; font-style: italic;">
+                                "Post-money SAFE'lerde sahiplik hesaplaması basit matematik - kurucular ve ilk yatırımcılar artık ne kadar sattıklarını tam olarak bilebilir!"
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Örnek Hesaplama -->
+                <div style="background: #e6fffa; padding: 20px; border-radius: 10px; border: 2px solid #4dd0e1;">
+                    <h5 style="color: #2c5282; margin-bottom: 15px; text-align: center;">🧮 Y Combinator User Guide'dan Tam Örnek</h5>
+                    <div style="background: white; padding: 15px; border-radius: 8px;">
+                        <strong>Senaryo:</strong> Startup, 2 yatırımcıdan $1M topladı
+                        <br><br>
+                        <strong>Investor A:</strong> $200K, $4M post-money cap
+                        <br><strong>Investor B:</strong> $800K, $8M post-money cap
+                        <br><br>
+                        <strong>Company Capitalization Hesabı:</strong>
+                        <br>• Founders: 9,250,000 hisse
+                        <br>• Options: 650,000 hisse
+                        <br>• Unissued Pool: 100,000 hisse
+                        <br>• SAFE'ler: 1,764,705 hisse (%15 ownership)
+                        <br>• <strong>Toplam:</strong> 11,764,705 hisse
+                        <br><br>
+                        <strong>Safe Price Hesaplamaları:</strong>
+                        <br>• Investor A Safe Price: $4M ÷ 11,764,705 = $0.34
+                        <br>• Investor B Safe Price: $8M ÷ 11,764,705 = $0.68
+                        <br><br>
+                        <strong>SAFE Hisseleri:</strong>
+                        <br>• Investor A: $200K ÷ $0.34 = 588,235 hisse ≈ %5
+                        <br>• Investor B: $800K ÷ $0.68 = 1,176,470 hisse ≈ %10
+                        <br><br>
+                        <div style="background: #4dd0e1; color: white; padding: 10px; border-radius: 5px; text-align: center; font-weight: bold;">
+                            Toplam SAFE Dilution: %15 (Önceden bilinebilir!)
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Diğer Terimler -->
+                <div class="terms-grid-calculator">
+                    <div class="term-box">
+                        <strong>💰 Yatırım Miktarı (Purchase Amount):</strong>
+                        <p>SAFE'e yatırdığınız para. Pre-seed, seed veya Series A öncesi herhangi bir aşamada olabilir. Y Combinator belgelerinde "Purchase Amount" olarak geçer.</p>
+                    </div>
+                    
+                    <div class="term-box">
+                        <strong>🏷️ Post-Money Valuation Cap:</strong>
+                        <p>Kurucular ve yatırımcılar arası müzakere. Bağımsız değerleme şirketi hesaplamaz! Genellikle SAFE imzalanmadan önce anlaşılır.</p>
+                    </div>
+                    
+                    <div class="term-box">
+                        <strong>📈 Series A Pre-Money Valuation:</strong>
+                        <p>Series A'da taraflar arası müzakere ile belirlenir. Term sheet sürecinde Series A yatırımcıları ile anlaşılır.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="warning-box">
+                <strong>⚠️ ÖNEMLİ UYARI:</strong> Bu hesaplayıcı büyük ölçüde basitleştirilmiştir! Gerçek post-money SAFE hesaplamaları çok daha karmaşıktır:
+                <br><br>
+                <strong>Gerçek Y Combinator Formülü:</strong><br>
+                • Company Capitalization = Capital Stock + Converting Securities + Options (issued & promised) + Unissued Option Pool<br>
+                • Safe Price = Post-Money Valuation Cap ÷ Company Capitalization<br>
+                • SAFE Hisseleri = Purchase Amount ÷ Safe Price<br>
+                <br>
+                <strong>🔥 Kritik:</strong> Post-Money Cap ve Series A değerlemesi <strong>taraflar arası müzakere</strong> ile belirlenir, bağımsız şirket hesaplamaz!
+                <br><br>
+                Bu hesaplayıcı sadece yaklaşık tahmin verir. Gerçek işlemler için mutlaka hukuki danışman ile görüşünüz.
+            </div>
+            
+            <div class="demo-inputs">
+                <div class="input-group">
+                    <label for="investment">Yatırım Miktarı ($)</label>
+                    <input type="text" id="investment" value="1,000,000" placeholder="1,000,000">
+                    <div class="input-shortcuts">
+                        <button onclick="setInvestment(100000)" class="shortcut-btn">100 bin</button>
+                        <button onclick="setInvestment(200000)" class="shortcut-btn">200 bin</button>
+                        <button onclick="setInvestment(300000)" class="shortcut-btn">300 bin</button>
+                        <button onclick="setInvestment(400000)" class="shortcut-btn">400 bin</button>
+                        <button onclick="setInvestment(500000)" class="shortcut-btn">500 bin</button>
+                        <button onclick="setInvestment(1000000)" class="shortcut-btn">1 Milyon</button>
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <label for="cap">Post-Money Değerleme Üst Sınırı (Post-Money Cap) ($)</label>
+                    <input type="text" id="cap" value="10,000,000" placeholder="10,000,000">
+                    <div class="input-shortcuts">
+                        <button onclick="setCap(3000000)" class="shortcut-btn">3M</button>
+                        <button onclick="setCap(5000000)" class="shortcut-btn">5M</button>
+                        <button onclick="setCap(8000000)" class="shortcut-btn">8M</button>
+                        <button onclick="setCap(10000000)" class="shortcut-btn">10M</button>
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <label for="series-a">Seri A yatırım öncesi startup değerlemesi ($)</label>
+                    <input type="text" id="series-a" value="50,000,000" placeholder="50,000,000">
+                    <div class="input-shortcuts">
+                        <button onclick="setSeriesA(8000000)" class="shortcut-btn">8M</button>
+                        <button onclick="setSeriesA(10000000)" class="shortcut-btn">10M</button>
+                        <button onclick="setSeriesA(15000000)" class="shortcut-btn">15M</button>
+                        <button onclick="setSeriesA(20000000)" class="shortcut-btn">20M</button>
+                        <button onclick="setSeriesA(50000000)" class="shortcut-btn">50M</button>
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <label for="discount">İndirim (%)</label>
+                    <input type="number" id="discount" value="0" min="0" max="50" placeholder="0">
+                    <div class="input-shortcuts">
+                        <button onclick="setDiscount(0)" class="shortcut-btn">0% (sadece üst sınır)</button>
+                        <button onclick="setDiscount(10)" class="shortcut-btn">10%</button>
+                        <button onclick="setDiscount(15)" class="shortcut-btn">15%</button>
+                        <button onclick="setDiscount(20)" class="shortcut-btn">20%</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin: 30px 0;">
+                <button onclick="calculateOwnership()" class="calculate-btn">
+                    🧮 Sahipliği Hesapla
+                </button>
+            </div>
+            
+            <div class="demo-result" id="result">
+                <div class="result-percentage">Sahiplik yüzdesini görmek için "Hesapla"ya tıklayın</div>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" onclick="scrollToTop()" title="Sayfanın başına gidebilirsin">
+        ⬆️ Sayfanın başına gidebilirsin
+    </button>
+
+    <script>
+        // Section management functions
+        function showSection(sectionId) {
+            // Hide all content sections
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(section => {
+                section.style.display = 'none';
+            });
+            
+            // Hide top calculator by default
+            const topCalculator = document.getElementById('top-calculator');
+            if (topCalculator) {
+                topCalculator.style.display = 'none';
+            }
+            
+            // Remove active class from all buttons
+            const buttons = document.querySelectorAll('.nav-button');
+            buttons.forEach(button => {
+                button.classList.remove('active');
+            });
+            
+            // Show specific section
+            if (sectionId === 'calculator') {
+                // Show both top calculator AND calculator section with details
+                if (topCalculator) {
+                    topCalculator.style.display = 'block';
+                }
+                const calculatorSection = document.getElementById('calculator-section');
+                if (calculatorSection) {
+                    calculatorSection.style.display = 'block';
+                }
+            } else {
+                const targetSection = document.getElementById(sectionId + '-section');
+                if (targetSection) {
+                    targetSection.style.display = 'block';
+                }
+            }
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            // Add active class to clicked button
+            if (event && event.target) {
+                event.target.classList.add('active');
+            }
+        }
+        
+        function showAllSections() {
+            // Show all content sections
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(section => {
+                section.style.display = 'block';
+            });
+            
+            // Hide top calculator when showing all
+            const topCalculator = document.getElementById('top-calculator');
+            if (topCalculator) {
+                topCalculator.style.display = 'none';
+            }
+            
+            // Remove active class from all buttons
+            const buttons = document.querySelectorAll('.nav-button');
+            buttons.forEach(button => {
+                button.classList.remove('active');
+            });
+            
+            // Add active class to "show all" button
+            if (event && event.target) {
+                event.target.classList.add('active');
+            }
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        function formatNumber(num) {
+            return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+        
+        function parseNumber(str) {
+            return parseFloat(str.replace(/,/g, '')) || 0;
+        }
+        
+        function setInvestment(amount) {
+            document.getElementById('investment').value = formatNumber(amount);
+        }
+        
+        function setCap(amount) {
+            document.getElementById('cap').value = formatNumber(amount);
+        }
+        
+        function setSeriesA(amount) {
+            document.getElementById('series-a').value = formatNumber(amount);
+        }
+        
+        function setDiscount(percentage) {
+            document.getElementById('discount').value = percentage;
+        }
+        
+        // Functions for top calculator
+        function setInvestmentTop(amount) {
+            document.getElementById('investment-top').value = formatNumber(amount);
+        }
+        
+        function setCapTop(amount) {
+            document.getElementById('cap-top').value = formatNumber(amount);
+        }
+        
+        function setSeriesATop(amount) {
+            document.getElementById('series-a-top').value = formatNumber(amount);
+        }
+        
+        function setDiscountTop(percentage) {
+            document.getElementById('discount-top').value = percentage;
+        }
+        
+        function calculateOwnershipTop() {
+            const investment = parseNumber(document.getElementById('investment-top').value);
+            const cap = parseNumber(document.getElementById('cap-top').value);
+            const seriesA = parseNumber(document.getElementById('series-a-top').value);
+            const discount = parseFloat(document.getElementById('discount-top').value) || 0;
+            
+            let conversionValue;
+            let scenario;
+            
+            if (cap > 0 && discount > 0) {
+                // Hem üst sınır hem indirim - ikisinden daha iyisini kullan
+                const capConversion = investment / cap;
+                const discountConversion = investment / (seriesA * (1 - discount/100));
+                
+                if (capConversion > discountConversion) {
+                    conversionValue = capConversion;
+                    scenario = `${formatNumber(cap)}$ post-money değerleme üst sınırı kullanılıyor (indirimden daha iyi)`;
+                } else {
+                    conversionValue = discountConversion;
+                    scenario = `${formatNumber(seriesA)}$ değerlemesinde %${discount} indirim kullanılıyor (üst sınırdan daha iyi)`;
+                }
+            } else if (cap > 0) {
+                // Sadece değerleme üst sınırı
+                if (seriesA > cap) {
+                    conversionValue = investment / cap;
+                    scenario = `${formatNumber(cap)}$ post-money değerleme üst sınırı kullanılıyor`;
+                } else {
+                    conversionValue = investment / seriesA;
+                    scenario = `${formatNumber(seriesA)}$ Series A değerlemesi kullanılıyor (üst sınır devreye girmedi)`;
+                }
+            } else if (discount > 0) {
+                // Sadece indirim
+                conversionValue = investment / (seriesA * (1 - discount/100));
+                scenario = `${formatNumber(seriesA)}$ değerlemesinde %${discount} indirim kullanılıyor`;
+            } else {
+                // MFN - üst sınır yok, indirim yok
+                conversionValue = investment / seriesA;
+                scenario = `MFN: ${formatNumber(seriesA)}$ Series A değerlemesinde dönüşüm`;
+            }
+            
+            const seedPercentage = (conversionValue * 100).toFixed(2);
+            
+            // Calculate Series A dilution effect
+            const seriesAPercentage = (investment / seriesA * 100).toFixed(2);
+            
+            document.getElementById('result-top').innerHTML = `
+                <div style="display: grid; gap: 20px; margin-top: 20px;">
+                    <!-- Seed Stage Result -->
+                    <div style="background: linear-gradient(135deg, #e6fffa 0%, #b2f5ea 100%); border: 2px solid #4dd0e1; border-radius: 20px; padding: 25px; position: relative; overflow: hidden; box-shadow: 0 8px 25px rgba(77, 208, 225, 0.2);">
+                        <div style="position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #4dd0e1, #26d0ce);"></div>
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <div style="background: #4dd0e1; color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: bold;">🌱</div>
+                            <div style="flex: 1;">
+                                <h3 style="color: #2c5282; font-size: 1.2rem; margin: 0 0 8px 0; font-weight: 600;">Tohum Öncesi Dönem</h3>
+                                <p style="color: #2d3748; margin: 0; font-size: 1rem;">${formatNumber(investment)}$ yatırımın sahiplik yüzdesi</p>
+                            </div>
+                            <div style="background: rgba(255,255,255,0.9); padding: 15px 25px; border-radius: 15px; text-align: center; min-width: 120px;">
+                                <div style="font-size: 2rem; font-weight: 800; color: #2c5282; line-height: 1;">%${seedPercentage}</div>
+                                <div style="font-size: 0.9rem; color: #4a5568; margin-top: 4px;">Sahiplik</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Series A Result -->
+                    <div style="background: linear-gradient(135deg, #f0f9ff 0%, #dbeafe 100%); border: 2px solid #3b82f6; border-radius: 20px; padding: 25px; position: relative; overflow: hidden; box-shadow: 0 8px 25px rgba(59, 130, 246, 0.2);">
+                        <div style="position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #3b82f6, #2563eb);"></div>
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <div style="background: #3b82f6; color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: bold;">🚀</div>
+                            <div style="flex: 1;">
+                                <h3 style="color: #1e3a8a; font-size: 1.2rem; margin: 0 0 8px 0; font-weight: 600;">Seri A Döneminde</h3>
+                                <p style="color: #2d3748; margin: 0; font-size: 1rem;">Birkaç yıl sonra ${formatNumber(investment)}$ yatırımın sahiplik yüzdesi</p>
+                            </div>
+                            <div style="background: rgba(255,255,255,0.9); padding: 15px 25px; border-radius: 15px; text-align: center; min-width: 120px;">
+                                <div style="font-size: 2rem; font-weight: 800; color: #1e3a8a; line-height: 1;">%${seriesAPercentage}</div>
+                                <div style="font-size: 0.9rem; color: #4a5568; margin-top: 4px;">Sahiplik</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        function calculateOwnership() {
+            const investment = parseNumber(document.getElementById('investment').value);
+            const cap = parseNumber(document.getElementById('cap').value);
+            const seriesA = parseNumber(document.getElementById('series-a').value);
+            const discount = parseFloat(document.getElementById('discount').value) || 0;
+            
+            let conversionValue;
+            let scenario;
+            
+            if (cap > 0 && discount > 0) {
+                // Hem üst sınır hem indirim - ikisinden daha iyisini kullan
+                const capConversion = investment / cap;
+                const discountConversion = investment / (seriesA * (1 - discount/100));
+                
+                if (capConversion > discountConversion) {
+                    conversionValue = capConversion;
+                    scenario = `${formatNumber(cap)}$ post-money değerleme üst sınırı kullanılıyor (indirimden daha iyi)`;
+                } else {
+                    conversionValue = discountConversion;
+                    scenario = `${formatNumber(seriesA)}$ değerlemesinde %${discount} indirim kullanılıyor (üst sınırdan daha iyi)`;
+                }
+            } else if (cap > 0) {
+                // Sadece değerleme üst sınırı
+                if (seriesA > cap) {
+                    conversionValue = investment / cap;
+                    scenario = `${formatNumber(cap)}$ post-money değerleme üst sınırı kullanılıyor`;
+                } else {
+                    conversionValue = investment / seriesA;
+                    scenario = `${formatNumber(seriesA)}$ Series A değerlemesi kullanılıyor (üst sınır devreye girmedi)`;
+                }
+            } else if (discount > 0) {
+                // Sadece indirim
+                conversionValue = investment / (seriesA * (1 - discount/100));
+                scenario = `${formatNumber(seriesA)}$ değerlemesinde %${discount} indirim kullanılıyor`;
+            } else {
+                // MFN - üst sınır yok, indirim yok
+                conversionValue = investment / seriesA;
+                scenario = `MFN: ${formatNumber(seriesA)}$ Series A değerlemesinde dönüşüm`;
+            }
+            
+            const seedPercentage = (conversionValue * 100).toFixed(2);
+            
+            // Calculate Series A dilution effect
+            const seriesAPercentage = (investment / seriesA * 100).toFixed(2);
+            
+            document.getElementById('result').innerHTML = `
+                <div style="display: grid; gap: 20px; margin-top: 20px;">
+                    <!-- Seed Stage Result -->
+                    <div style="background: linear-gradient(135deg, #e6fffa 0%, #b2f5ea 100%); border: 2px solid #4dd0e1; border-radius: 20px; padding: 25px; position: relative; overflow: hidden; box-shadow: 0 8px 25px rgba(77, 208, 225, 0.2);">
+                        <div style="position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #4dd0e1, #26d0ce);"></div>
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <div style="background: #4dd0e1; color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: bold;">🌱</div>
+                            <div style="flex: 1;">
+                                <h3 style="color: #2c5282; font-size: 1.2rem; margin: 0 0 8px 0; font-weight: 600;">Tohum Öncesi Dönem</h3>
+                                <p style="color: #2d3748; margin: 0; font-size: 1rem;">${formatNumber(investment)}$ yatırımın sahiplik yüzdesi</p>
+                            </div>
+                            <div style="background: rgba(255,255,255,0.9); padding: 15px 25px; border-radius: 15px; text-align: center; min-width: 120px;">
+                                <div style="font-size: 2rem; font-weight: 800; color: #2c5282; line-height: 1;">%${seedPercentage}</div>
+                                <div style="font-size: 0.9rem; color: #4a5568; margin-top: 4px;">Sahiplik</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Series A Result -->
+                    <div style="background: linear-gradient(135deg, #f0f9ff 0%, #dbeafe 100%); border: 2px solid #3b82f6; border-radius: 20px; padding: 25px; position: relative; overflow: hidden; box-shadow: 0 8px 25px rgba(59, 130, 246, 0.2);">
+                        <div style="position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #3b82f6, #2563eb);"></div>
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <div style="background: #3b82f6; color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: bold;">🚀</div>
+                            <div style="flex: 1;">
+                                <h3 style="color: #1e3a8a; font-size: 1.2rem; margin: 0 0 8px 0; font-weight: 600;">Seri A Döneminde</h3>
+                                <p style="color: #2d3748; margin: 0; font-size: 1rem;">Birkaç yıl sonra ${formatNumber(investment)}$ yatırımın sahiplik yüzdesi</p>
+                            </div>
+                            <div style="background: rgba(255,255,255,0.9); padding: 15px 25px; border-radius: 15px; text-align: center; min-width: 120px;">
+                                <div style="font-size: 2rem; font-weight: 800; color: #1e3a8a; line-height: 1;">%${seriesAPercentage}</div>
+                                <div style="font-size: 0.9rem; color: #4a5568; margin-top: 4px;">Sahiplik</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        // Kartlara hover efektleri ekle
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize - show first section by default and hide others
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(section => {
+                section.style.display = 'none';
+            });
+            
+            // Hide top calculator initially
+            const topCalculator = document.getElementById('top-calculator');
+            if (topCalculator) {
+                topCalculator.style.display = 'none';
+            }
+            
+            const firstSection = document.getElementById('what-is-safe-section');
+            if (firstSection) {
+                firstSection.style.display = 'block';
+            }
+            
+            // Set first button as active
+            const firstButton = document.querySelector('.nav-button');
+            if (firstButton) {
+                firstButton.classList.add('active');
+            }
+            
+            const cards = document.querySelectorAll('.safe-card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px) scale(1.02)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+            
+            // Format number inputs as user types
+            const numberInputs = ['investment', 'cap', 'series-a', 'investment-top', 'cap-top', 'series-a-top'];
+            numberInputs.forEach(id => {
+                const input = document.getElementById(id);
+                if (input) {
+                    input.addEventListener('input', function() {
+                        const value = parseNumber(this.value);
+                        if (value > 0) {
+                            this.value = formatNumber(value);
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
