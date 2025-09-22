@@ -26,11 +26,6 @@
   to = "/presentation/presentation.html"
   status = 200
 
-[[redirects]]
-  from = "/Step-by-Step"
-  to = "/presentation/A1-Step-by-Step.mov"
-  status = 200
-
 # CORS headers for analytics function
 [[headers]]
   for = "/.netlify/functions/*"
