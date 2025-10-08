@@ -26,6 +26,11 @@
   to = "/presentation/presentation.html"
   status = 200
 
+[[redirects]]
+  from = "/a16z"
+  to = "/a16z/index.html"
+  status = 200
+
 # CORS headers for analytics function
 [[headers]]
   for = "/.netlify/functions/*"
