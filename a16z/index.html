@@ -21,7 +21,7 @@
     <script>
         (function() {
             // Enhanced mobile detection - check both screen size and user agent
-            const isMobile = (window.innerWidth <= 768 || window.innerHeight <= 768) ||
+            const isMobile = (window.innerWidth <= 768 && window.innerHeight <= 768) ||
                             /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|CriOS/i.test(navigator.userAgent);
 
             // Check if we're already on the mobile version to prevent redirect loops
