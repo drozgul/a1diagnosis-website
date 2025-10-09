@@ -21,15 +21,15 @@
     <script>
         (function() {
             // Enhanced mobile detection - check both screen size and user agent
-            const isMobile = (window.innerWidth <= 768 || window.innerHeight <= 768) || 
+            const isMobile = (window.innerWidth <= 768 && window.innerHeight <= 768) ||
                             /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|CriOS/i.test(navigator.userAgent);
-            
+
             // Check if we're already on the mobile version to prevent redirect loops
             const isAlreadyMobile = window.location.pathname.includes('presentation-mobile.html');
-            
+
             // Additional check for touch devices
             const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-            
+
             // Redirect mobile users or touch devices to mobile version
             if ((isMobile || isTouchDevice) && !isAlreadyMobile) {
                 window.location.href = 'presentation-mobile.html';
