@@ -2859,7 +2859,7 @@
                 await new Promise(resolve => {
                     const timeout = setTimeout(() => {
                         if (animationRunning) {
-                            typeWriter(text1, typewriterText1, 60);
+                            typeWriter(text1, typewriterText1, 80);
                         }
                         resolve();
                     }, 500);
@@ -2877,7 +2877,7 @@
                 await new Promise(resolve => {
                     const timeout = setTimeout(() => {
                         if (animationRunning) {
-                            typeWriter(text2, typewriterText2, 50);
+                            typeWriter(text2, typewriterText2, 80);
                         }
                         resolve();
                     }, 500);
@@ -2895,7 +2895,7 @@
                 await new Promise(resolve => {
                     const timeout = setTimeout(() => {
                         if (animationRunning) {
-                            typeWriter(text3, typewriterText3, 40);
+                            typeWriter(text3, typewriterText3, 80);
                         }
                         resolve();
                     }, 500);
@@ -3011,9 +3011,11 @@
                         videoContainer.classList.remove('playing');
                     });
 
-                    // Ensure video plays when it can
+                    // Ensure video plays when it can (only once to prevent restarts)
+                    let canPlayFired = false;
                     video.addEventListener('canplaythrough', function() {
-                        if (video.paused) {
+                        if (video.paused && !canPlayFired) {
+                            canPlayFired = true;
                             video.play().catch(function(error) {
                                 console.log('Video autoplay prevented:', error);
                             });
@@ -3021,13 +3023,18 @@
                     });
 
                     // Intersection Observer to play video when visible (helps with iPhone)
+                    // Only trigger once to prevent video restarts
                     if ('IntersectionObserver' in window) {
+                        let videoStarted = false;
                         const observer = new IntersectionObserver(function(entries) {
                             entries.forEach(function(entry) {
-                                if (entry.isIntersecting) {
+                                if (entry.isIntersecting && !videoStarted) {
+                                    videoStarted = true;
                                     video.play().catch(function(error) {
                                         console.log('Video play prevented:', error);
                                     });
+                                    // Stop observing after first play to prevent restarts
+                                    observer.unobserve(video);
                                 }
                             });
                         }, { threshold: 0.5 });
