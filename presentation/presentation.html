@@ -1802,9 +1802,107 @@
             .cursor-trail {
                 display: none;
             }
-            
+
             body {
                 cursor: default;
+            }
+        }
+
+        /* Stakeholder Section Responsive Styles */
+        /* Vertical stack for ALL desktop sizes */
+        .stakeholder-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+            margin-top: 20px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .stakeholder-card {
+            background: linear-gradient(180deg, #f0fdfa 0%, #ffffff 100%);
+            border-radius: 16px;
+            padding: 35px 30px;
+            border-top: 4px solid #5eead4;
+            box-shadow: 0 8px 25px rgba(94, 234, 212, 0.15);
+            min-height: auto;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+        }
+
+        .stakeholder-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(94, 234, 212, 0.25);
+        }
+
+        /* Add connection line between stacked cards */
+        .stakeholder-card::after {
+            content: '';
+            display: block;
+            width: 2px;
+            height: 25px;
+            background: linear-gradient(180deg, transparent 0%, #94a3b8 50%, transparent 100%);
+            margin: 0 auto;
+            position: relative;
+            top: 25px;
+        }
+
+        /* Remove line from last card */
+        .stakeholder-card:last-child::after {
+            display: none;
+        }
+
+        .stakeholder-card-academic {
+            background: linear-gradient(180deg, #f0f9ff 0%, #ffffff 100%);
+            border-top: 4px solid #67e8f9;
+            box-shadow: 0 8px 25px rgba(103, 232, 249, 0.15);
+        }
+
+        .stakeholder-card-academic:hover {
+            box-shadow: 0 12px 35px rgba(103, 232, 249, 0.25);
+        }
+
+        .stakeholder-card-commercial {
+            background: linear-gradient(180deg, #f0fdf4 0%, #ffffff 100%);
+            border-top: 4px solid #86efac;
+            box-shadow: 0 8px 25px rgba(134, 239, 172, 0.15);
+        }
+
+        .stakeholder-card-commercial:hover {
+            box-shadow: 0 12px 35px rgba(134, 239, 172, 0.25);
+        }
+
+        .stakeholder-additional-grid {
+            margin-top: 30px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        /* Responsive Breakpoints */
+        /* Tablet: Stack additional grid */
+        @media (max-width: 1024px) {
+            .stakeholder-additional-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+
+        /* Mobile: Adjust spacing and padding */
+        @media (max-width: 768px) {
+            .stakeholder-grid {
+                gap: 20px;
+            }
+
+            .stakeholder-card {
+                padding: 25px 20px;
+            }
+
+            .stakeholder-card::after {
+                height: 20px;
+                top: 20px;
             }
         }
     </style>
@@ -1823,6 +1921,7 @@
             <button class="nav-button" onclick="showSection('pazar-firsati')">💡 Market Opportunity Analysis</button>
             <button class="nav-button" onclick="showSection('finansal-projeksiyonlar')">💡 Financial Projections</button>
             <button class="nav-button" onclick="showSection('medicare-geri-odeme')">💡 US Insurance Reimbursement Pathway</button>
+            <button class="nav-button" onclick="showSection('stakeholder-interest')">💡 Stakeholder Interest & Path to Market</button>
             <button class="nav-button" onclick="showSection('gelistirme-asamalari')">💡 Development Phases and Timeline</button>
             <button class="nav-button" onclick="showSection('asama-1-detayli')">💡 Phase 1 Detailed Milestones</button>
             <button class="nav-button" onclick="showSection('yatirim-gereksinimleri')">💡 Phase 1 Investment Requirements</button>
@@ -2380,7 +2479,124 @@
                 </div>
             </div>
         </div>
-        
+
+        <div class="section" id="stakeholder-interest">
+            <h2>💡 Stakeholder Interest & Path to Market</h2>
+
+            <div class="stakeholder-grid">
+                <!-- Government Interest -->
+                <div class="stakeholder-card">
+                    <div style="display: flex; align-items: flex-start; margin-bottom: 25px; min-height: 60px;">
+                        <div style="width: 48px; height: 48px; min-width: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-right: 16px; background: linear-gradient(135deg, #5eead4, #2dd4bf); color: white; font-size: 24px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">🏛️</div>
+                        <div>
+                            <div style="font-size: 15px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: #0f766e; margin-bottom: 4px;">Government Interest</div>
+                            <h3 style="font-size: 19px; font-weight: 700; color: #0f172a; margin-bottom: 12px; line-height: 1.2;">U.S. Department of Health & Human Services</h3>
+                        </div>
+                    </div>
+                    <div style="flex-grow: 1;">
+                        <div style="margin-bottom: 20px;">
+                            <div style="font-size: 17px; font-weight: 700; color: #0f172a; margin-bottom: 8px;">Elijah P. Wood, MPP, PMP</div>
+                            <div style="font-size: 14px; color: #475569; margin-bottom: 6px;">Senior Health Insurance Specialist</div>
+                            <div style="font-size: 13px; color: #0f766e; font-weight: 600; margin-bottom: 16px;">Technical Advisor - AI Governance & Strategy Lead, CMS/CCIIO</div>
+                        </div>
+                        <div style="padding: 12px; background: rgba(94, 234, 212, 0.08); border-left: 3px solid #5eead4; border-radius: 4px;">
+                            <div style="font-size: 14px; color: #0f766e; font-weight: 600; margin-bottom: 10px;">• Leads AI initiatives for HHS</div>
+                            <div style="font-size: 14px; color: #334155; line-height: 1.6;">• Requested detailed presentation and follow-up discussion on our AI Risk Assessment Solution</div>
+                        </div>
+                    </div>
+                    <p style="font-size: 14px; color: #0f766e; font-weight: 600; border-top: 1px solid #e2e8f0; padding-top: 12px; margin-top: auto;">✓ Regulatory pathway interest</p>
+                </div>
+
+                <!-- Academic Interest -->
+                <div class="stakeholder-card stakeholder-card-academic">
+                    <div style="display: flex; align-items: flex-start; margin-bottom: 25px; min-height: 60px;">
+                        <div style="width: 48px; height: 48px; min-width: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-right: 16px; background: linear-gradient(135deg, #67e8f9, #06b6d4); color: white; font-size: 24px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">🎓</div>
+                        <div>
+                            <div style="font-size: 15px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: #0369a1; margin-bottom: 8px;">Academic Interest</div>
+                            <h3 style="font-size: 19px; font-weight: 700; color: #0f172a; margin-bottom: 12px; line-height: 1.2;">ARVO Conference<br><span style="font-size: 15px; color: #64748b; line-height: 1.4; display: inline-block; margin-top: 4px;">Association for Research in Vision and Ophthalmology</span></h3>
+                        </div>
+                    </div>
+                    <div style="flex-grow: 1; margin-top: -20px;">
+                        <div style="font-size: 13px; color: #64748b; font-style: italic; margin-bottom: 18px;">World's largest and most respected eye and vision research organization</div>
+                        <div style="background: linear-gradient(180deg, #f0f9ff 0%, #ffffff 100%); border-radius: 8px; padding: 16px; border-left: 3px solid #67e8f9;">
+                            <div style="font-size: 15px; font-weight: 600; color: #0369a1; margin-bottom: 10px;">NEI Leadership Engagement</div>
+                            <div style="font-size: 14px; color: #334155; line-height: 1.4; margin-bottom: 8px;">In-Person and Zoom meetings with</div>
+                            <div style="font-size: 15px; color: #0369a1; font-weight: 600; margin-bottom: 6px;">Dr. Tony Gover, Ph.D.</div>
+                            <div style="font-size: 13px; color: #64748b; font-style: italic; margin-bottom: 16px;">National Eye Institute Program Director</div>
+                            <div style="border-top: 1px solid #e0f2fe; padding-top: 12px;">
+                                <div style="font-size: 16px; font-weight: 700; color: #0369a1;">Annual Presentations Since 2021</div>
+                            </div>
+                        </div>
+                    </div>
+                    <p style="font-size: 14px; color: #0f766e; font-weight: 600; border-top: 1px solid #e2e8f0; padding-top: 12px; margin-top: auto;">✓ Scientific community interest</p>
+                </div>
+
+                <!-- Industry Interest -->
+                <div class="stakeholder-card stakeholder-card-commercial">
+                    <div style="display: flex; align-items: flex-start; margin-bottom: 25px; min-height: 60px;">
+                        <div style="width: 48px; height: 48px; min-width: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-right: 16px; background: linear-gradient(135deg, #86efac, #22c55e); color: white; font-size: 24px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">🚀</div>
+                        <div>
+                            <div style="font-size: 15px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: #166534; margin-bottom: 4px;">Phase 3: Distribution Partnership</div>
+                            <h3 style="font-size: 26px; font-weight: 900; background: linear-gradient(135deg, #166534 0%, #22c55e 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; letter-spacing: -0.5px; margin-bottom: 2px;">MARK CUBAN</h3>
+                            <div style="font-size: 12px; color: #64748b; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; line-height: 1.4;">Billionaire Entrepreneur<br>Shark Tank</div>
+                        </div>
+                    </div>
+                    <div style="flex-grow: 1;">
+                        <div style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.05) 0%, rgba(134, 239, 172, 0.1) 100%); border-radius: 12px; padding: 18px; border: 2px solid #86efac; box-shadow: 0 4px 15px rgba(34, 197, 94, 0.1);">
+                            <div style="font-size: 15px; color: #166534; font-weight: 700; margin-bottom: 12px; display: flex; align-items: center;">
+                                <span style="display: inline-block; width: 8px; height: 8px; background: #22c55e; border-radius: 50%; margin-right: 8px;"></span>
+                                Post-FDA Distribution Interest
+                            </div>
+                            <div style="background: white; border-left: 4px solid #22c55e; padding: 12px 16px; border-radius: 6px; margin-bottom: 14px;">
+                                <div style="font-size: 14px; color: #0f172a; line-height: 1.4; font-weight: 600; font-style: italic;">"Once you get FDA approval, I'm happy to help you sell it"</div>
+                                <div style="font-size: 11px; color: #64748b; margin-top: 6px; text-align: right;">— Mark Cuban, Direct Communication</div>
+                            </div>
+                            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 12px;">
+                                <div style="text-align: center; padding: 8px; background: rgba(255, 255, 255, 0.8); border-radius: 6px;">
+                                    <div style="font-size: 20px; font-weight: 800; color: #22c55e;">240K+</div>
+                                    <div style="font-size: 11px; color: #64748b; margin-top: 2px;">Physicians</div>
+                                </div>
+                                <div style="text-align: center; padding: 8px; background: rgba(255, 255, 255, 0.8); border-radius: 6px;">
+                                    <div style="font-size: 20px; font-weight: 800; color: #22c55e;">50M+</div>
+                                    <div style="font-size: 11px; color: #64748b; margin-top: 2px;">Reach</div>
+                                </div>
+                                <div style="text-align: center; padding: 8px; background: rgba(255, 255, 255, 0.8); border-radius: 6px;">
+                                    <div style="font-size: 20px; font-weight: 800; color: #22c55e;">$2B+</div>
+                                    <div style="font-size: 11px; color: #64748b; margin-top: 2px;">Market Cap</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p style="font-size: 14px; font-weight: 700; color: #166534; border-top: 1px solid #e2e8f0; padding-top: 12px; margin-top: auto;">✓ Commercial distribution interest</p>
+                </div>
+            </div>
+
+            <!-- Additional Validation Section -->
+            <div class="stakeholder-additional-grid">
+                <div style="background: linear-gradient(180deg, #f0fdfa 0%, #ffffff 100%); border-top: 4px solid #5eead4; border-radius: 16px; padding: 25px 35px; box-shadow: 0 8px 25px rgba(94, 234, 212, 0.15);">
+                    <div style="display: flex; align-items: flex-start; margin-bottom: 15px;">
+                        <div style="width: 48px; height: 48px; min-width: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-right: 16px; background: linear-gradient(135deg, #5eead4, #2dd4bf); color: white; font-size: 24px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">👨‍⚕️</div>
+                        <div>
+                            <div style="font-size: 15px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: #0f766e; margin-bottom: 4px;">Clinical Partners</div>
+                            <h3 style="font-size: 19px; font-weight: 700; color: #0f172a; margin-bottom: 12px; line-height: 1.2;">Physicians Ready to Collaborate</h3>
+                        </div>
+                    </div>
+                    <div style="font-size: 14px; color: #334155; line-height: 1.5;"><strong>Retinal Specialists & Family Physicians</strong> ready to analyze post-FDA & offering pre-FDA development collaboration</div>
+                </div>
+
+                <div style="background: linear-gradient(180deg, #f0f9ff 0%, #ffffff 100%); border-top: 4px solid #67e8f9; border-radius: 16px; padding: 25px 35px; box-shadow: 0 8px 25px rgba(103, 232, 249, 0.15);">
+                    <div style="display: flex; align-items: flex-start; margin-bottom: 15px;">
+                        <div style="width: 48px; height: 48px; min-width: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-right: 16px; background: linear-gradient(135deg, #67e8f9, #06b6d4); color: white; font-size: 24px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">🎓</div>
+                        <div>
+                            <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: #0369a1; margin-bottom: 4px;">ACADEMIC & INDUSTRY INTEREST</div>
+                            <h3 style="font-size: 18px; font-weight: 700; color: #0f172a; margin-bottom: 12px; line-height: 1.2;">AI Healthcare Conference at Stanford University</h3>
+                        </div>
+                    </div>
+                    <div style="font-size: 13px; color: #334155; line-height: 1.5;"><strong style="color: #0369a1;">Conference supported by PHILIPS</strong> • Presented our results of <strong>Early risk identification of AMD using AI</strong> at this premier AI healthcare venue</div>
+                </div>
+            </div>
+        </div>
+
         <div class="section" id="pazar-firsati">
             <h2>💡 Market Opportunity Analysis</h2>
             
