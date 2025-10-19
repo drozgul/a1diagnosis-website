@@ -1226,28 +1226,23 @@
         .navbar {
             padding: 10px 0;
         }
-
+        
         .navbar-content {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
             padding: 0.8rem 0;
-            gap: 1rem;
+            flex-wrap: wrap;
         }
-
+        
         .logo {
-            display: flex;
-            flex-direction: column;
-            line-height: 1.2;
+            font-size: 1.3rem;
         }
-
+        
         .nav-links {
             display: none;
         }
-
+        
         /* Mobile Menu Button */
         .mobile-menu-btn {
-            display: none;
+            display: block;
             background: none;
             border: none;
             font-size: 1.5rem;
@@ -1294,10 +1289,9 @@
         }
         
         .cta-button {
-            padding: 10px 20px;
-            font-size: 0.85rem;
-            margin: 0;
-            white-space: nowrap;
+            padding: 8px 16px;
+            font-size: 0.9rem;
+            margin-top: 10px;
         }
         
         /* Mobile Hero Section */
@@ -1354,8 +1348,7 @@
             text-align: center !important;
             font-weight: 800 !important;
             padding: 0 !important;
-            color: #0ea5e9 !important;
-            text-shadow: 0 2px 8px rgba(14, 165, 233, 0.3), 0 4px 16px rgba(56, 189, 248, 0.2) !important;
+            color: #1e293b !important;
         }
 
         .hero h2 {
@@ -1365,8 +1358,7 @@
             text-align: center !important;
             font-weight: 700 !important;
             padding: 0 !important;
-            color: #0ea5e9 !important;
-            text-shadow: 0 2px 8px rgba(14, 165, 233, 0.3), 0 4px 16px rgba(56, 189, 248, 0.2) !important;
+            color: #334155 !important;
         }
 
         .hero .subtitle {
@@ -1376,8 +1368,7 @@
             text-align: center !important;
             max-width: 100% !important;
             margin: 0 !important;
-            color: #0d9488 !important;
-            text-shadow: 0 1px 4px rgba(134, 239, 172, 0.4), 0 2px 8px rgba(187, 247, 208, 0.2) !important;
+            color: #475569 !important;
         }
         
         .hero-content {
@@ -1837,19 +1828,16 @@
     <nav class="navbar" id="navbar">
         <div class="container">
             <div class="navbar-content">
-                <div class="logo">
-                    <div style="font-size: 1.3rem; font-weight: 800; line-height: 1.2;">A1 Diagnosis</div>
-                    <div style="font-size: 0.85rem; font-weight: 600; opacity: 0.8;">(Pre-formation)</div>
-                </div>
-                <a href="/presentation/presentation.html" class="cta-button" style="margin-left: auto;">View Presentation</a>
-                <button class="mobile-menu-btn" onclick="toggleMobileMenu()" style="display: none;">☰</button>
-                <ul class="nav-links" style="display: none;">
+                <div class="logo">A1 Diagnosis (Pre-formation)</div>
+                <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+                <ul class="nav-links">
                     <li><a href="#home">Home</a></li>
                     <li><a href="#problem">Problem</a></li>
                     <li><a href="#solution">Solution</a></li>
                     <li><a href="#benefits">Benefits</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
+                <a href="/presentation/presentation.html" class="cta-button">View Presentation</a>
             </div>
             <!-- Mobile Menu -->
             <div class="mobile-menu" id="mobile-menu">
@@ -1871,7 +1859,7 @@
         <div class="container">
             <!-- Video Container (Mobile-Optimized) -->
             <div class="hero-video-container">
-                <video class="hero-video" id="hero-video" muted playsinline preload="metadata" webkit-playsinline poster="/Peaceful_lake_scene_web.gif">
+                <video class="hero-video" id="hero-video" autoplay muted loop playsinline preload="metadata" webkit-playsinline>
                     <source src="/Peaceful_lake_scene_cropped_no_bars.mp4" type="video/mp4">
                     <source src="/Peaceful_lake_scene_cropped_final.mp4" type="video/mp4">
                     <source src="/Peaceful_lake_scene_cropped_v2.mp4" type="video/mp4">
@@ -1892,14 +1880,14 @@
             
             <div class="hero-content" style="padding: 20px 15px; margin-top: 20px;">
                 <!-- Phase 1: 0-6 seconds -->
-                <h1 id="title-1" class="animated-text" style="opacity: 1; color: #0ea5e9; margin-bottom: 1rem; font-size: 2rem; font-weight: 800; line-height: 1.2; text-align: center; text-shadow: 0 2px 8px rgba(14, 165, 233, 0.3), 0 4px 16px rgba(56, 189, 248, 0.2); min-height: 2.5rem;"><span id="typewriter-text-1"></span></h1>
+                <h1 id="title-1" class="animated-text" style="opacity: 0; color: #1e293b; margin-bottom: 1rem; font-size: 2rem; font-weight: 800; line-height: 1.2; text-align: center;">See the Future Clearly</h1>
 
                 <!-- Phase 2: 6-12 seconds -->
-                <h2 id="title-2" class="animated-text" style="opacity: 1; color: #0ea5e9; margin-bottom: 1rem; font-size: 1.7rem; font-weight: 700; line-height: 1.3; text-align: center; text-shadow: 0 2px 8px rgba(14, 165, 233, 0.3), 0 4px 16px rgba(56, 189, 248, 0.2); min-height: 2.5rem;"><span id="typewriter-text-2"></span></h2>
+                <h2 id="title-2" class="animated-text" style="opacity: 0; color: #334155; margin-bottom: 1rem; font-size: 1.7rem; font-weight: 700; line-height: 1.3; text-align: center;">Let's Assess AMD Risk Years Before Vision Loss</h2>
 
                 <!-- Phase 3: 12-25 seconds -->
                 <div style="margin-top: 1.5rem; padding: 0 10px;">
-                    <p id="description" class="subtitle animated-text" style="opacity: 1; color: #0d9488; margin: 0; font-size: 1rem; line-height: 1.5; text-align: center; max-width: 100%; word-wrap: break-word; text-shadow: 0 1px 4px rgba(134, 239, 172, 0.4), 0 2px 8px rgba(187, 247, 208, 0.2); min-height: 4rem;"><span id="typewriter-text-3"></span></p>
+                    <p id="description" class="subtitle animated-text" style="opacity: 0; color: #475569; margin: 0; font-size: 1rem; line-height: 1.5; text-align: center; max-width: 100%; word-wrap: break-word;"><span id="typewriter-text"></span></p>
                 </div>
             </div>
         </div>
@@ -1924,7 +1912,7 @@
         <div class="container">
             <!-- Mobile Video Container -->
             <div class="mobile-vision-video-container">
-                <video id="vision-video" muted playsinline preload="metadata" webkit-playsinline poster="/Image_1.png">
+                <video id="vision-video" autoplay muted loop playsinline preload="metadata" webkit-playsinline poster="/Image_1.png">
                     <source src="/presentation/A1-English.mov" type="video/mp4">
                 </video>
 
@@ -2781,19 +2769,18 @@
 
         // Cinematic Hero Text Animation System
         function startHeroAnimation() {
-            const typewriterText1 = document.getElementById('typewriter-text-1');
-            const typewriterText2 = document.getElementById('typewriter-text-2');
-            const typewriterText3 = document.getElementById('typewriter-text-3');
-
+            const title1 = document.getElementById('title-1');
+            const title2 = document.getElementById('title-2');
+            const description = document.getElementById('description');
+            const typewriterText = document.getElementById('typewriter-text');
+            
             // Ensure elements exist before proceeding
-            if (!typewriterText1 || !typewriterText2 || !typewriterText3) {
+            if (!title1 || !title2 || !description || !typewriterText) {
                 console.warn('Hero animation elements not found');
                 return;
             }
-
-            const text1 = "See the Future Clearly";
-            const text2 = "Let's Assess AMD Risk Years Before Vision Loss";
-            const text3 = "We're developing the world's first blood-based AMD risk assessment test to detect vision risk years before symptoms appear—enabling early monitoring and intervention.";
+            
+            const fullDescription = "We're developing the world's first blood-based AMD risk assessment test to detect vision risk years before symptoms appear—enabling early monitoring and intervention.";
             
             let animationRunning = false;
             let timeouts = [];
@@ -2807,9 +2794,13 @@
             // Reset all elements
             function resetElements() {
                 try {
-                    typewriterText1.textContent = '';
-                    typewriterText2.textContent = '';
-                    typewriterText3.textContent = '';
+                    title1.classList.remove('fade-in', 'fade-out');
+                    title2.classList.remove('fade-in', 'fade-out');
+                    description.classList.remove('fade-in', 'fade-out');
+                    title1.style.opacity = '0';
+                    title2.style.opacity = '0';
+                    description.style.opacity = '0';
+                    typewriterText.textContent = '';
                 } catch (error) {
                     console.error('Error resetting elements:', error);
                 }
@@ -2847,70 +2838,65 @@
                 });
             }
             
-            // Animation sequence - All typewriter effects
-            async function runSequence() {
+            // Animation sequence
+            function runSequence() {
                 if (animationRunning) return;
-
+                
                 animationRunning = true;
                 clearAllTimeouts();
                 resetElements();
-
-                // Phase 1: Type first title (0-3 seconds)
-                await new Promise(resolve => {
-                    const timeout = setTimeout(() => {
-                        if (animationRunning) {
-                            typeWriter(text1, typewriterText1, 80);
-                        }
-                        resolve();
-                    }, 500);
-                    timeouts.push(timeout);
-                });
-
-                // Wait for title 1 to display
-                await new Promise(resolve => {
-                    const timeout = setTimeout(resolve, 3000);
-                    timeouts.push(timeout);
-                });
-
-                // Clear title 1 and type title 2 (3-8 seconds)
-                typewriterText1.textContent = '';
-                await new Promise(resolve => {
-                    const timeout = setTimeout(() => {
-                        if (animationRunning) {
-                            typeWriter(text2, typewriterText2, 80);
-                        }
-                        resolve();
-                    }, 500);
-                    timeouts.push(timeout);
-                });
-
-                // Wait for title 2 to display
-                await new Promise(resolve => {
-                    const timeout = setTimeout(resolve, 5000);
-                    timeouts.push(timeout);
-                });
-
-                // Clear title 2 and type description (8-25 seconds)
-                typewriterText2.textContent = '';
-                await new Promise(resolve => {
-                    const timeout = setTimeout(() => {
-                        if (animationRunning) {
-                            typeWriter(text3, typewriterText3, 80);
-                        }
-                        resolve();
-                    }, 500);
-                    timeouts.push(timeout);
-                });
-
-                // Wait for description to display
-                await new Promise(resolve => {
-                    const timeout = setTimeout(resolve, 12000);
-                    timeouts.push(timeout);
-                });
-
-                // Restart sequence
-                animationRunning = false;
-                runSequence();
+                
+                // Phase 1: 0-6 seconds - Show title 1
+                timeouts.push(setTimeout(() => {
+                    if (animationRunning && title1) {
+                        title1.classList.add('fade-in');
+                    }
+                }, 500));
+                
+                // Phase 1 end: 6 seconds - Hide title 1
+                timeouts.push(setTimeout(() => {
+                    if (animationRunning && title1) {
+                        title1.classList.remove('fade-in');
+                        title1.classList.add('fade-out');
+                    }
+                }, 6000));
+                
+                // Phase 2: 6-12 seconds - Show title 2
+                timeouts.push(setTimeout(() => {
+                    if (animationRunning && title2) {
+                        title2.classList.add('fade-in');
+                    }
+                }, 6500));
+                
+                // Phase 2 end: 12 seconds - Hide title 2
+                timeouts.push(setTimeout(() => {
+                    if (animationRunning && title2) {
+                        title2.classList.remove('fade-in');
+                        title2.classList.add('fade-out');
+                    }
+                }, 12000));
+                
+                // Phase 3: 12-25 seconds - Show description with typewriter
+                timeouts.push(setTimeout(() => {
+                    if (animationRunning && description && typewriterText) {
+                        description.classList.add('fade-in');
+                        typeWriter(fullDescription, typewriterText, 80);
+                    }
+                }, 12500));
+                
+                // Hide description at end
+                timeouts.push(setTimeout(() => {
+                    if (animationRunning && description) {
+                        description.classList.remove('fade-in');
+                        description.classList.add('fade-out');
+                    }
+                }, 24500));
+                
+                // Restart sequence after 30 seconds
+                timeouts.push(setTimeout(() => {
+                    animationRunning = false;
+                    runSequence();
+                }, 30000));
             }
             
             // Start the sequence
@@ -2953,8 +2939,11 @@
                     });
                 }
 
-                // Video will only play when user clicks Play button
-                // Auto-play removed for better user experience
+                // Try to play video on iPhone
+                heroVideo.play().catch(function(error) {
+                    console.log('Hero video autoplay blocked:', error);
+                    // This is normal on iPhone, video will play when user scrolls
+                });
             }
 
             // Vision Video Setup
@@ -2973,8 +2962,11 @@
                     visionVideo.style.display = 'block';
                 });
 
-                // Video will only play when user clicks Play button
-                // Auto-play removed for better user experience
+                // Try to play video on iPhone
+                visionVideo.play().catch(function(error) {
+                    console.log('Vision video autoplay blocked:', error);
+                    // This is normal on iPhone, video will play when user scrolls
+                });
             }
         }
 
@@ -3005,8 +2997,29 @@
                         videoContainer.classList.remove('playing');
                     });
 
-                    // Auto-play disabled - videos only play when user clicks Play button
-                    // This provides better user control and saves data on mobile
+                    // Ensure video plays when it can
+                    video.addEventListener('canplaythrough', function() {
+                        if (video.paused) {
+                            video.play().catch(function(error) {
+                                console.log('Video autoplay prevented:', error);
+                            });
+                        }
+                    });
+
+                    // Intersection Observer to play video when visible (helps with iPhone)
+                    if ('IntersectionObserver' in window) {
+                        const observer = new IntersectionObserver(function(entries) {
+                            entries.forEach(function(entry) {
+                                if (entry.isIntersecting) {
+                                    video.play().catch(function(error) {
+                                        console.log('Video play prevented:', error);
+                                    });
+                                }
+                            });
+                        }, { threshold: 0.5 });
+
+                        observer.observe(video);
+                    }
                 }
             });
         }
