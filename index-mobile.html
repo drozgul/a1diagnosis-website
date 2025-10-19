@@ -1871,7 +1871,7 @@
         <div class="container">
             <!-- Video Container (Mobile-Optimized) -->
             <div class="hero-video-container">
-                <video class="hero-video" id="hero-video" autoplay muted loop playsinline preload="metadata" webkit-playsinline>
+                <video class="hero-video" id="hero-video" muted playsinline preload="metadata" webkit-playsinline poster="/Peaceful_lake_scene_web.gif">
                     <source src="/Peaceful_lake_scene_cropped_no_bars.mp4" type="video/mp4">
                     <source src="/Peaceful_lake_scene_cropped_final.mp4" type="video/mp4">
                     <source src="/Peaceful_lake_scene_cropped_v2.mp4" type="video/mp4">
@@ -1924,7 +1924,7 @@
         <div class="container">
             <!-- Mobile Video Container -->
             <div class="mobile-vision-video-container">
-                <video id="vision-video" autoplay muted loop playsinline preload="metadata" webkit-playsinline poster="/Image_1.png">
+                <video id="vision-video" muted playsinline preload="metadata" webkit-playsinline poster="/Image_1.png">
                     <source src="/presentation/A1-English.mov" type="video/mp4">
                 </video>
 
@@ -2953,11 +2953,8 @@
                     });
                 }
 
-                // Try to play video on iPhone
-                heroVideo.play().catch(function(error) {
-                    console.log('Hero video autoplay blocked:', error);
-                    // This is normal on iPhone, video will play when user scrolls
-                });
+                // Video will only play when user clicks Play button
+                // Auto-play removed for better user experience
             }
 
             // Vision Video Setup
@@ -2976,11 +2973,8 @@
                     visionVideo.style.display = 'block';
                 });
 
-                // Try to play video on iPhone
-                visionVideo.play().catch(function(error) {
-                    console.log('Vision video autoplay blocked:', error);
-                    // This is normal on iPhone, video will play when user scrolls
-                });
+                // Video will only play when user clicks Play button
+                // Auto-play removed for better user experience
             }
         }
 
@@ -3011,36 +3005,8 @@
                         videoContainer.classList.remove('playing');
                     });
 
-                    // Ensure video plays when it can (only once to prevent restarts)
-                    let canPlayFired = false;
-                    video.addEventListener('canplaythrough', function() {
-                        if (video.paused && !canPlayFired) {
-                            canPlayFired = true;
-                            video.play().catch(function(error) {
-                                console.log('Video autoplay prevented:', error);
-                            });
-                        }
-                    });
-
-                    // Intersection Observer to play video when visible (helps with iPhone)
-                    // Only trigger once to prevent video restarts
-                    if ('IntersectionObserver' in window) {
-                        let videoStarted = false;
-                        const observer = new IntersectionObserver(function(entries) {
-                            entries.forEach(function(entry) {
-                                if (entry.isIntersecting && !videoStarted) {
-                                    videoStarted = true;
-                                    video.play().catch(function(error) {
-                                        console.log('Video play prevented:', error);
-                                    });
-                                    // Stop observing after first play to prevent restarts
-                                    observer.unobserve(video);
-                                }
-                            });
-                        }, { threshold: 0.5 });
-
-                        observer.observe(video);
-                    }
+                    // Auto-play disabled - videos only play when user clicks Play button
+                    // This provides better user control and saves data on mobile
                 }
             });
         }
