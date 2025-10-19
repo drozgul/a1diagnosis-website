@@ -3976,6 +3976,23 @@
     </div>
     
     <script>
+        // Mobile Device Detection and Redirect
+        (function() {
+            // Check if user is on mobile device
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+                           window.innerWidth <= 768;
+
+            // Check if already on mobile page or if redirect should be bypassed
+            const isAlreadyMobile = window.location.pathname.includes('mobile');
+            const bypassRedirect = window.location.search.includes('desktop=true');
+
+            // Redirect to mobile version if on mobile device
+            if (isMobile && !isAlreadyMobile && !bypassRedirect) {
+                window.location.href = 'presentation-mobile.html';
+                return;
+            }
+        })();
+
         function showSection(sectionId) {
             // Hide all sections
             const sections = document.querySelectorAll('.section');
