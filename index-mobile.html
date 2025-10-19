@@ -2653,7 +2653,7 @@
         function toggleMobileMenu() {
             const mobileMenu = document.getElementById('mobile-menu');
             const menuBtn = document.querySelector('.mobile-menu-btn');
-            
+
             if (mobileMenu.classList.contains('active')) {
                 mobileMenu.classList.remove('active');
                 menuBtn.textContent = '☰';
@@ -2661,13 +2661,19 @@
                 mobileMenu.classList.add('active');
                 menuBtn.textContent = '✕';
             }
+
+            // Dispatch event for navbar height adjustment
+            window.dispatchEvent(new Event('menuToggled'));
         }
-        
+
         function closeMobileMenu() {
             const mobileMenu = document.getElementById('mobile-menu');
             const menuBtn = document.querySelector('.mobile-menu-btn');
             mobileMenu.classList.remove('active');
             menuBtn.textContent = '☰';
+
+            // Dispatch event for navbar height adjustment
+            window.dispatchEvent(new Event('menuToggled'));
         }
         
         // Close mobile menu when clicking outside
@@ -3028,7 +3034,34 @@
         document.addEventListener('DOMContentLoaded', function() {
             setupVideoFallback();
             setupMobileVideoOptimizations();
-            
+
+            // Dynamic navbar height adjustment
+            function adjustHeroPadding() {
+                const navbar = document.getElementById('navbar');
+                const hero = document.querySelector('.hero');
+
+                if (navbar && hero) {
+                    // Measure actual navbar height
+                    const navbarHeight = navbar.offsetHeight;
+
+                    // Apply padding with 20px buffer for breathing room
+                    hero.style.paddingTop = (navbarHeight + 20) + 'px';
+
+                    console.log('Navbar height:', navbarHeight, 'Hero padding-top:', navbarHeight + 20);
+                }
+            }
+
+            // Apply on load
+            adjustHeroPadding();
+
+            // Reapply on window resize (handles orientation changes)
+            window.addEventListener('resize', function() {
+                setTimeout(adjustHeroPadding, 100); // Small delay to let browser recalculate
+            });
+
+            // Reapply after mobile menu toggle (in case it changes navbar height)
+            window.addEventListener('menuToggled', adjustHeroPadding);
+
             // Use full cinematic animation on mobile (same as desktop)
             setTimeout(startHeroAnimation, 1000);
         });
