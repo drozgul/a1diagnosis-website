@@ -3045,7 +3045,8 @@
                     const navbarHeight = navbar.offsetHeight;
 
                     // Apply padding with 20px buffer for breathing room
-                    hero.style.paddingTop = (navbarHeight + 20) + 'px';
+                    // Use !important to override any CSS rules
+                    hero.style.setProperty('padding-top', (navbarHeight + 20) + 'px', 'important');
 
                     console.log('Navbar height:', navbarHeight, 'Hero padding-top:', navbarHeight + 20);
                 }
