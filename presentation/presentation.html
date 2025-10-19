@@ -25,14 +25,17 @@
                             /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|CriOS/i.test(navigator.userAgent);
 
             // Check if we're already on the mobile version to prevent redirect loops
-            const isAlreadyMobile = window.location.pathname.includes('index-mobile.html');
+            const isAlreadyMobile = window.location.pathname.includes('mobile');
 
             // Additional check for touch devices
             const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
+            // Check for bypass parameter
+            const bypassRedirect = window.location.search.includes('desktop=true');
+
             // Redirect mobile users or touch devices to mobile version
-            if ((isMobile || isTouchDevice) && !isAlreadyMobile) {
-                window.location.href = 'index-mobile.html';
+            if ((isMobile || isTouchDevice) && !isAlreadyMobile && !bypassRedirect) {
+                window.location.href = 'presentation-mobile.html';
             }
         })();
     </script>
@@ -3976,23 +3979,6 @@
     </div>
     
     <script>
-        // Mobile Device Detection and Redirect
-        (function() {
-            // Check if user is on mobile device
-            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
-                           window.innerWidth <= 768;
-
-            // Check if already on mobile page or if redirect should be bypassed
-            const isAlreadyMobile = window.location.pathname.includes('mobile');
-            const bypassRedirect = window.location.search.includes('desktop=true');
-
-            // Redirect to mobile version if on mobile device
-            if (isMobile && !isAlreadyMobile && !bypassRedirect) {
-                window.location.href = 'presentation-mobile.html';
-                return;
-            }
-        })();
-
         function showSection(sectionId) {
             // Hide all sections
             const sections = document.querySelectorAll('.section');
