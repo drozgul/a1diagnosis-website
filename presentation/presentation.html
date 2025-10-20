@@ -16,7 +16,8 @@
     </script>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
-    
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+
     <!-- Mobile Device Detection & Auto-Redirect -->
     <script>
         (function() {
@@ -1918,6 +1919,7 @@
         <div class="navigation-buttons">
             <button class="nav-button active" onclick="showSection('yonetici-ozeti')">💡 Executive Summary</button>
             <button class="nav-button" onclick="showSection('kritik-problem')">💡 Critical Problem</button>
+            <button class="nav-button" onclick="showSection('erken-risk-degerlendirme')">💡 Early Risk Assessment Opportunity</button>
             <button class="nav-button" onclick="showSection('cigir-acan-cozum')">💡 Our Breakthrough Solution</button>
             <button class="nav-button" onclick="showSection('amd-risk-demo')">💡 Sample AMD Risk Assessment Report</button>
             <button class="nav-button" onclick="showSection('kanıtlanmis-is-modeli')">💡 Proven Business Model</button>
@@ -2148,7 +2150,144 @@
                 <p><strong>Critical Challenge:</strong> Progressive and irreversible vision loss occurs over time. When vision problems become apparent, the damage is permanent and irreversible.</p>
             </div>
         </div>
-        
+
+        <div class="section" id="erken-risk-degerlendirme">
+            <h2>💡 Early Risk Assessment Opportunity</h2>
+            <div style="margin-bottom: 30px;">
+                <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 15px;">
+                    <span style="color: #3b82f6; font-size: 18px; flex-shrink: 0; margin-top: 2px;">✨</span>
+                    <p style="margin: 0; color: #374151; font-size: 14px; line-height: 1.6;">Chronic diseases develop silently over years before symptoms appear. This creates a critical window of opportunity for early intervention.</p>
+                </div>
+                <div style="display: flex; align-items: flex-start; gap: 12px;">
+                    <span style="color: #3b82f6; font-size: 18px; flex-shrink: 0; margin-top: 2px;">✨</span>
+                    <p style="margin: 0; color: #374151; font-size: 14px; line-height: 1.6;">Navigate through the three interactive visualizations below to explore disease progression and early detection opportunities.</p>
+                </div>
+            </div>
+
+            <!-- Tab Navigation -->
+            <div style="display: flex; gap: 10px; margin-bottom: 0; border-bottom: 2px solid #e5e7eb;">
+                <button class="risk-tab active" data-tab="tab-glucose" onclick="switchRiskTab('tab-glucose')" style="padding: 15px 30px; background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); color: white; border: none; border-radius: 8px 8px 0 0; font-size: 15px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; position: relative; top: 2px;">
+                    <span style="display: block; font-size: 12px; opacity: 0.9; margin-bottom: 3px;">Slide 1</span>
+                    Glucose Progression
+                </button>
+                <button class="risk-tab" data-tab="tab-peptide" onclick="switchRiskTab('tab-peptide')" style="padding: 15px 30px; background: #dcfce7; color: #166534; border: none; border-radius: 8px 8px 0 0; font-size: 15px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; position: relative; top: 2px;">
+                    <span style="display: block; font-size: 12px; opacity: 0.8; margin-bottom: 3px;">Slide 2</span>
+                    peptide-28 + Vision
+                </button>
+                <button class="risk-tab" data-tab="tab-comparison" onclick="switchRiskTab('tab-comparison')" style="padding: 15px 30px; background: #dcfce7; color: #166534; border: none; border-radius: 8px 8px 0 0; font-size: 15px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; position: relative; top: 2px;">
+                    <span style="display: block; font-size: 12px; opacity: 0.8; margin-bottom: 3px;">Slide 3</span>
+                    Platform Comparison
+                </button>
+            </div>
+
+            <!-- Tab Content Container -->
+            <div style="background: white; border-radius: 0 0 20px 20px; border: 1px solid #e5e7eb; border-top: none; box-shadow: 0 10px 25px -5px rgba(46, 204, 113, 0.25);">
+
+                <!-- Tab Panel 1: Glucose Chart -->
+                <div class="risk-tab-panel active" id="tab-glucose" style="padding: 40px; display: block;">
+                    <div style="text-align: center; margin-bottom: 30px;">
+                        <h3 style="font-size: 24px; font-weight: bold; color: #2c3e50; margin-bottom: 10px;">Fasting Blood Glucose Levels</h3>
+                        <p style="font-size: 16px; color: #7f8c8d; text-align: center;">10-Year Disease Development Timeline (Ages 35-45)</p>
+                    </div>
+
+                    <div style="display: flex; justify-content: center; margin-bottom: 30px;">
+                        <div id="glucose-chart-presentation" style="width: 100%; max-width: 900px; height: 500px;"></div>
+                    </div>
+
+                    <div style="text-align: center; margin-top: 30px;">
+                        <button id="replay-glucose-chart" style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; border: none; padding: 12px 30px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3); transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(59, 130, 246, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(59, 130, 246, 0.3)'">
+                            ▶ Replay Animation
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Tab Panel 2: Peptide-28 Chart with Video -->
+                <div class="risk-tab-panel" id="tab-peptide" style="padding: 40px; display: none;">
+                    <div style="text-align: center; margin-bottom: 30px;">
+                        <h3 style="font-size: 24px; font-weight: bold; color: #2c3e50; margin-bottom: 10px;">peptide-28 Expression & Vision Impact</h3>
+                        <p style="font-size: 16px; color: #7f8c8d; text-align: center;">Biomarker Progression with Real Vision Deterioration (Ages 35-45)</p>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 400px; gap: 40px; align-items: start;">
+                        <!-- Peptide Chart -->
+                        <div>
+                            <div id="peptide-chart-presentation" style="width: 100%; height: 500px;"></div>
+                        </div>
+
+                        <!-- Video Section -->
+                        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                            <div style="font-size: 18px; font-weight: bold; color: #2c3e50; margin-bottom: 15px; text-align: center;">Vision Progression:<br>Normal → Wet AMD</div>
+                            <div style="width: 100%; max-width: 350px; height: 550px; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); background: #000;">
+                                <video id="amdVideo" muted playsinline style="width: 100%; height: 100%; display: block; object-fit: cover; object-position: center;">
+                                    <source src="Normal to AMD vision v2 - Slow.mp4" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="text-align: center; margin-top: 30px;">
+                        <button id="replay-peptide-chart" style="background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%); color: white; border: none; padding: 12px 30px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3); transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(34, 197, 94, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(34, 197, 94, 0.3)'">
+                            ▶ Replay Chart & Video
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Tab Panel 3: Platform Comparison -->
+                <div class="risk-tab-panel" id="tab-comparison" style="padding: 40px; display: none;">
+                    <div style="text-align: center; margin-bottom: 30px;">
+                        <h3 style="font-size: 24px; font-weight: bold; color: #2c3e50; margin-bottom: 10px;">Multi-Disease Biomarker Platform</h3>
+                        <p style="font-size: 16px; color: #7f8c8d; text-align: center;">Side-by-Side Comparison: AMD & Diabetes Progression (Ages 35-45)</p>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+                        <!-- Peptide-28 Chart -->
+                        <div>
+                            <div id="comparison-peptide-chart" style="width: 100%; height: 450px;"></div>
+                        </div>
+
+                        <!-- Glucose Chart -->
+                        <div>
+                            <div id="comparison-glucose-chart" style="width: 100%; height: 450px;"></div>
+                        </div>
+                    </div>
+
+                    <div style="text-align: center; margin-top: 30px;">
+                        <button id="replay-comparison-charts" style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; border: none; padding: 12px 30px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3); transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(139, 92, 246, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(139, 92, 246, 0.3)'">
+                            ▶ Replay Both Charts
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Shared Legend (Bottom of All Tabs) -->
+                <div style="padding: 20px 40px 30px; border-top: 1px solid #f3f4f6;">
+                    <div style="display: flex; justify-content: center; gap: 30px; flex-wrap: wrap;">
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <div style="width: 20px; height: 20px; border-radius: 3px; background: #2ecc71;"></div>
+                            <span style="font-size: 14px; color: #2c3e50;">Healthy Phase (Ages 35-37)</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <div style="width: 20px; height: 20px; border-radius: 3px; background: #f39c12;"></div>
+                            <span style="font-size: 14px; color: #2c3e50;">Early Disease (Ages 38-39)</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <div style="width: 20px; height: 20px; border-radius: 3px; background: #e67e22;"></div>
+                            <span style="font-size: 14px; color: #2c3e50;">Intermediate Disease (Ages 40-42)</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <div style="width: 20px; height: 20px; border-radius: 3px; background: #e74c3c;"></div>
+                            <span style="font-size: 14px; color: #2c3e50;">Late Disease (Ages 43-45)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dynamic Highlight Box -->
+            <div class="highlight-box-modern" id="risk-highlight-box" style="margin-top: 20px;">
+                <p id="risk-highlight-text"><strong>Early Detection Window:</strong> This visualization demonstrates how diseases progress gradually over many years. Our blood-based risk assessment platform can detect biological changes during the early phase—years before traditional diagnostic methods identify symptoms—enabling timely intervention when treatment is most effective.</p>
+            </div>
+        </div>
+
         <div class="section" id="cigir-acan-cozum">
             <h2>💡 Our Breakthrough Solution</h2>
             <div style="margin-bottom: 20px;">
@@ -2214,7 +2353,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="section" id="kanıtlanmis-is-modeli">
             <h2>💡 Proven Business Model</h2>
             <p>Our business model is inspired by the highly successful Exact Sciences model, which achieved a $9.90 billion market value and $2.76 billion annual revenue through blood-based diagnostic tests.</p>
@@ -3985,26 +4124,107 @@
             sections.forEach(section => {
                 section.classList.remove('active');
             });
-            
+
             // Show selected section
             const selectedSection = document.getElementById(sectionId);
             if (selectedSection) {
                 selectedSection.classList.add('active');
             }
-            
+
             // Update button states
             const buttons = document.querySelectorAll('.nav-button');
             buttons.forEach(button => {
                 button.classList.remove('active');
             });
-            
+
             // Set active button
             const activeButton = document.querySelector(`button[onclick="showSection('${sectionId}')"]`);
             if (activeButton) {
                 activeButton.classList.add('active');
             }
         }
-        
+
+        function showBiomarkerSlide(slideNumber) {
+            // Hide all slides
+            for (let i = 1; i <= 3; i++) {
+                const slide = document.getElementById(`biomarker-slide-${i}`);
+                const tab = document.getElementById(`biomarker-tab-${i}`);
+                if (slide) slide.style.display = 'none';
+                if (tab) {
+                    tab.style.background = 'linear-gradient(135deg, #e5e7eb, #d1d5db)';
+                    tab.style.color = '#374151';
+                    tab.style.boxShadow = 'none';
+                }
+            }
+
+            // Show selected slide
+            const selectedSlide = document.getElementById(`biomarker-slide-${slideNumber}`);
+            const selectedTab = document.getElementById(`biomarker-tab-${slideNumber}`);
+            if (selectedSlide) selectedSlide.style.display = 'block';
+            if (selectedTab) {
+                selectedTab.style.background = 'linear-gradient(135deg, #3b82f6, #2563eb)';
+                selectedTab.style.color = 'white';
+                selectedTab.style.boxShadow = '0 4px 12px rgba(59, 130, 246, 0.3)';
+            }
+        }
+
+        // Risk Assessment Tab Switching Function
+        function switchRiskTab(tabId) {
+            // Hide all tab panels
+            const panels = document.querySelectorAll('.risk-tab-panel');
+            panels.forEach(panel => {
+                panel.style.display = 'none';
+                panel.classList.remove('active');
+            });
+
+            // Show selected panel
+            const selectedPanel = document.getElementById(tabId);
+            if (selectedPanel) {
+                selectedPanel.style.display = 'block';
+                selectedPanel.classList.add('active');
+            }
+
+            // Update tab button styles
+            const tabs = document.querySelectorAll('.risk-tab');
+            tabs.forEach(tab => {
+                const isActive = tab.dataset.tab === tabId;
+                if (isActive) {
+                    tab.style.background = 'linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)';
+                    tab.style.color = 'white';
+                    tab.classList.add('active');
+                } else {
+                    tab.style.background = '#dcfce7';
+                    tab.style.color = '#166534';
+                    tab.classList.remove('active');
+                }
+            });
+
+            // Update highlight box text based on active tab
+            const highlightText = document.getElementById('risk-highlight-text');
+            if (highlightText) {
+                if (tabId === 'tab-glucose') {
+                    highlightText.innerHTML = '<strong>Early Detection Window:</strong> This visualization demonstrates how diseases progress gradually over many years. Our blood-based risk assessment platform can detect biological changes during the early phase—years before traditional diagnostic methods identify symptoms—enabling timely intervention when treatment is most effective.';
+                } else if (tabId === 'tab-peptide') {
+                    highlightText.innerHTML = '<strong>Biomarker Correlation:</strong> The peptide-28 biomarker shows dramatic elevation during AMD progression, correlating directly with vision deterioration. The synchronized video demonstrates what patients actually experience as the biomarker rises—from clear vision to severe central vision loss. This illustrates why early blood-based detection (when biomarker levels first begin rising) is critical for preserving vision.';
+                } else if (tabId === 'tab-comparison') {
+                    highlightText.innerHTML = '<strong>Platform Scalability:</strong> This side-by-side comparison demonstrates our platform\'s capability to detect multiple chronic diseases from blood biomarkers. While peptide-28 tracks AMD progression (93x increase), glucose levels track diabetes development (1.8x increase). The same blood-based technology can be expanded to detect various chronic conditions, maximizing early intervention opportunities across multiple disease categories.';
+                }
+            }
+
+            // Trigger animations based on tab
+            setTimeout(() => {
+                if (tabId === 'tab-glucose' && window.Plotly && document.getElementById('glucose-chart-presentation')) {
+                    Plotly.animate('glucose-chart-presentation', window.glucoseFrames, window.glucoseAnimationSettings);
+                } else if (tabId === 'tab-peptide' && window.playPeptideSync) {
+                    // Use synchronized play function for peptide + video
+                    window.playPeptideSync();
+                } else if (tabId === 'tab-comparison' && window.Plotly && document.getElementById('comparison-peptide-chart')) {
+                    Plotly.animate('comparison-peptide-chart', window.peptideFrames, window.comparisonAnimationSettings);
+                    Plotly.animate('comparison-glucose-chart', window.glucoseFrames, window.comparisonAnimationSettings);
+                }
+            }, 300);
+        }
+
         // Initialize - show first section by default or hash target
         document.addEventListener('DOMContentLoaded', function() {
             // Check if there's a hash in the URL (like #ekibimiz)
@@ -4379,8 +4599,540 @@
                     }
                 });
             }
+
+            // Glucose Chart Initialization
+            const glucoseAges = [35.0, 35.101010101010104, 35.2020202020202, 35.303030303030305, 35.4040404040404, 35.505050505050505, 35.60606060606061, 35.707070707070706, 35.80808080808081, 35.90909090909091, 36.01010101010101, 36.111111111111114, 36.21212121212121, 36.313131313131315, 36.41414141414141, 36.515151515151516, 36.61616161616162, 36.717171717171716, 36.81818181818182, 36.91919191919192, 37.02020202020202, 37.121212121212125, 37.22222222222222, 37.323232323232325, 37.42424242424242, 37.525252525252526, 37.62626262626263, 37.72727272727273, 37.82828282828283, 37.92929292929293, 38.03030303030303, 38.13131313131313, 38.23232323232323, 38.333333333333336, 38.43434343434343, 38.535353535353536, 38.63636363636363, 38.73737373737374, 38.83838383838384, 38.93939393939394, 39.04040404040404, 39.14141414141414, 39.24242424242424, 39.343434343434346, 39.44444444444444, 39.54545454545455, 39.64646464646464, 39.74747474747475, 39.84848484848485, 39.94949494949495, 40.05050505050505, 40.15151515151515, 40.25252525252525, 40.35353535353536, 40.45454545454545, 40.55555555555556, 40.656565656565654, 40.75757575757576, 40.858585858585855, 40.95959595959596, 41.06060606060606, 41.16161616161616, 41.26262626262626, 41.36363636363636, 41.464646464646464, 41.56565656565657, 41.666666666666664, 41.76767676767677, 41.868686868686865, 41.96969696969697, 42.07070707070707, 42.17171717171717, 42.27272727272727, 42.37373737373737, 42.474747474747474, 42.57575757575758, 42.676767676767675, 42.77777777777778, 42.878787878787875, 42.97979797979798, 43.08080808080808, 43.18181818181818, 43.282828282828284, 43.38383838383838, 43.484848484848484, 43.58585858585859, 43.686868686868685, 43.78787878787879, 43.888888888888886, 43.98989898989899, 44.09090909090909, 44.19191919191919, 44.292929292929294, 44.39393939393939, 44.494949494949495, 44.5959595959596, 44.696969696969695, 44.7979797979798, 44.898989898989896, 45.0];
+            const glucoseValues = [90.0, 90.0, 90.0, 90.0, 90.0, 90.0, 90.0, 90.0, 90.0, 90.0, 90.0, 90.0, 90.0, 90.0, 90.0, 90.0, 90.0, 90.0, 90.0, 90.0, 90.00138782392507, 90.04954039940266, 90.16509487882945, 90.3462960042901, 90.59138851786923, 90.89861716165154, 91.26622667772169, 91.69246180816428, 92.17556729506404, 92.71378788050555, 93.30536830657354, 93.9485533153526, 94.64158764892746, 95.38271604938274, 96.17018325880302, 97.0022340192731, 97.8771130728775, 98.79306516170101, 99.74833502782822, 100.7411674133437, 101.76980706033227, 102.83249871087843, 103.927487107067, 105.05301699098253, 106.20733310470963, 107.3886801903331, 108.59530298993742, 109.82544624560745, 111.07735469942773, 112.34927309348285, 113.63944616985762, 114.94611867063654, 116.26753533790443, 117.60194091374586, 118.9475801402454, 120.3026977594879, 121.6655385135578, 123.03434714453998, 124.40736839451887, 125.78284700557936, 127.15902771980598, 128.5341552792833, 129.90647442609614, 131.274229902329, 132.63566645006676, 133.9890288113939, 135.33256172839504, 136.664509943155, 137.98311819775824, 139.28663123428964, 140.57329379483372, 141.84135062147507, 143.08904645629852, 144.31462604138858, 145.51633411883, 146.69241543070746, 147.84111471910546, 148.96067672610883, 150.04934619380208, 151.10536786427, 152.1269864795972, 153.11244678186824, 154.05999351316794, 154.9678714155808, 155.8343252311916, 156.65759970208495, 157.43593957034548, 158.16758957805789, 158.8507944673068, 159.48379898017689, 160.06484785875284, 160.59218584511922, 161.06405768136077, 161.47870810956206, 161.83438187180786, 162.1293237101828, 162.3617783667715, 162.52999058365856, 162.63220510292874, 162.66666666666666];
+            const glucoseHealthyMean = 90.0;
+            const glucoseDiabetesMean = 162.66666666666666;
+
+            function getLineColor(age) {
+                if (age < 38) return '#2ecc71';
+                if (age < 40) return '#f39c12';
+                if (age < 43) return '#e67e22';
+                return '#e74c3c';
+            }
+
+            function getXAxisAnnotations(age, yPosition) {
+                let xAxisAnnotations = [];
+                for (let i = 35; i <= 45; i++) {
+                    const isCurrent = Math.round(age) === i;
+                    xAxisAnnotations.push({
+                        x: i,
+                        y: yPosition,
+                        text: i.toString(),
+                        showarrow: false,
+                        xref: 'x',
+                        yref: 'paper',
+                        font: {
+                            size: isCurrent ? 22 : 16,
+                            color: isCurrent ? '#00bcd4' : '#000000',
+                            weight: isCurrent ? 'bold' : 'normal'
+                        }
+                    });
+                }
+                return xAxisAnnotations;
+            }
+
+            function getGlucoseAnnotations(age) {
+                let annotations = getXAxisAnnotations(age, -0.10);
+                if (age < 38) {
+                    annotations.push({
+                        x: 36, y: glucoseHealthyMean * 1.25,
+                        text: 'Healthy<br>(Ages 35-37)',
+                        showarrow: false,
+                        font: { size: 12, color: '#2ecc71', weight: 'bold' }
+                    });
+                } else if (age < 40) {
+                    annotations.push({
+                        x: 38.5, y: glucoseHealthyMean * 1.30,
+                        text: 'Early Disease<br>(Ages 38-39)',
+                        showarrow: false,
+                        font: { size: 12, color: '#f39c12', weight: 'bold' }
+                    });
+                } else if (age < 43) {
+                    annotations.push({
+                        x: 41, y: (glucoseHealthyMean + glucoseDiabetesMean) / 2,
+                        text: 'Intermediate Disease<br>(Ages 40-42)',
+                        showarrow: false,
+                        font: { size: 12, color: '#e67e22', weight: 'bold' }
+                    });
+                } else {
+                    annotations.push({
+                        x: 44, y: glucoseDiabetesMean * 1.05,
+                        text: 'Late Disease<br>(Ages 43-45)',
+                        showarrow: false,
+                        font: { size: 12, color: '#e74c3c', weight: 'bold' }
+                    });
+                }
+                return annotations;
+            }
+
+            const glucoseFrames = [];
+            for (let i = 0; i < glucoseAges.length; i++) {
+                const currentAges = glucoseAges.slice(0, i + 1);
+                const currentValues = glucoseValues.slice(0, i + 1);
+                const currentAge = glucoseAges[i];
+
+                glucoseFrames.push({
+                    name: i.toString(),
+                    data: [{
+                        x: currentAges,
+                        y: currentValues,
+                        line: { color: getLineColor(currentAge), width: 4 }
+                    }],
+                    layout: {
+                        annotations: getGlucoseAnnotations(currentAge)
+                    },
+                    traces: [0]
+                });
+            }
+
+            const glucoseTrace = {
+                x: [glucoseAges[0]],
+                y: [glucoseValues[0]],
+                mode: 'lines',
+                line: {
+                    color: '#2ecc71',
+                    width: 4
+                },
+                type: 'scatter',
+                showlegend: false
+            };
+
+            const glucoseLayout = {
+                title: {
+                    text: '',
+                    font: { size: 22, weight: 'bold' }
+                },
+                xaxis: {
+                    title: { text: 'Age (years)', font: { size: 18 }, standoff: 20 },
+                    range: [34.5, 45.5],
+                    showgrid: false,
+                    showline: true,
+                    linecolor: 'black',
+                    linewidth: 2,
+                    dtick: 1,
+                    tickfont: { size: 16 },
+                    showticklabels: false
+                },
+                yaxis: {
+                    title: { text: 'Glucose (mg/dL)', font: { size: 18 } },
+                    tickfont: { size: 16 },
+                    range: [70, 180],
+                    showgrid: false,
+                    showline: true,
+                    linecolor: 'black',
+                    linewidth: 2
+                },
+                showlegend: false,
+                plot_bgcolor: 'white',
+                paper_bgcolor: 'white',
+                margin: { l: 70, r: 40, t: 40, b: 60 },
+                annotations: getXAxisAnnotations(35, -0.10).concat([
+                    {
+                        x: 36, y: glucoseHealthyMean * 1.25,
+                        text: 'Healthy<br>(Ages 35-37)',
+                        showarrow: false,
+                        font: { size: 12, color: '#2ecc71', weight: 'bold' }
+                    }
+                ])
+            };
+
+            const glucoseConfig = {
+                responsive: true,
+                displayModeBar: false
+            };
+
+            const glucoseAnimationSettings = {
+                frame: { duration: 115, redraw: false },
+                transition: { duration: 100, easing: 'ease-in-out' },
+                fromcurrent: true,
+                mode: 'afterall'
+            };
+
+            // Store in window for tab access
+            window.glucoseFrames = glucoseFrames;
+            window.glucoseAnimationSettings = glucoseAnimationSettings;
+
+            // Initialize the glucose chart
+            if (document.getElementById('glucose-chart-presentation')) {
+                Plotly.newPlot('glucose-chart-presentation', [glucoseTrace], glucoseLayout, glucoseConfig);
+
+                // Auto-play animation when section becomes visible (only for first tab)
+                const glucoseSection = document.getElementById('erken-risk-degerlendirme');
+                if (glucoseSection) {
+                    const observer = new MutationObserver((mutations) => {
+                        mutations.forEach((mutation) => {
+                            if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+                                if (glucoseSection.classList.contains('active')) {
+                                    // Only auto-play glucose chart on initial section load
+                                    const activeTab = document.querySelector('.risk-tab.active');
+                                    if (activeTab && activeTab.dataset.tab === 'tab-glucose') {
+                                        setTimeout(() => {
+                                            Plotly.animate('glucose-chart-presentation', glucoseFrames, glucoseAnimationSettings);
+                                        }, 500);
+                                    }
+                                }
+                            }
+                        });
+                    });
+                    observer.observe(glucoseSection, { attributes: true });
+                }
+
+                // Replay button functionality
+                const replayButton = document.getElementById('replay-glucose-chart');
+                if (replayButton) {
+                    replayButton.addEventListener('click', () => {
+                        Plotly.animate('glucose-chart-presentation', glucoseFrames, glucoseAnimationSettings);
+                    });
+                }
+            }
+
+            // Peptide-28 Chart Initialization
+            const peptideAges = [35.0, 35.101010101010104, 35.2020202020202, 35.303030303030305, 35.4040404040404, 35.505050505050505, 35.60606060606061, 35.707070707070706, 35.80808080808081, 35.90909090909091, 36.01010101010101, 36.111111111111114, 36.21212121212121, 36.313131313131315, 36.41414141414141, 36.515151515151516, 36.61616161616162, 36.717171717171716, 36.81818181818182, 36.91919191919192, 37.02020202020202, 37.121212121212125, 37.22222222222222, 37.323232323232325, 37.42424242424242, 37.525252525252526, 37.62626262626263, 37.72727272727273, 37.82828282828283, 37.92929292929293, 38.03030303030303, 38.13131313131313, 38.23232323232323, 38.333333333333336, 38.43434343434343, 38.535353535353536, 38.63636363636363, 38.73737373737374, 38.83838383838384, 38.93939393939394, 39.04040404040404, 39.14141414141414, 39.24242424242424, 39.343434343434346, 39.44444444444444, 39.54545454545455, 39.64646464646464, 39.74747474747475, 39.84848484848485, 39.94949494949495, 40.05050505050505, 40.15151515151515, 40.25252525252525, 40.35353535353536, 40.45454545454545, 40.55555555555556, 40.656565656565654, 40.75757575757576, 40.858585858585855, 40.95959595959596, 41.06060606060606, 41.16161616161616, 41.26262626262626, 41.36363636363636, 41.464646464646464, 41.56565656565657, 41.666666666666664, 41.76767676767677, 41.868686868686865, 41.96969696969697, 42.07070707070707, 42.17171717171717, 42.27272727272727, 42.37373737373737, 42.474747474747474, 42.57575757575758, 42.676767676767675, 42.77777777777778, 42.878787878787875, 42.97979797979798, 43.08080808080808, 43.18181818181818, 43.282828282828284, 43.38383838383838, 43.484848484848484, 43.58585858585859, 43.686868686868685, 43.78787878787879, 43.888888888888886, 43.98989898989899, 44.09090909090909, 44.19191919191919, 44.292929292929294, 44.39393939393939, 44.494949494949495, 44.5959595959596, 44.696969696969695, 44.7979797979798, 44.898989898989896, 45.0];
+            const peptideValues = [246.71375, 246.71375, 246.71375, 246.71375, 246.71375, 246.71375, 246.71375, 246.71375, 246.71375, 246.71375, 246.71375, 246.71375, 246.71375, 246.71375, 246.71375, 246.71375, 246.71375, 246.71375, 246.71375, 246.71375, 247.14854768163175, 262.23448747855133, 298.4370769061496, 355.2064032136328, 431.9925536501939, 528.2456154650447, 643.4156759073817, 776.9528222263954, 928.307141671306, 1096.928721491293, 1282.2676489355813, 1483.7740112533456, 1700.8978956938158, 1933.089389506179, 2179.798579939618, 2440.4755542433686, 2714.570399666595, 3001.5332034585376, 3300.8140528683793, 3611.8630351452953, 3934.1302375385344, 4267.065747297249, 4610.1196516706905, 4962.742037908032, 5324.382993258455, 5694.492604971206, 6072.5209602954355, 6457.918146480399, 6850.134250775269, 7248.61936042922, 7652.823562691508, 8062.1969448112795, 8476.189594037793, 8894.251597620216, 9315.833042807724, 9740.384016849575, 10167.354606994913, 10596.194900492994, 11026.354984592965, 11457.284946544089, 11888.43487359553, 12319.254852996459, 12749.194971996138, 13177.70531784371, 13604.235977788441, 14028.237039079491, 14449.158588966045, 14866.45071469735, 15279.563503522553, 15687.947042690916, 16091.051419451604, 16488.3267210538, 16879.22303474675, 17263.190447779612, 17639.679047401627, 18008.138920861984, 18368.020155409846, 18718.77283829447, 19059.84705676502, 19390.692898070713, 19710.760449460762, 20019.499798184315, 20316.361031490644, 20600.79423662889, 20872.249500848302, 21130.17691139806, 21374.026555527347, 21603.24852048539, 21817.292893521375, 22015.60976188452, 22197.649212824017, 22362.861333589048, 22510.696211428844, 22640.603933592578, 22752.034587329483, 22844.438259888746, 22917.265038519556, 22969.96501047112, 23001.98826299265, 23012.784883333337];
+            const peptideHealthyMean = 246.71375;
+            const peptideAMDMean = 23012.784883333337;
+
+            function getPeptideLineColor(age) {
+                if (age < 38) return '#2ecc71';
+                if (age < 40) return '#f39c12';
+                if (age < 43) return '#e67e22';
+                return '#e74c3c';
+            }
+
+            function getPeptideXAxisAnnotations(age, yPosition) {
+                let xAxisAnnotations = [];
+                for (let i = 35; i <= 45; i++) {
+                    const isCurrent = Math.round(age) === i;
+                    xAxisAnnotations.push({
+                        x: i,
+                        y: yPosition,
+                        text: i.toString(),
+                        showarrow: false,
+                        xref: 'x',
+                        yref: 'paper',
+                        font: {
+                            size: isCurrent ? 22 : 16,
+                            color: isCurrent ? '#00bcd4' : '#000000',
+                            weight: isCurrent ? 'bold' : 'normal'
+                        }
+                    });
+                }
+                return xAxisAnnotations;
+            }
+
+            function getPeptideAnnotations(age) {
+                let annotations = getPeptideXAxisAnnotations(age, -0.10);
+                const yMin = Math.min(peptideAMDMean, peptideHealthyMean) * 0.5;
+                const yMax = Math.max(peptideAMDMean, peptideHealthyMean) * 1.3;
+
+                if (age < 38) {
+                    const yPosition = yMin + (yMax - yMin) * 0.20;
+                    annotations.push({
+                        x: 36, y: yPosition,
+                        text: 'Healthy<br>(Ages 35-37)',
+                        showarrow: false,
+                        font: { size: 12, color: '#2ecc71', weight: 'bold' }
+                    });
+                } else if (age < 40) {
+                    const yPosition = yMin + (yMax - yMin) * 0.35;
+                    annotations.push({
+                        x: 38.5, y: yPosition,
+                        text: 'Early AMD<br>(Ages 38-39)',
+                        showarrow: false,
+                        font: { size: 12, color: '#f39c12', weight: 'bold' }
+                    });
+                } else if (age < 43) {
+                    annotations.push({
+                        x: 41, y: (peptideHealthyMean + peptideAMDMean) / 2,
+                        text: 'Intermediate AMD<br>(Ages 40-42)',
+                        showarrow: false,
+                        font: { size: 12, color: '#e67e22', weight: 'bold' }
+                    });
+                } else {
+                    annotations.push({
+                        x: 44, y: peptideAMDMean * 1.08,
+                        text: 'Late AMD<br>(Ages 43-45)',
+                        showarrow: false,
+                        font: { size: 12, color: '#e74c3c', weight: 'bold' }
+                    });
+                }
+                return annotations;
+            }
+
+            const peptideFrames = [];
+            for (let i = 0; i < peptideAges.length; i++) {
+                const currentAges = peptideAges.slice(0, i + 1);
+                const currentValues = peptideValues.slice(0, i + 1);
+                const currentAge = peptideAges[i];
+
+                peptideFrames.push({
+                    name: i.toString(),
+                    data: [{
+                        x: currentAges,
+                        y: currentValues,
+                        line: { color: getPeptideLineColor(currentAge), width: 4 }
+                    }],
+                    layout: {
+                        annotations: getPeptideAnnotations(currentAge)
+                    },
+                    traces: [0]
+                });
+            }
+
+            const peptideTrace = {
+                x: [peptideAges[0]],
+                y: [peptideValues[0]],
+                mode: 'lines',
+                line: {
+                    color: '#2ecc71',
+                    width: 4
+                },
+                type: 'scatter',
+                showlegend: false
+            };
+
+            const yMin = Math.min(peptideAMDMean, peptideHealthyMean) * 0.5;
+            const yMax = Math.max(peptideAMDMean, peptideHealthyMean) * 1.3;
+            const yPosition = yMin + (yMax - yMin) * 0.20;
+
+            const peptideLayout = {
+                title: {
+                    text: '',
+                    font: { size: 22, weight: 'bold' }
+                },
+                xaxis: {
+                    title: { text: 'Age (years)', font: { size: 18 }, standoff: 20 },
+                    range: [34.5, 45.5],
+                    showgrid: false,
+                    showline: true,
+                    linecolor: 'black',
+                    linewidth: 2,
+                    dtick: 1,
+                    tickfont: { size: 16 },
+                    showticklabels: false
+                },
+                yaxis: {
+                    title: { text: 'Expression Level', font: { size: 18 } },
+                    tickfont: { size: 16 },
+                    range: [yMin, yMax],
+                    showgrid: false,
+                    showline: true,
+                    linecolor: 'black',
+                    linewidth: 2
+                },
+                showlegend: false,
+                plot_bgcolor: 'white',
+                paper_bgcolor: 'white',
+                margin: { l: 70, r: 40, t: 40, b: 60 },
+                annotations: getPeptideXAxisAnnotations(35, -0.10).concat([
+                    {
+                        x: 36, y: yPosition,
+                        text: 'Healthy<br>(Ages 35-37)',
+                        showarrow: false,
+                        font: { size: 12, color: '#2ecc71', weight: 'bold' }
+                    }
+                ])
+            };
+
+            const peptideConfig = {
+                responsive: true,
+                displayModeBar: false
+            };
+
+            const peptideAnimationSettings = {
+                frame: { duration: 115.27, redraw: false },
+                transition: { duration: 0, easing: 'linear' },
+                fromcurrent: true,
+                mode: 'afterall'
+            };
+
+            // Store in window for tab access
+            window.peptideFrames = peptideFrames;
+            window.peptideAnimationSettings = peptideAnimationSettings;
+
+            // Synchronized play function for chart and video (global)
+            window.playPeptideSync = function() {
+                const video = document.getElementById('amdVideo');
+                const chart = document.getElementById('peptide-chart-presentation');
+
+                if (video && chart) {
+                    // Reset and play both
+                    video.currentTime = 0;
+                    video.play();
+                    Plotly.animate('peptide-chart-presentation', window.peptideFrames, window.peptideAnimationSettings);
+
+                    // Pause video when animation completes (11.527 seconds)
+                    setTimeout(() => {
+                        video.pause();
+                    }, 11527);
+                }
+            }
+
+            // Initialize the peptide chart
+            if (document.getElementById('peptide-chart-presentation')) {
+                Plotly.newPlot('peptide-chart-presentation', [peptideTrace], peptideLayout, peptideConfig);
+
+                const video = document.getElementById('amdVideo');
+                const chart = document.getElementById('peptide-chart-presentation');
+
+                // Remove loop attribute from video for synchronized playback
+                if (video) {
+                    video.removeAttribute('loop');
+
+                    // Click video to replay both
+                    video.addEventListener('click', window.playPeptideSync);
+                }
+
+                // Click chart to replay both
+                if (chart) {
+                    chart.addEventListener('click', window.playPeptideSync);
+                }
+
+                // Replay button functionality
+                const replayPeptideButton = document.getElementById('replay-peptide-chart');
+                if (replayPeptideButton) {
+                    replayPeptideButton.addEventListener('click', window.playPeptideSync);
+                }
+            }
+
+            // Comparison Charts Initialization (Slide 3 - Side by Side)
+            // Re-use same data arrays from above
+            const comparisonPeptideTrace = {
+                x: [peptideAges[0]],
+                y: [peptideValues[0]],
+                mode: 'lines',
+                line: { color: '#2ecc71', width: 4 },
+                type: 'scatter',
+                showlegend: false
+            };
+
+            const comparisonGlucoseTrace = {
+                x: [glucoseAges[0]],
+                y: [glucoseValues[0]],
+                mode: 'lines',
+                line: { color: '#2ecc71', width: 4 },
+                type: 'scatter',
+                showlegend: false
+            };
+
+            const yMinPeptide = Math.min(peptideAMDMean, peptideHealthyMean) * 0.5;
+            const yMaxPeptide = Math.max(peptideAMDMean, peptideHealthyMean) * 1.3;
+            const yPositionPeptide = yMinPeptide + (yMaxPeptide - yMinPeptide) * 0.20;
+
+            const comparisonPeptideLayout = {
+                title: {
+                    text: 'peptide-28 Expression<br><sub>AMD Biomarker (Ages 35-45)</sub>',
+                    font: { size: 18, weight: 'bold' },
+                    y: 0.95
+                },
+                xaxis: {
+                    title: { text: '', font: { size: 16 }, standoff: 20 },
+                    range: [34.5, 45.5],
+                    showgrid: false,
+                    showline: true,
+                    linecolor: 'black',
+                    linewidth: 2,
+                    dtick: 1,
+                    tickfont: { size: 14 },
+                    showticklabels: false
+                },
+                yaxis: {
+                    title: { text: 'Expression Level', font: { size: 16 } },
+                    tickfont: { size: 14 },
+                    range: [yMinPeptide, yMaxPeptide],
+                    showgrid: false,
+                    showline: true,
+                    linecolor: 'black',
+                    linewidth: 2
+                },
+                showlegend: false,
+                plot_bgcolor: 'white',
+                paper_bgcolor: 'white',
+                margin: { l: 70, r: 40, t: 100, b: 60 },
+                annotations: getPeptideXAxisAnnotations(35, -0.10).concat([
+                    {
+                        x: 36, y: yPositionPeptide,
+                        text: 'Healthy<br>(Ages 35-37)',
+                        showarrow: false,
+                        font: { size: 11, color: '#2ecc71', weight: 'bold' }
+                    }
+                ])
+            };
+
+            const comparisonGlucoseLayout = {
+                title: {
+                    text: 'Fasting Blood Glucose<br><sub>Diabetes Biomarker (Ages 35-45)</sub>',
+                    font: { size: 18, weight: 'bold' },
+                    y: 0.95
+                },
+                xaxis: {
+                    title: { text: '', font: { size: 16 }, standoff: 20 },
+                    range: [34.5, 45.5],
+                    showgrid: false,
+                    showline: true,
+                    linecolor: 'black',
+                    linewidth: 2,
+                    dtick: 1,
+                    tickfont: { size: 14 },
+                    showticklabels: false
+                },
+                yaxis: {
+                    title: { text: 'Glucose (mg/dL)', font: { size: 16 } },
+                    tickfont: { size: 14 },
+                    range: [70, 180],
+                    showgrid: false,
+                    showline: true,
+                    linecolor: 'black',
+                    linewidth: 2
+                },
+                showlegend: false,
+                plot_bgcolor: 'white',
+                paper_bgcolor: 'white',
+                margin: { l: 70, r: 40, t: 100, b: 60 },
+                annotations: getXAxisAnnotations(35, -0.10).concat([
+                    {
+                        x: 36, y: glucoseHealthyMean * 1.25,
+                        text: 'Healthy<br>(Ages 35-37)',
+                        showarrow: false,
+                        font: { size: 11, color: '#2ecc71', weight: 'bold' }
+                    }
+                ])
+            };
+
+            const comparisonConfig = {
+                responsive: true,
+                displayModeBar: false
+            };
+
+            const comparisonAnimationSettings = {
+                frame: { duration: 115, redraw: false },
+                transition: { duration: 100, easing: 'ease-in-out' },
+                fromcurrent: true,
+                mode: 'afterall'
+            };
+
+            // Store in window for tab access
+            window.comparisonAnimationSettings = comparisonAnimationSettings;
+
+            // Initialize both comparison charts
+            if (document.getElementById('comparison-peptide-chart') && document.getElementById('comparison-glucose-chart')) {
+                Plotly.newPlot('comparison-peptide-chart', [comparisonPeptideTrace], comparisonPeptideLayout, comparisonConfig);
+                Plotly.newPlot('comparison-glucose-chart', [comparisonGlucoseTrace], comparisonGlucoseLayout, comparisonConfig);
+
+                // Replay button functionality
+                const replayComparisonButton = document.getElementById('replay-comparison-charts');
+                if (replayComparisonButton) {
+                    replayComparisonButton.addEventListener('click', () => {
+                        Plotly.animate('comparison-peptide-chart', peptideFrames, comparisonAnimationSettings);
+                        Plotly.animate('comparison-glucose-chart', glucoseFrames, comparisonAnimationSettings);
+                    });
+                }
+            }
         });
-        
+
         // Custom cursor functionality
         const cursor = document.querySelector('.cursor');
         const interactiveElements = document.querySelectorAll('a, button, .nav-button, .process-step, .metric, .contact-details-modern, .phase-modern, video, .presentation-video');
