@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exact Sciences Test Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif;
+            background: #ffffff;
+            padding: 30px 15px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: none;
+            overflow: hidden;
+        }
+
+        .header {
+            background: #ffffff;
+            padding: 0;
+            position: relative;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 40px 50px 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .header-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 20px;
+            background: linear-gradient(135deg, #dbeafe 0%, #e0f2fe 100%);
+            border: 1px solid #bae6fd;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #0369a1;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+        }
+
+        .header-badge::before {
+            content: '📊';
+            font-size: 16px;
+        }
+
+        .header h1 {
+            font-size: 42px;
+            margin: 0;
+            font-weight: 800;
+            letter-spacing: -1px;
+            color: #0f172a;
+            line-height: 1.2;
+            text-align: center;
+            max-width: 900px;
+        }
+
+        .header-highlight {
+            color: #0ea5e9;
+            position: relative;
+            display: inline-block;
+        }
+
+        .header p {
+            font-size: 16px;
+            color: #64748b;
+            font-weight: 400;
+            margin: 0;
+            text-align: center;
+            max-width: 800px;
+            line-height: 1.6;
+        }
+
+        .header-stats {
+            display: flex;
+            gap: 40px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .header-stat {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .header-stat-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: #0ea5e9;
+        }
+
+        .header-stat-label {
+            font-size: 12px;
+            color: #94a3b8;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+            padding: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            font-size: 14px;
+            background: white;
+        }
+
+        thead {
+            background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        th {
+            padding: 18px 16px;
+            text-align: left;
+            font-weight: 700;
+            font-size: 13px;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+            border-bottom: 3px solid #0284c7;
+            white-space: nowrap;
+        }
+
+        tbody tr {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        tbody tr:nth-child(odd) {
+            background-color: #ffffff;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+
+        tbody tr:hover {
+            background: linear-gradient(90deg, #f0f9ff 0%, #e0f2fe 100%);
+            transform: translateX(4px);
+            box-shadow: -4px 0 0 0 #0ea5e9, 0 4px 20px rgba(14, 165, 233, 0.1);
+        }
+
+        td {
+            padding: 18px 16px;
+            vertical-align: top;
+            line-height: 1.6;
+        }
+
+        .fda-approved {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 24px;
+            font-weight: 700;
+            font-size: 11px;
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+        }
+
+        .fda-ldt {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 24px;
+            font-weight: 700;
+            font-size: 11px;
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
+        }
+
+        .fda-development {
+            background: linear-gradient(135deg, #a855f7 0%, #9333ea 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 24px;
+            font-weight: 700;
+            font-size: 11px;
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 8px rgba(168, 85, 247, 0.3);
+        }
+
+        .coverage-yes {
+            color: #059669;
+            font-weight: 700;
+        }
+
+        .coverage-no {
+            color: #dc2626;
+            font-weight: 700;
+        }
+
+        .coverage-expanding {
+            color: #d97706;
+            font-weight: 700;
+        }
+
+        .product-name {
+            font-weight: 700;
+            color: #0f172a;
+            font-size: 15px;
+            margin-bottom: 4px;
+        }
+
+        .price-high {
+            background: linear-gradient(135deg, #fee2e2, #fecaca);
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-weight: 700;
+            color: #991b1b;
+            display: inline-block;
+        }
+
+        .price-medium {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-weight: 700;
+            color: #92400e;
+            display: inline-block;
+        }
+
+        .price-low {
+            background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-weight: 700;
+            color: #065f46;
+            display: inline-block;
+        }
+
+        .revenue-high {
+            background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-weight: 700;
+            color: #065f46;
+        }
+
+        .revenue-medium {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-weight: 700;
+            color: #92400e;
+        }
+
+        .revenue-low {
+            background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .footer {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            padding: 35px 40px;
+            text-align: center;
+            font-size: 14px;
+            color: #475569;
+            border-top: 1px solid #cbd5e1;
+        }
+
+        .legend {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 25px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        .legend-box {
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        small {
+            display: block;
+            margin-top: 4px;
+            font-size: 12px;
+            color: #64748b;
+            font-weight: 400;
+        }
+
+        @media (max-width: 1400px) {
+            table {
+                font-size: 13px;
+            }
+
+            th, td {
+                padding: 14px 12px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                padding: 40px 25px 35px 25px;
+            }
+
+            .header h1 {
+                font-size: 28px;
+                letter-spacing: -0.5px;
+            }
+
+            .header p {
+                font-size: 14px;
+            }
+
+            .header-stats {
+                gap: 25px;
+            }
+
+            .header-stat-value {
+                font-size: 20px;
+            }
+
+            .header-stat-label {
+                font-size: 11px;
+            }
+
+            .table-wrapper {
+                padding: 20px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <div class="header-badge">Portfolio Analysis</div>
+                <h1><span class="header-highlight">Exact Sciences</span> Complete Test Portfolio</h1>
+                <p>Comprehensive analysis of FDA status, 2024 revenue performance, Medicare/Medicaid coverage, pricing structure, and biomarker technologies across all commercial and in-development diagnostic tests</p>
+
+                <div class="header-stats">
+                    <div class="header-stat">
+                        <div class="header-stat-value">$2.76B</div>
+                        <div class="header-stat-label">2024 Revenue</div>
+                    </div>
+                    <div class="header-stat">
+                        <div class="header-stat-value">8</div>
+                        <div class="header-stat-label">Laboratory Developed Tests</div>
+                    </div>
+                    <div class="header-stat">
+                        <div class="header-stat-value">2</div>
+                        <div class="header-stat-label">FDA Approved</div>
+                    </div>
+                    <div class="header-stat">
+                        <div class="header-stat-value">3</div>
+                        <div class="header-stat-label">In Development</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Test Name</th>
+                        <th>FDA Status</th>
+                        <th>2024 Revenue</th>
+                        <th>Medicare Coverage</th>
+                        <th>Medicaid Coverage</th>
+                        <th>Private Insurance</th>
+                        <th>Self-Pay Price</th>
+                        <th>Patient Cost</th>
+                        <th>Biomarker Type</th>
+                        <th>Launch Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="product-name">Cologuard (Original)</td>
+                        <td><span class="fda-approved">FDA APPROVED</span><br><small>PMA P130017 (Aug 2014)</small></td>
+                        <td class="revenue-high">~$2.0B<br><small>4M+ tests</small></td>
+                        <td class="coverage-yes">YES<br><small>NCD 210.3, $493 reimb.</small></td>
+                        <td class="coverage-yes">YES<br><small>$0 cost sharing (CA)</small></td>
+                        <td class="coverage-yes">Broadly Covered<br><small>96%+ patients $0 OOP</small></td>
+                        <td class="price-low">$649</td>
+                        <td><strong>96% pay $0</strong><br><small>(ages 45+)</small><br>Medicare: $0 when criteria met</td>
+                        <td style="background-color: #fef3c7; padding: 12px;"><strong>DNA methylation</strong> (NDRG4, BMP3)<br><strong>DNA mutations</strong> (7 KRAS)<br><strong>Protein</strong> (Hemoglobin)<br><small>11 total biomarkers</small></td>
+                        <td>August 2014<br><small>Expanded to 45+ in May 2019</small></td>
+                    </tr>
+                    <tr>
+                        <td class="product-name">Cologuard Plus</td>
+                        <td><span class="fda-approved">FDA APPROVED</span><br><small>PMA P230043 (Oct 2024)</small></td>
+                        <td class="revenue-low">Minimal<br><small>Launched March 2025</small></td>
+                        <td class="coverage-yes">YES<br><small>CPT 0464U, $592 reimb.</small></td>
+                        <td class="coverage-yes">YES<br><small>In-network (CA)</small></td>
+                        <td class="coverage-expanding">Expanding<br><small>MA transitioning, parity by 2026</small></td>
+                        <td class="price-low">$700-750<br><small>(estimate)</small></td>
+                        <td><strong>~$0 for most</strong><br><small>Similar to Cologuard</small><br>Medicare: $0 when criteria met</td>
+                        <td style="background-color: #fef3c7; padding: 12px;"><strong>DNA methylation</strong> (LASS4, LRRC4, PPP2R5C)<br><strong>Protein</strong> (Hemoglobin)<br><small>5 total biomarkers</small></td>
+                        <td>March 2025<br><small>FDA approved Oct 2024</small></td>
+                    </tr>
+                    <tr>
+                        <td class="product-name">Oncotype DX Breast</td>
+                        <td><span class="fda-ldt">LDT - NOT FDA APPROVED</span><br><small>CLIA/CAP certified</small></td>
+                        <td class="revenue-high">~$600M+<br><small>~200K+ patients (est.)</small></td>
+                        <td class="coverage-yes">YES<br><small>CPT 81519, $3,416 reimb.</small></td>
+                        <td class="coverage-yes">YES<br><small>Available to Medicaid</small></td>
+                        <td class="coverage-yes">Broadly Covered<br><small>All major insurers</small></td>
+                        <td class="price-high">$3,454<br><small>(GSA Schedule)</small></td>
+                        <td><strong>86% pay $0</strong><br>91% pay <$100<br>Medicare FFS: $0 when criteria met</td>
+                        <td style="background-color: #e0f2fe; padding: 12px;"><strong>mRNA expression</strong> (21 genes)<br>16 cancer-related + 5 reference<br><small>Includes ER, PR, HER2, Ki-67</small></td>
+                        <td>2004<br><small>Acquired by EXAS 2019</small></td>
+                    </tr>
+                    <tr>
+                        <td class="product-name">Oncotype DX DCIS</td>
+                        <td><span class="fda-ldt">LDT - NOT FDA APPROVED</span><br><small>CLIA/CAP certified</small></td>
+                        <td class="revenue-medium">Included in Oncotype<br><small>Part of 230K patients</small></td>
+                        <td class="coverage-yes">YES<br><small>Part of Oncotype coverage</small></td>
+                        <td class="coverage-yes">YES<br><small>Available to Medicaid</small></td>
+                        <td class="coverage-yes">Covered<br><small>Major insurers</small></td>
+                        <td class="price-high">~$3,400</td>
+                        <td><strong>Similar to Breast</strong><br><small>Most pay $0-$100</small></td>
+                        <td style="background-color: #e0f2fe; padding: 12px;"><strong>mRNA expression</strong> (12 genes)<br>7 cancer-related + 5 reference<br><small>Ki-67, AURKA, BIRC5, etc.</small></td>
+                        <td>December 2011<br><small>Acquired by EXAS 2019</small></td>
+                    </tr>
+                    <tr>
+                        <td class="product-name">Oncotype DX Colon</td>
+                        <td><span class="fda-ldt">LDT - NOT FDA APPROVED</span><br><small>CLIA/CAP, PLA 81525</small></td>
+                        <td class="revenue-medium">Included in Oncotype<br><small>Part of 230K patients</small></td>
+                        <td class="coverage-yes">YES<br><small>Part of Oncotype coverage</small></td>
+                        <td class="coverage-yes">YES<br><small>Available to Medicaid</small></td>
+                        <td class="coverage-yes">Covered<br><small>Major insurers</small></td>
+                        <td class="price-high">~$3,400</td>
+                        <td><strong>Similar coverage</strong><br><small>Most pay $0-$100</small></td>
+                        <td style="background-color: #e0f2fe; padding: 12px;"><strong>mRNA expression</strong> (12 genes)<br>7 cancer-related + 5 reference<br><small>Stromal, cell cycle genes</small></td>
+                        <td>January 2010<br><small>Acquired by EXAS 2019</small></td>
+                    </tr>
+                    <tr>
+                        <td class="product-name">OncoExTra</td>
+                        <td><span class="fda-ldt">LDT - NOT FDA APPROVED</span><br><small>CLIA/CAP certified</small></td>
+                        <td class="revenue-low">~$30-40M<br><small>~5% of Precision Oncology</small></td>
+                        <td class="coverage-yes">YES<br><small>NCD 90.2, NGS codes</small></td>
+                        <td class="coverage-yes">Available<br><small>Follows Medicare</small></td>
+                        <td class="coverage-yes">Broadly Covered<br><small>150M+ lives, 98% $0 OOP</small></td>
+                        <td class="price-high">~$3,500<br><small>(est., not disclosed)</small></td>
+                        <td><strong>98% pay $0</strong><br><small>for NGS component</small><br>IHC add-ons may have cost</td>
+                        <td style="background-color: #dbeafe; padding: 12px;"><strong>DNA sequencing</strong> (WES ~20K genes)<br><strong>RNA sequencing</strong> (Whole transcriptome)<br><small>Mutations, CNVs, fusions, TMB</small></td>
+                        <td>February 2023<br><small>Launched Feb 7, 2023</small></td>
+                    </tr>
+                    <tr>
+                        <td class="product-name">Oncodetect MRD</td>
+                        <td><span class="fda-ldt">LDT - NOT FDA APPROVED</span><br><small>CLIA/CAP certified</small></td>
+                        <td class="revenue-low">N/A<br><small>Launched April 2025</small></td>
+                        <td class="coverage-yes">YES<br><small>MolDX LCDs (CRC only)</small></td>
+                        <td class="coverage-yes">Likely YES<br><small>Follows Medicare</small></td>
+                        <td class="coverage-expanding">Expanding<br><small>Major insurers adding coverage</small></td>
+                        <td class="price-high">~$3,000<br><small>(analyst estimate)</small></td>
+                        <td><strong>Medicare FFS: $0</strong><br>Commercial coverage expanding<br><small>150K+ addressable annually</small></td>
+                        <td style="background-color: #fef3c7; padding: 12px;"><strong>ctDNA</strong> (Tumor-informed)<br>Tracks up to 200 patient variants<br><small>1 in 20,000 cfDNA sensitivity</small></td>
+                        <td>April 2025<br><small>Medicare coverage July 2025</small></td>
+                    </tr>
+                    <tr>
+                        <td class="product-name">Cancerguard MCED</td>
+                        <td><span class="fda-ldt">LDT - NOT FDA APPROVED</span><br><small>FDA IDE for FALCON study</small></td>
+                        <td class="revenue-low">N/A<br><small>Launched Sept 2025</small></td>
+                        <td class="coverage-no">NO<br><small>Investigational status</small></td>
+                        <td class="coverage-no">NO<br><small>Not covered</small></td>
+                        <td class="coverage-no">NO<br><small>Investigational by most insurers</small></td>
+                        <td class="price-low">$695</td>
+                        <td class="price-medium"><strong>$695</strong><br><small>(full self-pay)</small><br>No insurance coverage<br><small>FSA/HSA eligible</small></td>
+                        <td style="background-color: #e0f2fe; padding: 12px;"><strong>ctDNA methylation</strong><br><strong>Protein biomarkers</strong> (9 proteins)<br><small>CA-125, CEA, CA19-9, PSA, etc.</small></td>
+                        <td>September 10, 2025<br><small>$689 self-pay</small></td>
+                    </tr>
+                    <tr>
+                        <td class="product-name">Riskguard</td>
+                        <td><span class="fda-ldt">LDT - NOT FDA APPROVED</span><br><small>CLIA/CAP certified</small></td>
+                        <td class="revenue-low">Part of Screening<br><small>Included in $2.1B segment</small></td>
+                        <td class="coverage-yes">YES<br><small>NCD 90.2/LCD L38972</small></td>
+                        <td class="coverage-yes">YES<br><small>TAR may be required</small></td>
+                        <td class="coverage-yes">Covered<br><small>UHC, Anthem, Cigna, Humana</small></td>
+                        <td class="price-low">$250</td>
+                        <td><strong>Medicare: $0</strong><br><small>when criteria met</small><br>Commercial: similar coverage</td>
+                        <td style="background-color: #f0fdf4; padding: 12px;"><strong>Germline DNA sequencing</strong><br>59 hereditary cancer genes<br><small>10+ cancer types assessed</small></td>
+                        <td>February-March 2024<br><small>Launched Feb 28, 2024</small></td>
+                    </tr>
+                    <tr>
+                        <td class="product-name">PreventionGenetics Portfolio</td>
+                        <td><span class="fda-ldt">LDT - NOT FDA APPROVED</span><br><small>5,000+ distinct tests</small></td>
+                        <td class="revenue-medium">~$100M<br><small>~5% of Screening segment</small></td>
+                        <td class="coverage-yes">YES<br><small>Varies by test</small></td>
+                        <td class="coverage-yes">YES<br><small>Varies by test, TAR required</small></td>
+                        <td class="coverage-yes">Covered<br><small>Varies by test and insurer</small></td>
+                        <td class="price-medium">$540-$1,290<br><small>Cancer panels: $540-590</small><br><small>WES: $1,290</small><br><small>Most tests: ≤$990</small></td>
+                        <td><strong>Medicare: $0</strong><br><small>when criteria met</small><br>Commercial widely covered<br><small>+25% STAT fee</small></td>
+                        <td style="background-color: #f0fdf4; padding: 12px;"><strong>Germline DNA/RNA</strong><br>WES (PGxome), WGS (PGnome)<br><small>Custom gene panels available</small></td>
+                        <td>Acquired Dec 2021<br><small>Founded 2004</small></td>
+                    </tr>
+                    <tr style="background-color: #f3e5f5;">
+                        <td class="product-name">Oncoguard Liver (HCC)</td>
+                        <td><span class="fda-development">IN DEVELOPMENT</span><br><small>Breakthrough Device (2019)</small></td>
+                        <td class="revenue-low">N/A<br><small>Early access only</small></td>
+                        <td class="coverage-no">N/A<br><small>Not launched commercially</small></td>
+                        <td class="coverage-no">N/A<br><small>Not launched commercially</small></td>
+                        <td class="coverage-no">N/A<br><small>Not launched commercially</small></td>
+                        <td class="price-medium">TBD</td>
+                        <td>N/A<br><small>Not launched</small></td>
+                        <td style="background-color: #fef3c7; padding: 12px;"><strong>cfDNA methylation</strong><br><strong>Protein</strong> (AFP)<br><small>88% CRC sensitivity reported</small></td>
+                        <td>In Development<br><small>Launch timing TBD</small></td>
+                    </tr>
+                    <tr style="background-color: #f3e5f5;">
+                        <td class="product-name">Blood-based CRC Screening</td>
+                        <td><span class="fda-development">IN DEVELOPMENT</span><br><small>PMA submission expected H1 2025</small></td>
+                        <td class="revenue-low">N/A<br><small>Not launched</small></td>
+                        <td class="coverage-no">N/A<br><small>Not launched commercially</small></td>
+                        <td class="coverage-no">N/A<br><small>Not launched commercially</small></td>
+                        <td class="coverage-no">N/A<br><small>Not launched commercially</small></td>
+                        <td class="price-medium">TBD</td>
+                        <td>N/A<br><small>Not launched</small></td>
+                        <td style="background-color: #fef3c7; padding: 12px;"><strong>cfDNA methylation</strong><br>AI-based multiomics<br><small>88.3% CRC sensitivity (internal)</small></td>
+                        <td>In Development<br><small>BLUE-C study ongoing</small></td>
+                    </tr>
+                    <tr style="background-color: #f3e5f5;">
+                        <td class="product-name">Freenome Blood CRC Test</td>
+                        <td><span class="fda-development">IN DEVELOPMENT</span><br><small>PMA submitted, pending approval</small></td>
+                        <td class="revenue-low">N/A<br><small>Licensed Aug 2025</small></td>
+                        <td class="coverage-no">N/A<br><small>Pending FDA approval</small></td>
+                        <td class="coverage-no">N/A<br><small>Pending FDA approval</small></td>
+                        <td class="coverage-no">N/A<br><small>Pending FDA approval</small></td>
+                        <td class="price-medium">TBD</td>
+                        <td>N/A<br><small>Pending approval</small></td>
+                        <td style="background-color: #fef3c7; padding: 12px;"><strong>ctDNA methylation</strong><br>Multiomics platform<br><small>81.1% CRC sensitivity (PREEMPT)</small></td>
+                        <td>Expected 2026<br><small>Licensed from Freenome</small></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="footer">
+            <div class="legend">
+                <div class="legend-item">
+                    <div class="legend-box" style="background-color: #a5d6a7;"></div>
+                    <span>FDA Approved</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-box" style="background-color: #ffcc80;"></div>
+                    <span>LDT (Not FDA Approved)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-box" style="background-color: #ce93d8;"></div>
+                    <span>In Development</span>
+                </div>
+            </div>
+            <p><strong>Patient Financial Assistance:</strong> Up to 400% Federal Poverty Level (~$62,600 for 1 person, $128,600 for 4 people) - Potentially $0 OOP across all products</p>
+            <p style="margin-top: 8px;"><strong>Source:</strong> Exact Sciences 2024 10-K, Earnings Calls, FDA PMA Database, Coverage Policies, GSA Schedule | <strong>Data as of:</strong> October 2025</p>
+            <p style="margin-top: 10px;"><strong>Key Findings:</strong> 2 FDA-approved products generating ~$2.0B (73% of total revenue) | 7 commercial LDTs generating ~$755M (27%) | Total 2024 revenue: $2.758B from 4.6M tests</p>
+        </div>
+    </div>
+</body>
+</html>

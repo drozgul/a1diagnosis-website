@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exact Sciences Test Products: Regulatory & Coverage Analysis</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 50%, #80deea 100%);
+            min-height: 100vh;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #4dd0e1 0%, #26c6da 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        header p {
+            font-size: 1.2em;
+            opacity: 0.95;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .summary-box {
+            background: linear-gradient(135deg, #b2dfdb 0%, #80cbc4 100%);
+            border-left: 5px solid #26a69a;
+            padding: 25px;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .summary-box h2 {
+            color: #00695c;
+            margin-bottom: 15px;
+            font-size: 1.8em;
+        }
+        
+        .summary-box p {
+            color: #004d40;
+            font-size: 1.05em;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+        }
+        
+        .section h2 {
+            color: #0097a7;
+            font-size: 2em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #4dd0e1;
+        }
+        
+        .table-container {
+            overflow-x: auto;
+            margin: 25px 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+        
+        th {
+            background: linear-gradient(135deg, #26c6da 0%, #00acc1 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.95em;
+        }
+        
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #e0f2f1;
+        }
+        
+        tr:hover {
+            background: #e0f7fa;
+        }
+        
+        tr:nth-child(even) {
+            background: #f1f8f9;
+        }
+        
+        .product-card {
+            background: white;
+            border: 2px solid #80deea;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+        
+        .product-card h3 {
+            color: #00838f;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #b2ebf2;
+        }
+        
+        .product-card h4 {
+            color: #00acc1;
+            font-size: 1.3em;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin: 5px 5px 5px 0;
+        }
+        
+        .badge-covered {
+            background: #a5d6a7;
+            color: #2e7d32;
+        }
+        
+        .badge-not-covered {
+            background: #ef9a9a;
+            color: #c62828;
+        }
+        
+        .badge-expanding {
+            background: #fff59d;
+            color: #f57f17;
+        }
+        
+        .badge-fda {
+            background: #b2dfdb;
+            color: #00695c;
+        }
+        
+        .badge-ldt {
+            background: #ce93d8;
+            color: #6a1b9a;
+        }
+        
+        ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+            color: #37474f;
+        }
+        
+        .highlight {
+            background: linear-gradient(120deg, #e0f7fa 0%, #b2ebf2 100%);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #26c6da;
+        }
+        
+        .warning-box {
+            background: #fff3e0;
+            border-left: 5px solid #ff9800;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+        
+        .info-box {
+            background: #e1f5fe;
+            border-left: 5px solid #0288d1;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+        
+        footer {
+            background: linear-gradient(135deg, #80deea 0%, #4dd0e1 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 0.9em;
+        }
+        
+        strong {
+            color: #00838f;
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            table {
+                font-size: 0.85em;
+            }
+            
+            th, td {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Exact Sciences Test Products</h1>
+            <p>Regulatory & Coverage Analysis</p>
+        </header>
+        
+        <div class="content">
+            <div class="summary-box">
+                <h2>Executive Summary</h2>
+                <p><strong>Eight products researched across regulatory and insurance coverage domains.</strong> Exact Sciences' portfolio spans colorectal cancer screening, multi-cancer detection, precision oncology, and hereditary cancer testing. Coverage varies dramatically based on FDA status and clinical evidence maturity.</p>
+                <p style="margin-top: 15px;"><strong>Key Findings:</strong> FDA-approved products (Cologuard, Cologuard Plus) enjoy universal Medicare and private insurance coverage with zero patient cost-sharing for eligible screening. Established LDTs (Oncotype DX, OncoExTra, Riskguard, Oncodetect) have secured Medicare coverage through NCDs and LCDs, with broad private payer acceptance. Newly launched LDTs face coverage barriers: Cancerguard, despite September 2025 launch, remains uncovered by Medicare and most private insurers as an investigational multi-cancer screening test.</p>
+            </div>
+            
+            <div class="section">
+                <h2>Comprehensive Product Coverage Table</h2>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>FDA Status</th>
+                                <th>Launch Date</th>
+                                <th>Medicare Coverage</th>
+                                <th>Medi-Cal Coverage</th>
+                                <th>Private Insurance</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Cologuard</strong></td>
+                                <td>FDA PMA (P130017) - Aug 2014</td>
+                                <td>2014</td>
+                                <td><span class="status-badge badge-covered">YES</span> NCD 210.3, CPT 81528, $492.72</td>
+                                <td><span class="status-badge badge-covered">YES</span> $0 cost sharing</td>
+                                <td><span class="status-badge badge-covered">Broadly covered</span> 96%+ patients $0 OOP</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Cologuard Plus</strong></td>
+                                <td>FDA PMA (P230043) - Oct 2024</td>
+                                <td>March 2025</td>
+                                <td><span class="status-badge badge-covered">YES</span> CPT 0464U, $592</td>
+                                <td><span class="status-badge badge-covered">YES</span> California in-network</td>
+                                <td><span class="status-badge badge-expanding">Expanding</span> MA transitioning</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Cancerguard</strong></td>
+                                <td>LDT - NOT FDA approved</td>
+                                <td>Sept 2025</td>
+                                <td><span class="status-badge badge-not-covered">NO</span> investigational</td>
+                                <td><span class="status-badge badge-not-covered">NO</span> not covered</td>
+                                <td><span class="status-badge badge-not-covered">NO</span> investigational</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Oncodetect</strong></td>
+                                <td>LDT - NOT FDA approved</td>
+                                <td>April 2025</td>
+                                <td><span class="status-badge badge-covered">YES</span> MolDX LCDs (July 2025)</td>
+                                <td><span class="status-badge badge-covered">Likely YES</span> follows Medicare</td>
+                                <td><span class="status-badge badge-expanding">Expanding</span> major insurers</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Oncotype DX</strong></td>
+                                <td>LDT - NOT FDA approved</td>
+                                <td>2004</td>
+                                <td><span class="status-badge badge-covered">YES</span> Multiple LCDs, CPT 81519, $3,416</td>
+                                <td><span class="status-badge badge-covered">YES</span> available to Medicaid</td>
+                                <td><span class="status-badge badge-covered">Broadly covered</span> all major insurers</td>
+                            </tr>
+                            <tr>
+                                <td><strong>OncoExTra</strong></td>
+                                <td>LDT - NOT FDA approved</td>
+                                <td>Feb 2023</td>
+                                <td><span class="status-badge badge-covered">YES</span> NCD 90.2, NGS codes</td>
+                                <td><span class="status-badge badge-covered">Available</span> follows Medicare</td>
+                                <td><span class="status-badge badge-covered">Broadly covered</span> 150M+ lives, 98% $0 OOP</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Riskguard</strong></td>
+                                <td>LDT - NOT FDA approved</td>
+                                <td>March 2024</td>
+                                <td><span class="status-badge badge-covered">YES</span> NCD 90.2/LCD L38972</td>
+                                <td><span class="status-badge badge-covered">YES</span> TAR may be required</td>
+                                <td><span class="status-badge badge-covered">Covered</span> UHC, Anthem, Cigna, Humana</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Oncotype DX DCIS</strong></td>
+                                <td>LDT - NOT FDA approved</td>
+                                <td>Dec 2011</td>
+                                <td><span class="status-badge badge-covered">YES</span> Part of Oncotype suite, ~$3,400</td>
+                                <td><span class="status-badge badge-covered">YES</span> Available to Medicaid</td>
+                                <td><span class="status-badge badge-covered">Broadly covered</span> Major insurers, 86-91% pay $0</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Oncotype DX Colon</strong></td>
+                                <td>LDT - NOT FDA approved</td>
+                                <td>Jan 2010</td>
+                                <td><span class="status-badge badge-covered">YES</span> PLA 81525, ~$3,400</td>
+                                <td><span class="status-badge badge-covered">YES</span> Part of Oncotype coverage</td>
+                                <td><span class="status-badge badge-covered">Broadly covered</span> All major insurers</td>
+                            </tr>
+                            <tr>
+                                <td><strong>PreventionGenetics Portfolio</strong></td>
+                                <td>LDT - NOT FDA approved</td>
+                                <td>Acquired Dec 2021</td>
+                                <td><span class="status-badge badge-covered">YES</span> Varies by test, $0 when criteria met</td>
+                                <td><span class="status-badge badge-covered">Available</span> Varies by state, TAR required</td>
+                                <td><span class="status-badge badge-covered">Widely covered</span> Varies by test and insurer</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>Detailed Product Analysis</h2>
+                
+                <div class="product-card">
+                    <h3>1. COLOGUARD <span class="status-badge badge-fda">FDA Approved</span></h3>
+                    <p><em>Original Colorectal Cancer Screening</em></p>
+                    
+                    <h4>Regulatory Status</h4>
+                    <ul>
+                        <li><strong>FDA Classification:</strong> PMA Approval (Class III Medical Device)</li>
+                        <li><strong>PMA Number:</strong> P130017, approved August 11, 2014</li>
+                        <li><strong>Clinical Trial:</strong> DeeP-C study (NCT01260168) with 10,000 patients</li>
+                        <li><strong>NOT an LDT:</strong> This is a fully FDA-approved device</li>
+                        <li><strong>2019 Update:</strong> FDA expanded age indication to 45+ (previously 50+)</li>
+                    </ul>
+                    
+                    <h4>Medicare Coverage <span class="status-badge badge-covered">✅ COVERED</span></h4>
+                    <div class="highlight">
+                        <ul>
+                            <li><strong>NCD:</strong> 210.3 - Colorectal Cancer Screening Tests</li>
+                            <li><strong>CPT Code:</strong> 81528</li>
+                            <li><strong>Reimbursement:</strong> $492.72 (Medicare Fee-For-Service)</li>
+                            <li><strong>Age:</strong> 45-85 years old</li>
+                            <li><strong>Frequency:</strong> Once every 3 years</li>
+                            <li><strong>Cost Sharing:</strong> $0 copayment, $0 coinsurance, $0 deductible</li>
+                            <li><strong>Eligibility:</strong> Average-risk, asymptomatic patients only</li>
+                        </ul>
+                    </div>
+                    
+                    <h4>Medi-Cal Coverage <span class="status-badge badge-covered">✅ COVERED</span></h4>
+                    <ul>
+                        <li>California law (effective Jan 2022) requires coverage of USPSTF Grade A colorectal screening</li>
+                        <li>CPT 81528 covered with same criteria as Medicare</li>
+                        <li><strong>AB 342 (2021):</strong> Eliminates cost sharing for entire CRC screening process</li>
+                        <li><strong>Prior Authorization:</strong> Generally not required for eligible patients</li>
+                    </ul>
+                    
+                    <h4>Private Insurance Coverage <span class="status-badge badge-covered">✅ BROADLY COVERED</span></h4>
+                    <ul>
+                        <li><strong>ACA Mandate:</strong> Required coverage as USPSTF Grade A preventive service</li>
+                        <li><strong>96%+ of patients</strong> have $0 out-of-pocket cost</li>
+                        <li><strong>In-Network:</strong> UnitedHealthcare (July 2017), Anthem (2016), Aetna (April 2015), Cigna, BCBS affiliates</li>
+                        <li><strong>Coverage Criteria:</strong> Ages 45+, average risk, once every 3 years</li>
+                    </ul>
+                </div>
+                
+                <div class="product-card">
+                    <h3>2. COLOGUARD PLUS <span class="status-badge badge-fda">FDA Approved</span></h3>
+                    <p><em>Next-Generation CRC Screening</em></p>
+                    
+                    <h4>Regulatory Status</h4>
+                    <ul>
+                        <li><strong>FDA Classification:</strong> PMA Approval (Class III Medical Device)</li>
+                        <li><strong>PMA Number:</strong> P230043, approved October 3, 2024</li>
+                        <li><strong>Clinical Trial:</strong> BLUE-C study (NCT04144738) with 20,000+ patients</li>
+                        <li><strong>NOT an LDT:</strong> This is a fully FDA-approved device</li>
+                        <li><strong>Performance Improvements:</strong> 95% cancer sensitivity (vs. 92% original), 43% advanced adenoma sensitivity, reduces false positives by ~40%</li>
+                    </ul>
+                    
+                    <h4>Medicare Coverage <span class="status-badge badge-covered">✅ COVERED</span></h4>
+                    <div class="highlight">
+                        <ul>
+                            <li><strong>NCD:</strong> 210.3 (updated Oct 3, 2024 for Cologuard Plus)</li>
+                            <li><strong>CPT Code:</strong> 0464U (proprietary code)</li>
+                            <li><strong>Reimbursement:</strong> $592.00 (approximately 20% increase over original)</li>
+                            <li><strong>Same eligibility:</strong> Ages 45-85, average risk, every 3 years</li>
+                            <li><strong>Available since:</strong> March 2025</li>
+                        </ul>
+                    </div>
+                    
+                    <h4>Private Insurance Coverage <span class="status-badge badge-expanding">✅ EXPANDING</span></h4>
+                    <ul>
+                        <li><strong>Medicare Advantage:</strong> Transitioning (Humana announced in-network Aug 2025 for 5.8M members)</li>
+                        <li><strong>Commercial Payers:</strong> Slower rollout; 35-40% of Cologuard volumes expected to transition in 2025</li>
+                        <li><strong>Reimbursement Timeline:</strong> Full commercial parity expected by 2026 (18-24 months post-launch)</li>
+                        <li><strong>Q2 2025 Performance:</strong> Record 200,000+ provider orders</li>
+                    </ul>
+                </div>
+                
+                <div class="product-card">
+                    <h3>3. CANCERGUARD <span class="status-badge badge-ldt">LDT</span></h3>
+                    <p><em>Multi-Cancer Early Detection Test</em></p>
+                    
+                    <h4>Regulatory Status</h4>
+                    <ul>
+                        <li><strong>FDA Status:</strong> NOT FDA-approved or cleared</li>
+                        <li><strong>Classification:</strong> Laboratory Developed Test (LDT)</li>
+                        <li><strong>Launch Date:</strong> September 10, 2025</li>
+                        <li><strong>Test Type:</strong> Blood-based multi-cancer early detection (MCED) analyzing circulating tumor DNA and tumor-associated proteins</li>
+                        <li><strong>Indication:</strong> Adults ages 50-84, screens for 50+ cancer types (excludes breast/prostate)</li>
+                        <li><strong>FDA Oversight:</strong> Falcon registry study under FDA-reviewed IDE (25,000 participants)</li>
+                    </ul>
+                    
+                    <h4>Medicare Coverage <span class="status-badge badge-not-covered">❌ NOT COVERED</span></h4>
+                    <div class="warning-box">
+                        <ul>
+                            <li><strong>Status:</strong> No Medicare coverage as of October 2025</li>
+                            <li><strong>Reason:</strong> Not FDA-approved; MCED tests considered investigational/experimental</li>
+                            <li><strong>No NCD or LCD exists</strong></li>
+                            <li><strong>Legislative Effort:</strong> H.R. 842/S. 339 (Nancy Gardner Sewell Medicare MCED Screening Coverage Act) introduced January 2025</li>
+                            <li><strong>Out-of-Pocket Price:</strong> $689</li>
+                        </ul>
+                    </div>
+                    
+                    <h4>Medi-Cal Coverage <span class="status-badge badge-not-covered">❌ NOT COVERED</span></h4>
+                    <ul>
+                        <li>No specific Medi-Cal policy for MCED tests</li>
+                        <li>Investigational tests without FDA approval unlikely to be covered</li>
+                        <li>Medi-Cal typically covers FDA-approved cancer screening only</li>
+                    </ul>
+                    
+                    <h4>Private Insurance Coverage <span class="status-badge badge-not-covered">❌ NOT COVERED BY MOST PLANS</span></h4>
+                    <ul>
+                        <li><strong>Industry Consensus:</strong> MCED tests are "investigational" without sufficient clinical utility evidence</li>
+                        <li><strong>Blue Cross Blue Shield:</strong> Explicit non-coverage policy (Medical Policy #124) - MCED testing is "INVESTIGATIONAL" and "not a covered service"</li>
+                        <li><strong>Other Major Insurers:</strong> No coverage policies for UnitedHealthcare, Anthem, Aetna, Cigna</li>
+                        <li><strong>Patient Responsibility:</strong> $689 out-of-pocket</li>
+                    </ul>
+                </div>
+                
+                <div class="product-card">
+                    <h3>4. ONCODETECT <span class="status-badge badge-ldt">LDT</span></h3>
+                    <p><em>Molecular Residual Disease Test</em></p>
+                    
+                    <h4>Regulatory Status</h4>
+                    <ul>
+                        <li><strong>FDA Status:</strong> NOT FDA-approved or cleared</li>
+                        <li><strong>Classification:</strong> Laboratory Developed Test (LDT)</li>
+                        <li><strong>Launch Date:</strong> April 2025</li>
+                        <li><strong>Test Type:</strong> Tumor-informed ctDNA assay for minimal/molecular residual disease (MRD) detection</li>
+                        <li><strong>Indication:</strong> Post-surgical monitoring for colorectal cancer recurrence</li>
+                    </ul>
+                    
+                    <h4>Medicare Coverage <span class="status-badge badge-covered">✅ COVERED (CRC Only)</span></h4>
+                    <div class="highlight">
+                        <ul>
+                            <li><strong>MolDX Coverage:</strong> July 2025 (just 2.5 months after launch)</li>
+                            <li><strong>Technical Assessments:</strong> Multiple MolDX LCDs for tumor-informed MRD</li>
+                            <li><strong>Covered Indication:</strong> Colorectal cancer only</li>
+                            <li><strong>Requirements:</strong> Personalized assay design, validated tumor tissue</li>
+                        </ul>
+                    </div>
+                    
+                    <h4>Private Insurance Coverage <span class="status-badge badge-expanding">✅ EXPANDING</span></h4>
+                    <ul>
+                        <li>Major insurers covering for colorectal cancer MRD testing</li>
+                        <li>Follows MolDX coverage determinations</li>
+                        <li>Pre-authorization may be required</li>
+                    </ul>
+                </div>
+                
+                <div class="product-card">
+                    <h3>5. ONCOTYPE DX <span class="status-badge badge-ldt">LDT</span></h3>
+                    <p><em>Genomic Tumor Profiling for Treatment Decisions</em></p>
+                    
+                    <h4>Regulatory Status</h4>
+                    <ul>
+                        <li><strong>FDA Status:</strong> NOT FDA-approved or cleared</li>
+                        <li><strong>Classification:</strong> Laboratory Developed Test (LDT)</li>
+                        <li><strong>Launch Date:</strong> 2004</li>
+                        <li><strong>Indication:</strong> Breast, colon, prostate cancer treatment planning</li>
+                        <li><strong>Clinical Validation:</strong> Extensive peer-reviewed evidence over 20+ years</li>
+                    </ul>
+                    
+                    <h4>Medicare Coverage <span class="status-badge badge-covered">✅ BROADLY COVERED</span></h4>
+                    <div class="highlight">
+                        <ul>
+                            <li><strong>Multiple LCDs</strong> for different cancer types</li>
+                            <li><strong>CPT Code:</strong> 81519 (breast cancer)</li>
+                            <li><strong>Reimbursement:</strong> $3,416 for breast cancer test</li>
+                            <li><strong>Covered for:</strong> Early-stage breast cancer, colon cancer (Stage II/III), prostate cancer</li>
+                        </ul>
+                    </div>
+                    
+                    <h4>Private Insurance Coverage <span class="status-badge badge-covered">✅ BROADLY COVERED</span></h4>
+                    <ul>
+                        <li>All major insurers cover Oncotype DX</li>
+                        <li>Included in clinical practice guidelines (NCCN, ASCO)</li>
+                        <li>Generally requires pathology-confirmed diagnosis</li>
+                    </ul>
+                </div>
+                
+                <div class="product-card">
+                    <h3>6. ONCOEXTRA <span class="status-badge badge-ldt">LDT</span></h3>
+                    <p><em>Comprehensive Genomic Profiling (CGP) for Advanced Cancer</em></p>
+                    
+                    <h4>Regulatory Status</h4>
+                    <ul>
+                        <li><strong>FDA Status:</strong> NOT FDA-approved or cleared</li>
+                        <li><strong>Classification:</strong> Laboratory Developed Test (LDT)</li>
+                        <li><strong>Launch Date:</strong> February 2023</li>
+                        <li><strong>Test Type:</strong> Next-generation sequencing (NGS) panel</li>
+                        <li><strong>Genes Analyzed:</strong> 523+ genes, tumor mutational burden (TMB), microsatellite instability (MSI)</li>
+                    </ul>
+                    
+                    <h4>Medicare Coverage <span class="status-badge badge-covered">✅ COVERED</span></h4>
+                    <div class="highlight">
+                        <ul>
+                            <li><strong>NCD 90.2:</strong> Next Generation Sequencing for recurrent/metastatic/advanced cancers</li>
+                            <li><strong>MolDX Coverage:</strong> Technical assessments approved</li>
+                            <li><strong>NGS Codes:</strong> CPT 81445, 81455, 81479</li>
+                            <li><strong>Indication:</strong> Recurrent, relapsed, refractory, metastatic, or advanced Stage III/IV cancer</li>
+                        </ul>
+                    </div>
+                    
+                    <h4>Private Insurance Coverage <span class="status-badge badge-covered">✅ BROADLY COVERED</span></h4>
+                    <ul>
+                        <li><strong>Coverage:</strong> 150M+ lives</li>
+                        <li><strong>98% of patients</strong> have $0 out-of-pocket cost</li>
+                        <li><strong>In-Network:</strong> All major insurers</li>
+                    </ul>
+                </div>
+                
+                <div class="product-card">
+                    <h3>7. RISKGUARD <span class="status-badge badge-ldt">LDT</span></h3>
+                    <p><em>Hereditary Cancer Testing</em></p>
+                    
+                    <h4>Regulatory Status</h4>
+                    <ul>
+                        <li><strong>FDA Status:</strong> NOT FDA-approved or cleared</li>
+                        <li><strong>Classification:</strong> Laboratory Developed Test (LDT)</li>
+                        <li><strong>Launch Date:</strong> March 2024</li>
+                        <li><strong>Test Type:</strong> Multi-gene hereditary cancer panel</li>
+                        <li><strong>Genes:</strong> 84 genes associated with hereditary cancer syndromes</li>
+                    </ul>
+                    
+                    <h4>Medicare Coverage <span class="status-badge badge-covered">✅ COVERED (Diagnostic Only)</span></h4>
+                    <div class="highlight">
+                        <ul>
+                            <li><strong>NCD 90.2:</strong> Diagnostic Testing for beneficiaries with cancer</li>
+                            <li><strong>LCD L38972:</strong> MolDX Germline Genetic Testing for Cancer Susceptibility</li>
+                            <li><strong>Not covered:</strong> Predictive/screening testing for asymptomatic individuals</li>
+                            <li><strong>Requirements:</strong> Personal cancer history, clinical indication, treating physician order</li>
+                        </ul>
+                    </div>
+                    
+                    <h4>Medi-Cal Coverage <span class="status-badge badge-covered">✅ COVERED</span></h4>
+                    <ul>
+                        <li>Available to Medicaid enrollees</li>
+                        <li>Covers Lynch Syndrome testing, HBOC testing, hereditary colon cancer panels</li>
+                        <li><strong>TAR:</strong> Treatment Authorization Request may be required</li>
+                        <li>Genetic counseling coverage available (HCPCS S0265)</li>
+                    </ul>
+                    
+                    <h4>Private Insurance Coverage <span class="status-badge badge-covered">✅ COVERED</span></h4>
+                    <ul>
+                        <li><strong>In-Network:</strong> UnitedHealthcare, Anthem, Cigna, Humana</li>
+                        <li><strong>Requirements:</strong> Personal cancer history OR significant family history</li>
+                        <li>Pre-test genetic counseling strongly recommended</li>
+                        <li>Pre-authorization may be required</li>
+                    </ul>
+                </div>
+
+                <div class="product-card">
+                    <h3>8. ONCOTYPE DX DCIS <span class="status-badge badge-ldt">LDT</span></h3>
+
+                    <p><strong>Test Type:</strong> 12-gene mRNA expression profiling for ductal carcinoma in situ (DCIS) - non-invasive breast cancer. Helps predict recurrence risk and guide treatment decisions.</p>
+
+                    <p><strong>Regulatory Status:</strong> Laboratory Developed Test (LDT) - CLIA/CAP certified, NOT FDA approved</p>
+
+                    <p><strong>Launch:</strong> December 2011 | Acquired by Exact Sciences in 2019</p>
+
+                    <h4>Medicare Coverage (National)</h4>
+                    <p class="coverage-badge badge-yes">✓ COVERED</p>
+                    <ul>
+                        <li><strong>Status:</strong> Covered as part of Oncotype DX suite</li>
+                        <li><strong>Reimbursement:</strong> ~$3,400 (similar to Oncotype DX Breast)</li>
+                        <li><strong>Patient Cost:</strong> $0 for Medicare fee-for-service when criteria met</li>
+                        <li><strong>Clinical Use:</strong> DCIS patients considering breast-conserving surgery</li>
+                    </ul>
+
+                    <h4>Medicaid Coverage</h4>
+                    <p class="coverage-badge badge-yes">✓ AVAILABLE</p>
+                    <ul>
+                        <li>Available to Medicaid beneficiaries</li>
+                        <li>Follows similar criteria as Oncotype DX Breast</li>
+                    </ul>
+
+                    <h4>Private Insurance Coverage</h4>
+                    <p class="coverage-badge badge-yes">✓ BROADLY COVERED</p>
+                    <ul>
+                        <li><strong>Major Insurers:</strong> Aetna, Anthem, Cigna, Humana, UnitedHealthcare</li>
+                        <li><strong>Patient Cost:</strong> Most patients pay $0-$100 (86-91% pay $0)</li>
+                        <li><strong>Coverage Criteria:</strong> DCIS diagnosis, ER-positive, considering lumpectomy</li>
+                    </ul>
+
+                    <div class="info-box">
+                        <p><strong>Biomarkers:</strong> 12-gene mRNA expression panel (7 cancer-related + 5 reference genes including Ki-67, AURKA, BIRC5)</p>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <h3>9. ONCOTYPE DX COLON <span class="status-badge badge-ldt">LDT</span></h3>
+
+                    <p><strong>Test Type:</strong> 12-gene recurrence score test for Stage II colon cancer. Predicts recurrence risk and helps determine need for adjuvant chemotherapy.</p>
+
+                    <p><strong>Regulatory Status:</strong> Laboratory Developed Test (LDT) - CLIA/CAP certified, PLA Code 81525</p>
+
+                    <p><strong>Launch:</strong> January 2010 | Acquired by Exact Sciences in 2019</p>
+
+                    <h4>Medicare Coverage (National)</h4>
+                    <p class="coverage-badge badge-yes">✓ COVERED</p>
+                    <ul>
+                        <li><strong>Status:</strong> Covered as part of Oncotype DX suite</li>
+                        <li><strong>Reimbursement:</strong> ~$3,400</li>
+                        <li><strong>Patient Cost:</strong> $0 for Medicare fee-for-service when criteria met</li>
+                        <li><strong>Clinical Use:</strong> Stage II colon cancer, post-surgery, considering chemotherapy</li>
+                    </ul>
+
+                    <h4>Medicaid Coverage</h4>
+                    <p class="coverage-badge badge-yes">✓ AVAILABLE</p>
+                    <ul>
+                        <li>Available to Medicaid beneficiaries</li>
+                        <li>Part of Oncotype coverage policies</li>
+                    </ul>
+
+                    <h4>Private Insurance Coverage</h4>
+                    <p class="coverage-badge badge-yes">✓ BROADLY COVERED</p>
+                    <ul>
+                        <li><strong>Major Insurers:</strong> All major commercial insurers cover the test</li>
+                        <li><strong>Patient Cost:</strong> Most patients pay $0-$100</li>
+                        <li><strong>Coverage Criteria:</strong> Stage II colon cancer, post-surgical, deciding on adjuvant therapy</li>
+                    </ul>
+
+                    <div class="info-box">
+                        <p><strong>Biomarkers:</strong> 12-gene mRNA expression (7 cancer-related + 5 reference genes, including stromal and cell cycle genes)</p>
+                        <p><strong>Clinical Evidence:</strong> Validated in multiple clinical trials for Stage II colon cancer risk stratification</p>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <h3>10. PREVENTIONGENETICS PORTFOLIO <span class="status-badge badge-ldt">LDT</span></h3>
+
+                    <p><strong>Test Type:</strong> Comprehensive genetic testing portfolio with 5,000+ distinct tests covering nearly all clinically relevant genes. Includes hereditary cancer panels, whole exome sequencing (WES), and whole genome sequencing (WGS).</p>
+
+                    <p><strong>Regulatory Status:</strong> Laboratory Developed Tests (LDTs) - CLIA-certified, CAP-accredited laboratory with 25+ PhD geneticists</p>
+
+                    <p><strong>Acquisition:</strong> December 2021 (Founded 2004) | ~$100M annual revenue (~5% of Screening segment)</p>
+
+                    <h4>Medicare Coverage (National)</h4>
+                    <p class="coverage-badge badge-yes">✓ COVERED (Varies by Test)</p>
+                    <ul>
+                        <li><strong>Status:</strong> Coverage varies by specific test type</li>
+                        <li><strong>Hereditary Cancer Panels:</strong> Covered when criteria met (55 genes, 11+ cancer types)</li>
+                        <li><strong>Patient Cost:</strong> $0 when medical necessity criteria met</li>
+                        <li><strong>Requirements:</strong> Personal or family cancer history, genetic counseling recommended</li>
+                    </ul>
+
+                    <h4>Medicaid Coverage</h4>
+                    <p class="coverage-badge badge-yes">✓ AVAILABLE (Varies by State)</p>
+                    <ul>
+                        <li>Varies by test and state Medicaid program</li>
+                        <li><strong>TAR (Treatment Authorization Request):</strong> May be required</li>
+                        <li>Hereditary cancer testing: Generally covered with clinical justification</li>
+                    </ul>
+
+                    <h4>Private Insurance Coverage</h4>
+                    <p class="coverage-badge badge-yes">✓ WIDELY COVERED (Varies by Test and Insurer)</p>
+                    <ul>
+                        <li><strong>Coverage:</strong> Varies by specific test and insurance plan</li>
+                        <li><strong>Patient Cost:</strong> $0 when covered; commercial payers widely cover hereditary cancer testing</li>
+                        <li><strong>Pre-authorization:</strong> Often required</li>
+                        <li><strong>STAT Testing:</strong> +25% fee for expedited results (3 weeks standard, 2 weeks STAT)</li>
+                    </ul>
+
+                    <h4>Pricing Structure</h4>
+                    <div class="info-box">
+                        <p><strong>Hereditary Cancer Panels:</strong> $540-$590 (55 genes across 11+ cancer types)</p>
+                        <p><strong>PGxome (Whole Exome Sequencing):</strong> $1,290 (includes CNV analysis, free reflex testing)</p>
+                        <p><strong>Standard Tests:</strong> $990 or less for most tests</p>
+                        <p><strong>Custom Panels:</strong> Variable pricing based on gene count and complexity</p>
+                    </div>
+
+                    <h4>Sponsored No-Cost Testing Programs</h4>
+                    <ul>
+                        <li><strong>Movement Disorders:</strong> 938 genes (Mirum Pharmaceuticals sponsored)</li>
+                        <li><strong>TTR Amyloidosis:</strong> AstraZeneca/Ionis sponsored</li>
+                        <li><strong>Acute Hepatic Porphyria:</strong> Alnylam sponsored</li>
+                        <li><strong>Auditory Neuropathy:</strong> Regeneron's Amplify program</li>
+                    </ul>
+
+                    <div class="info-box">
+                        <p><strong>Biomarkers:</strong> Germline DNA/RNA sequencing - WES (PGxome), WGS (PGnome), custom gene panels available</p>
+                        <p><strong>Laboratory:</strong> CLIA-certified, CAP-accredited with 25+ PhD geneticists on staff</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Summary: Coverage Patterns and Insights</h2>
+                
+                <div class="info-box">
+                    <p><strong>FDA approval is the critical gateway to universal coverage.</strong> Both Cologuard products achieved immediate, comprehensive Medicare and private insurance coverage upon FDA PMA approval, with zero patient cost-sharing for eligible screening. This contrasts sharply with Cancerguard's investigational status and lack of coverage despite high clinical interest.</p>
+                </div>
+                
+                <div class="info-box">
+                    <p><strong>Established LDTs can achieve broad coverage through evidence accumulation.</strong> Oncotype DX (launched 2004) and OncoExTra (launched 2023) secured Medicare NCDs and broad private payer acceptance through clinical validation and demonstrated utility, despite never obtaining FDA approval. The key differentiator is clinical use case: diagnostic and treatment-guiding tests receive coverage more readily than screening tests.</p>
+                </div>
+                
+                <div class="info-box">
+                    <p><strong>Timing matters for new LDT launches.</strong> Oncodetect achieved Medicare coverage just 2.5 months post-launch (April to July 2025) through the MolDX program for colorectal cancer MRD testing. This rapid coverage reflects Medicare's structured pathway for molecular diagnostics with demonstrated clinical validity. Cancerguard, by contrast, faces the challenging MCED coverage landscape where no product has secured Medicare coverage without FDA approval.</p>
+                </div>
+                
+                <div class="info-box">
+                    <p><strong>Medi-Cal generally mirrors Medicare coverage decisions</strong> but with more stringent documentation requirements and potential prior authorization barriers, particularly for high-cost molecular diagnostics. California state law (AB 342) provides strong protection for colorectal cancer screening, ensuring both Cologuard products are covered without cost-sharing.</p>
+                </div>
+                
+                <div class="info-box">
+                    <p><strong>Private insurers follow evidence hierarchies.</strong> ACA mandates drive coverage for USPSTF Grade A/B preventive services (Cologuard benefits directly). For oncology diagnostics, insurers established coverage for Oncotype DX before Medicare did (2005-2008 vs. 2006), demonstrating commercial payer willingness to cover validated precision medicine tests. Major insurers maintain in-network relationships with Exact Sciences, facilitating coverage for appropriate tests with established clinical utility.</p>
+                </div>
+                
+                <div class="warning-box">
+                    <p><strong>The $689 price point for Cancerguard reflects self-pay reality</strong> for MCED tests awaiting both regulatory approval and coverage determinations. The Nancy Gardner Sewell Medicare MCED Screening Coverage Act represents industry efforts to create legislative pathways analogous to how mammography and colonoscopy screening gained Medicare coverage, but passage and implementation remain uncertain.</p>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Exact Sciences Test Products - Regulatory & Coverage Analysis | October 2025</p>
+        </footer>
+    </div>
+</body>
+</html>

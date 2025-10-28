@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exact Sciences Diagnostic Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #E0F7FA 0%, #B2EBF2 100%);
+            color: #1a1a1a;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #00BCD4 0%, #26C6DA 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        header p {
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+
+        .intro {
+            background: linear-gradient(135deg, #B2DFDB 0%, #80CBC4 100%);
+            padding: 30px;
+            border-bottom: 3px solid #26C6DA;
+        }
+
+        .intro p {
+            font-size: 1.05em;
+            margin-bottom: 15px;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        h2 {
+            color: #00838F;
+            font-size: 2em;
+            margin: 30px 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #B2EBF2;
+        }
+
+        h3 {
+            color: #00ACC1;
+            font-size: 1.5em;
+            margin: 25px 0 15px 0;
+            padding: 15px;
+            background: #E0F7FA;
+            border-left: 5px solid #00BCD4;
+            border-radius: 5px;
+        }
+
+        h4 {
+            color: #0097A7;
+            font-size: 1.2em;
+            margin: 20px 0 10px 0;
+            font-weight: 600;
+        }
+
+        .product-card {
+            background: linear-gradient(135deg, #F0FFFF 0%, #E0F7FA 100%);
+            border: 2px solid #80DEEA;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9em;
+            margin: 10px 0;
+        }
+
+        .fda-approved {
+            background: #90EE90;
+            color: #1B5E20;
+        }
+
+        .ldt {
+            background: #ADD8E6;
+            color: #01579B;
+        }
+
+        .in-development {
+            background: #FFECB3;
+            color: #F57F17;
+        }
+
+        .biomarker-list {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #26C6DA;
+        }
+
+        .biomarker-list ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        .biomarker-list li {
+            margin: 8px 0;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #B2DFDB 0%, #A5D6A7 100%);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 2px solid #66BB6A;
+        }
+
+        .key-findings {
+            background: linear-gradient(135deg, #B2EBF2 0%, #B2DFDB 100%);
+            padding: 30px;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+
+        .finding-item {
+            background: white;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+            border-left: 5px solid #00BCD4;
+        }
+
+        .finding-item h4 {
+            color: #00838F;
+            margin-top: 0;
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .summary-card {
+            background: linear-gradient(135deg, #E0F7FA 0%, #B2EBF2 100%);
+            padding: 25px;
+            border-radius: 10px;
+            border: 2px solid #4DD0E1;
+            text-align: center;
+        }
+
+        .summary-card h3 {
+            background: none;
+            border: none;
+            padding: 0;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .number {
+            font-size: 3em;
+            font-weight: bold;
+            color: #00838F;
+            display: block;
+            margin: 10px 0;
+        }
+
+        .tech-tag {
+            display: inline-block;
+            background: #80DEEA;
+            color: #006064;
+            padding: 5px 12px;
+            margin: 5px;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+
+        strong {
+            color: #00838F;
+        }
+
+        footer {
+            background: linear-gradient(135deg, #00ACC1 0%, #0097A7 100%);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            h2 {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Exact Sciences Diagnostic Portfolio</h1>
+            <p>Complete Product Analysis: 20+ Cancer Diagnostics Across the Care Continuum</p>
+        </header>
+
+        <div class="intro">
+            <p><strong>Exact Sciences operates a comprehensive cancer diagnostics portfolio spanning 20+ products across screening, risk assessment, treatment selection, and monitoring.</strong> The company has exactly two FDA-approved tests while operating most products as Laboratory Developed Tests (LDTs) under CLIA certification.</p>
+            <p>Their portfolio uniquely combines stool-based DNA tests, liquid biopsies analyzing circulating tumor DNA, tissue-based gene expression assays, and hereditary cancer panels.</p>
+            <p>Strategic acquisitions—Genomic Health ($2.8B, 2019), PreventionGenetics ($190M, 2022), and technology licenses from TwinStrand and Thrive/Freenome—have created an integrated cancer continuum from hereditary risk through early detection, treatment selection, and recurrence monitoring.</p>
+        </div>
+
+        <div class="content">
+            <div class="summary-grid">
+                <div class="summary-card">
+                    <h3>FDA Approved</h3>
+                    <span class="number">2</span>
+                    <p>Cologuard & Cologuard Plus</p>
+                </div>
+                <div class="summary-card">
+                    <h3>LDT Products</h3>
+                    <span class="number">15+</span>
+                    <p>CLIA/CAP Certified</p>
+                </div>
+                <div class="summary-card">
+                    <h3>Total Portfolio</h3>
+                    <span class="number">20+</span>
+                    <p>Comprehensive Coverage</p>
+                </div>
+            </div>
+
+            <h2>Colorectal Cancer Screening Portfolio</h2>
+            <p>From stool-based to liquid biopsy innovations</p>
+
+            <div class="product-card">
+                <h3>Cologuard (Original)</h3>
+                <span class="status-badge fda-approved">FDA APPROVED</span>
+                <p><strong>FDA Status:</strong> Pre-Market Approval (PMA) P130017, approved August 11, 2014; expanded to ages 45+ in May 2019</p>
+                
+                <div class="biomarker-list">
+                    <h4>Biomarkers Measured (11 total):</h4>
+                    <ul>
+                        <li><strong>DNA methylation (2 markers):</strong> NDRG4 promoter hypermethylation, BMP3 promoter hypermethylation</li>
+                        <li><strong>DNA mutations (7 markers):</strong> Seven KRAS gene point mutations including codons 35T and 38A</li>
+                        <li><strong>Reference gene (1 marker):</strong> Beta-actin (ACTB) for quantitative DNA estimation</li>
+                        <li><strong>Protein (1 marker):</strong> Hemoglobin via immunochemical ELISA</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box">
+                    <p><strong>Clinical Performance:</strong> Detects CRC with 92.3% sensitivity and advanced adenomas with 42.4% sensitivity at 86.6% specificity. Used for over 19 million screenings.</p>
+                    <p><strong>Technology:</strong> QuARTS (Quantitative Allele-specific Real-time Target and Signal Amplification) for DNA; ELISA for hemoglobin</p>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <h3>Cologuard Plus</h3>
+                <span class="status-badge fda-approved">FDA APPROVED</span>
+                <p><strong>FDA Status:</strong> Pre-Market Approval (PMA) P230043, approved October 4, 2024; launched March 2025</p>
+                
+                <div class="biomarker-list">
+                    <h4>Biomarkers Measured (5 total):</h4>
+                    <ul>
+                        <li><strong>DNA methylation (3 markers):</strong> LASS4, LRRC4, PPP2R5C</li>
+                        <li><strong>Reference gene (1 marker):</strong> ZDHHC1</li>
+                        <li><strong>Protein (1 marker):</strong> Hemoglobin via enhanced bead-based immunoassay</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box">
+                    <p><strong>Clinical Performance:</strong> BLUE-C study (n=20,176) demonstrated 95% CRC sensitivity, 43.4% advanced precancerous lesion sensitivity, and 94% specificity. Achieves 40% reduction in false positives versus original Cologuard.</p>
+                    <p><strong>Technology:</strong> Next-generation LQAS (Long-probe Quantitative Amplified Signal) with bisulfite conversion</p>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <h3>Blood-based Colorectal Cancer Screening Test</h3>
+                <span class="status-badge in-development">IN DEVELOPMENT</span>
+                <p><strong>FDA Status:</strong> PMA submission expected H1 2025. Exact Sciences also holds exclusive US license to Freenome's blood-based CRC test (PMA submitted, pending approval)</p>
+                
+                <div class="biomarker-list">
+                    <h4>Biomarkers:</h4>
+                    <ul>
+                        <li><strong>cfDNA/Methylation:</strong> DNA methylation signatures at single-base resolution from circulating cell-free DNA</li>
+                        <li><strong>Multiomics platform:</strong> Epigenomic and potentially proteomic biomarkers</li>
+                        <li><strong>Machine learning:</strong> AI-based models to detect cancer-specific signals</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box">
+                    <p><strong>Target Market:</strong> 60 million unscreened Americans as alternative to colonoscopy or stool-based tests</p>
+                    <p><strong>Performance:</strong> Internal algorithm: 88.3% CRC sensitivity, 31.2% APL sensitivity at 90.1% specificity. Freenome PREEMPT: 81.1% CRC sensitivity, 13.7% APL sensitivity at 90.4% specificity</p>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <h3>Oncodetect - Molecular Residual Disease Test</h3>
+                <span class="status-badge ldt">LDT - MEDICARE COVERED</span>
+                <p><strong>FDA Status:</strong> Laboratory Developed Test (LDT), NOT FDA-approved. Launched April 2025 with Medicare coverage through MolDX program for stage II-IV CRC</p>
+                
+                <div class="biomarker-list">
+                    <h4>Technology:</h4>
+                    <ul>
+                        <li><strong>Circulating tumor DNA (ctDNA):</strong> Tumor-informed personalized test tracking up to 200 patient-specific tumor variants</li>
+                        <li><strong>Ultra-sensitive detection:</strong> Detects 1 ctDNA molecule in 20,000 cfDNA molecules (parts-per-million sensitivity)</li>
+                        <li><strong>Platform:</strong> Licensed TARDIS technology from TGen/Broad Institute with TwinStrand Duplex Sequencing</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box">
+                    <p><strong>Clinical Impact:</strong> Alpha-CORRECT study showed 78% post-surgical sensitivity, 91% surveillance sensitivity. Detects recurrence up to 2 years earlier than imaging. Patients with positive ctDNA detection are 50× more likely to experience recurrence.</p>
+                </div>
+            </div>
+
+            <h2>Oncotype DX Portfolio: Tissue-Based Gene Expression</h2>
+            <p>All Oncotype DX tests are <strong>Laboratory Developed Tests without FDA clearance</strong>—operating under CLIA/CAP certification using quantitative RT-PCR to measure mRNA expression from FFPE tumor tissue.</p>
+
+            <div class="product-card">
+                <h3>Oncotype DX Breast Recurrence Score</h3>
+                <span class="status-badge ldt">LDT</span>
+                
+                <div class="biomarker-list">
+                    <h4>21-Gene Panel (16 cancer-related + 5 reference genes):</h4>
+                    <ul>
+                        <li><strong>Proliferation genes (5):</strong> Ki-67, STK15, Survivin, Cyclin B1, MYBL2</li>
+                        <li><strong>Estrogen receptor genes (5):</strong> ER, PGR, BCL2, SCUBE2, GSTM1</li>
+                        <li><strong>HER2 genes (2):</strong> GRB7, HER2</li>
+                        <li><strong>Invasion genes (2):</strong> MMP11, CTSL2</li>
+                        <li><strong>Other genes (2):</strong> CD68, BAG1</li>
+                        <li><strong>Reference genes (5):</strong> ACTB, GAPDH, GUS, RPLPO, TFRC</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box">
+                    <p><strong>Clinical Use:</strong> HR+/HER2- early-stage breast cancer. Predicts 10-year distant recurrence risk and chemotherapy benefit. Recurrence Score 0-100: Low (0-17), Intermediate (18-30), High (>30)</p>
+                    <p><strong>Validation:</strong> Over 1.5 million patients tested. Validated in TAILORx and RxPONDER prospective trials. Included in ASCO, NCCN, ESMO guidelines</p>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <h3>Oncotype DX Breast DCIS Score</h3>
+                <span class="status-badge ldt">LDT</span>
+                
+                <div class="biomarker-list">
+                    <h4>12-Gene Panel (7 cancer-related + 5 reference genes):</h4>
+                    <ul>
+                        <li><strong>Cancer genes (7):</strong> Ki-67, STK15, Survivin, Cyclin B1, MYBL2, PR, GSTM1</li>
+                        <li><strong>Reference genes (5):</strong> ACTB, GAPDH, RPLPO, GUS, TFRC</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box">
+                    <p><strong>Clinical Use:</strong> Ductal carcinoma in situ (stage 0 breast cancer). Predicts 10-year local recurrence risk to guide radiation therapy decisions. DCIS Score: Low (<39), Intermediate (39-54), High (≥55)</p>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <h3>Oncotype DX Colon Recurrence Score</h3>
+                <span class="status-badge ldt">LDT</span>
+                <p><strong>PLA code:</strong> 81525</p>
+                
+                <div class="biomarker-list">
+                    <h4>12-Gene Panel (7 cancer-related + 5 reference genes):</h4>
+                    <ul>
+                        <li><strong>Stromal/activated stroma genes (3):</strong> BGN, INHBA, FAP</li>
+                        <li><strong>Cell cycle/proliferation genes (3):</strong> Ki-67, MYBL2, MYC</li>
+                        <li><strong>Stress response gene (1):</strong> GADD45B</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box">
+                    <p><strong>Clinical Use:</strong> Stage II (T3/T4) MMR-proficient or stage IIIA/B colon cancer. Guides adjuvant chemotherapy decisions. Recurrence Score: Low (<30), Intermediate (30-40), High (≥41)</p>
+                </div>
+            </div>
+
+            <h2>Multi-Cancer Early Detection & Monitoring</h2>
+
+            <div class="product-card">
+                <h3>Cancerguard - Multi-Cancer Early Detection (MCED)</h3>
+                <span class="status-badge ldt">LDT</span>
+                <p><strong>Launched:</strong> September 2024</p>
+                
+                <div class="biomarker-list">
+                    <h4>Multi-Analyte Approach:</h4>
+                    <ul>
+                        <li><strong>DNA methylation:</strong> ctDNA methylation patterns from plasma cell-free DNA</li>
+                        <li><strong>Protein biomarkers (9):</strong> CA-125, CEA, CA19-9, Prolactin, HGF, Osteopontin, Myeloperoxidase, TIMP-1, PSA</li>
+                        <li><strong>Machine learning:</strong> Proprietary algorithms for signal detection</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box">
+                    <p><strong>Target Cancers:</strong> Detects 14 cancer types including ovarian, pancreatic, liver, esophageal, colorectal, lung, and head & neck cancers</p>
+                    <p><strong>Future Enhancement:</strong> Cancerguard EX with DNA mutation reflex planned for H2 2025</p>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <h3>Oncoguard Liver</h3>
+                <span class="status-badge ldt">LDT - EARLY ACCESS</span>
+                
+                <div class="biomarker-list">
+                    <h4>Biomarkers:</h4>
+                    <ul>
+                        <li><strong>Methylated DNA:</strong> cfDNA methylation panel specific for hepatocellular carcinoma</li>
+                        <li><strong>AFP (Alpha-fetoprotein):</strong> Traditional liver cancer protein marker</li>
+                        <li><strong>Machine learning:</strong> Integrated algorithm combining methylation and AFP</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box">
+                    <p><strong>Clinical Use:</strong> Early detection and surveillance of hepatocellular carcinoma (HCC) in high-risk patients with chronic liver disease or cirrhosis</p>
+                </div>
+            </div>
+
+            <h2>Comprehensive Genomic Profiling</h2>
+
+            <div class="product-card">
+                <h3>OncoExTra</h3>
+                <span class="status-badge ldt">LDT - MEDICARE COVERED</span>
+                <p><strong>Medicare Coverage:</strong> MolDX approval for advanced solid tumors; CPT code 81479</p>
+                
+                <div class="biomarker-list">
+                    <h4>Comprehensive Analysis:</h4>
+                    <ul>
+                        <li><strong>Whole exome sequencing (WES):</strong> ~20,000 protein-coding genes</li>
+                        <li><strong>Whole transcriptome sequencing (RNA-seq):</strong> Gene expression, fusions, splice variants</li>
+                        <li><strong>Mutations:</strong> SNVs, indels across all genes</li>
+                        <li><strong>Copy number variations (CNVs):</strong> Amplifications and deletions</li>
+                        <li><strong>Tumor mutational burden (TMB):</strong> High TMB predicts immunotherapy response</li>
+                        <li><strong>Microsatellite instability (MSI):</strong> MSI-High status</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box">
+                    <p><strong>Technology Platform:</strong> Uses FDA-cleared Illumina NextSeq 550Dx with research use only (RUO) reagents</p>
+                    <p><strong>Clinical Application:</strong> Advanced solid tumors for treatment selection, therapy matching, and clinical trial eligibility</p>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <h3>Oncotype MAP Pan-Cancer Tissue Test</h3>
+                <span class="status-badge ldt">LDT</span>
+                
+                <div class="biomarker-list">
+                    <h4>Targeted Panel:</h4>
+                    <ul>
+                        <li><strong>Gene coverage:</strong> Hundreds of genes</li>
+                        <li><strong>Alterations detected:</strong> Mutations, copy number variations, gene fusions</li>
+                        <li><strong>Source material:</strong> FFPE tumor tissue</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box">
+                    <p><strong>Clinical Use:</strong> Tumor agnostic tissue profiling for advanced cancers and rare tumor types</p>
+                </div>
+            </div>
+
+            <h2>Hereditary Cancer Risk Assessment</h2>
+
+            <div class="product-card">
+                <h3>Riskguard Hereditary Cancer Test</h3>
+                <span class="status-badge ldt">LDT - MEDICARE COVERED</span>
+                <p><strong>Launched:</strong> February 2024 with Medicare coverage</p>
+                
+                <div class="biomarker-list">
+                    <h4>59-Gene Hereditary Cancer Panel:</h4>
+                    <ul>
+                        <li><strong>Germline DNA sequencing:</strong> Comprehensive analysis of hereditary cancer genes</li>
+                        <li><strong>Cancer types covered:</strong> Breast, ovarian, colorectal, pancreatic, prostate, uterine, gastric, melanoma, and others</li>
+                        <li><strong>Technology:</strong> Next-generation sequencing (NGS) of blood or saliva samples</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box">
+                    <p><strong>Clinical Application:</strong> Identifies inherited cancer predisposition for risk assessment, screening recommendations, and preventive strategies</p>
+                    <p><strong>Patient Support:</strong> Includes genetic counseling and actionable recommendations</p>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <h3>PreventionGenetics Portfolio</h3>
+                <span class="status-badge ldt">LDT - 5,000+ TESTS</span>
+                <p><strong>Acquired:</strong> January 2022 for $190M</p>
+                
+                <div class="biomarker-list">
+                    <h4>Comprehensive Genetic Testing:</h4>
+                    <ul>
+                        <li><strong>Test catalog:</strong> Over 5,000 distinct genetic tests; 1,933 tests registered in NIH Genetic Testing Registry</li>
+                        <li><strong>Whole exome sequencing (PGxome):</strong> Comprehensive exome analysis</li>
+                        <li><strong>Whole genome sequencing (PGnome):</strong> Comprehensive genome analysis</li>
+                        <li><strong>Custom gene panels:</strong> Patient-specific panels</li>
+                        <li><strong>Germline DNA/RNA:</strong> Nearly all clinically relevant genes, CNV analysis</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box">
+                    <p><strong>Clinical Applications:</strong> Hereditary cancer risk, rare genetic diseases (neuromuscular, neurologic, cardiovascular, metabolic, pediatric/adult), proactive health/wellness, pharmacogenomics</p>
+                    <p><strong>Global Reach:</strong> Orders from 84 countries; CLIA/CAP/ISO 15189:2012 accredited</p>
+                    <p><strong>Location:</strong> Marshfield, Wisconsin with 25+ PhD geneticists</p>
+                </div>
+            </div>
+
+            <h2>Regulatory Status Summary</h2>
+
+            <div class="summary-grid">
+                <div class="summary-card">
+                    <h3>FDA-Approved Products</h3>
+                    <span class="number">2</span>
+                    <ul style="text-align: left; list-style-position: inside;">
+                        <li>Cologuard (PMA P130017, Aug 2014)</li>
+                        <li>Cologuard Plus (PMA P230043, Oct 2024)</li>
+                    </ul>
+                </div>
+                <div class="summary-card">
+                    <h3>Laboratory Developed Tests</h3>
+                    <span class="number">15+</span>
+                    <p style="font-size: 0.9em;">CLIA/CAP Certified - Most with Medicare Coverage</p>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <h4>Pipeline Products (FDA Submission Pending):</h4>
+                <ul style="margin-left: 20px;">
+                    <li>Blood-based CRC screening: PMA submission expected H1 2025</li>
+                    <li>Freenome licensed CRC blood test: PMA submitted, pending approval</li>
+                    <li>Cancerguard EX: LDT launch planned H2 2025</li>
+                </ul>
+            </div>
+
+            <h2>Biomarker Type Comparison Table</h2>
+
+            <div style="overflow-x: auto; margin: 30px 0;">
+                <table style="width: 100%; border-collapse: collapse; background: white; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                    <thead>
+                        <tr style="background: linear-gradient(135deg, #00BCD4 0%, #26C6DA 100%); color: white;">
+                            <th style="padding: 15px; text-align: left; border: 1px solid #80DEEA; font-weight: bold;">Product Name</th>
+                            <th style="padding: 15px; text-align: center; border: 1px solid #80DEEA; font-weight: bold;">Circulating DNA<br>(cfDNA/ctDNA)</th>
+                            <th style="padding: 15px; text-align: center; border: 1px solid #80DEEA; font-weight: bold;">Tissue DNA</th>
+                            <th style="padding: 15px; text-align: center; border: 1px solid #80DEEA; font-weight: bold;">Stool DNA</th>
+                            <th style="padding: 15px; text-align: center; border: 1px solid #80DEEA; font-weight: bold;">RNA/mRNA</th>
+                            <th style="padding: 15px; text-align: center; border: 1px solid #80DEEA; font-weight: bold;">Protein</th>
+                            <th style="padding: 15px; text-align: center; border: 1px solid #80DEEA; font-weight: bold;">Peptide</th>
+                            <th style="padding: 15px; text-align: center; border: 1px solid #80DEEA; font-weight: bold;">Small Molecules</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="background: #E0F7FA;">
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; font-weight: 600;">Cologuard (Original)</td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center;">—</td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center;">—</td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center; background: #B2DFDB;">✓<br><span style="font-size: 0.85em;">(Methylation + KRAS)</span></td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center;">—</td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center; background: #B2DFDB;">✓<br><span style="font-size: 0.85em;">(Hemoglobin)</span></td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center;">—</td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center;">—</td>
+                        </tr>
+                        <tr style="background: white;">
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; font-weight: 600;">Cologuard Plus</td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center;">—</td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center;">—</td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center; background: #B2DFDB;">✓<br><span style="font-size: 0.85em;">(Methylation)</span></td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center;">—</td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center; background: #B2DFDB;">✓<br><span style="font-size: 0.85em;">(Hemoglobin)</span></td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center;">—</td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center;">—</td>
+                        </tr>
+                        <tr style="background: #E0F7FA;">
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; font-weight: 600;">Blood-based CRC Test</td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center; background: #B2DFDB;">✓<br><span style="font-size: 0.85em;">(cfDNA Methylation)</span></td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center;">—</td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center;">—</td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center;">—</td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center; background: #FFF9C4;">Potentially</td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center;">—</td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center;">—</td>
+                        </tr>
+                        <tr style="background: white;">
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; font-weight: 600;">Oncodetect MRD</td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center; background: #B2DFDB;">✓<br><span style="font-size: 0.85em;">(ctDNA Mutations)</span></td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center;">—</td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center;">—</td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center;">—</td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center;">—</td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center;">—</td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center;">—</td>
+                        </tr>
+                        <tr style="background: #E0F7FA;">
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; font-weight: 600;">Oncotype DX Breast</td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center;">—</td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center;">—</td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center;">—</td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center; background: #B2DFDB;">✓<br><span style="font-size: 0.85em;">(21-gene mRNA)</span></td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center;">—</td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center;">—</td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center;">—</td>
+                        </tr>
+                        <tr style="background: white;">
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; font-weight: 600;">Oncotype DX DCIS</td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center;">—</td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center;">—</td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center;">—</td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center; background: #B2DFDB;">✓<br><span style="font-size: 0.85em;">(12-gene mRNA)</span></td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center;">—</td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center;">—</td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center;">—</td>
+                        </tr>
+                        <tr style="background: #E0F7FA;">
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; font-weight: 600;">Oncotype DX Colon</td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center;">—</td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center;">—</td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center;">—</td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center; background: #B2DFDB;">✓<br><span style="font-size: 0.85em;">(12-gene mRNA)</span></td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center;">—</td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center;">—</td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center;">—</td>
+                        </tr>
+                        <tr style="background: white;">
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; font-weight: 600;">Oncotype DX AR-V7</td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center;">—</td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center;">—</td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center;">—</td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center;">—</td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center; background: #B2DFDB;">✓<br><span style="font-size: 0.85em;">(AR-V7 in CTCs)</span></td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center;">—</td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center;">—</td>
+                        </tr>
+                        <tr style="background: #E0F7FA;">
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; font-weight: 600;">Cancerguard MCED</td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center; background: #B2DFDB;">✓<br><span style="font-size: 0.85em;">(ctDNA Methylation)</span></td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center;">—</td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center;">—</td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center;">—</td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center; background: #B2DFDB;">✓<br><span style="font-size: 0.85em;">(9 proteins)</span></td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center;">—</td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center;">—</td>
+                        </tr>
+                        <tr style="background: white;">
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; font-weight: 600;">Oncoguard Liver</td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center; background: #B2DFDB;">✓<br><span style="font-size: 0.85em;">(cfDNA Methylation)</span></td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center;">—</td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center;">—</td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center;">—</td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center; background: #B2DFDB;">✓<br><span style="font-size: 0.85em;">(AFP)</span></td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center;">—</td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center;">—</td>
+                        </tr>
+                        <tr style="background: #E0F7FA;">
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; font-weight: 600;">OncoExTra</td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center;">—</td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center; background: #B2DFDB;">✓<br><span style="font-size: 0.85em;">(WES)</span></td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center;">—</td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center; background: #B2DFDB;">✓<br><span style="font-size: 0.85em;">(RNA-seq)</span></td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center;">—</td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center;">—</td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center;">—</td>
+                        </tr>
+                        <tr style="background: white;">
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; font-weight: 600;">Oncotype MAP Pan-Cancer</td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center;">—</td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center; background: #B2DFDB;">✓<br><span style="font-size: 0.85em;">(Targeted NGS)</span></td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center;">—</td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center;">—</td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center;">—</td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center;">—</td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center;">—</td>
+                        </tr>
+                        <tr style="background: #E0F7FA;">
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; font-weight: 600;">Riskguard</td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center;">—</td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center; background: #B2DFDB;">✓<br><span style="font-size: 0.85em;">(Germline DNA)</span></td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center;">—</td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center;">—</td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center;">—</td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center;">—</td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center;">—</td>
+                        </tr>
+                        <tr style="background: white;">
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; font-weight: 600;">PreventionGenetics Portfolio</td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center;">—</td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center; background: #B2DFDB;">✓<br><span style="font-size: 0.85em;">(Germline DNA)</span></td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center;">—</td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center; background: #B2DFDB;">✓<br><span style="font-size: 0.85em;">(Select tests)</span></td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center;">—</td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center;">—</td>
+                            <td style="padding: 12px; border: 1px solid #B2EBF2; text-align: center;">—</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="highlight-box" style="margin-top: 30px;">
+                <h4>📊 Key Observations from Biomarker Table:</h4>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li><strong>No peptide or small molecule biomarkers</strong> are used in any Exact Sciences products</li>
+                    <li><strong>DNA methylation</strong> (from cfDNA, stool, or tissue) is the most common biomarker type across the portfolio</li>
+                    <li><strong>Protein biomarkers</strong> are used selectively, primarily for screening tests (hemoglobin in Cologuard) and multi-cancer detection (Cancerguard uses 9 proteins: CA-125, CEA, CA19-9, Prolactin, HGF, Osteopontin, Myeloperoxidase, TIMP-1, PSA)</li>
+                    <li><strong>RNA/mRNA expression</strong> is limited to the Oncotype DX tissue-based tests and OncoExTra</li>
+                    <li><strong>Circulating DNA (cfDNA/ctDNA)</strong> represents the fastest-growing segment with Oncodetect, Cancerguard, Oncoguard Liver, and blood-based CRC test</li>
+                    <li><strong>Stool DNA</strong> remains unique to the Cologuard franchise with no competitors in this space</li>
+                </ul>
+            </div>
+
+            <h2>Comparative Biomarker Analysis</h2>
+
+            <div class="product-card">
+                <h4>ctDNA/cfDNA-Based Products</h4>
+                <span class="tech-tag">Liquid Biopsy</span>
+                <span class="tech-tag">Blood-based</span>
+                <ul style="margin: 15px 0 0 20px;">
+                    <li><strong>Oncodetect MRD:</strong> Tumor-informed ctDNA tracking up to 200 variants; detects 1 molecule in 20,000 cfDNA molecules</li>
+                    <li><strong>Blood-based CRC screening:</strong> DNA methylation from cfDNA with multiomics approach</li>
+                    <li><strong>Cancerguard MCED:</strong> ctDNA methylation patterns combined with protein biomarkers</li>
+                    <li><strong>Oncoguard Liver:</strong> Methylated DNA from cfDNA combined with AFP protein</li>
+                </ul>
+            </div>
+
+            <div class="product-card">
+                <h4>DNA Methylation-Focused Products</h4>
+                <span class="tech-tag">Epigenetic</span>
+                <span class="tech-tag">Core Technology</span>
+                <ul style="margin: 15px 0 0 20px;">
+                    <li><strong>Cologuard:</strong> NDRG4, BMP3 methylation from stool DNA</li>
+                    <li><strong>Cologuard Plus:</strong> LASS4, LRRC4, PPP2R5C methylation from stool DNA</li>
+                    <li><strong>Cancerguard:</strong> cfDNA methylation patterns</li>
+                    <li><strong>Oncoguard Liver:</strong> Methylated DNA panel</li>
+                    <li><strong>Blood CRC test:</strong> cfDNA methylation signatures</li>
+                </ul>
+            </div>
+
+            <div class="product-card">
+                <h4>Protein Biomarker Products</h4>
+                <span class="tech-tag">Immunoassay</span>
+                <ul style="margin: 15px 0 0 20px;">
+                    <li><strong>Cologuard/Cologuard Plus:</strong> Hemoglobin immunochemical detection</li>
+                    <li><strong>Oncotype DX AR-V7:</strong> AR-V7 splice variant protein in CTC nuclei</li>
+                    <li><strong>Cancerguard:</strong> 9 proteins (CA-125, CEA, CA19-9, Prolactin, HGF, Osteopontin, Myeloperoxidase, TIMP-1, PSA)</li>
+                    <li><strong>Oncoguard Liver:</strong> Alpha-fetoprotein (AFP)</li>
+                </ul>
+            </div>
+
+            <div class="product-card">
+                <h4>RNA/mRNA Expression Products</h4>
+                <span class="tech-tag">Gene Expression</span>
+                <span class="tech-tag">RT-PCR</span>
+                <ul style="margin: 15px 0 0 20px;">
+                    <li><strong>All Oncotype DX tests:</strong> Quantitative RT-PCR measuring mRNA expression from tumor tissue</li>
+                    <li><strong>Oncotype Breast:</strong> 21-gene panel</li>
+                    <li><strong>Oncotype DCIS:</strong> 12-gene panel</li>
+                    <li><strong>Oncotype Colon:</strong> 12-gene panel</li>
+                    <li><strong>OncoExTra:</strong> Whole transcriptome sequencing (RNA-seq) for fusions and transcript variants</li>
+                </ul>
+            </div>
+
+            <div class="product-card">
+                <h4>DNA Mutation/Genomic Sequencing Products</h4>
+                <span class="tech-tag">NGS</span>
+                <span class="tech-tag">Whole Exome</span>
+                <ul style="margin: 15px 0 0 20px;">
+                    <li><strong>Cologuard:</strong> 7 KRAS point mutations from stool DNA</li>
+                    <li><strong>Oncodetect:</strong> Patient-specific somatic mutations via whole exome sequencing</li>
+                    <li><strong>OncoExTra:</strong> Whole exome sequencing (~20,000 genes), somatic mutations, CNVs, TMB</li>
+                    <li><strong>Oncotype MAP:</strong> Hundreds of genes for mutations, CNVs, fusions</li>
+                    <li><strong>Cancerguard (enhanced):</strong> DNA mutation reflex approach in development</li>
+                </ul>
+            </div>
+
+            <div class="product-card">
+                <h4>Germline Sequencing Products</h4>
+                <span class="tech-tag">Hereditary</span>
+                <span class="tech-tag">Risk Assessment</span>
+                <ul style="margin: 15px 0 0 20px;">
+                    <li><strong>Riskguard:</strong> 59 hereditary cancer genes</li>
+                    <li><strong>PreventionGenetics:</strong> 5,000+ tests including whole exome/genome sequencing</li>
+                </ul>
+            </div>
+
+            <h2>Key Findings & Strategic Insights</h2>
+
+            <div class="key-findings">
+                <div class="finding-item">
+                    <h4>🔬 LDT Dominance Over FDA Approval</h4>
+                    <p>Despite having two FDA-approved products, Exact Sciences operates most of its 20+ product portfolio as LDTs under CLIA certification rather than pursuing FDA clearance. This regulatory strategy enables faster market entry while maintaining Medicare reimbursement for clinically validated tests like Oncodetect, OncoExTra, and Riskguard. The company has secured Medicare coverage through MolDX for multiple LDT products despite lack of FDA approval.</p>
+                </div>
+
+                <div class="finding-item">
+                    <h4>🧬 DNA Methylation as Core Technology Platform</h4>
+                    <p>Methylated DNA biomarkers appear across the majority of Exact Sciences products—from stool-based Cologuard to liquid biopsies (Cancerguard, Oncoguard Liver, blood CRC test). This represents a consistent technological focus differentiating Exact Sciences from competitors using primarily mutation-based or protein-based approaches. Methylation markers enable early cancer detection before extensive mutational accumulation occurs.</p>
+                </div>
+
+                <div class="finding-item">
+                    <h4>💼 Strategic Acquisition Integration</h4>
+                    <p>The $2.8B Genomic Health acquisition brought not only Oncotype DX tests but also laboratory infrastructure enabling OncoExTra and Oncodetect development. The $190M PreventionGenetics acquisition delivered hereditary testing capabilities and 25+ PhD geneticists, enabling Riskguard launch and expansion into germline cancer risk assessment. Technology licenses from TwinStrand (duplex sequencing), TGen (TARDIS platform), and Thrive/Freenome (blood CRC test) demonstrate strategic "build and buy" approach.</p>
+                </div>
+
+                <div class="finding-item">
+                    <h4>🔄 Cancer Continuum Coverage</h4>
+                    <p>The portfolio spans the complete cancer care journey: hereditary risk assessment (Riskguard, PreventionGenetics) → screening and early detection (Cologuard, Cancerguard, Oncoguard Liver) → treatment selection (Oncotype DX, OncoExTra) → monitoring and surveillance (Oncodetect MRD). This comprehensive approach positions Exact Sciences to capture value across multiple clinical touchpoints rather than single-indication focus.</p>
+                </div>
+
+                <div class="finding-item">
+                    <h4>🎯 Biomarker Class Diversity</h4>
+                    <p>Unlike companies focused exclusively on ctDNA or protein markers, Exact Sciences employs multiple complementary biomarker classes often within single products. Cancerguard combines methylation + proteins with planned mutation reflex. Oncoguard Liver pairs methylation with AFP protein. This multi-analyte strategy improves sensitivity across cancer stages and types compared to single-biomarker approaches.</p>
+                </div>
+
+                <div class="finding-item">
+                    <h4>🚫 No Peptides or Small Molecules</h4>
+                    <p>Notably absent from the portfolio are peptide-based or small molecule metabolite biomarkers, despite these being explored by some competitors. The portfolio focuses on nucleic acids (DNA, RNA, ctDNA) and select protein markers, suggesting strategic technology focus on genomic/epigenomic approaches over metabolomic or peptidomic platforms.</p>
+                </div>
+
+                <div class="finding-item">
+                    <h4>💰 Medicare Coverage as Validation</h4>
+                    <p>Multiple LDT products have secured Medicare coverage (Oncodetect, OncoExTra, Riskguard) through MolDX and other programs, demonstrating that clinical validation and health economics evidence can enable reimbursement without FDA approval. This pathway has become central to Exact Sciences' commercial strategy for new product launches.</p>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Exact Sciences Diagnostic Portfolio | Comprehensive Product Analysis 2025</p>
+            <p style="font-size: 0.9em; margin-top: 10px;">20+ Products Spanning Cancer Screening, Risk Assessment, Treatment Selection & Monitoring</p>
+        </footer>
+    </div>
+</body>
+</html>
