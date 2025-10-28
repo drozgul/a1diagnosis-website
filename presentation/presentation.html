@@ -2230,35 +2230,35 @@
                 <!-- Tab Panel 2: Peptide-28 Chart with Video -->
                 <div class="risk-tab-panel" id="tab-peptide" style="padding: 40px; display: none;">
                     <div style="text-align: center; margin-bottom: 20px;">
-                        <h3 style="font-size: 24px; font-weight: bold; color: #2c3e50; margin-bottom: 10px;">peptide-28 Expression & Vision Impact</h3>
-                        <p style="font-size: 16px; color: #7f8c8d; text-align: center;">Illustrative Disease Progression Model</p>
+                        <h3 style="font-size: clamp(18px, 3vw, 24px); font-weight: bold; color: #2c3e50; margin-bottom: 10px;">peptide-28 Expression & Vision Impact</h3>
+                        <p style="font-size: clamp(14px, 2vw, 16px); color: #7f8c8d; text-align: center;">Illustrative Disease Progression Model</p>
                     </div>
 
-                    <!-- Scientific Disclaimer -->
-                    <div style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-left: 4px solid #f59e0b; padding: 15px 20px; border-radius: 8px; margin-bottom: 25px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);">
-                        <div style="display: flex; align-items: start; gap: 12px;">
-                            <span style="font-size: 20px; flex-shrink: 0; margin-top: 2px;">⚠️</span>
-                            <p style="margin: 0; color: #92400e; font-size: 13px; line-height: 1.6;">
-                                <strong>Note:</strong> This visualization is an illustrative model based on our cross-sectional data (Wet AMD patients vs age-matched healthy subjects) and established scientific understanding of AMD progression. While we measured peptide-28 at 93× elevation in AMD patients compared to healthy subjects, the temporal progression shown (ages 35-45) is hypothetical and represents how the disease typically develops over time. The vision deterioration video illustrates the progression from healthy vision to early dry AMD to wet AMD central vision loss patterns for educational purposes.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div style="display: grid; grid-template-columns: 1fr 400px; gap: 40px; align-items: start;">
+                    <div style="display: grid; grid-template-columns: 1fr 270px; gap: clamp(20px, 3vw, 30px); align-items: start; max-width: 1400px; margin: 0 auto; width: 100%;">
                         <!-- Peptide Chart -->
-                        <div>
-                            <div id="peptide-chart-presentation" style="width: 100%; height: 500px;"></div>
+                        <div style="min-width: 0; overflow: hidden;">
+                            <div id="peptide-chart-presentation" style="width: 100%; height: clamp(380px, 40vw, 480px);"></div>
                         </div>
 
                         <!-- Video Section -->
-                        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
-                            <div style="width: 100%; max-width: 350px; height: 550px; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); background: #000;">
+                        <div style="display: flex; flex-direction: column; align-items: center; justify-content: flex-start; min-width: 0;">
+                            <div style="width: 100%; max-width: 245px; aspect-ratio: 7/11; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); background: #000;">
                                 <video id="amdVideo" muted playsinline style="width: 100%; height: 100%; display: block; object-fit: cover; object-position: center;">
                                     <source src="Normal to AMD vision v2 - Slow.mp4" type="video/mp4">
                                     Your browser does not support the video tag.
                                 </video>
                             </div>
-                            <div style="font-size: 18px; font-weight: bold; color: #2c3e50; margin-top: 15px; text-align: center;">Vision Progression:<br>Normal → Dry AMD → Wet AMD</div>
+                            <div style="font-size: clamp(12px, 1.8vw, 14px); font-weight: bold; color: #2c3e50; margin-top: 15px; text-align: center; line-height: 1.4;">Vision Progression:<br>Normal → Dry AMD → Wet AMD</div>
+                        </div>
+                    </div>
+
+                    <!-- Scientific Disclaimer -->
+                    <div style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-left: 4px solid #f59e0b; padding: 15px 20px; border-radius: 8px; margin-top: 25px; margin-bottom: 25px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);">
+                        <div style="display: flex; align-items: start; gap: 12px;">
+                            <span style="font-size: 20px; flex-shrink: 0; margin-top: 2px;">⚠️</span>
+                            <p style="margin: 0; color: #92400e; font-size: clamp(11px, 1.5vw, 13px); line-height: 1.6;">
+                                <strong>Note:</strong> This visualization is an illustrative model based on our cross-sectional data (Wet AMD patients vs age-matched healthy subjects) and established scientific understanding of AMD progression. While we measured peptide-28 at 93× elevation in AMD patients compared to healthy subjects, the temporal progression shown (ages 35-45) is hypothetical and represents how the disease typically develops over time. The vision deterioration video illustrates the progression from healthy vision to early dry AMD to wet AMD central vision loss patterns for educational purposes.
+                            </p>
                         </div>
                     </div>
 
@@ -2272,29 +2272,29 @@
                 <!-- Tab Panel 3: Platform Comparison -->
                 <div class="risk-tab-panel" id="tab-comparison" style="padding: 40px; display: none;">
                     <div style="text-align: center; margin-bottom: 20px;">
-                        <h3 style="font-size: 24px; font-weight: bold; color: #2c3e50; margin-bottom: 10px;">Multi-Disease Biomarker Platform</h3>
-                        <p style="font-size: 16px; color: #7f8c8d; text-align: center;">Illustrative Multi-Disease Progression Model</p>
+                        <h3 style="font-size: clamp(18px, 3vw, 24px); font-weight: bold; color: #2c3e50; margin-bottom: 10px;">Multi-Disease Biomarker Platform</h3>
+                        <p style="font-size: clamp(14px, 2vw, 16px); color: #7f8c8d; text-align: center;">Illustrative Multi-Disease Progression Model</p>
                     </div>
 
                     <!-- Scientific Disclaimer -->
                     <div style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-left: 4px solid #f59e0b; padding: 15px 20px; border-radius: 8px; margin-bottom: 25px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);">
                         <div style="display: flex; align-items: start; gap: 12px;">
                             <span style="font-size: 20px; flex-shrink: 0; margin-top: 2px;">⚠️</span>
-                            <p style="margin: 0; color: #92400e; font-size: 13px; line-height: 1.6;">
+                            <p style="margin: 0; color: #92400e; font-size: clamp(11px, 1.5vw, 13px); line-height: 1.6;">
                                 <strong>Note:</strong> This side-by-side comparison demonstrates that the temporal patterns (ages 35-45) are hypothetical illustrative representations over time.
                             </p>
                         </div>
                     </div>
 
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 500px), 1fr)); gap: clamp(15px, 3vw, 30px); max-width: 1400px; margin: 0 auto; width: 100%;">
                         <!-- Peptide-28 Chart -->
-                        <div>
-                            <div id="comparison-peptide-chart" style="width: 100%; height: 450px;"></div>
+                        <div style="min-width: 0;">
+                            <div id="comparison-peptide-chart" style="width: 100%; height: clamp(300px, 40vw, 450px);"></div>
                         </div>
 
                         <!-- Glucose Chart -->
-                        <div>
-                            <div id="comparison-glucose-chart" style="width: 100%; height: 450px;"></div>
+                        <div style="min-width: 0;">
+                            <div id="comparison-glucose-chart" style="width: 100%; height: clamp(300px, 40vw, 450px);"></div>
                         </div>
                     </div>
 
@@ -2415,7 +2415,7 @@
                     <!-- Statistical Methods Description -->
                     <div style="margin-top: 30px; padding: 20px; background: linear-gradient(135deg, rgba(224, 247, 250, 0.8) 0%, rgba(178, 235, 242, 0.8) 100%); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.5); border-left: 4px solid #00838f; box-shadow: 0 8px 32px 0 rgba(128, 222, 234, 0.4), inset 0 1px 0 0 rgba(178, 235, 242, 0.8);">
                         <p style="font-size: 13px; color: #334155; line-height: 1.7; text-align: justify; margin: 0;">
-                            <strong style="color: #1e293b;">Statistical Methods:</strong> Statistical analyses were performed using Python Version 3.12.4 with libraries (NumPy, SciPy, Pandas, and Matplotlib) and GraphPad Prism Software. The Shapiro-Wilk test was used to determine the distribution of continuous variables in each group. For comparing two groups, Welch's t-test will be applied if both groups show normal distributions, while the Mann-Whitney U test will be used if at least one group has a non-normal distribution. To control for multiple comparisons, we applied the Benjamini-Hochberg procedure with a False Discovery Rate (FDR) of 1%.
+                            <strong style="color: #1e293b;">Statistical Methods:</strong> Statistical analyses were performed using Python Version 3.12.4 with libraries (NumPy, SciPy, Pandas, and Matplotlib) and GraphPad Prism Software. The Shapiro-Wilk test was used to determine the distribution of continuous variables in each group. For comparing two groups, Welch's t-test was applied if both groups showed normal distributions, while the Mann-Whitney U test was used if at least one group had a non-normal distribution. To control for multiple comparisons, we applied the Benjamini-Hochberg procedure with a False Discovery Rate (FDR) of 1%.
                         </p>
                     </div>
                 </div>
@@ -4387,26 +4387,6 @@
                 </div>
             </div>
 
-            <div style="margin-top: 30px; padding: 25px; background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); border-radius: 15px; border-left: 5px solid #3b82f6;">
-                <h4 style="font-size: 1.5rem; font-weight: 800; color: #1e40af; margin-bottom: 12px;">The Translation Gap</h4>
-                <p style="font-size: 1rem; color: #475569; line-height: 1.8; margin: 0;">
-                    Academic research has validated multiple biomarker approaches with published results, but none have been commercialized into diagnostic tests. This represents a massive opportunity for a startup to license or build upon this research with proper commercial execution.
-                </p>
-            </div>
-
-            <!-- Competitive Funding Summary -->
-            <div style="margin-top: 40px; padding: 30px; background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%); border-radius: 20px; border: 2px solid #ef4444; box-shadow: 0 15px 50px rgba(239, 68, 68, 0.2);">
-                <h3 style="font-size: 1.8rem; font-weight: 800; color: #991b1b; margin-bottom: 20px; text-align: center;">Total AI Imaging Competitive Funding</h3>
-                <div style="text-align: center;">
-                    <div style="font-size: 4rem; font-weight: 900; color: #991b1b; margin-bottom: 12px;">$180M+</div>
-                    <p style="font-size: 1.1rem; color: #7f1d1d; font-weight: 600; margin-bottom: 10px; text-align: center;">
-                        Digital Diagnostics ($130M) + Eyenuk ($43M) + AEYE Health ($4.3M)
-                    </p>
-                    <p style="font-size: 0.95rem; color: #991b1b; font-style: italic; max-width: 700px; margin: 0 auto; text-align: center;">
-                        These companies have already overcome the hardest barriers: FDA clearance, reimbursement codes, and healthcare system integration
-                    </p>
-                </div>
-            </div>
                 </div>
                 <!-- End Tab 3: Academic Research -->
 
@@ -4969,7 +4949,7 @@
                 if (tabId === 'tab-glucose') {
                     highlightText.innerHTML = '<strong>Early Detection Window:</strong> This visualization demonstrates how diseases progress gradually over many years. Our blood-based risk assessment platform can detect biological changes during the early phase—years before traditional diagnostic methods identify symptoms—enabling timely intervention when treatment is most effective.';
                 } else if (tabId === 'tab-peptide') {
-                    highlightText.innerHTML = '<strong>Biomarker Correlation:</strong> The peptide-28 biomarker shows dramatic elevation during AMD progression, correlating directly with vision deterioration. The synchronized video demonstrates what patients actually experience as the biomarker rises—from clear vision to severe central vision loss. This illustrates why early blood-based detection (when biomarker levels first begin rising) is critical for preserving vision.';
+                    highlightText.innerHTML = '';
                 } else if (tabId === 'tab-comparison') {
                     highlightText.innerHTML = '<strong>Platform Scalability:</strong> This side-by-side comparison demonstrates our platform\'s capability to detect multiple chronic diseases from blood biomarkers. While peptide-28 tracks AMD progression (93x increase), glucose levels track diabetes development (1.8x increase). The same blood-based technology can be expanded to detect various chronic conditions, maximizing early intervention opportunities across multiple disease categories.';
                 } else if (tabId === 'tab-peptides') {
