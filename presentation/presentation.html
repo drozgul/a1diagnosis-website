@@ -1914,6 +1914,44 @@
                 top: 20px;
             }
         }
+
+        /* CLIA Slides Styling */
+        .clia-slide {
+            display: none;
+            animation: fadeIn 0.5s;
+            padding: 30px;
+            min-height: 500px;
+        }
+
+        .clia-slide.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        #clia-prev-btn:hover,
+        #clia-next-btn:hover {
+            background: linear-gradient(135deg, #00e5ff 0%, #00bcd4 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 188, 212, 0.4);
+        }
+
+        #clia-prev-btn:disabled,
+        #clia-next-btn:disabled {
+            background: #b0bec5;
+            cursor: not-allowed;
+            transform: none;
+            opacity: 0.5;
+        }
     </style>
 </head>
 <body>
@@ -1951,6 +1989,7 @@
             </button>
             <button class="nav-button" onclick="showSection('fda-duzenleyici')" style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border: 1px solid #bbf7d0; color: #166534; opacity: 0.9; font-size: 12px; font-style: italic;">📋 Appendix - FDA Regulatory Strategy</button>
             <button class="nav-button" onclick="showSection('exact-sciences-appendix')" style="background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%); border: 1px solid #80deea; color: #00695c; opacity: 0.9; font-size: 12px; font-style: italic;">📋 Appendix - Exact Sciences Analysis</button>
+            <button class="nav-button" onclick="showSection('clia-related-info')" style="background: linear-gradient(135deg, #e0f7ff 0%, #b3e5fc 100%); border: 1px solid #80deea; color: #01579b; opacity: 0.9; font-size: 12px; font-style: italic;">📋 Appendix - CLIA Related Info</button>
         </div>
     </div>
     
@@ -2464,7 +2503,7 @@
 
                         <div style="margin-bottom: 15px;">
                             <p style="font-size: 14px; color: #334155; line-height: 1.7; text-align: justify; margin: 0;">
-                                <strong style="color: #0e7490;">Power Analysis & Sample Size Calculation:</strong> Based on our proof-of-concept study data, power analysis (Cohen's d effect size calculations) was performed. A sample size of 60 subjects per group (120 total) will be needed to provide >90% power to detect significant differences between groups (alpha = 0.05). For the full validation study, we plan to enroll 240 total samples to ensure robust statistical power across multiple biomarker comparisons.
+                                <strong style="color: #0e7490;">Power Analysis & Sample Size Calculation:</strong> Based on our proof-of-concept study data, power analysis (Cohen's d effect size calculations) was performed. A sample size of 60 subjects per group will be needed to provide >90% power to detect significant differences between groups (alpha = 0.05). Groups are Age-matched Older Healthy Subjects, Early Dry AMD, Late Dry AMD, Wet AMD. For the full validation study, we plan to enroll 240 total samples to ensure robust statistical power across multiple biomarker comparisons.
                             </p>
                         </div>
 
@@ -4742,6 +4781,291 @@
             </div>
         </div>
 
+        <!-- CLIA Related Info Appendix Section -->
+        <div class="section" id="clia-related-info">
+            <h2>📋 Appendix - CLIA Related Info</h2>
+            <p style="margin-bottom: 30px; font-size: 1.15em; color: #374151;">Major Regulatory Clarity for Laboratory Developed Tests - A1 Diagnosis Investor Update (October 2025)</p>
+
+            <!-- Slide Navigation -->
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; padding: 20px; background: linear-gradient(135deg, #e1f5fe 0%, #b3e5fc 100%); border-radius: 12px; border: 1px solid #81d4fa;">
+                <button id="clia-prev-btn" onclick="cliaChangeSlide(-1)" style="background: linear-gradient(135deg, #00bcd4 0%, #0288d1 100%); color: white; border: none; padding: 12px 24px; font-size: 1.1em; border-radius: 8px; cursor: pointer; transition: all 0.3s; font-weight: 600;">← Previous</button>
+                <span style="color: #0277bd; font-size: 1.2em; font-weight: 600;"><span id="clia-current-slide">1</span> / <span id="clia-total-slides">9</span></span>
+                <button id="clia-next-btn" onclick="cliaChangeSlide(1)" style="background: linear-gradient(135deg, #00bcd4 0%, #0288d1 100%); color: white; border: none; padding: 12px 24px; font-size: 1.1em; border-radius: 8px; cursor: pointer; transition: all 0.3s; font-weight: 600;">Next →</button>
+            </div>
+
+            <!-- Slide Container -->
+            <div id="clia-slides-container">
+                <!-- Slide 1: Title -->
+                <div class="clia-slide active">
+                    <div style="text-align: center; padding: 60px 40px; background: #ffffff; border-radius: 20px; box-shadow: 0 15px 50px rgba(34, 197, 94, 0.2); border: 1px solid #bbf7d0;">
+                        <h1 style="color: #0277bd; font-size: 3em; margin-bottom: 20px; line-height: 1.2; text-align: center;">LDT Regulatory Update</h1>
+                        <p style="color: #0288d1; font-size: 1.5em; margin-bottom: 30px; text-align: center;">Major Regulatory Clarity for Laboratory Developed Tests</p>
+                        <p style="color: #00bcd4; font-size: 1.5em; font-weight: bold; margin-bottom: 30px; text-align: center;">A1 Diagnosis Investor Update</p>
+                        <p style="color: #01579b; font-size: 1.2em; margin-top: 80px; text-align: center;">October 2025</p>
+                    </div>
+                </div>
+
+                <!-- Slide 2: What Are LDTs? -->
+                <div class="clia-slide">
+                    <h2 style="color: #01579b; font-size: 2.5em; margin-bottom: 30px; border-bottom: 4px solid #00e5ff; padding-bottom: 15px;">What Are Laboratory Developed Tests (LDTs)?</h2>
+                    <p style="color: #263238; font-size: 1.2em; line-height: 1.8; margin-bottom: 20px;"><strong style="color: #01579b;">Laboratory Developed Tests</strong> are diagnostic tests that are:</p>
+                    <ul style="margin-left: 30px; margin-bottom: 25px;">
+                        <li style="color: #263238; font-size: 1.2em; line-height: 1.8; margin-bottom: 15px;">Designed, manufactured, and performed <strong style="color: #01579b;">within a single laboratory</strong></li>
+                        <li style="color: #263238; font-size: 1.2em; line-height: 1.8; margin-bottom: 15px;">Not sold commercially as test kits</li>
+                        <li style="color: #263238; font-size: 1.2em; line-height: 1.8; margin-bottom: 15px;">Used to analyze patient specimens (blood, tissue, etc.)</li>
+                    </ul>
+                    <h3 style="color: #0288d1; font-size: 1.8em; margin-top: 30px; margin-bottom: 15px;">Examples of LDTs:</h3>
+                    <ul style="margin-left: 30px;">
+                        <li style="color: #263238; font-size: 1.2em; line-height: 1.8; margin-bottom: 15px;">COVID-19 diagnostic tests</li>
+                        <li style="color: #263238; font-size: 1.2em; line-height: 1.8; margin-bottom: 15px;">Cancer genomic testing</li>
+                        <li style="color: #263238; font-size: 1.2em; line-height: 1.8; margin-bottom: 15px;">Newborn screening tests</li>
+                        <li style="color: #263238; font-size: 1.2em; line-height: 1.8; margin-bottom: 15px;"><strong style="color: #0277bd;">A1 Diagnosis blood test for AMD risk detection</strong></li>
+                    </ul>
+                </div>
+
+                <!-- Slide 3: Timeline -->
+                <div class="clia-slide">
+                    <h2 style="color: #01579b; font-size: 2.5em; margin-bottom: 30px; border-bottom: 4px solid #00e5ff; padding-bottom: 15px;">Timeline of Events</h2>
+                    <div style="background: #ffffff; padding: 30px; border-radius: 10px; border-left: 5px solid #00e5ff; margin: 20px 0; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);">
+                        <div style="margin-bottom: 25px;">
+                            <p style="color: #00bcd4; font-weight: bold; font-size: 1.3em; margin-bottom: 10px;">May 6, 2024</p>
+                            <p style="color: #263238; font-size: 1.2em; line-height: 1.8;">FDA issued final rule attempting to regulate LDTs as medical devices</p>
+                        </div>
+                        <div style="margin-bottom: 25px;">
+                            <p style="color: #00bcd4; font-weight: bold; font-size: 1.3em; margin-bottom: 10px;">March 31, 2025</p>
+                            <p style="color: #263238; font-size: 1.2em; line-height: 1.8;">Federal District Court (Eastern District of Texas) <strong style="color: #01579b;">vacated</strong> the FDA rule, ruling that FDA lacks statutory authority to regulate LDTs</p>
+                        </div>
+                        <div style="margin-bottom: 20px;">
+                            <p style="color: #00bcd4; font-weight: bold; font-size: 1.3em; margin-bottom: 10px;">September 19, 2025</p>
+                            <p style="color: #263238; font-size: 1.2em; line-height: 1.8;">FDA issued final rule <strong style="color: #01579b;">reverting back</strong> to pre-May 2024 regulations—<strong style="color: #01579b;">no FDA appeal filed</strong></p>
+                        </div>
+                    </div>
+                    <div style="background: #ffffff; padding: 25px; border-radius: 10px; margin: 25px 0; border-left: 5px solid #00e676; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);">
+                        <p style="color: #263238; font-size: 1.2em; line-height: 1.8;"><strong style="color: #01579b;">Bottom Line:</strong> The FDA has formally accepted the court's decision. LDTs are regulated by CMS/CLIA, not FDA.</p>
+                    </div>
+                    <div style="background: #ffffff; padding: 25px; border-radius: 10px; margin-top: 20px; border-left: 5px solid #00e676; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);">
+                        <p style="color: #263238; font-size: 1.2em; line-height: 1.8;"><strong style="color: #01579b;">A1 Diagnosis Position:</strong> We committed to FDA validation for maximum credibility. The regulatory clarity gives us strategic flexibility to evaluate CLIA as a potential complementary or alternative route, but doesn't change our commitment to rigorous validation.</p>
+                    </div>
+                </div>
+
+                <!-- Slide 4: Court Decision -->
+                <div class="clia-slide">
+                    <h2 style="color: #01579b; font-size: 2.5em; margin-bottom: 30px; border-bottom: 4px solid #00e5ff; padding-bottom: 15px;">What the Court Decided</h2>
+                    <h3 style="color: #0288d1; font-size: 1.8em; margin-top: 25px; margin-bottom: 15px;">Key Ruling:</h3>
+                    <p style="color: #263238; font-size: 1.2em; line-height: 1.8; margin-bottom: 25px;">LDTs are <strong style="color: #01579b;">professional laboratory services</strong>, not tangible medical devices subject to FDA regulation.</p>
+
+                    <h3 style="color: #0288d1; font-size: 1.8em; margin-top: 25px; margin-bottom: 15px;">Court's Reasoning:</h3>
+                    <ul style="margin-left: 30px; margin-bottom: 25px;">
+                        <li style="color: #263238; font-size: 1.2em; line-height: 1.8; margin-bottom: 15px;">The FDA's device definition requires <strong style="color: #01579b;">tangible, physical objects</strong></li>
+                        <li style="color: #263238; font-size: 1.2em; line-height: 1.8; margin-bottom: 15px;">LDTs are <strong style="color: #01579b;">intangible services</strong> performed by laboratories</li>
+                        <li style="color: #263238; font-size: 1.2em; line-height: 1.8; margin-bottom: 15px;">Congress created CLIA specifically to regulate clinical laboratories and their tests</li>
+                        <li style="color: #263238; font-size: 1.2em; line-height: 1.8; margin-bottom: 15px;">FDA historically chose not to enforce device rules on LDTs (enforcement discretion)</li>
+                    </ul>
+
+                    <div style="background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); padding: 25px; border-radius: 10px; margin: 25px 0; border-left: 5px solid #00e676;">
+                        <p style="color: #263238; font-size: 1.2em; line-height: 1.8;"><strong style="color: #01579b;">Result:</strong> FDA removed the phrase "including when the manufacturer of these products is a laboratory" from its regulations</p>
+                    </div>
+                </div>
+
+                <!-- Slide 5: Current Regulatory Framework -->
+                <div class="clia-slide">
+                    <h2 style="color: #01579b; font-size: 2.5em; margin-bottom: 30px; border-bottom: 4px solid #00e5ff; padding-bottom: 15px;">Current Regulatory Pathway for LDTs</h2>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin: 30px 0;">
+                        <div style="background: #ffffff; padding: 30px; border-radius: 10px; border-left: 5px solid #00e676; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);">
+                            <h3 style="color: #00c853; font-size: 1.6em; margin-bottom: 15px;"><span style="color: #00e676; font-weight: bold;">✓</span> Required: CLIA</h3>
+                            <p style="color: #263238; font-size: 1.1em; font-weight: 600; margin-bottom: 15px;"><strong>Clinical Laboratory Improvement Amendments</strong></p>
+                            <ul style="margin-top: 15px; margin-left: 20px;">
+                                <li style="color: #263238; font-size: 1.1em; line-height: 1.6; margin-bottom: 10px;">Laboratory certification</li>
+                                <li style="color: #263238; font-size: 1.1em; line-height: 1.6; margin-bottom: 10px;">Quality control standards</li>
+                                <li style="color: #263238; font-size: 1.1em; line-height: 1.6; margin-bottom: 10px;">Proficiency testing</li>
+                                <li style="color: #263238; font-size: 1.1em; line-height: 1.6; margin-bottom: 10px;">Personnel requirements</li>
+                            </ul>
+                        </div>
+                        <div style="background: #ffffff; padding: 30px; border-radius: 10px; border-left: 5px solid #00bcd4; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);">
+                            <h3 style="color: #00bcd4; font-size: 1.6em; margin-bottom: 15px;"><span style="color: #ff5252; font-weight: bold;">✗</span> NOT Required: FDA</h3>
+                            <p style="color: #263238; font-size: 1.1em; font-weight: 600; margin-bottom: 15px;"><strong>No FDA Device Regulation</strong></p>
+                            <ul style="margin-top: 15px; margin-left: 20px;">
+                                <li style="color: #263238; font-size: 1.1em; line-height: 1.6; margin-bottom: 10px;">No premarket review</li>
+                                <li style="color: #263238; font-size: 1.1em; line-height: 1.6; margin-bottom: 10px;">No De Novo pathway</li>
+                                <li style="color: #263238; font-size: 1.1em; line-height: 1.6; margin-bottom: 10px;">No 510(k) clearance</li>
+                                <li style="color: #263238; font-size: 1.1em; line-height: 1.6; margin-bottom: 10px;">No PMA approval</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div style="background: #ffffff; padding: 25px; border-radius: 10px; margin: 25px 0; border-left: 5px solid #00e676; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);">
+                        <p style="color: #263238; font-size: 1.2em; line-height: 1.8;"><strong style="color: #01579b;">Administered by:</strong> Centers for Medicare & Medicaid Services (CMS)—the same agency that handles Medicare reimbursement</p>
+                    </div>
+
+                    <div style="background: #ffffff; padding: 25px; border-radius: 10px; margin-top: 20px; border-left: 5px solid #00e676; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);">
+                        <p style="color: #263238; font-size: 1.2em; line-height: 1.8;"><strong style="color: #01579b;">A1 Diagnosis Approach:</strong> We are committed to FDA validation for maximum credibility. The regulatory clarity now allows us to evaluate CLIA as a potential complementary or alternative route, giving us strategic flexibility while maintaining our commitment to rigorous validation.</p>
+                    </div>
+                </div>
+
+                <!-- Slide 6: Implications for A1 Diagnosis -->
+                <div class="clia-slide">
+                    <h2 style="color: #01579b; font-size: 2.5em; margin-bottom: 30px; border-bottom: 4px solid #00e5ff; padding-bottom: 15px;">A1 Diagnosis Regulatory Strategy</h2>
+
+                    <h3 style="color: #0288d1; font-size: 1.8em; margin-top: 20px; margin-bottom: 15px;">Our Commitment: FDA Validation for Maximum Credibility</h3>
+                    <div style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(240, 253, 244, 0.8) 25%, rgba(220, 252, 231, 0.9) 50%, rgba(187, 247, 208, 0.85) 75%, rgba(134, 239, 172, 0.9) 100%); backdrop-filter: blur(15px); padding: 25px; border-radius: 10px; margin: 20px 0; border-left: 5px solid #00e676; box-shadow: 0 12px 35px rgba(34, 197, 94, 0.25), inset 0 2px 0 rgba(255, 255, 255, 0.4), inset 0 -2px 0 rgba(0, 0, 0, 0.1);">
+                        <p style="color: #263238; font-size: 1.2em; line-height: 1.8;"><strong style="color: #01579b;">Primary Path:</strong> We are committed to pursuing rigorous FDA validation with 240 samples across multiple centers</p>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 30px;">
+                        <div style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(240, 253, 244, 0.8) 25%, rgba(220, 252, 231, 0.9) 50%, rgba(187, 247, 208, 0.85) 75%, rgba(134, 239, 172, 0.9) 100%); backdrop-filter: blur(15px); padding: 30px; border-radius: 10px; border-left: 5px solid #00e676; box-shadow: 0 12px 35px rgba(34, 197, 94, 0.25), inset 0 2px 0 rgba(255, 255, 255, 0.4), inset 0 -2px 0 rgba(0, 0, 0, 0.1); position: relative; overflow: hidden; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);">
+                            <h4 style="color: #00c853; font-size: 1.4em; margin-bottom: 15px;">✓ FDA Validation Path (Active)</h4>
+                            <p style="margin-top: 15px; color: #263238; font-size: 1.1em; font-weight: 600;"><strong>Current Phase 1 Budget:</strong> $1M</p>
+                            <ul style="margin-top: 10px; font-size: 1.1em; margin-left: 20px;">
+                                <li style="color: #263238; line-height: 1.6; margin-bottom: 10px;">240 sample clinical validation</li>
+                                <li style="color: #263238; line-height: 1.6; margin-bottom: 10px;">Multi-center study design</li>
+                                <li style="color: #263238; line-height: 1.6; margin-bottom: 10px;">Rigorous FDA-quality evidence generation</li>
+                                <li style="color: #263238; line-height: 1.6; margin-bottom: 10px;">Publication in peer-reviewed journals</li>
+                                <li style="color: #263238; line-height: 1.6; margin-bottom: 10px;">De Novo pathway or equivalent</li>
+                            </ul>
+                        </div>
+                        <div style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(240, 249, 255, 0.8) 25%, rgba(224, 242, 254, 0.9) 50%, rgba(191, 219, 254, 0.85) 75%, rgba(147, 197, 253, 0.9) 100%); backdrop-filter: blur(15px); padding: 30px; border-radius: 10px; border-left: 5px solid #00bcd4; box-shadow: 0 12px 35px rgba(59, 130, 246, 0.25), inset 0 2px 0 rgba(255, 255, 255, 0.4), inset 0 -2px 0 rgba(0, 0, 0, 0.1); position: relative; overflow: hidden; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);">
+                            <h4 style="color: #00bcd4; font-size: 1.4em; margin-bottom: 15px;">CLIA Pathway (Under Evaluation)</h4>
+                            <p style="margin-top: 15px; color: #263238; font-size: 1.1em; font-weight: 600;"><strong>Status:</strong> Evaluating as complementary or alternative route</p>
+                            <ul style="margin-top: 10px; font-size: 1.1em; margin-left: 20px;">
+                                <li style="color: #263238; line-height: 1.6; margin-bottom: 10px;">Laboratory quality standards</li>
+                                <li style="color: #263238; line-height: 1.6; margin-bottom: 10px;">Proficiency testing programs</li>
+                                <li style="color: #263238; line-height: 1.6; margin-bottom: 10px;">Personnel credentialing</li>
+                                <li style="color: #263238; line-height: 1.6; margin-bottom: 10px;">Potential faster market entry option</li>
+                                <li style="color: #263238; line-height: 1.6; margin-bottom: 10px;">Cost-benefit analysis in progress</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h3 style="color: #0288d1; font-size: 1.8em; margin-top: 30px; margin-bottom: 15px;">Strategic Flexibility:</h3>
+                    <ul style="margin-left: 30px;">
+                        <li style="color: #263238; font-size: 1.2em; line-height: 1.8; margin-bottom: 15px;"><strong style="color: #01579b;">Maximum Credibility:</strong> FDA validation provides gold-standard evidence for clinical adoption and reimbursement</li>
+                        <li style="color: #263238; font-size: 1.2em; line-height: 1.8; margin-bottom: 15px;"><strong style="color: #01579b;">New Options:</strong> Regulatory clarity allows us to evaluate CLIA as potential complementary or alternative pathway</li>
+                        <li style="color: #263238; font-size: 1.2em; line-height: 1.8; margin-bottom: 15px;"><strong style="color: #01579b;">Unchanged Commitment:</strong> Our focus remains on building the most rigorously validated AMD early detection test</li>
+                    </ul>
+                </div>
+
+                <!-- Slide 7: Competitive Advantages -->
+                <div class="clia-slide">
+                    <h2 style="color: #01579b; font-size: 2.5em; margin-bottom: 30px; border-bottom: 4px solid #00e5ff; padding-bottom: 15px;">Competitive Positioning</h2>
+
+                    <!-- Critical Advantages Section using same style as Investment Rationale -->
+                    <div class="key-metrics">
+                        <h4>Why FDA Validation Creates Competitive Advantage</h4>
+                        <div class="metrics-row">
+                            <div class="metric">
+                                <div class="metric-value">Gold Standard</div>
+                                <div class="metric-label">FDA validation (240 samples, multi-center) provides highest level of clinical credibility</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-value">Reimbursement</div>
+                                <div class="metric-label">Rigorous FDA-quality data strongly supports Medicare and private payer coverage decisions</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-value">Physician Trust</div>
+                                <div class="metric-label">FDA pathway builds confidence with ophthalmologists and retinal specialists</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Investment Advantages Grid using same style as Investment Rationale -->
+                    <div class="process-flow">
+                        <h3 style="text-align: center; color: #1e40af; font-size: 20px; margin-bottom: 20px; font-weight: 600;">Strategic Flexibility from Regulatory Clarity</h3>
+                        <div class="process-grid">
+                            <div class="process-step">
+                                <div class="process-icon">🔬</div>
+                                <div class="process-title">Evaluating CLIA</div>
+                                <div class="process-desc">Potential complementary or alternative route</div>
+                            </div>
+                            <div class="process-step process-step-alt">
+                                <div class="process-icon process-icon-alt">⚡</div>
+                                <div class="process-title process-title-alt">Timeline Benefits</div>
+                                <div class="process-desc">Assessing CLIA for potential faster market entry</div>
+                            </div>
+                            <div class="process-step">
+                                <div class="process-icon">💰</div>
+                                <div class="process-title">Cost Analysis</div>
+                                <div class="process-desc">Dual-pathway vs. FDA-only approach implications</div>
+                            </div>
+                            <div class="process-step process-step-alt">
+                                <div class="process-icon process-icon-alt">✅</div>
+                                <div class="process-title process-title-alt">Commitment</div>
+                                <div class="process-desc">Rigorous validation regardless of pathway chosen</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); padding: 25px; border-radius: 10px; margin-top: 25px; border-left: 5px solid #00e676;">
+                        <p style="color: #263238; font-size: 1.2em; line-height: 1.8;"><strong style="color: #01579b;">Key Message for Investors:</strong> We're building the most rigorously validated AMD early detection test on the market. The regulatory clarity gives us strategic options, but doesn't change our commitment to FDA-quality evidence.</p>
+                    </div>
+                </div>
+
+                <!-- Slide 8: Budget & Cost Structure -->
+                <div class="clia-slide">
+                    <h2 style="color: #01579b; font-size: 2.5em; margin-bottom: 30px; border-bottom: 4px solid #00e5ff; padding-bottom: 15px;">Phase 1 Funding & Strategic Options</h2>
+
+                    <h3 style="color: #0288d1; font-size: 1.8em; margin-top: 20px; margin-bottom: 15px;">Committed: FDA Validation Path ($1,000,000)</h3>
+                    <div style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(240, 253, 244, 0.8) 25%, rgba(220, 252, 231, 0.9) 50%, rgba(187, 247, 208, 0.85) 75%, rgba(134, 239, 172, 0.9) 100%); backdrop-filter: blur(15px); padding: 25px; border-radius: 10px; margin: 20px 0; border-left: 5px solid #00e676; box-shadow: 0 12px 35px rgba(34, 197, 94, 0.25), inset 0 2px 0 rgba(255, 255, 255, 0.4), inset 0 -2px 0 rgba(0, 0, 0, 0.1); position: relative; overflow: hidden; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);">
+                        <p style="color: #263238; font-size: 1.15em; font-weight: 600; margin-bottom: 15px;"><strong style="color: #01579b;">Current Phase 1 Investment: FDA-Quality Validation Studies</strong></p>
+                        <ul style="margin-top: 15px; font-size: 1.1em; margin-left: 25px;">
+                            <li style="color: #263238; line-height: 1.7; margin-bottom: 12px;">240-sample clinical validation across multiple centers</li>
+                            <li style="color: #263238; line-height: 1.7; margin-bottom: 12px;">Proteomic analysis and machine learning model refinement (94-95% accuracy target)</li>
+                            <li style="color: #263238; line-height: 1.7; margin-bottom: 12px;">Statistical validation and clinical utility analysis</li>
+                            <li style="color: #263238; line-height: 1.7; margin-bottom: 12px;">Study coordination, data management, and regulatory documentation</li>
+                            <li style="color: #263238; line-height: 1.7; margin-bottom: 12px;">Manuscript preparation and peer-reviewed publication</li>
+                            <li style="color: #263238; line-height: 1.7; margin-bottom: 12px;">De Novo pathway submission or equivalent FDA engagement</li>
+                        </ul>
+                    </div>
+
+                    <h3 style="color: #0288d1; font-size: 1.8em; margin-top: 30px; margin-bottom: 15px;">Under Evaluation: CLIA Pathway Option</h3>
+                    <div style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(240, 249, 255, 0.8) 25%, rgba(224, 242, 254, 0.9) 50%, rgba(191, 219, 254, 0.85) 75%, rgba(147, 197, 253, 0.9) 100%); backdrop-filter: blur(15px); padding: 25px; border-radius: 10px; margin: 20px 0; border-left: 5px solid #00bcd4; box-shadow: 0 12px 35px rgba(59, 130, 246, 0.25), inset 0 2px 0 rgba(255, 255, 255, 0.4), inset 0 -2px 0 rgba(0, 0, 0, 0.1); position: relative; overflow: hidden; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);">
+                        <p style="color: #263238; font-size: 1.15em; font-weight: 600; margin-bottom: 15px;"><strong style="color: #01579b;">Analyzing CLIA as potential complementary or alternative route:</strong></p>
+                        <ul style="margin-top: 15px; font-size: 1.1em; margin-left: 25px;">
+                            <li style="color: #263238; line-height: 1.7; margin-bottom: 12px;"><strong style="color: #01579b;">Cost assessment:</strong> CLIA laboratory certification and accreditation fees</li>
+                            <li style="color: #263238; line-height: 1.7; margin-bottom: 12px;"><strong style="color: #01579b;">Timeline analysis:</strong> Potential faster market entry vs. FDA pathway</li>
+                            <li style="color: #263238; line-height: 1.7; margin-bottom: 12px;"><strong style="color: #01579b;">Quality standards:</strong> Requirements for proficiency testing and personnel credentialing</li>
+                            <li style="color: #263238; line-height: 1.7; margin-bottom: 12px;"><strong style="color: #01579b;">Strategic value:</strong> Reimbursement and competitive positioning implications</li>
+                        </ul>
+                        <p style="margin-top: 20px; color: #263238; font-size: 1.1em; line-height: 1.7;"><strong style="color: #01579b;">Decision timeline:</strong> CLIA pathway cost-benefit analysis to be completed very soon.</p>
+                    </div>
+
+                    <div style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(240, 253, 244, 0.8) 25%, rgba(220, 252, 231, 0.9) 50%, rgba(187, 247, 208, 0.85) 75%, rgba(134, 239, 172, 0.9) 100%); backdrop-filter: blur(15px); padding: 25px; border-radius: 10px; margin-top: 25px; border-left: 5px solid #00e676; box-shadow: 0 12px 35px rgba(34, 197, 94, 0.25), inset 0 2px 0 rgba(255, 255, 255, 0.4), inset 0 -2px 0 rgba(0, 0, 0, 0.1); position: relative; overflow: hidden; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);">
+                        <p style="color: #263238; font-size: 1.2em; line-height: 1.8;"><strong style="color: #01579b;">Regulatory Clarity Impact:</strong> The court decision gives us strategic flexibility to evaluate CLIA, but our commitment to rigorous FDA validation remains unchanged. We're assessing whether adding CLIA provides additional strategic value.</p>
+                    </div>
+                </div>
+
+                <!-- Slide 9: References -->
+                <div class="clia-slide">
+                    <h2 style="color: #01579b; font-size: 2.5em; margin-bottom: 30px; border-bottom: 4px solid #00e5ff; padding-bottom: 15px;">References & Additional Information</h2>
+
+                    <div style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(240, 253, 244, 0.8) 25%, rgba(220, 252, 231, 0.9) 50%, rgba(187, 247, 208, 0.85) 75%, rgba(134, 239, 172, 0.9) 100%); backdrop-filter: blur(15px); padding: 30px; border-radius: 10px; margin-top: 20px; box-shadow: 0 12px 35px rgba(34, 197, 94, 0.25), inset 0 2px 0 rgba(255, 255, 255, 0.4), inset 0 -2px 0 rgba(0, 0, 0, 0.1); position: relative; overflow: hidden; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);">
+                        <h3 style="color: #166534; margin-bottom: 25px; font-size: 1.6em;">Official Documents:</h3>
+
+                        <div style="margin-bottom: 30px;">
+                            <p style="color: #15803d; font-size: 1.2em; font-weight: 600; margin-bottom: 10px;"><strong>1. Congressional Research Service Legal Sidebar (LSB11312): Laboratory Developed Tests - District Court Vacates FDA Rule (March 31, 2025)</strong></p>
+                            <a href="https://www.congress.gov/crs-product/LSB11312" target="_blank" style="color: #166534; font-size: 1.1em; text-decoration: none; word-break: break-all; display: block; margin-bottom: 8px;">
+                                https://www.congress.gov/crs-product/LSB11312
+                            </a>
+                        </div>
+
+                        <div style="margin-bottom: 30px;">
+                            <p style="color: #15803d; font-size: 1.2em; font-weight: 600; margin-bottom: 10px;"><strong>2. Official FDA statement on LDT regulation status</strong></p>
+                            <a href="https://www.fda.gov/medical-devices/in-vitro-diagnostics/laboratory-developed-tests" target="_blank" style="color: #166534; font-size: 1.1em; text-decoration: none; word-break: break-all; display: block; margin-bottom: 8px;">
+                                https://www.fda.gov/medical-devices/in-vitro-diagnostics/laboratory-developed-tests
+                            </a>
+                        </div>
+
+                        <div style="margin-bottom: 20px;">
+                            <p style="color: #15803d; font-size: 1.2em; font-weight: 600; margin-bottom: 10px;"><strong>3. FDA's final rule reverting to pre-May 2024 regulations (includes economic analysis)</strong></p>
+                            <a href="https://www.federalregister.gov/documents/2025/09/19/2025-18239" target="_blank" style="color: #166534; font-size: 1.1em; text-decoration: none; word-break: break-all; display: block; margin-bottom: 8px;">
+                                https://www.federalregister.gov/documents/2025/09/19/2025-18239
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="section" id="iletisim-bilgileri">
             <!-- Modern Professional Header -->
             <div style="background: linear-gradient(135deg, #ffffff 0%, #f0fdfa 25%, #ccfbf1 50%, #99f6e4 75%, #5eead4 100%); padding: 60px 40px; border-radius: 25px; margin-bottom: 40px; text-align: center; position: relative; overflow: hidden; box-shadow: 0 20px 60px rgba(94, 234, 212, 0.25); border: 1px solid rgba(94, 234, 212, 0.2); animation: slideInFromTop 1s ease-out;">
@@ -4885,6 +5209,11 @@
             const activeButton = document.querySelector(`button[onclick="showSection('${sectionId}')"]`);
             if (activeButton) {
                 activeButton.classList.add('active');
+            }
+
+            // Initialize CLIA slides when CLIA section is shown
+            if (sectionId === 'clia-related-info') {
+                initCliaSlides();
             }
         }
 
@@ -5053,6 +5382,57 @@
                 }
             });
         }
+
+        // CLIA Slide Navigation Functions
+        let cliaCurrentSlide = 1;
+        const cliaTotalSlides = 9;
+
+        function cliaShowSlide(n) {
+            const slides = document.querySelectorAll('.clia-slide');
+            const prevBtn = document.getElementById('clia-prev-btn');
+            const nextBtn = document.getElementById('clia-next-btn');
+
+            if (n > cliaTotalSlides) cliaCurrentSlide = cliaTotalSlides;
+            if (n < 1) cliaCurrentSlide = 1;
+
+            // Hide all slides
+            slides.forEach(slide => slide.classList.remove('active'));
+
+            // Show current slide
+            if (slides[cliaCurrentSlide - 1]) {
+                slides[cliaCurrentSlide - 1].classList.add('active');
+            }
+
+            // Update slide counter
+            document.getElementById('clia-current-slide').textContent = cliaCurrentSlide;
+
+            // Update button states
+            prevBtn.disabled = cliaCurrentSlide === 1;
+            nextBtn.disabled = cliaCurrentSlide === cliaTotalSlides;
+        }
+
+        function cliaChangeSlide(n) {
+            cliaCurrentSlide += n;
+            cliaShowSlide(cliaCurrentSlide);
+        }
+
+        // Initialize CLIA slides when section is shown
+        function initCliaSlides() {
+            cliaCurrentSlide = 1;
+            cliaShowSlide(cliaCurrentSlide);
+        }
+
+        // Add keyboard navigation for CLIA slides when in CLIA section
+        document.addEventListener('keydown', function(event) {
+            const cliaSection = document.getElementById('clia-related-info');
+            if (cliaSection && cliaSection.classList.contains('active')) {
+                if (event.key === 'ArrowLeft') {
+                    cliaChangeSlide(-1);
+                } else if (event.key === 'ArrowRight') {
+                    cliaChangeSlide(1);
+                }
+            }
+        });
 
         // Initialize - show first section by default or hash target
         document.addEventListener('DOMContentLoaded', function() {
