@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DNA Helix Visualization - Enhanced</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            overflow: hidden;
+            background: #0a1520;
+            font-family: Arial, sans-serif;
+        }
+
+        #canvas-container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+
+        #info {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: #00d4ff;
+            font-size: 14px;
+            z-index: 10;
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.8);
+            background: rgba(10, 21, 32, 0.7);
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+        }
+
+        #controls {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #00d4ff;
+            font-size: 12px;
+            z-index: 10;
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.8);
+            background: rgba(10, 21, 32, 0.7);
+            padding: 10px 20px;
+            border-radius: 8px;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            text-align: center;
+        }
+
+        #loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #00d4ff;
+            font-size: 24px;
+            text-shadow: 0 0 20px rgba(0, 212, 255, 0.8);
+        }
+
+        .pulse {
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div id="canvas-container">
+        <div id="loading" class="pulse">Loading Enhanced DNA Helix...</div>
+        <div id="info">
+            <strong>Enhanced DNA Double Helix</strong><br>
+            🖱️ Drag to rotate • 🔍 Scroll to zoom<br>
+            <span id="mode-indicator">⏸️ Auto-Orbit: OFF</span>
+        </div>
+        <div id="controls">
+            Press <strong>SPACEBAR</strong> to toggle auto-orbit
+        </div>
+    </div>
+
+    <!-- Three.js Core -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <!-- Post-processing -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/EffectComposer.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/RenderPass.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/UnrealBloomPass.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/CopyShader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/LuminosityHighPassShader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/ShaderPass.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+
+    <script>
+        // Scene setup
+        let scene, camera, renderer, dnaGroup, composer;
+        let particles = [];
+        let stars = [];
+        let circulatingFragments = []; // cfDNA fragments
+        let mouse = { x: 0, y: 0 };
+        let targetRotation = { x: 0, y: 0 };
+        let currentRotation = { x: 0, y: 0 };
+        let autoOrbit = false;
+        let time = 0;
+        let dnaGlowSpheres = [];
+        let helixSegments = []; // Store all helix segment objects
+        let brokenSegmentIndices = []; // Which segments break away
+        let hasBreakOccurred = false;
+        let breakTime = 8.0; // Break occurs at 8 seconds
+
+        // Enhanced parameters
+        const params = {
+            bloomStrength: 0.7,
+            bloomRadius: 0.35,
+            bloomThreshold: 0.45,
+            particleCount: 1000,
+            autoOrbitSpeed: 0.0003,
+            // Circulating DNA (cfDNA) parameters
+            cfDnaFragmentCount: 15,
+            cfDnaFragmentSize: 4, // segments per fragment
+            cfDnaOrbitRadius: 7,
+            cfDnaOrbitSpeed: 0.0005,
+            cfDnaDriftSpeed: 0.01
+        };
+
+        function init() {
+            // Create scene
+            scene = new THREE.Scene();
+            scene.fog = new THREE.FogExp2(0x0a1520, 0.02);
+
+            // Create camera
+            camera = new THREE.PerspectiveCamera(
+                75,
+                window.innerWidth / window.innerHeight,
+                0.1,
+                1000
+            );
+            camera.position.z = 18;
+
+            // Create renderer
+            renderer = new THREE.WebGLRenderer({
+                antialias: true,
+                alpha: true
+            });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(window.devicePixelRatio);
+            renderer.setClearColor(0x0a1520, 1);
+            renderer.toneMapping = THREE.ReinhardToneMapping;
+            document.getElementById('canvas-container').appendChild(renderer.domElement);
+
+            // Create DNA group
+            dnaGroup = new THREE.Group();
+            scene.add(dnaGroup);
+
+            // Create star field background
+            createStarField();
+
+            // Pre-determine which segments will break away
+            determineBreakSegments();
+
+            // Create enhanced DNA helix (complete initially)
+            createEnhancedDNAHelix();
+
+            // Add enhanced lighting
+            const ambientLight = new THREE.AmbientLight(0x1a4a5a, 0.3);
+            scene.add(ambientLight);
+
+            // Multiple point lights for better illumination
+            const pointLight1 = new THREE.PointLight(0x00d4ff, 3, 100);
+            pointLight1.position.set(10, 10, 10);
+            scene.add(pointLight1);
+
+            const pointLight2 = new THREE.PointLight(0x00d4ff, 3, 100);
+            pointLight2.position.set(-10, -10, 10);
+            scene.add(pointLight2);
+
+            const pointLight3 = new THREE.PointLight(0x66e7ff, 2, 100);
+            pointLight3.position.set(0, 15, 0);
+            scene.add(pointLight3);
+
+            const pointLight4 = new THREE.PointLight(0x66e7ff, 2, 100);
+            pointLight4.position.set(0, -15, 0);
+            scene.add(pointLight4);
+
+            // Setup post-processing with bloom
+            setupPostProcessing();
+
+            // Controls
+            document.addEventListener('mousemove', onMouseMove, false);
+            document.addEventListener('wheel', onMouseWheel, false);
+            document.addEventListener('keydown', onKeyDown, false);
+
+            // Touch controls
+            let touchStartX = 0;
+            let touchStartY = 0;
+            document.addEventListener('touchstart', (e) => {
+                touchStartX = e.touches[0].clientX;
+                touchStartY = e.touches[0].clientY;
+            });
+            document.addEventListener('touchmove', (e) => {
+                if (autoOrbit) return;
+                const deltaX = e.touches[0].clientX - touchStartX;
+                const deltaY = e.touches[0].clientY - touchStartY;
+                targetRotation.y += deltaX * 0.005;
+                targetRotation.x += deltaY * 0.005;
+                touchStartX = e.touches[0].clientX;
+                touchStartY = e.touches[0].clientY;
+            });
+
+            // Window resize
+            window.addEventListener('resize', onWindowResize, false);
+
+            // Hide loading
+            document.getElementById('loading').style.display = 'none';
+
+            // Start animation
+            animate();
+        }
+
+        function setupPostProcessing() {
+            // Create composer
+            composer = new THREE.EffectComposer(renderer);
+
+            // Render pass
+            const renderPass = new THREE.RenderPass(scene, camera);
+            composer.addPass(renderPass);
+
+            // Bloom pass for intense glow
+            const bloomPass = new THREE.UnrealBloomPass(
+                new THREE.Vector2(window.innerWidth, window.innerHeight),
+                params.bloomStrength,
+                params.bloomRadius,
+                params.bloomThreshold
+            );
+            composer.addPass(bloomPass);
+        }
+
+        function determineBreakSegments() {
+            const segments = 200;
+            const fragmentSize = params.cfDnaFragmentSize;
+            const fragmentCount = params.cfDnaFragmentCount;
+
+            // Randomly select starting positions for fragments to break
+            const usedSegments = new Set();
+
+            for (let f = 0; f < fragmentCount; f++) {
+                let startSegment;
+                let isValid = false;
+
+                // Find a valid starting segment that doesn't overlap with existing fragments
+                while (!isValid) {
+                    startSegment = Math.floor(Math.random() * (segments - fragmentSize - 10));
+                    isValid = true;
+
+                    // Check if this range overlaps with existing fragments
+                    for (let i = 0; i < fragmentSize; i++) {
+                        if (usedSegments.has(startSegment + i)) {
+                            isValid = false;
+                            break;
+                        }
+                    }
+                }
+
+                // Mark these segments as broken
+                for (let i = 0; i < fragmentSize; i++) {
+                    usedSegments.add(startSegment + i);
+                }
+
+                brokenSegmentIndices.push({
+                    start: startSegment,
+                    size: fragmentSize,
+                    isStrand1: Math.random() > 0.5 // Which strand breaks
+                });
+            }
+        }
+
+        function createStarField() {
+            const starGeometry = new THREE.BufferGeometry();
+            const starVertices = [];
+
+            for (let i = 0; i < 3000; i++) {
+                const x = (Math.random() - 0.5) * 200;
+                const y = (Math.random() - 0.5) * 200;
+                const z = (Math.random() - 0.5) * 200;
+                starVertices.push(x, y, z);
+            }
+
+            starGeometry.setAttribute('position', new THREE.Float32BufferAttribute(starVertices, 3));
+
+            const starMaterial = new THREE.PointsMaterial({
+                color: 0x00d4ff,
+                size: 0.1,
+                transparent: true,
+                opacity: 0.3,
+                blending: THREE.AdditiveBlending
+            });
+
+            const starField = new THREE.Points(starGeometry, starMaterial);
+            scene.add(starField);
+            stars.push(starField);
+        }
+
+        function createEnhancedDNAHelix() {
+            const height = 20;
+            const radius = 3;
+            const segments = 200;
+            const turnCount = 4;
+
+            // Enhanced materials with stronger emissive properties
+            const strandMaterial = new THREE.MeshPhongMaterial({
+                color: 0x00d4ff,
+                emissive: 0x00d4ff,
+                emissiveIntensity: 0.5,
+                shininess: 100,
+                transparent: true,
+                opacity: 0.9
+            });
+
+            const basePairMaterial = new THREE.MeshPhongMaterial({
+                color: 0x00a8cc,
+                emissive: 0x00a8cc,
+                emissiveIntensity: 0.8,
+                shininess: 50,
+                transparent: true,
+                opacity: 0.7
+            });
+
+            // Create helix strands
+            for (let i = 0; i < segments; i++) {
+                const t = (i / segments) * Math.PI * 2 * turnCount;
+                const y = (i / segments) * height - height / 2;
+
+                // Color gradients based on height
+                const colorMix = (i / segments);
+
+                // Strand 1: Cyan to Light Blue gradient
+                const color1 = new THREE.Color().setHSL(0.52 + colorMix * 0.05, 1, 0.5);
+
+                // Strand 2: White to Silver gradient
+                const color2 = new THREE.Color().lerpColors(
+                    new THREE.Color(0xffffff), // White
+                    new THREE.Color(0xc0c0c0), // Silver
+                    colorMix
+                );
+
+                // Strand 1
+                const x1 = Math.cos(t) * radius;
+                const z1 = Math.sin(t) * radius;
+
+                // Strand 2 (180 degrees offset)
+                const x2 = Math.cos(t + Math.PI) * radius;
+                const z2 = Math.sin(t + Math.PI) * radius;
+
+                // Store segment objects for potential breaking
+                const segmentObjects = {
+                    index: i,
+                    strand1: [],
+                    strand2: [],
+                    x1, y, z1,
+                    x2, z2,
+                    color1, color2,
+                    t
+                };
+
+                // Create core spheres for strand 1
+                const sphere1 = new THREE.Mesh(
+                    new THREE.SphereGeometry(0.18, 16, 16),
+                    strandMaterial.clone()
+                );
+                sphere1.material.color = color1;
+                sphere1.material.emissive = color1;
+                sphere1.position.set(x1, y, z1);
+                sphere1.userData.baseEmissive = 0.5;
+                sphere1.userData.phaseOffset = i * 0.1;
+                dnaGroup.add(sphere1);
+                dnaGlowSpheres.push(sphere1);
+                segmentObjects.strand1.push(sphere1);
+
+                // Multiple glow layers for depth - Layer 1 (inner)
+                const glow1_inner = new THREE.Mesh(
+                    new THREE.SphereGeometry(0.2, 16, 16),
+                    new THREE.MeshBasicMaterial({
+                        color: color1,
+                        transparent: true,
+                        opacity: 0.3,
+                        blending: THREE.AdditiveBlending
+                    })
+                );
+                glow1_inner.position.set(x1, y, z1);
+                dnaGroup.add(glow1_inner);
+                segmentObjects.strand1.push(glow1_inner);
+
+                // Layer 2 (middle)
+                const glow1_middle = new THREE.Mesh(
+                    new THREE.SphereGeometry(0.3, 16, 16),
+                    new THREE.MeshBasicMaterial({
+                        color: color1,
+                        transparent: true,
+                        opacity: 0.18,
+                        blending: THREE.AdditiveBlending
+                    })
+                );
+                glow1_middle.position.set(x1, y, z1);
+                dnaGroup.add(glow1_middle);
+                segmentObjects.strand1.push(glow1_middle);
+
+                // Layer 3 (outer)
+                const glow1_outer = new THREE.Mesh(
+                    new THREE.SphereGeometry(0.45, 16, 16),
+                    new THREE.MeshBasicMaterial({
+                        color: color1,
+                        transparent: true,
+                        opacity: 0.06,
+                        blending: THREE.AdditiveBlending
+                    })
+                );
+                glow1_outer.position.set(x1, y, z1);
+                dnaGroup.add(glow1_outer);
+                segmentObjects.strand1.push(glow1_outer);
+
+                // Create core spheres for strand 2
+                const sphere2 = new THREE.Mesh(
+                    new THREE.SphereGeometry(0.18, 16, 16),
+                    strandMaterial.clone()
+                );
+                sphere2.material.color = color2;
+                sphere2.material.emissive = color2;
+                sphere2.position.set(x2, y, z2);
+                sphere2.userData.baseEmissive = 0.5;
+                sphere2.userData.phaseOffset = i * 0.1;
+                dnaGroup.add(sphere2);
+                dnaGlowSpheres.push(sphere2);
+                segmentObjects.strand2.push(sphere2);
+
+                // Multiple glow layers for strand 2
+                const glow2_inner = new THREE.Mesh(
+                    new THREE.SphereGeometry(0.2, 16, 16),
+                    new THREE.MeshBasicMaterial({
+                        color: color2,
+                        transparent: true,
+                        opacity: 0.3,
+                        blending: THREE.AdditiveBlending
+                    })
+                );
+                glow2_inner.position.set(x2, y, z2);
+                dnaGroup.add(glow2_inner);
+                segmentObjects.strand2.push(glow2_inner);
+
+                const glow2_middle = new THREE.Mesh(
+                    new THREE.SphereGeometry(0.3, 16, 16),
+                    new THREE.MeshBasicMaterial({
+                        color: color2,
+                        transparent: true,
+                        opacity: 0.18,
+                        blending: THREE.AdditiveBlending
+                    })
+                );
+                glow2_middle.position.set(x2, y, z2);
+                dnaGroup.add(glow2_middle);
+                segmentObjects.strand2.push(glow2_middle);
+
+                const glow2_outer = new THREE.Mesh(
+                    new THREE.SphereGeometry(0.45, 16, 16),
+                    new THREE.MeshBasicMaterial({
+                        color: color2,
+                        transparent: true,
+                        opacity: 0.06,
+                        blending: THREE.AdditiveBlending
+                    })
+                );
+                glow2_outer.position.set(x2, y, z2);
+                dnaGroup.add(glow2_outer);
+                segmentObjects.strand2.push(glow2_outer);
+
+                // Add connecting tubes
+                if (i > 0) {
+                    const prevT = ((i - 1) / segments) * Math.PI * 2 * turnCount;
+                    const prevY = ((i - 1) / segments) * height - height / 2;
+
+                    // Connection for strand 1
+                    const prevX1 = Math.cos(prevT) * radius;
+                    const prevZ1 = Math.sin(prevT) * radius;
+                    const curve1 = new THREE.LineCurve3(
+                        new THREE.Vector3(prevX1, prevY, prevZ1),
+                        new THREE.Vector3(x1, y, z1)
+                    );
+                    const tubeGeometry1 = new THREE.TubeGeometry(curve1, 1, 0.1, 8, false);
+                    const tube1 = new THREE.Mesh(tubeGeometry1, strandMaterial.clone());
+                    tube1.material.color = color1;
+                    tube1.material.emissive = color1;
+                    dnaGroup.add(tube1);
+                    segmentObjects.strand1.push(tube1);
+
+                    // Connection for strand 2
+                    const prevX2 = Math.cos(prevT + Math.PI) * radius;
+                    const prevZ2 = Math.sin(prevT + Math.PI) * radius;
+                    const curve2 = new THREE.LineCurve3(
+                        new THREE.Vector3(prevX2, prevY, prevZ2),
+                        new THREE.Vector3(x2, y, z2)
+                    );
+                    const tubeGeometry2 = new THREE.TubeGeometry(curve2, 1, 0.1, 8, false);
+                    const tube2 = new THREE.Mesh(tubeGeometry2, strandMaterial.clone());
+                    tube2.material.color = color2;
+                    tube2.material.emissive = color2;
+                    dnaGroup.add(tube2);
+                    segmentObjects.strand2.push(tube2);
+                }
+
+                // Store segment for potential breaking
+                helixSegments.push(segmentObjects);
+
+                // Add base pairs (every 8 segments for more density)
+                if (i % 8 === 0) {
+                    const basePairCurve = new THREE.LineCurve3(
+                        new THREE.Vector3(x1, y, z1),
+                        new THREE.Vector3(x2, y, z2)
+                    );
+                    const basePairGeometry = new THREE.TubeGeometry(basePairCurve, 1, 0.06, 8, false);
+                    const basePair = new THREE.Mesh(basePairGeometry, basePairMaterial);
+                    dnaGroup.add(basePair);
+                }
+
+                // Add enhanced particles (5x more particles with varying sizes)
+                if (i % 2 === 0) {
+                    createEnhancedParticles(x1, y, z1, color1);
+                    createEnhancedParticles(x2, y, z2, color2);
+                }
+            }
+
+            // Add extra atmospheric particles (mix of both color schemes)
+            for (let i = 0; i < params.particleCount; i++) {
+                const angle = Math.random() * Math.PI * 2;
+                const radiusOffset = radius + (Math.random() - 0.5) * 6;
+                const x = Math.cos(angle) * radiusOffset;
+                const z = Math.sin(angle) * radiusOffset;
+                const y = (Math.random() - 0.5) * height;
+
+                const colorMix = Math.random();
+
+                // Randomly choose between cyan gradient or white/silver gradient for variety
+                let color;
+                if (Math.random() > 0.5) {
+                    // Cyan to light blue
+                    color = new THREE.Color().setHSL(0.52 + colorMix * 0.05, 1, 0.5);
+                } else {
+                    // White to silver
+                    color = new THREE.Color().lerpColors(
+                        new THREE.Color(0xffffff),
+                        new THREE.Color(0xc0c0c0),
+                        colorMix
+                    );
+                }
+
+                createEnhancedParticles(x, y, z, color);
+            }
+        }
+
+        function createEnhancedParticles(x, y, z, color) {
+            const sizes = [0.03, 0.05, 0.08, 0.12];
+            const size = sizes[Math.floor(Math.random() * sizes.length)];
+
+            const particleGeometry = new THREE.SphereGeometry(size, 8, 8);
+            const particleMaterial = new THREE.MeshBasicMaterial({
+                color: color,
+                transparent: true,
+                opacity: 0.3,
+                blending: THREE.AdditiveBlending
+            });
+            const particle = new THREE.Mesh(particleGeometry, particleMaterial);
+
+            // Random offset
+            particle.position.set(
+                x + (Math.random() - 0.5) * 3,
+                y + (Math.random() - 0.5) * 3,
+                z + (Math.random() - 0.5) * 3
+            );
+
+            particle.userData = {
+                velocity: {
+                    x: (Math.random() - 0.5) * 0.015,
+                    y: (Math.random() - 0.5) * 0.015,
+                    z: (Math.random() - 0.5) * 0.015
+                },
+                originalOpacity: 0.3,
+                baseSize: size,
+                phaseOffset: Math.random() * Math.PI * 2
+            };
+
+            particles.push(particle);
+            dnaGroup.add(particle);
+        }
+
+        function triggerDNABreak() {
+            if (hasBreakOccurred) return;
+            hasBreakOccurred = true;
+
+            // Create fragments from the broken segments
+            brokenSegmentIndices.forEach(breakInfo => {
+                const fragmentGroup = new THREE.Group();
+                const segments = 200;
+                const height = 20;
+                const radius = 3;
+                const turnCount = 4;
+
+                // Create fragment from helix segments
+                for (let i = 0; i < breakInfo.size; i++) {
+                    const segmentIndex = breakInfo.start + i;
+                    const segment = helixSegments[segmentIndex];
+
+                    if (!segment) continue;
+
+                    // Hide this segment from the main helix
+                    const strandToBreak = breakInfo.isStrand1 ? segment.strand1 : segment.strand2;
+                    strandToBreak.forEach(obj => {
+                        obj.visible = false;
+                    });
+
+                    // Create smaller fragment pieces at the exact position
+                    const color = breakInfo.isStrand1 ? segment.color1 : segment.color2;
+                    const x = breakInfo.isStrand1 ? segment.x1 : segment.x2;
+                    const z = breakInfo.isStrand1 ? segment.z1 : segment.z2;
+
+                    // Create smaller sphere for fragment
+                    const fragSphere = new THREE.Mesh(
+                        new THREE.SphereGeometry(0.12, 12, 12),
+                        new THREE.MeshPhongMaterial({
+                            color: color,
+                            emissive: color,
+                            emissiveIntensity: 0.6,
+                            transparent: true,
+                            opacity: 0.85
+                        })
+                    );
+                    fragSphere.position.set(x, segment.y, z);
+                    fragmentGroup.add(fragSphere);
+
+                    // Add small glow
+                    const fragGlow = new THREE.Mesh(
+                        new THREE.SphereGeometry(0.18, 12, 12),
+                        new THREE.MeshBasicMaterial({
+                            color: color,
+                            transparent: true,
+                            opacity: 0.25,
+                            blending: THREE.AdditiveBlending
+                        })
+                    );
+                    fragGlow.position.set(x, segment.y, z);
+                    fragmentGroup.add(fragGlow);
+
+                    // Connect spheres with tubes
+                    if (i > 0) {
+                        const prevSegment = helixSegments[breakInfo.start + i - 1];
+                        if (prevSegment) {
+                            const prevX = breakInfo.isStrand1 ? prevSegment.x1 : prevSegment.x2;
+                            const prevZ = breakInfo.isStrand1 ? prevSegment.z1 : prevSegment.z2;
+
+                            const curve = new THREE.LineCurve3(
+                                new THREE.Vector3(prevX, prevSegment.y, prevZ),
+                                new THREE.Vector3(x, segment.y, z)
+                            );
+                            const tubeGeometry = new THREE.TubeGeometry(curve, 1, 0.06, 6, false);
+                            const tube = new THREE.Mesh(
+                                tubeGeometry,
+                                new THREE.MeshPhongMaterial({
+                                    color: color,
+                                    emissive: color,
+                                    emissiveIntensity: 0.5,
+                                    transparent: true,
+                                    opacity: 0.8
+                                })
+                            );
+                            fragmentGroup.add(tube);
+                        }
+                    }
+                }
+
+                // Add fragment to scene (initially at helix position)
+                const firstSegment = helixSegments[breakInfo.start];
+                if (firstSegment) {
+                    const x = breakInfo.isStrand1 ? firstSegment.x1 : firstSegment.x2;
+                    const z = breakInfo.isStrand1 ? firstSegment.z1 : firstSegment.z2;
+                    fragmentGroup.position.set(x, firstSegment.y, z);
+                }
+                scene.add(fragmentGroup);
+
+                // Setup animation data
+                const orbitAngle = Math.random() * Math.PI * 2;
+                const orbitTilt = (Math.random() - 0.5) * Math.PI * 0.5;
+                const orbitRadius = params.cfDnaOrbitRadius + (Math.random() - 0.5) * 2;
+
+                circulatingFragments.push({
+                    group: fragmentGroup,
+                    orbitAngle: orbitAngle,
+                    orbitTilt: orbitTilt,
+                    orbitRadius: orbitRadius,
+                    orbitSpeed: params.cfDnaOrbitSpeed * (0.5 + Math.random() * 1.5),
+                    driftVelocity: {
+                        x: (Math.random() - 0.5) * params.cfDnaDriftSpeed,
+                        y: (Math.random() - 0.5) * params.cfDnaDriftSpeed,
+                        z: (Math.random() - 0.5) * params.cfDnaDriftSpeed
+                    },
+                    rotationSpeed: {
+                        x: (Math.random() - 0.5) * 0.02,
+                        y: (Math.random() - 0.5) * 0.02,
+                        z: (Math.random() - 0.5) * 0.02
+                    },
+                    phaseOffset: Math.random() * Math.PI * 2,
+                    breakTime: time, // Store when the break occurred
+                    transitionProgress: 0 // 0 to 1 for smooth transition
+                });
+            });
+        }
+
+        function onMouseMove(event) {
+            if (autoOrbit) return;
+
+            mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+            mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+            targetRotation.y = mouse.x * Math.PI;
+            targetRotation.x = mouse.y * Math.PI * 0.5;
+        }
+
+        function onMouseWheel(event) {
+            event.preventDefault();
+            camera.position.z += event.deltaY * 0.01;
+            camera.position.z = Math.max(5, Math.min(30, camera.position.z));
+        }
+
+        function onKeyDown(event) {
+            if (event.code === 'Space') {
+                event.preventDefault();
+                autoOrbit = !autoOrbit;
+                const indicator = document.getElementById('mode-indicator');
+                indicator.textContent = autoOrbit ? '▶️ Auto-Orbit: ON' : '⏸️ Auto-Orbit: OFF';
+            }
+        }
+
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            composer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            time += 0.01;
+
+            // Trigger DNA break at 8 seconds
+            if (time >= breakTime && !hasBreakOccurred) {
+                triggerDNABreak();
+            }
+
+            // Auto-orbit mode
+            if (autoOrbit) {
+                targetRotation.y += params.autoOrbitSpeed * 60;
+                targetRotation.x = Math.sin(time * 0.1) * 0.3;
+            }
+
+            // Smooth rotation
+            currentRotation.x += (targetRotation.x - currentRotation.x) * 0.05;
+            currentRotation.y += (targetRotation.y - currentRotation.y) * 0.05;
+
+            dnaGroup.rotation.x = currentRotation.x;
+            dnaGroup.rotation.y = currentRotation.y + time * 0.01;
+
+            // Pulsating glow animation on DNA spheres
+            dnaGlowSpheres.forEach(sphere => {
+                const pulse = Math.sin(time + sphere.userData.phaseOffset) * 0.3 + 0.7;
+                sphere.material.emissiveIntensity = sphere.userData.baseEmissive * pulse;
+            });
+
+            // Animate particles with trails effect
+            particles.forEach((particle, index) => {
+                // Movement
+                particle.position.x += particle.userData.velocity.x;
+                particle.position.y += particle.userData.velocity.y;
+                particle.position.z += particle.userData.velocity.z;
+
+                // Pulsating opacity
+                const pulse = Math.sin(time * 2 + particle.userData.phaseOffset) * 0.3 + 0.5;
+                particle.material.opacity = particle.userData.originalOpacity * pulse;
+
+                // Slight size variation
+                const scale = 1 + Math.sin(time * 3 + particle.userData.phaseOffset) * 0.2;
+                particle.scale.setScalar(scale);
+
+                // Reset particle if too far
+                const distance = Math.sqrt(
+                    particle.position.x ** 2 +
+                    particle.position.y ** 2 +
+                    particle.position.z ** 2
+                );
+                if (distance > 20) {
+                    particle.position.set(
+                        (Math.random() - 0.5) * 8,
+                        (Math.random() - 0.5) * 20,
+                        (Math.random() - 0.5) * 8
+                    );
+                }
+            });
+
+            // Animate circulating DNA fragments (cfDNA)
+            circulatingFragments.forEach((fragment) => {
+                // Smooth transition from helix position to orbital position
+                const transitionDuration = 2.0; // 2 seconds transition
+                const timeSinceBreak = time - fragment.breakTime;
+                fragment.transitionProgress = Math.min(1, timeSinceBreak / transitionDuration);
+
+                // Ease-out function for smooth transition
+                const easeProgress = 1 - Math.pow(1 - fragment.transitionProgress, 3);
+
+                // Store initial position (if not set)
+                if (!fragment.initialPosition) {
+                    fragment.initialPosition = {
+                        x: fragment.group.position.x,
+                        y: fragment.group.position.y,
+                        z: fragment.group.position.z
+                    };
+                }
+
+                // Update orbital angle
+                fragment.orbitAngle += fragment.orbitSpeed * fragment.transitionProgress;
+
+                // Calculate target orbital position
+                const orbitX = Math.cos(fragment.orbitAngle) * fragment.orbitRadius;
+                const orbitZ = Math.sin(fragment.orbitAngle) * fragment.orbitRadius;
+                const orbitY = Math.sin(fragment.orbitAngle + fragment.orbitTilt) * fragment.orbitRadius * 0.3;
+
+                // Apply drift (Brownian motion) - only after transition
+                if (fragment.transitionProgress >= 1) {
+                    fragment.driftVelocity.x += (Math.random() - 0.5) * 0.0005;
+                    fragment.driftVelocity.y += (Math.random() - 0.5) * 0.0005;
+                    fragment.driftVelocity.z += (Math.random() - 0.5) * 0.0005;
+
+                    // Limit drift velocity
+                    const maxDrift = params.cfDnaDriftSpeed;
+                    fragment.driftVelocity.x = Math.max(-maxDrift, Math.min(maxDrift, fragment.driftVelocity.x));
+                    fragment.driftVelocity.y = Math.max(-maxDrift, Math.min(maxDrift, fragment.driftVelocity.y));
+                    fragment.driftVelocity.z = Math.max(-maxDrift, Math.min(maxDrift, fragment.driftVelocity.z));
+                }
+
+                // Lerp from initial helix position to orbital position
+                const targetX = orbitX + (fragment.transitionProgress >= 1 ? fragment.driftVelocity.x * time : 0);
+                const targetY = orbitY + (fragment.transitionProgress >= 1 ? fragment.driftVelocity.y * time : 0);
+                const targetZ = orbitZ + (fragment.transitionProgress >= 1 ? fragment.driftVelocity.z * time : 0);
+
+                fragment.group.position.x = fragment.initialPosition.x + (targetX - fragment.initialPosition.x) * easeProgress;
+                fragment.group.position.y = fragment.initialPosition.y + (targetY - fragment.initialPosition.y) * easeProgress;
+                fragment.group.position.z = fragment.initialPosition.z + (targetZ - fragment.initialPosition.z) * easeProgress;
+
+                // Apply rotation
+                fragment.group.rotation.x += fragment.rotationSpeed.x;
+                fragment.group.rotation.y += fragment.rotationSpeed.y;
+                fragment.group.rotation.z += fragment.rotationSpeed.z;
+
+                // Optional: pulsating opacity
+                fragment.group.children.forEach(child => {
+                    if (child.material && child.material.opacity !== undefined) {
+                        const basePulse = Math.sin(time * 1.5 + fragment.phaseOffset) * 0.1 + 0.9;
+                        child.material.opacity = child.material.opacity * 0.95 + basePulse * 0.05;
+                    }
+                });
+            });
+
+            // Animate star field with parallax
+            stars.forEach(starField => {
+                starField.rotation.y = time * 0.0001;
+                starField.rotation.x = time * 0.00005;
+            });
+
+            // Render with bloom effect
+            composer.render();
+        }
+
+        // Initialize when page loads
+        window.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>

@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biomarker Comparison - peptide-28 - Slide 3</title>
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', 'Helvetica', sans-serif;
+            background: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .slide {
+            width: 1280px;
+            height: 820px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 20px 60px rgba(46, 204, 113, 0.3);
+            padding: 40px 50px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .title {
+            text-align: center;
+            font-size: 36px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #3498db;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 18px;
+            color: #7f8c8d;
+            margin-bottom: 20px;
+        }
+
+        .charts-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 30px;
+            flex: 1;
+        }
+
+        .chart-wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chart {
+            flex: 1;
+            border-radius: 8px;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 2px solid #ecf0f1;
+        }
+
+        .nav-button {
+            padding: 10px 20px;
+            background: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .nav-button:hover {
+            background: #2980b9;
+        }
+
+        .slide-number {
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 10px;
+            padding: 10px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: #2c3e50;
+        }
+
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 3px;
+        }
+
+        .top-navigation {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .top-nav-title {
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .top-nav-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .top-nav-btn {
+            padding: 8px 20px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .top-nav-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .top-nav-btn.active {
+            background: white;
+            color: #667eea;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-navigation">
+        <div class="top-nav-title">Biomarker Progression Analysis</div>
+        <div class="top-nav-buttons">
+            <a href="slide_01.html" class="top-nav-btn">Slide 1</a>
+            <a href="slide_02.html" class="top-nav-btn">Slide 2</a>
+            <a href="slide_03.html" class="top-nav-btn active">Slide 3</a>
+        </div>
+    </div>
+    <div class="slide">
+        <div class="title">Biomarker Progression Over Time</div>
+        <div class="subtitle">10-Year Disease Development Timeline (Ages 35-45)</div>
+        <div class="charts-container">
+            <div class="chart-wrapper">
+                <div id="peptide-chart" class="chart"></div>
+            </div>
+            <div class="chart-wrapper">
+                <div id="glucose-chart" class="chart"></div>
+            </div>
+        </div>
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-color" style="background: #2ecc71;"></div>
+                <span>Healthy Phase (Ages 35-37)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #f39c12;"></div>
+                <span>Early Disease (Ages 38-39)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #e67e22;"></div>
+                <span>Intermediate Disease (Ages 40-42)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #e74c3c;"></div>
+                <span>Late Disease (Ages 43-45)</span>
+            </div>
+        </div>
+        <div class="navigation">
+            <a href="slide_02.html" class="nav-button">← Previous</a>
+            <span class="slide-number">Slide 3 of 3</span>
+            <a href="#" class="nav-button" style="pointer-events: none; opacity: 0.5;">Next →</a>
+        </div>
+    </div>
+
+    <script>
+        const peptideAges = [35.0, 35.101010101010104, 35.2020202020202, 35.303030303030305, 35.4040404040404, 35.505050505050505, 35.60606060606061, 35.707070707070706, 35.80808080808081, 35.90909090909091, 36.01010101010101, 36.111111111111114, 36.21212121212121, 36.313131313131315, 36.41414141414141, 36.515151515151516, 36.61616161616162, 36.717171717171716, 36.81818181818182, 36.91919191919192, 37.02020202020202, 37.121212121212125, 37.22222222222222, 37.323232323232325, 37.42424242424242, 37.525252525252526, 37.62626262626263, 37.72727272727273, 37.82828282828283, 37.92929292929293, 38.03030303030303, 38.13131313131313, 38.23232323232323, 38.333333333333336, 38.43434343434343, 38.535353535353536, 38.63636363636363, 38.73737373737374, 38.83838383838384, 38.93939393939394, 39.04040404040404, 39.14141414141414, 39.24242424242424, 39.343434343434346, 39.44444444444444, 39.54545454545455, 39.64646464646464, 39.74747474747475, 39.84848484848485, 39.94949494949495, 40.05050505050505, 40.15151515151515, 40.25252525252525, 40.35353535353536, 40.45454545454545, 40.55555555555556, 40.656565656565654, 40.75757575757576, 40.858585858585855, 40.95959595959596, 41.06060606060606, 41.16161616161616, 41.26262626262626, 41.36363636363636, 41.464646464646464, 41.56565656565657, 41.666666666666664, 41.76767676767677, 41.868686868686865, 41.96969696969697, 42.07070707070707, 42.17171717171717, 42.27272727272727, 42.37373737373737, 42.474747474747474, 42.57575757575758, 42.676767676767675, 42.77777777777778, 42.878787878787875, 42.97979797979798, 43.08080808080808, 43.18181818181818, 43.282828282828284, 43.38383838383838, 43.484848484848484, 43.58585858585859, 43.686868686868685, 43.78787878787879, 43.888888888888886, 43.98989898989899, 44.09090909090909, 44.19191919191919, 44.292929292929294, 44.39393939393939, 44.494949494949495, 44.5959595959596, 44.696969696969695, 44.7979797979798, 44.898989898989896, 45.0];
+        const peptideValues = [246.71375, 246.71375, 246.71375, 246.71375, 246.71375, 246.71375, 246.71375, 246.71375, 246.71375, 246.71375, 246.71375, 246.71375, 246.71375, 246.71375, 246.71375, 246.71375, 246.71375, 246.71375, 246.71375, 246.71375, 247.14854768163175, 262.23448747855133, 298.4370769061496, 355.2064032136328, 431.9925536501939, 528.2456154650447, 643.4156759073817, 776.9528222263954, 928.307141671306, 1096.928721491293, 1282.2676489355813, 1483.7740112533456, 1700.8978956938158, 1933.089389506179, 2179.798579939618, 2440.4755542433686, 2714.570399666595, 3001.5332034585376, 3300.8140528683793, 3611.8630351452953, 3934.1302375385344, 4267.065747297249, 4610.1196516706905, 4962.742037908032, 5324.382993258455, 5694.492604971206, 6072.5209602954355, 6457.918146480399, 6850.134250775269, 7248.61936042922, 7652.823562691508, 8062.1969448112795, 8476.189594037793, 8894.251597620216, 9315.833042807724, 9740.384016849575, 10167.354606994913, 10596.194900492994, 11026.354984592965, 11457.284946544089, 11888.43487359553, 12319.254852996459, 12749.194971996138, 13177.70531784371, 13604.235977788441, 14028.237039079491, 14449.158588966045, 14866.45071469735, 15279.563503522553, 15687.947042690916, 16091.051419451604, 16488.3267210538, 16879.22303474675, 17263.190447779612, 17639.679047401627, 18008.138920861984, 18368.020155409846, 18718.77283829447, 19059.84705676502, 19390.692898070713, 19710.760449460762, 20019.499798184315, 20316.361031490644, 20600.79423662889, 20872.249500848302, 21130.17691139806, 21374.026555527347, 21603.24852048539, 21817.292893521375, 22015.60976188452, 22197.649212824017, 22362.861333589048, 22510.696211428844, 22640.603933592578, 22752.034587329483, 22844.438259888746, 22917.265038519556, 22969.96501047112, 23001.98826299265, 23012.784883333337];
+        const peptideHealthyMean = 246.71375;
+        const peptideAMDMean = 23012.784883333337;
+
+        const glucoseAges = [35.0, 35.101010101010104, 35.2020202020202, 35.303030303030305, 35.4040404040404, 35.505050505050505, 35.60606060606061, 35.707070707070706, 35.80808080808081, 35.90909090909091, 36.01010101010101, 36.111111111111114, 36.21212121212121, 36.313131313131315, 36.41414141414141, 36.515151515151516, 36.61616161616162, 36.717171717171716, 36.81818181818182, 36.91919191919192, 37.02020202020202, 37.121212121212125, 37.22222222222222, 37.323232323232325, 37.42424242424242, 37.525252525252526, 37.62626262626263, 37.72727272727273, 37.82828282828283, 37.92929292929293, 38.03030303030303, 38.13131313131313, 38.23232323232323, 38.333333333333336, 38.43434343434343, 38.535353535353536, 38.63636363636363, 38.73737373737374, 38.83838383838384, 38.93939393939394, 39.04040404040404, 39.14141414141414, 39.24242424242424, 39.343434343434346, 39.44444444444444, 39.54545454545455, 39.64646464646464, 39.74747474747475, 39.84848484848485, 39.94949494949495, 40.05050505050505, 40.15151515151515, 40.25252525252525, 40.35353535353536, 40.45454545454545, 40.55555555555556, 40.656565656565654, 40.75757575757576, 40.858585858585855, 40.95959595959596, 41.06060606060606, 41.16161616161616, 41.26262626262626, 41.36363636363636, 41.464646464646464, 41.56565656565657, 41.666666666666664, 41.76767676767677, 41.868686868686865, 41.96969696969697, 42.07070707070707, 42.17171717171717, 42.27272727272727, 42.37373737373737, 42.474747474747474, 42.57575757575758, 42.676767676767675, 42.77777777777778, 42.878787878787875, 42.97979797979798, 43.08080808080808, 43.18181818181818, 43.282828282828284, 43.38383838383838, 43.484848484848484, 43.58585858585859, 43.686868686868685, 43.78787878787879, 43.888888888888886, 43.98989898989899, 44.09090909090909, 44.19191919191919, 44.292929292929294, 44.39393939393939, 44.494949494949495, 44.5959595959596, 44.696969696969695, 44.7979797979798, 44.898989898989896, 45.0];
+        const glucoseValues = [90.0, 90.0, 90.0, 90.0, 90.0, 90.0, 90.0, 90.0, 90.0, 90.0, 90.0, 90.0, 90.0, 90.0, 90.0, 90.0, 90.0, 90.0, 90.0, 90.0, 90.00138782392507, 90.04954039940266, 90.16509487882945, 90.3462960042901, 90.59138851786923, 90.89861716165154, 91.26622667772169, 91.69246180816428, 92.17556729506404, 92.71378788050555, 93.30536830657354, 93.9485533153526, 94.64158764892746, 95.38271604938274, 96.17018325880302, 97.0022340192731, 97.8771130728775, 98.79306516170101, 99.74833502782822, 100.7411674133437, 101.76980706033227, 102.83249871087843, 103.927487107067, 105.05301699098253, 106.20733310470963, 107.3886801903331, 108.59530298993742, 109.82544624560745, 111.07735469942773, 112.34927309348285, 113.63944616985762, 114.94611867063654, 116.26753533790443, 117.60194091374586, 118.9475801402454, 120.3026977594879, 121.6655385135578, 123.03434714453998, 124.40736839451887, 125.78284700557936, 127.15902771980598, 128.5341552792833, 129.90647442609614, 131.274229902329, 132.63566645006676, 133.9890288113939, 135.33256172839504, 136.664509943155, 137.98311819775824, 139.28663123428964, 140.57329379483372, 141.84135062147507, 143.08904645629852, 144.31462604138858, 145.51633411883, 146.69241543070746, 147.84111471910546, 148.96067672610883, 150.04934619380208, 151.10536786427, 152.1269864795972, 153.11244678186824, 154.05999351316794, 154.9678714155808, 155.8343252311916, 156.65759970208495, 157.43593957034548, 158.16758957805789, 158.8507944673068, 159.48379898017689, 160.06484785875284, 160.59218584511922, 161.06405768136077, 161.47870810956206, 161.83438187180786, 162.1293237101828, 162.3617783667715, 162.52999058365856, 162.63220510292874, 162.66666666666666];
+        const glucoseHealthyMean = 90.0;
+        const glucoseDiabetesMean = 162.66666666666666;
+
+        function getLineColor(age) {
+            if (age < 38) return '#2ecc71';
+            if (age < 40) return '#f39c12';
+            if (age < 43) return '#e67e22';
+            return '#e74c3c';
+        }
+
+        function getXAxisAnnotations(age, yPosition) {
+            let xAxisAnnotations = [];
+            for (let i = 35; i <= 45; i++) {
+                const isCurrent = Math.round(age) === i;
+                xAxisAnnotations.push({
+                    x: i,
+                    y: yPosition,
+                    text: i.toString(),
+                    showarrow: false,
+                    xref: 'x',
+                    yref: 'paper',
+                    font: {
+                        size: isCurrent ? 22 : 16,
+                        color: isCurrent ? '#00bcd4' : '#000000',
+                        weight: isCurrent ? 'bold' : 'normal'
+                    }
+                });
+            }
+            return xAxisAnnotations;
+        }
+
+        function getPeptideAnnotations(age) {
+            let annotations = getXAxisAnnotations(age, -0.10);
+            if (age < 38) {
+                const yMin = Math.min(peptideAMDMean, peptideHealthyMean) * 0.5;
+                const yMax = Math.max(peptideAMDMean, peptideHealthyMean) * 1.3;
+                const yPosition = yMin + (yMax - yMin) * 0.20;
+                annotations.push({
+                    x: 36, y: yPosition,
+                    text: 'Healthy<br>(Ages 35-37)',
+                    showarrow: false,
+                    font: { size: 12, color: '#2ecc71', weight: 'bold' }
+                });
+            } else if (age < 40) {
+                const yMin = Math.min(peptideAMDMean, peptideHealthyMean) * 0.5;
+                const yMax = Math.max(peptideAMDMean, peptideHealthyMean) * 1.3;
+                const yPosition = yMin + (yMax - yMin) * 0.35;
+                annotations.push({
+                    x: 38.5, y: yPosition,
+                    text: 'Early AMD<br>(Ages 38-39)',
+                    showarrow: false,
+                    font: { size: 12, color: '#f39c12', weight: 'bold' }
+                });
+            } else if (age < 43) {
+                annotations.push({
+                    x: 41, y: (peptideHealthyMean + peptideAMDMean) / 2,
+                    text: 'Intermediate AMD<br>(Ages 40-42)',
+                    showarrow: false,
+                    font: { size: 12, color: '#e67e22', weight: 'bold' }
+                });
+            } else {
+                annotations.push({
+                    x: 44, y: peptideAMDMean * 1.08,
+                    text: 'Late AMD<br>(Ages 43-45)',
+                    showarrow: false,
+                    font: { size: 12, color: '#e74c3c', weight: 'bold' }
+                });
+            }
+            return annotations;
+        }
+
+        function getGlucoseAnnotations(age) {
+            let annotations = getXAxisAnnotations(age, -0.10);
+            if (age < 38) {
+                annotations.push({
+                    x: 36, y: glucoseHealthyMean * 1.25,
+                    text: 'Healthy<br>(Ages 35-37)',
+                    showarrow: false,
+                    font: { size: 12, color: '#2ecc71', weight: 'bold' }
+                });
+            } else if (age < 40) {
+                annotations.push({
+                    x: 38.5, y: glucoseHealthyMean * 1.30,
+                    text: 'Early T2D<br>(Ages 38-39)',
+                    showarrow: false,
+                    font: { size: 12, color: '#f39c12', weight: 'bold' }
+                });
+            } else if (age < 43) {
+                annotations.push({
+                    x: 41, y: (glucoseHealthyMean + glucoseDiabetesMean) / 2,
+                    text: 'Intermediate T2D<br>(Ages 40-42)',
+                    showarrow: false,
+                    font: { size: 12, color: '#e67e22', weight: 'bold' }
+                });
+            } else {
+                annotations.push({
+                    x: 44, y: glucoseDiabetesMean * 1.05,
+                    text: 'Late T2D<br>(Ages 43-45)',
+                    showarrow: false,
+                    font: { size: 12, color: '#e74c3c', weight: 'bold' }
+                });
+            }
+            return annotations;
+        }
+
+        const peptideFrames = [];
+        for (let i = 0; i < peptideAges.length; i++) {
+            const currentAges = peptideAges.slice(0, i + 1);
+            const currentValues = peptideValues.slice(0, i + 1);
+            const currentAge = peptideAges[i];
+
+            peptideFrames.push({
+                name: i.toString(),
+                data: [{
+                    x: currentAges,
+                    y: currentValues,
+                    line: { color: getLineColor(currentAge), width: 4 }
+                }],
+                layout: {
+                    annotations: getPeptideAnnotations(currentAge)
+                },
+                traces: [0]
+            });
+        }
+
+        const glucoseFrames = [];
+        for (let i = 0; i < glucoseAges.length; i++) {
+            const currentAges = glucoseAges.slice(0, i + 1);
+            const currentValues = glucoseValues.slice(0, i + 1);
+            const currentAge = glucoseAges[i];
+
+            glucoseFrames.push({
+                name: i.toString(),
+                data: [{
+                    x: currentAges,
+                    y: currentValues,
+                    line: { color: getLineColor(currentAge), width: 4 }
+                }],
+                layout: {
+                    annotations: getGlucoseAnnotations(currentAge)
+                },
+                traces: [0]
+            });
+        }
+
+        const peptideTrace = {
+            x: [peptideAges[0]],
+            y: [peptideValues[0]],
+            mode: 'lines',
+            line: {
+                color: '#2ecc71',
+                width: 4
+            },
+            type: 'scatter',
+            showlegend: false
+        };
+
+        const peptideLayout = {
+            title: {
+                text: 'peptide-28 Expression Level<br><sub>Progression from Healthy to AMD (Ages 35-45)</sub>',
+                font: { size: 22, weight: 'bold' },
+                y: 0.95
+            },
+            xaxis: {
+                title: { text: 'Age (years)', font: { size: 20 } },
+                range: [34.5, 45.5],
+                showgrid: false,
+                showline: true,
+                linecolor: 'black',
+                linewidth: 2,
+                dtick: 1,
+                tickfont: { size: 16 },
+                showticklabels: false
+            },
+            yaxis: {
+                title: { text: 'Expression Level', font: { size: 20 } },
+                tickfont: { size: 16 },
+                range: [Math.min(peptideAMDMean, peptideHealthyMean) * 0.5,
+                        Math.max(peptideAMDMean, peptideHealthyMean) * 1.3],
+                showgrid: false,
+                showline: true,
+                linecolor: 'black',
+                linewidth: 2
+            },
+            showlegend: false,
+            plot_bgcolor: 'white',
+            paper_bgcolor: 'white',
+            margin: { l: 70, r: 40, t: 120, b: 60 },
+            annotations: (() => {
+                const yMin = Math.min(peptideAMDMean, peptideHealthyMean) * 0.5;
+                const yMax = Math.max(peptideAMDMean, peptideHealthyMean) * 1.3;
+                const yPosition = yMin + (yMax - yMin) * 0.20;
+                return getXAxisAnnotations(35, -0.10).concat([
+                    {
+                        x: 36, y: yPosition,
+                        text: 'Healthy<br>(Ages 35-37)',
+                        showarrow: false,
+                        font: { size: 12, color: '#2ecc71', weight: 'bold' }
+                    }
+                ]);
+            })()
+        };
+
+        const glucoseTrace = {
+            x: [glucoseAges[0]],
+            y: [glucoseValues[0]],
+            mode: 'lines',
+            line: {
+                color: '#2ecc71',
+                width: 4
+            },
+            type: 'scatter',
+            showlegend: false
+        };
+
+        const glucoseLayout = {
+            title: {
+                text: 'Fasting Blood Glucose Levels<br><sub>Progression from Healthy to Late-Stage T2D (Ages 35-45)</sub>',
+                font: { size: 22, weight: 'bold' },
+                y: 0.95
+            },
+            xaxis: {
+                title: { text: 'Age (years)', font: { size: 20 } },
+                range: [34.5, 45.5],
+                showgrid: false,
+                showline: true,
+                linecolor: 'black',
+                linewidth: 2,
+                dtick: 1,
+                tickfont: { size: 16 },
+                showticklabels: false
+            },
+            yaxis: {
+                title: { text: 'Glucose (mg/dL)', font: { size: 20 } },
+                tickfont: { size: 16 },
+                range: [70, 180],
+                showgrid: false,
+                showline: true,
+                linecolor: 'black',
+                linewidth: 2
+            },
+            showlegend: false,
+            plot_bgcolor: 'white',
+            paper_bgcolor: 'white',
+            margin: { l: 70, r: 40, t: 120, b: 60 },
+            annotations: getXAxisAnnotations(35, -0.10).concat([
+                {
+                    x: 36, y: glucoseHealthyMean * 1.25,
+                    text: 'Healthy<br>(Ages 35-37)',
+                    showarrow: false,
+                    font: { size: 12, color: '#2ecc71', weight: 'bold' }
+                }
+            ])
+        };
+
+        const config = {
+            responsive: true,
+            displayModeBar: false
+        };
+
+        const animationSettings = {
+            frame: { duration: 115, redraw: false },
+            transition: { duration: 100, easing: 'ease-in-out' },
+            fromcurrent: true,
+            mode: 'afterall'
+        };
+
+        Plotly.newPlot('peptide-chart', [peptideTrace], peptideLayout, config);
+        Plotly.newPlot('glucose-chart', [glucoseTrace], glucoseLayout, config);
+
+        setTimeout(() => {
+            Plotly.animate('peptide-chart', peptideFrames, animationSettings);
+            Plotly.animate('glucose-chart', glucoseFrames, animationSettings);
+        }, 500);
+
+        document.getElementById('peptide-chart').addEventListener('click', () => {
+            Plotly.animate('peptide-chart', peptideFrames, animationSettings);
+        });
+
+        document.getElementById('glucose-chart').addEventListener('click', () => {
+            Plotly.animate('glucose-chart', glucoseFrames, animationSettings);
+        });
+    </script>
+</body>
+</html>

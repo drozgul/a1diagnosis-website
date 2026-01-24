@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DNA Helix Visualization - Particle Cloud</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            overflow: hidden;
+            background: #0a1520;
+            font-family: Arial, sans-serif;
+        }
+
+        #canvas-container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+
+        #info {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: #00d4ff;
+            font-size: 14px;
+            z-index: 10;
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.8);
+            background: rgba(10, 21, 32, 0.7);
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+        }
+
+        #controls {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #00d4ff;
+            font-size: 12px;
+            z-index: 10;
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.8);
+            background: rgba(10, 21, 32, 0.7);
+            padding: 10px 20px;
+            border-radius: 8px;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            text-align: center;
+        }
+
+        #loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #00d4ff;
+            font-size: 24px;
+            text-shadow: 0 0 20px rgba(0, 212, 255, 0.8);
+        }
+
+        .pulse {
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div id="canvas-container">
+        <div id="loading" class="pulse">Loading Particle DNA Helix...</div>
+        <div id="info">
+            <strong>Particle-Cloud DNA Helix</strong><br>
+            🖱️ Drag to rotate • 🔍 Scroll to zoom<br>
+            <span id="mode-indicator">⏸️ Auto-Orbit: OFF</span>
+        </div>
+        <div id="controls">
+            Press <strong>SPACEBAR</strong> to toggle auto-orbit
+        </div>
+    </div>
+
+    <!-- Three.js Core -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <!-- Post-processing -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/EffectComposer.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/RenderPass.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/UnrealBloomPass.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/CopyShader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/LuminosityHighPassShader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/ShaderPass.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+
+    <script>
+        // Scene setup
+        let scene, camera, renderer, dnaGroup, composer;
+        let particles = [];
+        let stars = [];
+        let mouse = { x: 0, y: 0 };
+        let targetRotation = { x: 0, y: 0 };
+        let currentRotation = { x: 0, y: 0 };
+        let autoOrbit = false;
+        let time = 0;
+
+        // Enhanced parameters - particle cloud focused
+        const params = {
+            bloomStrength: 0.6,
+            bloomRadius: 0.3,
+            bloomThreshold: 0.3,
+            particlesPerPosition: 15,
+            backgroundParticles: 2000,
+            autoOrbitSpeed: 0.0003
+        };
+
+        function init() {
+            // Create scene
+            scene = new THREE.Scene();
+            scene.fog = new THREE.FogExp2(0x0a1520, 0.015);
+
+            // Create camera - adjusted for taller helix
+            camera = new THREE.PerspectiveCamera(
+                75,
+                window.innerWidth / window.innerHeight,
+                0.1,
+                1000
+            );
+            camera.position.z = 22;
+            camera.position.y = 0;
+
+            // Create renderer
+            renderer = new THREE.WebGLRenderer({
+                antialias: true,
+                alpha: true
+            });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(window.devicePixelRatio);
+            renderer.setClearColor(0x0a1520, 1);
+            renderer.toneMapping = THREE.ReinhardToneMapping;
+            document.getElementById('canvas-container').appendChild(renderer.domElement);
+
+            // Create DNA group
+            dnaGroup = new THREE.Group();
+            scene.add(dnaGroup);
+
+            // Create star field background
+            createStarField();
+
+            // Create particle-cloud DNA helix
+            createParticleCloudDNAHelix();
+
+            // Add enhanced lighting
+            const ambientLight = new THREE.AmbientLight(0x1a4a5a, 0.4);
+            scene.add(ambientLight);
+
+            // Multiple point lights for better illumination
+            const pointLight1 = new THREE.PointLight(0x00d4ff, 2, 100);
+            pointLight1.position.set(10, 20, 10);
+            scene.add(pointLight1);
+
+            const pointLight2 = new THREE.PointLight(0x00d4ff, 2, 100);
+            pointLight2.position.set(-10, -20, 10);
+            scene.add(pointLight2);
+
+            const pointLight3 = new THREE.PointLight(0x66e7ff, 1.5, 100);
+            pointLight3.position.set(0, 25, 0);
+            scene.add(pointLight3);
+
+            const pointLight4 = new THREE.PointLight(0x66e7ff, 1.5, 100);
+            pointLight4.position.set(0, -25, 0);
+            scene.add(pointLight4);
+
+            // Setup post-processing with bloom
+            setupPostProcessing();
+
+            // Controls
+            document.addEventListener('mousemove', onMouseMove, false);
+            document.addEventListener('wheel', onMouseWheel, false);
+            document.addEventListener('keydown', onKeyDown, false);
+
+            // Touch controls
+            let touchStartX = 0;
+            let touchStartY = 0;
+            document.addEventListener('touchstart', (e) => {
+                touchStartX = e.touches[0].clientX;
+                touchStartY = e.touches[0].clientY;
+            });
+            document.addEventListener('touchmove', (e) => {
+                if (autoOrbit) return;
+                const deltaX = e.touches[0].clientX - touchStartX;
+                const deltaY = e.touches[0].clientY - touchStartY;
+                targetRotation.y += deltaX * 0.005;
+                targetRotation.x += deltaY * 0.005;
+                touchStartX = e.touches[0].clientX;
+                touchStartY = e.touches[0].clientY;
+            });
+
+            // Window resize
+            window.addEventListener('resize', onWindowResize, false);
+
+            // Hide loading
+            document.getElementById('loading').style.display = 'none';
+
+            // Start animation
+            animate();
+        }
+
+        function setupPostProcessing() {
+            // Create composer
+            composer = new THREE.EffectComposer(renderer);
+
+            // Render pass
+            const renderPass = new THREE.RenderPass(scene, camera);
+            composer.addPass(renderPass);
+
+            // Bloom pass - reduced for particle definition
+            const bloomPass = new THREE.UnrealBloomPass(
+                new THREE.Vector2(window.innerWidth, window.innerHeight),
+                params.bloomStrength,
+                params.bloomRadius,
+                params.bloomThreshold
+            );
+            composer.addPass(bloomPass);
+        }
+
+        function createStarField() {
+            const starGeometry = new THREE.BufferGeometry();
+            const starVertices = [];
+
+            for (let i = 0; i < 4000; i++) {
+                const x = (Math.random() - 0.5) * 250;
+                const y = (Math.random() - 0.5) * 250;
+                const z = (Math.random() - 0.5) * 250;
+                starVertices.push(x, y, z);
+            }
+
+            starGeometry.setAttribute('position', new THREE.Float32BufferAttribute(starVertices, 3));
+
+            const starMaterial = new THREE.PointsMaterial({
+                color: 0x00d4ff,
+                size: 0.08,
+                transparent: true,
+                opacity: 0.2,
+                blending: THREE.AdditiveBlending
+            });
+
+            const starField = new THREE.Points(starGeometry, starMaterial);
+            scene.add(starField);
+            stars.push(starField);
+        }
+
+        function createParticleCloudDNAHelix() {
+            const height = 35;  // Much taller helix
+            const radius = 3;
+            const segments = 300;  // More segments for smoothness
+            const turnCount = 6;  // More turns for taller helix
+
+            // Create helix strands using pure particle clouds
+            for (let i = 0; i < segments; i++) {
+                const t = (i / segments) * Math.PI * 2 * turnCount;
+                const y = (i / segments) * height - height / 2;
+
+                // Color gradient from cyan to light blue based on height
+                const colorMix = (i / segments);
+                const color = new THREE.Color().setHSL(0.52 + colorMix * 0.05, 1, 0.5);
+
+                // Strand 1 position
+                const x1 = Math.cos(t) * radius;
+                const z1 = Math.sin(t) * radius;
+
+                // Strand 2 position (180 degrees offset)
+                const x2 = Math.cos(t + Math.PI) * radius;
+                const z2 = Math.sin(t + Math.PI) * radius;
+
+                // Create dense particle cloud for strand 1
+                for (let p = 0; p < params.particlesPerPosition; p++) {
+                    createClusteredParticle(x1, y, z1, color);
+                }
+
+                // Create dense particle cloud for strand 2
+                for (let p = 0; p < params.particlesPerPosition; p++) {
+                    createClusteredParticle(x2, y, z2, color);
+                }
+
+                // Add base pair particles (every 12 segments)
+                if (i % 12 === 0) {
+                    // Create particles along the base pair line
+                    for (let bp = 0; bp < 8; bp++) {
+                        const bpT = bp / 8;
+                        const bpX = x1 + (x2 - x1) * bpT;
+                        const bpY = y;
+                        const bpZ = z1 + (z2 - z1) * bpT;
+
+                        for (let p = 0; p < 3; p++) {
+                            createClusteredParticle(bpX, bpY, bpZ, color, 0.5);
+                        }
+                    }
+                }
+            }
+
+            // Add atmospheric particles around the helix
+            for (let i = 0; i < params.backgroundParticles; i++) {
+                const angle = Math.random() * Math.PI * 2;
+                const radiusOffset = radius + (Math.random() - 0.5) * 8;
+                const x = Math.cos(angle) * radiusOffset;
+                const z = Math.sin(angle) * radiusOffset;
+                const y = (Math.random() - 0.5) * height;
+
+                const colorMix = Math.random();
+                const color = new THREE.Color().setHSL(0.52 + colorMix * 0.05, 1, 0.5);
+
+                createAtmosphericParticle(x, y, z, color);
+            }
+        }
+
+        function createClusteredParticle(x, y, z, color, spread = 1.0) {
+            const sizes = [0.04, 0.06, 0.08, 0.1, 0.12];
+            const size = sizes[Math.floor(Math.random() * sizes.length)];
+
+            const particleGeometry = new THREE.SphereGeometry(size, 6, 6);
+            const particleMaterial = new THREE.MeshBasicMaterial({
+                color: color,
+                transparent: true,
+                opacity: 0.6 + Math.random() * 0.3,
+                blending: THREE.AdditiveBlending
+            });
+            const particle = new THREE.Mesh(particleGeometry, particleMaterial);
+
+            // Tight clustering around strand position
+            particle.position.set(
+                x + (Math.random() - 0.5) * 0.8 * spread,
+                y + (Math.random() - 0.5) * 0.8 * spread,
+                z + (Math.random() - 0.5) * 0.8 * spread
+            );
+
+            particle.userData = {
+                basePosition: { x, y, z },
+                velocity: {
+                    x: (Math.random() - 0.5) * 0.008,
+                    y: (Math.random() - 0.5) * 0.008,
+                    z: (Math.random() - 0.5) * 0.008
+                },
+                originalOpacity: particleMaterial.opacity,
+                baseSize: size,
+                phaseOffset: Math.random() * Math.PI * 2,
+                isStrand: true
+            };
+
+            particles.push(particle);
+            dnaGroup.add(particle);
+        }
+
+        function createAtmosphericParticle(x, y, z, color) {
+            const sizes = [0.02, 0.03, 0.04, 0.06];
+            const size = sizes[Math.floor(Math.random() * sizes.length)];
+
+            const particleGeometry = new THREE.SphereGeometry(size, 6, 6);
+            const particleMaterial = new THREE.MeshBasicMaterial({
+                color: color,
+                transparent: true,
+                opacity: 0.2 + Math.random() * 0.2,
+                blending: THREE.AdditiveBlending
+            });
+            const particle = new THREE.Mesh(particleGeometry, particleMaterial);
+
+            // Wider spread for atmospheric particles
+            particle.position.set(
+                x + (Math.random() - 0.5) * 2,
+                y + (Math.random() - 0.5) * 2,
+                z + (Math.random() - 0.5) * 2
+            );
+
+            particle.userData = {
+                velocity: {
+                    x: (Math.random() - 0.5) * 0.012,
+                    y: (Math.random() - 0.5) * 0.012,
+                    z: (Math.random() - 0.5) * 0.012
+                },
+                originalOpacity: particleMaterial.opacity,
+                baseSize: size,
+                phaseOffset: Math.random() * Math.PI * 2,
+                isStrand: false
+            };
+
+            particles.push(particle);
+            dnaGroup.add(particle);
+        }
+
+        function onMouseMove(event) {
+            if (autoOrbit) return;
+
+            mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+            mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+            targetRotation.y = mouse.x * Math.PI;
+            targetRotation.x = mouse.y * Math.PI * 0.5;
+        }
+
+        function onMouseWheel(event) {
+            event.preventDefault();
+            camera.position.z += event.deltaY * 0.01;
+            camera.position.z = Math.max(8, Math.min(40, camera.position.z));
+        }
+
+        function onKeyDown(event) {
+            if (event.code === 'Space') {
+                event.preventDefault();
+                autoOrbit = !autoOrbit;
+                const indicator = document.getElementById('mode-indicator');
+                indicator.textContent = autoOrbit ? '▶️ Auto-Orbit: ON' : '⏸️ Auto-Orbit: OFF';
+            }
+        }
+
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            composer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            time += 0.01;
+
+            // Auto-orbit mode
+            if (autoOrbit) {
+                targetRotation.y += params.autoOrbitSpeed * 60;
+                targetRotation.x = Math.sin(time * 0.1) * 0.3;
+            }
+
+            // Smooth rotation
+            currentRotation.x += (targetRotation.x - currentRotation.x) * 0.05;
+            currentRotation.y += (targetRotation.y - currentRotation.y) * 0.05;
+
+            dnaGroup.rotation.x = currentRotation.x;
+            dnaGroup.rotation.y = currentRotation.y + time * 0.01;
+
+            // Animate particles
+            particles.forEach((particle) => {
+                // Movement
+                particle.position.x += particle.userData.velocity.x;
+                particle.position.y += particle.userData.velocity.y;
+                particle.position.z += particle.userData.velocity.z;
+
+                // Pulsating opacity
+                const pulse = Math.sin(time * 2 + particle.userData.phaseOffset) * 0.3 + 0.7;
+                particle.material.opacity = particle.userData.originalOpacity * pulse;
+
+                // Subtle size variation
+                const scale = 1 + Math.sin(time * 3 + particle.userData.phaseOffset) * 0.15;
+                particle.scale.setScalar(scale);
+
+                // For strand particles, keep them closer to base position
+                if (particle.userData.isStrand && particle.userData.basePosition) {
+                    const dx = particle.userData.basePosition.x - particle.position.x;
+                    const dy = particle.userData.basePosition.y - particle.position.y;
+                    const dz = particle.userData.basePosition.z - particle.position.z;
+                    const dist = Math.sqrt(dx*dx + dy*dy + dz*dz);
+
+                    if (dist > 1.5) {
+                        particle.position.x += dx * 0.02;
+                        particle.position.y += dy * 0.02;
+                        particle.position.z += dz * 0.02;
+                    }
+                }
+
+                // Reset atmospheric particles if too far
+                if (!particle.userData.isStrand) {
+                    const distance = Math.sqrt(
+                        particle.position.x ** 2 +
+                        particle.position.y ** 2 +
+                        particle.position.z ** 2
+                    );
+                    if (distance > 25) {
+                        const angle = Math.random() * Math.PI * 2;
+                        const radiusOffset = 3 + (Math.random() - 0.5) * 8;
+                        particle.position.set(
+                            Math.cos(angle) * radiusOffset,
+                            (Math.random() - 0.5) * 35,
+                            Math.sin(angle) * radiusOffset
+                        );
+                    }
+                }
+            });
+
+            // Animate star field with parallax
+            stars.forEach(starField => {
+                starField.rotation.y = time * 0.0001;
+                starField.rotation.x = time * 0.00005;
+            });
+
+            // Render with bloom effect
+            composer.render();
+        }
+
+        // Initialize when page loads
+        window.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
