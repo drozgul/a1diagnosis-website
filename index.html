@@ -3,69 +3,3287 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Under Construction</title>
+    <title>A1 Diagnosis - Proactive Vision Risk Analysis Platform</title>
+    <meta name="description" content="The world's first blood-based AMD risk assessment test. See the Future Clearly - Let's Assess AMD Risk Years Before Vision Loss.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="A1_Favicon_V2.png">
+    <link rel="shortcut icon" type="image/png" href="A1_Favicon_V2.png">
+
+    <!-- AI-Friendly Meta Tags -->
+    <meta name="investment-stage" content="Pre-clinical">
+    <meta name="market-size" content="42300000000">
+    <meta name="test-accuracy" content="94-95%">
+    <meta name="regulatory-pathway" content="CLIA LDT">
+    <meta name="target-market" content="AMD risk assessment">
+    <meta name="founder" content="Dr. Mustafa Ozgul">
+    <meta name="institution" content="UC Irvine">
+    <meta name="revenue-model" content="$250 per test">
+    <meta name="current-stage" content="Pre-clinical validation">
+    <meta name="team-details" content="Dr. Mustafa Ozgul (UC Irvine CEO), Dr. Murat Baday (Stanford Co-founder)">
+    <meta name="development-timeline" content="Q1 2027 CLIA Launch">
+    <meta name="regulatory-details" content="CLIA certification, CAP compliance">
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-27QM6KXY13"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-27QM6KXY13');
+    </script>
+    
+    <!-- AI Model Performance Meta Tags -->
+    <meta name="ai-model-version" content="11.4/11.5">
+    <meta name="ai-algorithm" content="Gradient Boosting Classifier">
+    <meta name="cross-validation-accuracy" content="95.45%">
+    <meta name="model-optimization" content="Grid Search with Perfect Reproducibility">
+    <meta name="n-estimators" content="300">
+    <meta name="max-depth" content="5">
+    <meta name="learning-rate" content="0.1">
+    <meta name="validation-method" content="5-fold cross-validation">
+    <meta name="model-reproducibility" content="Perfect">
+    <meta name="proof-of-concept-status" content="COMPLETED">
+    <meta name="poc-sample-size" content="12 total samples">
+    <meta name="poc-accuracy" content="95.45%">
+    <meta name="phase1-planned-samples" content="240 samples">
+    <meta name="ai-model-ranking" content="#1 with 95.45% accuracy">
+
+    <!-- Importing Inter font for better typography matches -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
+        
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background-color: #ffffff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
             color: #333;
+            background: white;
+            overflow-x: hidden;
         }
-
+        
         .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+
+        /* Header Navigation - Exact Sciences Style */
+        .navbar {
+            background: rgba(255, 255, 255, 0.98);
+            border-bottom: 1px solid #e5e7eb;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .navbar-content {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            padding: 0;
+        }
+
+        /* Utility Navigation (Top Row) */
+        .utility-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+        }
+
+        .utility-nav-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .utility-nav a {
+            color: #6b7280;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 400;
+            transition: color 0.3s ease;
+            padding: 0 12px;
+        }
+
+        .utility-nav a:last-child {
+            padding-right: 0;
+        }
+
+        .utility-nav a:hover {
+            color: #0ea5e9;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: #000000;
+        }
+
+        .logo-image {
+            height: 40px;
+            width: auto;
+        }
+
+        /* Main Navigation (Bottom Row) */
+        .main-nav-row {
+            display: flex;
+            align-items: center;
+            height: 60px; /* Fixed height for consistent hover target */
+            padding: 0; /* Remove padding to let children fill height */
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 32px;
+            margin: 0;
+            padding: 0;
+            height: 100%; /* Fill height */
+            align-items: stretch; /* Stretch items to fill height */
+        }
+        
+        /* Dropdown Item Styling */
+        .dropdown {
+            position: static; /* Full width mega menu */
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #374151;
+            font-size: 16px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            height: 100%; /* Fill height for hover target */
+            padding: 0; /* Align items centers content */
+        }
+
+        .nav-links a::after {
+            content: '';
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            margin-left: 6px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23374151' stroke-width='3'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7' /%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            transition: transform 0.3s ease;
+            opacity: 0.6;
+        }
+
+        .nav-links a:hover {
+            color: #0ea5e9;
+        }
+
+        .nav-links a:hover::after {
+            opacity: 1;
+            transform: rotate(180deg);
+        }
+
+        /* Dropdown arrow rotation when open */
+        .nav-links a.dropdown-open::after {
+            transform: rotate(180deg);
+        }
+
+        /* Dropdown Menu Styling */
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            width: 100%;
+            background: white;
+            border-top: 3px solid #0ea5e9;
+            border-bottom: 1px solid #e5e7eb;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            display: none;
+            z-index: 1000;
+        }
+
+        /* FIXED: Hover Functionality for Desktop */
+        @media (min-width: 992px) {
+            .dropdown:hover .dropdown-menu {
+                display: block;
+                animation: fadeInDown 0.3s ease-out;
+            }
+            .dropdown:hover > a {
+                color: #0ea5e9;
+            }
+            .dropdown:hover > a::after {
+                transform: rotate(180deg);
+            }
+        }
+
+        .dropdown-menu-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .dropdown-menu.show {
+            display: block;
+            animation: fadeInDown 0.3s ease-out;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 4px 15px rgba(6, 182, 212, 0.4);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 6px 20px rgba(6, 182, 212, 0.6);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .dropdown-header {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 0.5rem;
+        }
+
+        .dropdown-description {
+            font-size: 0.95rem;
+            color: #64748b;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .dropdown-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .dropdown-section h4 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #0ea5e9;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .dropdown-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .dropdown-links a {
+            color: #374151;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease, padding-left 0.3s ease;
+            padding: 0.35rem 0;
+        }
+
+        .dropdown-links a:hover {
+            color: #0ea5e9;
+            padding-left: 8px;
+        }
+
+        .dropdown-featured {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #bae6fd;
+            margin-top: 1.5rem;
+        }
+
+        .dropdown-featured h5 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #0369a1;
+            margin-bottom: 0.5rem;
+        }
+
+        .dropdown-featured p {
+            font-size: 0.9rem;
+            color: #0c4a6e;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .dropdown-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
+            color: white !important;
+            padding: 0.85rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(20, 184, 166, 0.25);
+        }
+
+        .dropdown-cta:hover {
+            background: linear-gradient(135deg, #0d9488 0%, #0f766e 100%);
+            color: white !important;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(20, 184, 166, 0.35);
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.6s ease;
+            box-shadow: 0 4px 15px rgba(14, 165, 233, 0.3);
+            animation: alternateButtonText 20s ease-in-out infinite;
+            min-width: 160px;
             text-align: center;
-            padding: 40px 20px;
+            perspective: 1000px;
+            transform-style: preserve-3d;
+            backface-visibility: hidden;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px) rotateY(0deg);
+            box-shadow: 0 8px 25px rgba(14, 165, 233, 0.4);
         }
 
-        h1 {
-            font-size: 48px;
-            font-weight: 300;
-            letter-spacing: 2px;
-            margin-bottom: 20px;
-            color: #2c3e50;
+        @keyframes alternateButtonText {
+            0% {
+                background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+                box-shadow: 0 4px 15px rgba(14, 165, 233, 0.3);
+            }
+            50% {
+                background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+                box-shadow: 0 4px 15px rgba(14, 165, 233, 0.3);
+            }
+            100% {
+                background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+                box-shadow: 0 4px 15px rgba(14, 165, 233, 0.3);
+            }
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: #0369a1;
+            color: white;
+            padding: 120px 0 80px;
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+        
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+        }
+        
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(3, 105, 161, 0.2);
+            z-index: 2;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+        
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: slideInFromTop 1.5s ease-out 0.5s forwards;
+        }
+        
+        .hero .subtitle {
+            font-size: 1.4rem;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInUp 1.5s ease-out 1s forwards;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+            opacity: 0;
+            animation: fadeInUp 1.5s ease-out 1.5s forwards;
+        }
+        
+        .stat-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        @keyframes slideInFromTop {
+            0% {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Ticker Animation */
+        @keyframes ticker {
+            0% { 
+                transform: translate3d(100%, 0, 0); 
+            }
+            100% { 
+                transform: translate3d(-100%, 0, 0); 
+            }
+        }
+        
+        /* Hero Text Animations */
+        .animated-text {
+            transition: all 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .fade-in {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+        }
+        
+        .fade-out {
+            opacity: 0 !important;
+            transform: translateY(-30px) !important;
+        }
+        
+        @keyframes typewriter {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        
+        @keyframes glow-pulse {
+            0%, 100% { 
+                text-shadow: 0 0 15px rgba(255, 255, 255, 0.6), 0 0 30px rgba(255, 255, 255, 0.3), 0 0 45px rgba(255, 255, 255, 0.1); 
+            }
+            50% { 
+                text-shadow: 0 0 25px rgba(255, 255, 255, 0.8), 0 0 50px rgba(255, 255, 255, 0.5), 0 0 75px rgba(255, 255, 255, 0.2); 
+            }
+        }
+        
+        .typewriter-cursor {
+            display: inline-block;
+            background-color: rgba(255, 255, 255, 0.9);
+            width: 2px;
+            animation: blink 1s step-end infinite;
+        }
+        
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
         }
 
-        p {
-            font-size: 18px;
-            color: #7f8c8d;
-            font-weight: 300;
+        @keyframes fadeSlideUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        .icon {
-            font-size: 80px;
-            margin-bottom: 30px;
-            color: #95a5a6;
+        /* Scroll Animation: Fade in from white with slight zoom */
+        @keyframes fadeInZoomWhite {
+            0% {
+                opacity: 0;
+                transform: scale(0.95);
+                filter: brightness(1.3) blur(2px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+                filter: brightness(1) blur(0);
+            }
         }
 
+        /* Scroll Animation: Stagger animation for process steps */
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Animation classes */
+        .scroll-animate {
+            opacity: 0;
+        }
+
+        .scroll-animate.animate-in {
+            animation: fadeInZoomWhite 1.2s ease-out forwards;
+        }
+
+        .scroll-stagger {
+            opacity: 0;
+        }
+
+        .scroll-stagger.animate-in {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        /* Problem Section */
+        .problem-section {
+            padding: 100px 0;
+            background: #f8fafc;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: #1e293b;
+        }
+        
+        .section-subtitle {
+            font-size: 1.2rem;
+            text-align: center;
+            color: #64748b;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .problem-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-top: 2rem;
+        }
+        
+        .problem-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+        
+        .problem-stat {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+        
+        .problem-stat:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .problem-stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #dc2626;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        
+        .problem-stat-label {
+            font-size: 0.9rem;
+            color: #64748b;
+            font-weight: 500;
+        }
+        
+        .problem-content h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 1rem;
+        }
+        
+        .problem-content p {
+            font-size: 1.1rem;
+            color: #475569;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fed7aa 100%);
+            border: 1px solid #f59e0b;
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 4px solid #f59e0b;
+        }
+        
+        .highlight-box strong {
+            color: #92400e;
+        }
+        
+        /* Solution Section */
+        .solution-section {
+            padding: 100px 0;
+            background: white;
+        }
+        
+        .solution-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-top: 3rem;
+        }
+        
+        .solution-content h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 1rem;
+        }
+        
+        .solution-content p {
+            font-size: 1.1rem;
+            color: #475569;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+        
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+        
+        .process-step {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            padding: 1.5rem;
+            border-radius: 16px;
+            border: 1px solid #bae6fd;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .process-step:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.15);
+        }
+        
+        .process-step::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #3b82f6 0%, #1d4ed8 100%);
+        }
+        
+        .step-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .step-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1e40af;
+            margin-bottom: 0.5rem;
+        }
+        
+        .step-desc {
+            font-size: 0.9rem;
+            color: #475569;
+            line-height: 1.4;
+        }
+        
+        /* Value Proposition */
+        .value-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #f0fdfa 0%, #ccfbf1 100%);
+        }
+        
+        .value-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .value-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(20, 184, 166, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .value-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+        }
+        
+        .value-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .value-card h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 0.8rem;
+        }
+        
+        .value-card p {
+            color: #64748b;
+            line-height: 1.6;
+        }
+        
+        /* Team Preview */
+        .team-preview {
+            padding: 100px 0;
+            background: white;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .team-member {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+        
+        .team-member:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .team-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .team-member h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 0.5rem;
+        }
+        
+        .team-member p {
+            font-size: 0.9rem;
+            color: #64748b;
+            margin-bottom: 0.8rem;
+        }
+        
+        .team-expertise {
+            font-size: 0.8rem;
+            color: #3b82f6;
+            font-weight: 500;
+        }
+        
+        /* Enhanced CTA Section */
+        .cta-section {
+            padding: 120px 0;
+            background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 30%, #0369a1 70%, #1e40af 100%);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 80% 80%, rgba(14, 165, 233, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 60% 10%, rgba(59, 130, 246, 0.2) 0%, transparent 60%);
+        }
+        
+        .cta-section::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: drift 20s linear infinite;
+            opacity: 0.6;
+        }
+        
+        @keyframes drift {
+            0% { transform: rotate(0deg) translateX(0px); }
+            100% { transform: rotate(360deg) translateX(10px); }
+        }
+        
+        .cta-content {
+            position: relative;
+            z-index: 3;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 60px 50px;
+            max-width: 900px;
+            margin: 0 auto;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 
+                0 25px 60px rgba(0, 0, 0, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        }
+        
+        .cta-section h2 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 50%, #e0f2fe 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 4px 20px rgba(255, 255, 255, 0.3);
+        }
+        
+        .cta-section p {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.95;
+            line-height: 1.7;
+            font-weight: 500;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 20px 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        
+        .cta-section p:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn-primary {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 15px 30px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .btn-primary:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background: white;
+            color: #0ea5e9;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Footer */
+        .footer {
+            background: white;
+            color: #1e293b;
+            padding: 50px 0 30px;
+            text-align: center;
+        }
+        
+        .footer-content {
+            margin-bottom: 2rem;
+        }
+        
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 50%, #0369a1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .footer-links a {
+            color: #64748b;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .footer-links a:hover {
+            color: #0ea5e9;
+        }
+
+        .footer-section {
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 1rem;
+        }
+
+        .footer-contact {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .footer-contact-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .footer-contact-label {
+            font-size: 0.85rem;
+            color: #6b7280;
+            font-weight: 500;
+        }
+
+        .footer-contact-value {
+            color: #374151;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-contact-value:hover {
+            color: #0ea5e9;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #e2e8f0;
+            padding-top: 2rem;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        .footer-disclaimer {
+            background: #f8f9fa;
+            border-top: 1px solid #e2e8f0;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+
+        .footer-disclaimer-content {
+            max-width: 800px;
+            margin: 0 auto;
+            color: #64748b;
+            font-size: 0.85rem;
+            line-height: 1.6;
+            text-align: left;
+            padding: 0 20px;
+        }
+
+        .footer-disclaimer h4 {
+            color: #1e293b;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        /* FDA Notice Box */
+        .fda-notice-box {
+            background: #eff6ff;
+            border-left: 4px solid #3b82f6;
+            padding: 1.5rem;
+            margin: 2rem auto;
+            max-width: 1200px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .fda-notice-box h3 {
+            color: #1e40af;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .fda-notice-box p {
+            color: #1e293b;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 0.75rem;
+        }
+
+        .fda-notice-box a {
+            color: #3b82f6;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .fda-notice-box a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footnote-style Disclaimers */
+        .performance-disclaimer {
+            font-size: 0.9rem;
+            color: #475569;
+            font-style: italic;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 1rem;
+            margin-top: 1rem;
+        }
+
+        .performance-disclaimer a {
+            color: #3b82f6;
+            text-decoration: none;
+        }
+
+        .performance-disclaimer a:hover {
+            text-decoration: underline;
+        }
+
+        .inline-disclaimer {
+            font-size: 0.8rem;
+            color: #64748b;
+            vertical-align: super;
+            margin-left: 2px;
+        }
+
+        /* Mobile Responsiveness */
         @media (max-width: 768px) {
-            h1 {
-                font-size: 36px;
+            .utility-nav {
+                padding: 8px 0;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
             }
 
-            p {
+            .utility-nav-links {
+                width: 100%;
+            }
+
+            .utility-nav a {
+                font-size: 11px;
+                padding: 0 8px;
+            }
+
+            .main-nav-row {
+                padding: 12px 0;
+            }
+
+            .logo {
                 font-size: 16px;
             }
 
-            .icon {
-                font-size: 60px;
+            .logo-image {
+                height: 32px;
             }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .hero-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .problem-grid,
+            .solution-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .process-steps {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .cta-section h2 {
+                font-size: 2rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            /* Mobile Ticker */
+            .ticker-item {
+                padding: 15px 25px !important;
+                display: block !important;
+                text-align: center !important;
+            }
+            
+            .ticker-item span:first-child {
+                font-size: 1.4rem !important;
+                display: block !important;
+                margin-right: 0 !important;
+                margin-bottom: 5px !important;
+            }
+            
+            .ticker-item span:last-child {
+                font-size: 0.8rem !important;
+            }
+        }
+        
+        /* Scroll animations */
+        .scroll-fade {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        
+        .scroll-fade.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="icon">🚧</div>
-        <h1>Under Construction</h1>
-        <p>This site is currently being updated.</p>
-    </div>
+    <!-- 
+    AI INVESTMENT ANALYSIS DATA LOCATION:
+    Complete business intelligence including team profiles, financial projections, 
+    regulatory strategy, and detailed funding breakdown available in JSON-LD 
+    structured data sections in the HTML head. Look for "businessData" object 
+    containing comprehensive investment due diligence information.
+    -->
+    
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="navbar-content">
+                <!-- Utility Navigation (Top Row) -->
+                <div class="utility-nav">
+                    <div class="logo">
+                        <img src="A1_Diagnosis_Logo.jpg" alt="A1 Diagnosis" class="logo-image">
+                    </div>
+                    <div class="utility-nav-links">
+                        <a href="#investors">Investor Relations</a>
+                        <a href="#contact">Contact</a>
+                        <span style="color: #6b7280; font-size: 13px; padding-left: 12px; margin-left: 12px; display: flex; align-items: center; gap: 6px;"><img src="US_Flag.svg" alt="US Flag" style="width: 20px; height: auto;"> United States</span>
+                    </div>
+                </div>
+
+                <!-- Main Navigation (Bottom Row) -->
+                <div class="main-nav-row">
+                    <ul class="nav-links">
+                        <!-- Products and Services Dropdown -->
+                        <li class="dropdown">
+                            <a href="#products" class="dropdown-trigger">Products and Services</a>
+                            <div class="dropdown-menu">
+                                <div class="dropdown-menu-inner">
+                                    <div class="dropdown-header">Products and services</div>
+                                    <div class="dropdown-description">Learn more about our innovative blood-based test that helps detect AMD risk earlier and enables proactive vision care.</div>
+                                    <div class="dropdown-content">
+                                    <div class="dropdown-section">
+                                        <h4>Our Test</h4>
+                                        <div class="dropdown-links">
+                                            <a href="proactive-vision-platform.html">Proactive Vision Analysis Platform</a>
+                                            <a href="#how-it-works">How It Works</a>
+                                            <a href="#test-information">Test Information</a>
+                                        </div>
+                                    </div>
+                                    <div class="dropdown-section">
+                                        <h4>Access</h4>
+                                        <div class="dropdown-links">
+                                            <a href="#coverage">Coverage & Reimbursement</a>
+                                            <a href="#physicians">For Healthcare Providers</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- Science Dropdown -->
+                        <li class="dropdown">
+                            <a href="#science" class="dropdown-trigger">Science</a>
+                            <div class="dropdown-menu">
+                                <div class="dropdown-menu-inner">
+                                    <div class="dropdown-header">Science</div>
+                                    <div class="dropdown-description">Learn how our scientific rigor, quality standards, and advanced technology enable early AMD risk assessment for proactive vision care.</div>
+                                    <div class="dropdown-content">
+                                    <div class="dropdown-section">
+                                        <h4>Clinical Evidence</h4>
+                                        <div class="dropdown-links">
+                                            <a href="#pipeline">Pipeline</a>
+                                            <a href="#publications">Publications</a>
+                                            <a href="#clinical-studies">Clinical Studies</a>
+                                        </div>
+                                    </div>
+                                    <div class="dropdown-section">
+                                        <h4>Technology</h4>
+                                        <div class="dropdown-links">
+                                            <a href="#platform">Proactive Vision Analysis Platform</a>
+                                            <a href="#validation">Validation Studies</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="dropdown-featured">
+                                    <a href="#science" class="dropdown-cta">Explore our science →</a>
+                                </div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- About Dropdown -->
+                        <li class="dropdown">
+                            <a href="#about" class="dropdown-trigger">About</a>
+                            <div class="dropdown-menu">
+                                <div class="dropdown-menu-inner">
+                                    <div class="dropdown-header">About</div>
+                                    <div class="dropdown-description">Learn all about A1 Diagnosis, including our purpose, the people who drive it, our history, and the impact we're making.</div>
+                                    <div class="dropdown-content">
+                                        <div class="dropdown-section">
+                                            <h4>Company</h4>
+                                            <div class="dropdown-links">
+                                                <a href="#leadership">Leadership</a>
+                                                <a href="#history">History</a>
+                                                <a href="#corporate-impact">Corporate Impact</a>
+                                            </div>
+                                        </div>
+                                        <div class="dropdown-section">
+                                            <h4>Connect</h4>
+                                            <div class="dropdown-links">
+                                                <a href="#collaborations">Collaborations</a>
+                                                <a href="#contact">Contact</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- News and Media Dropdown -->
+                        <li class="dropdown">
+                            <a href="#news" class="dropdown-trigger">News and Media</a>
+                            <div class="dropdown-menu">
+                                <div class="dropdown-menu-inner">
+                                    <div class="dropdown-header">News and media</div>
+                                    <div class="dropdown-description">Explore stories, news, and events that highlight our innovation, technology, and people advancing AMD risk detection and proactive vision care.</div>
+                                    <div class="dropdown-content">
+                                        <div class="dropdown-section">
+                                            <h4>News</h4>
+                                            <div class="dropdown-links">
+                                                <a href="#press">Milestones & Progression</a>
+                                            </div>
+                                        </div>
+                                        <div class="dropdown-section">
+                                            <h4>Media</h4>
+                                            <div class="dropdown-links">
+                                                <a href="#media">For Media</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- Proactive Health Academy Dropdown -->
+                        <li class="dropdown">
+                            <a href="#academy" class="dropdown-trigger">Proactive Health Academy</a>
+                            <div class="dropdown-menu">
+                                <div class="dropdown-menu-inner">
+                                    <div class="dropdown-header">Proactive Health Academy</div>
+                                    <div class="dropdown-description">Educational resources to help you understand AMD, vision health, and early risk assessment in simple, accessible language.</div>
+                                    <div class="dropdown-content">
+                                        <div class="dropdown-section">
+                                            <h4>Understanding Proactive Health</h4>
+                                            <div class="dropdown-links">
+                                                <a href="#what-is-proactive-health">What is Proactive Health Care?</a>
+                                                <a href="#early-risk-assessment">Early Risk Assessment</a>
+                                                <a href="#future-prevention">The Future of AMD Prevention</a>
+                                            </div>
+                                        </div>
+                                        <div class="dropdown-section">
+                                            <h4>Learn About AMD</h4>
+                                            <div class="dropdown-links">
+                                                <a href="#what-is-amd">What is AMD?</a>
+                                                <a href="#amd-stages">AMD Stages & Progression</a>
+                                                <a href="#risk-factors">Risk Factors</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="dropdown-content" style="margin-top: 1.5rem;">
+                                        <div class="dropdown-section">
+                                            <h4>Resources</h4>
+                                            <div class="dropdown-links">
+                                                <a href="#videos">Educational Videos</a>
+                                                <a href="#infographics">Infographics</a>
+                                                <a href="#faqs">FAQs</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <!-- Background Video (Primary) -->
+        <video class="hero-video" autoplay muted loop playsinline preload="auto">
+            <source src="Peaceful_lake_scene_cropped_no_bars.mp4" type="video/mp4">
+            <source src="Peaceful_lake_scene_cropped_final.mp4" type="video/mp4">
+            <source src="Peaceful_lake_scene_cropped_v2.mp4" type="video/mp4">
+            <source src="Peaceful_lake_scene.mov" type="video/quicktime">
+        </video>
+        
+        <!-- GIF Fallback for when video fails -->
+        <img class="hero-video" src="Peaceful_lake_scene_web.gif" alt="Peaceful Lake Scene" style="display: none;" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+        
+        <!-- Final Fallback Background -->
+        <div class="hero-video" style="display: none; background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 50%, #0369a1 100%);"></div>
+        
+        <!-- Video Overlay -->
+        <div class="hero-overlay"></div>
+        
+        <div class="container">
+            <div class="hero-content">
+                <!-- Phase 1: 0-6 seconds -->
+                <h1 id="title-1" class="animated-text" style="opacity: 0; text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 255, 255, 0.4);">See the Future Clearly</h1>
+
+                <!-- Phase 2: 6-12 seconds -->
+                <h2 id="title-2" class="animated-text" style="font-size: 2.5rem; font-weight: 600; color: white; margin: 1.5rem 0; line-height: 1.2; opacity: 0; text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 255, 255, 0.4);">Let's Assess AMD Risk Years Before Vision Loss</h2>
+
+                <!-- Phase 3: 12-25 seconds - Typewriter Effect -->
+                <p id="description" class="subtitle animated-text" style="opacity: 0; text-shadow: 0 0 15px rgba(255, 255, 255, 0.6), 0 0 30px rgba(255, 255, 255, 0.3);"><span id="typewriter-text"></span></p>
+            </div>
+
+            <!-- Always Visible CTA Buttons - Bottom Left (like Exact Sciences) -->
+            <div id="cta-buttons" style="position: absolute; bottom: 60px; left: 60px; display: flex; gap: 1rem; z-index: 10;">
+                <a href="/presentation/presentation.html" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 12px 24px; background: white; color: #0f766e; font-size: 0.9rem; font-weight: 700; text-decoration: none; border-radius: 50px; box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3); transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 10px 35px rgba(0, 0, 0, 0.4)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 6px 25px rgba(0, 0, 0, 0.3)';">
+                    For Investors
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </a>
+                <a href="#academy" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 12px 24px; background: rgba(0, 0, 0, 0.3); color: white; font-size: 0.9rem; font-weight: 700; text-decoration: none; border-radius: 50px; box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2); transition: all 0.3s ease; border: 2px solid rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px);" onmouseover="this.style.background='rgba(255, 255, 255, 0.2)'; this.style.transform='translateY(-3px)'; this.style.boxShadow='0 10px 35px rgba(0, 0, 0, 0.35)';" onmouseout="this.style.background='rgba(0, 0, 0, 0.3)'; this.style.transform='translateY(0)'; this.style.boxShadow='0 6px 25px rgba(0, 0, 0, 0.2)';">
+                    For Patients
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Investment Opportunity Snapshot -->
+    <section class="investment-section" id="products" style="padding: 5rem 0; background: #ffffff;">
+    <div id="investors"></div>
+        <div class="container" style="max-width: 1280px; margin: 0 auto; padding: 0 2rem;">
+            <!-- Section Header -->
+            <div style="text-align: center; margin-bottom: 3.5rem;">
+                <h2 style="font-size: 2.5rem; font-weight: 900; color: #0f766e; margin-bottom: 1rem; letter-spacing: -0.5px;">Investment Opportunity at a Glance</h2>
+                <div style="width: 100px; height: 4px; background: linear-gradient(90deg, #14b8a6 0%, #06b6d4 100%); margin: 0 auto 1.5rem; border-radius: 2px;"></div>
+                <p style="font-size: 1.1rem; color: #0369a1; font-weight: 600;">De-Risked Revenue Strategy | Q1 2027 CLIA Launch</p>
+            </div>
+
+            <!-- 6-Stat Grid -->
+            <div class="stats-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-bottom: 3rem;">
+
+                <!-- Stat 1: TAM -->
+                <div class="stat-card" style="background: linear-gradient(135deg, #ffffff 0%, #f0fdfa 100%); padding: 2.25rem 1.5rem; border-radius: 20px; text-align: center; box-shadow: 0 4px 20px rgba(15, 118, 110, 0.06); border: 2px solid rgba(20, 184, 166, 0.1); position: relative; overflow: hidden; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);">
+                    <div style="content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #14b8a6 0%, #0d9488 100%);"></div>
+                    <div class="stat-value" style="font-size: 2.5rem; font-weight: 800; background: linear-gradient(135deg, #0f766e 0%, #14b8a6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 0.5rem; line-height: 1.1;">$42.3B</div>
+                    <div class="stat-label" style="font-size: 0.95rem; font-weight: 700; color: #0f766e;">Total Addressable Market</div>
+                </div>
+
+                <!-- Stat 2: Accuracy -->
+                <div class="stat-card" style="background: linear-gradient(135deg, #ffffff 0%, #f0fdfa 100%); padding: 2.25rem 1.5rem; border-radius: 20px; text-align: center; box-shadow: 0 4px 20px rgba(15, 118, 110, 0.06); border: 2px solid rgba(20, 184, 166, 0.1); position: relative; overflow: hidden; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);">
+                    <div style="content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #06b6d4 0%, #0284c7 100%);"></div>
+                    <div class="stat-value" style="font-size: 2.5rem; font-weight: 800; background: linear-gradient(135deg, #0369a1 0%, #06b6d4 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 0.5rem; line-height: 1.1;">94-95%<sup style="font-size: 0.5em;">*</sup></div>
+                    <div class="stat-label" style="font-size: 0.95rem; font-weight: 700; color: #0369a1;">Proof-of-Concept Accuracy</div>
+                </div>
+
+                <!-- Stat 3: Launch Date -->
+                <div class="stat-card" style="background: linear-gradient(135deg, #ffffff 0%, #f0fdfa 100%); padding: 2.25rem 1.5rem; border-radius: 20px; text-align: center; box-shadow: 0 4px 20px rgba(15, 118, 110, 0.06); border: 2px solid rgba(20, 184, 166, 0.1); position: relative; overflow: hidden; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);">
+                    <div style="content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #0ea5e9 0%, #0284c7 100%);"></div>
+                    <div class="stat-value" style="font-size: 2.5rem; font-weight: 800; background: linear-gradient(135deg, #0284c7 0%, #0ea5e9 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 0.5rem; line-height: 1.1;">Q1 2027</div>
+                    <div class="stat-label" style="font-size: 0.95rem; font-weight: 700; color: #0284c7;">Target Launch Date</div>
+                </div>
+
+                <!-- Stat 4: Target Population -->
+                <div class="stat-card" style="background: linear-gradient(135deg, #ffffff 0%, #f0fdfa 100%); padding: 2.25rem 1.5rem; border-radius: 20px; text-align: center; box-shadow: 0 4px 20px rgba(15, 118, 110, 0.06); border: 2px solid rgba(20, 184, 166, 0.1); position: relative; overflow: hidden; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);">
+                    <div style="content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #14b8a6 0%, #0d9488 100%);"></div>
+                    <div class="stat-value" style="font-size: 2.5rem; font-weight: 800; background: linear-gradient(135deg, #0f766e 0%, #14b8a6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 0.5rem; line-height: 1.1;">169M</div>
+                    <div class="stat-label" style="font-size: 0.95rem; font-weight: 700; color: #0f766e;">Target Population (US 35+)</div>
+                </div>
+
+                <!-- Stat 5: Pricing -->
+                <div class="stat-card" style="background: linear-gradient(135deg, #ffffff 0%, #f0fdfa 100%); padding: 2.25rem 1.5rem; border-radius: 20px; text-align: center; box-shadow: 0 4px 20px rgba(15, 118, 110, 0.06); border: 2px solid rgba(20, 184, 166, 0.1); position: relative; overflow: hidden; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);">
+                    <div style="content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #06b6d4 0%, #0284c7 100%);"></div>
+                    <div class="stat-value" style="font-size: 2.5rem; font-weight: 800; background: linear-gradient(135deg, #0369a1 0%, #06b6d4 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 0.5rem; line-height: 1.1;">$250</div>
+                    <div class="stat-label" style="font-size: 0.95rem; font-weight: 700; color: #0369a1;">Expected Price per Test</div>
+                </div>
+
+                <!-- Stat 6: CLIA Pathway -->
+                <div class="stat-card" style="background: linear-gradient(135deg, #ffffff 0%, #f0fdfa 100%); padding: 2.25rem 1.5rem; border-radius: 20px; text-align: center; box-shadow: 0 4px 20px rgba(15, 118, 110, 0.06); border: 2px solid rgba(20, 184, 166, 0.1); position: relative; overflow: hidden; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);">
+                    <div style="content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #0ea5e9 0%, #0284c7 100%);"></div>
+                    <div class="stat-value stat-icon" style="font-size: 2.5rem; font-weight: 800; background: linear-gradient(135deg, #0284c7 0%, #0ea5e9 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 0.5rem; line-height: 1.1; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+                        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="M9 12l2 2 4-4"></path></svg>
+                        CLIA
+                    </div>
+                    <div class="stat-label" style="font-size: 0.95rem; font-weight: 700; color: #0284c7;">De-Risked Regulatory Pathway</div>
+                </div>
+
+            </div>
+
+            <!-- CTAs -->
+            <div class="cta-row" style="display: flex; gap: 1.25rem; justify-content: center; margin-bottom: 2rem;">
+                <a href="mailto:ozgul@a1diagnosis.com?subject=Investment Inquiry" class="cta-primary" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.9rem 2rem; background: linear-gradient(135deg, #14b8a6 0%, #06b6d4 100%); color: white; font-size: 1rem; font-weight: 700; text-decoration: none; border-radius: 50px; box-shadow: 0 6px 20px rgba(20, 184, 166, 0.3); transition: all 0.3s ease;">
+                    Schedule Meeting
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </a>
+                <a href="/presentation/presentation.html" class="cta-secondary" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.9rem 2rem; background: white; color: #0f766e; font-size: 1rem; font-weight: 700; text-decoration: none; border-radius: 50px; border: 2px solid #14b8a6; box-shadow: 0 4px 15px rgba(15, 118, 110, 0.1); transition: all 0.3s ease;">
+                    View Full Presentation
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </a>
+            </div>
+
+            <!-- Disclaimer -->
+            <div class="disclaimer" style="text-align: center; padding: 1.25rem; background: linear-gradient(135deg, #f0fdfa 0%, #f0f9ff 100%); border-radius: 12px; max-width: 900px; margin: 0 auto; border-left: 4px solid #14b8a6;">
+                <p style="font-size: 0.85rem; color: #0f766e; margin: 0; line-height: 1.6; font-weight: 500;">
+                    * Proof-of-concept study accuracy. Performance characteristics to be validated in clinical studies. This test has not been cleared or approved by the US Food and Drug Administration.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Investment Section CSS -->
+    <style>
+        /* Card Hover Effects */
+        .stat-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 40px rgba(15, 118, 110, 0.12) !important;
+        }
+
+        /* CTA Button Hover Effects */
+        .cta-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(20, 184, 166, 0.4);
+        }
+
+        .cta-secondary:hover {
+            background: linear-gradient(135deg, #f0fdfa 0%, #ffffff 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(15, 118, 110, 0.2);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 900px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .stats-grid {
+                grid-template-columns: 1fr !important;
+            }
+
+            .cta-row {
+                flex-direction: column !important;
+                align-items: center;
+            }
+        }
+    </style>
+
+    <!-- How It Works Section (Replaces Video) -->
+    <section id="how-it-works" class="hiw-section">
+        
+        <style>
+            .hiw-section {
+                padding: 80px 0;
+                background: linear-gradient(135deg, #f0fdfa 0%, #ffffff 50%, #eff6ff 100%);
+                position: relative;
+                overflow: hidden;
+                font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            }
+            /* Blobs */
+            .blob-teal {
+                position: absolute; top: 0; left: 0; width: 400px; height: 400px;
+                background: #ccfbf1; border-radius: 50%; filter: blur(100px); opacity: 0.3;
+                transform: translate(-50%, -50%);
+            }
+            .blob-blue {
+                position: absolute; bottom: 0; right: 0; width: 500px; height: 500px;
+                background: #dbeafe; border-radius: 50%; filter: blur(120px); opacity: 0.4;
+                transform: translate(30%, 30%);
+            }
+            /* Grid */
+            .hiw-grid {
+                display: grid;
+                grid-template-columns: repeat(1, 1fr);
+                gap: 2rem;
+                position: relative;
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 20px;
+            }
+            @media(min-width: 768px) { .hiw-grid { grid-template-columns: repeat(2, 1fr); } }
+            @media(min-width: 1024px) { .hiw-grid { grid-template-columns: repeat(4, 1fr); } }
+
+            /* Line */
+            .hiw-line {
+                display: none;
+                position: absolute; top: 4rem; left: 12%; right: 12%; height: 2px;
+                background: linear-gradient(90deg, #99f6e4, #bfdbfe, #bbf7d0);
+                z-index: 0;
+            }
+            @media(min-width: 1024px) { .hiw-line { display: block; } }
+
+            /* Cards */
+            .hiw-card {
+                background: white;
+                border-radius: 1rem;
+                padding: 1.5rem;
+                box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+                border: 1px solid #f1f5f9;
+                position: relative;
+                z-index: 10;
+                transition: all 0.3s ease;
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                height: 100%;
+            }
+            .hiw-card:hover { transform: translateY(-8px); box-shadow: 0 20px 25px -5px rgba(20, 184, 166, 0.2); }
+
+            /* Icons */
+            .hiw-icon-circle {
+                width: 5rem; height: 5rem;
+                border-radius: 50%;
+                border: 4px solid white;
+                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+                display: flex; align-items: center; justify-content: center;
+                margin-bottom: 1.5rem;
+                transition: all 0.5s ease;
+                position: relative; overflow: hidden;
+            }
+            /* Specific Colors */
+            .icon-teal { background: #f0fdfa; color: #0d9488; }
+            .hiw-card:hover .icon-teal { background: #0d9488; color: white; }
+
+            .icon-cyan { background: #ecfeff; color: #0891b2; }
+            .hiw-card:hover .icon-cyan { background: #0891b2; color: white; }
+
+            .icon-blue { background: #eff6ff; color: #2563eb; }
+            .hiw-card:hover .icon-blue { background: #2563eb; color: white; }
+
+            .icon-green { background: #f0fdf4; color: #16a34a; }
+            .hiw-card:hover .icon-green { background: #16a34a; color: white; }
+
+            /* Bottom CTA */
+            .hiw-bottom-cta {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 1.5rem;
+                background: white;
+                padding: 1.5rem;
+                border-radius: 1.5rem;
+                box-shadow: 0 20px 25px -5px rgba(20, 184, 166, 0.1);
+                border: 1px solid #f1f5f9;
+                max-width: 900px;
+                margin: 4rem auto 0;
+            }
+            @media(min-width: 1024px) {
+                .hiw-bottom-cta { flex-direction: row; padding: 0.75rem 0.75rem 0.75rem 1.5rem; border-radius: 9999px; }
+            }
+            
+            .hiw-btn {
+                padding: 0.5rem 1.2rem;
+                border-radius: 9999px;
+                font-weight: 700;
+                font-size: 0.85rem;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                text-decoration: none;
+                transition: all 0.3s ease;
+            }
+            .hiw-btn-primary {
+                background: #0d9488; color: white;
+                box-shadow: 0 10px 15px -3px rgba(20, 184, 166, 0.3);
+            }
+            .hiw-btn-primary:hover { background: #0f766e; }
+            
+            .hiw-btn-secondary {
+                background: #f0fdfa; color: #0f766e;
+                border: 1px solid #ccfbf1;
+            }
+            .hiw-btn-secondary:hover { background: #ccfbf1; }
+
+            /* Video Modal Styles */
+            .video-modal {
+                display: none;
+                position: fixed;
+                z-index: 9999;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.9);
+                align-items: center;
+                justify-content: center;
+            }
+
+            .video-modal.active {
+                display: flex;
+            }
+
+            .video-modal-content {
+                position: relative;
+                max-width: 90%;
+                max-height: 90%;
+                width: 1200px;
+            }
+
+            .video-modal video {
+                width: 100%;
+                height: auto;
+                border-radius: 12px;
+                box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            }
+
+            .video-modal-close {
+                position: absolute;
+                top: -40px;
+                right: 0;
+                color: white;
+                font-size: 35px;
+                font-weight: bold;
+                cursor: pointer;
+                background: rgba(255, 255, 255, 0.1);
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.3s;
+            }
+
+            .video-modal-close:hover {
+                background: rgba(255, 255, 255, 0.2);
+                transform: rotate(90deg);
+            }
+
+            .watch-video-btn {
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                padding: 12px 24px;
+                background: linear-gradient(135deg, #0d9488 0%, #06b6d4 100%);
+                color: white;
+                border: none;
+                border-radius: 50px;
+                font-size: 14px;
+                font-weight: 700;
+                cursor: pointer;
+                transition: all 0.3s;
+                box-shadow: 0 4px 15px rgba(13, 148, 136, 0.3);
+            }
+
+            .watch-video-btn:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 8px 25px rgba(13, 148, 136, 0.4);
+            }
+
+            .play-icon {
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                background: white;
+                color: #0d9488;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 10px;
+            }
+
+        </style>
+
+        <!-- Background Decorative Blobs -->
+        <div class="blob-teal"></div>
+        <div class="blob-blue"></div>
+
+        <div class="container" style="position: relative; z-index: 10;">
+
+            <!-- Section Header -->
+            <div style="max-width: 1200px; margin: 0 auto 4rem; position: relative;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 2rem;">
+                    <div style="text-align: center; max-width: 800px; margin: 0 auto; flex: 1;">
+                        <div style="display: inline-block; padding: 6px 16px; background: white; border-radius: 50px; border: 1px solid #ccfbf1; margin-bottom: 1.5rem; box-shadow: 0 1px 2px rgba(0,0,0,0.05);">
+                            <span style="font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; background: linear-gradient(90deg, #0d9488, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                                Simple & Secure Process
+                            </span>
+                        </div>
+                        <h2 style="font-size: 3rem; font-weight: 900; margin-bottom: 1.5rem; color: #1e293b;">
+                            <span style="background: linear-gradient(90deg, #0d9488, #06b6d4, #2563eb); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">How It Works?</span>
+                        </h2>
+                        <p style="font-size: 1.2rem; color: #64748b; line-height: 1.6;">
+                            Our proactive approach combines standard medical care with cutting-edge AI analysis to help identify risks years before symptoms appear.
+                        </p>
+                    </div>
+                    <div style="position: absolute; top: 0; right: 0;">
+                        <button class="watch-video-btn" onclick="openVideoModal()">
+                            <span class="play-icon">▶</span>
+                            Watch "How it Works" Video
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Process Grid -->
+            <div class="hiw-grid">
+                
+                <!-- Connecting Line (Desktop Only) -->
+                <div class="hiw-line"></div>
+
+                <!-- Step 1: Doctor Visit -->
+                <div class="hiw-card">
+                    <div style="position: absolute; top: 1rem; right: 1rem; font-size: 0.8rem; font-weight: 700; color: #cbd5e1;">01</div>
+                    <div class="hiw-icon-circle icon-teal">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3"/><path d="M8 15v1a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6v-4"/><circle cx="20" cy="10" r="2"/></svg>
+                    </div>
+                    <h3 style="font-size: 1.25rem; font-weight: 700; color: #1e293b; margin-bottom: 0.75rem;">Doctor Visit</h3>
+                    <p style="font-size: 0.95rem; color: #64748b; line-height: 1.5;">Patients visit their family doctor for a routine check-up and initial consultation.</p>
+                </div>
+
+                <!-- Step 2: Sample Collection -->
+                <div class="hiw-card">
+                    <div style="position: absolute; top: 1rem; right: 1rem; font-size: 0.8rem; font-weight: 700; color: #cbd5e1;">02</div>
+                    <div class="hiw-icon-circle icon-cyan">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 2 4 4"/><path d="m17 7 3-3"/><path d="M19 9 8.7 19.3c-1 1-2.5 1-3.4 0l-.6-.6c-1-1-1-2.5 0-3.4L15 5"/><path d="m9 11 4 4"/><path d="m5 19-3 3"/></svg>
+                    </div>
+                    <h3 style="font-size: 1.25rem; font-weight: 700; color: #1e293b; margin-bottom: 0.75rem;">Sample Collection</h3>
+                    <p style="font-size: 0.95rem; color: #64748b; line-height: 1.5;">Blood is withdrawn at the clinic and securely transported to our specialist lab.</p>
+                </div>
+
+                <!-- Step 3: Advanced Analysis -->
+                <div class="hiw-card">
+                    <div style="position: absolute; top: 1rem; right: 1rem; font-size: 0.8rem; font-weight: 700; color: #cbd5e1;">03</div>
+                    <div class="hiw-icon-circle icon-blue">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="16" x="4" y="4" rx="2"/><rect width="6" height="6" x="9" y="9" rx="1"/><path d="M15 2v2"/><path d="M15 20v2"/><path d="M2 15h2"/><path d="M2 9h2"/><path d="M20 15h2"/><path d="M20 9h2"/><path d="M9 2v2"/><path d="M9 20v2"/></svg>
+                    </div>
+                    <h3 style="font-size: 1.25rem; font-weight: 700; color: #1e293b; margin-bottom: 0.75rem;">Advanced Analysis</h3>
+                    <p style="font-size: 0.95rem; color: #64748b; line-height: 1.5;">Our AI-powered Risk Assessment Platform analyzes biomarkers in the sample.</p>
+                </div>
+
+                <!-- Step 4: Risk Assessment -->
+                <div class="hiw-card">
+                    <div style="position: absolute; top: 1rem; right: 1rem; font-size: 0.8rem; font-weight: 700; color: #cbd5e1;">04</div>
+                    <div class="hiw-icon-circle icon-green">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/><circle cx="12" cy="12" r="1"/><path d="M5 12s2.5-5 7-5 7 5 7 5-2.5 5-7 5-7-5-7-5"/></svg>
+                    </div>
+                    <h3 style="font-size: 1.25rem; font-weight: 700; color: #1e293b; margin-bottom: 0.75rem;">Risk Assessment</h3>
+                    <p style="font-size: 0.95rem; color: #64748b; line-height: 1.5;">Comprehensive results enable proactive discussions between doctor and patient.</p>
+                </div>
+
+            </div>
+
+            <!-- Bottom CTA -->
+            <div class="hiw-bottom-cta">
+                <div style="width: 3rem; height: 3rem; background: #f0fdfa; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #0d9488; flex-shrink: 0;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
+                </div>
+                
+                <div style="flex-grow: 1; text-align: center; padding: 0 1rem;">
+                    <span style="display: block; font-size: 0.85rem; font-weight: 700; color: #1e293b;">Shape the Future of Proactive Health</span>
+                    <span style="display: block; font-size: 0.75rem; color: #64748b;">Reserve your place in the vision revolution.</span>
+                </div>
+
+                <div style="display: flex; gap: 0.6rem; justify-content: center;">
+                    <a href="mailto:ozgul@a1diagnosis.com?subject=Investment Meeting" class="hiw-btn hiw-btn-primary">
+                        Schedule Investor Meeting
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                    </a>
+
+                    <a href="#contact" class="hiw-btn hiw-btn-secondary">
+                        Join Patient Waitlist
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Video Modal -->
+        <div id="howItWorksVideoModal" class="video-modal" onclick="closeVideoModal(event)">
+            <div class="video-modal-content">
+                <span class="video-modal-close" onclick="closeVideoModal(event)">&times;</span>
+                <video id="howItWorksVideo" controls>
+                    <source src="How_It_Works.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+
+        <script>
+            function openVideoModal() {
+                const modal = document.getElementById('howItWorksVideoModal');
+                const video = document.getElementById('howItWorksVideo');
+                modal.classList.add('active');
+                video.play();
+            }
+
+            function closeVideoModal(event) {
+                // Only close if clicking on the modal background or close button
+                if (event.target.id === 'howItWorksVideoModal' || event.target.className === 'video-modal-close') {
+                    const modal = document.getElementById('howItWorksVideoModal');
+                    const video = document.getElementById('howItWorksVideo');
+                    modal.classList.remove('active');
+                    video.pause();
+                    video.currentTime = 0;
+                }
+            }
+
+            // Close modal when pressing Escape key
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape') {
+                    const modal = document.getElementById('howItWorksVideoModal');
+                    const video = document.getElementById('howItWorksVideo');
+                    if (modal.classList.contains('active')) {
+                        modal.classList.remove('active');
+                        video.pause();
+                        video.currentTime = 0;
+                    }
+                }
+            });
+        </script>
+
+    </section>
+
+    <!-- TEAM SECTION -->
+    <section class="team-section" id="about">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Leadership</h2>
+                <div class="section-divider"></div>
+            </div>
+
+            <div class="team-grid">
+                <div class="team-card">
+                    <img src="presentation/Mustafa Ozgul.jpeg" alt="Dr. Mustafa Ozgul" class="team-photo">
+                    <h3 class="team-name">Mustafa Ozgul, MD</h3>
+                    <p class="team-role">Founder & CEO</p>
+                    <ul class="team-credentials">
+                        <li>6 years AMD research, University of California Irvine</li>
+                        <li>24 peer-reviewed publications</li>
+                        <li>ML/DL algorithms analyzing 10,000+ molecules</li>
+                    </ul>
+                    <a href="https://www.linkedin.com/in/drozgul" target="_blank" class="team-linkedin">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                        LinkedIn
+                    </a>
+                </div>
+
+                <div class="team-card">
+                    <img src="presentation/Murat Baday.jpeg" alt="Dr. Murat Baday" class="team-photo">
+                    <h3 class="team-name">Murat Baday, PhD</h3>
+                    <p class="team-role">Co-Founder</p>
+                    <ul class="team-credentials">
+                        <li>Stanford Researcher, Synapses Ventures Founder</li>
+                        <li>Led Smartlens to $6.1M Series A (July 2023)</li>
+                        <li>40+ patents, 1,259 citations</li>
+                    </ul>
+                    <a href="https://www.linkedin.com/in/muratbaday" target="_blank" class="team-linkedin">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                        LinkedIn
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section CSS -->
+    <style>
+        .team-section {
+            padding: 5rem 0;
+            background: #ffffff;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #0f766e;
+            margin-bottom: 1rem;
+        }
+
+        .section-divider {
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #14b8a6 0%, #06b6d4 100%);
+            margin: 0 auto;
+            border-radius: 2px;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .team-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f0fdfa 100%);
+            border-radius: 24px;
+            padding: 2.5rem;
+            text-align: center;
+            box-shadow: 0 8px 30px rgba(15, 118, 110, 0.08);
+            border: 1px solid rgba(20, 184, 166, 0.1);
+            transition: all 0.4s ease;
+        }
+
+        .team-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(15, 118, 110, 0.15);
+        }
+
+        .team-photo {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 1.5rem;
+            border: 5px solid white;
+            box-shadow: 0 8px 25px rgba(15, 118, 110, 0.15);
+        }
+
+        .team-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 0.25rem;
+        }
+
+        .team-role {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #0d9488;
+            margin-bottom: 1rem;
+        }
+
+        .team-credentials {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 1.5rem;
+        }
+
+        .team-credentials li {
+            font-size: 0.9rem;
+            color: #475569;
+            padding: 0.4rem 0;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .team-credentials li:last-child {
+            border-bottom: none;
+        }
+
+        .team-linkedin {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.25rem;
+            background: linear-gradient(135deg, #0077b5 0%, #0e76a8 100%);
+            color: white;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 119, 181, 0.2);
+        }
+
+        .team-linkedin:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 119, 181, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+
+    <!-- Why Now - Investor Grid Section (Replaces Old Presentation) -->
+    <section id="why-now-presentation" class="grid-section">
+        
+        <style>
+            /* --- GRID SECTION STYLES --- */
+            :root {
+                --color-teal: #14b8a6;
+                --color-teal-light: #ccfbf1;
+                --color-blue: #3b82f6;
+                --color-blue-light: #eff6ff;
+                --color-green: #10b981;
+                --color-green-light: #ecfdf5;
+                --text-dark: #0f172a;
+                --text-muted: #64748b;
+            }
+
+            .grid-section {
+                padding: 80px 24px;
+                background: #fff;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 100vh;
+            }
+
+            .grid-container {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: 1fr 1fr;
+                gap: 24px;
+                width: 100%;
+                max-width: 1200px;
+                /* Aspect ratio approx to ensure it feels like a cohesive slide */
+                aspect-ratio: 16/9; 
+                max-height: 800px;
+            }
+
+            /* Generic Card Style */
+            .info-card {
+                background: #fff;
+                border-radius: 24px;
+                border: 1px solid #e2e8f0;
+                padding: 40px;
+                position: relative;
+                overflow: hidden;
+                display: flex;
+                flex-direction: column;
+                transition: all 0.3s ease;
+                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            }
+
+            .info-card:hover {
+                transform: translateY(-5px);
+                /* Default hover, overridden by specific colors below */
+                box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            }
+
+            /* --- CARD 1: HEADER (Top Left) --- */
+            .card-header {
+                justify-content: center;
+                border-color: transparent; /* Cleaner look for the text block */
+                background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+            }
+
+            .section-tag {
+                font-size: 0.85rem;
+                font-weight: 700;
+                text-transform: uppercase;
+                letter-spacing: 1.5px;
+                color: var(--text-muted);
+                margin-bottom: 20px;
+                display: inline-block;
+                background: #f1f5f9;
+                padding: 8px 16px;
+                border-radius: 50px;
+            }
+
+            .main-title {
+                font-size: 3.5rem;
+                font-weight: 900;
+                line-height: 1;
+                margin: 0 0 24px 0;
+                color: var(--text-dark);
+                letter-spacing: -0.02em;
+            }
+
+            .gradient-text {
+                background: linear-gradient(135deg, var(--color-teal), var(--color-blue));
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+            }
+
+            .main-desc {
+                font-size: 1.25rem;
+                line-height: 1.6;
+                color: var(--text-muted);
+                max-width: 450px;
+            }
+
+            /* --- CONTENT CARDS --- */
+            
+            /* Typography inside cards */
+            .card-number {
+                font-size: 3.5rem;
+                font-weight: 900;
+                opacity: 0.1;
+                position: absolute;
+                top: 20px;
+                right: 30px;
+                line-height: 1;
+            }
+
+            .badge {
+                display: inline-block;
+                padding: 6px 12px;
+                border-radius: 6px;
+                font-weight: 600;
+                font-size: 0.85rem;
+                margin-bottom: 16px;
+                width: fit-content;
+            }
+
+            .card-title {
+                font-size: 2rem;
+                font-weight: 800;
+                margin: 0 0 16px 0;
+                color: var(--text-dark);
+                line-height: 1.1;
+            }
+
+            .card-text {
+                font-size: 1.1rem;
+                line-height: 1.5;
+                color: var(--text-muted);
+                margin-bottom: auto; /* Pushes stat to bottom */
+                max-width: 90%;
+            }
+
+            /* --- THEMES --- */
+
+            /* Teal Card */
+            .card-teal { 
+                border-top: 6px solid var(--color-teal);
+                background: radial-gradient(circle at top right, var(--color-teal-light) 0%, #fff 70%);
+                box-shadow: 0 10px 30px -5px rgba(20, 184, 166, 0.15);
+            }
+            .card-teal:hover {
+                box-shadow: 0 20px 25px -5px rgba(20, 184, 166, 0.25), 0 10px 10px -5px rgba(20, 184, 166, 0.1);
+            }
+            .card-teal .badge { background: var(--color-teal-light); color: var(--color-teal); }
+            .card-teal .card-number { color: var(--color-teal); }
+
+            /* Blue Card */
+            .card-blue { 
+                border-top: 6px solid var(--color-blue);
+                background: radial-gradient(circle at top right, var(--color-blue-light) 0%, #fff 70%);
+                box-shadow: 0 10px 30px -5px rgba(59, 130, 246, 0.15);
+            }
+            .card-blue:hover {
+                box-shadow: 0 20px 25px -5px rgba(59, 130, 246, 0.25), 0 10px 10px -5px rgba(59, 130, 246, 0.1);
+            }
+            .card-blue .badge { background: var(--color-blue-light); color: var(--color-blue); }
+            .card-blue .card-number { color: var(--color-blue); }
+
+            /* Green Card */
+            .card-green { 
+                border-top: 6px solid var(--color-green);
+                background: radial-gradient(circle at top right, var(--color-green-light) 0%, #fff 70%);
+                box-shadow: 0 10px 30px -5px rgba(16, 185, 129, 0.15);
+            }
+            .card-green:hover {
+                box-shadow: 0 20px 25px -5px rgba(16, 185, 129, 0.25), 0 10px 10px -5px rgba(16, 185, 129, 0.1);
+            }
+            .card-green .badge { background: var(--color-green-light); color: var(--color-green); }
+            .card-green .card-number { color: var(--color-green); }
+
+
+            /* Visual SVGs */
+            .visual-bg {
+                position: absolute;
+                bottom: 20px;
+                right: 20px;
+                width: 120px;
+                height: 120px;
+                opacity: 0.8;
+                pointer-events: none;
+            }
+
+            /* --- RESPONSIVE --- */
+            @media (max-width: 1024px) {
+                .grid-container {
+                    aspect-ratio: auto;
+                    height: auto;
+                    max-height: none;
+                    grid-template-columns: 1fr; /* Stack vertically on tablet/mobile */
+                    grid-template-rows: auto;
+                }
+                .main-title { font-size: 2.5rem; }
+                .info-card { min-height: 300px; }
+                .grid-section { padding: 40px 20px; height: auto; display: block;}
+            }
+        </style>
+
+        <div class="grid-container">
+
+            <!-- 1. Header Card (Top Left) -->
+            <div class="info-card card-header">
+                <div>
+                    <!-- Removed Market Timing tag -->
+                    <h1 class="main-title gradient-text">Why Now?</h1>
+                    <p class="main-desc">Healthcare is shifting from reactive to predictive. We are positioned at the convergence of three massive market shifts.</p>
+                </div>
+            </div>
+
+            <!-- 2. First Mover (Top Right) -->
+            <div class="info-card card-teal">
+                <div class="card-number">01</div>
+                <div class="badge">Category Leader</div>
+                <h3 class="card-title">First Mover Advantage</h3>
+                <p class="card-text">No blood-based AMD risk assessment exists today. We aren't just entering the market; we are building the category and setting the clinical benchmark.</p>
+                
+                <!-- Visual -->
+                <div class="visual-bg">
+                    <svg width="100%" height="100%" viewBox="0 0 100 100" fill="none">
+                        <circle cx="50" cy="50" r="40" stroke="#14b8a6" stroke-width="1" stroke-dasharray="4 4" opacity="0.4"/>
+                        <path d="M40 50 L45 55 L60 40" stroke="#14b8a6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- 3. Regulatory (Bottom Left) -->
+            <div class="info-card card-blue">
+                <div class="card-number">02</div>
+                <div class="badge">Legal Green Light</div>
+                <h3 class="card-title">Regulatory Advantage</h3>
+                <p class="card-text">The March 2025 court ruling vacated the FDA's LDT Final Rule. "This enables CLIA-certified Laboratory Developed Tests (LDTs) and enables faster commercialization than the years-long FDA process."</p>
+                
+                <div class="visual-bg">
+                    <svg width="100%" height="100%" viewBox="0 0 100 100" fill="none">
+                        <rect x="25" y="25" width="50" height="50" rx="8" stroke="#3b82f6" stroke-width="1" stroke-dasharray="4 4" opacity="0.4"/>
+                        <path d="M35 50 L45 60 L65 40" stroke="#3b82f6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- 4. Pharma (Bottom Right) -->
+            <div class="info-card card-green">
+                <div class="card-number">03</div>
+                <div class="badge">Market Force</div>
+                <h3 class="card-title">Pharma Catalyst</h3>
+                <p class="card-text">Novartis's AMD prevention therapy completes Phase 2 trials in October 2026. Big Pharma would require risk assessment platforms to identify high-risk patients before symptoms appear</p>
+                
+                <div class="visual-bg">
+                    <svg width="100%" height="100%" viewBox="0 0 100 100" fill="none">
+                        <path d="M50 20 L50 80 M20 50 L80 50" stroke="#10b981" stroke-width="2" stroke-linecap="round" opacity="0.3"/>
+                        <circle cx="50" cy="50" r="15" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/>
+                    </svg>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Our Path to Market - Timeline Section -->
+    <style>
+        .timeline-items {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            z-index: 2;
+        }
+        .timeline-milestone {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+        }
+        .timeline-line {
+            position: absolute;
+            top: 50%;
+            left: 5%;
+            right: 5%;
+            height: 3px;
+            background: linear-gradient(90deg, #14b8a6 0%, #14b8a6 25%, #06b6d4 50%, #0ea5e9 75%, #cbd5e1 100%);
+            transform: translateY(-50%);
+            border-radius: 2px;
+        }
+        .timeline-container {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        /* Mobile Responsive Timeline */
+        @media (max-width: 768px) {
+            .timeline-items {
+                flex-direction: column;
+                gap: 2.5rem;
+                align-items: flex-start;
+                padding-left: 4rem;
+            }
+            .timeline-milestone {
+                flex-direction: row;
+                align-items: center;
+                gap: 1.25rem;
+                width: 100%;
+            }
+            .timeline-milestone > div:first-child {
+                flex-shrink: 0;
+            }
+            .timeline-milestone > div:last-child {
+                text-align: left !important;
+                margin-top: 0 !important;
+            }
+            .timeline-line {
+                top: 0;
+                bottom: 0;
+                left: 1.75rem;
+                right: auto;
+                width: 3px;
+                height: auto;
+                transform: none;
+                background: linear-gradient(180deg, #14b8a6 0%, #14b8a6 25%, #06b6d4 50%, #0ea5e9 75%, #cbd5e1 100%);
+            }
+            .timeline-container {
+                padding: 1rem 0;
+            }
+            .milestone-icon-large {
+                width: 60px !important;
+                height: 60px !important;
+            }
+            .milestone-icon-large svg {
+                width: 28px !important;
+                height: 28px !important;
+            }
+        }
+    </style>
+    <section id="timeline" style="padding: 5rem 0; background: linear-gradient(180deg, #f0fdfa 0%, #ffffff 100%);">
+        <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
+
+            <!-- Section Header -->
+            <div style="text-align: center; margin-bottom: 3.5rem;">
+                <h2 style="font-size: 2.5rem; font-weight: 800; color: #0f766e; margin-bottom: 0.75rem;">Our Path to Market</h2>
+                <div style="width: 80px; height: 4px; background: linear-gradient(90deg, #14b8a6 0%, #06b6d4 100%); margin: 0 auto 1rem; border-radius: 2px;"></div>
+                <p style="font-size: 1.1rem; color: #64748b; max-width: 600px; margin: 0 auto;">Transparent progress toward commercialization</p>
+            </div>
+
+            <!-- Timeline Container -->
+            <div class="timeline-container">
+
+                <!-- Timeline Line -->
+                <div class="timeline-line"></div>
+
+                <!-- Timeline Items -->
+                <div class="timeline-items">
+
+                    <!-- Milestone 1: 2019-2024 Research - COMPLETED -->
+                    <div class="timeline-milestone">
+                        <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(20, 184, 166, 0.4); border: 4px solid white;">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                        </div>
+                        <div style="margin-top: 1.25rem; text-align: center;">
+                            <span style="display: block; font-size: 0.85rem; font-weight: 700; color: #0d9488; text-transform: uppercase; letter-spacing: 0.5px;">2019-2024</span>
+                            <span style="display: block; font-size: 1.1rem; font-weight: 800; color: #1e293b; margin: 0.25rem 0;">Research</span>
+                            <span style="display: block; font-size: 0.85rem; color: #64748b; line-height: 1.4;">Grant funded<br>94-95% accuracy</span>
+                        </div>
+                    </div>
+
+                    <!-- Milestone 2: 2025 Regulatory Green Light - IN PROGRESS -->
+                    <div class="timeline-milestone">
+                        <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(6, 182, 212, 0.4); border: 4px solid white; animation: pulse 2s infinite;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                <path d="M9 12l2 2 4-4"></path>
+                            </svg>
+                        </div>
+                        <div style="margin-top: 1.25rem; text-align: center;">
+                            <span style="display: block; font-size: 0.85rem; font-weight: 700; color: #0891b2; text-transform: uppercase; letter-spacing: 0.5px;">2025</span>
+                            <span style="display: block; font-size: 1.1rem; font-weight: 800; color: #1e293b; margin: 0.25rem 0;">Regulatory Green Light</span>
+                            <span style="display: block; font-size: 0.85rem; color: #64748b; line-height: 1.4;">Team assembled<br>LDT pathway confirmed</span>
+                        </div>
+                    </div>
+
+                    <!-- Milestone 3: Q1 2027 CLIA Launch - KEY MILESTONE -->
+                    <div class="timeline-milestone">
+                        <div class="milestone-icon-large" style="width: 80px; height: 80px; background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 25px rgba(14, 165, 233, 0.5); border: 5px solid white;">
+                            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"></path>
+                            </svg>
+                        </div>
+                        <div style="margin-top: 1.25rem; text-align: center;">
+                            <span style="display: inline-block; font-size: 0.75rem; font-weight: 700; color: white; background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%); padding: 0.25rem 0.75rem; border-radius: 50px; text-transform: uppercase; letter-spacing: 0.5px;">Q1 2027</span>
+                            <span style="display: block; font-size: 1.25rem; font-weight: 800; color: #1e293b; margin: 0.5rem 0 0.25rem;">CLIA Launch</span>
+                            <span style="display: block; font-size: 0.85rem; color: #64748b; line-height: 1.4;">Revenue begins<br><strong style="color: #0f766e;">$250/test</strong></span>
+                        </div>
+                    </div>
+
+                    <!-- Milestone 4: 2027+ Scale - FUTURE -->
+                    <div class="timeline-milestone">
+                        <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(148, 163, 184, 0.3); border: 4px solid white;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="12" y1="20" x2="12" y2="10"></line>
+                                <line x1="18" y1="20" x2="18" y2="4"></line>
+                                <line x1="6" y1="20" x2="6" y2="16"></line>
+                            </svg>
+                        </div>
+                        <div style="margin-top: 1.25rem; text-align: center;">
+                            <span style="display: block; font-size: 0.85rem; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px;">2027+</span>
+                            <span style="display: block; font-size: 1.1rem; font-weight: 800; color: #1e293b; margin: 0.25rem 0;">Scale</span>
+                            <span style="display: block; font-size: 0.85rem; color: #64748b; line-height: 1.4;">Medicare coverage</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Your Path Forward Section - Redesigned -->
+    <section id="academy" style="padding: 100px 0; background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%); position: relative; overflow: hidden;">
+        <!-- Background decorative elements -->
+        <div style="position: absolute; top: 10%; left: -5%; width: 300px; height: 300px; background: radial-gradient(circle, rgba(20, 184, 166, 0.05) 0%, transparent 70%); border-radius: 50%; filter: blur(40px);"></div>
+        <div style="position: absolute; bottom: 10%; right: -5%; width: 400px; height: 400px; background: radial-gradient(circle, rgba(6, 182, 212, 0.05) 0%, transparent 70%); border-radius: 50%; filter: blur(40px);"></div>
+
+        <div class="container" style="position: relative; z-index: 2;">
+            <!-- Section Header -->
+            <div style="text-align: center; margin-bottom: 4rem;">
+                <h2 style="font-size: 3rem; font-weight: 900; color: #0f766e; margin-bottom: 1rem;">Your Path Forward</h2>
+                <div style="width: 100px; height: 4px; background: linear-gradient(90deg, #14b8a6 0%, #06b6d4 100%); margin: 0 auto 1.5rem; border-radius: 2px;"></div>
+                <p style="font-size: 1.25rem; color: #64748b; max-width: 700px; margin: 0 auto;">Whether you're a patient, healthcare provider, or investor, we have resources tailored for you.</p>
+            </div>
+
+            <!-- Two Column Layout -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; max-width: 1200px; margin: 0 auto;">
+
+                <!-- For Patients & Healthcare Providers -->
+                <div class="path-card" style="background: white; padding: 3rem; border-radius: 24px; box-shadow: 0 10px 40px rgba(15, 118, 110, 0.1); border-top: 5px solid #14b8a6; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); position: relative; overflow: hidden;">
+                    <!-- Icon -->
+                    <div style="width: 70px; height: 70px; background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; box-shadow: 0 8px 20px rgba(20, 184, 166, 0.3);">
+                        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                        </svg>
+                    </div>
+
+                    <!-- Title -->
+                    <h3 style="font-size: 1.75rem; font-weight: 800; color: #0f766e; margin-bottom: 1rem;">For Patients & Healthcare Providers</h3>
+
+                    <!-- Description -->
+                    <p style="color: #64748b; line-height: 1.7; margin-bottom: 2rem; font-size: 1.05rem;">Learn how our blood-based AMD risk assessment can help detect biomarker alterations associated with AMD risk years before symptoms appear, enabling early clinical evaluation.</p>
+
+                    <!-- Resources -->
+                    <div style="margin-bottom: 2.5rem;">
+                        <h4 style="color: #0f766e; font-weight: 700; margin-bottom: 1.25rem; font-size: 1.1rem;">Available Resources:</h4>
+                        <ul style="list-style: none; padding: 0; margin: 0;">
+                            <li style="display: flex; align-items: start; gap: 0.75rem; margin-bottom: 0.75rem; color: #475569; font-size: 0.95rem;">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#14b8a6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 2px;">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                                <span>Clinical research findings and accuracy data</span>
+                            </li>
+                            <li style="display: flex; align-items: start; gap: 0.75rem; margin-bottom: 0.75rem; color: #475569; font-size: 0.95rem;">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#14b8a6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 2px;">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                                <span>Patient education materials</span>
+                            </li>
+                            <li style="display: flex; align-items: start; gap: 0.75rem; margin-bottom: 0.75rem; color: #475569; font-size: 0.95rem;">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#14b8a6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 2px;">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                                <span>Healthcare provider integration guide</span>
+                            </li>
+                            <li style="display: flex; align-items: start; gap: 0.75rem; color: #475569; font-size: 0.95rem;">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#14b8a6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 2px;">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                                <span>Medicare coverage information</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- CTA Button -->
+                    <a href="mailto:ozgul@a1diagnosis.com?subject=Patient/Healthcare Provider Inquiry" class="path-cta-primary" style="background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%); color: white; padding: 14px 32px; border-radius: 50px; text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 6px 20px rgba(20, 184, 166, 0.3); font-size: 1rem;">
+                        Learn More About Patient Benefits
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- For Investors -->
+                <div class="path-card" style="background: white; padding: 3rem; border-radius: 24px; box-shadow: 0 10px 40px rgba(6, 182, 212, 0.1); border-top: 5px solid #06b6d4; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); position: relative; overflow: hidden;">
+                    <!-- Icon -->
+                    <div style="width: 70px; height: 70px; background: linear-gradient(135deg, #06b6d4 0%, #0284c7 100%); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; box-shadow: 0 8px 20px rgba(6, 182, 212, 0.3);">
+                        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                        </svg>
+                    </div>
+
+                    <!-- Title -->
+                    <h3 style="font-size: 1.75rem; font-weight: 800; color: #0369a1; margin-bottom: 1rem;">For Investors</h3>
+
+                    <!-- Description -->
+                    <p style="color: #64748b; line-height: 1.7; margin-bottom: 2rem; font-size: 1.05rem;">Explore the investment opportunity in the first blood-based AMD risk assessment platform with a $42.3 billion market opportunity and proven business model.</p>
+
+                    <!-- Resources -->
+                    <div style="margin-bottom: 2.5rem;">
+                        <h4 style="color: #0369a1; font-weight: 700; margin-bottom: 1.25rem; font-size: 1.1rem;">Investment Materials:</h4>
+                        <ul style="list-style: none; padding: 0; margin: 0;">
+                            <li style="display: flex; align-items: start; gap: 0.75rem; margin-bottom: 0.75rem; color: #475569; font-size: 0.95rem;">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 2px;">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                                <span>Comprehensive investor presentation</span>
+                            </li>
+                            <li style="display: flex; align-items: start; gap: 0.75rem; margin-bottom: 0.75rem; color: #475569; font-size: 0.95rem;">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 2px;">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                                <span>Financial projections and market analysis</span>
+                            </li>
+                            <li style="display: flex; align-items: start; gap: 0.75rem; margin-bottom: 0.75rem; color: #475569; font-size: 0.95rem;">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 2px;">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                                <span>Team credentials and track record</span>
+                            </li>
+                            <li style="display: flex; align-items: start; gap: 0.75rem; color: #475569; font-size: 0.95rem;">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 2px;">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                                <span>Regulatory strategy and timeline</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- CTA Buttons -->
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <a href="/presentation/presentation.html" class="path-cta-primary" style="background: linear-gradient(135deg, #06b6d4 0%, #0284c7 100%); color: white; padding: 14px 28px; border-radius: 50px; text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 6px 20px rgba(6, 182, 212, 0.3); font-size: 1rem;">
+                            View Full Presentation
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                            </svg>
+                        </a>
+                        <a href="mailto:ozgul@a1diagnosis.com?subject=Investment Inquiry" class="path-cta-secondary" style="background: white; color: #0369a1; padding: 14px 28px; border: 2.5px solid #06b6d4; border-radius: 50px; text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); font-size: 1rem;">
+                            Schedule Meeting
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                <polyline points="22,6 12,13 2,6"></polyline>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CSS for Path Forward Animations -->
+    <style>
+        .path-card {
+            animation: pathCardFadeIn 0.6s ease-out;
+        }
+
+        .path-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(15, 118, 110, 0.2) !important;
+        }
+
+        @keyframes pathCardFadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .path-cta-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(20, 184, 166, 0.4);
+        }
+
+        .path-cta-secondary:hover {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(6, 182, 212, 0.2);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .path-card {
+                animation-delay: 0s !important;
+            }
+        }
+    </style>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-content" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; margin-bottom: 3rem;">
+                <!-- Company Section -->
+                <div class="footer-section">
+                    <div class="footer-logo">A1 DIAGNOSIS</div>
+                    <p style="color: #64748b; font-size: 0.9rem; margin-top: 1rem; line-height: 1.6;">Proactive Vision Risk Analysis Platform. Early AMD risk assessment through AI-powered blood analysis.</p>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <div class="footer-links">
+                        <a href="#products">Products and Services</a>
+                        <a href="#science">Science</a>
+                        <a href="#about">About</a>
+                        <a href="#news">News and Media</a>
+                        <a href="#academy">Proactive Health Academy</a>
+                    </div>
+                </div>
+
+                <!-- Resources -->
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <div class="footer-links">
+                        <a href="#investors">Investor Relations</a>
+                        <a href="#physicians">For Physicians</a>
+                        <a href="/test-information.html">Test Information</a>
+                        <a href="/presentation/presentation.html">Presentation</a>
+                    </div>
+                </div>
+
+                <!-- Contact Information -->
+                <div class="footer-section">
+                    <h4>Contact Us</h4>
+                    <div class="footer-contact">
+                        <div class="footer-contact-item">
+                            <span class="footer-contact-label">Email</span>
+                            <a href="mailto:ozgul@A1Diagnosis.com" class="footer-contact-value">ozgul@A1Diagnosis.com</a>
+                        </div>
+                        <div class="footer-contact-item">
+                            <span class="footer-contact-label">Phone</span>
+                            <a href="tel:+19493811966" class="footer-contact-value">(949) 381-1966</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FDA Disclaimer Section -->
+            <div class="footer-disclaimer">
+                <div class="footer-disclaimer-content">
+                    <h4>⚕️ Important Information</h4>
+                    <p>This test has not been cleared or approved by the US Food and Drug Administration (FDA). The test is being developed as a laboratory-developed test (LDT) and is expected to be commercially available as a CLIA-certified clinical laboratory test in Q1 2027. The performance characteristics will be validated by A1 Diagnosis Laboratories following College of American Pathologists (CAP) and Clinical Laboratory Improvement Amendments (CLIA) regulations.</p>
+                    <p style="margin-top: 1rem;"><a href="#regulatory-info" style="color: #0ea5e9; text-decoration: none; font-weight: 500; transition: color 0.3s ease;" onmouseover="this.style.color='#0284c7'" onmouseout="this.style.color='#0ea5e9'">Read More →</a></p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 A1 Diagnosis. Proactive Vision Risk Analysis Platform. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Device Detection and Redirect
+        (function() {
+            // Check if user is on mobile device
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || 
+                           window.innerWidth <= 768;
+            
+            // Check if already on mobile page or if redirect should be bypassed
+            const isAlreadyMobile = window.location.pathname.includes('mobile');
+            const bypassRedirect = window.location.search.includes('desktop=true');
+            
+            // Redirect to mobile version if on mobile device
+            if (isMobile && !isAlreadyMobile && !bypassRedirect) {
+                window.location.href = 'index-mobile.html';
+                return;
+            }
+        })();
+        
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll fade animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-fade').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Hero stats counter animation
+        function animateCounter(element, target) {
+            let current = 0;
+            const increment = target / 100;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = formatNumber(target);
+                    clearInterval(timer);
+                } else {
+                    element.textContent = formatNumber(Math.floor(current));
+                }
+            }, 20);
+        }
+
+        function formatNumber(num) {
+            if (num >= 1000000) {
+                return (num / 1000000).toFixed(1) + 'M';
+            } else if (num >= 1000) {
+                return (num / 1000).toFixed(1) + 'K';
+            }
+            return num.toString();
+        }
+
+        // Initialize counter animation when hero is visible
+        const heroObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Only animate once
+                    heroObserver.unobserve(entry.target);
+                    
+                    // Add a delay before starting animations
+                    setTimeout(() => {
+                        const statNumbers = document.querySelectorAll('.stat-number');
+                        // The numbers are already set in HTML, so we just add a glow effect
+                        statNumbers.forEach(stat => {
+                            stat.style.textShadow = '0 0 20px rgba(255, 255, 255, 0.5)';
+                        });
+                    }, 2000);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        heroObserver.observe(document.querySelector('.hero'));
+
+        // Cinematic Hero Text Animation System
+        function startHeroAnimation() {
+            const title1 = document.getElementById('title-1');
+            const title2 = document.getElementById('title-2');
+            const description = document.getElementById('description');
+            const typewriterText = document.getElementById('typewriter-text');
+
+            // Ensure elements exist before proceeding
+            if (!title1 || !title2 || !description || !typewriterText) {
+                console.warn('Hero animation elements not found');
+                return;
+            }
+
+            const fullDescription = "We're developing the world's first blood-based test that can detect alterations associated with AMD risk years before vision loss begins—enabling proactive eye care.";
+
+            let animationRunning = false;
+            let timeouts = [];
+
+            // Clear all timeouts
+            function clearAllTimeouts() {
+                timeouts.forEach(timeout => clearTimeout(timeout));
+                timeouts = [];
+            }
+
+            // Reset all elements
+            function resetElements() {
+                try {
+                    title1.classList.remove('fade-in', 'fade-out');
+                    title2.classList.remove('fade-in', 'fade-out');
+                    description.classList.remove('fade-in', 'fade-out');
+                    title1.style.opacity = '0';
+                    title2.style.opacity = '0';
+                    description.style.opacity = '0';
+                    typewriterText.textContent = '';
+                } catch (error) {
+                    console.error('Error resetting elements:', error);
+                }
+            }
+            
+            // Safe typewriter effect function
+            function typeWriter(text, element, speed = 60) {
+                return new Promise((resolve) => {
+                    if (!element || !text) {
+                        resolve();
+                        return;
+                    }
+                    
+                    let i = 0;
+                    element.textContent = '';
+                    
+                    function addChar() {
+                        try {
+                            if (i < text.length && animationRunning) {
+                                const char = text.charAt(i);
+                                element.textContent += char;
+                                i++;
+                                const timeout = setTimeout(addChar, speed);
+                                timeouts.push(timeout);
+                            } else {
+                                resolve();
+                            }
+                        } catch (error) {
+                            console.error('Error in typewriter:', error);
+                            resolve();
+                        }
+                    }
+                    
+                    addChar();
+                });
+            }
+            
+            // Animation sequence
+            function runSequence() {
+                if (animationRunning) return;
+                
+                animationRunning = true;
+                clearAllTimeouts();
+                resetElements();
+                
+                // Phase 1: 0-6 seconds - Show title 1
+                timeouts.push(setTimeout(() => {
+                    if (animationRunning && title1) {
+                        title1.classList.add('fade-in');
+                    }
+                }, 500));
+                
+                // Phase 1 end: 6 seconds - Hide title 1
+                timeouts.push(setTimeout(() => {
+                    if (animationRunning && title1) {
+                        title1.classList.remove('fade-in');
+                        title1.classList.add('fade-out');
+                    }
+                }, 6000));
+                
+                // Phase 2: 6-12 seconds - Show title 2
+                timeouts.push(setTimeout(() => {
+                    if (animationRunning && title2) {
+                        title2.classList.add('fade-in');
+                    }
+                }, 6500));
+                
+                // Phase 2 end: 12 seconds - Hide title 2
+                timeouts.push(setTimeout(() => {
+                    if (animationRunning && title2) {
+                        title2.classList.remove('fade-in');
+                        title2.classList.add('fade-out');
+                    }
+                }, 12000));
+                
+                // Phase 3: 12-25 seconds - Show description with typewriter
+                timeouts.push(setTimeout(() => {
+                    if (animationRunning && description && typewriterText) {
+                        description.classList.add('fade-in');
+                        typeWriter(fullDescription, typewriterText, 60);
+                    }
+                }, 12500));
+
+                // Hide description at end
+                timeouts.push(setTimeout(() => {
+                    if (animationRunning && description) {
+                        description.classList.remove('fade-in');
+                        description.classList.add('fade-out');
+                    }
+                }, 26500));
+
+                // Restart sequence after 30 seconds
+                timeouts.push(setTimeout(() => {
+                    animationRunning = false;
+                    runSequence();
+                }, 30000));
+            }
+            
+            // Start the sequence
+            runSequence();
+            
+            // Cleanup on page unload
+            window.addEventListener('beforeunload', () => {
+                animationRunning = false;
+                clearAllTimeouts();
+            });
+        }
+        
+        // Video fallback handling
+        function setupVideoFallback() {
+            const video = document.querySelector('.hero video');
+            const gifFallback = document.querySelector('.hero img');
+            const gradientFallback = document.querySelector('.hero div[style*="background: linear-gradient"]');
+            
+            // Check if video can play
+            video.addEventListener('error', function() {
+                console.log('Video failed to load, trying GIF fallback');
+                video.style.display = 'none';
+                gifFallback.style.display = 'block';
+            });
+            
+            // Check if video data is loaded
+            video.addEventListener('loadeddata', function() {
+                console.log('Video loaded successfully');
+            });
+            
+            // Fallback to gradient if both video and GIF fail
+            gifFallback.addEventListener('error', function() {
+                console.log('GIF fallback failed, using gradient background');
+                gifFallback.style.display = 'none';
+                gradientFallback.style.display = 'block';
+            });
+        }
+
+        // Initialize hero animation when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            setupVideoFallback();
+            setTimeout(startHeroAnimation, 1000); // Start after 1 second delay
+        });
+
+        // Alternate button text every 10 seconds with turn-around animation
+        function alternateButtonText() {
+            const button = document.querySelector('.cta-button');
+            if (button) {
+                let isPreseedText = false;
+                
+                setInterval(() => {
+                    // Start turn-around animation
+                    button.style.transform = 'rotateY(90deg)';
+                    
+                    // Change text at the middle of the animation
+                    setTimeout(() => {
+                        if (isPreseedText) {
+                            button.textContent = 'View Presentation';
+                            isPreseedText = false;
+                        } else {
+                            button.textContent = 'Pre-seed Round Open';
+                            isPreseedText = true;
+                        }
+                        
+                        // Complete the turn-around animation
+                        button.style.transform = 'rotateY(0deg)';
+                    }, 300); // Wait 300ms (half of transition time)
+                    
+                }, 10000); // 10 seconds = 10000 milliseconds
+            }
+        }
+
+        // Start button text alternation when page loads
+        document.addEventListener('DOMContentLoaded', alternateButtonText);
+
+        // Scroll Animation - Intersection Observer
+        document.addEventListener('DOMContentLoaded', function() {
+            // Observer for fade-in zoom animation (Image_2.png)
+            const observerOptions = {
+                threshold: 0.2,
+                rootMargin: '0px 0px -100px 0px'
+            };
+
+            const imageObserver = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-in');
+                        imageObserver.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            // Observe image animation
+            const imageElement = document.querySelector('.scroll-animate');
+            if (imageElement) {
+                imageObserver.observe(imageElement);
+            }
+
+            // Observer for stagger animation (Process Steps)
+            const staggerObserver = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const delay = entry.target.getAttribute('data-delay') || 0;
+                        setTimeout(() => {
+                            entry.target.classList.add('animate-in');
+                        }, parseInt(delay));
+                        staggerObserver.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all process steps
+            const processSteps = document.querySelectorAll('.scroll-stagger');
+            processSteps.forEach(step => {
+                staggerObserver.observe(step);
+            });
+        });
+
+        // Dropdown Menu Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropdownTriggers = document.querySelectorAll('.dropdown-trigger');
+            const dropdowns = document.querySelectorAll('.dropdown');
+
+            // Toggle dropdown on click
+            dropdownTriggers.forEach(trigger => {
+                trigger.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const dropdown = this.parentElement;
+                    const menu = dropdown.querySelector('.dropdown-menu');
+                    const isOpen = menu.classList.contains('show');
+
+                    // Close all dropdowns
+                    document.querySelectorAll('.dropdown-menu').forEach(m => {
+                        m.classList.remove('show');
+                    });
+                    document.querySelectorAll('.dropdown-trigger').forEach(t => {
+                        t.classList.remove('dropdown-open');
+                    });
+
+                    // Toggle current dropdown
+                    if (!isOpen) {
+                        menu.classList.add('show');
+                        this.classList.add('dropdown-open');
+                    }
+                });
+            });
+
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.dropdown')) {
+                    document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                        menu.classList.remove('show');
+                    });
+                    document.querySelectorAll('.dropdown-trigger').forEach(trigger => {
+                        trigger.classList.remove('dropdown-open');
+                    });
+                }
+            });
+
+            // Close dropdown on escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                        menu.classList.remove('show');
+                    });
+                    document.querySelectorAll('.dropdown-trigger').forEach(trigger => {
+                        trigger.classList.remove('dropdown-open');
+                    });
+                }
+            });
+        });
+    </script>
+
+    <!-- A1 Diagnosis Custom Analytics - Section Timing & User Behavior -->
+    <script src="js/section-analytics.js"></script>
 </body>
 </html>
