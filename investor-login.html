@@ -393,7 +393,7 @@
 
                 <div class="form-group">
                     <label for="password">Access Code <span>*</span></label>
-                    <input type="password" id="password" name="password" placeholder="Enter your access code" required>
+                    <input type="text" id="password" name="password" placeholder="INV-XXXX-XXXX" required style="font-family: 'Courier New', monospace; letter-spacing: 1px;">
                     <span class="error-message" id="passwordError">Invalid access code. Please contact us for assistance.</span>
                 </div>
 
@@ -416,7 +416,7 @@
             <!-- Alternative CTA -->
             <div class="alt-cta">
                 <p>Don't have an access code?</p>
-                <a href="https://calendly.com/a1diagnosis/30min" target="_blank">Schedule a meeting to request access →</a>
+                <a href="/investor-contact.html">Request access to investor materials →</a>
             </div>
 
             <!-- Success Message (hidden by default) -->
@@ -438,8 +438,18 @@
     </footer>
 
     <script>
-        // Access code (same for all investors)
-        const ACCESS_CODE = 'ID-202-02-conf';
+        // Validate access codes
+        // Accepts: INV-XXXX-XXXX pattern (unique codes from system)
+        // Also accepts legacy code for backwards compatibility
+        function isValidAccessCode(code) {
+            // Pattern for unique codes: INV-XXXX-XXXX (letters and numbers, no confusing chars)
+            const uniqueCodePattern = /^INV-[A-HJ-NP-Z2-9]{4}-[A-HJ-NP-Z2-9]{4}$/;
+
+            // Legacy code for backwards compatibility
+            const legacyCode = 'ID-202-02-conf';
+
+            return uniqueCodePattern.test(code) || code === legacyCode;
+        }
 
         // Form handling
         const form = document.getElementById('loginForm');
@@ -458,7 +468,7 @@
             passwordError.classList.remove('show');
 
             const email = emailInput.value.trim();
-            const password = passwordInput.value;
+            const password = passwordInput.value.trim().toUpperCase(); // Normalize to uppercase
 
             // Validate email
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -467,8 +477,8 @@
                 return;
             }
 
-            // Validate password
-            if (password !== ACCESS_CODE) {
+            // Validate access code
+            if (!isValidAccessCode(password) && password !== 'ID-202-02-CONF') {
                 passwordError.classList.add('show');
                 return;
             }

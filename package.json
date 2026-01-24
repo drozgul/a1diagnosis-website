@@ -9,7 +9,8 @@
     "test": "echo 'No tests specified'"
   },
   "dependencies": {
-    "@netlify/blobs": "^8.2.0"
+    "@netlify/blobs": "^8.2.0",
+    "@sendgrid/mail": "^8.1.0"
   },
   "devDependencies": {
     "serve": "^14.2.0"
