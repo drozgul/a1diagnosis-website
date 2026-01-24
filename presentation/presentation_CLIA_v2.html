@@ -41,7 +41,31 @@
             }
         })();
     </script>
-    
+
+    <!-- Authentication Check - Redirect to login if not authenticated -->
+    <script>
+        (function() {
+            const isAuthenticated = sessionStorage.getItem('investorAuthenticated');
+            const authTimestamp = sessionStorage.getItem('authTimestamp');
+            const ONE_HOUR = 60 * 60 * 1000; // Session expires after 1 hour
+
+            if (!isAuthenticated || !authTimestamp) {
+                // Not authenticated, redirect to login
+                window.location.href = '/investor-login.html';
+                return;
+            }
+
+            const elapsed = Date.now() - parseInt(authTimestamp);
+            if (elapsed > ONE_HOUR) {
+                // Session expired, clear and redirect
+                sessionStorage.removeItem('investorAuthenticated');
+                sessionStorage.removeItem('investorEmail');
+                sessionStorage.removeItem('authTimestamp');
+                window.location.href = '/investor-login.html';
+            }
+        })();
+    </script>
+
     <style>
         * {
             margin: 0;
