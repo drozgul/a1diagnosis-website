@@ -1229,17 +1229,72 @@
             margin-left: 2px;
         }
 
+        /* Mobile Menu - Hidden on Desktop */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: #0f766e;
+            cursor: pointer;
+            padding: 4px 8px;
+            line-height: 1;
+        }
+
+        .mobile-menu {
+            display: none;
+        }
+
         /* Mobile Responsiveness */
         @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .mobile-menu {
+                display: none;
+                background: #ffffff;
+                border-top: 1px solid #e5e7eb;
+                padding: 0;
+                width: 100%;
+            }
+
+            .mobile-menu.active {
+                display: block;
+            }
+
+            .mobile-nav-links {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .mobile-nav-links a {
+                display: block;
+                padding: 12px 20px;
+                color: #1e293b;
+                text-decoration: none;
+                font-size: 0.95rem;
+                font-weight: 500;
+                border-bottom: 1px solid #f1f5f9;
+                transition: background 0.2s ease;
+            }
+
+            .mobile-nav-links a:hover,
+            .mobile-nav-links a:active {
+                background: #f0fdfa;
+                color: #0f766e;
+            }
+
             .utility-nav {
                 padding: 8px 0;
-                flex-direction: column;
-                align-items: flex-start;
+                flex-direction: row !important;
+                align-items: center !important;
+                justify-content: space-between;
                 gap: 8px;
             }
 
             .utility-nav-links {
-                width: 100%;
+                display: none !important;
             }
 
             .utility-nav a {
@@ -1248,7 +1303,7 @@
             }
 
             .main-nav-row {
-                padding: 12px 0;
+                display: none;
             }
 
             .logo {
@@ -1257,10 +1312,6 @@
 
             .logo-image {
                 height: 32px;
-            }
-
-            .nav-links {
-                display: none;
             }
 
             .hero h1 {
@@ -1315,6 +1366,52 @@
             .ticker-item span:last-child {
                 font-size: 0.8rem !important;
             }
+
+            /* Hero section mobile fixes */
+            .hero h2 {
+                font-size: 1.5rem !important;
+            }
+
+            .hero h1 {
+                font-size: 2rem !important;
+            }
+
+            #cta-buttons {
+                position: static !important;
+                justify-content: center !important;
+                flex-wrap: wrap !important;
+                margin-top: 1.5rem !important;
+                padding: 0 20px !important;
+            }
+
+            /* Section padding on mobile */
+            .hero {
+                padding: 50px 20px !important;
+            }
+
+            .investment-section,
+            section[style*="padding: 5rem"],
+            section[style*="padding: 4rem"] {
+                padding: 2.5rem 1rem !important;
+            }
+
+            /* Stats grid mobile */
+            .stats-grid {
+                grid-template-columns: 1fr !important;
+                gap: 1rem !important;
+            }
+
+            .problem-stats {
+                grid-template-columns: 1fr !important;
+            }
+
+            .problem-stat-number {
+                font-size: 2rem !important;
+            }
+
+            .stat-value {
+                font-size: 2rem !important;
+            }
         }
         
         /* Scroll animations */
@@ -1348,6 +1445,7 @@
                     <div class="logo">
                         <img src="A1_Diagnosis_Logo.jpg" alt="A1 Diagnosis" class="logo-image">
                     </div>
+                    <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Toggle menu">&#9776;</button>
                     <div class="utility-nav-links">
                         <a href="#investors">Investor Relations</a>
                         <a href="#contact">Contact</a>
@@ -1509,6 +1607,21 @@
                             </div>
                         </li>
                     </ul>
+                </div>
+
+                <!-- Mobile Menu -->
+                <div class="mobile-menu" id="mobile-menu">
+                    <div class="mobile-nav-links">
+                        <a href="proactive-vision-platform.html" onclick="closeMobileMenu()">Proactive Vision Analysis Platform</a>
+                        <a href="pipeline.html" onclick="closeMobileMenu()">Pipeline</a>
+                        <a href="publications.html" onclick="closeMobileMenu()">Publications</a>
+                        <a href="what-is-proactive-health.html" onclick="closeMobileMenu()">What is Proactive Health Care?</a>
+                        <a href="what-is-amd.html" onclick="closeMobileMenu()">What is AMD?</a>
+                        <a href="early-risk-assessment.html" onclick="closeMobileMenu()">Early Risk Assessment</a>
+                        <a href="faqs.html" onclick="closeMobileMenu()">FAQs</a>
+                        <a href="investor-contact.html" onclick="closeMobileMenu()">Investor Relations</a>
+                        <a href="#contact" onclick="closeMobileMenu()">Contact</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -2876,23 +2989,30 @@
     </footer>
 
     <script>
-        // Mobile Device Detection and Redirect
-        (function() {
-            // Check if user is on mobile device
-            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || 
-                           window.innerWidth <= 768;
-            
-            // Check if already on mobile page or if redirect should be bypassed
-            const isAlreadyMobile = window.location.pathname.includes('mobile');
-            const bypassRedirect = window.location.search.includes('desktop=true');
-            
-            // Redirect to mobile version if on mobile device
-            if (isMobile && !isAlreadyMobile && !bypassRedirect) {
-                window.location.href = 'index-mobile.html';
-                return;
+        // Mobile Menu Functions
+        function toggleMobileMenu() {
+            var menu = document.getElementById('mobile-menu');
+            var btn = document.querySelector('.mobile-menu-btn');
+            menu.classList.toggle('active');
+            btn.innerHTML = menu.classList.contains('active') ? '&#10005;' : '&#9776;';
+        }
+
+        function closeMobileMenu() {
+            var menu = document.getElementById('mobile-menu');
+            var btn = document.querySelector('.mobile-menu-btn');
+            menu.classList.remove('active');
+            btn.innerHTML = '&#9776;';
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+            var menu = document.getElementById('mobile-menu');
+            var btn = document.querySelector('.mobile-menu-btn');
+            if (menu && menu.classList.contains('active') && !e.target.closest('.navbar')) {
+                closeMobileMenu();
             }
-        })();
-        
+        });
+
         // Navbar scroll effect
         window.addEventListener('scroll', function() {
             const navbar = document.getElementById('navbar');
