@@ -1609,23 +1609,456 @@
                     </ul>
                 </div>
 
-                <!-- Mobile Menu -->
-                <div class="mobile-menu" id="mobile-menu">
-                    <div class="mobile-nav-links">
-                        <a href="proactive-vision-platform.html" onclick="closeMobileMenu()">Proactive Vision Analysis Platform</a>
-                        <a href="pipeline.html" onclick="closeMobileMenu()">Pipeline</a>
-                        <a href="publications.html" onclick="closeMobileMenu()">Publications</a>
-                        <a href="what-is-proactive-health.html" onclick="closeMobileMenu()">What is Proactive Health Care?</a>
-                        <a href="what-is-amd.html" onclick="closeMobileMenu()">What is AMD?</a>
-                        <a href="early-risk-assessment.html" onclick="closeMobileMenu()">Early Risk Assessment</a>
-                        <a href="faqs.html" onclick="closeMobileMenu()">FAQs</a>
-                        <a href="investor-contact.html" onclick="closeMobileMenu()">Investor Relations</a>
-                        <a href="#contact" onclick="closeMobileMenu()">Contact</a>
+                <!-- Mobile Menu Overlay (Exact Sciences Style) -->
+                <div class="mm-overlay" id="mobile-menu">
+
+                    <!-- Level 1: Main Menu -->
+                    <div class="mm-panel" id="mm-main">
+                        <div class="mm-header">
+                            <span></span>
+                            <button class="mm-close" onclick="closeMobileMenu()" aria-label="Close menu">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1e293b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                            </button>
+                        </div>
+                        <div class="mm-body">
+                            <div class="mm-main-nav">
+                                <button class="mm-nav-item" onclick="openSubMenu('products')">
+                                    Products and Services
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1e293b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                </button>
+                                <button class="mm-nav-item" onclick="openSubMenu('science')">
+                                    Science
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1e293b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                </button>
+                                <button class="mm-nav-item" onclick="openSubMenu('about')">
+                                    About
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1e293b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                </button>
+                                <button class="mm-nav-item" onclick="openSubMenu('news')">
+                                    News and Media
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1e293b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                </button>
+                                <button class="mm-nav-item" onclick="openSubMenu('academy')">
+                                    Proactive Health Academy
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1e293b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                </button>
+                            </div>
+                            <div class="mm-divider"></div>
+                            <div class="mm-secondary">
+                                <a href="investor-contact.html" class="mm-sec-link" onclick="closeMobileMenu()">
+                                    Investor Relations
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                                </a>
+                                <a href="#contact" class="mm-sec-link" onclick="closeMobileMenu()">Contact</a>
+                                <div class="mm-country">
+                                    <img src="US_Flag.svg" alt="US Flag" style="width: 20px; height: auto;">
+                                    United States
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1e293b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: auto;"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                </div>
+                            </div>
+                            <div class="mm-cta">
+                                <a href="https://calendly.com/a1diagnosis/30min" target="_blank" class="mm-cta-btn">Schedule Meeting</a>
+                            </div>
+                        </div>
                     </div>
+
+                    <!-- Level 2: Products and Services -->
+                    <div class="mm-panel mm-sub" id="mm-products">
+                        <div class="mm-header">
+                            <button class="mm-back" onclick="backToMain()">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1e293b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                                Main menu
+                            </button>
+                            <button class="mm-close" onclick="closeMobileMenu()" aria-label="Close menu">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1e293b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                            </button>
+                        </div>
+                        <div class="mm-body">
+                            <h2 class="mm-sub-title">Products and Services</h2>
+                            <a href="proactive-vision-platform.html" class="mm-featured-link" onclick="closeMobileMenu()">
+                                Explore our products
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                            </a>
+                            <div class="mm-divider"></div>
+                            <div class="mm-sub-links">
+                                <a href="proactive-vision-platform.html" onclick="closeMobileMenu()">Proactive Vision Analysis Platform</a>
+                                <a href="#how-it-works" onclick="closeMobileMenu()">How It Works</a>
+                                <a href="#test-information" onclick="closeMobileMenu()">Test Information</a>
+                                <a href="#coverage" onclick="closeMobileMenu()">Coverage & Reimbursement</a>
+                                <a href="#physicians" onclick="closeMobileMenu()">For Healthcare Providers</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Level 2: Science -->
+                    <div class="mm-panel mm-sub" id="mm-science">
+                        <div class="mm-header">
+                            <button class="mm-back" onclick="backToMain()">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1e293b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                                Main menu
+                            </button>
+                            <button class="mm-close" onclick="closeMobileMenu()" aria-label="Close menu">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1e293b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                            </button>
+                        </div>
+                        <div class="mm-body">
+                            <h2 class="mm-sub-title">Science</h2>
+                            <a href="#science" class="mm-featured-link" onclick="closeMobileMenu()">
+                                Explore our science
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                            </a>
+                            <div class="mm-divider"></div>
+                            <div class="mm-sub-links">
+                                <a href="pipeline.html" onclick="closeMobileMenu()">Pipeline</a>
+                                <a href="publications.html" onclick="closeMobileMenu()">Publications</a>
+                                <a href="#clinical-studies" onclick="closeMobileMenu()">Clinical Studies</a>
+                                <a href="#platform" onclick="closeMobileMenu()">Proactive Vision Analysis Platform</a>
+                                <a href="#validation" onclick="closeMobileMenu()">Validation Studies</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Level 2: About -->
+                    <div class="mm-panel mm-sub" id="mm-about">
+                        <div class="mm-header">
+                            <button class="mm-back" onclick="backToMain()">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1e293b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                                Main menu
+                            </button>
+                            <button class="mm-close" onclick="closeMobileMenu()" aria-label="Close menu">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1e293b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                            </button>
+                        </div>
+                        <div class="mm-body">
+                            <h2 class="mm-sub-title">About</h2>
+                            <a href="#about" class="mm-featured-link" onclick="closeMobileMenu()">
+                                Learn about us
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                            </a>
+                            <div class="mm-divider"></div>
+                            <div class="mm-sub-links">
+                                <a href="#leadership" onclick="closeMobileMenu()">Leadership</a>
+                                <a href="#history" onclick="closeMobileMenu()">History</a>
+                                <a href="#corporate-impact" onclick="closeMobileMenu()">Corporate Impact</a>
+                                <a href="#collaborations" onclick="closeMobileMenu()">Collaborations</a>
+                                <a href="#contact" onclick="closeMobileMenu()">Contact</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Level 2: News and Media -->
+                    <div class="mm-panel mm-sub" id="mm-news">
+                        <div class="mm-header">
+                            <button class="mm-back" onclick="backToMain()">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1e293b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                                Main menu
+                            </button>
+                            <button class="mm-close" onclick="closeMobileMenu()" aria-label="Close menu">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1e293b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                            </button>
+                        </div>
+                        <div class="mm-body">
+                            <h2 class="mm-sub-title">News and Media</h2>
+                            <a href="#news" class="mm-featured-link" onclick="closeMobileMenu()">
+                                Explore news
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                            </a>
+                            <div class="mm-divider"></div>
+                            <div class="mm-sub-links">
+                                <a href="#press" onclick="closeMobileMenu()">Milestones & Progression</a>
+                                <a href="#media" onclick="closeMobileMenu()">For Media</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Level 2: Proactive Health Academy -->
+                    <div class="mm-panel mm-sub" id="mm-academy">
+                        <div class="mm-header">
+                            <button class="mm-back" onclick="backToMain()">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1e293b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                                Main menu
+                            </button>
+                            <button class="mm-close" onclick="closeMobileMenu()" aria-label="Close menu">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1e293b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                            </button>
+                        </div>
+                        <div class="mm-body">
+                            <h2 class="mm-sub-title">Proactive Health Academy</h2>
+                            <a href="#academy" class="mm-featured-link" onclick="closeMobileMenu()">
+                                Explore academy
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                            </a>
+                            <div class="mm-divider"></div>
+                            <div class="mm-sub-links">
+                                <a href="what-is-proactive-health.html" onclick="closeMobileMenu()">What is Proactive Health Care?</a>
+                                <a href="early-risk-assessment.html" onclick="closeMobileMenu()">Early Risk Assessment</a>
+                                <a href="future-of-amd-prevention.html" onclick="closeMobileMenu()">The Future of AMD Prevention</a>
+                                <a href="what-is-amd.html" onclick="closeMobileMenu()">What is AMD?</a>
+                                <a href="amd-stages.html" onclick="closeMobileMenu()">AMD Stages & Progression</a>
+                                <a href="risk-factors.html" onclick="closeMobileMenu()">Risk Factors</a>
+                                <a href="faqs.html" onclick="closeMobileMenu()">FAQs</a>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
     </nav>
+
+    <!-- Mobile Menu Overlay Styles -->
+    <style>
+        /* Mobile Menu Overlay */
+        .mm-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #ffffff;
+            z-index: 10000;
+            overflow: hidden;
+        }
+
+        .mm-overlay.active {
+            display: block;
+        }
+
+        /* Panels */
+        .mm-panel {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #ffffff;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease;
+        }
+
+        /* Main panel: visible by default, slides left when sub opens */
+        #mm-main {
+            transform: translateX(0);
+        }
+
+        #mm-main.mm-slide-out {
+            transform: translateX(-100%);
+        }
+
+        /* Sub panels: off-screen right by default, slide in when active */
+        .mm-sub {
+            transform: translateX(100%);
+        }
+
+        .mm-sub.mm-panel-active {
+            transform: translateX(0);
+        }
+
+        /* Header */
+        .mm-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 24px;
+            border-bottom: 1px solid #e5e7eb;
+            flex-shrink: 0;
+            min-height: 56px;
+        }
+
+        .mm-close {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background 0.2s ease;
+        }
+
+        .mm-close:active {
+            background: #f1f5f9;
+        }
+
+        .mm-back {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: #1e293b;
+            font-family: inherit;
+        }
+
+        .mm-back:active {
+            color: #0f766e;
+        }
+
+        /* Body */
+        .mm-body {
+            padding: 28px 24px;
+            flex: 1;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* Main Navigation Items */
+        .mm-main-nav {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mm-nav-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 20px 0;
+            background: none;
+            border: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1e293b;
+            cursor: pointer;
+            text-align: left;
+            font-family: inherit;
+            transition: color 0.2s ease;
+        }
+
+        .mm-nav-item:active {
+            color: #0f766e;
+        }
+
+        /* Divider */
+        .mm-divider {
+            height: 1px;
+            background: #e5e7eb;
+            margin: 16px 0;
+        }
+
+        /* Secondary Links */
+        .mm-secondary {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .mm-sec-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 0;
+            color: #1e293b;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .mm-sec-link:active {
+            color: #0f766e;
+        }
+
+        /* Country Selector */
+        .mm-country {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 0;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #1e293b;
+        }
+
+        /* CTA Button */
+        .mm-cta {
+            margin-top: 28px;
+            padding-top: 8px;
+        }
+
+        .mm-cta-btn {
+            display: block;
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 50px;
+            box-shadow: 0 6px 20px rgba(20, 184, 166, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .mm-cta-btn:active {
+            transform: scale(0.98);
+        }
+
+        /* Sub Panel Styles */
+        .mm-sub-title {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #1e293b;
+            margin-bottom: 12px;
+        }
+
+        .mm-featured-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #0f766e;
+            text-decoration: underline;
+            text-underline-offset: 4px;
+            text-decoration-thickness: 2px;
+            margin-bottom: 8px;
+            transition: color 0.2s ease;
+        }
+
+        .mm-featured-link:active {
+            color: #0d9488;
+        }
+
+        /* Dropdown arrow removal for mobile menu links */
+        .mm-featured-link::after,
+        .mm-sub-links a::after {
+            display: none !important;
+        }
+
+        .mm-sub-links {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mm-sub-links a {
+            display: block;
+            padding: 18px 0;
+            color: #1e293b;
+            text-decoration: none;
+            font-size: 1.05rem;
+            font-weight: 500;
+            transition: color 0.2s ease;
+            height: auto;
+        }
+
+        .mm-sub-links a::after {
+            display: none !important;
+        }
+
+        .mm-sub-links a:active {
+            color: #0f766e;
+        }
+    </style>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
@@ -2989,29 +3422,44 @@
     </footer>
 
     <script>
-        // Mobile Menu Functions
+        // Mobile Menu Functions (Exact Sciences-style sliding panels)
         function toggleMobileMenu() {
-            var menu = document.getElementById('mobile-menu');
-            var btn = document.querySelector('.mobile-menu-btn');
-            menu.classList.toggle('active');
-            btn.innerHTML = menu.classList.contains('active') ? '&#10005;' : '&#9776;';
+            var overlay = document.getElementById('mobile-menu');
+            if (overlay.classList.contains('active')) {
+                closeMobileMenu();
+            } else {
+                overlay.classList.add('active');
+                document.getElementById('mm-main').classList.remove('mm-slide-out');
+                // Reset all sub-panels
+                document.querySelectorAll('.mm-sub').forEach(function(panel) {
+                    panel.classList.remove('mm-panel-active');
+                });
+                document.body.style.overflow = 'hidden';
+            }
         }
 
         function closeMobileMenu() {
-            var menu = document.getElementById('mobile-menu');
-            var btn = document.querySelector('.mobile-menu-btn');
-            menu.classList.remove('active');
-            btn.innerHTML = '&#9776;';
+            var overlay = document.getElementById('mobile-menu');
+            overlay.classList.remove('active');
+            // Reset all panels
+            document.getElementById('mm-main').classList.remove('mm-slide-out');
+            document.querySelectorAll('.mm-sub').forEach(function(panel) {
+                panel.classList.remove('mm-panel-active');
+            });
+            document.body.style.overflow = '';
         }
 
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', function(e) {
-            var menu = document.getElementById('mobile-menu');
-            var btn = document.querySelector('.mobile-menu-btn');
-            if (menu && menu.classList.contains('active') && !e.target.closest('.navbar')) {
-                closeMobileMenu();
-            }
-        });
+        function openSubMenu(id) {
+            document.getElementById('mm-main').classList.add('mm-slide-out');
+            document.getElementById('mm-' + id).classList.add('mm-panel-active');
+        }
+
+        function backToMain() {
+            document.querySelectorAll('.mm-sub').forEach(function(panel) {
+                panel.classList.remove('mm-panel-active');
+            });
+            document.getElementById('mm-main').classList.remove('mm-slide-out');
+        }
 
         // Navbar scroll effect
         window.addEventListener('scroll', function() {
