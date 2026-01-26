@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our History | A1 Diagnosis - From Research to Reality</title>
+    <meta name="description" content="The story of A1 Diagnosis: Six years of AMD biomarker research at UC Irvine, leading to the world's first blood-based AMD risk assessment platform. Learn about our journey from academic discovery to commercial innovation.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="A1_Favicon_V2.png">
+    <link rel="shortcut icon" type="image/png" href="A1_Favicon_V2.png">
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="Our History | A1 Diagnosis">
+    <meta property="og:description" content="The story of A1 Diagnosis: From six years of AMD research at UC Irvine to building the world's first blood-based AMD risk assessment platform.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://a1diagnosis.com/history">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-27QM6KXY13"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-27QM6KXY13');
+    </script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        /* === RESET & BASE === */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.7;
+            color: #475569;
+            background: #ffffff;
+        }
+
+        /* === NAVBAR === */
+        .navbar {
+            background: rgba(255, 255, 255, 0.98);
+            border-bottom: 1px solid #e5e7eb;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        .nav-content {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: #000000;
+            text-decoration: none;
+        }
+        .logo-image { height: 40px; width: auto; }
+        .nav-back {
+            color: #64748b;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .nav-back:hover { color: #0d9488; }
+
+        /* === HERO === */
+        .hero {
+            background: linear-gradient(135deg, #0f766e 0%, #0d9488 50%, #14b8a6 100%);
+            color: white;
+            padding: 80px 24px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, transparent 70%);
+            animation: heroRotate 30s linear infinite;
+        }
+        @keyframes heroRotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .hero h1 {
+            font-size: 2.75rem;
+            font-weight: 900;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+            position: relative;
+            z-index: 2;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            max-width: 700px;
+            margin: 0 auto;
+            font-weight: 400;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* === MAIN CONTENT === */
+        .main-content {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* === HISTORY SECTION === */
+        .history-section {
+            padding: 5rem 0;
+            background: linear-gradient(180deg, #ffffff 0%, #f0fdfa 100%);
+        }
+
+        /* === TIMELINE === */
+        .timeline-container {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Vertical line for desktop */
+        .timeline-line {
+            position: absolute;
+            left: 19px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, #14b8a6 0%, #06b6d4 50%, #0ea5e9 100%);
+            display: block;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 60px;
+            margin-bottom: 2.5rem;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .timeline-item.animate-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            z-index: 2;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .timeline-item:hover .timeline-dot {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .timeline-dot span {
+            color: white;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .dot-teal { background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%); }
+        .dot-cyan { background: linear-gradient(135deg, #06b6d4 0%, #0284c7 100%); }
+        .dot-blue { background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%); }
+
+        .timeline-card {
+            background: white;
+            padding: 1.75rem;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(15, 118, 110, 0.06);
+            border: 2px solid rgba(20, 184, 166, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .timeline-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 40px rgba(15, 118, 110, 0.12);
+            border-color: rgba(20, 184, 166, 0.25);
+        }
+
+        .timeline-card h3 {
+            font-size: 1.35rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .color-teal { color: #0f766e; }
+        .color-cyan { color: #0369a1; }
+        .color-blue { color: #0284c7; }
+
+        .timeline-date {
+            color: #64748b;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .timeline-card p {
+            color: #334155;
+            line-height: 1.7;
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        .timeline-card a {
+            color: #0f766e;
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .timeline-card a:hover {
+            color: #14b8a6;
+            text-decoration: underline;
+        }
+
+        /* Timeline Bullet Points */
+        .timeline-bullets {
+            list-style: none;
+            padding: 0;
+            margin: 1rem 0 0 0;
+        }
+
+        .timeline-bullets li {
+            position: relative;
+            padding-left: 24px;
+            margin-bottom: 10px;
+            color: #334155;
+            line-height: 1.6;
+            font-size: 0.98rem;
+        }
+
+        .timeline-bullets li:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-bullets li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 8px;
+            height: 8px;
+            background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
+            border-radius: 50%;
+        }
+
+        /* === VISION BOX === */
+        .vision-box {
+            background: linear-gradient(135deg, #f0fdfa 0%, #e0f2fe 100%);
+            padding: 2.5rem;
+            border-radius: 20px;
+            margin-top: 4rem;
+            border: 2px solid rgba(20, 184, 166, 0.2);
+            box-shadow: 0 8px 30px rgba(15, 118, 110, 0.08);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .vision-box.animate-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .vision-box h3 {
+            color: #0f766e;
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .vision-box p {
+            color: #334155;
+            line-height: 1.8;
+            text-align: center;
+            font-size: 1.05rem;
+            margin: 0;
+        }
+
+        /* === PLATFORM BOX === */
+        .platform-box {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            margin-top: 2rem;
+            border: 2px solid #e0f2fe;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .platform-box.animate-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .platform-box svg {
+            flex-shrink: 0;
+            margin-top: 4px;
+        }
+
+        .platform-box h4 {
+            color: #0284c7;
+            font-size: 1.2rem;
+            margin: 0 0 0.75rem 0;
+            font-weight: 700;
+        }
+
+        .platform-box p {
+            color: #334155;
+            line-height: 1.7;
+            margin: 0;
+            font-size: 0.98rem;
+        }
+
+        /* === DISCLAIMER === */
+        .disclaimer-box {
+            margin-top: 3rem;
+            padding: 1.75rem;
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 50%, #fef3c7 100%);
+            border-left: 5px solid #f59e0b;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.15);
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .disclaimer-box svg {
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .disclaimer-box .disclaimer-title {
+            font-size: 0.85rem;
+            color: #78350f;
+            margin: 0 0 0.5rem 0;
+            font-weight: 700;
+            line-height: 1.5;
+        }
+
+        .disclaimer-box .disclaimer-text {
+            font-size: 0.85rem;
+            color: #78350f;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        /* === FOOTER === */
+        .footer {
+            background: #1e293b;
+            color: #94a3b8;
+            padding: 48px 24px 32px;
+        }
+
+        .footer-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer-copyright {
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            color: #cbd5e1;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 16px 24px;
+            margin-bottom: 24px;
+        }
+
+        .footer-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #14b8a6;
+        }
+
+        .footer-disclaimer {
+            font-size: 0.8rem;
+            line-height: 1.6;
+            color: #64748b;
+            max-width: 800px;
+            margin: 0 auto;
+            padding-top: 20px;
+            border-top: 1px solid #334155;
+        }
+
+        /* === MOBILE RESPONSIVE === */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 60px 20px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1.05rem;
+            }
+
+            .history-section {
+                padding: 3rem 0;
+            }
+
+            .timeline-container {
+                padding: 0 16px;
+            }
+
+            .timeline-line {
+                left: 15px;
+            }
+
+            .timeline-item {
+                padding-left: 48px;
+                margin-bottom: 2rem;
+            }
+
+            .timeline-dot {
+                width: 32px;
+                height: 32px;
+            }
+
+            .timeline-dot span {
+                font-size: 0.8rem;
+            }
+
+            .timeline-card {
+                padding: 1.25rem;
+                border-radius: 16px;
+            }
+
+            .timeline-card h3 {
+                font-size: 1.15rem;
+            }
+
+            .timeline-card p {
+                font-size: 0.95rem;
+            }
+
+            .vision-box {
+                padding: 1.75rem;
+                margin-top: 3rem;
+            }
+
+            .vision-box h3 {
+                font-size: 1.35rem;
+            }
+
+            .vision-box p {
+                font-size: 0.98rem;
+            }
+
+            .platform-box {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 1.5rem;
+            }
+
+            .disclaimer-box {
+                flex-direction: column;
+                padding: 1.25rem;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.75rem;
+            }
+
+            .nav-content {
+                padding: 0 16px;
+            }
+
+            .timeline-item {
+                padding-left: 40px;
+            }
+
+            .timeline-line {
+                left: 11px;
+            }
+
+            .timeline-dot {
+                width: 24px;
+                height: 24px;
+            }
+
+            .timeline-dot span {
+                font-size: 0.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-content">
+            <a href="index.html" class="logo">
+                <img src="A1_Diagnosis_Logo.jpg" alt="A1 Diagnosis" class="logo-image">
+            </a>
+            <a href="index.html#about" class="nav-back">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                Back to About
+            </a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <h1>From Research to Reality</h1>
+        <p>Six years of specialized AMD biomarker research. One mission: make proactive eye health possible for everyone.</p>
+    </section>
+
+    <!-- HISTORY SECTION -->
+    <section class="history-section">
+        <div class="main-content">
+            <div class="timeline-container">
+
+                <!-- Timeline Line -->
+                <div class="timeline-line"></div>
+
+                <!-- Timeline Item 1: Research Foundation -->
+                <div class="timeline-item" data-delay="0">
+                    <div class="timeline-dot dot-teal">
+                        <span>1</span>
+                    </div>
+                    <div class="timeline-card">
+                        <h3 class="color-teal">Origins in Academic Research</h3>
+                        <p class="timeline-date">2018 – 2023</p>
+                        <p>
+                            The foundation for A1 Diagnosis began at UC Irvine's Gavin Herbert Eye Institute, where Dr. Mustafa Ozgul conducted six years of specialized research into age-related macular degeneration biomarkers.
+                        </p>
+                        <ul class="timeline-bullets">
+                            <li><strong>15 peer-reviewed publications</strong> (4 journal articles and 11 ARVO conference abstracts)</li>
+                            <li>Research focused on AMD biomarkers, mitochondrial-derived peptides (Humanin-G, MOTS-c), and retinal degeneration</li>
+                            <li>Established the scientific foundation for understanding how dying retinal pigment epithelium cells release specific peptide signatures into the bloodstream years before clinical AMD symptoms appear</li>
+                        </ul>
+                        <p style="margin-top: 1rem;">
+                            <a href="publications.html">View Publications →</a>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Timeline Item 2: Paradigm Shift -->
+                <div class="timeline-item" data-delay="100">
+                    <div class="timeline-dot dot-cyan">
+                        <span>2</span>
+                    </div>
+                    <div class="timeline-card">
+                        <h3 class="color-cyan">From Treatment to Prevention</h3>
+                        <p class="timeline-date">2024</p>
+                        <p>
+                            A critical insight crystallized: AMD care needed to shift from reactive treatment after vision loss to proactive risk assessment before symptoms emerge.
+                        </p>
+                        <ul class="timeline-bullets">
+                            <li><strong>169 million Americans aged 35+</strong> face AMD risk with no accessible blood-based screening option</li>
+                            <li>Emerging AMD prevention therapies advancing through clinical trials created new market opportunity</li>
+                            <li>Fundamental transformation needed in how AMD care could be delivered</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Timeline Item 3: Company Formation -->
+                <div class="timeline-item" data-delay="200">
+                    <div class="timeline-dot dot-blue">
+                        <span>3</span>
+                    </div>
+                    <div class="timeline-card">
+                        <h3 class="color-blue">Company Formation & Strategic Direction</h3>
+                        <p class="timeline-date">January 2024</p>
+                        <p>
+                            Dr. Ozgul partnered with <strong>Dr. Murat Baday</strong>, a Stanford-trained AI/ML expert who previously founded Smartlens Inc. and raised a $6.1M Series A.
+                        </p>
+                        <ul class="timeline-bullets">
+                            <li>Phased commercialization strategy following proven diagnostic company models</li>
+                            <li><strong>Phase 1:</strong> CLIA certification for initial revenue generation</li>
+                            <li><strong>Phase 2:</strong> Clinical data collection and validation</li>
+                            <li><strong>Phase 3:</strong> FDA De Novo submission with Breakthrough Device Designation</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Timeline Item 4: Regulatory Clarity -->
+                <div class="timeline-item" data-delay="300">
+                    <div class="timeline-dot dot-teal">
+                        <span>4</span>
+                    </div>
+                    <div class="timeline-card">
+                        <h3 class="color-teal">Regulatory Landscape Transformation</h3>
+                        <p class="timeline-date">March 2025</p>
+                        <p>
+                            A federal court ruling on March 31, 2025 fundamentally changed the regulatory environment for laboratory-developed tests.
+                        </p>
+                        <ul class="timeline-bullets">
+                            <li>Court <strong>vacated FDA's LDT Final Rule</strong> in its entirety</li>
+                            <li>Ruling held that laboratory services fall under CLIA jurisdiction rather than FDA device regulation</li>
+                            <li>Validated A1's CLIA-first strategy for commercialization</li>
+                            <li>Confirmed that clinical laboratories can develop testing services under CLIA certification</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Timeline Item 5: Proof-of-Concept -->
+                <div class="timeline-item" data-delay="400">
+                    <div class="timeline-dot dot-cyan">
+                        <span>5</span>
+                    </div>
+                    <div class="timeline-card">
+                        <h3 class="color-cyan">Proof-of-Concept Validation</h3>
+                        <p class="timeline-date">2025</p>
+                        <p>
+                            Initial validation studies demonstrated technical feasibility of the blood-based AMD risk assessment approach.
+                        </p>
+                        <ul class="timeline-bullets">
+                            <li><strong>97.8% machine learning accuracy</strong> (ROC AUC 0.987) in proof-of-concept studies</li>
+                            <li><strong>398 statistically significant biomarkers</strong> identified from 12-sample validation</li>
+                            <li>Research published in <em>Investigative Ophthalmology & Visual Science</em> and <em>International Journal of Molecular Sciences</em></li>
+                            <li>Builds on foundation of <strong>15 peer-reviewed publications</strong> from UC Irvine</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Timeline Item 6: Current Focus -->
+                <div class="timeline-item" data-delay="500">
+                    <div class="timeline-dot dot-blue">
+                        <span>6</span>
+                    </div>
+                    <div class="timeline-card">
+                        <h3 class="color-blue">Laboratory Development</h3>
+                        <p class="timeline-date">Q4 2025 – Present</p>
+                        <p>
+                            Current efforts center on establishing CLIA-certified clinical laboratory infrastructure.
+                        </p>
+                        <ul class="timeline-bullets">
+                            <li>Evaluating high-end mass spectrometry platforms for clinical deployment</li>
+                            <li>Defining laboratory space requirements and staffing model</li>
+                            <li>Planning equipment validation protocols</li>
+                            <li><strong>Target: Q1 2027</strong> for CLIA certification completion</li>
+                            <li>Strategically timed with Novartis Phase 2 AMD prevention therapy trial completion (October 2026)</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Vision Statement Box -->
+            <div class="vision-box">
+                <h3>Vision: The Proactive Health Era</h3>
+                <p>
+                    A1 Diagnosis represents more than a single blood test—it embodies a fundamental shift in healthcare philosophy.
+                </p>
+                <ul class="timeline-bullets" style="text-align: left; max-width: 700px; margin: 1rem auto 0;">
+                    <li>Building toward a future where disease risk is identified years before clinical manifestation</li>
+                    <li>Enabling intervention during the critical window when prevention strategies can be most effective</li>
+                    <li>Positioning as the patient identification platform as AMD prevention therapies advance to market</li>
+                    <li><strong>Transforming AMD from a leading cause of irreversible blindness into a preventable condition</strong></li>
+                </ul>
+            </div>
+
+            <!-- Platform Expansion Note -->
+            <div class="platform-box">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#0ea5e9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M12 16v-4"></path>
+                    <path d="M12 8h.01"></path>
+                </svg>
+                <div>
+                    <h4>Platform Technology Potential</h4>
+                    <p>
+                        The core intellectual property represents a platform approach potentially applicable beyond AMD:
+                    </p>
+                    <ul class="timeline-bullets" style="margin-top: 0.75rem;">
+                        <li><strong>Native peptide mass spectrometry</strong> detects post-translational modifications that snRNA-seq misses</li>
+                        <li>Applicable to multiple conditions where cell death biomarkers indicate disease risk years before symptoms</li>
+                        <li>Platform expansion to other disease applications represents future research opportunities</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Required LDT Disclaimer -->
+            <div class="disclaimer-box">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#78350f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                    <line x1="12" y1="9" x2="12" y2="13"></line>
+                    <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                </svg>
+                <div>
+                    <p class="disclaimer-title">Important Regulatory Information</p>
+                    <p class="disclaimer-text">
+                        This test has not been cleared or approved by the US Food and Drug Administration. The test is under development and performance characteristics will be determined through clinical validation studies. Target commercialization as a CLIA-certified laboratory-developed test in 2027. Proof-of-concept accuracy cited represents initial validation with 12 samples and requires expansion to larger clinical studies.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-copyright">© 2025 A1 Diagnosis. All rights reserved.</div>
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="what-is-proactive-health.html">Proactive Health</a>
+                <a href="early-risk-assessment.html">Early Risk Assessment</a>
+                <a href="future-of-amd-prevention.html">Future of AMD Prevention</a>
+                <a href="what-is-amd.html">What is AMD?</a>
+                <a href="publications.html">Publications</a>
+                <a href="faqs.html">FAQs</a>
+            </div>
+            <div class="footer-disclaimer">
+                <strong>Medical Disclaimer:</strong> The information provided on this page is for educational purposes only and is not intended as medical advice, diagnosis, or treatment. Always consult a qualified healthcare professional for medical questions or concerns. A1 Diagnosis content has not been evaluated or approved by the FDA. This information does not replace professional medical care.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll Animation Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Intersection Observer for scroll animations
+            const observerOptions = {
+                threshold: 0.15,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const animationObserver = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const delay = entry.target.getAttribute('data-delay') || 0;
+                        setTimeout(() => {
+                            entry.target.classList.add('animate-in');
+                        }, parseInt(delay));
+                        animationObserver.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            // Observe timeline items
+            document.querySelectorAll('.timeline-item').forEach(item => {
+                animationObserver.observe(item);
+            });
+
+            // Observe vision and platform boxes
+            const boxes = document.querySelectorAll('.vision-box, .platform-box');
+            boxes.forEach(box => {
+                animationObserver.observe(box);
+            });
+        });
+    </script>
+
+</body>
+</html>
