@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publications - Scientific Research | A1 Diagnosis</title>
+    <meta name="description" content="Peer-reviewed publications and ARVO conference presentations from the A1 Diagnosis research team, focusing on retinal degeneration, AMD biomarkers, and mitochondrial peptides.">
+
+    <link rel="icon" type="image/png" href="A1_Favicon_V2.png">
+    <link rel="shortcut icon" type="image/png" href="A1_Favicon_V2.png">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-27QM6KXY13"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-27QM6KXY13');
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.7; color: #475569; background: #ffffff;
+        }
+
+        /* --- NAVBAR --- */
+        .navbar {
+            background: rgba(255, 255, 255, 0.98);
+            border-bottom: 1px solid #e5e7eb; padding: 1rem 0;
+            position: sticky; top: 0; z-index: 1000;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        .nav-content {
+            max-width: 1200px; margin: 0 auto; padding: 0 24px;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .logo {
+            display: flex; align-items: center; gap: 12px;
+            font-size: 24px; font-weight: 800; letter-spacing: -0.5px;
+            color: #000000; text-decoration: none;
+        }
+        .logo-image { height: 40px; width: auto; }
+        .nav-back {
+            color: #64748b; text-decoration: none; font-weight: 500;
+            font-size: 0.9rem; transition: color 0.3s;
+        }
+        .nav-back:hover { color: #0ea5e9; }
+
+        /* --- HERO --- */
+        .hero {
+            background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 50%, #0369a1 100%);
+            color: white; padding: 60px 24px; text-align: center;
+        }
+        .hero h1 {
+            font-size: 2.5rem; font-weight: 800; margin-bottom: 16px; letter-spacing: -0.5px;
+        }
+        .hero p {
+            font-size: 1.15rem; opacity: 0.9; max-width: 700px;
+            margin: 0 auto; font-weight: 400;
+        }
+
+        /* --- MAIN CONTENT --- */
+        .main-content {
+            max-width: 920px; margin: 0 auto; padding: 48px 24px 64px;
+        }
+
+        .section { margin-bottom: 48px; }
+
+        .section h2 {
+            font-size: 1.75rem; font-weight: 700; color: #1e293b;
+            margin-bottom: 8px; letter-spacing: -0.3px;
+        }
+
+        .section-subtitle {
+            font-size: 1rem; color: #64748b; margin-bottom: 28px;
+        }
+
+        /* --- STATS BAR --- */
+        .stats-bar {
+            display: flex; gap: 32px; justify-content: center;
+            flex-wrap: wrap; margin-bottom: 48px; padding: 28px 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .stat-item { text-align: center; }
+
+        .stat-value {
+            font-size: 2rem; font-weight: 800; letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #0ea5e9, #0284c7);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 0.85rem; color: #64748b; font-weight: 500; margin-top: 4px;
+        }
+
+        /* --- PUBLICATION CARD --- */
+        .pub-card {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
+            padding: 28px 32px;
+            margin-bottom: 16px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+            transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+            position: relative;
+        }
+
+        .pub-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08), 0 8px 24px rgba(0,0,0,0.04);
+            border-color: #bae6fd;
+        }
+
+        .pub-badge {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 3px 10px;
+            border-radius: 20px;
+            margin-bottom: 12px;
+        }
+
+        .pub-badge.journal {
+            background: #dbeafe;
+            color: #1d4ed8;
+        }
+
+        .pub-badge.conference {
+            background: #d1fae5;
+            color: #059669;
+        }
+
+        .pub-badge.open-access {
+            background: #fef3c7;
+            color: #b45309;
+            margin-left: 6px;
+        }
+
+        .pub-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .pub-authors {
+            font-size: 0.92rem;
+            color: #475569;
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .pub-authors .highlight {
+            color: #0284c7;
+            font-weight: 600;
+        }
+
+        .pub-journal {
+            font-size: 0.9rem;
+            color: #64748b;
+            font-style: italic;
+            margin-bottom: 8px;
+        }
+
+        .pub-meta {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .pub-year {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #0284c7;
+            background: #f0f9ff;
+            padding: 2px 12px;
+            border-radius: 20px;
+        }
+
+        .pub-citations {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #0d9488;
+            background: #f0fdfa;
+            padding: 2px 12px;
+            border-radius: 20px;
+        }
+
+        .pub-doi {
+            font-size: 0.85rem;
+        }
+
+        .pub-doi a {
+            color: #0284c7;
+            text-decoration: none;
+        }
+
+        .pub-doi a:hover {
+            text-decoration: underline;
+        }
+
+        /* --- HIGHLIGHT BOX --- */
+        .highlight-box {
+            background: #f0fdfa;
+            border-left: 4px solid #14b8a6;
+            padding: 24px 28px;
+            border-radius: 0 12px 12px 0;
+            margin: 24px 0;
+        }
+
+        .highlight-box h3 {
+            color: #0f766e; margin-bottom: 12px; font-size: 1.2rem;
+        }
+
+        .highlight-box ul { padding-left: 20px; }
+        .highlight-box li { color: #115e59; margin-bottom: 6px; }
+
+        /* --- FOOTER --- */
+        .footer {
+            background: #1e293b; color: #94a3b8;
+            padding: 48px 24px 32px; margin-top: 64px;
+        }
+        .footer-inner { max-width: 1200px; margin: 0 auto; }
+        .footer-links { display: flex; gap: 24px; margin-bottom: 24px; flex-wrap: wrap; }
+        .footer-links a { color: #cbd5e1; text-decoration: none; font-size: 0.9rem; transition: color 0.3s; }
+        .footer-links a:hover { color: #14b8a6; }
+        .footer-disclaimer {
+            font-size: 0.8rem; line-height: 1.6; color: #64748b;
+            border-top: 1px solid #334155; padding-top: 24px; margin-top: 24px;
+        }
+        .footer-copyright { font-size: 0.85rem; margin-bottom: 16px; }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .hero { padding: 40px 20px; }
+            .hero h1 { font-size: 1.75rem; }
+            .hero p { font-size: 1rem; }
+            .main-content { padding: 32px 20px 48px; }
+            .section h2 { font-size: 1.4rem; }
+            .pub-card { padding: 20px; }
+            .pub-title { font-size: 1rem; }
+            .stats-bar { gap: 20px; }
+            .stat-value { font-size: 1.6rem; }
+            .footer-links { flex-direction: column; gap: 12px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-content">
+            <a href="index.html" class="logo">
+                <img src="A1_Diagnosis_Logo.jpg" alt="A1 Diagnosis Logo" class="logo-image">
+            </a>
+            <a href="index.html" class="nav-back">&larr; Back to Home</a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="hero">
+        <h1>Publications</h1>
+        <p>Peer-reviewed research and conference presentations in retinal degeneration, AMD biomarkers, and mitochondrial-derived peptides</p>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- Stats -->
+        <div class="stats-bar">
+            <div class="stat-item">
+                <div class="stat-value">15</div>
+                <div class="stat-label">Publications</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">4</div>
+                <div class="stat-label">Peer-Reviewed Journals</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">11</div>
+                <div class="stat-label">ARVO Conference Abstracts</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">74+</div>
+                <div class="stat-label">Total Citations</div>
+            </div>
+        </div>
+
+        <!-- Peer-Reviewed Journal Articles -->
+        <div class="section">
+            <h2>Peer-Reviewed Journal Articles</h2>
+            <p class="section-subtitle">Published in high-impact scientific journals</p>
+
+            <div class="pub-card">
+                <span class="pub-badge journal">Journal Article</span>
+                <div class="pub-title">MOTS-c, the Most Recent Mitochondrial Derived Peptide in Human Aging and Age-Related Diseases</div>
+                <div class="pub-authors">Mohtashami Z, Singh MK, Salimiaghdam N, <span class="highlight">Ozgul M</span>, Kenney MC</div>
+                <div class="pub-journal">International Journal of Molecular Sciences, 23(19), 11991</div>
+                <div class="pub-meta">
+                    <span class="pub-year">2022</span>
+                    <span class="pub-citations">38 citations</span>
+                </div>
+            </div>
+
+            <div class="pub-card">
+                <span class="pub-badge journal">Journal Article</span>
+                <div class="pub-title">A Review on PLGA Particles as a Sustained Drug-Delivery System and Its Effect on the Retina</div>
+                <div class="pub-authors">Marquina S, <span class="highlight">Ozgul M</span>, Robertson-Brown K, Kenney MC</div>
+                <div class="pub-journal">Experimental Eye Research, 235, 109626</div>
+                <div class="pub-meta">
+                    <span class="pub-year">2023</span>
+                    <span class="pub-citations">29 citations</span>
+                </div>
+            </div>
+
+            <div class="pub-card">
+                <span class="pub-badge journal">Journal Article</span>
+                <div class="pub-title">Using Human &lsquo;Personalized&rsquo; Cybrids to Identify Drugs/Agents That Can Regulate Chronic Lymphoblastic Leukemia Mitochondrial Dysfunction</div>
+                <div class="pub-authors">Singh L, Atilano S, Chwa M, Singh MK, <span class="highlight">Ozgul M</span>, Nesburn A, Kenney MC</div>
+                <div class="pub-journal">International Journal of Molecular Sciences, 24(13), 11025</div>
+                <div class="pub-meta">
+                    <span class="pub-year">2023</span>
+                    <span class="pub-citations">5 citations</span>
+                </div>
+            </div>
+
+            <div class="pub-card">
+                <span class="pub-badge journal">Journal Article</span>
+                <div class="pub-title">Stability Determination of Intact Humanin-G with Characterizations of Oxidation and Dimerization Patterns</div>
+                <div class="pub-authors"><span class="highlight">Ozgul M</span>, Nesburn AB, Nasralla N, Katz B, Taylan E, Kuppermann BD, Kenney MC</div>
+                <div class="pub-journal">Biomolecules, 13(3), 515</div>
+                <div class="pub-meta">
+                    <span class="pub-year">2023</span>
+                    <span class="pub-citations">2 citations</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ARVO Conference Abstracts -->
+        <div class="section">
+            <h2>ARVO Annual Meeting Abstracts</h2>
+            <p class="section-subtitle">Presented at the Association for Research in Vision and Ophthalmology (ARVO) Annual Meetings</p>
+
+            <!-- 2025 -->
+            <div class="pub-card">
+                <span class="pub-badge conference">ARVO 2025</span>
+                <span class="pub-badge open-access">Open Access</span>
+                <div class="pub-title">Neuroprotective Effect of Intraperitoneal Humanin-G in Retinal Degeneration of Royal College of Surgeons Rats</div>
+                <div class="pub-authors">Lin B, Schneider K, <span class="highlight">Ozgul M</span>, Ianopol NN, Kenney CM, Seiler MJ</div>
+                <div class="pub-journal">Investigative Ophthalmology &amp; Visual Science, 66(8):3830</div>
+                <div class="pub-meta">
+                    <span class="pub-year">2025</span>
+                </div>
+            </div>
+
+            <!-- 2024 -->
+            <div class="pub-card">
+                <span class="pub-badge conference">ARVO 2024</span>
+                <span class="pub-badge open-access">Open Access</span>
+                <div class="pub-title">Bioinformatic Analysis of Small Humanin Like Peptides Using AlphaFold-2 and Expasy ProtParam</div>
+                <div class="pub-authors">Azimi R, <span class="highlight">Ozgul M</span>, Kenney MC, Kuppermann BD</div>
+                <div class="pub-journal">Investigative Ophthalmology &amp; Visual Science, 65(7):1320</div>
+                <div class="pub-meta">
+                    <span class="pub-year">2024</span>
+                    <span class="pub-citations">15 citations</span>
+                </div>
+            </div>
+
+            <div class="pub-card">
+                <span class="pub-badge conference">ARVO 2024</span>
+                <span class="pub-badge open-access">Open Access</span>
+                <div class="pub-title">Analysis of HNF14 Peptide Using Basic Local Alignment Search Tool and High-Resolution Mass Spectrometry</div>
+                <div class="pub-authors"><span class="highlight">Ozgul M</span>, Katz B, Nashine S, Kenney CM</div>
+                <div class="pub-journal">Investigative Ophthalmology &amp; Visual Science, 65(7):6058</div>
+                <div class="pub-meta">
+                    <span class="pub-year">2024</span>
+                </div>
+            </div>
+
+            <div class="pub-card">
+                <span class="pub-badge conference">ARVO 2024</span>
+                <span class="pub-badge open-access">Open Access</span>
+                <div class="pub-title">Humanin-G&rsquo;s Protective Effect on Retinal Degeneration in RCS Rats</div>
+                <div class="pub-authors">Moosa A, Schneider K, <span class="highlight">Ozgul M</span>, Lanopol V, Seiler MJ, Kenney CM</div>
+                <div class="pub-journal">Investigative Ophthalmology &amp; Visual Science, 65(7):2567</div>
+                <div class="pub-meta">
+                    <span class="pub-year">2024</span>
+                </div>
+            </div>
+
+            <!-- 2023 -->
+            <div class="pub-card">
+                <span class="pub-badge conference">ARVO 2023</span>
+                <span class="pub-badge open-access">Open Access</span>
+                <div class="pub-title">Stability Determination of HNF14 in H<sub>2</sub>O and PBS Using High Resolution Mass Spectrometry</div>
+                <div class="pub-authors"><span class="highlight">Ozgul M</span>, Katz B, Nashine S, Kenney MC</div>
+                <div class="pub-journal">Investigative Ophthalmology &amp; Visual Science, 64(8):3014</div>
+                <div class="pub-meta">
+                    <span class="pub-year">2023</span>
+                    <span class="pub-citations">1 citation</span>
+                </div>
+            </div>
+
+            <div class="pub-card">
+                <span class="pub-badge conference">ARVO 2023</span>
+                <span class="pub-badge open-access">Open Access</span>
+                <div class="pub-title">Determination of Fragments of SHLP2 in AMD Patients</div>
+                <div class="pub-authors">Ghazaryan A, <span class="highlight">Ozgul M</span>, Melendez MA, Thomaz Neto FJ, Kenney MC, Kuppermann BD</div>
+                <div class="pub-journal">Investigative Ophthalmology &amp; Visual Science, 64(8):2105</div>
+                <div class="pub-meta">
+                    <span class="pub-year">2023</span>
+                </div>
+            </div>
+
+            <div class="pub-card">
+                <span class="pub-badge conference">ARVO 2023</span>
+                <span class="pub-badge open-access">Open Access</span>
+                <div class="pub-title">Determination of Humanin Fragments in Human Blood Plasma Samples</div>
+                <div class="pub-authors">Thomaz Neto FJ, <span class="highlight">Ozgul M</span>, Ghazaryan A, Melendez MA, Kuppermann BD, Kenney MC</div>
+                <div class="pub-journal">Investigative Ophthalmology &amp; Visual Science, 64(8):2324</div>
+                <div class="pub-meta">
+                    <span class="pub-year">2023</span>
+                </div>
+            </div>
+
+            <!-- 2022 -->
+            <div class="pub-card">
+                <span class="pub-badge conference">ARVO 2022</span>
+                <span class="pub-badge open-access">Open Access</span>
+                <div class="pub-title">Analysis of 1-Month-Old Humanin-G in H<sub>2</sub>O and PBS Using High Resolution Mass Spectrometry</div>
+                <div class="pub-authors"><span class="highlight">Ozgul M</span>, Katz B, Taylan E, Kenney MC</div>
+                <div class="pub-journal">Investigative Ophthalmology &amp; Visual Science, 63(7):309&ndash;F0112</div>
+                <div class="pub-meta">
+                    <span class="pub-year">2022</span>
+                </div>
+            </div>
+
+            <div class="pub-card">
+                <span class="pub-badge conference">ARVO 2022</span>
+                <span class="pub-badge open-access">Open Access</span>
+                <div class="pub-title">The Impact of Subconjunctival Injections of Humanin-G Loaded Microspheres on RCS Rat Model of Retinal Degeneration</div>
+                <div class="pub-authors">Schneider K, <span class="highlight">Ozgul M</span>, Ianopol VN, Atilano S, Lin B, Seiler MJ, Kenney MC</div>
+                <div class="pub-journal">Investigative Ophthalmology &amp; Visual Science, 63(7):3162&ndash;F0436</div>
+                <div class="pub-meta">
+                    <span class="pub-year">2022</span>
+                </div>
+            </div>
+
+            <div class="pub-card">
+                <span class="pub-badge conference">ARVO 2022</span>
+                <span class="pub-badge open-access">Open Access</span>
+                <div class="pub-title">Analysis of 1-Month-Old MOTS-c in H<sub>2</sub>O Using High Resolution Mass Spectrometry</div>
+                <div class="pub-authors">Mohtashami Z, <span class="highlight">Ozgul M</span>, Katz B, Kenney MC</div>
+                <div class="pub-journal">Investigative Ophthalmology &amp; Visual Science, 63(7):474&ndash;A0011</div>
+                <div class="pub-meta">
+                    <span class="pub-year">2022</span>
+                </div>
+            </div>
+
+            <!-- 2021 -->
+            <div class="pub-card">
+                <span class="pub-badge conference">ARVO 2021</span>
+                <span class="pub-badge open-access">Open Access</span>
+                <div class="pub-title">11-Month-Old Humanin-G in H<sub>2</sub>O High Resolution Mass Spectrometry Analysis</div>
+                <div class="pub-authors"><span class="highlight">Ozgul M</span>, Katz B, Kenney MC</div>
+                <div class="pub-journal">Investigative Ophthalmology &amp; Visual Science, 62(8):250</div>
+                <div class="pub-meta">
+                    <span class="pub-year">2021</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Research Focus -->
+        <div class="section">
+            <div class="highlight-box">
+                <h3>Research Focus Areas</h3>
+                <ul>
+                    <li><strong>Mitochondrial-Derived Peptides</strong> &mdash; Humanin-G, MOTS-c, SHLP2 stability, characterization, and therapeutic potential</li>
+                    <li><strong>Retinal Degeneration</strong> &mdash; Neuroprotective effects of peptides in RCS rat models</li>
+                    <li><strong>AMD Biomarkers</strong> &mdash; Detection of peptide fragments in AMD patients and blood plasma</li>
+                    <li><strong>Drug Delivery Systems</strong> &mdash; PLGA microspheres for sustained retinal drug delivery</li>
+                    <li><strong>High-Resolution Mass Spectrometry</strong> &mdash; Peptide stability and fragment analysis</li>
+                    <li><strong>Bioinformatics</strong> &mdash; AlphaFold-2 protein structure prediction for humanin-like peptides</li>
+                </ul>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-copyright">&copy; 2025 A1 Diagnosis. All rights reserved.</div>
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="publications.html">Publications</a>
+                <a href="what-is-proactive-health.html">Proactive Health Care</a>
+                <a href="what-is-amd.html">What is AMD?</a>
+                <a href="faqs.html">FAQs</a>
+            </div>
+            <div class="footer-disclaimer">
+                <strong>Disclaimer:</strong> The publications listed on this page represent the independent academic research of the listed authors. Publication in a scientific journal or presentation at a conference does not constitute endorsement of A1 Diagnosis products or services.
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
