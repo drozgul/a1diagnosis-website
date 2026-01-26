@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Future of AMD Prevention | A1 Diagnosis</title>
+    <meta name="description" content="Explore the latest NIH and NEI research shaping the future of AMD prevention — complement inhibitors, gene therapy, stem cells, CRISPR, AI screening, and blood-based biomarkers.">
+
+    <link rel="icon" type="image/png" href="A1_Favicon_V2.png">
+    <link rel="shortcut icon" type="image/png" href="A1_Favicon_V2.png">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-27QM6KXY13"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-27QM6KXY13');
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.7;
+            color: #475569;
+            background: #ffffff;
+        }
+
+        /* --- NAVBAR --- */
+        .navbar {
+            background: rgba(255, 255, 255, 0.98);
+            border-bottom: 1px solid #e5e7eb;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: #000000;
+            text-decoration: none;
+        }
+
+        .logo-image {
+            height: 40px;
+            width: auto;
+        }
+
+        .nav-back {
+            color: #64748b;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .nav-back:hover {
+            color: #0ea5e9;
+        }
+
+        /* --- HERO --- */
+        .hero {
+            background: linear-gradient(135deg, #22c55e 0%, #16a34a 50%, #15803d 100%);
+            color: white;
+            padding: 60px 24px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+            font-weight: 400;
+        }
+
+        /* --- PAGE NAV TABS --- */
+        .page-nav {
+            background: #ffffff;
+            border-bottom: 1px solid #e5e7eb;
+            position: sticky;
+            top: 65px;
+            z-index: 999;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .page-nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            gap: 0;
+        }
+
+        .page-nav a {
+            display: block;
+            padding: 16px 24px;
+            text-decoration: none;
+            color: #64748b;
+            font-weight: 500;
+            font-size: 0.95rem;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        .page-nav a:hover {
+            color: #0d9488;
+            background: #f0fdfa;
+        }
+
+        .page-nav a.active {
+            color: #0d9488;
+            border-bottom-color: #14b8a6;
+            font-weight: 600;
+        }
+
+        /* --- MAIN CONTENT --- */
+        .main-content {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 48px 24px 64px;
+        }
+
+        .section {
+            margin-bottom: 48px;
+        }
+
+        .section h2 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 16px;
+            letter-spacing: -0.3px;
+        }
+
+        .section h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 12px;
+        }
+
+        .section p {
+            margin-bottom: 16px;
+            font-size: 1.05rem;
+        }
+
+        .section ul, .section ol {
+            margin-bottom: 16px;
+            padding-left: 24px;
+        }
+
+        .section li {
+            margin-bottom: 8px;
+            font-size: 1.05rem;
+        }
+
+        /* --- CITATION --- */
+        .cite {
+            font-size: 0.8rem;
+            vertical-align: super;
+            color: #3b82f6;
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .cite:hover {
+            color: #1d4ed8;
+            text-decoration: underline;
+        }
+
+        /* --- INFO BOX --- */
+        .info-box {
+            background: #eff6ff;
+            border-left: 4px solid #3b82f6;
+            padding: 20px 24px;
+            border-radius: 0 12px 12px 0;
+            margin: 24px 0;
+        }
+
+        .info-box p {
+            margin-bottom: 0;
+            color: #1e40af;
+            font-weight: 500;
+        }
+
+        .info-box a {
+            color: #1e40af;
+        }
+
+        /* --- ALERT BOX --- */
+        .alert-box {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 20px 24px;
+            border-radius: 0 12px 12px 0;
+            margin: 24px 0;
+        }
+
+        .alert-box p {
+            margin-bottom: 0;
+            color: #92400e;
+            font-weight: 500;
+        }
+
+        .alert-box strong {
+            color: #78350f;
+        }
+
+        /* --- HIGHLIGHT BOX --- */
+        .highlight-box {
+            background: #f0fdfa;
+            border-left: 4px solid #14b8a6;
+            padding: 24px 28px;
+            border-radius: 0 12px 12px 0;
+            margin: 24px 0;
+        }
+
+        .highlight-box h3 {
+            color: #0f766e;
+            margin-bottom: 12px;
+        }
+
+        .highlight-box ul {
+            padding-left: 20px;
+        }
+
+        .highlight-box li {
+            color: #115e59;
+            margin-bottom: 6px;
+        }
+
+        /* --- QUOTE BOX --- */
+        .quote-box {
+            background: linear-gradient(135deg, #f0fdf4, #f0fdfa);
+            border-left: 4px solid #22c55e;
+            padding: 24px 28px;
+            border-radius: 0 12px 12px 0;
+            margin: 24px 0;
+            font-style: italic;
+        }
+
+        .quote-box p {
+            color: #15803d;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .quote-box .quote-source {
+            font-style: normal;
+            font-size: 0.85rem;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        .quote-box .quote-source a {
+            color: #0284c7;
+            text-decoration: none;
+        }
+
+        .quote-box .quote-source a:hover {
+            text-decoration: underline;
+        }
+
+        /* --- CONTENT CARDS --- */
+        .card-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin: 24px 0;
+        }
+
+        .card {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
+            padding: 28px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.04);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1), 0 8px 24px rgba(0,0,0,0.06);
+        }
+
+        .card h3 {
+            font-size: 1.15rem;
+            margin-bottom: 12px;
+        }
+
+        .card p, .card li {
+            font-size: 0.98rem;
+        }
+
+        .card.green-top { border-top: 4px solid #22c55e; }
+        .card.teal-top { border-top: 4px solid #14b8a6; }
+        .card.blue-top { border-top: 4px solid #3b82f6; }
+        .card.amber-top { border-top: 4px solid #f59e0b; }
+        .card.purple-top { border-top: 4px solid #8b5cf6; }
+        .card.red-top { border-top: 4px solid #ef4444; }
+
+        .card.green-top h3 { color: #16a34a; }
+        .card.teal-top h3 { color: #0f766e; }
+        .card.blue-top h3 { color: #1d4ed8; }
+        .card.amber-top h3 { color: #b45309; }
+        .card.purple-top h3 { color: #7c3aed; }
+        .card.red-top h3 { color: #dc2626; }
+
+        /* --- FULL-WIDTH CARD --- */
+        .full-card {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
+            padding: 32px;
+            margin: 24px 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.04);
+        }
+
+        .full-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #f1f5f9;
+        }
+
+        /* --- TIMELINE --- */
+        .timeline {
+            position: relative;
+            padding-left: 32px;
+            margin: 24px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, #22c55e, #14b8a6, #3b82f6, #8b5cf6);
+            border-radius: 3px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 28px;
+            padding: 20px 24px;
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -27px;
+            top: 24px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: 3px solid #ffffff;
+        }
+
+        .timeline-item:nth-child(1)::before { background: #22c55e; box-shadow: 0 0 0 2px #22c55e; }
+        .timeline-item:nth-child(2)::before { background: #14b8a6; box-shadow: 0 0 0 2px #14b8a6; }
+        .timeline-item:nth-child(3)::before { background: #3b82f6; box-shadow: 0 0 0 2px #3b82f6; }
+        .timeline-item:nth-child(4)::before { background: #8b5cf6; box-shadow: 0 0 0 2px #8b5cf6; }
+
+        .timeline-item .year {
+            display: inline-block;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: white;
+            background: #22c55e;
+            padding: 2px 10px;
+            border-radius: 20px;
+            margin-bottom: 8px;
+        }
+
+        .timeline-item:nth-child(2) .year { background: #14b8a6; }
+        .timeline-item:nth-child(3) .year { background: #3b82f6; }
+        .timeline-item:nth-child(4) .year { background: #8b5cf6; }
+
+        .timeline-item h3 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            color: #1e293b;
+        }
+
+        .timeline-item p {
+            font-size: 0.98rem;
+            margin-bottom: 0;
+        }
+
+        /* --- METRIC CARDS --- */
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin: 24px 0;
+        }
+
+        .metric-card {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
+            padding: 24px 16px;
+            text-align: center;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.04);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1), 0 8px 24px rgba(0,0,0,0.06);
+        }
+
+        .metric-card:nth-child(1) { border-top: 4px solid #22c55e; }
+        .metric-card:nth-child(2) { border-top: 4px solid #3b82f6; }
+        .metric-card:nth-child(3) { border-top: 4px solid #14b8a6; }
+
+        .metric-value {
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+            line-height: 1.2;
+        }
+
+        .metric-card:nth-child(1) .metric-value { background: linear-gradient(135deg, #22c55e, #16a34a); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .metric-card:nth-child(2) .metric-value { background: linear-gradient(135deg, #3b82f6, #1d4ed8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .metric-card:nth-child(3) .metric-value { background: linear-gradient(135deg, #14b8a6, #0d9488); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+        .metric-label {
+            font-size: 0.85rem;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        /* --- CTA SECTION --- */
+        .cta-section {
+            background: linear-gradient(135deg, #f0fdf4, #f0fdfa);
+            border: 1px solid #bbf7d0;
+            border-radius: 20px;
+            padding: 40px 36px;
+            text-align: center;
+            margin: 48px 0;
+        }
+
+        .cta-section h2 {
+            color: #15803d;
+            margin-bottom: 12px;
+        }
+
+        .cta-section p {
+            max-width: 600px;
+            margin: 0 auto 24px;
+        }
+
+        .cta-links {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-link {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .cta-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .cta-link.primary {
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            color: white;
+        }
+
+        .cta-link.secondary {
+            background: white;
+            color: #16a34a;
+            border: 2px solid #22c55e;
+        }
+
+        /* --- REFERENCES --- */
+        .references-list {
+            counter-reset: ref;
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .references-list li {
+            counter-increment: ref;
+            padding: 10px 0 10px 36px;
+            position: relative;
+            border-bottom: 1px solid #f1f5f9;
+            font-size: 0.92rem;
+            line-height: 1.6;
+        }
+
+        .references-list li:last-child {
+            border-bottom: none;
+        }
+
+        .references-list li::before {
+            content: "[" counter(ref) "]";
+            position: absolute;
+            left: 0;
+            top: 10px;
+            font-weight: 700;
+            color: #3b82f6;
+            font-size: 0.85rem;
+        }
+
+        .references-list a {
+            color: #0284c7;
+            text-decoration: none;
+            word-break: break-word;
+        }
+
+        .references-list a:hover {
+            text-decoration: underline;
+        }
+
+        .references-list .ref-authors {
+            color: #1e293b;
+            font-weight: 500;
+        }
+
+        .references-list .ref-title {
+            font-style: italic;
+        }
+
+        .references-list .ref-source {
+            color: #64748b;
+        }
+
+        /* --- FOOTER --- */
+        .footer {
+            background: #1e293b;
+            color: #94a3b8;
+            padding: 48px 24px 32px;
+            margin-top: 64px;
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #14b8a6;
+        }
+
+        .footer-disclaimer {
+            font-size: 0.8rem;
+            line-height: 1.6;
+            color: #64748b;
+            border-top: 1px solid #334155;
+            padding-top: 24px;
+            margin-top: 24px;
+        }
+
+        .footer-copyright {
+            font-size: 0.85rem;
+            margin-bottom: 16px;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 40px 20px;
+            }
+
+            .hero h1 {
+                font-size: 1.75rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .page-nav-inner {
+                flex-direction: column;
+                padding: 8px 0;
+            }
+
+            .page-nav a {
+                padding: 12px 24px;
+                border-bottom: none;
+                border-left: 3px solid transparent;
+                font-size: 0.9rem;
+            }
+
+            .page-nav a.active {
+                border-bottom: none;
+                border-left-color: #14b8a6;
+                background: #f0fdfa;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .metric-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .main-content {
+                padding: 32px 20px 48px;
+            }
+
+            .section h2 {
+                font-size: 1.4rem;
+            }
+
+            .cta-section {
+                padding: 28px 20px;
+            }
+
+            .cta-links {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-content">
+            <a href="index.html" class="logo">
+                <img src="A1_Diagnosis_Logo.jpg" alt="A1 Diagnosis Logo" class="logo-image">
+            </a>
+            <a href="index.html" class="nav-back">&larr; Back to Home</a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="hero">
+        <h1>The Future of AMD Prevention</h1>
+        <p>Breakthrough research from the National Eye Institute and NIH is transforming how we prevent, detect, and treat age-related macular degeneration</p>
+    </header>
+
+    <!-- PAGE NAV -->
+    <nav class="page-nav">
+        <div class="page-nav-inner">
+            <a href="what-is-proactive-health.html">Proactive Health Care</a>
+            <a href="early-risk-assessment.html">Early Risk Assessment</a>
+            <a href="future-of-amd-prevention.html" class="active">Future of AMD Prevention</a>
+            <a href="what-is-amd.html">What is AMD?</a>
+            <a href="risk-factors.html">Risk Factors</a>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- Section 1: Introduction -->
+        <div class="section">
+            <h2>A New Era in AMD Research</h2>
+            <p>For decades, there was no treatment for dry AMD&mdash;the most common form of the disease, affecting millions of Americans. That changed in 2023, when the FDA approved the first-ever medications for geographic atrophy, the advanced stage of dry AMD.<a href="#ref1" class="cite">[1]</a> These approvals represent the culmination of years of NEI-sponsored research and a launching point for future innovation.</p>
+            <p>Today, the research landscape for AMD prevention spans six major frontiers: complement inhibition, cholesterol metabolism, small molecule prevention, stem cell therapy, gene therapy, and AI-powered early detection. Each builds on foundational discoveries funded by the National Eye Institute.</p>
+
+            <div class="metric-grid">
+                <div class="metric-card">
+                    <div class="metric-value">2 Drugs</div>
+                    <div class="metric-label">First-ever FDA-approved treatments for dry AMD (2023)</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">6 Frontiers</div>
+                    <div class="metric-label">Active research areas for AMD prevention</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">18+ Years</div>
+                    <div class="metric-label">From NEI's 2005 CFH discovery to drug approval</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 2: NEI Discovery Timeline -->
+        <div class="section">
+            <h2>NEI Research Milestones</h2>
+            <p>The National Eye Institute has played a central role in the key scientific discoveries that are shaping AMD prevention:</p>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <span class="year">2005</span>
+                    <h3>Complement Factor H Discovery</h3>
+                    <p>An NEI-funded research team discovered strong associations between complement factor H (CFH) and AMD as part of the first genome-wide association study (GWAS) for the disease. This established that immune system dysfunction contributes to AMD.<a href="#ref1" class="cite">[1]</a></p>
+                </div>
+                <div class="timeline-item">
+                    <span class="year">2013</span>
+                    <h3>Rare C3 Gene Variant Identified</h3>
+                    <p>Researchers, including NEI&rsquo;s Anand Swaroop, Ph.D., discovered a rare C3 gene variant that significantly elevates AMD risk, suggesting that complement suppression could address the condition therapeutically.<a href="#ref1" class="cite">[1]</a></p>
+                </div>
+                <div class="timeline-item">
+                    <span class="year">2023</span>
+                    <h3>First Dry AMD Drugs Approved</h3>
+                    <p>The FDA approved Syfovre (pegcetacoplan) and Izervay (avacincaptad pegol)&mdash;the first medications for geographic atrophy. Both target the complement cascade and were built on years of NEI-funded research.<a href="#ref1" class="cite">[1]</a></p>
+                </div>
+                <div class="timeline-item">
+                    <span class="year">2025</span>
+                    <h3>ApoM Prevention Pathway</h3>
+                    <p>A new NEI-supported study identified apolipoprotein M (ApoM) as a potential way to slow or block AMD progression, linking cholesterol metabolism to macular degeneration.<a href="#ref2" class="cite">[2]</a></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 3: Complement Inhibitors -->
+        <div class="section">
+            <h2>1. Complement Pathway Inhibitors</h2>
+            <p>Both FDA-approved dry AMD drugs target the complement cascade&mdash;the immune system&rsquo;s protein chain reaction. In AMD, overactive complement proteins damage retinal cells. CFH and CFI act as regulatory &ldquo;brakes,&rdquo; while C1&ndash;C9 provide activation &ldquo;gas.&rdquo; Imbalances in these proteins contribute to disease progression.<a href="#ref1" class="cite">[1]</a></p>
+
+            <div class="card-grid">
+                <div class="card green-top">
+                    <h3>Syfovre (Pegcetacoplan)</h3>
+                    <p>Inhibits <strong>C3</strong>, a protein central to all three complement activation pathways. In clinical trials, Syfovre slowed geographic atrophy growth rates by <strong>18&ndash;22%</strong> over two years.<a href="#ref1" class="cite">[1]</a></p>
+                </div>
+                <div class="card teal-top">
+                    <h3>Izervay (Avacincaptad Pegol)</h3>
+                    <p>Blocks <strong>C5</strong>, operating downstream where the complement pathways converge. Izervay decreased geographic atrophy progression by <strong>14%</strong> over one year.<a href="#ref1" class="cite">[1]</a></p>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <p>While both drugs slow GA progression, patients receiving either are at increased risk of developing wet AMD. Follow-up research is needed to understand which patients benefit most relative to the risks.<a href="#ref1" class="cite">[1]</a></p>
+            </div>
+
+            <p>Next-generation complement therapies in development include gene therapy vectors that deliver complement inhibitors (CFI and CD59) for sustained expression after a single injection, potentially eliminating the need for repeated intravitreal injections.<a href="#ref6" class="cite">[6]</a></p>
+        </div>
+
+        <!-- Section 4: Cholesterol Metabolism -->
+        <div class="section">
+            <h2>2. Cholesterol Metabolism &amp; ApoM Pathway</h2>
+            <p>A 2025 NEI-supported study identified a new approach to AMD prevention by targeting cholesterol metabolism. The research found that patients with macular degeneration have <strong>reduced levels of apolipoprotein M (ApoM)</strong> circulating in their blood compared with healthy controls.<a href="#ref2" class="cite">[2]</a></p>
+            <p>ApoM levels decline naturally with age, and the study showed that this decline contributes to dysfunctional cholesterol processing that leads to cellular damage in both the eyes and other organs&mdash;potentially explaining the known links between AMD and cardiovascular disease.<a href="#ref2" class="cite">[2]</a></p>
+
+            <div class="quote-box">
+                <p>&ldquo;Various methods of dialing up ApoM could serve as new treatment strategies for AMD and perhaps some forms of heart failure triggered by similar dysfunctional cholesterol processing.&rdquo;</p>
+                <span class="quote-source">&mdash; <a href="https://www.nei.nih.gov/research-and-training/research-news/strategy-prevent-age-related-macular-degeneration-identified" target="_blank" rel="noopener">National Eye Institute, 2025</a> <a href="#ref2" class="cite">[2]</a></span>
+            </div>
+
+            <div class="info-box">
+                <p>This finding is significant because ApoM is measurable through a standard blood test, making it a promising candidate for non-invasive risk screening&mdash;a key component of the proactive health care approach to AMD prevention.</p>
+            </div>
+        </div>
+
+        <!-- Section 5: Small Molecule Prevention -->
+        <div class="section">
+            <h2>3. Small Molecule Prevention (GSK3 Pathway)</h2>
+            <p>University of Minnesota researchers, funded by NEI, discovered that small molecules blocking the <strong>GSK3 cellular pathway</strong> can prevent AMD-like pathology in preclinical models. Using unbiased drug screening, they identified inhibitors that successfully prevented the characteristic features of AMD in living organisms.<a href="#ref3" class="cite">[3]</a></p>
+
+            <div class="quote-box">
+                <p>&ldquo;To our knowledge, this is the first demonstration of a small molecule preventing AMD-like pathology in our preclinical model. AMD may indeed be preventable, or at least modifiable by administration of a single drug.&rdquo;</p>
+                <span class="quote-source">&mdash; John Hulleman, Ph.D., University of Minnesota, Larson Endowed Chair for Macular Degeneration Research <a href="#ref3" class="cite">[3]</a></span>
+            </div>
+
+            <p>Future research will focus on determining whether blocking GSK3 can also <strong>reverse existing AMD damage</strong>&mdash;not just prevent it. This could represent a major shift from slowing progression to actually restoring retinal function.<a href="#ref3" class="cite">[3]</a></p>
+        </div>
+
+        <!-- Section 6: Stem Cell Therapy -->
+        <div class="section">
+            <h2>4. Stem Cell Transplant Therapy</h2>
+            <p>The NEI is conducting a Phase I/IIa clinical trial testing whether a patient&rsquo;s own stem cells can be used to replace damaged retinal cells&mdash;a personalized medicine approach to treating advanced dry AMD.<a href="#ref4" class="cite">[4]</a></p>
+
+            <div class="full-card">
+                <h3 style="color: #16a34a; border-bottom-color: #bbf7d0;">How It Works</h3>
+                <ol>
+                    <li><strong>Blood draw</strong> &mdash; Adult blood cells are collected from the patient</li>
+                    <li><strong>Reprogramming</strong> &mdash; Blood cells are reprogrammed into induced pluripotent stem cells (iPSCs)</li>
+                    <li><strong>Differentiation</strong> &mdash; iPSCs are differentiated into retinal pigment epithelium (RPE) cells</li>
+                    <li><strong>Scaffold creation</strong> &mdash; RPE cells are grown on a biodegradable PLGA scaffold (~2 x 4 mm oval sheet)</li>
+                    <li><strong>Transplantation</strong> &mdash; The iRPE patch is surgically placed under the retina alongside geographic atrophy</li>
+                    <li><strong>Support</strong> &mdash; New RPE cells support surviving photoreceptors to prevent further vision loss</li>
+                </ol>
+            </div>
+
+            <p>Because the cells are derived from the patient&rsquo;s own blood, this autologous approach may reduce immune rejection risks compared to donor cells. The iRPE patch takes approximately <strong>6 months to manufacture</strong>, followed by <strong>5 years of post-surgery monitoring</strong>.<a href="#ref4" class="cite">[4]</a></p>
+
+            <div class="info-box">
+                <p>This first-in-human trial prioritizes safety assessment. Up to 12 participants aged 55+ with advanced dry AMD will be enrolled. While vision improvement for reading is not expected at this stage, the trial advances understanding of stem cell therapy&rsquo;s potential for retinal disease.<a href="#ref4" class="cite">[4]</a></p>
+            </div>
+        </div>
+
+        <!-- Section 7: Gene Therapy -->
+        <div class="section">
+            <h2>5. Gene Therapy: Toward &ldquo;One-and-Done&rdquo; Treatment</h2>
+            <p>Gene therapy aims to deliver a single injection that transforms retinal cells into continuous producers of therapeutic proteins, potentially eliminating the need for repeated anti-VEGF injections that current wet AMD treatment requires.<a href="#ref5" class="cite">[5]</a><a href="#ref6" class="cite">[6]</a></p>
+
+            <div class="card-grid">
+                <div class="card green-top">
+                    <h3>ADVM-022 (Ixo-vec)</h3>
+                    <p>An intravitreal gene therapy using AAV.7m8 vector to transform retinal cells into continuous producers of aflibercept (a VEGF antagonist) after a <strong>single injection</strong>.<a href="#ref5" class="cite">[5]</a></p>
+                    <p>Phase I results: <strong>83%</strong> of patients (10 of 12) did not require rescue anti-VEGF treatment for approximately 11 months after a single injection.<a href="#ref5" class="cite">[5]</a></p>
+                </div>
+                <div class="card blue-top">
+                    <h3>RGX-314</h3>
+                    <p>A subretinal gene therapy for sustained VEGF-A suppression. Phase 1/2a results published in <em>The Lancet</em> (April 2024).<a href="#ref6" class="cite">[6]</a></p>
+                    <p><strong>73%</strong> of subjects remained injection-free for 6 months. At 1.5 years, <strong>50%</strong> remained free of anti-VEGF drugs. Regulatory submission expected 2025&ndash;2026.<a href="#ref6" class="cite">[6]</a></p>
+                </div>
+                <div class="card purple-top">
+                    <h3>4D-150 (Dual-Action)</h3>
+                    <p>A single intravitreal gene therapy that delivers <strong>two</strong> therapeutic payloads simultaneously: aflibercept expression and a VEGF-C inhibitory RNA interference molecule.<a href="#ref5" class="cite">[5]</a></p>
+                    <p>Currently in Phase 2 (SPECTRA trial)&mdash;multicenter, randomized, double-masked evaluation.<a href="#ref5" class="cite">[5]</a></p>
+                </div>
+                <div class="card red-top">
+                    <h3>CRISPR Gene Editing</h3>
+                    <p>A Cas9-based system delivered via AAV9 to knock out the VEGFA gene achieved a <strong>45% reduction</strong> in abnormal vessel area in preclinical models (vs. 39% for aflibercept)&mdash;with long-lasting effect from a single injection.<a href="#ref5" class="cite">[5]</a></p>
+                    <p>The SIGHT-I clinical trial (NCT06031727) is underway for CRISPR-based wet AMD treatment in humans.<a href="#ref5" class="cite">[5]</a></p>
+                </div>
+            </div>
+
+            <div class="quote-box">
+                <p>&ldquo;The implementation of gene therapy methods to achieve sustained delivery of various therapeutic proteins holds the promise of a single treatment that could ameliorate the treatment challenges associated with chronic intravitreal therapy, and potentially improve visual outcomes.&rdquo;</p>
+                <span class="quote-source">&mdash; <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10888617/" target="_blank" rel="noopener">National Institutes of Health, PMC</a> <a href="#ref5" class="cite">[5]</a></span>
+            </div>
+        </div>
+
+        <!-- Section 8: AI & Blood-Based Screening -->
+        <div class="section">
+            <h2>6. AI Screening &amp; Blood-Based Early Detection</h2>
+            <p>The sixth frontier in AMD prevention combines artificial intelligence with blood-based biomarkers to detect risk before any structural damage or symptoms occur.</p>
+
+            <div class="card-grid">
+                <div class="card teal-top">
+                    <h3>AI-Powered Retinal Screening</h3>
+                    <p>NEI-funded AI systems like <strong>iPredict</strong> enable non-eye-care specialists to screen patients for AMD and predict which individuals with early AMD are at risk for accelerated vision loss. Deep learning networks analyze retinal images combined with patient data (age, smoking status, genetic profile) to detect patterns invisible to the human eye.<a href="#ref7" class="cite">[7]</a></p>
+                </div>
+                <div class="card amber-top">
+                    <h3>Blood-Based Biomarker Panels</h3>
+                    <p>NIH research has identified multiple blood biomarkers associated with AMD&mdash;including ApoM, CRP, HDL cholesterol, homocysteine, and inflammatory interleukins.<a href="#ref2" class="cite">[2]</a><a href="#ref8" class="cite">[8]</a> Multi-marker panels measuring these from a simple blood draw could enable population-level screening for AMD risk, analogous to cholesterol panels for heart disease.</p>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <p>Currently, no blood-based AMD screening test is available to the public. Developing such a test is a significant unmet medical need that could shift AMD care from reactive treatment to proactive prevention.</p>
+            </div>
+        </div>
+
+        <!-- Section 9: Key Takeaways -->
+        <div class="section">
+            <div class="highlight-box">
+                <h3>Key Takeaways</h3>
+                <ul>
+                    <li>The first dry AMD drugs (Syfovre, Izervay) were approved in 2023, built on NEI&rsquo;s 2005 complement pathway discovery<a href="#ref1" class="cite">[1]</a></li>
+                    <li>ApoM blood levels may predict AMD risk and offer a new prevention target<a href="#ref2" class="cite">[2]</a></li>
+                    <li>GSK3 inhibitors represent the first small molecule shown to prevent AMD in preclinical models<a href="#ref3" class="cite">[3]</a></li>
+                    <li>NEI is testing personalized stem cell transplants (iPSC-derived RPE) for advanced dry AMD<a href="#ref4" class="cite">[4]</a></li>
+                    <li>Gene therapy could replace monthly injections with a single &ldquo;one-and-done&rdquo; treatment<a href="#ref5" class="cite">[5]</a><a href="#ref6" class="cite">[6]</a></li>
+                    <li>CRISPR gene editing achieved 45% vessel reduction from a single injection in preclinical models<a href="#ref5" class="cite">[5]</a></li>
+                    <li>AI screening can identify patients at highest risk of rapid vision loss<a href="#ref7" class="cite">[7]</a></li>
+                    <li>Blood-based biomarker panels could enable population-level AMD risk screening<a href="#ref8" class="cite">[8]</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- CTA Section -->
+        <div class="cta-section">
+            <h2>Explore More</h2>
+            <p>Learn about how proactive health care and early risk assessment can help protect your vision today.</p>
+            <div class="cta-links">
+                <a href="early-risk-assessment.html" class="cta-link primary">Early Risk Assessment</a>
+                <a href="what-is-amd.html" class="cta-link secondary">What is AMD?</a>
+            </div>
+        </div>
+
+        <!-- Section 10: References -->
+        <div class="section" id="references">
+            <h2>References</h2>
+
+            <ol class="references-list">
+                <li id="ref1">
+                    <span class="ref-authors">National Eye Institute.</span>
+                    <span class="ref-title"> Story of Discovery: NEI-Funded Research Paves Way for New Dry AMD Drugs.</span>
+                    <span class="ref-source"> NEI News &amp; Events.</span>
+                    <a href="https://www.nei.nih.gov/about/news-and-events/news/story-discovery-nei-funded-research-paves-way-new-dry-amd-drugs" target="_blank" rel="noopener">nei.nih.gov</a>
+                </li>
+                <li id="ref2">
+                    <span class="ref-authors">National Eye Institute.</span>
+                    <span class="ref-title"> Strategy to Prevent Age-Related Macular Degeneration Identified.</span>
+                    <span class="ref-source"> NEI Research News, 2025.</span>
+                    <a href="https://www.nei.nih.gov/research-and-training/research-news/strategy-prevent-age-related-macular-degeneration-identified" target="_blank" rel="noopener">nei.nih.gov</a>
+                </li>
+                <li id="ref3">
+                    <span class="ref-authors">Hulleman J, et al. (University of Minnesota).</span>
+                    <span class="ref-title"> U. Minnesota Researchers Discover Potential New Pathway to Prevent Age-Related Macular Degeneration.</span>
+                    <span class="ref-source"> NEI News &amp; Events.</span>
+                    <a href="https://www.nei.nih.gov/about/news-and-events/news/u-minnesota-researchers-discover-potential-new-pathway-prevent-age-related-macular-degeneration" target="_blank" rel="noopener">nei.nih.gov</a>
+                </li>
+                <li id="ref4">
+                    <span class="ref-authors">National Eye Institute.</span>
+                    <span class="ref-title"> Clinical Trial Highlight: Stem Cell Transplants for Dry AMD.</span>
+                    <span class="ref-source"> NEI Eye Health Information.</span>
+                    <a href="https://www.nei.nih.gov/learn-about-eye-health/eye-conditions-and-diseases/age-related-macular-degeneration/clinical-trial-highlight-stem-cell-transplants-dry-amd" target="_blank" rel="noopener">nei.nih.gov</a>
+                </li>
+                <li id="ref5">
+                    <span class="ref-authors">Biniszewska O, et al.</span>
+                    <span class="ref-title"> A New Generation of Gene Therapies as the Future of Wet AMD Treatment.</span>
+                    <span class="ref-source"> Int J Mol Sci. 2024; 25(4):2386. PMC10888617.</span>
+                    <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10888617/" target="_blank" rel="noopener">pmc.ncbi.nlm.nih.gov</a>
+                </li>
+                <li id="ref6">
+                    <span class="ref-authors">Khanani AM, et al.</span>
+                    <span class="ref-title"> Recent Developments in Gene Therapy for Neovascular Age-Related Macular Degeneration: A Review.</span>
+                    <span class="ref-source"> Clin Ophthalmol. 2023; 17:3567&ndash;3584. PMC10740940.</span>
+                    <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10740940/" target="_blank" rel="noopener">pmc.ncbi.nlm.nih.gov</a>
+                </li>
+                <li id="ref7">
+                    <span class="ref-authors">National Eye Institute.</span>
+                    <span class="ref-title"> AI-Based Systems Can Help Identify Rapidly Advancing Age-Related Macular Degeneration.</span>
+                    <span class="ref-source"> NEI News &amp; Events.</span>
+                    <a href="https://www.nei.nih.gov/about/news-and-events/news/ai-based-systems-can-help-identify-rapidly-advancing-age-related-macular-degeneration" target="_blank" rel="noopener">nei.nih.gov</a>
+                </li>
+                <li id="ref8">
+                    <span class="ref-authors">Heesterbeek TJ, et al.</span>
+                    <span class="ref-title"> Biomarkers for the Progression of Intermediate Age-Related Macular Degeneration.</span>
+                    <span class="ref-source"> Surv Ophthalmol. 2024; 69(1):1&ndash;16. PMC10640447.</span>
+                    <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10640447/" target="_blank" rel="noopener">pmc.ncbi.nlm.nih.gov</a>
+                </li>
+                <li id="ref9">
+                    <span class="ref-authors">Chakravarthy U, et al.</span>
+                    <span class="ref-title"> Risk Factors for Progression of Age-Related Macular Degeneration.</span>
+                    <span class="ref-source"> Ophthalmic Epidemiol. 2020; 27(3):191&ndash;197. PMC7155063.</span>
+                    <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7155063/" target="_blank" rel="noopener">pmc.ncbi.nlm.nih.gov</a>
+                </li>
+                <li id="ref10">
+                    <span class="ref-authors">Scholl HPN, et al.</span>
+                    <span class="ref-title"> Genetic Markers and Biomarkers for Age-Related Macular Degeneration.</span>
+                    <span class="ref-source"> Expert Rev Mol Diagn. 2007; 7(5):585&ndash;604. PMC2000850.</span>
+                    <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC2000850/" target="_blank" rel="noopener">pmc.ncbi.nlm.nih.gov</a>
+                </li>
+                <li id="ref11">
+                    <span class="ref-authors">National Eye Institute.</span>
+                    <span class="ref-title"> Age-Related Eye Disease Studies (AREDS/AREDS2).</span>
+                    <span class="ref-source"> NEI Clinical Trials.</span>
+                    <a href="https://www.nei.nih.gov/research/clinical-trials/age-related-eye-disease-studies-aredsareds2" target="_blank" rel="noopener">nei.nih.gov</a>
+                </li>
+            </ol>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-copyright">&copy; 2025 A1 Diagnosis. All rights reserved.</div>
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="what-is-proactive-health.html">Proactive Health Care</a>
+                <a href="early-risk-assessment.html">Early Risk Assessment</a>
+                <a href="future-of-amd-prevention.html">Future of AMD Prevention</a>
+                <a href="what-is-amd.html">What is AMD?</a>
+                <a href="amd-stages.html">AMD Stages &amp; Treatments</a>
+                <a href="risk-factors.html">Risk Factors &amp; Prevention</a>
+            </div>
+            <div class="footer-disclaimer">
+                <strong>Medical Disclaimer:</strong> The information provided on this page is for educational purposes only and is not intended as medical advice, diagnosis, or treatment. Always consult a qualified healthcare professional for medical questions or concerns. A1 Diagnosis content has not been evaluated or approved by the FDA. This information does not replace professional medical care.
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
