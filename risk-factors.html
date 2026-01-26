@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMD Risk Factors & Prevention | A1 Diagnosis</title>
+    <meta name="description" content="Learn about risk factors for Age-Related Macular Degeneration (AMD) and what you can do to protect your vision at every age.">
+
+    <link rel="icon" type="image/png" href="A1_Favicon_V2.png">
+    <link rel="shortcut icon" type="image/png" href="A1_Favicon_V2.png">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-27QM6KXY13"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-27QM6KXY13');
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.7;
+            color: #475569;
+            background: #ffffff;
+        }
+
+        /* --- NAVBAR --- */
+        .navbar {
+            background: rgba(255, 255, 255, 0.98);
+            border-bottom: 1px solid #e5e7eb;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: #000000;
+            text-decoration: none;
+        }
+
+        .logo-image {
+            height: 40px;
+            width: auto;
+        }
+
+        .nav-back {
+            color: #64748b;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .nav-back:hover {
+            color: #0ea5e9;
+        }
+
+        /* --- HERO --- */
+        .hero {
+            background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 50%, #0369a1 100%);
+            color: white;
+            padding: 60px 24px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+            font-weight: 400;
+        }
+
+        /* --- PAGE NAV TABS --- */
+        .page-nav {
+            background: #ffffff;
+            border-bottom: 1px solid #e5e7eb;
+            position: sticky;
+            top: 65px;
+            z-index: 999;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .page-nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            gap: 0;
+        }
+
+        .page-nav a {
+            display: block;
+            padding: 16px 24px;
+            text-decoration: none;
+            color: #64748b;
+            font-weight: 500;
+            font-size: 0.95rem;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        .page-nav a:hover {
+            color: #0d9488;
+            background: #f0fdfa;
+        }
+
+        .page-nav a.active {
+            color: #0d9488;
+            border-bottom-color: #14b8a6;
+            font-weight: 600;
+        }
+
+        /* --- MAIN CONTENT --- */
+        .main-content {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 48px 24px 64px;
+        }
+
+        .section {
+            margin-bottom: 48px;
+        }
+
+        .section h2 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 16px;
+            letter-spacing: -0.3px;
+        }
+
+        .section h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 12px;
+        }
+
+        .section p {
+            margin-bottom: 16px;
+            font-size: 1.05rem;
+        }
+
+        .section ul, .section ol {
+            margin-bottom: 16px;
+            padding-left: 24px;
+        }
+
+        .section li {
+            margin-bottom: 8px;
+            font-size: 1.05rem;
+        }
+
+        /* --- INFO BOX --- */
+        .info-box {
+            background: #eff6ff;
+            border-left: 4px solid #3b82f6;
+            padding: 20px 24px;
+            border-radius: 0 12px 12px 0;
+            margin: 24px 0;
+        }
+
+        .info-box p {
+            margin-bottom: 0;
+            color: #1e40af;
+            font-weight: 500;
+        }
+
+        /* --- ALERT BOX --- */
+        .alert-box {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 20px 24px;
+            border-radius: 0 12px 12px 0;
+            margin: 24px 0;
+        }
+
+        .alert-box p {
+            margin-bottom: 0;
+            color: #92400e;
+            font-weight: 500;
+        }
+
+        .alert-box strong {
+            color: #78350f;
+        }
+
+        /* --- HIGHLIGHT BOX --- */
+        .highlight-box {
+            background: #f0fdfa;
+            border-left: 4px solid #14b8a6;
+            padding: 24px 28px;
+            border-radius: 0 12px 12px 0;
+            margin: 24px 0;
+        }
+
+        .highlight-box h3 {
+            color: #0f766e;
+            margin-bottom: 12px;
+        }
+
+        .highlight-box ul {
+            padding-left: 20px;
+        }
+
+        .highlight-box li {
+            color: #115e59;
+            margin-bottom: 6px;
+        }
+
+        /* --- METRIC CARDS --- */
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin: 24px 0;
+        }
+
+        .metric-card {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
+            padding: 24px 20px;
+            text-align: center;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.04);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1), 0 8px 24px rgba(0,0,0,0.06);
+        }
+
+        .metric-card:nth-child(1) { border-top: 4px solid #14b8a6; }
+        .metric-card:nth-child(2) { border-top: 4px solid #3b82f6; }
+        .metric-card:nth-child(3) { border-top: 4px solid #f59e0b; }
+        .metric-card:nth-child(4) { border-top: 4px solid #22c55e; }
+
+        .metric-value {
+            font-size: 2rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+            line-height: 1.2;
+        }
+
+        .metric-card:nth-child(1) .metric-value { background: linear-gradient(135deg, #14b8a6, #0d9488); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .metric-card:nth-child(2) .metric-value { background: linear-gradient(135deg, #3b82f6, #1d4ed8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .metric-card:nth-child(3) .metric-value { background: linear-gradient(135deg, #f59e0b, #d97706); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .metric-card:nth-child(4) .metric-value { background: linear-gradient(135deg, #22c55e, #16a34a); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+        .metric-label {
+            font-size: 0.9rem;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        /* --- CONTENT CARDS --- */
+        .card-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin: 24px 0;
+        }
+
+        .card {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
+            padding: 28px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.04);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1), 0 8px 24px rgba(0,0,0,0.06);
+        }
+
+        .card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+        }
+
+        .card.teal-top {
+            border-top: 4px solid #14b8a6;
+        }
+
+        .card.blue-top {
+            border-top: 4px solid #3b82f6;
+        }
+
+        .card p, .card li {
+            font-size: 0.98rem;
+        }
+
+        /* --- RISK FACTOR LIST --- */
+        .risk-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .risk-list li {
+            padding: 16px 0;
+            border-bottom: 1px solid #f1f5f9;
+            font-size: 1.05rem;
+        }
+
+        .risk-list li:last-child {
+            border-bottom: none;
+        }
+
+        .risk-list strong {
+            color: #1e293b;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        /* --- AGE BRACKET CARDS --- */
+        .age-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin: 24px 0;
+        }
+
+        .age-card {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
+            padding: 28px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.04);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .age-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1), 0 8px 24px rgba(0,0,0,0.06);
+        }
+
+        .age-card:nth-child(1) { border-top: 4px solid #22c55e; }
+        .age-card:nth-child(2) { border-top: 4px solid #f59e0b; }
+        .age-card:nth-child(3) { border-top: 4px solid #ef4444; }
+
+        .age-card h3 {
+            font-size: 1.15rem;
+            margin-bottom: 12px;
+        }
+
+        .age-card:nth-child(1) h3 { color: #16a34a; }
+        .age-card:nth-child(2) h3 { color: #d97706; }
+        .age-card:nth-child(3) h3 { color: #dc2626; }
+
+        .age-card ul {
+            padding-left: 18px;
+            margin: 0;
+        }
+
+        .age-card li {
+            font-size: 0.95rem;
+            margin-bottom: 6px;
+        }
+
+        /* --- TIP SECTIONS --- */
+        .tip-card {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
+            padding: 28px;
+            margin: 20px 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.04);
+        }
+
+        .tip-card h3 {
+            margin-bottom: 12px;
+            color: #0f766e;
+        }
+
+        .tip-card p, .tip-card li {
+            font-size: 0.98rem;
+        }
+
+        /* --- RESOURCES --- */
+        .resource-links {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .resource-links li {
+            margin-bottom: 12px;
+        }
+
+        .resource-links a {
+            color: #0284c7;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.05rem;
+            transition: color 0.3s;
+        }
+
+        .resource-links a:hover {
+            color: #0369a1;
+            text-decoration: underline;
+        }
+
+        .resource-links .resource-desc {
+            display: block;
+            color: #64748b;
+            font-size: 0.9rem;
+            font-weight: 400;
+            margin-top: 2px;
+        }
+
+        /* --- FOOTER --- */
+        .footer {
+            background: #1e293b;
+            color: #94a3b8;
+            padding: 48px 24px 32px;
+            margin-top: 64px;
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #14b8a6;
+        }
+
+        .footer-disclaimer {
+            font-size: 0.8rem;
+            line-height: 1.6;
+            color: #64748b;
+            border-top: 1px solid #334155;
+            padding-top: 24px;
+            margin-top: 24px;
+        }
+
+        .footer-copyright {
+            font-size: 0.85rem;
+            margin-bottom: 16px;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 40px 20px;
+            }
+
+            .hero h1 {
+                font-size: 1.75rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .page-nav-inner {
+                flex-direction: column;
+                padding: 8px 0;
+            }
+
+            .page-nav a {
+                padding: 12px 24px;
+                border-bottom: none;
+                border-left: 3px solid transparent;
+                font-size: 0.9rem;
+            }
+
+            .page-nav a.active {
+                border-bottom: none;
+                border-left-color: #14b8a6;
+                background: #f0fdfa;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .metric-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .age-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .main-content {
+                padding: 32px 20px 48px;
+            }
+
+            .section h2 {
+                font-size: 1.4rem;
+            }
+
+            .metric-value {
+                font-size: 1.6rem;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .metric-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-content">
+            <a href="index.html" class="logo">
+                <img src="A1_Diagnosis_Logo.jpg" alt="A1 Diagnosis Logo" class="logo-image">
+            </a>
+            <a href="index.html" class="nav-back">&larr; Back to Home</a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="hero">
+        <h1>AMD Risk Factors &amp; Prevention</h1>
+        <p>What increases your risk and what you can do to protect your vision</p>
+    </header>
+
+    <!-- PAGE NAV -->
+    <nav class="page-nav">
+        <div class="page-nav-inner">
+            <a href="what-is-amd.html">What is AMD?</a>
+            <a href="amd-stages.html">AMD Stages &amp; Treatments</a>
+            <a href="risk-factors.html" class="active">Risk Factors &amp; Prevention</a>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- Section 1: Understanding AMD Risk -->
+        <div class="section">
+            <h2>Understanding AMD Risk</h2>
+            <p>Age-Related Macular Degeneration is influenced by a combination of genetic, environmental, and lifestyle factors. While some risk factors&mdash;such as age and family history&mdash;cannot be changed, many others are within your control. Understanding your personal risk profile is the first step toward proactive vision protection.</p>
+            <p>Research shows that a combination of risk factors significantly increases the likelihood of developing AMD. The good news is that modifying even one or two controllable risk factors can meaningfully reduce your overall risk.</p>
+        </div>
+
+        <!-- Section 2: Risk Factors You Cannot Change -->
+        <div class="section">
+            <h2>Risk Factors You Cannot Change</h2>
+            <p>These non-modifiable risk factors are important to be aware of, as they help determine your baseline risk level:</p>
+
+            <ul class="risk-list">
+                <li>
+                    <strong>Age</strong>
+                    AMD risk increases significantly after age 55. By age 75, approximately 30% of people show some signs of AMD. Age is the single strongest risk factor for the disease.
+                </li>
+                <li>
+                    <strong>Family History &amp; Genetics</strong>
+                    Having a first-degree relative (parent or sibling) with AMD increases your risk by 3&ndash;4 times. Specific genetic variants, including those in the complement factor H (CFH) and ARMS2 genes, are strongly associated with AMD risk.
+                </li>
+                <li>
+                    <strong>Race &amp; Ethnicity</strong>
+                    AMD is more common among people of European descent. While AMD occurs in all racial groups, Caucasians have a higher prevalence of late-stage AMD compared to African Americans, Hispanics, and Asian Americans.
+                </li>
+                <li>
+                    <strong>Gender</strong>
+                    Women are at slightly higher risk of developing AMD than men, potentially due to longer life expectancy and hormonal factors. Studies suggest women account for approximately 65% of AMD cases.
+                </li>
+            </ul>
+        </div>
+
+        <!-- Section 3: Risk Factors You Can Control -->
+        <div class="section">
+            <h2>Risk Factors You Can Control</h2>
+            <p>These modifiable factors represent opportunities to reduce your risk through lifestyle choices:</p>
+
+            <ul class="risk-list">
+                <li>
+                    <strong>Smoking</strong>
+                    Smoking is the most significant modifiable risk factor for AMD. Current smokers are 2&ndash;4 times more likely to develop AMD compared to people who have never smoked. Smoking damages blood vessels throughout the body, including those in the eye, and accelerates the buildup of drusen.
+                </li>
+                <li>
+                    <strong>Diet &amp; Nutrition</strong>
+                    A diet low in fruits, vegetables, and omega-3 fatty acids is associated with higher AMD risk. Nutrients such as lutein, zeaxanthin, zinc, and vitamins C and E play protective roles in maintaining retinal health.
+                </li>
+                <li>
+                    <strong>Obesity</strong>
+                    Being overweight or obese has been linked to increased risk and faster progression of AMD. Studies show that a BMI over 30 can double the risk of developing advanced AMD.
+                </li>
+                <li>
+                    <strong>Cardiovascular Health</strong>
+                    High blood pressure, high cholesterol, and cardiovascular disease are associated with increased AMD risk. The retina depends on healthy blood circulation, and vascular damage can contribute to AMD development.
+                </li>
+                <li>
+                    <strong>Sun Exposure</strong>
+                    Prolonged exposure to ultraviolet (UV) light and high-energy blue light may contribute to retinal damage over time. Cumulative sun exposure without adequate eye protection is considered a risk factor.
+                </li>
+                <li>
+                    <strong>Physical Inactivity</strong>
+                    A sedentary lifestyle is associated with higher AMD risk. Regular physical activity improves cardiovascular health and blood flow to the retina, potentially reducing risk.
+                </li>
+            </ul>
+        </div>
+
+        <!-- Section 4: Key Statistics -->
+        <div class="section">
+            <h2>Key Statistics</h2>
+
+            <div class="metric-grid">
+                <div class="metric-card">
+                    <div class="metric-value">20M+</div>
+                    <div class="metric-label">Americans affected by AMD</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">169M</div>
+                    <div class="metric-label">Americans aged 35+ at potential risk</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">2&ndash;4x</div>
+                    <div class="metric-label">Increased risk from smoking</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">55+</div>
+                    <div class="metric-label">Age when risk increases significantly</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 5: How to Lower Your Risk -->
+        <div class="section">
+            <h2>How to Lower Your Risk</h2>
+            <p>While AMD cannot be completely prevented, research supports several strategies to reduce your risk and slow progression:</p>
+
+            <div class="tip-card">
+                <h3>Quit Smoking</h3>
+                <p>If you smoke, quitting is the single most impactful step you can take to reduce your AMD risk. Former smokers still have elevated risk compared to never-smokers, but the risk decreases over time after quitting. Talk to your doctor about smoking cessation programs and support resources.</p>
+            </div>
+
+            <div class="tip-card">
+                <h3>Eat a Nutrient-Rich Diet</h3>
+                <p>Focus on foods that support retinal health:</p>
+                <ul>
+                    <li><strong>Dark leafy greens</strong> (kale, spinach, collard greens) &mdash; rich in lutein and zeaxanthin</li>
+                    <li><strong>Fatty fish</strong> (salmon, mackerel, sardines) &mdash; high in omega-3 fatty acids</li>
+                    <li><strong>Colorful fruits and vegetables</strong> (oranges, berries, bell peppers) &mdash; antioxidant vitamins C and E</li>
+                    <li><strong>Nuts and seeds</strong> (almonds, walnuts, flaxseed) &mdash; vitamin E and healthy fats</li>
+                    <li><strong>Legumes and whole grains</strong> &mdash; zinc and other essential minerals</li>
+                </ul>
+            </div>
+
+            <div class="tip-card">
+                <h3>Exercise Regularly</h3>
+                <p>Aim for at least 150 minutes of moderate aerobic activity per week (such as brisk walking, swimming, or cycling). Regular exercise improves cardiovascular health, which supports healthy blood flow to the retina. Studies suggest that people who exercise regularly have a 40&ndash;70% lower risk of developing wet AMD.</p>
+            </div>
+
+            <div class="tip-card">
+                <h3>Protect Your Eyes from UV Light</h3>
+                <p>Wear sunglasses that block 99&ndash;100% of UV-A and UV-B rays whenever you are outdoors. Choose wraparound styles or those with large lenses for maximum coverage. A wide-brimmed hat provides additional protection. Consider lenses that also filter high-energy blue light.</p>
+            </div>
+
+            <div class="tip-card">
+                <h3>Consider AREDS 2 Supplements</h3>
+                <p>If you have been diagnosed with intermediate AMD or late AMD in one eye, talk to your ophthalmologist about AREDS 2 supplements. These specific vitamin and mineral formulations have been clinically proven to reduce the risk of progression to late AMD by approximately 25%.</p>
+            </div>
+
+            <div class="tip-card">
+                <h3>Get Regular Eye Exams</h3>
+                <p>Comprehensive dilated eye exams are the most reliable way to detect AMD early, before you notice symptoms. The American Academy of Ophthalmology recommends a baseline eye exam at age 40 and regular exams as directed by your eye care provider, especially after age 55.</p>
+            </div>
+        </div>
+
+        <!-- Section 6: Prevention Tips at Every Age -->
+        <div class="section">
+            <h2>Prevention Tips at Every Age</h2>
+            <p>Your approach to AMD prevention should evolve as you age. Here are targeted recommendations for each life stage:</p>
+
+            <div class="age-grid">
+                <div class="age-card">
+                    <h3>Ages 35&ndash;50</h3>
+                    <ul>
+                        <li>Establish a baseline eye exam by age 40</li>
+                        <li>Know your family history of eye disease</li>
+                        <li>Wear UV-protective sunglasses consistently</li>
+                        <li>Build a diet rich in leafy greens and omega-3s</li>
+                        <li>If you smoke, create a plan to quit</li>
+                        <li>Maintain a healthy weight and exercise regularly</li>
+                        <li>Manage blood pressure and cholesterol</li>
+                    </ul>
+                </div>
+                <div class="age-card">
+                    <h3>Ages 50&ndash;65</h3>
+                    <ul>
+                        <li>Schedule dilated eye exams every 1&ndash;2 years</li>
+                        <li>Monitor central vision with an Amsler grid at home</li>
+                        <li>Ask your eye doctor specifically about AMD signs</li>
+                        <li>Discuss AREDS 2 supplements if you have intermediate AMD</li>
+                        <li>Continue cardiovascular exercise and healthy eating</li>
+                        <li>Report any changes in vision promptly</li>
+                        <li>Consider emerging risk assessment tools (e.g., blood-based testing)</li>
+                    </ul>
+                </div>
+                <div class="age-card">
+                    <h3>Ages 65+</h3>
+                    <ul>
+                        <li>Get annual dilated eye exams without exception</li>
+                        <li>Use the Amsler grid daily to detect changes early</li>
+                        <li>Take AREDS 2 supplements if recommended by your doctor</li>
+                        <li>Seek immediate care for sudden vision changes</li>
+                        <li>Explore low-vision aids if needed</li>
+                        <li>Stay informed about new treatments and clinical trials</li>
+                        <li>Maintain social engagement and mental health support</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 7: Key Takeaways -->
+        <div class="section">
+            <div class="highlight-box">
+                <h3>Key Takeaways</h3>
+                <ul>
+                    <li>Age is the strongest risk factor&mdash;risk increases significantly after 55</li>
+                    <li>Family history and genetics play a major role in AMD susceptibility</li>
+                    <li>Smoking is the most significant modifiable risk factor (2&ndash;4x increased risk)</li>
+                    <li>Diet, exercise, and cardiovascular health all influence AMD risk</li>
+                    <li>UV protection and nutrient-rich foods support long-term retinal health</li>
+                    <li>Regular dilated eye exams are essential for early detection</li>
+                    <li>AREDS 2 supplements can reduce progression risk by ~25% for intermediate AMD</li>
+                    <li>Blood-based risk assessment is an emerging tool for earlier AMD detection</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Section 8: Trusted Resources -->
+        <div class="section">
+            <h2>Trusted Resources</h2>
+            <p>Learn more from these reputable organizations:</p>
+
+            <ul class="resource-links">
+                <li>
+                    <a href="https://www.nei.nih.gov/learn-about-eye-health/eye-conditions-and-diseases/age-related-macular-degeneration" target="_blank" rel="noopener">National Eye Institute (NEI)</a>
+                    <span class="resource-desc">Comprehensive AMD information from the National Institutes of Health</span>
+                </li>
+                <li>
+                    <a href="https://www.aao.org/eye-health/diseases/amd-macular-degeneration" target="_blank" rel="noopener">American Academy of Ophthalmology (AAO)</a>
+                    <span class="resource-desc">Expert eye health resources and AMD guidelines</span>
+                </li>
+                <li>
+                    <a href="https://www.macular.org/" target="_blank" rel="noopener">American Macular Degeneration Foundation (AMDF)</a>
+                    <span class="resource-desc">Patient education, support, and research updates</span>
+                </li>
+                <li>
+                    <a href="https://www.brightfocus.org/macular" target="_blank" rel="noopener">BrightFocus Foundation</a>
+                    <span class="resource-desc">Funding research and providing public education on macular degeneration</span>
+                </li>
+                <li>
+                    <a href="https://visionaware.org/" target="_blank" rel="noopener">VisionAware</a>
+                    <span class="resource-desc">Practical resources for adults with vision loss</span>
+                </li>
+            </ul>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-copyright">&copy; 2025 A1 Diagnosis. All rights reserved.</div>
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="what-is-amd.html">What is AMD?</a>
+                <a href="amd-stages.html">AMD Stages &amp; Treatments</a>
+                <a href="risk-factors.html">Risk Factors &amp; Prevention</a>
+            </div>
+            <div class="footer-disclaimer">
+                <strong>Medical Disclaimer:</strong> The information provided on this page is for educational purposes only and is not intended as medical advice, diagnosis, or treatment. Always consult a qualified healthcare professional for medical questions or concerns. A1 Diagnosis content has not been evaluated or approved by the FDA. This information does not replace professional medical care.
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMD Stages, Progression & Treatment | A1 Diagnosis</title>
+    <meta name="description" content="Learn about the stages of Age-Related Macular Degeneration, how AMD progresses, and the treatments available at each stage including anti-VEGF therapy.">
+
+    <link rel="icon" type="image/png" href="A1_Favicon_V2.png">
+    <link rel="shortcut icon" type="image/png" href="A1_Favicon_V2.png">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-27QM6KXY13"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-27QM6KXY13');
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.7;
+            color: #475569;
+            background: #ffffff;
+        }
+
+        /* --- NAVBAR --- */
+        .navbar {
+            background: rgba(255, 255, 255, 0.98);
+            border-bottom: 1px solid #e5e7eb;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: #000000;
+            text-decoration: none;
+        }
+
+        .logo-image {
+            height: 40px;
+            width: auto;
+        }
+
+        .nav-back {
+            color: #64748b;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .nav-back:hover {
+            color: #0ea5e9;
+        }
+
+        /* --- HERO --- */
+        .hero {
+            background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 50%, #0369a1 100%);
+            color: white;
+            padding: 60px 24px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+            font-weight: 400;
+        }
+
+        /* --- PAGE NAV TABS --- */
+        .page-nav {
+            background: #ffffff;
+            border-bottom: 1px solid #e5e7eb;
+            position: sticky;
+            top: 65px;
+            z-index: 999;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .page-nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            gap: 0;
+        }
+
+        .page-nav a {
+            display: block;
+            padding: 16px 24px;
+            text-decoration: none;
+            color: #64748b;
+            font-weight: 500;
+            font-size: 0.95rem;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        .page-nav a:hover {
+            color: #0d9488;
+            background: #f0fdfa;
+        }
+
+        .page-nav a.active {
+            color: #0d9488;
+            border-bottom-color: #14b8a6;
+            font-weight: 600;
+        }
+
+        /* --- MAIN CONTENT --- */
+        .main-content {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 48px 24px 64px;
+        }
+
+        .section {
+            margin-bottom: 48px;
+        }
+
+        .section h2 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 16px;
+            letter-spacing: -0.3px;
+        }
+
+        .section h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 12px;
+        }
+
+        .section p {
+            margin-bottom: 16px;
+            font-size: 1.05rem;
+        }
+
+        .section ul, .section ol {
+            margin-bottom: 16px;
+            padding-left: 24px;
+        }
+
+        .section li {
+            margin-bottom: 8px;
+            font-size: 1.05rem;
+        }
+
+        /* --- INFO BOX --- */
+        .info-box {
+            background: #eff6ff;
+            border-left: 4px solid #3b82f6;
+            padding: 20px 24px;
+            border-radius: 0 12px 12px 0;
+            margin: 24px 0;
+        }
+
+        .info-box p {
+            margin-bottom: 0;
+            color: #1e40af;
+            font-weight: 500;
+        }
+
+        /* --- ALERT BOX --- */
+        .alert-box {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 20px 24px;
+            border-radius: 0 12px 12px 0;
+            margin: 24px 0;
+        }
+
+        .alert-box p {
+            margin-bottom: 0;
+            color: #92400e;
+            font-weight: 500;
+        }
+
+        .alert-box strong {
+            color: #78350f;
+        }
+
+        /* --- HIGHLIGHT BOX --- */
+        .highlight-box {
+            background: #f0fdfa;
+            border-left: 4px solid #14b8a6;
+            padding: 24px 28px;
+            border-radius: 0 12px 12px 0;
+            margin: 24px 0;
+        }
+
+        .highlight-box h3 {
+            color: #0f766e;
+            margin-bottom: 12px;
+        }
+
+        .highlight-box ul {
+            padding-left: 20px;
+        }
+
+        .highlight-box li {
+            color: #115e59;
+            margin-bottom: 6px;
+        }
+
+        /* --- CONTENT CARDS --- */
+        .card-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin: 24px 0;
+        }
+
+        .card {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
+            padding: 28px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.04);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1), 0 8px 24px rgba(0,0,0,0.06);
+        }
+
+        .card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+        }
+
+        .card.teal-top {
+            border-top: 4px solid #14b8a6;
+        }
+
+        .card.blue-top {
+            border-top: 4px solid #3b82f6;
+        }
+
+        .card p, .card li {
+            font-size: 0.98rem;
+        }
+
+        /* --- STYLED TABLE --- */
+        .styled-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 24px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.04);
+        }
+
+        .styled-table thead th {
+            background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+            color: white;
+            padding: 14px 20px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .styled-table tbody td {
+            padding: 14px 20px;
+            border-bottom: 1px solid #f1f5f9;
+            font-size: 0.95rem;
+        }
+
+        .styled-table tbody tr:nth-child(even) {
+            background: #f8fafc;
+        }
+
+        .styled-table tbody tr:hover {
+            background: #f0fdfa;
+        }
+
+        .styled-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* --- SUPPLEMENTS TABLE --- */
+        .supplements-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 24px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.04);
+        }
+
+        .supplements-table thead th {
+            background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
+            color: white;
+            padding: 14px 20px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .supplements-table tbody td {
+            padding: 12px 20px;
+            border-bottom: 1px solid #f1f5f9;
+            font-size: 0.95rem;
+        }
+
+        .supplements-table tbody tr:nth-child(even) {
+            background: #f0fdfa;
+        }
+
+        .supplements-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* --- STAGE DETAIL CARDS --- */
+        .stage-card {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
+            padding: 32px;
+            margin: 24px 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.04);
+        }
+
+        .stage-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #f1f5f9;
+        }
+
+        .stage-card.early h3 { color: #16a34a; border-bottom-color: #bbf7d0; }
+        .stage-card.intermediate h3 { color: #d97706; border-bottom-color: #fde68a; }
+        .stage-card.late h3 { color: #dc2626; border-bottom-color: #fecaca; }
+
+        /* --- FOOTER --- */
+        .footer {
+            background: #1e293b;
+            color: #94a3b8;
+            padding: 48px 24px 32px;
+            margin-top: 64px;
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #14b8a6;
+        }
+
+        .footer-disclaimer {
+            font-size: 0.8rem;
+            line-height: 1.6;
+            color: #64748b;
+            border-top: 1px solid #334155;
+            padding-top: 24px;
+            margin-top: 24px;
+        }
+
+        .footer-copyright {
+            font-size: 0.85rem;
+            margin-bottom: 16px;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 40px 20px;
+            }
+
+            .hero h1 {
+                font-size: 1.75rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .page-nav-inner {
+                flex-direction: column;
+                padding: 8px 0;
+            }
+
+            .page-nav a {
+                padding: 12px 24px;
+                border-bottom: none;
+                border-left: 3px solid transparent;
+                font-size: 0.9rem;
+            }
+
+            .page-nav a.active {
+                border-bottom: none;
+                border-left-color: #14b8a6;
+                background: #f0fdfa;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .main-content {
+                padding: 32px 20px 48px;
+            }
+
+            .section h2 {
+                font-size: 1.4rem;
+            }
+
+            .styled-table, .supplements-table {
+                font-size: 0.85rem;
+            }
+
+            .styled-table thead th,
+            .styled-table tbody td,
+            .supplements-table thead th,
+            .supplements-table tbody td {
+                padding: 10px 12px;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-content">
+            <a href="index.html" class="logo">
+                <img src="A1_Diagnosis_Logo.jpg" alt="A1 Diagnosis Logo" class="logo-image">
+            </a>
+            <a href="index.html" class="nav-back">&larr; Back to Home</a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="hero">
+        <h1>AMD Stages, Progression &amp; Treatment</h1>
+        <p>Understanding how AMD develops and the treatments available at each stage</p>
+    </header>
+
+    <!-- PAGE NAV -->
+    <nav class="page-nav">
+        <div class="page-nav-inner">
+            <a href="what-is-amd.html">What is AMD?</a>
+            <a href="amd-stages.html" class="active">AMD Stages &amp; Treatments</a>
+            <a href="risk-factors.html">Risk Factors &amp; Prevention</a>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- Section 1: Understanding AMD Progression -->
+        <div class="section">
+            <h2>Understanding AMD Progression</h2>
+            <p>AMD is a progressive disease, meaning it develops and worsens over time. The rate of progression varies significantly between individuals&mdash;some people remain in the early stages for years, while others may advance more quickly. Understanding the stages of AMD helps patients and their families know what to expect, what to watch for, and when treatment may be needed.</p>
+            <p>Regular monitoring by an eye care professional is essential at every stage, as early intervention can make a significant difference in visual outcomes.</p>
+        </div>
+
+        <!-- Section 2: Stages of AMD -->
+        <div class="section">
+            <h2>Stages of AMD</h2>
+
+            <table class="styled-table">
+                <thead>
+                    <tr>
+                        <th>Stage</th>
+                        <th>What Happens</th>
+                        <th>Symptoms</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Early AMD</strong></td>
+                        <td>Small to medium drusen deposits under the retina; minimal RPE changes</td>
+                        <td>Usually none; detected during eye exam</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Intermediate AMD</strong></td>
+                        <td>Medium to large drusen; pigmentary changes in the retina</td>
+                        <td>Mild blurriness; difficulty in low light; may need more light for reading</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Late Dry AMD</strong></td>
+                        <td>Geographic atrophy: gradual breakdown of light-sensitive cells and RPE in the macula</td>
+                        <td>Noticeable central vision loss; difficulty reading and recognizing faces</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Late Wet AMD</strong></td>
+                        <td>Abnormal blood vessels grow under retina, leaking blood and fluid</td>
+                        <td>Rapid central vision loss; straight lines appear wavy; dark spots in vision</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="info-box">
+                <p>Early detection is critical. People with early or intermediate AMD may not notice any vision changes, but an eye care professional can identify the disease during a comprehensive dilated eye exam. The earlier AMD is caught, the more options are available to slow its progression.</p>
+            </div>
+        </div>
+
+        <!-- Section 3: Early AMD -->
+        <div class="section">
+            <div class="stage-card early">
+                <h3>Early AMD</h3>
+                <p>In early AMD, small yellow deposits called drusen form beneath the retina. These drusen are typically small to medium in size (less than 125 micrometers). At this stage, there is usually no vision loss.</p>
+
+                <h3>What to Know</h3>
+                <ul>
+                    <li>Most people with early AMD do not know they have it</li>
+                    <li>Diagnosis is typically made during a routine dilated eye exam</li>
+                    <li>No treatment is needed at this stage, but monitoring is important</li>
+                    <li>Lifestyle changes (diet, exercise, not smoking) may help slow progression</li>
+                    <li>Your doctor may recommend regular follow-up exams every 6&ndash;12 months</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Section 4: Intermediate AMD -->
+        <div class="section">
+            <div class="stage-card intermediate">
+                <h3>Intermediate AMD</h3>
+                <p>Intermediate AMD is characterized by medium to large drusen deposits and/or pigmentary changes in the retina. Some people begin to notice mild symptoms at this stage, while others may still have no noticeable vision changes.</p>
+
+                <h3>What to Know</h3>
+                <ul>
+                    <li>Vision may be slightly blurry, especially in dim lighting</li>
+                    <li>You may need brighter light for reading and close work</li>
+                    <li>The AREDS 2 supplement formula has been shown to reduce the risk of progressing to late AMD by approximately 25%</li>
+                    <li>Regular monitoring with OCT imaging is typically recommended</li>
+                    <li>Home monitoring with an Amsler grid may be advised</li>
+                </ul>
+
+                <h3>AREDS 2 Supplement Formula</h3>
+                <p>The Age-Related Eye Disease Study 2 (AREDS 2) identified a specific combination of vitamins and minerals that can slow the progression from intermediate to late AMD:</p>
+
+                <table class="supplements-table">
+                    <thead>
+                        <tr>
+                            <th>Nutrient</th>
+                            <th>Daily Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Vitamin C</td>
+                            <td>500 mg</td>
+                        </tr>
+                        <tr>
+                            <td>Vitamin E</td>
+                            <td>400 IU</td>
+                        </tr>
+                        <tr>
+                            <td>Lutein</td>
+                            <td>10 mg</td>
+                        </tr>
+                        <tr>
+                            <td>Zeaxanthin</td>
+                            <td>2 mg</td>
+                        </tr>
+                        <tr>
+                            <td>Zinc (as zinc oxide)</td>
+                            <td>80 mg</td>
+                        </tr>
+                        <tr>
+                            <td>Copper (as cupric oxide)</td>
+                            <td>2 mg</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="info-box">
+                    <p>AREDS 2 supplements are specifically formulated for people with intermediate AMD or late AMD in one eye. They are not intended for people with early AMD or those without the disease. Always consult your ophthalmologist before starting any supplement regimen.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 5: Late AMD -->
+        <div class="section">
+            <div class="stage-card late">
+                <h3>Late AMD</h3>
+                <p>Late AMD comes in two forms, both of which cause significant central vision loss:</p>
+            </div>
+
+            <div class="card-grid">
+                <div class="card teal-top">
+                    <h3>Late Dry AMD (Geographic Atrophy)</h3>
+                    <p>In geographic atrophy, the light-sensitive cells (photoreceptors) and the retinal pigment epithelium (RPE) in the macula gradually break down and die. This results in a slowly expanding area of vision loss.</p>
+                    <ul>
+                        <li>Vision loss progresses gradually over months to years</li>
+                        <li>Creates a growing blind spot in central vision</li>
+                        <li>Both eyes may be affected at different rates</li>
+                        <li>New complement inhibitor treatments (pegcetacoplan, avacincaptad pegol) are now FDA-approved to slow progression</li>
+                    </ul>
+                </div>
+                <div class="card blue-top">
+                    <h3>Late Wet AMD (Neovascular)</h3>
+                    <p>Wet AMD occurs when abnormal blood vessels grow from the choroid layer beneath the retina (choroidal neovascularization). These fragile vessels leak blood and fluid, causing rapid damage to the macula.</p>
+                    <ul>
+                        <li>Can cause rapid and severe vision loss within days to weeks</li>
+                        <li>Straight lines may appear wavy or distorted</li>
+                        <li>Dark or empty areas appear in the center of vision</li>
+                        <li>Treatable with anti-VEGF injections that can stabilize or improve vision</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="alert-box">
+                <p><strong>Urgent:</strong> If you experience a sudden change in vision&mdash;such as wavy lines, a dark spot, or rapid blurring&mdash;seek immediate care from your eye doctor. Wet AMD can cause permanent damage if not treated promptly. Early treatment with anti-VEGF injections can significantly improve outcomes.</p>
+            </div>
+        </div>
+
+        <!-- Section 6: Treatments -->
+        <div class="section">
+            <h2>Treatments for AMD</h2>
+            <p>While there is currently no cure for AMD, several treatments can slow progression and, in some cases, improve vision:</p>
+
+            <div class="stage-card">
+                <h3>Anti-VEGF Injections</h3>
+                <p>Anti-VEGF (vascular endothelial growth factor) therapy is the primary treatment for wet AMD. These medications are injected directly into the eye to block the growth of abnormal blood vessels and reduce fluid leakage.</p>
+                <ul>
+                    <li><strong>Ranibizumab (Lucentis)</strong> &mdash; FDA-approved for wet AMD</li>
+                    <li><strong>Aflibercept (Eylea)</strong> &mdash; FDA-approved, may allow longer intervals between treatments</li>
+                    <li><strong>Bevacizumab (Avastin)</strong> &mdash; Used off-label; comparable efficacy at lower cost</li>
+                    <li><strong>Faricimab (Vabysmo)</strong> &mdash; Dual-action therapy targeting both VEGF-A and Ang-2</li>
+                </ul>
+                <p>Treatment typically requires regular injections, initially monthly, with intervals adjusted based on response. Many patients experience stabilized or improved vision with consistent treatment.</p>
+            </div>
+
+            <div class="stage-card">
+                <h3>Complement Inhibitors (for Geographic Atrophy)</h3>
+                <p>New FDA-approved treatments for geographic atrophy (late dry AMD) work by inhibiting the complement system, part of the immune response involved in retinal cell damage:</p>
+                <ul>
+                    <li><strong>Pegcetacoplan (Syfovre)</strong> &mdash; Intravitreal injection given monthly or every other month</li>
+                    <li><strong>Avacincaptad pegol (Izervay)</strong> &mdash; Intravitreal injection given monthly</li>
+                </ul>
+                <p>These treatments slow the rate of geographic atrophy growth but do not reverse existing damage.</p>
+            </div>
+
+            <div class="stage-card">
+                <h3>Photodynamic Therapy (PDT)</h3>
+                <p>PDT uses a light-activated drug (verteporfin/Visudyne) injected into the bloodstream. A special laser is then directed at the abnormal blood vessels in the eye, activating the drug to seal the vessels.</p>
+                <ul>
+                    <li>Less commonly used today due to superior results with anti-VEGF therapy</li>
+                    <li>May be used in combination with anti-VEGF for certain cases</li>
+                    <li>Useful for specific subtypes of wet AMD (e.g., polypoidal choroidal vasculopathy)</li>
+                </ul>
+            </div>
+
+            <div class="info-box">
+                <p>Treatment decisions should be made in consultation with a retinal specialist or ophthalmologist who can evaluate your specific condition and recommend the most appropriate therapy. Treatment plans are individualized based on the type, stage, and response patterns of your AMD.</p>
+            </div>
+        </div>
+
+        <!-- Section 7: Living with AMD -->
+        <div class="section">
+            <h2>Living with AMD</h2>
+            <p>A diagnosis of AMD does not mean complete vision loss. Many people with AMD continue to live independently and maintain a good quality of life with the right support and resources.</p>
+
+            <h3>Low Vision Resources</h3>
+            <ul>
+                <li><strong>Magnifying devices</strong> &mdash; Handheld, stand-mounted, and electronic magnifiers for reading</li>
+                <li><strong>Large-print materials</strong> &mdash; Books, phones, keyboards, and remote controls with larger text</li>
+                <li><strong>Screen readers and accessibility software</strong> &mdash; Text-to-speech tools for computers and smartphones</li>
+                <li><strong>High-contrast and adjustable lighting</strong> &mdash; Task lighting and high-contrast settings to maximize remaining vision</li>
+            </ul>
+
+            <h3>Vision Rehabilitation</h3>
+            <p>Vision rehabilitation specialists can help you learn techniques and strategies to make the most of your remaining vision. Services may include:</p>
+            <ul>
+                <li>Training in the use of magnification and assistive devices</li>
+                <li>Strategies for safe mobility and navigation</li>
+                <li>Techniques for daily activities such as cooking, managing medications, and grooming</li>
+                <li>Eccentric viewing training to use peripheral vision more effectively</li>
+            </ul>
+
+            <h3>Emotional Support</h3>
+            <p>Vision loss can have a significant emotional impact. It is normal to experience grief, frustration, or anxiety. Consider these support options:</p>
+            <ul>
+                <li>Support groups for people with AMD or low vision (in-person and online)</li>
+                <li>Counseling with a therapist experienced in chronic health conditions</li>
+                <li>Connecting with peer mentors who have adapted to living with AMD</li>
+                <li>Talking openly with family and friends about your needs</li>
+            </ul>
+        </div>
+
+        <!-- Section 8: Key Takeaways -->
+        <div class="section">
+            <div class="highlight-box">
+                <h3>Key Takeaways</h3>
+                <ul>
+                    <li>AMD progresses through stages: early, intermediate, and late (dry or wet)</li>
+                    <li>Early and intermediate AMD often have no noticeable symptoms</li>
+                    <li>AREDS 2 supplements can reduce the risk of progressing from intermediate to late AMD by about 25%</li>
+                    <li>Anti-VEGF injections are the standard treatment for wet AMD and can stabilize or improve vision</li>
+                    <li>New complement inhibitor therapies are available for geographic atrophy (late dry AMD)</li>
+                    <li>Sudden vision changes require urgent medical attention</li>
+                    <li>Low vision resources and rehabilitation services can help maintain quality of life</li>
+                    <li>Ongoing research, including blood-based risk assessment, aims to enable earlier detection and intervention</li>
+                </ul>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-copyright">&copy; 2025 A1 Diagnosis. All rights reserved.</div>
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="what-is-amd.html">What is AMD?</a>
+                <a href="amd-stages.html">AMD Stages &amp; Treatments</a>
+                <a href="risk-factors.html">Risk Factors &amp; Prevention</a>
+            </div>
+            <div class="footer-disclaimer">
+                <strong>Medical Disclaimer:</strong> The information provided on this page is for educational purposes only and is not intended as medical advice, diagnosis, or treatment. Always consult a qualified healthcare professional for medical questions or concerns. A1 Diagnosis content has not been evaluated or approved by the FDA. This information does not replace professional medical care.
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
