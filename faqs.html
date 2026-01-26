@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMD Frequently Asked Questions | A1 Diagnosis</title>
+    <meta name="description" content="Answers to the most common questions about Age-Related Macular Degeneration (AMD) — symptoms, types, treatment, prevention, supplements, and the future of AMD care. Based on NIH and NEI research.">
+
+    <link rel="icon" type="image/png" href="A1_Favicon_V2.png">
+    <link rel="shortcut icon" type="image/png" href="A1_Favicon_V2.png">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-27QM6KXY13"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-27QM6KXY13');
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.7;
+            color: #475569;
+            background: #ffffff;
+        }
+
+        /* --- NAVBAR --- */
+        .navbar {
+            background: rgba(255, 255, 255, 0.98);
+            border-bottom: 1px solid #e5e7eb;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        .nav-content {
+            max-width: 1200px; margin: 0 auto; padding: 0 24px;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .logo {
+            display: flex; align-items: center; gap: 12px;
+            font-size: 24px; font-weight: 800; letter-spacing: -0.5px;
+            color: #000000; text-decoration: none;
+        }
+        .logo-image { height: 40px; width: auto; }
+        .nav-back {
+            color: #64748b; text-decoration: none; font-weight: 500;
+            font-size: 0.9rem; transition: color 0.3s;
+        }
+        .nav-back:hover { color: #0ea5e9; }
+
+        /* --- HERO --- */
+        .hero {
+            background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 50%, #0369a1 100%);
+            color: white; padding: 60px 24px; text-align: center;
+        }
+        .hero h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 16px; letter-spacing: -0.5px; }
+        .hero p { font-size: 1.15rem; opacity: 0.9; max-width: 700px; margin: 0 auto; font-weight: 400; }
+
+        /* --- PAGE NAV --- */
+        .page-nav {
+            background: #ffffff; border-bottom: 1px solid #e5e7eb;
+            position: sticky; top: 65px; z-index: 999;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .page-nav-inner {
+            max-width: 1200px; margin: 0 auto; padding: 0 24px;
+            display: flex; gap: 0;
+        }
+        .page-nav a {
+            display: block; padding: 16px 24px; text-decoration: none;
+            color: #64748b; font-weight: 500; font-size: 0.95rem;
+            border-bottom: 3px solid transparent; transition: all 0.3s; white-space: nowrap;
+        }
+        .page-nav a:hover { color: #0d9488; background: #f0fdfa; }
+        .page-nav a.active { color: #0d9488; border-bottom-color: #14b8a6; font-weight: 600; }
+
+        /* --- MAIN CONTENT --- */
+        .main-content { max-width: 860px; margin: 0 auto; padding: 48px 24px 64px; }
+        .section { margin-bottom: 48px; }
+        .section h2 {
+            font-size: 1.75rem; font-weight: 700; color: #1e293b;
+            margin-bottom: 16px; letter-spacing: -0.3px;
+        }
+        .section p { margin-bottom: 16px; font-size: 1.05rem; }
+        .section ul, .section ol { margin-bottom: 16px; padding-left: 24px; }
+        .section li { margin-bottom: 8px; font-size: 1.05rem; }
+
+        /* --- CITATION --- */
+        .cite {
+            font-size: 0.8rem; vertical-align: super; color: #3b82f6;
+            text-decoration: none; font-weight: 600; cursor: pointer;
+        }
+        .cite:hover { color: #1d4ed8; text-decoration: underline; }
+
+        /* --- FAQ ACCORDION --- */
+        .faq-category {
+            margin-bottom: 40px;
+        }
+        .faq-category h2 {
+            font-size: 1.5rem; font-weight: 700; color: #1e293b;
+            margin-bottom: 20px; padding-bottom: 12px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+        .faq-item {
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            overflow: hidden;
+            transition: box-shadow 0.3s;
+        }
+        .faq-item:hover {
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        .faq-question {
+            width: 100%; padding: 20px 24px; background: #ffffff;
+            border: none; cursor: pointer; text-align: left;
+            font-family: inherit; font-size: 1.05rem; font-weight: 600;
+            color: #1e293b; display: flex; justify-content: space-between;
+            align-items: center; gap: 16px; transition: background 0.3s;
+        }
+        .faq-question:hover { background: #f8fafc; }
+        .faq-question.active { background: #f0fdfa; color: #0f766e; }
+        .faq-arrow {
+            font-size: 1.2rem; color: #94a3b8; transition: transform 0.3s;
+            flex-shrink: 0;
+        }
+        .faq-question.active .faq-arrow { transform: rotate(180deg); color: #0d9488; }
+        .faq-answer {
+            max-height: 0; overflow: hidden; transition: max-height 0.4s ease;
+            background: #f8fafc;
+        }
+        .faq-answer-inner {
+            padding: 0 24px 24px; font-size: 1rem; line-height: 1.7;
+        }
+        .faq-answer-inner p { margin-bottom: 12px; }
+        .faq-answer-inner ul { padding-left: 20px; margin-bottom: 12px; }
+        .faq-answer-inner li { margin-bottom: 6px; font-size: 0.98rem; }
+        .faq-answer-inner strong { color: #1e293b; }
+
+        /* --- INFO / ALERT / HIGHLIGHT BOXES --- */
+        .info-box {
+            background: #eff6ff; border-left: 4px solid #3b82f6;
+            padding: 16px 20px; border-radius: 0 12px 12px 0; margin: 16px 0;
+        }
+        .info-box p { margin-bottom: 0; color: #1e40af; font-weight: 500; font-size: 0.95rem; }
+        .info-box a { color: #1e40af; }
+
+        .alert-box {
+            background: #fef3c7; border-left: 4px solid #f59e0b;
+            padding: 16px 20px; border-radius: 0 12px 12px 0; margin: 16px 0;
+        }
+        .alert-box p { margin-bottom: 0; color: #92400e; font-weight: 500; font-size: 0.95rem; }
+
+        .highlight-box {
+            background: #f0fdfa; border-left: 4px solid #14b8a6;
+            padding: 20px 24px; border-radius: 0 12px 12px 0; margin: 24px 0;
+        }
+        .highlight-box h3 { color: #0f766e; margin-bottom: 12px; font-size: 1.2rem; }
+        .highlight-box ul { padding-left: 20px; }
+        .highlight-box li { color: #115e59; margin-bottom: 6px; }
+
+        /* --- SUPPLEMENTS TABLE --- */
+        .supplements-table {
+            width: 100%; border-collapse: separate; border-spacing: 0;
+            margin: 16px 0; border-radius: 12px; overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+        }
+        .supplements-table thead th {
+            background: linear-gradient(135deg, #14b8a6, #0d9488);
+            color: white; padding: 12px 16px; text-align: left;
+            font-weight: 600; font-size: 0.9rem;
+        }
+        .supplements-table tbody td {
+            padding: 10px 16px; border-bottom: 1px solid #f1f5f9; font-size: 0.9rem;
+        }
+        .supplements-table tbody tr:nth-child(even) { background: #f0fdfa; }
+        .supplements-table tbody tr:last-child td { border-bottom: none; }
+
+        /* --- REFERENCES --- */
+        .references-list {
+            counter-reset: ref; list-style: none; padding-left: 0;
+        }
+        .references-list li {
+            counter-increment: ref; padding: 10px 0 10px 36px;
+            position: relative; border-bottom: 1px solid #f1f5f9;
+            font-size: 0.92rem; line-height: 1.6;
+        }
+        .references-list li:last-child { border-bottom: none; }
+        .references-list li::before {
+            content: "[" counter(ref) "]"; position: absolute; left: 0; top: 10px;
+            font-weight: 700; color: #3b82f6; font-size: 0.85rem;
+        }
+        .references-list a { color: #0284c7; text-decoration: none; word-break: break-word; }
+        .references-list a:hover { text-decoration: underline; }
+        .references-list .ref-authors { color: #1e293b; font-weight: 500; }
+        .references-list .ref-title { font-style: italic; }
+        .references-list .ref-source { color: #64748b; }
+
+        /* --- FOOTER --- */
+        .footer {
+            background: #1e293b; color: #94a3b8;
+            padding: 48px 24px 32px; margin-top: 64px;
+        }
+        .footer-inner { max-width: 1200px; margin: 0 auto; }
+        .footer-links { display: flex; gap: 24px; margin-bottom: 24px; flex-wrap: wrap; }
+        .footer-links a { color: #cbd5e1; text-decoration: none; font-size: 0.9rem; transition: color 0.3s; }
+        .footer-links a:hover { color: #14b8a6; }
+        .footer-disclaimer {
+            font-size: 0.8rem; line-height: 1.6; color: #64748b;
+            border-top: 1px solid #334155; padding-top: 24px; margin-top: 24px;
+        }
+        .footer-copyright { font-size: 0.85rem; margin-bottom: 16px; }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .hero { padding: 40px 20px; }
+            .hero h1 { font-size: 1.75rem; }
+            .hero p { font-size: 1rem; }
+            .page-nav-inner { flex-direction: column; padding: 8px 0; }
+            .page-nav a {
+                padding: 12px 24px; border-bottom: none;
+                border-left: 3px solid transparent; font-size: 0.9rem;
+            }
+            .page-nav a.active { border-bottom: none; border-left-color: #14b8a6; background: #f0fdfa; }
+            .main-content { padding: 32px 20px 48px; }
+            .section h2 { font-size: 1.4rem; }
+            .faq-question { font-size: 0.95rem; padding: 16px 20px; }
+            .faq-answer-inner { padding: 0 20px 20px; }
+            .footer-links { flex-direction: column; gap: 12px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-content">
+            <a href="index.html" class="logo">
+                <img src="A1_Diagnosis_Logo.jpg" alt="A1 Diagnosis Logo" class="logo-image">
+            </a>
+            <a href="index.html" class="nav-back">&larr; Back to Home</a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="hero">
+        <h1>Frequently Asked Questions About AMD</h1>
+        <p>Expert answers based on research from the National Eye Institute and National Institutes of Health</p>
+    </header>
+
+    <!-- PAGE NAV -->
+    <nav class="page-nav">
+        <div class="page-nav-inner">
+            <a href="what-is-proactive-health.html">Proactive Health Care</a>
+            <a href="what-is-amd.html">What is AMD?</a>
+            <a href="amd-stages.html">Stages &amp; Treatments</a>
+            <a href="risk-factors.html">Risk Factors</a>
+            <a href="faqs.html" class="active">FAQs</a>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- Category 0: Proactive Health Care -->
+        <div class="faq-category">
+            <h2>Proactive Health Care</h2>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    What is proactive health care?
+                    <span class="faq-arrow">&#9660;</span>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        <p><strong>Proactive health care</strong> is a medical approach that focuses on <strong>prevention, early detection, and risk assessment</strong> rather than waiting for disease symptoms to appear before intervening. It represents a fundamental shift from the traditional reactive model of medicine.<a href="#ref13" class="cite">[13]</a></p>
+                        <p>According to NIH research: &ldquo;Linking discovery science and its translatable innovations beyond reactive disease intervention to proactive prevention will maximize society&rsquo;s returns, creating the greatest benefit for the greatest number of people globally.&rdquo;<a href="#ref13" class="cite">[13]</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    How is proactive health care different from regular health care?
+                    <span class="faq-arrow">&#9660;</span>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        <p><strong>Reactive health care</strong> (traditional) treats disease after symptoms appear, often when significant damage has already occurred. <strong>Proactive health care</strong> screens for risk before symptoms develop, enabling earlier and less invasive interventions.<a href="#ref13" class="cite">[13]</a></p>
+                        <p>Key differences:</p>
+                        <ul>
+                            <li><strong>Reactive:</strong> Intervenes after symptoms &rarr; treats established disease &rarr; higher costs</li>
+                            <li><strong>Proactive:</strong> Screens before symptoms &rarr; prevents progression &rarr; preserves health and reduces costs</li>
+                        </ul>
+                        <p>NIH research shows that personalized preventive care programs reduce emergency room visits and long-term health care expenditures.<a href="#ref14" class="cite">[14]</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    What role do blood-based biomarkers play in proactive health care?
+                    <span class="faq-arrow">&#9660;</span>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        <p>Blood-based biomarkers are one of the most transformative tools in proactive health care. By measuring proteins, metabolites, and molecular signals in a simple blood draw, doctors can detect disease risk years before symptoms appear.<a href="#ref15" class="cite">[15]</a></p>
+                        <p>Examples already in clinical use or development:</p>
+                        <ul>
+                            <li><strong>Cardiovascular disease:</strong> Cholesterol panels, hs-CRP, troponin</li>
+                            <li><strong>Cancer:</strong> Multicancer early detection assays from a single blood sample</li>
+                            <li><strong>Alzheimer&rsquo;s:</strong> Blood-based amyloid and tau protein tests</li>
+                            <li><strong>AMD:</strong> ApoM, CRP, homocysteine, and HDL cholesterol are being studied as risk markers<a href="#ref5" class="cite">[5]</a><a href="#ref6" class="cite">[6]</a></li>
+                        </ul>
+                        <p>NIH research states: &ldquo;Biomarker-based predictive models represent a paradigm shift from reactive medicine to proactive prevention.&rdquo;<a href="#ref15" class="cite">[15]</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    How does proactive health care apply to vision and AMD?
+                    <span class="faq-arrow">&#9660;</span>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        <p>AMD is a prime example of why proactive health care is essential. Early AMD has <strong>no symptoms</strong>, yet by the time patients notice vision changes, significant irreversible damage may have already occurred.<a href="#ref1" class="cite">[1]</a></p>
+                        <p>A proactive approach to AMD includes:</p>
+                        <ul>
+                            <li><strong>Risk assessment before symptoms</strong> &mdash; blood biomarkers and AI screening to identify elevated risk</li>
+                            <li><strong>Regular dilated eye exams</strong> &mdash; detecting structural changes early<a href="#ref1" class="cite">[1]</a></li>
+                            <li><strong>Lifestyle modification</strong> &mdash; diet, exercise, smoking cessation for identified at-risk individuals</li>
+                            <li><strong>Early intervention</strong> &mdash; AREDS 2 supplements can reduce progression by ~25% when started at the intermediate stage<a href="#ref3" class="cite">[3]</a></li>
+                        </ul>
+                        <p>The NEI states: &ldquo;Many eye diseases have no early symptoms. Regular comprehensive dilated eye exams can help adults protect their vision by catching eye diseases early, when they&rsquo;re easier to treat.&rdquo;<a href="#ref1" class="cite">[1]</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    What are the levels of prevention in health care?
+                    <span class="faq-arrow">&#9660;</span>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        <p>The NIH defines a structured prevention framework:<a href="#ref16" class="cite">[16]</a></p>
+                        <ul>
+                            <li><strong>Primordial prevention:</strong> Addressing social and environmental conditions that create risk factors</li>
+                            <li><strong>Primary prevention:</strong> Preventing disease before it occurs (vaccinations, lifestyle changes, risk factor reduction)</li>
+                            <li><strong>Secondary prevention:</strong> Early detection and prompt intervention to prevent progression (screening, diagnostic testing). Blood-based AMD risk assessment falls into this category</li>
+                            <li><strong>Tertiary prevention:</strong> Reducing the impact of established disease through treatment and rehabilitation</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Category 1: Understanding AMD -->
+        <div class="faq-category">
+            <h2>Understanding AMD</h2>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    What is Age-Related Macular Degeneration (AMD)?
+                    <span class="faq-arrow">&#9660;</span>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        <p>Age-Related Macular Degeneration (AMD) is an eye disease that damages the macula&mdash;the small central area of the retina responsible for sharp, straight-ahead vision. It is the leading cause of vision loss among older adults.<a href="#ref1" class="cite">[1]</a></p>
+                        <p>AMD does not cause complete blindness, but losing central vision can make it harder to see faces, read, drive, or do close-up work like cooking or fixing things around the house.<a href="#ref1" class="cite">[1]</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    What is the difference between dry AMD and wet AMD?
+                    <span class="faq-arrow">&#9660;</span>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        <p><strong>Dry AMD</strong> is the most common form, accounting for about 80&ndash;90% of cases. It develops when small yellow deposits called drusen accumulate under the retina. Dry AMD tends to develop more slowly and progresses through three stages: early, intermediate, and late (geographic atrophy).<a href="#ref1" class="cite">[1]</a></p>
+                        <p><strong>Wet AMD</strong> (also called neovascular AMD) is less common but causes faster, more severe vision loss. It occurs when abnormal blood vessels grow under the retina and leak blood and fluid, damaging the macula. Any stage of dry AMD can turn into wet AMD.<a href="#ref1" class="cite">[1]</a></p>
+                        <p>According to Dr. Rajendra Apte (NEI): &ldquo;Dry AMD-related vision loss is due to the death of retinal cells and is not reversible. Wet AMD-related vision loss is due to fluid build-up in the retina and can sometimes be reversed with treatment.&rdquo;<a href="#ref2" class="cite">[2]</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    Will AMD make me completely blind?
+                    <span class="faq-arrow">&#9660;</span>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        <p>No. Advanced AMD seldom leads to total blindness. However, it can destroy the central vision needed for reading, driving, and recognizing faces. Peripheral (side) vision typically remains intact.<a href="#ref2" class="cite">[2]</a></p>
+                        <p>Treatment for wet AMD and emerging therapies for dry AMD aim to prevent or slow progression and preserve remaining vision.<a href="#ref2" class="cite">[2]</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    How many people are affected by AMD?
+                    <span class="faq-arrow">&#9660;</span>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        <p>Approximately <strong>20 million Americans</strong> are currently living with some form of AMD, with over 200 million people affected worldwide. As the population ages, these numbers are expected to grow significantly.<a href="#ref1" class="cite">[1]</a><a href="#ref7" class="cite">[7]</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Category 2: Symptoms & Detection -->
+        <div class="faq-category">
+            <h2>Symptoms &amp; Detection</h2>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    What are the symptoms of AMD?
+                    <span class="faq-arrow">&#9660;</span>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        <p>Symptoms depend on the stage:<a href="#ref1" class="cite">[1]</a></p>
+                        <ul>
+                            <li><strong>Early dry AMD:</strong> No symptoms at all</li>
+                            <li><strong>Intermediate dry AMD:</strong> Mild blurriness in central vision, difficulty seeing in low light (sometimes still no symptoms)</li>
+                            <li><strong>Late AMD:</strong> Straight lines appearing wavy or crooked, blurry or dark areas in central vision, blank spots, and colors appearing less bright</li>
+                        </ul>
+                        <div class="alert-box">
+                            <p><strong>Warning:</strong> Straight lines looking wavy is a warning sign for late AMD. If you notice this, contact your eye doctor immediately.<a href="#ref1" class="cite">[1]</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    How is AMD diagnosed?
+                    <span class="faq-arrow">&#9660;</span>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        <p>Eye doctors check for AMD during a <strong>comprehensive dilated eye exam</strong>. The exam is simple and painless&mdash;your doctor will put drops in your eyes to widen (dilate) your pupils and then examine your retina for signs of AMD, such as drusen deposits.<a href="#ref1" class="cite">[1]</a></p>
+                        <p>Your doctor may also use:</p>
+                        <ul>
+                            <li><strong>Optical Coherence Tomography (OCT)</strong> &mdash; creates detailed cross-section images of the retina<a href="#ref1" class="cite">[1]</a></li>
+                            <li><strong>Fluorescein angiography</strong> &mdash; uses dye to identify leaking blood vessels (for wet AMD)<a href="#ref4" class="cite">[4]</a></li>
+                            <li><strong>Amsler grid</strong> &mdash; a simple home test to monitor changes in central vision<a href="#ref2" class="cite">[2]</a></li>
+                        </ul>
+                        <div class="info-box">
+                            <p>The NEI recommends: &ldquo;Early AMD doesn&rsquo;t have any symptoms, so don&rsquo;t wait for your vision to change!&rdquo; Regular dilated eye exams are the best way to catch AMD early.<a href="#ref1" class="cite">[1]</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    Can a blood test detect AMD risk?
+                    <span class="faq-arrow">&#9660;</span>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        <p>Research is progressing toward this goal. NIH studies have identified several blood-based biomarkers associated with AMD, including:<a href="#ref6" class="cite">[6]</a></p>
+                        <ul>
+                            <li><strong>Apolipoprotein M (ApoM)</strong> &mdash; reduced in AMD patients (NEI, 2025)<a href="#ref5" class="cite">[5]</a></li>
+                            <li><strong>C-Reactive Protein (CRP)</strong> &mdash; elevated levels linked to late AMD<a href="#ref6" class="cite">[6]</a></li>
+                            <li><strong>Homocysteine</strong> &mdash; elevated serum levels correlate with AMD severity<a href="#ref6" class="cite">[6]</a></li>
+                            <li><strong>HDL Cholesterol</strong> &mdash; elevated levels predict progression<a href="#ref6" class="cite">[6]</a></li>
+                        </ul>
+                        <p>Currently, no blood-based AMD screening test is available to the public. Developing such a test is a significant unmet medical need.<a href="#ref6" class="cite">[6]</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    Does the NEI recommend genetic testing for AMD?
+                    <span class="faq-arrow">&#9660;</span>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        <p>No. The National Eye Institute does <strong>not currently recommend</strong> genetic testing for AMD because results cannot reliably guide prevention or treatment decisions. AMD is a complex disease involving many known and yet-undiscovered genetic risk factors. Even when test results are weighed with other risk factors, genetic status fails to reliably predict individual risk.<a href="#ref1" class="cite">[1]</a></p>
+                        <p>Genetic markers remain valuable for <strong>research purposes</strong> and for stratifying patients in clinical trials.<a href="#ref8" class="cite">[8]</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Category 3: Risk Factors & Prevention -->
+        <div class="faq-category">
+            <h2>Risk Factors &amp; Prevention</h2>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    What are the main risk factors for AMD?
+                    <span class="faq-arrow">&#9660;</span>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        <p>According to the NEI and NIH research, the main risk factors include:<a href="#ref1" class="cite">[1]</a><a href="#ref4" class="cite">[4]</a></p>
+                        <ul>
+                            <li><strong>Age</strong> &mdash; risk increases significantly after 55</li>
+                            <li><strong>Family history</strong> &mdash; having a first-degree relative with AMD increases risk 3&ndash;4x</li>
+                            <li><strong>Smoking</strong> &mdash; the most significant modifiable risk factor (2&ndash;4x increased risk)</li>
+                            <li><strong>Race</strong> &mdash; more common among people of European descent</li>
+                            <li><strong>Diet</strong> &mdash; low intake of fruits, vegetables, and omega-3 fatty acids</li>
+                            <li><strong>Cardiovascular factors</strong> &mdash; high blood pressure and high cholesterol</li>
+                            <li><strong>Obesity</strong> &mdash; BMI over 30 can double the risk of advanced AMD</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    Can AMD be prevented?
+                    <span class="faq-arrow">&#9660;</span>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        <p>While AMD cannot be completely prevented, research shows you can significantly lower your risk and slow progression through lifestyle choices:<a href="#ref1" class="cite">[1]</a><a href="#ref4" class="cite">[4]</a></p>
+                        <ul>
+                            <li><strong>Quit smoking</strong> &mdash; the single most impactful step</li>
+                            <li><strong>Exercise regularly</strong> &mdash; at least 150 minutes of moderate activity per week</li>
+                            <li><strong>Eat a nutrient-rich diet</strong> &mdash; dark leafy greens, fatty fish, colorful fruits and vegetables</li>
+                            <li><strong>Maintain healthy blood pressure and cholesterol</strong></li>
+                            <li><strong>Protect eyes from UV light</strong> &mdash; wear sunglasses blocking 99&ndash;100% of UV rays</li>
+                            <li><strong>Get regular dilated eye exams</strong> &mdash; especially after age 55</li>
+                        </ul>
+                        <p>The NEI states: &ldquo;Research shows that you may be able to lower your risk of AMD (or slow vision loss from AMD) by making healthy choices.&rdquo;<a href="#ref1" class="cite">[1]</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    How often should I get an eye exam?
+                    <span class="faq-arrow">&#9660;</span>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        <p>The NEI recommends a comprehensive dilated eye exam as the best way to detect AMD early. Specific recommendations include:<a href="#ref1" class="cite">[1]</a></p>
+                        <ul>
+                            <li><strong>Baseline eye exam by age 40</strong></li>
+                            <li><strong>Every 1&ndash;2 years after age 55</strong></li>
+                            <li><strong>Annually after age 65</strong></li>
+                            <li><strong>More frequently</strong> if you have risk factors (family history, smoking, existing AMD)</li>
+                        </ul>
+                        <p>&ldquo;If you&rsquo;re at risk for AMD because of your age, family history, or other factors, it&rsquo;s important to get regular eye exams.&rdquo;<a href="#ref1" class="cite">[1]</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Category 4: Treatment -->
+        <div class="faq-category">
+            <h2>Treatment</h2>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    What treatments are available for AMD?
+                    <span class="faq-arrow">&#9660;</span>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        <p>Treatment depends on the type and stage:<a href="#ref1" class="cite">[1]</a><a href="#ref4" class="cite">[4]</a></p>
+                        <ul>
+                            <li><strong>Early dry AMD:</strong> No treatment needed; monitoring and lifestyle changes recommended</li>
+                            <li><strong>Intermediate dry AMD:</strong> AREDS 2 supplements can reduce progression risk by ~25%<a href="#ref3" class="cite">[3]</a></li>
+                            <li><strong>Late dry AMD (geographic atrophy):</strong> Two FDA-approved complement inhibitors (Syfovre and Izervay) can slow progression<a href="#ref7" class="cite">[7]</a></li>
+                            <li><strong>Wet AMD:</strong> Anti-VEGF injections (Lucentis, Eylea, Avastin, Vabysmo) are the standard treatment<a href="#ref1" class="cite">[1]</a></li>
+                        </ul>
+                        <p>The journal <em>Science</em> listed anti-VEGF therapy for macular degeneration as one of the top ten scientific breakthroughs of the year when it was introduced.<a href="#ref4" class="cite">[4]</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    Will I need eye injections forever for wet AMD?
+                    <span class="faq-arrow">&#9660;</span>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        <p>Anti-VEGF treatments have revolutionized wet AMD care, but they do require ongoing injections. According to Dr. Rajendra Apte (NEI), patients typically receive <strong>7&ndash;8 injections during the first year</strong>. After that, the frequency depends on disease activity and individual treatment response.<a href="#ref2" class="cite">[2]</a></p>
+                        <p>Available anti-VEGF medications include ranibizumab (Lucentis), aflibercept (Eylea), bevacizumab (Avastin), and faricimab (Vabysmo). Some newer drugs allow longer intervals between injections.<a href="#ref1" class="cite">[1]</a></p>
+                        <p>Researchers are actively developing gene therapies that could provide sustained treatment from a single injection, potentially ending the need for repeated injections in the future.<a href="#ref9" class="cite">[9]</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    Are there new treatments on the horizon?
+                    <span class="faq-arrow">&#9660;</span>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        <p>Yes. NEI and NIH research is advancing on several fronts:<a href="#ref2" class="cite">[2]</a><a href="#ref7" class="cite">[7]</a><a href="#ref9" class="cite">[9]</a></p>
+                        <ul>
+                            <li><strong>Gene therapy</strong> &mdash; single-injection treatments (ADVM-022, RGX-314) that could replace repeated anti-VEGF injections<a href="#ref9" class="cite">[9]</a></li>
+                            <li><strong>Stem cell transplants</strong> &mdash; NEI is testing personalized iPSC-derived retinal cell transplants for advanced dry AMD<a href="#ref10" class="cite">[10]</a></li>
+                            <li><strong>CRISPR gene editing</strong> &mdash; preclinical results show 45% vessel reduction from a single injection<a href="#ref9" class="cite">[9]</a></li>
+                            <li><strong>ApoM pathway</strong> &mdash; increasing apolipoprotein M may slow or block AMD progression<a href="#ref5" class="cite">[5]</a></li>
+                            <li><strong>GSK3 inhibitors</strong> &mdash; the first small molecule shown to prevent AMD-like pathology in preclinical models<a href="#ref11" class="cite">[11]</a></li>
+                            <li><strong>AI screening</strong> &mdash; machine learning to identify patients at highest risk of rapid progression<a href="#ref12" class="cite">[12]</a></li>
+                        </ul>
+                        <p>Dr. Apte notes: &ldquo;Researchers explore pharmacologic, stem cell, and gene therapy approaches. Clinical trial participation remains vital for developing new treatments.&rdquo;<a href="#ref2" class="cite">[2]</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Category 5: AREDS Supplements -->
+        <div class="faq-category">
+            <h2>AREDS 2 Supplements</h2>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    What are AREDS 2 supplements and who should take them?
+                    <span class="faq-arrow">&#9660;</span>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        <p>AREDS 2 supplements are a specific combination of vitamins and minerals shown in NIH clinical trials to reduce the risk of intermediate AMD progressing to advanced AMD by approximately <strong>25%</strong>.<a href="#ref3" class="cite">[3]</a></p>
+                        <p>They are recommended for people with <strong>intermediate AMD</strong> or <strong>late AMD in one eye</strong>. They are <strong>not</strong> beneficial for people with early AMD or people who do not have AMD.<a href="#ref3" class="cite">[3]</a></p>
+
+                        <table class="supplements-table">
+                            <thead>
+                                <tr><th>Nutrient</th><th>Daily Amount</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>Vitamin C</td><td>500 mg</td></tr>
+                                <tr><td>Vitamin E</td><td>400 IU</td></tr>
+                                <tr><td>Lutein</td><td>10 mg</td></tr>
+                                <tr><td>Zeaxanthin</td><td>2 mg</td></tr>
+                                <tr><td>Zinc (as zinc oxide)</td><td>80 mg</td></tr>
+                                <tr><td>Copper (as cupric oxide)</td><td>2 mg</td></tr>
+                            </tbody>
+                        </table>
+
+                        <p>Always consult your ophthalmologist before starting AREDS 2 supplements.<a href="#ref3" class="cite">[3]</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    Can AREDS supplements prevent AMD?
+                    <span class="faq-arrow">&#9660;</span>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        <p><strong>No.</strong> According to the NEI: &ldquo;Nutritional supplements cannot prevent AMD.&rdquo; However, for people who already have intermediate or late AMD, the AREDS 2 formula may delay progression and help preserve vision longer.<a href="#ref3" class="cite">[3]</a></p>
+                        <p>The supplements also cannot prevent early AMD from developing into intermediate AMD. They are specifically effective for the intermediate-to-advanced transition.<a href="#ref3" class="cite">[3]</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    Are there any risks with AREDS supplements?
+                    <span class="faq-arrow">&#9660;</span>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        <p>Important safety considerations include:<a href="#ref3" class="cite">[3]</a></p>
+                        <ul>
+                            <li><strong>Smokers and former smokers:</strong> Beta-carotene (in the original AREDS formula) was linked to increased lung cancer risk. The AREDS 2 formula replaces beta-carotene with lutein and zeaxanthin, which is safer for smokers</li>
+                            <li><strong>Drug interactions:</strong> High-dose nutritional supplements can interfere with certain medications. Vitamin E may interact with blood thinners</li>
+                            <li><strong>Not a substitute for multivitamins:</strong> You can take standard multivitamins alongside AREDS formulas&mdash;most clinical trial participants did</li>
+                        </ul>
+                        <p>Discuss all medications and supplements with your healthcare provider before starting AREDS 2.<a href="#ref3" class="cite">[3]</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Category 6: Living with AMD -->
+        <div class="faq-category">
+            <h2>Living with AMD</h2>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    What can I do to manage my AMD?
+                    <span class="faq-arrow">&#9660;</span>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        <p>Dr. Rajendra Apte (NEI) recommends:<a href="#ref2" class="cite">[2]</a></p>
+                        <ul>
+                            <li>Get regular comprehensive eye exams</li>
+                            <li>Use an Amsler grid at home to detect early changes between appointments</li>
+                            <li>Quit smoking and manage high blood pressure</li>
+                            <li>Take AREDS 2 supplements if recommended by your doctor</li>
+                            <li>Consider participating in clinical trials for access to emerging treatments</li>
+                            <li>Report any sudden vision changes immediately</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    Are there visual aids available for people with AMD?
+                    <span class="faq-arrow">&#9660;</span>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        <p>Yes. Vision rehabilitation specialists can recommend a range of tools and strategies:<a href="#ref2" class="cite">[2]</a></p>
+                        <ul>
+                            <li><strong>Magnification aids</strong> &mdash; handheld, stand-mounted, and electronic magnifiers</li>
+                            <li><strong>Improved lighting solutions</strong> &mdash; task lighting and high-contrast settings</li>
+                            <li><strong>Large-print materials</strong> &mdash; books, phones, keyboards, and remote controls</li>
+                            <li><strong>Screen readers</strong> &mdash; text-to-speech software for computers and smartphones</li>
+                            <li><strong>Eccentric viewing training</strong> &mdash; techniques to use peripheral vision more effectively</li>
+                            <li><strong>Strategies for daily activities</strong> &mdash; cooking, medication management, and grooming</li>
+                        </ul>
+                        <p>Ask your eye doctor for a referral to a low vision specialist or vision rehabilitation program.<a href="#ref2" class="cite">[2]</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    Would cataract surgery help if I have AMD?
+                    <span class="faq-arrow">&#9660;</span>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        <p>Many people with AMD also have cataracts. Dr. Apte (NEI) recommends discussing the risks and benefits of cataract surgery with your eye care provider, as the decision depends on your specific situation&mdash;especially if you have wet AMD. Surgical timing may need to be coordinated with AMD treatment.<a href="#ref2" class="cite">[2]</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Key Takeaways -->
+        <div class="section">
+            <div class="highlight-box">
+                <h3>Key Takeaways</h3>
+                <ul>
+                    <li>AMD is the leading cause of severe vision loss in older adults, but it does not cause total blindness<a href="#ref1" class="cite">[1]</a></li>
+                    <li>Early AMD has no symptoms&mdash;regular dilated eye exams are essential for detection<a href="#ref1" class="cite">[1]</a></li>
+                    <li>Smoking is the most significant modifiable risk factor (2&ndash;4x increased risk)<a href="#ref4" class="cite">[4]</a></li>
+                    <li>AREDS 2 supplements reduce progression risk by ~25% for intermediate AMD<a href="#ref3" class="cite">[3]</a></li>
+                    <li>Anti-VEGF injections can stabilize or improve wet AMD vision<a href="#ref1" class="cite">[1]</a></li>
+                    <li>First-ever dry AMD drugs (Syfovre, Izervay) were approved in 2023<a href="#ref7" class="cite">[7]</a></li>
+                    <li>Gene therapy, stem cells, and CRISPR are advancing toward clinical use<a href="#ref9" class="cite">[9]</a><a href="#ref10" class="cite">[10]</a></li>
+                    <li>Blood-based biomarkers may soon enable non-invasive AMD risk screening<a href="#ref5" class="cite">[5]</a><a href="#ref6" class="cite">[6]</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- References -->
+        <div class="section" id="references">
+            <h2>References</h2>
+
+            <ol class="references-list">
+                <li id="ref1">
+                    <span class="ref-authors">National Eye Institute.</span>
+                    <span class="ref-title"> Age-Related Macular Degeneration (AMD).</span>
+                    <span class="ref-source"> NEI Eye Health Information.</span>
+                    <a href="https://www.nei.nih.gov/learn-about-eye-health/eye-conditions-and-diseases/age-related-macular-degeneration" target="_blank" rel="noopener">nei.nih.gov</a>
+                </li>
+                <li id="ref2">
+                    <span class="ref-authors">Apte R (NEI).</span>
+                    <span class="ref-title"> The Latest on AMD &mdash; Expert Q&amp;A.</span>
+                    <span class="ref-source"> NEI News &amp; Events, January 2025.</span>
+                    <a href="https://nei.nih.gov/about/news-and-events/news/latest-amd" target="_blank" rel="noopener">nei.nih.gov</a>
+                </li>
+                <li id="ref3">
+                    <span class="ref-authors">National Eye Institute.</span>
+                    <span class="ref-title"> AREDS/AREDS2 Frequently Asked Questions.</span>
+                    <span class="ref-source"> NEI Clinical Trials.</span>
+                    <a href="https://www.nei.nih.gov/eye-health-information/clinical-trials/age-related-eye-disease-studies-aredsareds2/aredsareds2-frequently-asked-questions" target="_blank" rel="noopener">nei.nih.gov</a>
+                </li>
+                <li id="ref4">
+                    <span class="ref-authors">Stahl A.</span>
+                    <span class="ref-title"> The Diagnosis and Treatment of Age-Related Macular Degeneration.</span>
+                    <span class="ref-source"> Dtsch Arztebl Int. 2020; 117(29&ndash;30):513&ndash;520. PMC7588619.</span>
+                    <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7588619/" target="_blank" rel="noopener">pmc.ncbi.nlm.nih.gov</a>
+                </li>
+                <li id="ref5">
+                    <span class="ref-authors">National Eye Institute.</span>
+                    <span class="ref-title"> Strategy to Prevent Age-Related Macular Degeneration Identified.</span>
+                    <span class="ref-source"> NEI Research News, 2025.</span>
+                    <a href="https://www.nei.nih.gov/research-and-training/research-news/strategy-prevent-age-related-macular-degeneration-identified" target="_blank" rel="noopener">nei.nih.gov</a>
+                </li>
+                <li id="ref6">
+                    <span class="ref-authors">Heesterbeek TJ, et al.</span>
+                    <span class="ref-title"> Biomarkers for the Progression of Intermediate Age-Related Macular Degeneration.</span>
+                    <span class="ref-source"> Surv Ophthalmol. 2024; 69(1):1&ndash;16. PMC10640447.</span>
+                    <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10640447/" target="_blank" rel="noopener">pmc.ncbi.nlm.nih.gov</a>
+                </li>
+                <li id="ref7">
+                    <span class="ref-authors">National Eye Institute.</span>
+                    <span class="ref-title"> Story of Discovery: NEI-Funded Research Paves Way for New Dry AMD Drugs.</span>
+                    <span class="ref-source"> NEI News &amp; Events.</span>
+                    <a href="https://www.nei.nih.gov/about/news-and-events/news/story-discovery-nei-funded-research-paves-way-new-dry-amd-drugs" target="_blank" rel="noopener">nei.nih.gov</a>
+                </li>
+                <li id="ref8">
+                    <span class="ref-authors">Scholl HPN, et al.</span>
+                    <span class="ref-title"> Genetic Markers and Biomarkers for Age-Related Macular Degeneration.</span>
+                    <span class="ref-source"> Expert Rev Mol Diagn. 2007; 7(5):585&ndash;604. PMC2000850.</span>
+                    <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC2000850/" target="_blank" rel="noopener">pmc.ncbi.nlm.nih.gov</a>
+                </li>
+                <li id="ref9">
+                    <span class="ref-authors">Biniszewska O, et al.</span>
+                    <span class="ref-title"> A New Generation of Gene Therapies as the Future of Wet AMD Treatment.</span>
+                    <span class="ref-source"> Int J Mol Sci. 2024; 25(4):2386. PMC10888617.</span>
+                    <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10888617/" target="_blank" rel="noopener">pmc.ncbi.nlm.nih.gov</a>
+                </li>
+                <li id="ref10">
+                    <span class="ref-authors">National Eye Institute.</span>
+                    <span class="ref-title"> Clinical Trial Highlight: Stem Cell Transplants for Dry AMD.</span>
+                    <span class="ref-source"> NEI Eye Health Information.</span>
+                    <a href="https://www.nei.nih.gov/learn-about-eye-health/eye-conditions-and-diseases/age-related-macular-degeneration/clinical-trial-highlight-stem-cell-transplants-dry-amd" target="_blank" rel="noopener">nei.nih.gov</a>
+                </li>
+                <li id="ref11">
+                    <span class="ref-authors">Hulleman J, et al. (University of Minnesota).</span>
+                    <span class="ref-title"> U. Minnesota Researchers Discover Potential New Pathway to Prevent AMD.</span>
+                    <span class="ref-source"> NEI News &amp; Events.</span>
+                    <a href="https://www.nei.nih.gov/about/news-and-events/news/u-minnesota-researchers-discover-potential-new-pathway-prevent-age-related-macular-degeneration" target="_blank" rel="noopener">nei.nih.gov</a>
+                </li>
+                <li id="ref12">
+                    <span class="ref-authors">National Eye Institute.</span>
+                    <span class="ref-title"> AI-Based Systems Can Help Identify Rapidly Advancing AMD.</span>
+                    <span class="ref-source"> NEI News &amp; Events.</span>
+                    <a href="https://www.nei.nih.gov/about/news-and-events/news/ai-based-systems-can-help-identify-rapidly-advancing-age-related-macular-degeneration" target="_blank" rel="noopener">nei.nih.gov</a>
+                </li>
+                <li id="ref13">
+                    <span class="ref-authors">Dzau VJ, et al.</span>
+                    <span class="ref-title"> Healthcare Evolves From Reactive to Proactive.</span>
+                    <span class="ref-source"> Circ Res. 2019; 124(2):171&ndash;173. PMC6314203.</span>
+                    <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6314203/" target="_blank" rel="noopener">pmc.ncbi.nlm.nih.gov</a>
+                </li>
+                <li id="ref14">
+                    <span class="ref-authors">Musich S, et al.</span>
+                    <span class="ref-title"> The Impact of Personalized Preventive Care on Health Care Quality, Utilization, and Expenditures.</span>
+                    <span class="ref-source"> Popul Health Manag. 2016; 19(6):389&ndash;397. PMC5296930.</span>
+                    <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5296930/" target="_blank" rel="noopener">pmc.ncbi.nlm.nih.gov</a>
+                </li>
+                <li id="ref15">
+                    <span class="ref-authors">Fan Y, et al.</span>
+                    <span class="ref-title"> Applications and Challenges of Biomarker-Based Predictive Models in Proactive Health Management.</span>
+                    <span class="ref-source"> PMC12399543.</span>
+                    <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12399543/" target="_blank" rel="noopener">pmc.ncbi.nlm.nih.gov</a>
+                </li>
+                <li id="ref16">
+                    <span class="ref-authors">Kisling LA, Das JM.</span>
+                    <span class="ref-title"> Prevention Strategies.</span>
+                    <span class="ref-source"> StatPearls. NCBI Bookshelf. NBK537222.</span>
+                    <a href="https://www.ncbi.nlm.nih.gov/books/NBK537222/" target="_blank" rel="noopener">ncbi.nlm.nih.gov</a>
+                </li>
+            </ol>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-copyright">&copy; 2025 A1 Diagnosis. All rights reserved.</div>
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="what-is-proactive-health.html">Proactive Health Care</a>
+                <a href="early-risk-assessment.html">Early Risk Assessment</a>
+                <a href="future-of-amd-prevention.html">Future of AMD Prevention</a>
+                <a href="what-is-amd.html">What is AMD?</a>
+                <a href="amd-stages.html">AMD Stages &amp; Treatments</a>
+                <a href="risk-factors.html">Risk Factors &amp; Prevention</a>
+                <a href="faqs.html">FAQs</a>
+            </div>
+            <div class="footer-disclaimer">
+                <strong>Medical Disclaimer:</strong> The information provided on this page is for educational purposes only and is not intended as medical advice, diagnosis, or treatment. Always consult a qualified healthcare professional for medical questions or concerns. A1 Diagnosis content has not been evaluated or approved by the FDA. This information does not replace professional medical care.
+            </div>
+        </div>
+    </footer>
+
+    <!-- FAQ Toggle Script -->
+    <script>
+    function toggleFaq(button) {
+        var answer = button.nextElementSibling;
+        var isOpen = button.classList.contains('active');
+
+        // Close all other open FAQs
+        document.querySelectorAll('.faq-question.active').forEach(function(q) {
+            if (q !== button) {
+                q.classList.remove('active');
+                q.nextElementSibling.style.maxHeight = null;
+            }
+        });
+
+        // Toggle current
+        if (isOpen) {
+            button.classList.remove('active');
+            answer.style.maxHeight = null;
+        } else {
+            button.classList.add('active');
+            answer.style.maxHeight = answer.scrollHeight + 'px';
+        }
+    }
+    </script>
+
+</body>
+</html>
