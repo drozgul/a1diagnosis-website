@@ -3190,7 +3190,7 @@
             </div>
 
             <!-- Two Column Layout -->
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; max-width: 1200px; margin: 0 auto;">
+            <div class="path-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; max-width: 1200px; margin: 0 auto;">
 
                 <!-- For Patients & Healthcare Providers -->
                 <div class="path-card" style="background: white; padding: 3rem; border-radius: 24px; box-shadow: 0 10px 40px rgba(15, 118, 110, 0.1); border-top: 5px solid #14b8a6; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); position: relative; overflow: hidden;">
@@ -3351,6 +3351,9 @@
 
         /* Mobile Responsive */
         @media (max-width: 768px) {
+            .path-grid {
+                grid-template-columns: 1fr !important;
+            }
             .path-card {
                 animation-delay: 0s !important;
             }
