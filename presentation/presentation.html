@@ -18,29 +18,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
     <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
 
-    <!-- Mobile Device Detection & Auto-Redirect -->
-    <script>
-        (function() {
-            // Enhanced mobile detection - check both screen size and user agent
-            const isMobile = (window.innerWidth <= 768 && window.innerHeight <= 768) ||
-                            /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|CriOS/i.test(navigator.userAgent);
-
-            // Check if we're already on the mobile version to prevent redirect loops
-            const isAlreadyMobile = window.location.pathname.includes('mobile');
-
-            // Additional check for touch devices
-            const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-
-            // Check for bypass parameter
-            const bypassRedirect = window.location.search.includes('desktop=true');
-
-            // Redirect mobile users or touch devices to mobile version
-            if ((isMobile || isTouchDevice) && !isAlreadyMobile && !bypassRedirect) {
-                window.location.href = 'presentation-mobile.html';
-            }
-        })();
-    </script>
-    
     <style>
         * {
             margin: 0;
@@ -1952,6 +1929,444 @@
             transform: none;
             opacity: 0.5;
         }
+
+        /* ============================================
+           MOBILE RESPONSIVE STYLES (≤600px)
+           Target: Premium phones (iPhone Pro, Samsung Ultra)
+           ============================================ */
+
+        /* Mobile Nav Toggle Button */
+        .mobile-nav-toggle {
+            display: none;
+            width: 100%;
+            padding: 15px 20px;
+            background: linear-gradient(135deg, #f0fdfa 0%, #ccfbf1 100%);
+            border: 1px solid #5eead4;
+            border-radius: 12px;
+            cursor: pointer;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 14px;
+            font-weight: 600;
+            color: #134e4a;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-nav-toggle:hover {
+            background: linear-gradient(135deg, #ccfbf1 0%, #99f6e4 100%);
+        }
+
+        .mobile-nav-toggle .current-section {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .mobile-nav-toggle .arrow {
+            transition: transform 0.3s ease;
+            font-size: 12px;
+        }
+
+        .mobile-nav-toggle.open .arrow {
+            transform: rotate(180deg);
+        }
+
+        /* Mobile Navigation Dropdown */
+        .navigation-buttons.mobile-hidden {
+            display: none;
+        }
+
+        .navigation-buttons.mobile-visible {
+            display: flex;
+        }
+
+        @media (max-width: 600px) {
+            /* Body and Document */
+            body {
+                display: block;
+                cursor: default;
+            }
+
+            .document {
+                margin-left: 0;
+                padding: 15px;
+            }
+
+            /* Hide custom cursor on mobile */
+            .cursor,
+            .cursor-trail {
+                display: none !important;
+            }
+
+            /* Navigation Container - Mobile */
+            .navigation-container {
+                width: 100%;
+                position: sticky;
+                top: 0;
+                left: 0;
+                height: auto;
+                max-height: none;
+                overflow: visible;
+                padding: 12px;
+                border-radius: 0 0 16px 16px;
+                border: none;
+                border-bottom: 1px solid #5eead4;
+                z-index: 1000;
+                background: rgba(240, 253, 250, 0.98);
+                backdrop-filter: blur(10px);
+            }
+
+            .navigation-title {
+                display: none;
+            }
+
+            .mobile-nav-toggle {
+                display: flex;
+            }
+
+            .navigation-buttons {
+                display: none;
+                flex-direction: column;
+                gap: 6px;
+                margin-top: 12px;
+                max-height: 50vh;
+                overflow-y: auto;
+                padding-right: 5px;
+            }
+
+            .navigation-buttons.mobile-visible {
+                display: flex;
+            }
+
+            .nav-button {
+                font-size: 13px;
+                padding: 12px 14px;
+                width: 100%;
+                text-align: left;
+                white-space: normal;
+                line-height: 1.3;
+            }
+
+            /* Header */
+            .header {
+                padding: 20px 15px;
+                border-radius: 12px;
+                margin-bottom: 20px;
+            }
+
+            .header h1 {
+                font-size: 1.6rem;
+                margin-bottom: 8px;
+            }
+
+            .header .subtitle {
+                font-size: 0.95rem;
+                line-height: 1.4;
+            }
+
+            /* Section Typography */
+            .section {
+                margin-bottom: 20px;
+            }
+
+            .section h2 {
+                font-size: 18px;
+                padding-bottom: 6px;
+                margin-bottom: 15px;
+            }
+
+            .section h3 {
+                font-size: 16px;
+                margin: 15px 0 8px 0;
+            }
+
+            .section p {
+                font-size: 13px;
+                margin-bottom: 12px;
+            }
+
+            /* Grid Layouts - Single Column */
+            .stats-grid,
+            .stats-grid-three,
+            .feature-list,
+            .team-grid {
+                grid-template-columns: 1fr !important;
+                gap: 12px;
+            }
+
+            .process-grid {
+                grid-template-columns: 1fr !important;
+                gap: 15px;
+                margin: 20px 0;
+            }
+
+            /* Override inline grid styles */
+            [style*="grid-template-columns: 1fr 1fr"],
+            [style*="grid-template-columns: repeat(2"],
+            [style*="grid-template-columns: repeat(3"],
+            [style*="grid-template-columns: repeat(4"] {
+                grid-template-columns: 1fr !important;
+            }
+
+            /* Stat Items */
+            .stat-item,
+            .stat-item-contemporary {
+                padding: 12px;
+            }
+
+            .stat-number,
+            .stat-number-contemporary {
+                font-size: 20px;
+            }
+
+            .stat-label,
+            .stat-label-contemporary {
+                font-size: 11px;
+            }
+
+            /* Process Steps */
+            .process-step,
+            .process-step-alt {
+                padding: 15px;
+                border-radius: 14px;
+            }
+
+            .process-icon,
+            .process-icon-alt {
+                width: 45px;
+                height: 45px;
+                font-size: 16px;
+            }
+
+            .process-title,
+            .process-title-alt {
+                font-size: 14px;
+            }
+
+            .process-desc {
+                font-size: 12px;
+            }
+
+            /* Phase Timeline */
+            .phase-timeline {
+                gap: 15px;
+                margin: 20px 0;
+            }
+
+            .phase-timeline::before {
+                left: 18px;
+            }
+
+            .phase-modern,
+            .phase-modern-green,
+            .phase-modern-teal {
+                padding: 15px 15px 15px 50px;
+                border-radius: 12px;
+            }
+
+            .phase-icon-modern,
+            .phase-icon-green,
+            .phase-icon-teal {
+                left: -8px;
+                top: 12px;
+                width: 42px;
+                height: 42px;
+                font-size: 14px;
+            }
+
+            .phase-modern h4 {
+                font-size: 15px;
+                margin-bottom: 8px;
+            }
+
+            .phase-modern li {
+                font-size: 12px;
+                padding-left: 18px;
+                margin-bottom: 5px;
+            }
+
+            /* Highlight Boxes */
+            .highlight-box,
+            .highlight-box-modern {
+                padding: 15px;
+                margin: 15px 0;
+            }
+
+            /* Video Section */
+            .video-section {
+                margin: 15px 0;
+            }
+
+            .video-container {
+                padding: 12px;
+                border-radius: 12px;
+            }
+
+            .presentation-video {
+                max-width: 100%;
+                border-radius: 10px;
+            }
+
+            /* Key Metrics */
+            .key-metrics {
+                padding: 15px;
+                border-radius: 12px;
+                margin: 15px 0;
+            }
+
+            .metrics-row {
+                grid-template-columns: 1fr 1fr !important;
+                gap: 10px;
+            }
+
+            .metric {
+                padding: 10px 8px;
+                border-radius: 10px;
+            }
+
+            .metric-value {
+                font-size: 16px;
+            }
+
+            .metric-label {
+                font-size: 9px;
+            }
+
+            /* Tables - Horizontal Scroll */
+            .financial-projection-modern,
+            .de-novo-modern,
+            .revenue-table-modern {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            table {
+                font-size: 11px;
+                min-width: 500px;
+            }
+
+            table th,
+            table td {
+                padding: 8px 6px;
+            }
+
+            /* Contact Section */
+            .contact-section-modern {
+                padding: 20px 15px;
+                border-radius: 12px;
+            }
+
+            .contact-details-modern {
+                padding: 15px;
+                max-width: 100%;
+            }
+
+            /* Tab Systems */
+            .risk-tab,
+            .market-tab,
+            .comp-tab,
+            .financial-tab,
+            .exact-sci-tab {
+                padding: 10px 12px !important;
+                font-size: 11px !important;
+                flex: 1 1 45% !important;
+            }
+
+            /* Charts */
+            [id$="-chart-presentation"],
+            [id*="-chart"] {
+                height: 280px !important;
+                max-height: 40vh !important;
+            }
+
+            /* Value Proposition */
+            .value-proposition {
+                padding: 15px;
+                margin: 15px 0;
+            }
+
+            /* Large Font Size Overrides */
+            [style*="font-size: 48px"],
+            [style*="font-size: 42px"],
+            [style*="font-size: 40px"] {
+                font-size: 28px !important;
+            }
+
+            [style*="font-size: 36px"],
+            [style*="font-size: 32px"] {
+                font-size: 24px !important;
+            }
+
+            [style*="font-size: 28px"],
+            [style*="font-size: 26px"],
+            [style*="font-size: 24px"] {
+                font-size: 20px !important;
+            }
+
+            /* Padding Overrides */
+            [style*="padding: 40px"],
+            [style*="padding: 35px"] {
+                padding: 20px !important;
+            }
+
+            [style*="padding: 30px"],
+            [style*="padding: 25px"] {
+                padding: 15px !important;
+            }
+
+            /* Gap Overrides */
+            [style*="gap: 30px"],
+            [style*="gap: 25px"] {
+                gap: 15px !important;
+            }
+
+            /* Team Member Cards */
+            [style*="max-width: 320px"] {
+                max-width: 100% !important;
+            }
+
+            /* Stakeholder Cards */
+            .stakeholder-grid {
+                gap: 15px;
+            }
+
+            .stakeholder-card {
+                padding: 20px 15px;
+            }
+        }
+
+        /* ============================================
+           TABLET OPTIMIZATION (601px - 900px)
+           Target: iPads in portrait mode
+           ============================================ */
+        @media (min-width: 601px) and (max-width: 900px) {
+            .navigation-container {
+                width: 260px;
+            }
+
+            .document {
+                margin-left: 260px;
+                padding: 1.5cm;
+            }
+
+            .nav-button {
+                font-size: 12px;
+                padding: 10px 12px;
+            }
+
+            /* 2-column grids for tablets */
+            .stats-grid-three {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .process-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            [style*="grid-template-columns: repeat(4"] {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1959,7 +2374,14 @@
     
     <div class="navigation-container">
         <div class="navigation-title">Presentation Menu</div>
-        <div class="navigation-buttons">
+        <button class="mobile-nav-toggle" onclick="toggleMobileNav()">
+            <span class="current-section">
+                <span>📋</span>
+                <span id="current-section-text">Executive Summary</span>
+            </span>
+            <span class="arrow">▼</span>
+        </button>
+        <div class="navigation-buttons" id="nav-buttons">
             <button class="nav-button active" onclick="showSection('yonetici-ozeti')">💡 Executive Summary</button>
             <button class="nav-button" onclick="showSection('kritik-problem')">💡 Critical Problem</button>
             <button class="nav-button" onclick="showSection('erken-risk-degerlendirme')">💡 Early Risk Assessment Opportunity</button>
@@ -5592,6 +6014,30 @@
     </div>
     
     <script>
+        // Mobile Navigation Toggle
+        function toggleMobileNav() {
+            const navButtons = document.getElementById('nav-buttons');
+            const toggleBtn = document.querySelector('.mobile-nav-toggle');
+
+            if (navButtons.classList.contains('mobile-visible')) {
+                navButtons.classList.remove('mobile-visible');
+                toggleBtn.classList.remove('open');
+            } else {
+                navButtons.classList.add('mobile-visible');
+                toggleBtn.classList.add('open');
+            }
+        }
+
+        // Update current section text in mobile nav
+        function updateCurrentSectionText(buttonText) {
+            const currentSectionText = document.getElementById('current-section-text');
+            if (currentSectionText) {
+                // Extract just the text without emoji for cleaner display
+                const cleanText = buttonText.replace(/^[💡📋]\s*/, '').trim();
+                currentSectionText.textContent = cleanText;
+            }
+        }
+
         function showSection(sectionId) {
             // Hide all sections
             const sections = document.querySelectorAll('.section');
@@ -5615,6 +6061,21 @@
             const activeButton = document.querySelector(`button[onclick="showSection('${sectionId}')"]`);
             if (activeButton) {
                 activeButton.classList.add('active');
+                // Update mobile nav current section text
+                updateCurrentSectionText(activeButton.textContent);
+            }
+
+            // Close mobile nav after selection
+            const navButtons = document.getElementById('nav-buttons');
+            const toggleBtn = document.querySelector('.mobile-nav-toggle');
+            if (navButtons && navButtons.classList.contains('mobile-visible')) {
+                navButtons.classList.remove('mobile-visible');
+                toggleBtn.classList.remove('open');
+            }
+
+            // Scroll to top of page on mobile
+            if (window.innerWidth <= 600) {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             }
 
             // Initialize CLIA slides when CLIA section is shown
