@@ -1,0 +1,1509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why Native Peptides Detect What Genetics Miss</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 1920px;
+            height: 1080px;
+            overflow: hidden;
+            font-family: 'DM Sans', sans-serif;
+            background: #ffffff;
+        }
+
+        .slide-container {
+            width: 1920px;
+            height: 1080px;
+            padding: 50px 70px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 40px;
+        }
+
+        .title-section h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 52px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #0d9488 0%, #14b8a6 50%, #06b6d4 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 10px;
+            opacity: 0;
+            animation: titleReveal 1s ease-out 0.1s forwards;
+        }
+
+        @keyframes titleReveal {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .title-underline {
+            width: 140px;
+            height: 5px;
+            background: linear-gradient(135deg, #0d9488 0%, #14b8a6 100%);
+            border-radius: 3px;
+            transform: scaleX(0);
+            transform-origin: left;
+            animation: underlineReveal 0.8s ease-out 0.5s forwards;
+        }
+
+        @keyframes underlineReveal {
+            to {
+                transform: scaleX(1);
+            }
+        }
+
+        .subtitle {
+            font-size: 20px;
+            color: #64748b;
+            font-weight: 500;
+            margin-top: 14px;
+            font-style: italic;
+            opacity: 0;
+            animation: subtitleReveal 0.8s ease-out 0.8s forwards;
+        }
+
+        @keyframes subtitleReveal {
+            to {
+                opacity: 1;
+            }
+        }
+
+        .appendix-badge {
+            background: linear-gradient(135deg, #0891b2 0%, #06b6d4 100%);
+            color: white;
+            font-size: 13px;
+            font-weight: 700;
+            padding: 10px 22px;
+            border-radius: 25px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        /* Main Diagram */
+        .diagram {
+            flex: 1;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 20px;
+            position: relative;
+            padding-bottom: 60px;
+        }
+
+        /* Degradation Animation Overlay */
+        #degradation-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 15;
+        }
+
+
+        /* Stage */
+        .stage {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(40px) scale(0.9);
+        }
+
+        .stage.revealed {
+            animation: stageReveal 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        @keyframes stageReveal {
+            0% {
+                opacity: 0;
+                transform: translateY(40px) scale(0.9);
+            }
+            60% {
+                opacity: 1;
+                transform: translateY(-10px) scale(1.02);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .stage.revealed .stage-count {
+            animation: countPulse 0.6s ease-out 0.5s;
+        }
+
+        @keyframes countPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+            100% { transform: scale(1); }
+        }
+
+        .canvas-container {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        #dna-canvas {
+            width: 280px;
+            height: 280px;
+            cursor: grab;
+        }
+
+        #transcripts-canvas {
+            width: 300px;
+            height: 340px;
+            cursor: grab;
+        }
+
+        #proteins-canvas {
+            width: 680px;
+            height: 680px;
+            cursor: grab;
+        }
+
+        #peptides-canvas {
+            width: 550px;
+            height: 520px;
+            cursor: grab;
+        }
+
+        .stage-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 26px;
+            font-weight: 700;
+            color: #0f766e;
+            margin-bottom: 6px;
+        }
+
+        .stage-count {
+            font-family: 'Poppins', sans-serif;
+            font-size: 32px;
+            font-weight: 800;
+            color: #0891b2;
+            margin-bottom: 4px;
+        }
+
+        .stage-label {
+            font-size: 16px;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        /* Highlight for A1 */
+        .stage.highlight .stage-title {
+            color: #0d9488;
+        }
+
+        .stage.highlight .stage-count {
+            font-size: 38px;
+            background: linear-gradient(135deg, #0d9488 0%, #06b6d4 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* Arrow */
+        .arrow {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            min-width: 20px;
+            opacity: 0;
+            transform: scaleX(0);
+            transform-origin: left center;
+            margin-bottom: 280px;
+        }
+
+        .arrow.revealed {
+            animation: arrowReveal 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        @keyframes arrowReveal {
+            0% {
+                opacity: 0;
+                transform: scaleX(0);
+            }
+            100% {
+                opacity: 1;
+                transform: scaleX(1);
+            }
+        }
+
+        .arrow svg {
+            width: 80px;
+            height: 45px;
+        }
+
+        .arrow-line {
+            fill: none;
+            stroke: #5eead4;
+            stroke-width: 5;
+            stroke-dasharray: 12 6;
+            stroke-dashoffset: 100;
+        }
+
+        .arrow.revealed .arrow-line {
+            animation: arrowDraw 0.6s ease-out 0.3s forwards, dash 15s linear 0.9s infinite;
+        }
+
+        @keyframes arrowDraw {
+            to { stroke-dashoffset: 0; }
+        }
+
+        .arrow-head {
+            fill: #14b8a6;
+            opacity: 0;
+        }
+
+        .arrow.revealed .arrow-head {
+            animation: arrowHeadReveal 0.3s ease-out 0.6s forwards;
+        }
+
+        @keyframes arrowHeadReveal {
+            to { opacity: 1; }
+        }
+
+        @keyframes dash {
+            to { stroke-dashoffset: -500; }
+        }
+
+        .arrow-label {
+            font-size: 20px;
+            color: #0f766e;
+            font-weight: 700;
+            text-align: center;
+            line-height: 1.4;
+            opacity: 0;
+        }
+
+        .arrow.revealed .arrow-label {
+            animation: labelReveal 0.5s ease-out 0.4s forwards;
+        }
+
+        @keyframes labelReveal {
+            to { opacity: 1; }
+        }
+
+        /* Callout Labels */
+        .callout {
+            position: absolute;
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            text-align: center;
+            opacity: 0;
+        }
+
+        .callout.revealed {
+            animation: calloutReveal 0.8s ease-out forwards;
+        }
+
+        @keyframes calloutReveal {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .callout-left {
+            left: -40px;
+            top: 180px;
+            background: rgba(100, 116, 139, 0.1);
+            color: #64748b;
+            border: 1px dashed #94a3b8;
+        }
+
+        .callout-left::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: -25px;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 20px;
+            background: #94a3b8;
+        }
+
+        .callout-right {
+            position: relative;
+            top: auto;
+            right: auto;
+            background: linear-gradient(135deg, rgba(13, 148, 136, 0.15) 0%, rgba(6, 182, 212, 0.15) 100%);
+            color: #0d9488;
+            border: 2px solid #14b8a6;
+            margin-bottom: 15px;
+        }
+
+        .callout-right.revealed {
+            animation: calloutRightReveal 0.8s ease-out forwards;
+        }
+
+        @keyframes calloutRightReveal {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            60% {
+                opacity: 1;
+                transform: scale(1.05);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .callout-right::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: -20px;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 15px;
+            background: #14b8a6;
+        }
+
+        .callout-tag {
+            display: block;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+            opacity: 0.7;
+        }
+
+        /* Scale to fit */
+        @media screen {
+            body {
+                transform-origin: top left;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+
+        <!-- Header -->
+        <div class="header">
+            <div class="title-section">
+                <h1>Why Native Peptides Detect What Genetics Miss</h1>
+                <div class="title-underline"></div>
+                <p class="subtitle">Genetics shows what you were born with — Native peptides show what's happening now</p>
+            </div>
+        </div>
+
+        <!-- Main Diagram -->
+        <div class="diagram">
+            <!-- Degradation Animation Canvas -->
+            <canvas id="degradation-canvas"></canvas>
+
+            <!-- Callout Left -->
+            <div class="callout callout-left">
+                <span class="callout-tag">Genetic tests</span>
+                Static blueprint
+            </div>
+
+            <!-- Genome -->
+            <div class="stage">
+                <div class="canvas-container">
+                    <canvas id="dna-canvas"></canvas>
+                </div>
+                <div class="stage-title">Genome</div>
+                <div class="stage-count">~20K</div>
+                <div class="stage-label">genes</div>
+            </div>
+
+            <!-- Arrow 1 -->
+            <div class="arrow">
+                <svg viewBox="0 0 70 30">
+                    <line class="arrow-line" x1="0" y1="15" x2="52" y2="15"/>
+                    <polygon class="arrow-head" points="60,15 50,8 50,22"/>
+                </svg>
+                <span class="arrow-label">Transcription<br>+ Splicing</span>
+            </div>
+
+            <!-- Transcriptome -->
+            <div class="stage">
+                <div class="canvas-container">
+                    <canvas id="transcripts-canvas"></canvas>
+                </div>
+                <div class="stage-title">Transcriptome</div>
+                <div class="stage-count">~100K</div>
+                <div class="stage-label">transcripts</div>
+            </div>
+
+            <!-- Arrow 2 -->
+            <div class="arrow">
+                <svg viewBox="0 0 70 30">
+                    <line class="arrow-line" x1="0" y1="15" x2="52" y2="15"/>
+                    <polygon class="arrow-head" points="60,15 50,8 50,22"/>
+                </svg>
+                <span class="arrow-label">Translation<br>+ PTMs</span>
+            </div>
+
+            <!-- Proteome -->
+            <div class="stage">
+                <div class="canvas-container">
+                    <canvas id="proteins-canvas"></canvas>
+                </div>
+                <div class="stage-title">Proteome</div>
+                <div class="stage-count">~1M+</div>
+                <div class="stage-label">protein forms</div>
+            </div>
+
+            <!-- Arrow 3 -->
+            <div class="arrow">
+                <svg viewBox="0 0 70 30">
+                    <line class="arrow-line" x1="0" y1="15" x2="52" y2="15"/>
+                    <polygon class="arrow-head" points="60,15 50,8 50,22"/>
+                </svg>
+                <span class="arrow-label">Degradation<br>in Diseases</span>
+            </div>
+
+            <!-- Native Peptides (Highlighted) -->
+            <div class="stage highlight">
+                <div class="callout callout-right">
+                    <span class="callout-tag">A1 Diagnosis</span>
+                    Dynamic signal
+                </div>
+                <div class="canvas-container">
+                    <canvas id="peptides-canvas"></canvas>
+                </div>
+                <div class="stage-title">Native Peptides</div>
+                <div class="stage-count">10K+</div>
+                <div class="stage-label">detected per sample</div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+        // ============ 3D DNA Helix ============
+        function init3DDNA() {
+            const canvas = document.getElementById('dna-canvas');
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(50, 1, 0.1, 1000);
+            camera.position.z = 10;
+            
+            const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+            renderer.setSize(280, 280);
+            renderer.setClearColor(0xffffff, 0);
+            
+            const dnaGroup = new THREE.Group();
+            scene.add(dnaGroup);
+            
+            // Lighting
+            scene.add(new THREE.AmbientLight(0xffffff, 0.6));
+            const pointLight1 = new THREE.PointLight(0x0d9488, 1, 100);
+            pointLight1.position.set(5, 5, 5);
+            scene.add(pointLight1);
+            const pointLight2 = new THREE.PointLight(0x14b8a6, 1, 100);
+            pointLight2.position.set(-5, -5, 5);
+            scene.add(pointLight2);
+            
+            // DNA Parameters
+            const radius = 1.5, height = 8, segments = 100, turnCount = 2;
+            const color1 = new THREE.Color(0x0d9488);
+            const color2 = new THREE.Color(0x14b8a6);
+            
+            const strandMaterial1 = new THREE.MeshPhongMaterial({ color: color1, shininess: 80, specular: 0x2dd4bf });
+            const strandMaterial2 = new THREE.MeshPhongMaterial({ color: color2, shininess: 80, specular: 0x5eead4 });
+            const basePairMaterial = new THREE.MeshPhongMaterial({ color: 0xccfbf1, shininess: 60 });
+            
+            for (let i = 0; i < segments; i++) {
+                const t = (i / segments) * Math.PI * 2 * turnCount;
+                const y = (i / segments) * height - height / 2;
+                const x1 = Math.cos(t) * radius, z1 = Math.sin(t) * radius;
+                const x2 = Math.cos(t + Math.PI) * radius, z2 = Math.sin(t + Math.PI) * radius;
+                
+                const sphereGeom = new THREE.SphereGeometry(0.18, 12, 12);
+                const sphere1 = new THREE.Mesh(sphereGeom, strandMaterial1);
+                sphere1.position.set(x1, y, z1);
+                dnaGroup.add(sphere1);
+                
+                const sphere2 = new THREE.Mesh(sphereGeom, strandMaterial2);
+                sphere2.position.set(x2, y, z2);
+                dnaGroup.add(sphere2);
+                
+                if (i > 0) {
+                    const prevT = ((i - 1) / segments) * Math.PI * 2 * turnCount;
+                    const prevY = ((i - 1) / segments) * height - height / 2;
+                    const prevX1 = Math.cos(prevT) * radius, prevZ1 = Math.sin(prevT) * radius;
+                    const prevX2 = Math.cos(prevT + Math.PI) * radius, prevZ2 = Math.sin(prevT + Math.PI) * radius;
+                    
+                    [
+                        [x1, z1, prevX1, prevZ1, strandMaterial1],
+                        [x2, z2, prevX2, prevZ2, strandMaterial2]
+                    ].forEach(([x, z, px, pz, mat]) => {
+                        const dist = Math.sqrt((x-px)**2 + (y-prevY)**2 + (z-pz)**2);
+                        const cylGeom = new THREE.CylinderGeometry(0.1, 0.1, dist, 8);
+                        const cyl = new THREE.Mesh(cylGeom, mat);
+                        cyl.position.set((x+px)/2, (y+prevY)/2, (z+pz)/2);
+                        const dir = new THREE.Vector3(x-px, y-prevY, z-pz).normalize();
+                        cyl.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0), dir);
+                        dnaGroup.add(cyl);
+                    });
+                }
+                
+                if (i % 5 === 0) {
+                    const bpDist = Math.sqrt((x2-x1)**2 + (z2-z1)**2);
+                    const bpGeom = new THREE.CylinderGeometry(0.06, 0.06, bpDist, 6);
+                    const bp = new THREE.Mesh(bpGeom, basePairMaterial);
+                    bp.position.set((x1+x2)/2, y, (z1+z2)/2);
+                    const bpDir = new THREE.Vector3(x2-x1, 0, z2-z1).normalize();
+                    bp.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0), bpDir);
+                    dnaGroup.add(bp);
+                }
+            }
+            
+            // Mouse interaction
+            let isDragging = false, prevMouse = {x:0, y:0};
+            canvas.addEventListener('mousedown', e => { isDragging = true; prevMouse = {x: e.offsetX, y: e.offsetY}; });
+            canvas.addEventListener('mousemove', e => {
+                if (isDragging) {
+                    dnaGroup.rotation.y += (e.offsetX - prevMouse.x) * 0.01;
+                    dnaGroup.rotation.x += (e.offsetY - prevMouse.y) * 0.01;
+                    prevMouse = {x: e.offsetX, y: e.offsetY};
+                }
+            });
+            canvas.addEventListener('mouseup', () => isDragging = false);
+            canvas.addEventListener('mouseleave', () => isDragging = false);
+            
+            function animate() {
+                requestAnimationFrame(animate);
+                if (!isDragging) dnaGroup.rotation.y += 0.005;
+                renderer.render(scene, camera);
+            }
+            animate();
+        }
+
+        // ============ 3D mRNA Transcripts ============
+        function init3DTranscripts() {
+            const canvas = document.getElementById('transcripts-canvas');
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(60, canvas.width / canvas.height, 0.1, 1000);
+            camera.position.set(0, 0, 10);
+            
+            const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+            renderer.setSize(300, 340);
+            renderer.setClearColor(0xffffff, 0);
+            
+            const group = new THREE.Group();
+            scene.add(group);
+            
+            scene.add(new THREE.AmbientLight(0xffffff, 0.7));
+            const dLight = new THREE.DirectionalLight(0xffffff, 0.6);
+            dLight.position.set(3, 5, 5);
+            scene.add(dLight);
+            
+            const colors = [0xf97316, 0xfb923c, 0xfdba74, 0xfed7aa, 0xf97316, 0xfb923c];
+            
+            for (let i = 0; i < 6; i++) {
+                const material = new THREE.MeshPhongMaterial({ color: colors[i], shininess: 70, specular: 0xffffff });
+                const transcriptGroup = new THREE.Group();
+                
+                // 5' cap
+                const cap = new THREE.Mesh(new THREE.SphereGeometry(0.25, 12, 12), material);
+                cap.position.x = -3;
+                transcriptGroup.add(cap);
+                
+                // Main strand with hairpin
+                const points = [new THREE.Vector3(-3, 0, 0)];
+                for (let j = 0; j < 8; j++) points.push(new THREE.Vector3(-3 + j * 0.3, 0, 0));
+                
+                const loopStart = points[points.length - 1];
+                for (let j = 0; j <= 12; j++) {
+                    const angle = (j / 12) * Math.PI;
+                    points.push(new THREE.Vector3(
+                        loopStart.x + Math.sin(angle) * 0.5,
+                        loopStart.y + (1 - Math.cos(angle)) * 0.5,
+                        Math.sin(angle * 2) * 0.1
+                    ));
+                }
+                
+                const afterLoop = points[points.length - 1];
+                for (let j = 1; j < 6; j++) points.push(new THREE.Vector3(afterLoop.x + j * 0.3, 0, 0));
+                
+                const curve = new THREE.CatmullRomCurve3(points);
+                const tube = new THREE.Mesh(new THREE.TubeGeometry(curve, 50, 0.12, 8, false), material);
+                transcriptGroup.add(tube);
+                
+                // Poly(A) tail
+                const tailStart = points[points.length - 1];
+                const tailPoints = [tailStart];
+                for (let j = 1; j <= 8; j++) {
+                    tailPoints.push(new THREE.Vector3(tailStart.x + j * 0.2, Math.sin(j * 0.8) * 0.08, (Math.random() - 0.5) * 0.1));
+                }
+                const tailCurve = new THREE.CatmullRomCurve3(tailPoints);
+                const tailMat = new THREE.MeshPhongMaterial({ color: colors[i], shininess: 60, transparent: true, opacity: 0.9 });
+                transcriptGroup.add(new THREE.Mesh(new THREE.TubeGeometry(tailCurve, 20, 0.09, 6, false), tailMat));
+                
+                transcriptGroup.position.y = (3 - i - 0.5) * 2.0;
+                transcriptGroup.scale.set(1.2, 1.2, 1.2);
+                transcriptGroup.userData.rotSpeed = 0.002 + Math.random() * 0.002;
+                group.add(transcriptGroup);
+            }
+            
+            let isDragging = false, prevMouse = {x:0, y:0};
+            canvas.addEventListener('mousedown', e => { isDragging = true; prevMouse = {x: e.offsetX, y: e.offsetY}; });
+            canvas.addEventListener('mousemove', e => {
+                if (isDragging) {
+                    group.rotation.y += (e.offsetX - prevMouse.x) * 0.01;
+                    group.rotation.x += (e.offsetY - prevMouse.y) * 0.01;
+                    prevMouse = {x: e.offsetX, y: e.offsetY};
+                }
+            });
+            canvas.addEventListener('mouseup', () => isDragging = false);
+            canvas.addEventListener('mouseleave', () => isDragging = false);
+            
+            function animate() {
+                requestAnimationFrame(animate);
+                renderer.render(scene, camera);
+            }
+            animate();
+        }
+
+        // ============ 3D Proteins ============
+        let proteomeAPI = null; // Global reference for degradation animation
+
+        function init3DProteins() {
+            const canvas = document.getElementById('proteins-canvas');
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(50, 1, 0.1, 1000);
+            camera.position.set(0, 0, 32);
+
+            const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+            renderer.setSize(680, 680);
+            renderer.setClearColor(0xffffff, 0);
+
+            const group = new THREE.Group();
+            scene.add(group);
+
+            // Enhanced lighting for professional look
+            scene.add(new THREE.AmbientLight(0xffffff, 0.5));
+            const dLight = new THREE.DirectionalLight(0xffffff, 0.8);
+            dLight.position.set(5, 10, 7);
+            scene.add(dLight);
+            const dLight2 = new THREE.DirectionalLight(0xffffff, 0.3);
+            dLight2.position.set(-5, -5, 5);
+            scene.add(dLight2);
+
+            const colors = [0xef4444, 0xf97316, 0xeab308, 0x22c55e, 0x14b8a6, 0x3b82f6, 0x8b5cf6, 0xec4899, 0x64748b];
+            const colorHex = ['#ef4444', '#f97316', '#eab308', '#22c55e', '#14b8a6', '#3b82f6', '#8b5cf6', '#ec4899', '#64748b'];
+
+            // Store proteins in a grid structure for access
+            const proteinGrid = [];
+            const gridRows = 6;
+            const gridCols = 6;
+            const spacingX = 4.2;
+            const spacingY = 4.2;
+
+            // Create alpha helix
+            function createAlphaHelix(color) {
+                const g = new THREE.Group();
+                const mat = new THREE.MeshPhongMaterial({ color, shininess: 80, specular: 0xffffff });
+                const turns = 2.5 + Math.random() * 1.5;
+                const segments = Math.floor(25 + Math.random() * 15);
+                for (let i = 0; i < segments; i++) {
+                    const t = (i / segments) * turns * Math.PI * 2;
+                    const y = (i / segments) * 2.5 - 1.25;
+                    const x = Math.cos(t) * 0.45, z = Math.sin(t) * 0.45;
+                    const s = new THREE.Mesh(new THREE.SphereGeometry(0.28, 12, 12), mat);
+                    s.position.set(x, y, z);
+                    g.add(s);
+                }
+                return g;
+            }
+
+            // Create globular protein
+            function createGlobular(color) {
+                const g = new THREE.Group();
+                const mat = new THREE.MeshPhongMaterial({ color, shininess: 80, specular: 0xffffff });
+                const count = 12 + Math.floor(Math.random() * 8);
+                for (let i = 0; i < count; i++) {
+                    const theta = Math.random() * Math.PI * 2;
+                    const phi = Math.random() * Math.PI;
+                    const r = 0.5 + Math.random() * 0.7;
+                    const s = new THREE.Mesh(new THREE.SphereGeometry(0.28 + Math.random() * 0.18, 12, 12), mat);
+                    s.position.set(r * Math.sin(phi) * Math.cos(theta), r * Math.sin(phi) * Math.sin(theta), r * Math.cos(phi));
+                    g.add(s);
+                }
+                return g;
+            }
+
+            // Create beta sheet
+            function createBetaSheet(color) {
+                const g = new THREE.Group();
+                const mat = new THREE.MeshPhongMaterial({ color, shininess: 80, specular: 0xffffff });
+                const strands = 3 + Math.floor(Math.random() * 2);
+                for (let s = 0; s < strands; s++) {
+                    const offsetX = (s - strands/2 + 0.5) * 0.5;
+                    for (let i = 0; i < 8; i++) {
+                        const sphere = new THREE.Mesh(new THREE.SphereGeometry(0.22, 10, 10), mat);
+                        const wave = Math.sin(i * 0.8) * 0.15;
+                        sphere.position.set(offsetX + wave, (i / 8) * 2 - 1, s * 0.1);
+                        g.add(sphere);
+                    }
+                }
+                return g;
+            }
+
+            // Create protein and store in grid
+            function createProteinAt(row, col) {
+                const colorIndex = (row * gridCols + col) % colors.length;
+                const color = colors[colorIndex];
+                const rand = Math.random();
+                let protein;
+                if (rand < 0.4) {
+                    protein = createAlphaHelix(color);
+                } else if (rand < 0.75) {
+                    protein = createGlobular(color);
+                } else {
+                    protein = createBetaSheet(color);
+                }
+
+                protein.position.set(
+                    (col - gridCols/2 + 0.5) * spacingX,
+                    (gridRows/2 - row - 0.5) * spacingY,
+                    (Math.random() - 0.5) * 1.5
+                );
+                protein.rotation.set(
+                    Math.random() * Math.PI * 0.5,
+                    Math.random() * Math.PI * 2,
+                    Math.random() * Math.PI * 0.3
+                );
+                protein.userData.rotSpeed = {
+                    x: (Math.random()-0.5) * 0.004,
+                    y: (Math.random()-0.5) * 0.004,
+                    z: (Math.random()-0.5) * 0.004
+                };
+                protein.userData.row = row;
+                protein.userData.col = col;
+                protein.userData.colorHex = colorHex[colorIndex];
+                protein.userData.visible = true;
+
+                return protein;
+            }
+
+            // Initialize grid
+            for (let row = 0; row < gridRows; row++) {
+                proteinGrid[row] = [];
+                for (let col = 0; col < gridCols; col++) {
+                    const protein = createProteinAt(row, col);
+                    proteinGrid[row][col] = protein;
+                    group.add(protein);
+                }
+            }
+
+            let isDragging = false, prevMouse = {x:0, y:0};
+            canvas.addEventListener('mousedown', e => { isDragging = true; prevMouse = {x: e.offsetX, y: e.offsetY}; });
+            canvas.addEventListener('mousemove', e => {
+                if (isDragging) {
+                    group.rotation.y += (e.offsetX - prevMouse.x) * 0.01;
+                    group.rotation.x += (e.offsetY - prevMouse.y) * 0.01;
+                    prevMouse = {x: e.offsetX, y: e.offsetY};
+                }
+            });
+            canvas.addEventListener('mouseup', () => isDragging = false);
+            canvas.addEventListener('mouseleave', () => isDragging = false);
+
+            function animate() {
+                requestAnimationFrame(animate);
+                group.children.forEach(p => {
+                    if (p.userData.rotSpeed && p.userData.visible) {
+                        p.rotation.x += p.userData.rotSpeed.x;
+                        p.rotation.y += p.userData.rotSpeed.y;
+                        p.rotation.z += p.userData.rotSpeed.z;
+                    }
+                });
+                renderer.render(scene, camera);
+            }
+            animate();
+
+            // API for degradation animation
+            proteomeAPI = {
+                canvas: canvas,
+                camera: camera,
+                group: group,
+                getProtein: (row, col) => proteinGrid[row]?.[col],
+                hideProtein: (row, col) => {
+                    const protein = proteinGrid[row]?.[col];
+                    if (protein) {
+                        protein.visible = false;
+                        protein.userData.visible = false;
+                    }
+                },
+                showProtein: (row, col) => {
+                    const protein = proteinGrid[row]?.[col];
+                    if (protein) {
+                        protein.visible = true;
+                        protein.userData.visible = true;
+                    }
+                },
+                resetAllProteins: () => {
+                    for (let row = 0; row < gridRows; row++) {
+                        for (let col = 0; col < gridCols; col++) {
+                            const protein = proteinGrid[row][col];
+                            protein.visible = true;
+                            protein.userData.visible = true;
+                        }
+                    }
+                },
+                getProteinScreenPosition: (row, col) => {
+                    const protein = proteinGrid[row]?.[col];
+                    if (!protein) return null;
+
+                    // Update matrices to ensure accurate projection
+                    group.updateMatrixWorld(true);
+
+                    // Get world position
+                    const vector = new THREE.Vector3();
+                    protein.getWorldPosition(vector);
+
+                    // Project to normalized device coordinates
+                    vector.project(camera);
+
+                    // Get the CSS scale factor applied to the body by scaleToFit()
+                    const scale = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
+
+                    // Canvas dimensions in unscaled coordinates
+                    const canvasWidth = 680;
+                    const canvasHeight = 680;
+
+                    // Calculate position within canvas (0 to canvasWidth/Height) in UNSCALED coords
+                    const canvasLocalX = (vector.x + 1) / 2 * canvasWidth;
+                    const canvasLocalY = (-vector.y + 1) / 2 * canvasHeight;
+
+                    // Get canvas offset relative to diagram using offsetLeft/offsetTop (unaffected by CSS scale)
+                    const diagramElement = document.querySelector('.diagram');
+                    let offsetX = 0;
+                    let offsetY = 0;
+                    let el = canvas;
+                    while (el && el !== diagramElement && el.offsetParent) {
+                        offsetX += el.offsetLeft;
+                        offsetY += el.offsetTop;
+                        el = el.offsetParent;
+                    }
+
+                    return {
+                        x: offsetX + canvasLocalX,
+                        y: offsetY + canvasLocalY,
+                        canvasLocalX: canvasLocalX,
+                        canvasLocalY: canvasLocalY,
+                        canvasOffsetX: offsetX,
+                        canvasOffsetY: offsetY,
+                        canvasWidth: canvasWidth,
+                        canvasHeight: canvasHeight
+                    };
+                },
+                gridRows,
+                gridCols
+            };
+        }
+
+        // ============ 3D Native Peptides ============
+        let peptidesAPI = null; // Global reference for degradation animation
+
+        function init3DPeptides() {
+            const canvas = document.getElementById('peptides-canvas');
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(60, canvas.width / canvas.height, 0.1, 1000);
+            camera.position.set(0, 0, 18);
+
+            const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+            renderer.setSize(550, 520);
+            renderer.setClearColor(0xffffff, 0);
+
+            const group = new THREE.Group();
+            scene.add(group);
+
+            scene.add(new THREE.AmbientLight(0xffffff, 0.7));
+            const dLight = new THREE.DirectionalLight(0xffffff, 0.8);
+            dLight.position.set(5, 10, 7);
+            scene.add(dLight);
+            const pLight = new THREE.PointLight(0x14b8a6, 0.8, 50);
+            pLight.position.set(0, 0, 10);
+            scene.add(pLight);
+
+            // Colorful palette matching proteome
+            const defaultColors = [0xef4444, 0xf97316, 0xeab308, 0x22c55e, 0x14b8a6, 0x3b82f6, 0x8b5cf6, 0xec4899, 0x64748b];
+
+            // Create a peptide chain
+            function createPeptide(colorHex, startX, startY, startZ) {
+                const color = parseInt(colorHex.replace('#', '0x'));
+                const mat = new THREE.MeshPhongMaterial({ color, shininess: 80, specular: 0xffffff });
+
+                const peptideGroup = new THREE.Group();
+                const length = 3 + Math.floor(Math.random() * 3); // 3-5 amino acids
+
+                const dirTheta = Math.random() * Math.PI * 2;
+                const dirPhi = Math.random() * Math.PI;
+                const dx = Math.sin(dirPhi) * Math.cos(dirTheta) * 0.25;
+                const dy = Math.sin(dirPhi) * Math.sin(dirTheta) * 0.25;
+                const dz = Math.cos(dirPhi) * 0.25;
+
+                for (let j = 0; j < length; j++) {
+                    const sphere = new THREE.Mesh(new THREE.SphereGeometry(0.12, 10, 10), mat);
+                    sphere.position.set(dx * j, dy * j, dz * j);
+                    peptideGroup.add(sphere);
+
+                    if (j > 0) {
+                        const cylGeom = new THREE.CylinderGeometry(0.05, 0.05, 0.25, 6);
+                        const cyl = new THREE.Mesh(cylGeom, mat);
+                        cyl.position.set(dx * (j - 0.5), dy * (j - 0.5), dz * (j - 0.5));
+                        const dir = new THREE.Vector3(dx, dy, dz).normalize();
+                        cyl.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), dir);
+                        peptideGroup.add(cyl);
+                    }
+                }
+
+                peptideGroup.position.set(startX, startY, startZ);
+                peptideGroup.userData.rotSpeed = { x: (Math.random()-0.5)*0.005, y: (Math.random()-0.5)*0.005 };
+                peptideGroup.userData.floatSpeed = Math.random() * 0.02;
+                peptideGroup.userData.floatOffset = Math.random() * Math.PI * 2;
+
+                return peptideGroup;
+            }
+
+            // Create initial peptides
+            for (let i = 0; i < 50; i++) {
+                const colorHex = '#' + defaultColors[i % defaultColors.length].toString(16).padStart(6, '0');
+                const startX = (Math.random() - 0.5) * 18;
+                const startY = (Math.random() - 0.5) * 16;
+                const startZ = (Math.random() - 0.5) * 8;
+                const peptide = createPeptide(colorHex, startX, startY, startZ);
+                group.add(peptide);
+            }
+
+            let isDragging = false, prevMouse = {x:0, y:0};
+            canvas.addEventListener('mousedown', e => { isDragging = true; prevMouse = {x: e.offsetX, y: e.offsetY}; });
+            canvas.addEventListener('mousemove', e => {
+                if (isDragging) {
+                    group.rotation.y += (e.offsetX - prevMouse.x) * 0.01;
+                    group.rotation.x += (e.offsetY - prevMouse.y) * 0.01;
+                    prevMouse = {x: e.offsetX, y: e.offsetY};
+                }
+            });
+            canvas.addEventListener('mouseup', () => isDragging = false);
+            canvas.addEventListener('mouseleave', () => isDragging = false);
+
+            let time = 0;
+            function animate() {
+                requestAnimationFrame(animate);
+                time += 0.01;
+                if (!isDragging) group.rotation.y += 0.003;
+                group.children.forEach(p => {
+                    if (p.userData.floatSpeed) {
+                        p.position.y += Math.sin(time + p.userData.floatOffset) * 0.002;
+                    }
+                });
+                renderer.render(scene, camera);
+            }
+            animate();
+
+            // API for degradation animation
+            peptidesAPI = {
+                canvas: canvas,
+                addPeptide: (colorHex) => {
+                    const startX = (Math.random() - 0.5) * 16;
+                    const startY = (Math.random() - 0.5) * 14;
+                    const startZ = (Math.random() - 0.5) * 6;
+                    const peptide = createPeptide(colorHex, startX, startY, startZ);
+                    group.add(peptide);
+                    return peptide;
+                },
+                getCanvasRect: () => canvas.getBoundingClientRect(),
+                getCanvasOffset: () => {
+                    const diagramElement = document.querySelector('.diagram');
+                    let offsetX = 0;
+                    let offsetY = 0;
+                    let el = canvas;
+                    while (el && el !== diagramElement && el.offsetParent) {
+                        offsetX += el.offsetLeft;
+                        offsetY += el.offsetTop;
+                        el = el.offsetParent;
+                    }
+                    return { x: offsetX, y: offsetY, width: 550, height: 520 };
+                }
+            };
+        }
+
+        // Initialize all 3D scenes
+        init3DDNA();
+        init3DTranscripts();
+        init3DProteins();
+        init3DPeptides();
+
+        // ============ Sequential Reveal Animation ============
+        function initSequentialReveal(onComplete) {
+            const stages = document.querySelectorAll('.stage');
+            const arrows = document.querySelectorAll('.arrow');
+            const calloutLeft = document.querySelector('.callout-left');
+            const calloutRight = document.querySelector('.callout-right');
+
+            // Timeline delays (in milliseconds)
+            const timeline = [
+                { delay: 300, action: () => calloutLeft?.classList.add('revealed') },
+                { delay: 600, action: () => stages[0]?.classList.add('revealed') },
+                { delay: 1400, action: () => arrows[0]?.classList.add('revealed') },
+                { delay: 2000, action: () => stages[1]?.classList.add('revealed') },
+                { delay: 2800, action: () => arrows[1]?.classList.add('revealed') },
+                { delay: 3400, action: () => stages[2]?.classList.add('revealed') },
+                { delay: 4200, action: () => arrows[2]?.classList.add('revealed') },
+                { delay: 4800, action: () => {
+                    stages[3]?.classList.add('revealed');
+                    calloutRight?.classList.add('revealed');
+                }},
+                { delay: 5800, action: onComplete }
+            ];
+
+            timeline.forEach(item => {
+                setTimeout(item.action, item.delay);
+            });
+        }
+
+        // ============ Degradation Animation ============
+        function initDegradationAnimation() {
+            const canvas = document.getElementById('degradation-canvas');
+            const ctx = canvas.getContext('2d');
+            const diagram = document.querySelector('.diagram');
+
+            // Set canvas size
+            function resizeCanvas() {
+                canvas.width = diagram.offsetWidth;
+                canvas.height = diagram.offsetHeight;
+            }
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+
+            // Right edge proteins: only column 5 (rightmost) = 6 proteins
+            const rightEdgeProteins = [];
+            for (let row = 0; row < 6; row++) {
+                rightEdgeProteins.push({ row, col: 5 }); // Rightmost column only
+            }
+
+            let currentIndex = 0;
+            let animationActive = false;
+            let animationObjects = [];
+
+            // Protein visual representation - 3D-like appearance
+            class TravelingProtein {
+                constructor(startX, startY, endX, endY, color) {
+                    this.startX = startX;
+                    this.startY = startY;
+                    this.endX = endX;
+                    this.endY = endY;
+                    this.color = color;
+                    this.progress = 0;
+                    this.phase = 'traveling'; // 'traveling', 'fragmenting', 'done'
+                    this.fragments = [];
+                    this.size = 35;
+                    this.rotation = 0;
+
+                    // Create 3D-like protein structure (globular cluster)
+                    this.spheres = [];
+                    const sphereCount = 12;
+                    for (let i = 0; i < sphereCount; i++) {
+                        const theta = Math.random() * Math.PI * 2;
+                        const phi = Math.random() * Math.PI;
+                        const r = 0.3 + Math.random() * 0.7;
+                        this.spheres.push({
+                            x: Math.sin(phi) * Math.cos(theta) * r,
+                            y: Math.sin(phi) * Math.sin(theta) * r,
+                            z: Math.cos(phi) * r,
+                            size: 0.25 + Math.random() * 0.15
+                        });
+                    }
+                }
+
+                update() {
+                    if (this.phase === 'traveling') {
+                        this.progress += 0.005; // SLOWER: was 0.012, now ~3s travel
+                        this.rotation += 0.02; // Rotate while traveling
+                        if (this.progress >= 1) {
+                            this.progress = 1;
+                            this.phase = 'fragmenting';
+                            this.createFragments();
+                        }
+                    } else if (this.phase === 'fragmenting') {
+                        let allDone = true;
+                        this.fragments.forEach(f => {
+                            f.update();
+                            if (!f.done) allDone = false;
+                        });
+                        if (allDone) {
+                            this.phase = 'done';
+                        }
+                    }
+                }
+
+                createFragments() {
+                    // Get peptides canvas offset in unscaled coordinates
+                    const peptidesOffset = peptidesAPI.getCanvasOffset();
+
+                    // Only 3 fragments now
+                    for (let i = 0; i < 3; i++) {
+                        const targetX = peptidesOffset.x + peptidesOffset.width * (0.2 + Math.random() * 0.6);
+                        const targetY = peptidesOffset.y + peptidesOffset.height * (0.2 + Math.random() * 0.6);
+
+                        this.fragments.push(new Fragment(
+                            this.endX,
+                            this.endY,
+                            targetX,
+                            targetY,
+                            this.color,
+                            i * 600 // SLOWER: 600ms between each fragment (was 100ms)
+                        ));
+                    }
+                }
+
+                draw(ctx) {
+                    if (this.phase === 'traveling') {
+                        // Curved path
+                        const t = this.progress;
+                        const cp1x = this.startX + (this.endX - this.startX) * 0.5;
+                        const cp1y = this.startY - 60;
+                        const cp2x = this.startX + (this.endX - this.startX) * 0.8;
+                        const cp2y = this.endY - 40;
+
+                        const mt = 1 - t;
+                        const x = mt*mt*mt*this.startX + 3*mt*mt*t*cp1x + 3*mt*t*t*cp2x + t*t*t*this.endX;
+                        const y = mt*mt*mt*this.startY + 3*mt*mt*t*cp1y + 3*mt*t*t*cp2y + t*t*t*this.endY;
+
+                        // Draw 3D-like protein cluster
+                        ctx.save();
+
+                        // Sort spheres by z for proper depth
+                        const rotatedSpheres = this.spheres.map(s => {
+                            const cos = Math.cos(this.rotation);
+                            const sin = Math.sin(this.rotation);
+                            const rx = s.x * cos - s.z * sin;
+                            const rz = s.x * sin + s.z * cos;
+                            return { ...s, rx, ry: s.y, rz };
+                        }).sort((a, b) => a.rz - b.rz);
+
+                        // Draw each sphere with 3D shading
+                        rotatedSpheres.forEach(s => {
+                            const sx = x + s.rx * this.size;
+                            const sy = y + s.ry * this.size;
+                            const sphereSize = s.size * this.size * (1 + s.rz * 0.2);
+                            const depth = (s.rz + 1) / 2; // 0 to 1
+
+                            // Shadow/depth effect
+                            ctx.globalAlpha = 0.7 + depth * 0.3;
+
+                            // Main sphere with gradient
+                            const gradient = ctx.createRadialGradient(
+                                sx - sphereSize * 0.3, sy - sphereSize * 0.3, 0,
+                                sx, sy, sphereSize
+                            );
+                            gradient.addColorStop(0, this.lightenColor(this.color, 60));
+                            gradient.addColorStop(0.5, this.color);
+                            gradient.addColorStop(1, this.darkenColor(this.color, 40));
+
+                            ctx.beginPath();
+                            ctx.arc(sx, sy, sphereSize, 0, Math.PI * 2);
+                            ctx.fillStyle = gradient;
+                            ctx.fill();
+
+                            // Highlight
+                            ctx.globalAlpha = 0.6;
+                            ctx.beginPath();
+                            ctx.arc(sx - sphereSize * 0.25, sy - sphereSize * 0.25, sphereSize * 0.25, 0, Math.PI * 2);
+                            ctx.fillStyle = '#ffffff';
+                            ctx.fill();
+                        });
+
+                        ctx.restore();
+                    } else if (this.phase === 'fragmenting') {
+                        this.fragments.forEach(f => f.draw(ctx));
+                    }
+                }
+
+                lightenColor(hex, percent) {
+                    const num = parseInt(hex.replace('#', ''), 16);
+                    const r = Math.min(255, (num >> 16) + percent);
+                    const g = Math.min(255, ((num >> 8) & 0x00FF) + percent);
+                    const b = Math.min(255, (num & 0x0000FF) + percent);
+                    return `rgb(${r},${g},${b})`;
+                }
+
+                darkenColor(hex, percent) {
+                    const num = parseInt(hex.replace('#', ''), 16);
+                    const r = Math.max(0, (num >> 16) - percent);
+                    const g = Math.max(0, ((num >> 8) & 0x00FF) - percent);
+                    const b = Math.max(0, (num & 0x0000FF) - percent);
+                    return `rgb(${r},${g},${b})`;
+                }
+            }
+
+            // Fragment class - 3D-like peptide chain
+            class Fragment {
+                constructor(startX, startY, endX, endY, color, delay) {
+                    this.startX = startX + (Math.random() - 0.5) * 40;
+                    this.startY = startY + (Math.random() - 0.5) * 40;
+                    this.endX = endX;
+                    this.endY = endY;
+                    this.color = color;
+                    this.delay = delay;
+                    this.progress = 0;
+                    this.started = false;
+                    this.done = false;
+                    this.startTime = Date.now();
+                    this.rotation = Math.random() * Math.PI * 2;
+                    this.rotationSpeed = (Math.random() - 0.5) * 0.05;
+
+                    // Peptide chain: 3-4 spheres (smaller to match native peptides)
+                    this.chainLength = 3 + Math.floor(Math.random() * 2);
+                    this.sphereSize = 4;
+                    this.spacing = 6;
+
+                    // Random curve offset for variety
+                    this.curveOffset = (Math.random() - 0.5) * 100;
+                    this.curveOffsetY = (Math.random() - 0.5) * 60;
+                }
+
+                update() {
+                    if (this.done) return;
+
+                    const elapsed = Date.now() - this.startTime;
+                    if (elapsed < this.delay) return;
+
+                    this.started = true;
+                    this.progress += 0.005; // SLOWER: was 0.02, now ~3s travel
+                    this.rotation += this.rotationSpeed;
+
+                    if (this.progress >= 1) {
+                        this.progress = 1;
+                        this.done = true;
+                        // Add peptide to 3D scene
+                        peptidesAPI.addPeptide(this.color);
+                    }
+                }
+
+                draw(ctx) {
+                    if (!this.started || this.done) return;
+
+                    const t = this.progress;
+                    // Curved path with random offset
+                    const cpx = (this.startX + this.endX) / 2 + this.curveOffset;
+                    const cpy = Math.min(this.startY, this.endY) - 80 + this.curveOffsetY;
+
+                    const mt = 1 - t;
+                    const x = mt*mt*this.startX + 2*mt*t*cpx + t*t*this.endX;
+                    const y = mt*mt*this.startY + 2*mt*t*cpy + t*t*this.endY;
+
+                    // NO FADE - stay fully visible until joining peptide cloud
+                    const alpha = 1;
+
+                    ctx.save();
+                    ctx.globalAlpha = alpha;
+
+                    // Calculate chain direction based on rotation
+                    const chainAngle = this.rotation;
+                    const dx = Math.cos(chainAngle) * this.spacing;
+                    const dy = Math.sin(chainAngle) * this.spacing;
+
+                    // Draw peptide chain with 3D-like shading
+                    for (let i = 0; i < this.chainLength; i++) {
+                        const sx = x + (i - this.chainLength / 2) * dx;
+                        const sy = y + (i - this.chainLength / 2) * dy;
+
+                        // Draw connecting cylinder/line
+                        if (i > 0) {
+                            const prevX = x + (i - 1 - this.chainLength / 2) * dx;
+                            const prevY = y + (i - 1 - this.chainLength / 2) * dy;
+
+                            ctx.beginPath();
+                            ctx.moveTo(prevX, prevY);
+                            ctx.lineTo(sx, sy);
+                            ctx.strokeStyle = this.darkenColor(this.color, 30);
+                            ctx.lineWidth = 2;
+                            ctx.stroke();
+                        }
+
+                        // Draw sphere with 3D gradient
+                        const gradient = ctx.createRadialGradient(
+                            sx - this.sphereSize * 0.3, sy - this.sphereSize * 0.3, 0,
+                            sx, sy, this.sphereSize
+                        );
+                        gradient.addColorStop(0, this.lightenColor(this.color, 80));
+                        gradient.addColorStop(0.4, this.color);
+                        gradient.addColorStop(1, this.darkenColor(this.color, 50));
+
+                        ctx.beginPath();
+                        ctx.arc(sx, sy, this.sphereSize, 0, Math.PI * 2);
+                        ctx.fillStyle = gradient;
+                        ctx.fill();
+
+                        // Highlight
+                        ctx.globalAlpha = alpha * 0.6;
+                        ctx.beginPath();
+                        ctx.arc(sx - this.sphereSize * 0.25, sy - this.sphereSize * 0.25, this.sphereSize * 0.2, 0, Math.PI * 2);
+                        ctx.fillStyle = '#ffffff';
+                        ctx.fill();
+                        ctx.globalAlpha = alpha;
+                    }
+
+                    ctx.restore();
+                }
+
+                lightenColor(hex, percent) {
+                    const num = parseInt(hex.replace('#', ''), 16);
+                    const r = Math.min(255, (num >> 16) + percent);
+                    const g = Math.min(255, ((num >> 8) & 0x00FF) + percent);
+                    const b = Math.min(255, (num & 0x0000FF) + percent);
+                    return `rgb(${r},${g},${b})`;
+                }
+
+                darkenColor(hex, percent) {
+                    const num = parseInt(hex.replace('#', ''), 16);
+                    const r = Math.max(0, (num >> 16) - percent);
+                    const g = Math.max(0, ((num >> 8) & 0x00FF) - percent);
+                    const b = Math.max(0, (num & 0x0000FF) - percent);
+                    return `rgb(${r},${g},${b})`;
+                }
+            }
+
+            // Main animation loop
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                animationObjects = animationObjects.filter(obj => obj.phase !== 'done');
+                animationObjects.forEach(obj => {
+                    obj.update();
+                    obj.draw(ctx);
+                });
+
+                requestAnimationFrame(animate);
+            }
+
+            // Start degrading a protein
+            function degradeNextProtein() {
+                if (!proteomeAPI || !peptidesAPI) return;
+
+                const proteinInfo = rightEdgeProteins[currentIndex];
+                const protein = proteomeAPI.getProtein(proteinInfo.row, proteinInfo.col);
+
+                if (protein && protein.userData.visible) {
+                    // Get EXACT protein screen position (in unscaled diagram coordinates)
+                    const proteinPos = proteomeAPI.getProteinScreenPosition(proteinInfo.row, proteinInfo.col);
+
+                    if (proteinPos) {
+                        // Start position: EXACT protein location (already in diagram coordinates)
+                        const startX = proteinPos.x;
+                        const startY = proteinPos.y;
+
+                        // Calculate peptides canvas offset (unscaled coordinates)
+                        const peptidesCanvas = peptidesAPI.canvas;
+                        const diagramElement = document.querySelector('.diagram');
+                        let peptidesOffsetX = 0;
+                        let peptidesOffsetY = 0;
+                        let el = peptidesCanvas;
+                        while (el && el !== diagramElement && el.offsetParent) {
+                            peptidesOffsetX += el.offsetLeft;
+                            peptidesOffsetY += el.offsetTop;
+                            el = el.offsetParent;
+                        }
+
+                        // End position: middle of white space between proteome and peptides
+                        const proteomeRight = proteinPos.canvasOffsetX + proteinPos.canvasWidth;
+                        const peptidesLeft = peptidesOffsetX;
+                        const whiteSpaceMiddle = proteomeRight + (peptidesLeft - proteomeRight) * 0.5;
+
+                        const endX = whiteSpaceMiddle;
+                        const endY = startY + (Math.random() - 0.5) * 30;
+
+                        // Hide protein in 3D scene
+                        proteomeAPI.hideProtein(proteinInfo.row, proteinInfo.col);
+
+                        // Create traveling protein
+                        const travelingProtein = new TravelingProtein(
+                            startX, startY, endX, endY,
+                            protein.userData.colorHex
+                        );
+                        animationObjects.push(travelingProtein);
+                    }
+                }
+
+                // Move to next protein
+                currentIndex++;
+
+                // Check if we've done all right edge proteins (6 proteins)
+                if (currentIndex >= rightEdgeProteins.length) {
+                    // Reset after a delay
+                    setTimeout(() => {
+                        proteomeAPI.resetAllProteins();
+                        currentIndex = 0;
+                    }, 8000); // Longer delay before reset
+                }
+            }
+
+            // Start animation loop
+            animate();
+
+            // Start degradation cycle after sequential reveal completes
+            function startDegradationCycle() {
+                setInterval(degradeNextProtein, 11000); // Every 11 seconds (SLOWER)
+                setTimeout(degradeNextProtein, 2000); // First one after 2 seconds
+            }
+
+            return { start: startDegradationCycle };
+        }
+
+        // Initialize degradation animation
+        const degradationAnim = initDegradationAnimation();
+
+        // Start the sequential reveal, then start degradation
+        initSequentialReveal(() => {
+            // Start degradation animation after reveal completes
+            degradationAnim.start();
+        });
+
+        // Scale to fit viewport
+        function scaleToFit() {
+            const scale = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
+            document.body.style.transform = `scale(${scale})`;
+            document.body.style.transformOrigin = 'top left';
+        }
+        window.addEventListener('resize', scaleToFit);
+        scaleToFit();
+    </script>
+</body>
+</html>
