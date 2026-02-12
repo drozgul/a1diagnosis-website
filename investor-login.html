@@ -442,13 +442,10 @@
         // Accepts: INV-XXXX-XXXX pattern (unique codes from system)
         // Also accepts legacy code for backwards compatibility
         function isValidAccessCode(code) {
-            // Pattern for unique codes: INV-XXXX-XXXX (letters and numbers, no confusing chars)
+            // Pattern for unique codes: INV-XXXX-XXXX (letters and numbers)
             const uniqueCodePattern = /^INV-[A-HJ-NP-Z2-9]{4}-[A-HJ-NP-Z2-9]{4}$/;
 
-            // Legacy code for backwards compatibility
-            const legacyCode = 'ID-202-02-conf';
-
-            return uniqueCodePattern.test(code) || code === legacyCode;
+            return uniqueCodePattern.test(code);
         }
 
         // Form handling
@@ -478,7 +475,7 @@
             }
 
             // Validate access code
-            if (!isValidAccessCode(password) && password !== 'ID-202-02-CONF') {
+            if (!isValidAccessCode(password)) {
                 passwordError.classList.add('show');
                 return;
             }
