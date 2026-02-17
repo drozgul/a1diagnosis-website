@@ -42,7 +42,7 @@
 8. **💡 Medicare Geri Ödeme** - US insurance reimbursement strategy
 9. **💡 Geliştirme Aşamaları** - 3-phase development timeline
 10. **💡 Aşama 1 Detaylı** - Detailed Phase 1 milestones
-11. **💡 Yatırım Gereksinimleri** - $654,875 Phase 1 funding needs
+11. **💡 Yatırım Gereksinimleri** - $1,250,000 Phase 1 funding needs (18 months)
 12. **💡 Ekibimiz** - Team of 8 experts (108+ years experience, $115M+ funding)
 13. **💡 Yatırım Gerekçesi** - Investment rationale and advantages
 14. **💡 İletişim** - Professional contact information (Dr. Mustafa Özgül)
@@ -108,7 +108,7 @@
 
 ### **Development Phases & Investment**
 **Phase 1: Pre-Clinical Validation & FDA Consultation (9-24 months)**
-- **Investment Required**: $654,875
+- **Investment Required**: $1,250,000 (18 months)
 - **Key Activities**: 
   - 240 blood sample analysis from 3+ centers
   - FDA Q-Sub meeting (De Novo pathway approval)
