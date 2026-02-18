@@ -828,7 +828,7 @@
             </svg>
             Back to A1 Diagnosis
         </a>
-        <span class="nav-badge">XGBoost &middot; 2,014 Patients</span>
+        <span class="nav-badge">Bayesian Ridge &middot; 2,014 Patients</span>
     </nav>
 
     <!-- Hero header -->
@@ -844,7 +844,7 @@
                 </div>
                 <div class="header-stat-divider"></div>
                 <div class="header-stat">
-                    <div class="header-stat-value">XGBoost</div>
+                    <div class="header-stat-value">Bayesian Ridge</div>
                     <div class="header-stat-label">ML Algorithm</div>
                 </div>
                 <div class="header-stat-divider"></div>
@@ -1000,51 +1000,57 @@
 
 <script>
 // =====================================================
-// XGBoost Tree Predictor (Pure JavaScript)
+// Bayesian Ridge Predictor (Pure JavaScript)
 // =====================================================
 let modelData = null;
 
-// Load model
-fetch('models_slim.json')
+// Load model (5 KB instead of 1 MB)
+fetch('models_bayesian.json')
     .then(r => r.json())
     .then(data => {
         modelData = data;
         document.getElementById('predictBtn').disabled = false;
         document.getElementById('predictBtn').textContent = 'Predict Weight Trajectory';
-        renderMetrics(data.metrics);
+        renderMetrics(data.time_points);
     })
     .catch(err => {
         console.error('Model load error:', err);
         document.getElementById('predictBtn').textContent = 'Error Loading Model';
     });
 
-// XGBoost single tree prediction
-function predictTree(tree, features) {
-    let nodeIdx = 0;
-    while (tree.l[nodeIdx] !== -1) {
-        const featureIdx = tree.f[nodeIdx];
-        const threshold = tree.c[nodeIdx];
-        const val = features[featureIdx];
-
-        if (val === null || val === undefined || isNaN(val)) {
-            // Missing value: use default direction
-            nodeIdx = tree.d[nodeIdx] ? tree.l[nodeIdx] : tree.r[nodeIdx];
-        } else if (val < threshold) {
-            nodeIdx = tree.l[nodeIdx];
-        } else {
-            nodeIdx = tree.r[nodeIdx];
-        }
-    }
-    return tree.w[nodeIdx];
+// Bayesian Ridge prediction: y = intercept + age*coef_age + height*coef_height + weight*coef_weight
+function predictBayesian(tp, features) {
+    const coefs = tp.coefficients;
+    const pred = tp.intercept
+        + coefs.age * features[0]
+        + coefs.height_cm * features[1]
+        + coefs.preop_weight_kg * features[2];
+    return pred;
 }
 
-// XGBoost ensemble prediction
-function predictXGBoost(model, features) {
-    let sum = model.base_score;
-    for (const tree of model.trees) {
-        sum += predictTree(tree, features);
+// Bayesian Ridge native confidence interval using stored Sigma matrix
+function predictBayesianCI(tp, features) {
+    const pred = predictBayesian(tp, features);
+
+    // Scale features using stored scaler parameters
+    const mean = tp.scaler_mean;
+    const scale = tp.scaler_scale;
+    const x_scaled = features.map((v, i) => (v - mean[i]) / scale[i]);
+
+    // Prediction variance: sigma² = 1/alpha + x_scaled' @ Sigma @ x_scaled
+    const sigma = tp.model_sigma;
+    const alpha = tp.model_alpha;
+
+    let xSx = 0;
+    for (let i = 0; i < 3; i++) {
+        for (let j = 0; j < 3; j++) {
+            xSx += x_scaled[i] * sigma[i][j] * x_scaled[j];
+        }
     }
-    return sum;
+    const predVar = 1.0 / alpha + xSx;
+    const predStd = Math.sqrt(Math.max(predVar, 0));
+
+    return { pred, predStd };
 }
 
 // Unit state
@@ -1124,12 +1130,14 @@ function runPrediction() {
 
         const predictions = {};
         for (const t of timeLabels) {
-            const pred = predictXGBoost(modelData.models[t], features);
-            const residualStd = modelData.metrics[t].residual_std;
+            const tp = modelData.time_points[t];
+            const { pred, predStd } = predictBayesianCI(tp, features);
+            // Use the larger of native Bayesian std and CV residual std for conservative CI
+            const ciStd = Math.max(predStd, tp.residual_std);
             predictions[t] = {
                 weight: Math.round(pred * 10) / 10,
-                lower: Math.round((pred - 1.96 * residualStd) * 10) / 10,
-                upper: Math.round((pred + 1.96 * residualStd) * 10) / 10
+                lower: Math.round((pred - 1.96 * ciStd) * 10) / 10,
+                upper: Math.round((pred + 1.96 * ciStd) * 10) / 10
             };
         }
 
@@ -1349,7 +1357,7 @@ function renderBMI(preBMI, postBMI, preWeight, postWeight) {
 }
 
 // Render model metrics — now as clean rows in left panel
-function renderMetrics(metrics) {
+function renderMetrics(timePoints) {
     const grid = document.getElementById('metricsGrid');
     const labels = {
         '1_week': '1 Week',
@@ -1360,7 +1368,7 @@ function renderMetrics(metrics) {
     };
 
     for (const [key, label] of Object.entries(labels)) {
-        const m = metrics[key];
+        const m = timePoints[key].metrics;
         const row = document.createElement('div');
         row.className = 'perf-row';
         row.innerHTML = `
