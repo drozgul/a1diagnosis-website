@@ -44,6 +44,11 @@
   to = "/Dr_Mustafa_Ozgul_CV/index.html"
   status = 200
 
+[[redirects]]
+  from = "/postop_weight_prediction"
+  to = "/postop_weight_prediction/index.html"
+  status = 200
+
 # SPA fallback (must be last)
 [[redirects]]
   from = "/*"

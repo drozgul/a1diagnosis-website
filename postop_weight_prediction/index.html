@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post-Op Weight Prediction Tool | A1 Diagnosis</title>
+    <meta name="description" content="AI-powered weight loss prediction after Laparoscopic Sleeve Gastrectomy. Enter patient age, height, and pre-op weight to predict weight trajectory over 12 months.">
+
+    <link rel="icon" type="image/png" href="/A1_Favicon_V2.png">
+    <link rel="apple-touch-icon" href="/A1_Favicon_V2.png">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Post-Op Weight Prediction Tool">
+    <meta property="og:description" content="AI-powered weight prediction after Sleeve Gastrectomy. XGBoost ML models trained on 2,014 patients.">
+    <meta property="og:image" content="https://a1diagnosis.com/Logo_Proactive.png">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-27QM6KXY13"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-27QM6KXY13');
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Times New Roman', serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f0f4f8;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 50%, #0369a1 100%);
+            color: white;
+            padding: 40px 40px 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .header-content { position: relative; z-index: 2; }
+
+        .header h1 {
+            font-size: 2.2rem;
+            font-weight: 300;
+            margin-bottom: 8px;
+            text-shadow: 0 0 20px rgba(255,255,255,0.5), 0 2px 4px rgba(0,0,0,0.3);
+            opacity: 0;
+            animation: slideIn 1.5s ease-out 0.3s forwards;
+        }
+
+        .header .subtitle {
+            font-size: 1.1rem;
+            font-weight: 300;
+            opacity: 0;
+            animation: fadeUp 1.5s ease-out 1s forwards;
+        }
+
+        @keyframes slideIn {
+            0% { opacity: 0; transform: translateY(-40px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeUp {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Nav bar */
+        .nav-bar {
+            background: white;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 12px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        .back-link {
+            color: #64748b;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            transition: color 0.3s;
+        }
+        .back-link:hover { color: #0ea5e9; }
+
+        .nav-badge {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        /* Main container */
+        .main {
+            max-width: 1100px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        /* Disclaimer */
+        .disclaimer {
+            background: #fffbeb;
+            border: 1px solid #fbbf24;
+            border-left: 4px solid #f59e0b;
+            border-radius: 8px;
+            padding: 14px 18px;
+            margin-bottom: 25px;
+            font-size: 13px;
+            color: #92400e;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        /* Two column layout */
+        .grid {
+            display: grid;
+            grid-template-columns: 380px 1fr;
+            gap: 25px;
+            align-items: start;
+        }
+
+        /* Card */
+        .card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border-bottom: 1px solid #bae6fd;
+            padding: 16px 24px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #0369a1;
+        }
+
+        .card-body {
+            padding: 24px;
+        }
+
+        /* Form */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: #475569;
+            margin-bottom: 6px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        .form-label .unit {
+            font-weight: 400;
+            color: #94a3b8;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 16px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            transition: all 0.3s;
+            background: #f8fafc;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #0ea5e9;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(14,165,233,0.15);
+        }
+
+        .form-range {
+            font-size: 11px;
+            color: #94a3b8;
+            margin-top: 4px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        .unit-toggle {
+            display: flex;
+            gap: 0;
+            margin-bottom: 6px;
+            border-radius: 6px;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+        }
+
+        .unit-btn {
+            flex: 1;
+            padding: 6px 12px;
+            border: none;
+            background: #f1f5f9;
+            font-size: 12px;
+            font-weight: 600;
+            color: #64748b;
+            cursor: pointer;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            transition: all 0.2s;
+        }
+
+        .unit-btn.active {
+            background: #0ea5e9;
+            color: white;
+        }
+
+        .predict-btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(14,165,233,0.3);
+        }
+
+        .predict-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(14,165,233,0.4);
+        }
+
+        .predict-btn:disabled {
+            background: #94a3b8;
+            cursor: not-allowed;
+            box-shadow: none;
+            transform: none;
+        }
+
+        /* Results area */
+        .chart-container {
+            position: relative;
+            height: 380px;
+            padding: 10px;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+            padding: 0 24px 24px;
+        }
+
+        .result-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 12px 10px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .result-card.highlight {
+            background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+            border-color: #86efac;
+        }
+
+        .result-time {
+            font-size: 11px;
+            font-weight: 600;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        .result-weight {
+            font-size: 20px;
+            font-weight: 800;
+            color: #0369a1;
+            margin: 4px 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        .result-loss {
+            font-size: 11px;
+            color: #059669;
+            font-weight: 600;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        .result-ci {
+            font-size: 10px;
+            color: #94a3b8;
+            margin-top: 2px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        /* Model info */
+        .model-info {
+            margin-top: 25px;
+        }
+
+        .model-info .card-body {
+            padding: 20px 24px;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+        }
+
+        .metric-card {
+            text-align: center;
+            padding: 12px 8px;
+            background: #f8fafc;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .metric-label {
+            font-size: 10px;
+            font-weight: 600;
+            color: #94a3b8;
+            text-transform: uppercase;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        .metric-value {
+            font-size: 16px;
+            font-weight: 800;
+            color: #1e293b;
+            margin: 2px 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        .metric-sub {
+            font-size: 10px;
+            color: #64748b;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        /* BMI info */
+        .bmi-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 24px;
+            background: #f0f9ff;
+            border-top: 1px solid #e0f2fe;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-size: 13px;
+            color: #0369a1;
+        }
+
+        /* Placeholder */
+        .placeholder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 380px;
+            color: #94a3b8;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        .placeholder svg {
+            width: 64px;
+            height: 64px;
+            margin-bottom: 16px;
+            opacity: 0.4;
+        }
+
+        .placeholder p {
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: #94a3b8;
+            font-size: 12px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.8;
+        }
+
+        .footer a { color: #0ea5e9; text-decoration: none; }
+        .footer a:hover { text-decoration: underline; }
+
+        /* Loading spinner */
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 40px;
+            color: #64748b;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        .spinner {
+            width: 40px; height: 40px;
+            border: 4px solid #e2e8f0;
+            border-top-color: #0ea5e9;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto 12px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Mobile */
+        @media (max-width: 850px) {
+            .header { padding: 30px 20px; }
+            .header h1 { font-size: 1.5rem; }
+            .nav-bar { padding: 10px 16px; }
+            .main { padding: 0 12px; }
+            .grid { grid-template-columns: 1fr; }
+            .results-grid { grid-template-columns: repeat(3, 1fr); }
+            .metrics-grid { grid-template-columns: repeat(3, 1fr); }
+            .chart-container { height: 300px; }
+        }
+
+        @media (max-width: 500px) {
+            .results-grid { grid-template-columns: repeat(2, 1fr); }
+            .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media print {
+            .nav-bar { display: none; }
+            .header { border-radius: 0; }
+            body { background: white; }
+            .card { box-shadow: none; border: 1px solid #ddd; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="header">
+        <div class="header-content">
+            <h1>Post-Operative Weight Prediction</h1>
+            <div class="subtitle">AI-Powered Weight Loss Trajectory After Laparoscopic Sleeve Gastrectomy</div>
+        </div>
+    </div>
+
+    <!-- Nav -->
+    <div class="nav-bar">
+        <a href="/" class="back-link">&larr; Back to A1 Diagnosis</a>
+        <span class="nav-badge">XGBoost ML Model &middot; 2,014 Patients</span>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main">
+
+        <div class="disclaimer">
+            <strong>Research Tool Only:</strong> This prediction tool is based on a machine learning model trained on retrospective clinical data. Predictions are estimates with confidence intervals and should not replace clinical judgment. For research and educational purposes only.
+        </div>
+
+        <div class="grid">
+
+            <!-- Left: Input Form -->
+            <div>
+                <div class="card">
+                    <div class="card-header">Patient Information</div>
+                    <div class="card-body">
+
+                        <div class="form-group">
+                            <label class="form-label">Age <span class="unit">(years)</span></label>
+                            <input type="number" id="age" class="form-input" placeholder="e.g. 42" min="12" max="80" step="1">
+                            <div class="form-range">Training range: 12 &ndash; 73 years</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Height</label>
+                            <div class="unit-toggle" id="height-toggle">
+                                <button class="unit-btn active" data-unit="cm" onclick="setHeightUnit('cm')">cm</button>
+                                <button class="unit-btn" data-unit="ft" onclick="setHeightUnit('ft')">ft / in</button>
+                            </div>
+                            <div id="height-cm-input">
+                                <input type="number" id="height_cm" class="form-input" placeholder="e.g. 170" min="130" max="220" step="1">
+                            </div>
+                            <div id="height-ft-input" style="display:none; gap:8px;">
+                                <div style="display:flex; gap:8px;">
+                                    <input type="number" id="height_ft" class="form-input" placeholder="ft" min="4" max="7" step="1" style="width:50%">
+                                    <input type="number" id="height_in" class="form-input" placeholder="in" min="0" max="11" step="1" style="width:50%">
+                                </div>
+                            </div>
+                            <div class="form-range">Training range: 137 &ndash; 205 cm</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Pre-Operative Weight</label>
+                            <div class="unit-toggle" id="weight-toggle">
+                                <button class="unit-btn active" data-unit="kg" onclick="setWeightUnit('kg')">kg</button>
+                                <button class="unit-btn" data-unit="lbs" onclick="setWeightUnit('lbs')">lbs</button>
+                            </div>
+                            <input type="number" id="weight" class="form-input" placeholder="e.g. 120" min="50" max="300" step="0.1">
+                            <div class="form-range">Training range: 72 &ndash; 276 kg</div>
+                        </div>
+
+                        <button class="predict-btn" id="predictBtn" onclick="runPrediction()" disabled>
+                            Loading Model...
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Model Accuracy -->
+                <div class="card model-info">
+                    <div class="card-header">Model Performance (5-Fold Cross-Validation)</div>
+                    <div class="card-body">
+                        <div class="metrics-grid" id="metricsGrid"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Results -->
+            <div>
+                <div class="card">
+                    <div class="card-header">Predicted Weight Trajectory</div>
+                    <div id="chartArea">
+                        <div class="placeholder" id="placeholder">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5" />
+                            </svg>
+                            <p>Enter patient details and click Predict</p>
+                        </div>
+                        <div class="loading" id="loading">
+                            <div class="spinner"></div>
+                            <p>Calculating predictions...</p>
+                        </div>
+                        <div class="chart-container" id="chartContainer" style="display:none;">
+                            <canvas id="predictionChart"></canvas>
+                        </div>
+                    </div>
+                    <div id="bmiRow" class="bmi-row" style="display:none;"></div>
+                    <div class="results-grid" id="resultsGrid" style="display:none;"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <strong>Reference:</strong> Kankaya B, Buyukasik S, Altundal YE, Ozgul M, Etemad A.<br>
+        <em>Weight Loss Dynamics After Laparoscopic Sleeve Gastrectomy: A Retrospective Single Center Analysis</em>. Sci Rep. 2025;15(1):8771.<br><br>
+        &copy; 2025 A1 Diagnosis &nbsp;|&nbsp; <a href="/">Home</a>
+    </div>
+
+<script>
+// =====================================================
+// XGBoost Tree Predictor (Pure JavaScript)
+// =====================================================
+let modelData = null;
+
+// Load model
+fetch('models_slim.json')
+    .then(r => r.json())
+    .then(data => {
+        modelData = data;
+        document.getElementById('predictBtn').disabled = false;
+        document.getElementById('predictBtn').textContent = 'Predict Weight Trajectory';
+        renderMetrics(data.metrics);
+    })
+    .catch(err => {
+        console.error('Model load error:', err);
+        document.getElementById('predictBtn').textContent = 'Error Loading Model';
+    });
+
+// XGBoost single tree prediction
+function predictTree(tree, features) {
+    let nodeIdx = 0;
+    while (tree.l[nodeIdx] !== -1) {
+        const featureIdx = tree.f[nodeIdx];
+        const threshold = tree.c[nodeIdx];
+        const val = features[featureIdx];
+
+        if (val === null || val === undefined || isNaN(val)) {
+            // Missing value: use default direction
+            nodeIdx = tree.d[nodeIdx] ? tree.l[nodeIdx] : tree.r[nodeIdx];
+        } else if (val < threshold) {
+            nodeIdx = tree.l[nodeIdx];
+        } else {
+            nodeIdx = tree.r[nodeIdx];
+        }
+    }
+    return tree.w[nodeIdx];
+}
+
+// XGBoost ensemble prediction
+function predictXGBoost(model, features) {
+    let sum = model.base_score;
+    for (const tree of model.trees) {
+        sum += predictTree(tree, features);
+    }
+    return sum;
+}
+
+// Unit state
+let heightUnit = 'cm';
+let weightUnit = 'kg';
+
+function setHeightUnit(unit) {
+    heightUnit = unit;
+    document.querySelectorAll('#height-toggle .unit-btn').forEach(b => {
+        b.classList.toggle('active', b.dataset.unit === unit);
+    });
+    document.getElementById('height-cm-input').style.display = unit === 'cm' ? 'block' : 'none';
+    document.getElementById('height-ft-input').style.display = unit === 'ft' ? 'block' : 'none';
+}
+
+function setWeightUnit(unit) {
+    weightUnit = unit;
+    document.querySelectorAll('#weight-toggle .unit-btn').forEach(b => {
+        b.classList.toggle('active', b.dataset.unit === unit);
+    });
+}
+
+function getHeightCm() {
+    if (heightUnit === 'cm') {
+        return parseFloat(document.getElementById('height_cm').value);
+    } else {
+        const ft = parseFloat(document.getElementById('height_ft').value) || 0;
+        const inches = parseFloat(document.getElementById('height_in').value) || 0;
+        return (ft * 12 + inches) * 2.54;
+    }
+}
+
+function getWeightKg() {
+    const val = parseFloat(document.getElementById('weight').value);
+    if (weightUnit === 'lbs') return val * 0.453592;
+    return val;
+}
+
+// Main prediction
+function runPrediction() {
+    if (!modelData) return;
+
+    const age = parseFloat(document.getElementById('age').value);
+    const heightCm = getHeightCm();
+    const weightKg = getWeightKg();
+
+    if (isNaN(age) || isNaN(heightCm) || isNaN(weightKg)) {
+        alert('Please fill in all fields.');
+        return;
+    }
+
+    if (age < 10 || age > 90) {
+        alert('Please enter a valid age (10-90 years).');
+        return;
+    }
+    if (heightCm < 100 || heightCm > 250) {
+        alert('Please enter a valid height.');
+        return;
+    }
+    if (weightKg < 50 || weightKg > 350) {
+        alert('Please enter a valid weight.');
+        return;
+    }
+
+    // Show loading
+    document.getElementById('placeholder').style.display = 'none';
+    document.getElementById('loading').style.display = 'block';
+    document.getElementById('chartContainer').style.display = 'none';
+    document.getElementById('resultsGrid').style.display = 'none';
+    document.getElementById('bmiRow').style.display = 'none';
+
+    // Predict with slight delay for UI
+    setTimeout(() => {
+        const features = [age, heightCm, weightKg];
+        const timeLabels = ['1_week', '1_month', '3_month', '6_month', '12_month'];
+        const displayLabels = ['1 Week', '1 Month', '3 Months', '6 Months', '12 Months'];
+
+        const predictions = {};
+        for (const t of timeLabels) {
+            const pred = predictXGBoost(modelData.models[t], features);
+            const residualStd = modelData.metrics[t].residual_std;
+            predictions[t] = {
+                weight: Math.round(pred * 10) / 10,
+                lower: Math.round((pred - 1.96 * residualStd) * 10) / 10,
+                upper: Math.round((pred + 1.96 * residualStd) * 10) / 10
+            };
+        }
+
+        // BMI calculation
+        const heightM = heightCm / 100;
+        const preBMI = weightKg / (heightM * heightM);
+        const postBMI_12 = predictions['12_month'].weight / (heightM * heightM);
+
+        renderResults(predictions, weightKg, timeLabels, displayLabels);
+        renderChart(predictions, weightKg, timeLabels, displayLabels);
+        renderBMI(preBMI, postBMI_12, weightKg, predictions['12_month'].weight);
+
+        document.getElementById('loading').style.display = 'none';
+        document.getElementById('chartContainer').style.display = 'block';
+        document.getElementById('resultsGrid').style.display = 'grid';
+        document.getElementById('bmiRow').style.display = 'flex';
+    }, 300);
+}
+
+// Render result cards
+function renderResults(predictions, preOpWeight, timeLabels, displayLabels) {
+    const grid = document.getElementById('resultsGrid');
+    grid.innerHTML = '';
+
+    for (let i = 0; i < timeLabels.length; i++) {
+        const t = timeLabels[i];
+        const p = predictions[t];
+        const loss = preOpWeight - p.weight;
+        const lossPct = (loss / preOpWeight * 100);
+        const isLast = i === timeLabels.length - 1;
+
+        const displayWeight = weightUnit === 'lbs'
+            ? (p.weight * 2.20462).toFixed(1) + ' lbs'
+            : p.weight.toFixed(1) + ' kg';
+        const displayLoss = weightUnit === 'lbs'
+            ? (loss * 2.20462).toFixed(1) + ' lbs'
+            : loss.toFixed(1) + ' kg';
+        const displayLower = weightUnit === 'lbs'
+            ? (p.lower * 2.20462).toFixed(0)
+            : p.lower.toFixed(1);
+        const displayUpper = weightUnit === 'lbs'
+            ? (p.upper * 2.20462).toFixed(0)
+            : p.upper.toFixed(1);
+        const unitLabel = weightUnit === 'lbs' ? 'lbs' : 'kg';
+
+        const card = document.createElement('div');
+        card.className = 'result-card' + (isLast ? ' highlight' : '');
+        card.innerHTML = `
+            <div class="result-time">${displayLabels[i]}</div>
+            <div class="result-weight">${displayWeight}</div>
+            <div class="result-loss">&darr; ${displayLoss} (${lossPct.toFixed(1)}%)</div>
+            <div class="result-ci">95% CI: ${displayLower}&ndash;${displayUpper} ${unitLabel}</div>
+        `;
+        grid.appendChild(card);
+    }
+}
+
+// Render chart
+let chartInstance = null;
+function renderChart(predictions, preOpWeight, timeLabels, displayLabels) {
+    const ctx = document.getElementById('predictionChart').getContext('2d');
+
+    if (chartInstance) chartInstance.destroy();
+
+    const labels = ['Pre-Op', ...displayLabels];
+    const mult = weightUnit === 'lbs' ? 2.20462 : 1;
+    const unitLabel = weightUnit === 'lbs' ? 'lbs' : 'kg';
+
+    const mainData = [preOpWeight * mult, ...timeLabels.map(t => predictions[t].weight * mult)];
+    const upperData = [preOpWeight * mult, ...timeLabels.map(t => predictions[t].upper * mult)];
+    const lowerData = [preOpWeight * mult, ...timeLabels.map(t => predictions[t].lower * mult)];
+
+    chartInstance = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [
+                {
+                    label: '95% CI Upper',
+                    data: upperData,
+                    borderColor: 'transparent',
+                    backgroundColor: 'rgba(14, 165, 233, 0.1)',
+                    fill: '+1',
+                    pointRadius: 0,
+                    tension: 0.4
+                },
+                {
+                    label: 'Predicted Weight',
+                    data: mainData,
+                    borderColor: '#0284c7',
+                    backgroundColor: 'rgba(14, 165, 233, 0.15)',
+                    borderWidth: 3,
+                    pointBackgroundColor: '#0284c7',
+                    pointBorderColor: 'white',
+                    pointBorderWidth: 2,
+                    pointRadius: 6,
+                    pointHoverRadius: 8,
+                    fill: false,
+                    tension: 0.4
+                },
+                {
+                    label: '95% CI Lower',
+                    data: lowerData,
+                    borderColor: 'transparent',
+                    backgroundColor: 'rgba(14, 165, 233, 0.1)',
+                    fill: '-1',
+                    pointRadius: 0,
+                    tension: 0.4
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            interaction: {
+                intersect: false,
+                mode: 'index'
+            },
+            plugins: {
+                legend: {
+                    display: true,
+                    labels: {
+                        filter: function(item) {
+                            return item.text === 'Predicted Weight';
+                        },
+                        font: { family: "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif", size: 12 }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(ctx) {
+                            if (ctx.dataset.label === 'Predicted Weight') {
+                                return `Predicted: ${ctx.parsed.y.toFixed(1)} ${unitLabel}`;
+                            }
+                            if (ctx.dataset.label === '95% CI Upper') return `Upper 95% CI: ${ctx.parsed.y.toFixed(1)} ${unitLabel}`;
+                            if (ctx.dataset.label === '95% CI Lower') return `Lower 95% CI: ${ctx.parsed.y.toFixed(1)} ${unitLabel}`;
+                            return '';
+                        }
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    title: {
+                        display: true,
+                        text: `Weight (${unitLabel})`,
+                        font: { family: "Times New Roman", size: 14, weight: 'bold' }
+                    },
+                    ticks: {
+                        font: { family: "-apple-system, sans-serif", size: 11 }
+                    },
+                    grid: { color: 'rgba(0,0,0,0.06)' }
+                },
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Time After Surgery',
+                        font: { family: "Times New Roman", size: 14, weight: 'bold' }
+                    },
+                    ticks: {
+                        font: { family: "-apple-system, sans-serif", size: 11 }
+                    },
+                    grid: { display: false }
+                }
+            }
+        }
+    });
+}
+
+// Render BMI
+function renderBMI(preBMI, postBMI, preWeight, postWeight) {
+    const row = document.getElementById('bmiRow');
+    const totalLoss = preWeight - postWeight;
+    const ewl = totalLoss / (preWeight - (25 * Math.pow(getHeightCm()/100, 2))) * 100;
+    const ewlDisplay = isFinite(ewl) && ewl > 0 ? ewl.toFixed(1) : 'N/A';
+
+    row.innerHTML = `
+        <span><strong>Pre-Op BMI:</strong> ${preBMI.toFixed(1)} kg/m&sup2;</span>
+        <span><strong>Predicted 12-Mo BMI:</strong> ${postBMI.toFixed(1)} kg/m&sup2;</span>
+        <span><strong>%EWL at 12 Mo:</strong> ${ewlDisplay}%</span>
+    `;
+}
+
+// Render model metrics
+function renderMetrics(metrics) {
+    const grid = document.getElementById('metricsGrid');
+    const labels = { '1_week': '1 Week', '1_month': '1 Month', '3_month': '3 Month', '6_month': '6 Month', '12_month': '12 Month' };
+
+    for (const [key, label] of Object.entries(labels)) {
+        const m = metrics[key];
+        const card = document.createElement('div');
+        card.className = 'metric-card';
+        card.innerHTML = `
+            <div class="metric-label">${label}</div>
+            <div class="metric-value">R&sup2; ${m.r2.toFixed(2)}</div>
+            <div class="metric-sub">MAE: &plusmn;${m.mae} kg</div>
+            <div class="metric-sub">n=${m.n_samples}</div>
+        `;
+        grid.appendChild(card);
+    }
+}
+</script>
+
+</body>
+</html>
