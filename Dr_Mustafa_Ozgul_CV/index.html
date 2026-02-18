@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Mustafa Ozgul, M.D. - Curriculum Vitae | A1 Diagnosis</title>
+    <meta name="description" content="Curriculum Vitae of Dr. Mustafa Ozgul, M.D. - Founder & Lead Scientist at A1 Diagnosis. Translational scientist and physician with 13+ years of research experience in biomarker discovery and AI/ML development.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/A1_Favicon_V2.png">
+    <link rel="apple-touch-icon" href="/A1_Favicon_V2.png">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Dr. Mustafa Ozgul, M.D. - Curriculum Vitae">
+    <meta property="og:description" content="Translational scientist and physician with 13+ years of research experience. Founder & Lead Scientist at A1 Diagnosis.">
+    <meta property="og:image" content="https://a1diagnosis.com/Logo_Proactive.png">
+    <meta property="og:url" content="https://a1diagnosis.com/Dr_Mustafa_Ozgul_CV/">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-27QM6KXY13"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-27QM6KXY13');
+    </script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Times New Roman', serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f0f4f8;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 50%, #0369a1 100%);
+            color: white;
+            padding: 40px 40px 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .header h1 {
+            font-size: 2.4rem;
+            font-weight: 300;
+            margin-bottom: 8px;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5), 0 2px 4px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            animation: slideInFromTop 1.5s ease-out 0.3s forwards;
+        }
+
+        .header .contact-info {
+            font-size: 1rem;
+            font-weight: 300;
+            opacity: 0;
+            animation: fadeInUp 1.5s ease-out 1s forwards;
+        }
+
+        .header .contact-info a {
+            color: white;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(255,255,255,0.4);
+            transition: border-color 0.3s;
+        }
+
+        .header .contact-info a:hover {
+            border-bottom-color: white;
+        }
+
+        .header .contact-info span {
+            margin: 0 10px;
+            opacity: 0.5;
+        }
+
+        @keyframes slideInFromTop {
+            0% { opacity: 0; transform: translateY(-50px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Download Bar */
+        .download-bar {
+            background: white;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 12px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        .back-link {
+            color: #64748b;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        .back-link:hover {
+            color: #0ea5e9;
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+            color: white;
+            padding: 10px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(14, 165, 233, 0.4);
+        }
+
+        .download-btn svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* Document */
+        .document {
+            max-width: 900px;
+            margin: 30px auto;
+            background: white;
+            padding: 50px 60px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border-radius: 12px;
+        }
+
+        /* Sections */
+        .section {
+            margin-bottom: 35px;
+        }
+
+        .section h2 {
+            font-size: 20px;
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section h3 {
+            font-size: 16px;
+            color: #2c3e50;
+            margin: 20px 0 5px 0;
+            font-weight: bold;
+        }
+
+        .section p {
+            margin-bottom: 10px;
+            text-align: justify;
+            font-size: 14px;
+        }
+
+        /* Summary Box */
+        .summary-box {
+            background: #f8f9fa;
+            border-left: 4px solid #3498db;
+            padding: 20px;
+            margin: 0 0 30px 0;
+            border-radius: 5px;
+            font-size: 14px;
+            text-align: justify;
+        }
+
+        /* Job Entries */
+        .job-entry {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .job-entry:last-child {
+            border-bottom: none;
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            margin-bottom: 4px;
+        }
+
+        .job-title {
+            font-size: 15px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .job-date {
+            font-size: 13px;
+            color: #666;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .job-org {
+            font-size: 13px;
+            color: #555;
+            font-style: italic;
+            margin-bottom: 8px;
+        }
+
+        .job-desc {
+            font-size: 13.5px;
+            text-align: justify;
+            margin-bottom: 8px;
+        }
+
+        /* Lists */
+        .cv-list {
+            margin: 8px 0 0 20px;
+            font-size: 13.5px;
+        }
+
+        .cv-list li {
+            margin-bottom: 6px;
+            line-height: 1.5;
+        }
+
+        /* Skills Grid */
+        .skills-section h3 {
+            font-size: 15px;
+            color: #2c3e50;
+            margin: 18px 0 8px 0;
+            font-weight: bold;
+            font-style: italic;
+        }
+
+        .skills-list {
+            margin: 5px 0 0 20px;
+            font-size: 13.5px;
+        }
+
+        .skills-list li {
+            margin-bottom: 5px;
+            line-height: 1.5;
+        }
+
+        .sub-list {
+            margin: 4px 0 4px 25px;
+            font-size: 13px;
+        }
+
+        .sub-list li {
+            margin-bottom: 3px;
+        }
+
+        /* Publications */
+        .publication {
+            margin-bottom: 12px;
+            font-size: 13.5px;
+            line-height: 1.5;
+            padding-left: 0;
+        }
+
+        .publication .author-highlight {
+            font-weight: bold;
+        }
+
+        /* Presentations */
+        .presentation-item {
+            margin-bottom: 10px;
+            font-size: 13.5px;
+            line-height: 1.5;
+            font-style: italic;
+        }
+
+        .presentation-item .venue {
+            font-style: normal;
+            color: #555;
+        }
+
+        /* Conference list */
+        .conference-list {
+            margin: 0 0 0 20px;
+            font-size: 13.5px;
+        }
+
+        .conference-list li {
+            margin-bottom: 5px;
+            font-style: italic;
+        }
+
+        /* Patent / Awards */
+        .patent-item, .award-item {
+            margin-bottom: 10px;
+            font-size: 13.5px;
+            line-height: 1.5;
+        }
+
+        /* Training list */
+        .training-list {
+            margin: 0 0 0 20px;
+            font-size: 13.5px;
+        }
+
+        .training-list li {
+            margin-bottom: 6px;
+            line-height: 1.4;
+        }
+
+        /* Grant descriptions */
+        .grant-entry {
+            margin-bottom: 20px;
+        }
+
+        .grant-entry h4 {
+            font-size: 14px;
+            color: #2c3e50;
+            margin-bottom: 6px;
+            font-style: italic;
+        }
+
+        .grant-entry p {
+            font-size: 13.5px;
+        }
+
+        /* Stats bar */
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin: 25px 0 10px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border: 1px solid #bae6fd;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .stat-card .number {
+            font-size: 22px;
+            font-weight: bold;
+            color: #0284c7;
+            display: block;
+        }
+
+        .stat-card .label {
+            font-size: 11px;
+            color: #64748b;
+            margin-top: 4px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: #94a3b8;
+            font-size: 13px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        .footer a {
+            color: #0ea5e9;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Print styles */
+        @media print {
+            body { background: white; }
+            .download-bar { display: none; }
+            .header { border-radius: 0; }
+            .document { box-shadow: none; margin: 0; padding: 30px 40px; border-radius: 0; }
+            .footer { display: none; }
+            .stat-card { border: 1px solid #ccc; }
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .header { padding: 30px 20px 25px; }
+            .header h1 { font-size: 1.6rem; }
+            .download-bar { padding: 10px 16px; }
+            .document { margin: 15px 10px; padding: 25px 20px; }
+            .job-header { flex-direction: column; }
+            .job-date { margin-top: 2px; }
+            .stats-bar { grid-template-columns: repeat(2, 1fr); }
+            .download-btn { padding: 8px 16px; font-size: 13px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="header">
+        <div class="header-content">
+            <h1>Mustafa Ozgul, M.D.</h1>
+            <div class="contact-info">
+                <a href="mailto:mdozgul@gmail.com">mdozgul@gmail.com</a>
+                <span>|</span>
+                <a href="https://www.linkedin.com/in/mustafa-ozgul-md/" target="_blank">LinkedIn</a>
+                <span>|</span>
+                951 - 809 - 6022
+            </div>
+        </div>
+    </div>
+
+    <!-- Sticky Download Bar -->
+    <div class="download-bar">
+        <a href="/" class="back-link">&larr; Back to A1 Diagnosis</a>
+        <a href="CV-Dr-Mustafa-Ozgul.pdf" target="_blank" class="download-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+            </svg>
+            Download Full CV (PDF)
+        </a>
+    </div>
+
+    <!-- Document -->
+    <div class="document">
+
+        <!-- Professional Summary -->
+        <div class="section">
+            <h2>Professional Summary</h2>
+            <div class="summary-box">
+                Translational scientist and physician with 13+ years of research experience, including 5+ years of biomarker discovery and 2+ years of hands-on AI/ML development across ophthalmology research. Developed blood-based disease prediction platforms integrating cutting-edge mass spectrometry biomarker discovery with machine learning classification (XGBoost, Random Forest, neural networks), achieving >95% accuracy in clinical studies. Discovered novel native peptide-based inflammation and immune-related biomarkers with significant differential expression (p&lt;0.005, fold change >10) in wet AMD patient populations. Experienced in small biotech environments, regulatory pathway analysis (FDA, CLIA), and translating research into clinical applications. Eager to apply AI-driven biomarker expertise to advance next-generation therapeutics development.
+            </div>
+
+            <div class="stats-bar">
+                <div class="stat-card">
+                    <span class="number">13+</span>
+                    <span class="label">Years Research</span>
+                </div>
+                <div class="stat-card">
+                    <span class="number">95%+</span>
+                    <span class="label">ML Accuracy</span>
+                </div>
+                <div class="stat-card">
+                    <span class="number">20+</span>
+                    <span class="label">Publications</span>
+                </div>
+                <div class="stat-card">
+                    <span class="number">3</span>
+                    <span class="label">Patents</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Professional Experience -->
+        <div class="section">
+            <h2>Professional Experience &amp; Employment</h2>
+
+            <div class="job-entry">
+                <div class="job-header">
+                    <span class="job-title">Founder &amp; Lead Scientist</span>
+                    <span class="job-date">January 2025 &ndash; Present</span>
+                </div>
+                <div class="job-org">A1 Diagnosis (Pre-seed), Irvine, California</div>
+                <ul class="cv-list">
+                    <li>Developed first blood-based AI platform for AMD risk assessment, analyzing 5,000+ plasma molecules with attomole sensitivity for 20M+ at-risk patients.</li>
+                    <li>Discovered native peptide fragments from 18 inflammation and immune-related proteins (including Thymosin Beta-4, PDLIM1, LAT, FERMT3) with significant differential expression (p&lt;0.005, fold change >10) between healthy subjects and wet AMD patients, revealing novel I&amp;I biomarkers for disease prediction.</li>
+                    <li>Performed systematic evaluation of ML models; achieved 100% Leave-One-Out CV accuracy and 98.2% bootstrap test accuracy (95% CI: 0.80&ndash;1.00) with no overfitting across 1000 bootstrap iterations.</li>
+                    <li>Deployed production-ready Streamlit platform integrating XGBoost model with 8-level risk stratification, interactive visualizations.</li>
+                    <li>Led regulatory pathway analysis (FDA, CLIA) to establish clinical validation strategies and market entry pathways.</li>
+                    <li>Presented at AI in Healthcare Conference at Stanford University.</li>
+                </ul>
+            </div>
+
+            <div class="job-entry">
+                <div class="job-header">
+                    <span class="job-title">Data Scientist</span>
+                    <span class="job-date">July 2024 &ndash; Jan 2025</span>
+                </div>
+                <div class="job-org">Goldberg Med GmbH &ndash; (Remote), Wurselen, Germany</div>
+                <p class="job-desc">Led a cross-functional data science team to perform systematic evaluation of all possible machine learning models to identify optimal algorithms for colorectal cancer prediction using advanced Gaita (stool) and Serum sample analysis with clinical confirmation. Through comprehensive model comparison, we selected dual XGBoost models as the best-performing approach. I implemented feature engineering with 10-11 biomarkers including SDC2, SEPTIN9, TFPI2, and SFRP2 to achieve 87-88% sensitivity and 84% specificity.</p>
+                <p class="job-desc">Developed a risk assessment platform with comprehensive interface, interactive visualizations, and clinical-grade risk stratification. This platform receives clinical data in Excel format, analyzes it using machine learning models, and provides risk assessment results. I applied SHAP interpretability analysis and advanced statistical modeling for clinical decision support and model validation.</p>
+            </div>
+
+            <div class="job-entry">
+                <div class="job-header">
+                    <span class="job-title">Assistant Project Scientist III</span>
+                    <span class="job-date">2018 Sep &ndash; 2024 June</span>
+                </div>
+                <div class="job-org">Gavin Herbert Eye Institute, School of Medicine, University of California Irvine<br>Discovery Eye Foundation</div>
+                <p class="job-desc">My research project focused on identifying therapeutic agents and potential biomarkers for age-related macular degeneration (AMD). Our innovative approach involves comprehensive scans of native peptides and their oxidation, deamidation, phosphorylation and degradation products. We utilize data independent acquisition (DIA) for full scans using EvoSep Ultra-HPLC &ndash; timsTOF Pro 2 mass spectrometry and Peaks &reg; Studio Pro software.</p>
+                <p class="job-desc">I am honored to have received the 2023 Discovery Center for Eye Research Bridge-funding Support (DCER).</p>
+                <p class="job-desc">In addition to identifying potential biomarkers, I am focused on identification of potential therapeutics using nanoparticle technology for the treatment of various eye diseases, specifically age-related macular degeneration. This work includes developing unique and innovative delivery systems of medication to test Humanin-G peptides loaded nanoparticles/microspheres to rescue retinal cells and to maintain visual acuity in AMD patients. Our results show that six weeks after administration, stabilized Humanin-G loaded microspheres slow the retinal degeneration on RCS rats. This research was supported by National Eye Institute (5R01EY027363-03).</p>
+            </div>
+
+            <div class="job-entry">
+                <div class="job-header">
+                    <span class="job-title">Mentor</span>
+                    <span class="job-date">2021 May &ndash; 2024 June</span>
+                </div>
+                <div class="job-org">University of California Irvine</div>
+                <p class="job-desc">I advised and instructed medical school students Sylvana Marquina and Kenneth Robertson-Brown to write review paper entitled "A Review on PLGA particles as a Sustained Drug-delivery System and its Effect on the Retina." Our review paper was received invitation and published by esteemed Experimental Eye Research.</p>
+            </div>
+
+            <div class="job-entry">
+                <div class="job-header">
+                    <span class="job-title">Consultant</span>
+                    <span class="job-date">2017 Nov &ndash; 2018 Sep</span>
+                </div>
+                <div class="job-org">Integrated Medical Sensor Inc, Orange County, California</div>
+                <p class="job-desc">I was responsible for preparing protocols and experimental designs on different types of nanocoatings and hydrogels of the world's smallest implantable continuous glucose sensor. Specifically, we seek to minimize foreign body response and improve long-term performance of real-time glucose monitoring in experimental animal studies.</p>
+            </div>
+
+            <div class="job-entry">
+                <div class="job-header">
+                    <span class="job-title">Visiting Scholar / Researcher</span>
+                    <span class="job-date">2017 Oct &ndash; 2018 Aug</span>
+                </div>
+                <div class="job-org">Department of Physics, California State Polytechnic University Pomona, California</div>
+                <p class="job-desc">My research focused on development of a system of label-free optical fiber immunosensors to detect levels of specific proteins in different concentrations and antigen-antibody binding kinetics in liquid using an optical spectrum analyzer. Our findings were accepted for presentation at the AAAS conference in June 12-15, 2018 in Pomona, California.</p>
+            </div>
+
+            <div class="job-entry">
+                <div class="job-header">
+                    <span class="job-title">Postdoctoral Fellow</span>
+                    <span class="job-date">2016 Oct &ndash; 2017 Oct</span>
+                </div>
+                <div class="job-org">Department of Cancer Biology, City of Hope National Medical Center, Los Angeles, California</div>
+                <p class="job-desc">I worked to understand prostate cancer mechanisms in mice models, utilizing hematoxyline and eosine staining, immunohistochemistry staining, immunofluorescence staining as well as handling genetically engineered mice, survival mice surgery and genotype analysis using PCR, among others.</p>
+            </div>
+
+            <div class="job-entry">
+                <div class="job-header">
+                    <span class="job-title">Mentor</span>
+                    <span class="job-date">2016 June &ndash; 2016 Aug</span>
+                </div>
+                <div class="job-org">The Materials Connection Research Experience for Undergraduate Studies, University of California - Riverside</div>
+                <p class="job-desc">I advised and instructed graduate, on weekly basis, regarding production and characterization of anticancer drug-loaded nanoparticles. This was part of research that received NSF award number #1359136.</p>
+            </div>
+
+            <div class="job-entry">
+                <div class="job-header">
+                    <span class="job-title">Visiting Scholar / Researcher</span>
+                    <span class="job-date">2015 June &ndash; 2016 Oct</span>
+                </div>
+                <div class="job-org">Department of Bioengineering, University of California, Riverside, California</div>
+                <p class="job-desc">My research focused on the design of unique nanostructures for highly efficient targeted drug delivery applications in the biomaterials and nanomedicine lab. I routinely produced different types of drug-loaded nanoparticles by self-assembly techniques and characterized them through transmission electron microscopy. I co-wrote NIH R21 grant proposal with my professor.</p>
+            </div>
+
+            <div class="job-entry">
+                <div class="job-header">
+                    <span class="job-title">Research Assistant</span>
+                    <span class="job-date">2013 Aug &ndash; 2016 Aug</span>
+                </div>
+                <div class="job-org">Department of Anatomy, School of Medicine, Namik Kemal University, Tekirdag, Turkiye</div>
+                <p class="job-desc">I produced different types of anticancer nanomicelles and nanospheres that were non-functionalized with biocompatible and biodegradable properties. I filed a patent about multi-functionalized anticancer drug-loaded nanomicelles (WIPO Publication No: WO 016/167730 A1).</p>
+            </div>
+
+            <div class="job-entry">
+                <div class="job-header">
+                    <span class="job-title">Teaching Assistant</span>
+                    <span class="job-date">2013 Sept &ndash; 2015 May</span>
+                </div>
+                <div class="job-org">Department of Anatomy, School of Medicine, Namik Kemal University, Tekirdag, Turkiye</div>
+                <p class="job-desc">My responsibilities included regular review of the anatomy knowledge of graduate health science students prior to their instructing first- and second-year medical students. I also taught anatomy to these groups.</p>
+            </div>
+
+            <div class="job-entry">
+                <div class="job-header">
+                    <span class="job-title">Research Assistant</span>
+                    <span class="job-date">2012 May &ndash; 2013 July</span>
+                </div>
+                <div class="job-org">Department of Histology and Embryology, School of Medicine, Istanbul Medeniyet University, Turkiye</div>
+                <p class="job-desc">I co-authored, with my supervising professor, research reports for publication. I wrote grant proposals for research, reviewed and followed-up applications after submission.</p>
+            </div>
+        </div>
+
+        <!-- Machine Learning & Computational Biology -->
+        <div class="section skills-section">
+            <h2>Machine Learning &amp; Computational Biology</h2>
+            <ul class="cv-list">
+                <li>Predicted 3D molecular structures of therapeutic peptides (Humanin-G, SHLP1-6) using AlphaFold-2 and UCSF Chimera to guide AMD drug formulation design.</li>
+                <li>Analyzed peptide stability, hydropathicity (GRAVY), isoelectric point, and enzymatic cleavage sites using ExPASy ProtParam and PeptideCutter to optimize therapeutic peptide development.</li>
+                <li>Implemented and optimized 14 ML algorithms &mdash; tree-based (Random Forest, XGBoost, Gradient Boosting, Extra Trees), regularized linear (Logistic Regression, Ridge, LASSO, Elastic Net), probabilistic (SVM, KNN, Naive Bayes), neural networks (DNN), and ensemble methods (Voting, Stacking) &mdash; to classify AMD patients from healthy subjects using plasma biomarker profiles.</li>
+                <li>Applied hyperparameter optimization (Grid Search, Random Search, Bayesian Optimization, Optuna) with rigorous cross-validation (K-fold, Stratified K-fold, Leave-One-Out) and Bootstrap validation (1000 iterations) to maximize model performance and quantify prediction uncertainty.</li>
+                <li>Applied SHAP interpretability analysis to identify key plasma biomarkers driving AMD risk prediction.</li>
+            </ul>
+        </div>
+
+        <!-- Statistical Analysis -->
+        <div class="section skills-section">
+            <h2>Statistical Analysis and Data Visualization</h2>
+            <ul class="cv-list">
+                <li>Developed automated statistical analysis pipelines that select appropriate tests (Student's t-test, Welch's t-test, Mann-Whitney U, Kruskal-Wallis H, ANOVA) based on normality (Shapiro-Wilk) and variance homogeneity (Levene's test) for rigorous clinical data analysis.</li>
+                <li>Applied Generalized Additive Models (GAM) to adjust for confounding variables and isolate treatment effects from baseline patient characteristics in clinical outcomes research (Nature Scientific Reports 2025). Performed comprehensive power analysis calculating effect sizes (Cohen's d), required sample sizes for 80/90/95% power, and post-hoc tests (Tukey's HSD) for multi-group clinical studies.</li>
+                <li>Created publication-quality figures (300-600 DPI) with automated significance annotations, trend curves, and error bars using matplotlib, seaborn, and pandas for peer-reviewed journals.</li>
+                <li>Built end-to-end analysis pipelines generating descriptive statistics, pairwise comparisons, and publication-ready Methods/Results text for clinical manuscripts.</li>
+            </ul>
+        </div>
+
+        <!-- Mass Spectrometry Skills -->
+        <div class="section skills-section">
+            <h2>Mass Spectrometry Based Laboratory Skills</h2>
+            <ul class="cv-list">
+                <li>Using EvoSep Ultra-HPLC &ndash; timsTOF Pro 2 and Peaks &reg; Studio Pro software to identify amino acid sequences of native peptides and their posttranslational modifications (oxidation, amidation, phosphorylation etc.) and degradation products in human blood plasma samples.</li>
+                <li>Using High Resolution Mass Spectrometry (Waters&reg; Xevo&reg; G2-XS Qtof) coupled to Ultra Performance Liquid Chromatography, MassLynx (UPLC-HRMS) and BiopharmaLynx softwares to determine molecular weights, charges, b/y ions, intensity and identify amino acid sequences of intact peptides and their oxidation, dimerization and degradation products in LC-MS grade water and in phosphate buffer saline and stabilization formula solutions.</li>
+                <li>UPLC-HRMS, mzMINE 3 software and MS-DIAL database to determine molecular weights, charges, b/y ions, intensity and identify small molecules in human blood plasma samples.</li>
+                <li>Using Waters&reg; Micromass&reg; Quattro micro&trade; API (Triple-quadrupole mass spectrometry) coupled to UPLC system to analyze encapsulation efficiency of Humanin-G peptides in PLGA particles.</li>
+                <li>Using Matrix Assisted Laser Desorption Ionization-Time of Flight Mass Spectrometry (MALDI-TOF/TOF, AB SCIEX TOF/TOF&trade; 5800) to observe and intact peptides and their fragments.</li>
+                <li>Using High Performance Liquid Chromatography (HPLC, Agilent&reg; 1200) to analyze purity and stability of peptides.</li>
+            </ul>
+        </div>
+
+        <!-- Molecular Biology Skills -->
+        <div class="section skills-section">
+            <h2>Molecular Biology Based Laboratory Skills</h2>
+            <ul class="cv-list">
+                <li>Analyzing PCR for genotyping of genetically engineered mice</li>
+                <li>Preparing tissues for histopathological analysis (Fixation, Dehydration, Clearing, Embedding, Microtome Sectioning, Staining)</li>
+                <li>Performing immunohistochemistry (IHC) staining</li>
+                <li>Performing immunofluorescence (IF) staining</li>
+                <li>Troubleshooting/optimizing new primary antibodies for IHC and IF stainings</li>
+                <li>Performing hematoxylin eosin staining</li>
+                <li>Preparing tissues for cryostat sectioning</li>
+                <li>MTT assay for cell culture study</li>
+            </ul>
+        </div>
+
+        <!-- Laboratory Animal Skills -->
+        <div class="section skills-section">
+            <h2>Laboratory Animal-Based Skills</h2>
+            <ul class="cv-list">
+                <li>Administrate subconjunctival injections</li>
+                <li>Dissect the eye cups in Royal College Surgeon (RCS) rat model</li>
+                <li>Extract retinal cells and neuroretina from the eye cup</li>
+                <li>Handling experimental animals such as genetically engineered mice (p53 deleted mice, mutant beta-catenin mice, etc) and Wistar Albino, Sprague Dawley rats, etc.</li>
+                <li>Generate prostate cancer models in genetically engineered mice</li>
+                <li>Surgery of genetically engineered mice: pellet insertion (testosterone pellet) and castration</li>
+                <li>Injecting drugs intraperitoneally or delivering orally to rats</li>
+            </ul>
+        </div>
+
+        <!-- Material Science Skills -->
+        <div class="section skills-section">
+            <h2>Material Science Based Laboratory Skills</h2>
+            <ul class="cv-list">
+                <li>Routinely prepared and characterized: PLGA microspheres and nanospheres, Humanin-G loaded PLGA microspheres/nanospheres, Cisplatin loaded PLGA microspheres/nanospheres, Paclitaxel loaded PLGA nanospheres, Thymoquinone loaded nano-sized micelles, Curcumin loaded nano-sized micelles</li>
+                <li>Using vacuum rotary evaporator</li>
+                <li>Characterizing standard biochemical methods using UV/Vis spectroscopy</li>
+                <li>Extensive experience using transmission electron microscope (FEI Tecnai12) and scanning electron microscopy (Quanta 3D Dual Beam/Focus Ion Beam)</li>
+                <li>Using Dynamic Light Scattering techniques and Nanoparticle Tracking Analyzer (Nanosight 3000) to determine presence and size of nanoparticles</li>
+            </ul>
+        </div>
+
+        <!-- Computer Skills -->
+        <div class="section skills-section">
+            <h2>Computer Based Program Skills</h2>
+            <ul class="cv-list">
+                <li><strong>AlphaFold3 and Google Research Colaboratory</strong> &ndash; Routinely generate highly accurate predicted three-dimensional peptide and protein structures.</li>
+                <li><strong>Rstudio Software</strong> &ndash; Experience with R programming language for statistical data analysis and generate various graphs including volcano plots, bar graphs for grant applications, review articles and original-research articles.</li>
+                <li><strong>BioRender Online Tool</strong> &ndash; Generate various figures for grant applications, review articles and original-research articles.</li>
+                <li><strong>MassLynx Software</strong> &ndash; Analyze raw data from UPLC-HRMS to generate graphs.</li>
+                <li><strong>BiopharmaLynx Bioinformatic Software</strong> &ndash; Determine mass to charge ratios, retention times, b/y ions, intensities and amino acid sequences.</li>
+                <li><strong>GraphPad Prism &amp; SPSS</strong> &ndash; Standard deviation, nested t-test, ANOVA, unpaired and paired T-test, p-values, Mann-Whitney U test, normality distribution analysis.</li>
+                <li><strong>NCBI BLAST</strong> &ndash; Identify sequence similarity of peptides and proteins among various species.</li>
+                <li><strong>Microsoft &amp; Google Office Programs</strong> &ndash; Word, Excel, PowerPoint, Outlook, Docs, Sheets, Slides.</li>
+            </ul>
+        </div>
+
+        <!-- Patent Applications -->
+        <div class="section">
+            <h2>Patent Applications</h2>
+            <div class="patent-item">
+                Identifications Potential Biomarkers and Therapeutics Peptides for Age-Related Macular Degeneration. <strong>Ozgul M.</strong> Submitted to UCI Beall Applied Innovation, UC Case number 2024-9AI, UCI Licensing Officer: Patricia Chan, Ph.D.
+            </div>
+            <div class="patent-item">
+                Stable Liquid Formulation of Humanin-G. <strong>Ozgul M.</strong>, Kenney M. K., Nesburn A. B. (Submitted to UCI Beall Applied Innovation, Research Translation Group, Patent Submission UC Case number 2021-759, UCI Licensing Officer: Casie Kelly, Ph.D.)
+            </div>
+            <div class="patent-item">
+                Multi-functionalized Anticancer Drug-Loaded Sterically Stabilized Nanomicelles. Filed April 2015, WIPO publication number: WO2016167730 A1 (Ozen O.A., <strong>Ozgul M.</strong>, Aydin M.)
+            </div>
+        </div>
+
+        <!-- Awards -->
+        <div class="section">
+            <h2>Awards</h2>
+            <div class="award-item">
+                Identification of Potential Biomarkers for Age-Related Macular Degeneration. (<em>Discovery Center for Eye Research Bridge-Funding Support, DCER, 2023</em>)
+            </div>
+            <div class="award-item">
+                Development of Stable Liquid Formulation of Humanin-G Peptide. (<em>Discovery Eye Foundation 2020</em>)
+            </div>
+        </div>
+
+        <!-- Grants -->
+        <div class="section">
+            <h2>Grants</h2>
+
+            <div class="grant-entry">
+                <h4>Identification of Potential Biomarker and Therapeutic Peptides for Age-related Macular Degeneration (Discovery Center for Eye Research Bridge-Funding Support)</h4>
+                <p class="job-desc">Age-related macular degeneration (AMD) is a leading cause of irreversible vision impairment in the center of visual field among older adults in developed countries. There are currently no FDA-approved biomarkers to predict, screen or diagnose AMD using plasma samples. Successful completion of this proposal will demonstrate the translational nature of our study, which contributes to identifying novel native peptides profiles for AMD to be used as early diagnostic and screening tools.</p>
+            </div>
+
+            <div class="grant-entry">
+                <h4>Development of Long Acting-Release Formulation of Humanin-G (Discovery Eye Foundation)</h4>
+                <p class="job-desc">Age-related Macular Degeneration (AMD) is a leading cause of elderly vision loss. Our proposal is to produce polymeric nanospheres/microspheres as the encapsulating technology, allowing for long-acting release of the Humanin-G for a more effective treatment of AMD cybrid cultures.</p>
+            </div>
+
+            <div class="grant-entry">
+                <h4>Investigation of the Anticancer Effects of Active Targeted Multi-drug-loaded Cell-based Nanoparticles on Triple Negative Breast Cancer Cell Lines (Turkiye-US collaboration project)</h4>
+                <p class="job-desc">Our research aimed to overcome the inadequacies of targeting triple negative breast cancer cells and reduce the exposure to off-target organs by conventional chemotherapies.</p>
+            </div>
+        </div>
+
+        <!-- Presentations Given -->
+        <div class="section">
+            <h2>Presentations Given</h2>
+
+            <div class="presentation-item">
+                Neuroprotective Effect of Intraperitoneal Humanin-G in Retinal Degeneration of Royal College of Surgeons Rats. <span class="venue">Salt Lake City, Utah, May 4-8, 2025.</span>
+            </div>
+            <div class="presentation-item">
+                Identification of Native Peptide-Based Potential Biomarkers in Plasma for Age-related Macular Degeneration. <span class="venue">The Vision Research Mixer. Irvine, California, May 15, 2024.</span>
+            </div>
+            <div class="presentation-item">
+                Analysis of HNF14 peptide using Basic Local Alignment Search Tool and UPLC-HRMS. <span class="venue">ARVO 2024. Seattle, Washington. May 5-9, 2024.</span>
+            </div>
+            <div class="presentation-item">
+                Bioinformatic Analysis of Small Humanin Like Peptides using AlfaFold-2 and Expasy ProtParam. <span class="venue">ARVO 2024. Seattle, Washington. May 5-9, 2024.</span>
+            </div>
+            <div class="presentation-item">
+                Humanin-G's Protective Effect on Retinal Degeneration in RCS rats. <span class="venue">ARVO 2024. Seattle, Washington. May 5-9, 2024.</span>
+            </div>
+            <div class="presentation-item">
+                Stability Determination of HNF14 in H2O and PBS Using High Resolution Mass Spectrometry. <span class="venue">ARVO 2023. New Orleans, Louisiana April 23-27, 2023.</span>
+            </div>
+            <div class="presentation-item">
+                Determination of Humanin Fragments in Human Blood Plasma Samples. <span class="venue">ARVO 2023. New Orleans, Louisiana April 23-27, 2023.</span>
+            </div>
+            <div class="presentation-item">
+                Determination of Fragments of SHLP2 in AMD Patients. <span class="venue">ARVO 2023. New Orleans, Louisiana April 23-27, 2023.</span>
+            </div>
+            <div class="presentation-item">
+                Analysis of 1-month-old Humanin-G in H2O and PBS Using High Resolution Mass Spectrometry. <span class="venue">ARVO 2022. Virtual Meeting, May 11-12, 2022.</span>
+            </div>
+            <div class="presentation-item">
+                The impact of subconjunctival injections of Humanin-G loaded microspheres on RCS rat model of retinal degeneration. <span class="venue">ARVO 2022. Virtual Meeting, May 11-12, 2022.</span>
+            </div>
+            <div class="presentation-item">
+                Analysis of 1-month-old MOTS-c in H2O: Using High Resolution Mass Spectrometry. <span class="venue">ARVO 2022. Virtual Meeting, May 11-12, 2022.</span>
+            </div>
+            <div class="presentation-item">
+                11-month-old Humanin-G in H₂O using High Resolution Mass Spectrometry Analysis. <span class="venue">ARVO 2021. Virtual Meeting, May 1-7, 2021.</span>
+            </div>
+            <div class="presentation-item">
+                Rapid Label-Free Immunoassays Using U-Shaped Tapered Optical Fibers. <span class="venue">99th Annual Meeting Pacific Division of AAAS, June 12-15, 2018, Pomona, CA, USA.</span>
+            </div>
+            <div class="presentation-item">
+                Active and Passive Targeting Mechanism and Nanomedicine for Cancer Therapy. <span class="venue">12 June 2015, University of California, Riverside, USA.</span>
+            </div>
+            <div class="presentation-item">
+                Mechanism of FDA Approved Nanomedicine for Cancer Therapy. <span class="venue">June 2015, University of California, Riverside, USA.</span>
+            </div>
+            <div class="presentation-item">
+                Recent Advances in Nanotechnology and Nanomedicine. <span class="venue">April 2014, NKUBAT, Tekirdag, Turkiye.</span>
+            </div>
+        </div>
+
+        <!-- Publications -->
+        <div class="section">
+            <h2>Publications</h2>
+
+            <div class="publication">
+                Laparoscopic Sleeve Gastrectomy with Cruroplasty and Single-Suture Omentopexy: A Retrospective Pilot Study on Gastroesophageal Reflux Disease Outcomes. Kankaya B., Buyukasik S., Altundal Y.E., <span class="author-highlight">Ozgul M.</span>, Alis H. Bariatric Surgical Practice and Patient Care. 2025;20(3). doi: 10.1089/bari.2024.0060.
+            </div>
+            <div class="publication">
+                Beyond The Age Limit: A Comparative Study (&lt; 70 Vs&ge; 70 Years) in Breast Cancer Characteristics and Surgical Management in Women. Buyukasik S., Kankaya B., Altundal Y.E., <span class="author-highlight">Ozgul M.</span>, Kapan S. Breast Cancer: Targets and Therapy. 2025;1231-1246.
+            </div>
+            <div class="publication">
+                Age and Education Influencing Willingness in Men to Recommend Breast Cancer Screening: A Comparative Study of University Personnel and Clinical Attendees. Buyukasik S., Kankaya B., Altundal Y.E., <span class="author-highlight">Ozgul M.</span>, Atashbari F., Osman A.A.H. Breast Cancer: Targets and Therapy. 2025;17:741.
+            </div>
+            <div class="publication">
+                Neuroprotective Effect of Intraperitoneal Humanin-G on Retinal Degeneration of Royal College of Surgeons Rats. <span class="author-highlight">Ozgul M.</span>, Ianopol N.N., Kenney C.M., Seiler M.J. Invest. Ophthalmol. Vis. Sci. 2025;66(8):3830-3830.
+            </div>
+            <div class="publication">
+                Weight Loss Dynamics After Laparoscopic Sleeve Gastrectomy: A Retrospective Single Center Analysis with Age and Preoperative Weight Stratification. Kankaya B., Buyukasik S., Altundal Y.E., <span class="author-highlight">Ozgul M.</span>, Etemad A. Sci Rep. 2025;15(1):8771.
+            </div>
+            <div class="publication">
+                Exploring the Gender-Specific Impact of Intraperitoneal Bupivacaine on Early Postoperative Pain in Sleeve Gastrectomy. Buyukasik S., Kankaya B., Altundal Y. E., <span class="author-highlight">Ozgul M.</span>, Alis H. J Laparoendosc Adv Surg Tech A. 2023 Nov;33(11):1040-1046.
+            </div>
+            <div class="publication">
+                A Review on PLGA particles as a Sustained Drug-delivery System and its Effect on the Retina. Marquina S., <span class="author-highlight">Ozgul M.</span>, Kenney M. C., Kenneth R. B. Exp Eye Res. 2023 Oct;235:109626.
+            </div>
+            <div class="publication">
+                Using Human 'Personalized' Cybrids to Identify Drugs/Agents That Can Regulate Chronic Lymphoblastic Leukemia Mitochondrial Dysfunction. Singh L., Atilano S., Chwa M., Singh M.K., <span class="author-highlight">Ozgul M.</span>, Nesburn A., Kenney MC. Int J Mol Sci. 2023 Jul 3;24(13):11025.
+            </div>
+            <div class="publication">
+                Determination of Fragments of SHLP2 in AMD Patients. Ghazaryan A., <span class="author-highlight">Ozgul M.</span>, Melendez M.A., Neto F.J.T., Kenney M.C. Invest. Ophthalmol. Vis. Sci. 2023;64(8):2105-2105.
+            </div>
+            <div class="publication">
+                Determination of Humanin Fragments in Human Blood Plasma Samples. Neto F.J.T., <span class="author-highlight">Ozgul M.</span>, Ghazaryan A., Melendez M.A., Kuppermann B.D. Invest. Ophthalmol. Vis. Sci. 2023;64(8):2324-2324.
+            </div>
+            <div class="publication">
+                Stability Determination of HNF14 in H2O and PBS Using High Resolution Mass Spectrometry. <span class="author-highlight">Ozgul M.</span>, Katz B., Nashine S., Kenney M.C. Invest. Ophthalmol. Vis. Sci. 2023;64(8):3014-3014.
+            </div>
+            <div class="publication">
+                Stability Determination of Intact Humanin-G with Characterizations of Oxidation and Dimerization Patterns. <span class="author-highlight">Ozgul M.</span>, Nesburn A. B., Nasralla N., Katz B., Enes T., Kuppermann B., Kenney M. K. Biomolecules. 2023 Mar 11;13(3):515.
+            </div>
+            <div class="publication">
+                MOTS-c, the Most Recent Mitochondrial Derived Peptide in Human Aging and Age-Related Diseases. Mohtashami Z., Singh M.K., Salimiaghdam N., <span class="author-highlight">Ozgul M.</span>, Kenney M. C. Int J Mol Sci. 2022 Oct 9;23(19):11991.
+            </div>
+            <div class="publication">
+                The impact of subconjunctival injections of Humanin-G loaded microspheres on RCS rat model of retinal degeneration. Schneider K., <span class="author-highlight">Ozgul M.</span>, Ianopol V. I., Atilano S., Lin B., Seiler M. J., Kenney M. C. Invest. Ophthalmol. Vis. Sci. June 2022; 63(7):3162 &ndash; F0436.
+            </div>
+            <div class="publication">
+                Analysis of 1-month-old MOTS-c in H2O: Using High Resolution Mass Spectrometry. Mohtashami Z., <span class="author-highlight">Ozgul M.</span>, Kenney M. C. Invest. Ophthalmol. Vis. Sci. June 2022; 63(7):474 &ndash; A0011.
+            </div>
+            <div class="publication">
+                Analysis of 1-month-old Humanin-G in H2O and PBS Using High Resolution Mass Spectrometry. <span class="author-highlight">Ozgul M.</span>, Katz B., Taylan E., Kenney M.C., Invest. Ophthalmol. Vis. Sci. June 2022, Vol.63, 309 &ndash; F0112.
+            </div>
+            <div class="publication">
+                11-month-old Humanin-G in H₂O using High Resolution Mass Spectrometry Analysis. <span class="author-highlight">Ozgul M.</span>, Katz B., Kenney M.C., Invest. Ophthalmol. Vis. Sci. June 2021; 62(8):250.
+            </div>
+            <div class="publication">
+                Protective Effect of Nigella Sativa on Renal Reperfusion Injury in Rats. Caskurlu T., Kanter M., Erboga M., Erboga Z. F., <span class="author-highlight">Ozgul M.</span>, Atis G. IJKD. 2016 May;10(3):135-43.
+            </div>
+            <div class="publication">
+                Expression of Matrix Metalloproteinase-1 in Round Ligament and Uterosacral Ligament Tissue from Women with Pelvic Organ Prolapse. Usta A., Guzin K., <strong>Kanter M.</strong>, Ozgul M., Usta C. S. J Mol Histol. 2014 Jun;45(3):275-81.
+            </div>
+            <div class="publication">
+                Immunohistochemical Analysis of Connective Tissue in Patients with Pelvic Organ Prolapse. Yucel N., Usta A., Guzin K., Kanter M., Bilgic E., Ozel N. O., <span class="author-highlight">Ozgul M.</span> J Mol Histol. 2013 Feb;44(1):97-102.
+            </div>
+        </div>
+
+        <!-- Conferences -->
+        <div class="section">
+            <h2>Conferences, Symposiums, Seminars Attended</h2>
+            <ul class="conference-list">
+                <li>The Vision Research Mixer, May 2024, Irvine, CA, US</li>
+                <li>10th Annual Bench to Bedside Symposium, June 2024, Irvine, CA, US</li>
+                <li>The Association for Research in Vision and Ophthalmology, April 2024, Seattle, WA, US</li>
+                <li>9th Annual Bench to Bedside Symposium, May 2023, Irvine, CA, US</li>
+                <li>The Association for Research in Vision and Ophthalmology, April 2023, New Orleans, LA, US</li>
+                <li>8th Annual Bench to Bedside Symposium, June 2022, Irvine, CA, US</li>
+                <li>The Association for Research in Vision and Ophthalmology, May 2022, Virtual Meeting</li>
+                <li>7th Annual Bench to Bedside Symposium, September 2021, Virtual Meeting</li>
+                <li>The Association for Research in Vision and Ophthalmology, May 2021, Virtual Meeting</li>
+                <li>3D-Printed Labware for High-Throughput Enzyme Immobilization, Feb 28, 2020, Irvine, CA, US</li>
+                <li>Nanotechnology and Materials-based Immunotherapeutic Approaches to Diabetes and Cancer, January 2020, Irvine, CA, US</li>
+                <li>ASCO (American Society of Clinical Oncology) Annual Meeting, June 2016, Chicago, IL, US</li>
+                <li>National Anatomy Congress, September 2014, Malatya, Turkiye</li>
+                <li>III National Nanotechnology Congress, February 2014, Istanbul, Turkiye</li>
+                <li>Advances in Cancer Management, January 2013, Istanbul, Turkiye</li>
+                <li>Stem Cell and Gene Therapy, February 2012, Bursa, Turkiye</li>
+            </ul>
+        </div>
+
+        <!-- Training & Certifications -->
+        <div class="section">
+            <h2>Training Courses and Certifications</h2>
+            <ul class="training-list">
+                <li>CO₂ Critical Point Dryer, February 2023, University of California, Irvine, CA, USA</li>
+                <li>The Agilent 1200 Series Gradient system, August 2022, Kiser Lab, University of California, Irvine, CA, USA</li>
+                <li>JEOL JEM-2800 Transmission Electron Microscopy, May 2022, University of California, Irvine, CA, USA</li>
+                <li>Collaborative Institutional Training Initiative (Citi Program), June 2021, University of California, Irvine, CA, USA</li>
+                <li>Leica Sputter Coating ACE 600, March 2020, University of California, Irvine, CA, USA</li>
+                <li>FEI Magellan 400 XHR Extreme High Resolution Scanning Electron Microscopy, Feb 2020, University of California, Irvine, CA, USA</li>
+                <li>Waters&reg; MassLynx and BiopharmaLynx softwares, Mass Spectrometry Facility, University of California, Irvine, CA, USA</li>
+                <li>JEOL JEM-2100 Transmission Electron Microscopy, July 2019, University of California, Irvine, CA, USA</li>
+                <li>FEI Quanta 3D FEG Dual Beam Scanning Electron Microscopy with Focus Ion Beam technology, July 2019, University of California, Irvine, CA, USA</li>
+                <li>Animal Care and Use Program, October 2016, City of Hope at Duarte, CA, USA</li>
+                <li>Sample Preparation and Uranyl Acetate Staining for Transmission Electron Microscopy, August 2016, University of California, Riverside, CA, USA</li>
+                <li>Tecnia 12 FEI Transmission Electron Microscopy, May 2016, University of California, Riverside, California, USA</li>
+                <li>Laboratory Safety Orientation, July 2015, University of California at Riverside, CA, USA</li>
+                <li>Applications of RNAi and miRNA Analysis Methods, June 2014, Biotechnology Institute, Ankara University, Ankara, Turkiye</li>
+                <li>Basic Proteomics Strategies, June 2014, Biotechnology Institute, Ankara University, Ankara, Turkiye</li>
+                <li>DNA Damage, DNA Repair and Proteomics, October 2014, Dokuz Eylul University, Izmir, Turkiye</li>
+                <li>Experimental Animal User's Certificate, 2011, Trakya University, Edirne, Turkiye</li>
+            </ul>
+        </div>
+
+        <!-- Education -->
+        <div class="section">
+            <h2>Education</h2>
+            <div class="job-entry">
+                <div class="job-header">
+                    <span class="job-title">Medical Doctor</span>
+                    <span class="job-date">July 2012</span>
+                </div>
+                <div class="job-org">School of Medicine, Trakya University, Turkiye</div>
+            </div>
+        </div>
+
+        <!-- Professional Memberships -->
+        <div class="section">
+            <h2>Professional Memberships</h2>
+            <ul class="cv-list">
+                <li>The Association for Research in Vision and Ophthalmology (ARVO)</li>
+                <li>American Society of Clinical Oncology (ASCO)</li>
+                <li>American Association for Cancer Research (AACR)</li>
+            </ul>
+        </div>
+
+        <!-- Guest Editor -->
+        <div class="section">
+            <h2>Guest Editor Role</h2>
+            <p>As a Guest Editor, organizing a Methods Collection on <em>Innovative Strategies in Drug Delivery: Navigating Future Therapeutics</em>. Journal of Visualized Experiments (JoVE) is the leading peer-reviewed scientific methods video journal.</p>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>&copy; 2025 Dr. Mustafa Ozgul, M.D. &nbsp;|&nbsp; <a href="/">A1 Diagnosis</a> &nbsp;|&nbsp; <a href="CV-Dr-Mustafa-Ozgul.pdf" target="_blank">Download PDF</a></p>
+    </div>
+
+</body>
+</html>
