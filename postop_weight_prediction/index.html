@@ -26,561 +26,977 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
 
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-
-        body {
-            font-family: 'Times New Roman', serif;
-            line-height: 1.6;
-            color: #333;
-            background: #f0f4f8;
+        /* ================================================
+           RESET & BASE
+        ================================================ */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        /* Header */
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1a1a2e;
+            background: #ffffff;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ================================================
+           NAV BAR — sits above header, clean white strip
+        ================================================ */
+        .nav-bar {
+            background: #ffffff;
+            border-bottom: 1px solid #e8edf2;
+            padding: 0 48px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 52px;
+            position: sticky;
+            top: 0;
+            z-index: 200;
+        }
+
+        .back-link {
+            color: #5a6a7a;
+            text-decoration: none;
+            font-size: 13.5px;
+            font-weight: 500;
+            letter-spacing: -0.01em;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.2s;
+        }
+        .back-link:hover { color: #0284c7; }
+
+        .back-link svg {
+            width: 14px;
+            height: 14px;
+            flex-shrink: 0;
+        }
+
+        .nav-badge {
+            background: #f0fdf4;
+            color: #15803d;
+            border: 1px solid #bbf7d0;
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-size: 11.5px;
+            font-weight: 600;
+            letter-spacing: 0.01em;
+        }
+
+        /* ================================================
+           HEADER — refined gradient, lighter feel
+        ================================================ */
         .header {
-            background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 50%, #0369a1 100%);
+            background: linear-gradient(160deg, #0ea5e9 0%, #0284c7 45%, #0369a1 100%);
             color: white;
-            padding: 40px 40px 30px;
+            padding: 52px 48px 44px;
             text-align: center;
             position: relative;
             overflow: hidden;
         }
 
+        /* Subtle shimmer, not distracting */
         .header::before {
             content: '';
             position: absolute;
-            top: -50%; left: -50%;
-            width: 200%; height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-            animation: rotate 20s linear infinite;
+            top: -60%;
+            left: -20%;
+            width: 60%;
+            height: 200%;
+            background: radial-gradient(ellipse, rgba(255,255,255,0.12) 0%, transparent 65%);
+            pointer-events: none;
         }
 
-        @keyframes rotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: -40%;
+            right: -10%;
+            width: 50%;
+            height: 160%;
+            background: radial-gradient(ellipse, rgba(255,255,255,0.07) 0%, transparent 65%);
+            pointer-events: none;
         }
 
-        .header-content { position: relative; z-index: 2; }
+        .header-content {
+            position: relative;
+            z-index: 2;
+            max-width: 740px;
+            margin: 0 auto;
+        }
+
+        .header-eyebrow {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.65);
+            margin-bottom: 14px;
+        }
 
         .header h1 {
-            font-size: 2.2rem;
+            font-size: 2.4rem;
             font-weight: 300;
-            margin-bottom: 8px;
-            text-shadow: 0 0 20px rgba(255,255,255,0.5), 0 2px 4px rgba(0,0,0,0.3);
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            margin-bottom: 12px;
+            color: #ffffff;
             opacity: 0;
-            animation: slideIn 1.5s ease-out 0.3s forwards;
+            animation: slideDown 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.1s forwards;
         }
 
-        .header .subtitle {
-            font-size: 1.1rem;
-            font-weight: 300;
+        .header h1 strong {
+            font-weight: 700;
+        }
+
+        .header-subtitle {
+            font-size: 1rem;
+            font-weight: 400;
+            color: rgba(255,255,255,0.8);
+            max-width: 520px;
+            margin: 0 auto;
             opacity: 0;
-            animation: fadeUp 1.5s ease-out 1s forwards;
+            animation: slideDown 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.3s forwards;
         }
 
-        @keyframes slideIn {
-            0% { opacity: 0; transform: translateY(-40px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fadeUp {
-            0% { opacity: 0; transform: translateY(20px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Nav bar */
-        .nav-bar {
-            background: white;
-            border-bottom: 1px solid #e2e8f0;
-            padding: 12px 40px;
+        .header-stats {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            justify-content: center;
+            gap: 32px;
+            margin-top: 28px;
+            opacity: 0;
+            animation: slideDown 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.5s forwards;
         }
 
-        .back-link {
-            color: #64748b;
-            text-decoration: none;
-            font-size: 14px;
+        .header-stat {
+            text-align: center;
+        }
+
+        .header-stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #ffffff;
+            line-height: 1;
+        }
+
+        .header-stat-label {
+            font-size: 11px;
+            color: rgba(255,255,255,0.65);
+            margin-top: 4px;
             font-weight: 500;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            transition: color 0.3s;
-        }
-        .back-link:hover { color: #0ea5e9; }
-
-        .nav-badge {
-            background: linear-gradient(135deg, #10b981, #059669);
-            color: white;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
         }
 
-        /* Main container */
-        .main {
-            max-width: 1100px;
-            margin: 30px auto;
-            padding: 0 20px;
+        .header-stat-divider {
+            width: 1px;
+            background: rgba(255,255,255,0.2);
+            align-self: stretch;
         }
 
-        /* Disclaimer */
-        .disclaimer {
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-16px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ================================================
+           DISCLAIMER
+        ================================================ */
+        .disclaimer-wrap {
             background: #fffbeb;
-            border: 1px solid #fbbf24;
-            border-left: 4px solid #f59e0b;
-            border-radius: 8px;
-            padding: 14px 18px;
-            margin-bottom: 25px;
-            font-size: 13px;
-            color: #92400e;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            border-bottom: 1px solid #fde68a;
         }
 
-        /* Two column layout */
-        .grid {
+        .disclaimer {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 12px 48px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 12.5px;
+            color: #92400e;
+            line-height: 1.5;
+        }
+
+        .disclaimer-icon {
+            flex-shrink: 0;
+            width: 16px;
+            height: 16px;
+            margin-top: 1px;
+            color: #d97706;
+        }
+
+        /* ================================================
+           MAIN LAYOUT
+        ================================================ */
+        .main {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 40px 48px 60px;
+        }
+
+        /* Two-column layout: form left, everything else right */
+        .workspace {
             display: grid;
-            grid-template-columns: 380px 1fr;
-            gap: 25px;
+            grid-template-columns: 340px 1fr;
+            gap: 32px;
             align-items: start;
         }
 
-        /* Card */
-        .card {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-            overflow: hidden;
+        /* ================================================
+           LEFT COLUMN — form panel
+        ================================================ */
+        .form-panel {
+            position: sticky;
+            top: 52px; /* matches nav height */
         }
 
-        .card-header {
-            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-            border-bottom: 1px solid #bae6fd;
-            padding: 16px 24px;
-            font-size: 16px;
-            font-weight: bold;
-            color: #0369a1;
+        .section-label {
+            font-size: 10.5px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #94a3b8;
+            margin-bottom: 14px;
         }
 
-        .card-body {
-            padding: 24px;
+        /* Form card — borderless, no shadow header */
+        .form-card {
+            background: #ffffff;
+            border: 1.5px solid #e8edf2;
+            border-radius: 16px;
+            padding: 28px;
         }
 
-        /* Form */
+        .form-card-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 24px;
+            letter-spacing: -0.01em;
+        }
+
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 22px;
         }
 
         .form-label {
             display: block;
-            font-size: 13px;
+            font-size: 12.5px;
             font-weight: 600;
-            color: #475569;
-            margin-bottom: 6px;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: #374151;
+            margin-bottom: 8px;
+            letter-spacing: -0.01em;
         }
 
-        .form-label .unit {
+        .form-label .unit-hint {
             font-weight: 400;
             color: #94a3b8;
         }
 
         .form-input {
             width: 100%;
-            padding: 12px 16px;
-            border: 2px solid #e2e8f0;
-            border-radius: 8px;
-            font-size: 16px;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            transition: all 0.3s;
-            background: #f8fafc;
+            padding: 11px 14px;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 15px;
+            font-family: inherit;
+            color: #0f172a;
+            background: #ffffff;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            -webkit-appearance: none;
+        }
+
+        .form-input::placeholder {
+            color: #c0cad6;
         }
 
         .form-input:focus {
             outline: none;
             border-color: #0ea5e9;
-            background: white;
-            box-shadow: 0 0 0 3px rgba(14,165,233,0.15);
+            box-shadow: 0 0 0 3px rgba(14,165,233,0.12);
         }
 
-        .form-range {
+        .form-hint {
             font-size: 11px;
-            color: #94a3b8;
-            margin-top: 4px;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: #b0bec9;
+            margin-top: 5px;
+            letter-spacing: 0.01em;
         }
 
+        /* Unit toggles */
         .unit-toggle {
             display: flex;
-            gap: 0;
-            margin-bottom: 6px;
-            border-radius: 6px;
+            border-radius: 8px;
             overflow: hidden;
-            border: 1px solid #e2e8f0;
+            border: 1.5px solid #e2e8f0;
+            margin-bottom: 8px;
         }
 
         .unit-btn {
             flex: 1;
-            padding: 6px 12px;
+            padding: 7px 10px;
             border: none;
-            background: #f1f5f9;
+            background: #f8fafc;
             font-size: 12px;
             font-weight: 600;
             color: #64748b;
             cursor: pointer;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            transition: all 0.2s;
+            font-family: inherit;
+            transition: background 0.15s, color 0.15s;
+            letter-spacing: 0.01em;
+        }
+
+        .unit-btn:not(:last-child) {
+            border-right: 1.5px solid #e2e8f0;
         }
 
         .unit-btn.active {
             background: #0ea5e9;
-            color: white;
+            color: #ffffff;
         }
 
+        .unit-btn:not(.active):hover {
+            background: #f1f5f9;
+        }
+
+        /* Ft / in row */
+        .ft-in-row {
+            display: flex;
+            gap: 8px;
+        }
+
+        .ft-in-row .form-input {
+            width: 50%;
+        }
+
+        /* Predict button */
         .predict-btn {
             width: 100%;
-            padding: 14px;
+            padding: 14px 20px;
             background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
             color: white;
             border: none;
-            border-radius: 8px;
-            font-size: 16px;
+            border-radius: 10px;
+            font-size: 15px;
             font-weight: 700;
             cursor: pointer;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            transition: all 0.3s;
-            box-shadow: 0 4px 12px rgba(14,165,233,0.3);
+            font-family: inherit;
+            letter-spacing: -0.01em;
+            transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
+            box-shadow: 0 4px 14px rgba(14,165,233,0.35);
+            margin-top: 4px;
         }
 
-        .predict-btn:hover {
+        .predict-btn:hover:not(:disabled) {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(14,165,233,0.4);
+            box-shadow: 0 8px 22px rgba(14,165,233,0.45);
+        }
+
+        .predict-btn:active:not(:disabled) {
+            transform: translateY(0);
         }
 
         .predict-btn:disabled {
-            background: #94a3b8;
-            cursor: not-allowed;
+            background: linear-gradient(135deg, #94a3b8, #64748b);
             box-shadow: none;
-            transform: none;
+            cursor: not-allowed;
         }
 
-        /* Results area */
-        .chart-container {
-            position: relative;
-            height: 380px;
-            padding: 10px;
-        }
-
-        .results-grid {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 10px;
-            padding: 0 24px 24px;
-        }
-
-        .result-card {
+        /* Model performance mini section inside form panel */
+        .perf-panel {
             background: #f8fafc;
-            border: 1px solid #e2e8f0;
-            border-radius: 8px;
-            padding: 12px 10px;
-            text-align: center;
-            transition: all 0.3s;
+            border: 1.5px solid #e8edf2;
+            border-radius: 16px;
+            padding: 22px 24px;
+            margin-top: 20px;
         }
 
-        .result-card.highlight {
-            background: linear-gradient(135deg, #f0fdf4, #dcfce7);
-            border-color: #86efac;
-        }
-
-        .result-time {
+        .perf-panel-title {
             font-size: 11px;
-            font-weight: 600;
-            color: #64748b;
+            font-weight: 700;
+            letter-spacing: 0.08em;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: #64748b;
+            margin-bottom: 14px;
         }
 
-        .result-weight {
-            font-size: 20px;
-            font-weight: 800;
-            color: #0369a1;
-            margin: 4px 0;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        .perf-rows {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
         }
 
-        .result-loss {
-            font-size: 11px;
-            color: #059669;
+        .perf-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 9px 12px;
+            background: #ffffff;
+            border-radius: 8px;
+            border: 1px solid #e8edf2;
+        }
+
+        .perf-row-label {
+            font-size: 12px;
             font-weight: 600;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: #475569;
         }
 
-        .result-ci {
-            font-size: 10px;
-            color: #94a3b8;
-            margin-top: 2px;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-        }
-
-        /* Model info */
-        .model-info {
-            margin-top: 25px;
-        }
-
-        .model-info .card-body {
-            padding: 20px 24px;
-        }
-
-        .metrics-grid {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
+        .perf-row-right {
+            display: flex;
+            align-items: center;
             gap: 10px;
         }
 
-        .metric-card {
-            text-align: center;
-            padding: 12px 8px;
-            background: #f8fafc;
-            border-radius: 8px;
-            border: 1px solid #e2e8f0;
-        }
-
-        .metric-label {
-            font-size: 10px;
-            font-weight: 600;
-            color: #94a3b8;
-            text-transform: uppercase;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-        }
-
-        .metric-value {
-            font-size: 16px;
+        .perf-r2 {
+            font-size: 13px;
             font-weight: 800;
-            color: #1e293b;
-            margin: 2px 0;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: #0284c7;
+            letter-spacing: -0.02em;
         }
 
-        .metric-sub {
+        .perf-mae {
+            font-size: 11px;
+            color: #94a3b8;
+            font-weight: 500;
+        }
+
+        .perf-n {
             font-size: 10px;
-            color: #64748b;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: #b0bec9;
         }
 
-        /* BMI info */
-        .bmi-row {
+        /* ================================================
+           RIGHT COLUMN — results area
+        ================================================ */
+        .results-col {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            min-width: 0;
+        }
+
+        /* ---- Chart panel ---- */
+        .chart-panel {
+            background: #ffffff;
+            border: 1.5px solid #e8edf2;
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .chart-panel-header {
+            padding: 22px 28px 0;
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            padding: 10px 24px;
-            background: #f0f9ff;
-            border-top: 1px solid #e0f2fe;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            font-size: 13px;
-            color: #0369a1;
+            align-items: flex-start;
         }
 
-        /* Placeholder */
-        .placeholder {
+        .chart-panel-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #0f172a;
+            letter-spacing: -0.02em;
+        }
+
+        .chart-panel-subtitle {
+            font-size: 12px;
+            color: #94a3b8;
+            margin-top: 3px;
+            font-weight: 400;
+        }
+
+        .chart-ci-badge {
+            font-size: 11px;
+            font-weight: 600;
+            color: #0284c7;
+            background: #e0f2fe;
+            padding: 4px 10px;
+            border-radius: 100px;
+            flex-shrink: 0;
+        }
+
+        /* Placeholder state */
+        .chart-placeholder {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 380px;
-            color: #94a3b8;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            height: 420px;
+            color: #cbd5e1;
+            gap: 14px;
         }
 
-        .placeholder svg {
-            width: 64px;
-            height: 64px;
-            margin-bottom: 16px;
-            opacity: 0.4;
+        .chart-placeholder svg {
+            width: 56px;
+            height: 56px;
+            color: #e2e8f0;
         }
 
-        .placeholder p {
-            font-size: 15px;
+        .chart-placeholder-text {
+            font-size: 14.5px;
             font-weight: 500;
-        }
-
-        /* Footer */
-        .footer {
-            text-align: center;
-            padding: 30px;
             color: #94a3b8;
-            font-size: 12px;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            line-height: 1.8;
+            text-align: center;
         }
 
-        .footer a { color: #0ea5e9; text-decoration: none; }
-        .footer a:hover { text-decoration: underline; }
-
-        /* Loading spinner */
-        .loading {
-            display: none;
+        .chart-placeholder-sub {
+            font-size: 12.5px;
+            color: #b0bec9;
             text-align: center;
-            padding: 40px;
+        }
+
+        /* Loading state */
+        .chart-loading {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 420px;
+            gap: 16px;
             color: #64748b;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
         }
 
         .spinner {
-            width: 40px; height: 40px;
-            border: 4px solid #e2e8f0;
+            width: 36px;
+            height: 36px;
+            border: 3px solid #e2e8f0;
             border-top-color: #0ea5e9;
             border-radius: 50%;
-            animation: spin 0.8s linear infinite;
-            margin: 0 auto 12px;
+            animation: spin 0.75s linear infinite;
         }
 
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
 
-        /* Mobile */
-        @media (max-width: 850px) {
-            .header { padding: 30px 20px; }
-            .header h1 { font-size: 1.5rem; }
-            .nav-bar { padding: 10px 16px; }
-            .main { padding: 0 12px; }
-            .grid { grid-template-columns: 1fr; }
-            .results-grid { grid-template-columns: repeat(3, 1fr); }
-            .metrics-grid { grid-template-columns: repeat(3, 1fr); }
-            .chart-container { height: 300px; }
+        .chart-loading p {
+            font-size: 14px;
+            font-weight: 500;
         }
 
-        @media (max-width: 500px) {
-            .results-grid { grid-template-columns: repeat(2, 1fr); }
-            .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+        /* Chart canvas */
+        .chart-wrap {
+            display: none;
+            padding: 20px 24px 24px;
+            height: 420px;
+            position: relative;
         }
 
+        /* ---- BMI summary strip ---- */
+        .bmi-strip {
+            display: none;
+            background: #f0f9ff;
+            border: 1.5px solid #bae6fd;
+            border-radius: 12px;
+            padding: 16px 24px;
+        }
+
+        .bmi-strip-inner {
+            display: flex;
+            gap: 0;
+            align-items: stretch;
+        }
+
+        .bmi-item {
+            flex: 1;
+            text-align: center;
+            padding: 0 16px;
+        }
+
+        .bmi-item:not(:last-child) {
+            border-right: 1px solid #bae6fd;
+        }
+
+        .bmi-item-value {
+            font-size: 20px;
+            font-weight: 800;
+            color: #0284c7;
+            letter-spacing: -0.03em;
+            line-height: 1;
+        }
+
+        .bmi-item-label {
+            font-size: 11px;
+            color: #0369a1;
+            font-weight: 600;
+            margin-top: 5px;
+            letter-spacing: 0.01em;
+        }
+
+        /* ---- Result cards strip ---- */
+        .results-strip {
+            display: none;
+        }
+
+        .results-strip-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 14px;
+        }
+
+        .results-strip-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: #475569;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+            font-size: 11px;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 12px;
+        }
+
+        .result-card {
+            background: #ffffff;
+            border: 1.5px solid #e8edf2;
+            border-radius: 12px;
+            padding: 16px 12px;
+            text-align: center;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .result-card:hover {
+            border-color: #bae6fd;
+            box-shadow: 0 4px 16px rgba(14,165,233,0.08);
+        }
+
+        .result-card.highlight {
+            background: linear-gradient(160deg, #f0fdf4, #dcfce7);
+            border-color: #86efac;
+        }
+
+        .result-card.highlight:hover {
+            border-color: #4ade80;
+            box-shadow: 0 4px 16px rgba(34,197,94,0.12);
+        }
+
+        .result-time {
+            font-size: 10.5px;
+            font-weight: 700;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 8px;
+        }
+
+        .result-weight {
+            font-size: 19px;
+            font-weight: 800;
+            color: #0369a1;
+            letter-spacing: -0.03em;
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+
+        .result-card.highlight .result-weight {
+            color: #166534;
+        }
+
+        .result-loss {
+            font-size: 11.5px;
+            color: #16a34a;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .result-ci {
+            font-size: 10px;
+            color: #b0bec9;
+            font-weight: 500;
+            line-height: 1.4;
+        }
+
+        /* ================================================
+           FOOTER
+        ================================================ */
+        .footer {
+            border-top: 1px solid #f1f5f9;
+            text-align: center;
+            padding: 32px 48px;
+            color: #94a3b8;
+            font-size: 12px;
+            line-height: 1.9;
+            background: #fafbfc;
+        }
+
+        .footer a {
+            color: #0ea5e9;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* ================================================
+           PRINT
+        ================================================ */
         @media print {
             .nav-bar { display: none; }
-            .header { border-radius: 0; }
             body { background: white; }
-            .card { box-shadow: none; border: 1px solid #ddd; }
+            .form-panel { position: static; }
+            .chart-panel,
+            .result-card,
+            .bmi-strip,
+            .perf-panel,
+            .form-card { border: 1px solid #ddd; box-shadow: none; }
+        }
+
+        /* ================================================
+           RESPONSIVE
+        ================================================ */
+        @media (max-width: 960px) {
+            .main { padding: 32px 24px 48px; }
+            .nav-bar { padding: 0 24px; }
+            .header { padding: 40px 24px 36px; }
+            .disclaimer { padding: 12px 24px; }
+
+            .workspace {
+                grid-template-columns: 1fr;
+            }
+
+            .form-panel {
+                position: static;
+            }
+
+            .perf-panel {
+                display: none; /* on mobile, hide detailed perf; could show a toggle */
+            }
+
+            .results-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .chart-wrap,
+            .chart-loading,
+            .chart-placeholder {
+                height: 320px;
+            }
+
+            .header-stats {
+                gap: 20px;
+            }
+
+            .header-stat-value {
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .header h1 { font-size: 1.7rem; }
+            .header-stats { display: none; }
+
+            .results-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .bmi-strip-inner {
+                flex-wrap: wrap;
+                gap: 12px;
+            }
+
+            .bmi-item {
+                border-right: none !important;
+                flex: 0 0 calc(50% - 6px);
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- Header -->
-    <div class="header">
+    <!-- Sticky nav -->
+    <nav class="nav-bar">
+        <a href="/" class="back-link">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+            </svg>
+            Back to A1 Diagnosis
+        </a>
+        <span class="nav-badge">XGBoost &middot; 2,014 Patients</span>
+    </nav>
+
+    <!-- Hero header -->
+    <header class="header">
         <div class="header-content">
-            <h1>Post-Operative Weight Prediction</h1>
-            <div class="subtitle">AI-Powered Weight Loss Trajectory After Laparoscopic Sleeve Gastrectomy</div>
+            <div class="header-eyebrow">Bariatric Surgery Analytics</div>
+            <h1>Post-Operative <strong>Weight Prediction</strong></h1>
+            <div class="header-subtitle">AI-powered weight loss trajectory after Laparoscopic Sleeve Gastrectomy, with 95% confidence intervals at five clinical timepoints</div>
+            <div class="header-stats">
+                <div class="header-stat">
+                    <div class="header-stat-value">2,014</div>
+                    <div class="header-stat-label">Training Patients</div>
+                </div>
+                <div class="header-stat-divider"></div>
+                <div class="header-stat">
+                    <div class="header-stat-value">XGBoost</div>
+                    <div class="header-stat-label">ML Algorithm</div>
+                </div>
+                <div class="header-stat-divider"></div>
+                <div class="header-stat">
+                    <div class="header-stat-value">5-Fold CV</div>
+                    <div class="header-stat-label">Validation</div>
+                </div>
+                <div class="header-stat-divider"></div>
+                <div class="header-stat">
+                    <div class="header-stat-value">12 Mo</div>
+                    <div class="header-stat-label">Prediction Range</div>
+                </div>
+            </div>
         </div>
-    </div>
+    </header>
 
-    <!-- Nav -->
-    <div class="nav-bar">
-        <a href="/" class="back-link">&larr; Back to A1 Diagnosis</a>
-        <span class="nav-badge">XGBoost ML Model &middot; 2,014 Patients</span>
-    </div>
-
-    <!-- Main Content -->
-    <div class="main">
-
+    <!-- Disclaimer strip -->
+    <div class="disclaimer-wrap">
         <div class="disclaimer">
-            <strong>Research Tool Only:</strong> This prediction tool is based on a machine learning model trained on retrospective clinical data. Predictions are estimates with confidence intervals and should not replace clinical judgment. For research and educational purposes only.
-        </div>
-
-        <div class="grid">
-
-            <!-- Left: Input Form -->
-            <div>
-                <div class="card">
-                    <div class="card-header">Patient Information</div>
-                    <div class="card-body">
-
-                        <div class="form-group">
-                            <label class="form-label">Age <span class="unit">(years)</span></label>
-                            <input type="number" id="age" class="form-input" placeholder="e.g. 42" min="12" max="80" step="1">
-                            <div class="form-range">Training range: 12 &ndash; 73 years</div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label">Height</label>
-                            <div class="unit-toggle" id="height-toggle">
-                                <button class="unit-btn active" data-unit="cm" onclick="setHeightUnit('cm')">cm</button>
-                                <button class="unit-btn" data-unit="ft" onclick="setHeightUnit('ft')">ft / in</button>
-                            </div>
-                            <div id="height-cm-input">
-                                <input type="number" id="height_cm" class="form-input" placeholder="e.g. 170" min="130" max="220" step="1">
-                            </div>
-                            <div id="height-ft-input" style="display:none; gap:8px;">
-                                <div style="display:flex; gap:8px;">
-                                    <input type="number" id="height_ft" class="form-input" placeholder="ft" min="4" max="7" step="1" style="width:50%">
-                                    <input type="number" id="height_in" class="form-input" placeholder="in" min="0" max="11" step="1" style="width:50%">
-                                </div>
-                            </div>
-                            <div class="form-range">Training range: 137 &ndash; 205 cm</div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label">Pre-Operative Weight</label>
-                            <div class="unit-toggle" id="weight-toggle">
-                                <button class="unit-btn active" data-unit="kg" onclick="setWeightUnit('kg')">kg</button>
-                                <button class="unit-btn" data-unit="lbs" onclick="setWeightUnit('lbs')">lbs</button>
-                            </div>
-                            <input type="number" id="weight" class="form-input" placeholder="e.g. 120" min="50" max="300" step="0.1">
-                            <div class="form-range">Training range: 72 &ndash; 276 kg</div>
-                        </div>
-
-                        <button class="predict-btn" id="predictBtn" onclick="runPrediction()" disabled>
-                            Loading Model...
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Model Accuracy -->
-                <div class="card model-info">
-                    <div class="card-header">Model Performance (5-Fold Cross-Validation)</div>
-                    <div class="card-body">
-                        <div class="metrics-grid" id="metricsGrid"></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Right: Results -->
-            <div>
-                <div class="card">
-                    <div class="card-header">Predicted Weight Trajectory</div>
-                    <div id="chartArea">
-                        <div class="placeholder" id="placeholder">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5" />
-                            </svg>
-                            <p>Enter patient details and click Predict</p>
-                        </div>
-                        <div class="loading" id="loading">
-                            <div class="spinner"></div>
-                            <p>Calculating predictions...</p>
-                        </div>
-                        <div class="chart-container" id="chartContainer" style="display:none;">
-                            <canvas id="predictionChart"></canvas>
-                        </div>
-                    </div>
-                    <div id="bmiRow" class="bmi-row" style="display:none;"></div>
-                    <div class="results-grid" id="resultsGrid" style="display:none;"></div>
-                </div>
-            </div>
-
+            <svg class="disclaimer-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+            </svg>
+            <span><strong>Research Tool Only:</strong> This prediction tool is based on a machine learning model trained on retrospective clinical data. Predictions are estimates with confidence intervals and should not replace clinical judgment. For research and educational purposes only.</span>
         </div>
     </div>
+
+    <!-- Main workspace -->
+    <main class="main">
+        <div class="workspace">
+
+            <!-- ==========================================
+                 LEFT: Input form + model performance
+            =========================================== -->
+            <div class="form-panel">
+
+                <div class="section-label">Patient Information</div>
+
+                <div class="form-card">
+                    <div class="form-card-title">Enter Patient Details</div>
+
+                    <!-- Age -->
+                    <div class="form-group">
+                        <label class="form-label" for="age">Age <span class="unit-hint">(years)</span></label>
+                        <input type="number" id="age" class="form-input" placeholder="e.g. 42" min="12" max="80" step="1">
+                        <div class="form-hint">Training range: 12 &ndash; 73 years</div>
+                    </div>
+
+                    <!-- Height -->
+                    <div class="form-group">
+                        <label class="form-label">Height</label>
+                        <div class="unit-toggle" id="height-toggle">
+                            <button class="unit-btn active" data-unit="cm" onclick="setHeightUnit('cm')">cm</button>
+                            <button class="unit-btn" data-unit="ft" onclick="setHeightUnit('ft')">ft / in</button>
+                        </div>
+                        <div id="height-cm-input">
+                            <input type="number" id="height_cm" class="form-input" placeholder="e.g. 170" min="130" max="220" step="1">
+                        </div>
+                        <div id="height-ft-input" style="display:none;">
+                            <div class="ft-in-row">
+                                <input type="number" id="height_ft" class="form-input" placeholder="ft" min="4" max="7" step="1">
+                                <input type="number" id="height_in" class="form-input" placeholder="in" min="0" max="11" step="1">
+                            </div>
+                        </div>
+                        <div class="form-hint">Training range: 137 &ndash; 205 cm</div>
+                    </div>
+
+                    <!-- Weight -->
+                    <div class="form-group">
+                        <label class="form-label">Pre-Operative Weight</label>
+                        <div class="unit-toggle" id="weight-toggle">
+                            <button class="unit-btn active" data-unit="kg" onclick="setWeightUnit('kg')">kg</button>
+                            <button class="unit-btn" data-unit="lbs" onclick="setWeightUnit('lbs')">lbs</button>
+                        </div>
+                        <input type="number" id="weight" class="form-input" placeholder="e.g. 120" min="50" max="300" step="0.1">
+                        <div class="form-hint">Training range: 72 &ndash; 276 kg</div>
+                    </div>
+
+                    <button class="predict-btn" id="predictBtn" onclick="runPrediction()" disabled>
+                        Loading Model&hellip;
+                    </button>
+                </div>
+
+                <!-- Model performance — integrated in left panel -->
+                <div class="perf-panel">
+                    <div class="perf-panel-title">Model Performance &mdash; 5-Fold CV</div>
+                    <div class="perf-rows" id="metricsGrid"></div>
+                </div>
+
+            </div>
+
+            <!-- ==========================================
+                 RIGHT: Chart + BMI + Result cards
+            =========================================== -->
+            <div class="results-col">
+
+                <!-- Chart card -->
+                <div class="chart-panel">
+                    <div class="chart-panel-header">
+                        <div>
+                            <div class="chart-panel-title">Predicted Weight Trajectory</div>
+                            <div class="chart-panel-subtitle">Pre-operative through 12 months post-surgery</div>
+                        </div>
+                        <span class="chart-ci-badge">95% CI shown</span>
+                    </div>
+
+                    <!-- Placeholder -->
+                    <div class="chart-placeholder" id="placeholder">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5" />
+                        </svg>
+                        <div>
+                            <div class="chart-placeholder-text">Enter patient details to generate prediction</div>
+                            <div class="chart-placeholder-sub">Weight trajectory with confidence intervals will appear here</div>
+                        </div>
+                    </div>
+
+                    <!-- Loading -->
+                    <div class="chart-loading" id="loading">
+                        <div class="spinner"></div>
+                        <p>Calculating predictions&hellip;</p>
+                    </div>
+
+                    <!-- Canvas -->
+                    <div class="chart-wrap" id="chartContainer">
+                        <canvas id="predictionChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- BMI strip — shown after prediction -->
+                <div class="bmi-strip" id="bmiRow">
+                    <div class="bmi-strip-inner" id="bmiInner"></div>
+                </div>
+
+                <!-- Result cards -->
+                <div class="results-strip" id="resultsStripWrapper">
+                    <div class="results-strip-header">
+                        <div class="section-label" style="margin-bottom:0;">Predicted Weight at Each Timepoint</div>
+                    </div>
+                    <div class="results-grid" id="resultsGrid"></div>
+                </div>
+
+            </div>
+
+        </div>
+    </main>
 
     <!-- Footer -->
-    <div class="footer">
+    <footer class="footer">
         <strong>Reference:</strong> Kankaya B, Buyukasik S, Altundal YE, Ozgul M, Etemad A.<br>
         <em>Weight Loss Dynamics After Laparoscopic Sleeve Gastrectomy: A Retrospective Single Center Analysis</em>. Sci Rep. 2025;15(1):8771.<br><br>
-        &copy; 2025 A1 Diagnosis &nbsp;|&nbsp; <a href="/">Home</a>
-    </div>
+        &copy; 2025 A1 Diagnosis &nbsp;&middot;&nbsp; <a href="/">Home</a>
+    </footer>
 
 <script>
 // =====================================================
@@ -695,9 +1111,9 @@ function runPrediction() {
 
     // Show loading
     document.getElementById('placeholder').style.display = 'none';
-    document.getElementById('loading').style.display = 'block';
+    document.getElementById('loading').style.display = 'flex';
     document.getElementById('chartContainer').style.display = 'none';
-    document.getElementById('resultsGrid').style.display = 'none';
+    document.getElementById('resultsStripWrapper').style.display = 'none';
     document.getElementById('bmiRow').style.display = 'none';
 
     // Predict with slight delay for UI
@@ -728,8 +1144,8 @@ function runPrediction() {
 
         document.getElementById('loading').style.display = 'none';
         document.getElementById('chartContainer').style.display = 'block';
-        document.getElementById('resultsGrid').style.display = 'grid';
-        document.getElementById('bmiRow').style.display = 'flex';
+        document.getElementById('resultsStripWrapper').style.display = 'block';
+        document.getElementById('bmiRow').style.display = 'block';
     }, 300);
 }
 
@@ -795,7 +1211,7 @@ function renderChart(predictions, preOpWeight, timeLabels, displayLabels) {
                     label: '95% CI Upper',
                     data: upperData,
                     borderColor: 'transparent',
-                    backgroundColor: 'rgba(14, 165, 233, 0.1)',
+                    backgroundColor: 'rgba(14, 165, 233, 0.08)',
                     fill: '+1',
                     pointRadius: 0,
                     tension: 0.4
@@ -804,11 +1220,11 @@ function renderChart(predictions, preOpWeight, timeLabels, displayLabels) {
                     label: 'Predicted Weight',
                     data: mainData,
                     borderColor: '#0284c7',
-                    backgroundColor: 'rgba(14, 165, 233, 0.15)',
-                    borderWidth: 3,
+                    backgroundColor: 'rgba(14, 165, 233, 0.06)',
+                    borderWidth: 2.5,
                     pointBackgroundColor: '#0284c7',
                     pointBorderColor: 'white',
-                    pointBorderWidth: 2,
+                    pointBorderWidth: 2.5,
                     pointRadius: 6,
                     pointHoverRadius: 8,
                     fill: false,
@@ -818,7 +1234,7 @@ function renderChart(predictions, preOpWeight, timeLabels, displayLabels) {
                     label: '95% CI Lower',
                     data: lowerData,
                     borderColor: 'transparent',
-                    backgroundColor: 'rgba(14, 165, 233, 0.1)',
+                    backgroundColor: 'rgba(14, 165, 233, 0.08)',
                     fill: '-1',
                     pointRadius: 0,
                     tension: 0.4
@@ -839,17 +1255,29 @@ function renderChart(predictions, preOpWeight, timeLabels, displayLabels) {
                         filter: function(item) {
                             return item.text === 'Predicted Weight';
                         },
-                        font: { family: "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif", size: 12 }
+                        font: {
+                            family: "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+                            size: 12
+                        },
+                        color: '#475569',
+                        boxWidth: 12,
+                        boxHeight: 12,
+                        borderRadius: 3
                     }
                 },
                 tooltip: {
+                    backgroundColor: 'rgba(15, 23, 42, 0.92)',
+                    titleColor: '#e2e8f0',
+                    bodyColor: '#cbd5e1',
+                    padding: 12,
+                    cornerRadius: 10,
                     callbacks: {
                         label: function(ctx) {
                             if (ctx.dataset.label === 'Predicted Weight') {
-                                return `Predicted: ${ctx.parsed.y.toFixed(1)} ${unitLabel}`;
+                                return `  Predicted: ${ctx.parsed.y.toFixed(1)} ${unitLabel}`;
                             }
-                            if (ctx.dataset.label === '95% CI Upper') return `Upper 95% CI: ${ctx.parsed.y.toFixed(1)} ${unitLabel}`;
-                            if (ctx.dataset.label === '95% CI Lower') return `Lower 95% CI: ${ctx.parsed.y.toFixed(1)} ${unitLabel}`;
+                            if (ctx.dataset.label === '95% CI Upper') return `  Upper CI: ${ctx.parsed.y.toFixed(1)} ${unitLabel}`;
+                            if (ctx.dataset.label === '95% CI Lower') return `  Lower CI: ${ctx.parsed.y.toFixed(1)} ${unitLabel}`;
                             return '';
                         }
                     }
@@ -860,23 +1288,37 @@ function renderChart(predictions, preOpWeight, timeLabels, displayLabels) {
                     title: {
                         display: true,
                         text: `Weight (${unitLabel})`,
-                        font: { family: "Times New Roman", size: 14, weight: 'bold' }
+                        font: {
+                            family: "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+                            size: 12,
+                            weight: '600'
+                        },
+                        color: '#64748b'
                     },
                     ticks: {
-                        font: { family: "-apple-system, sans-serif", size: 11 }
+                        font: { family: "-apple-system, sans-serif", size: 11 },
+                        color: '#94a3b8'
                     },
-                    grid: { color: 'rgba(0,0,0,0.06)' }
+                    grid: { color: 'rgba(0,0,0,0.04)' },
+                    border: { display: false }
                 },
                 x: {
                     title: {
                         display: true,
                         text: 'Time After Surgery',
-                        font: { family: "Times New Roman", size: 14, weight: 'bold' }
+                        font: {
+                            family: "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+                            size: 12,
+                            weight: '600'
+                        },
+                        color: '#64748b'
                     },
                     ticks: {
-                        font: { family: "-apple-system, sans-serif", size: 11 }
+                        font: { family: "-apple-system, sans-serif", size: 11 },
+                        color: '#94a3b8'
                     },
-                    grid: { display: false }
+                    grid: { display: false },
+                    border: { display: false }
                 }
             }
         }
@@ -885,34 +1327,51 @@ function renderChart(predictions, preOpWeight, timeLabels, displayLabels) {
 
 // Render BMI
 function renderBMI(preBMI, postBMI, preWeight, postWeight) {
-    const row = document.getElementById('bmiRow');
+    const inner = document.getElementById('bmiInner');
     const totalLoss = preWeight - postWeight;
     const ewl = totalLoss / (preWeight - (25 * Math.pow(getHeightCm()/100, 2))) * 100;
     const ewlDisplay = isFinite(ewl) && ewl > 0 ? ewl.toFixed(1) : 'N/A';
 
-    row.innerHTML = `
-        <span><strong>Pre-Op BMI:</strong> ${preBMI.toFixed(1)} kg/m&sup2;</span>
-        <span><strong>Predicted 12-Mo BMI:</strong> ${postBMI.toFixed(1)} kg/m&sup2;</span>
-        <span><strong>%EWL at 12 Mo:</strong> ${ewlDisplay}%</span>
+    inner.innerHTML = `
+        <div class="bmi-item">
+            <div class="bmi-item-value">${preBMI.toFixed(1)}</div>
+            <div class="bmi-item-label">Pre-Op BMI (kg/m&sup2;)</div>
+        </div>
+        <div class="bmi-item">
+            <div class="bmi-item-value">${postBMI.toFixed(1)}</div>
+            <div class="bmi-item-label">Predicted 12-Mo BMI</div>
+        </div>
+        <div class="bmi-item">
+            <div class="bmi-item-value">${ewlDisplay}%</div>
+            <div class="bmi-item-label">%EWL at 12 Months</div>
+        </div>
     `;
 }
 
-// Render model metrics
+// Render model metrics — now as clean rows in left panel
 function renderMetrics(metrics) {
     const grid = document.getElementById('metricsGrid');
-    const labels = { '1_week': '1 Week', '1_month': '1 Month', '3_month': '3 Month', '6_month': '6 Month', '12_month': '12 Month' };
+    const labels = {
+        '1_week': '1 Week',
+        '1_month': '1 Month',
+        '3_month': '3 Months',
+        '6_month': '6 Months',
+        '12_month': '12 Months'
+    };
 
     for (const [key, label] of Object.entries(labels)) {
         const m = metrics[key];
-        const card = document.createElement('div');
-        card.className = 'metric-card';
-        card.innerHTML = `
-            <div class="metric-label">${label}</div>
-            <div class="metric-value">R&sup2; ${m.r2.toFixed(2)}</div>
-            <div class="metric-sub">MAE: &plusmn;${m.mae} kg</div>
-            <div class="metric-sub">n=${m.n_samples}</div>
+        const row = document.createElement('div');
+        row.className = 'perf-row';
+        row.innerHTML = `
+            <div class="perf-row-label">${label}</div>
+            <div class="perf-row-right">
+                <span class="perf-r2">R&sup2; ${m.r2.toFixed(2)}</span>
+                <span class="perf-mae">MAE &plusmn;${m.mae} kg</span>
+                <span class="perf-n">n=${m.n_samples}</span>
+            </div>
         `;
-        grid.appendChild(card);
+        grid.appendChild(row);
     }
 }
 </script>
