@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dr. Mustafa Ozgul, M.D. - Curriculum Vitae | A1 Diagnosis</title>
-    <meta name="description" content="Curriculum Vitae of Dr. Mustafa Ozgul, M.D. - Founder & Lead Scientist at A1 Diagnosis. Translational scientist and physician with 13+ years of research experience in biomarker discovery and AI/ML development.">
+    <meta name="description" content="Curriculum Vitae of Dr. Mustafa Ozgul, M.D. - Founder & CEO at A1 Diagnosis. Translational scientist and physician with 13+ years of research experience in biomarker discovery and AI/ML development.">
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/A1_Favicon_V2.png">
@@ -13,7 +13,7 @@
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Dr. Mustafa Ozgul, M.D. - Curriculum Vitae">
-    <meta property="og:description" content="Translational scientist and physician with 13+ years of research experience. Founder & Lead Scientist at A1 Diagnosis.">
+    <meta property="og:description" content="Translational scientist and physician with 13+ years of research experience. Founder & CEO at A1 Diagnosis.">
     <meta property="og:image" content="https://a1diagnosis.com/Logo_Proactive.png">
     <meta property="og:url" content="https://a1diagnosis.com/Dr_Mustafa_Ozgul_CV/">
 
@@ -35,6 +35,7 @@
 
         html {
             scroll-behavior: smooth;
+            scroll-padding-top: 70px;
         }
 
         body {
@@ -46,8 +47,109 @@
             margin: 0;
         }
 
-        /* Header */
+        /* ===== SIDEBAR ===== */
+        .cv-sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 250px;
+            height: 100vh;
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 50%, #f0fdf4 100%);
+            border-right: 1px solid #86efac;
+            box-shadow: 2px 0 15px rgba(34, 197, 94, 0.08);
+            overflow-y: auto;
+            z-index: 1000;
+            padding: 20px 12px;
+        }
+
+        .sidebar-title {
+            text-align: center;
+            color: #166534;
+            font-size: 14px;
+            font-weight: 600;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            margin-bottom: 14px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #bbf7d0;
+        }
+
+        .sidebar-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .sidebar-btn {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 7px;
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 6px rgba(59, 130, 246, 0.25);
+            text-align: left;
+            width: 100%;
+            line-height: 1.3;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        .sidebar-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.35);
+        }
+
+        .sidebar-btn.active {
+            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+            box-shadow: 0 3px 10px rgba(34, 197, 94, 0.3);
+        }
+
+        .sidebar-btn.active:hover {
+            box-shadow: 0 4px 14px rgba(34, 197, 94, 0.4);
+        }
+
+        /* Mobile sidebar toggle */
+        .mobile-sidebar-toggle {
+            display: none;
+            width: 100%;
+            padding: 12px 16px;
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border: 1px solid #86efac;
+            border-radius: 10px;
+            cursor: pointer;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 13px;
+            font-weight: 600;
+            color: #166534;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-sidebar-toggle:hover {
+            background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+        }
+
+        .mobile-sidebar-toggle .current-section-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .mobile-sidebar-toggle .arrow {
+            transition: transform 0.3s ease;
+            font-size: 11px;
+        }
+
+        .mobile-sidebar-toggle.open .arrow {
+            transform: rotate(180deg);
+        }
+
+        /* Layout offset for sidebar */
         .header {
+            margin-left: 250px;
             background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 50%, #0369a1 100%);
             color: white;
             padding: 40px 40px 30px;
@@ -121,6 +223,7 @@
 
         /* Download Bar */
         .download-bar {
+            margin-left: 250px;
             background: white;
             border-bottom: 1px solid #e2e8f0;
             padding: 12px 40px;
@@ -176,6 +279,7 @@
         .document {
             max-width: 900px;
             margin: 30px auto;
+            margin-left: calc(250px + ((100% - 250px - 900px) / 2));
             background: white;
             padding: 50px 60px;
             box-shadow: 0 4px 25px rgba(76, 175, 80, 0.25), 0 2px 10px rgba(76, 175, 80, 0.15);
@@ -379,7 +483,7 @@
         /* Stats bar */
         .stats-bar {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: 15px;
             margin: 25px 0 10px;
         }
@@ -408,6 +512,7 @@
 
         /* Footer */
         .footer {
+            margin-left: 250px;
             text-align: center;
             padding: 30px;
             color: #94a3b8;
@@ -424,30 +529,141 @@
             text-decoration: underline;
         }
 
+        /* Sidebar scrollbar */
+        .cv-sidebar::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .cv-sidebar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .cv-sidebar::-webkit-scrollbar-thumb {
+            background: #86efac;
+            border-radius: 4px;
+        }
+
         /* Print styles */
         @media print {
+            .cv-sidebar { display: none; }
             body { background: white; }
             .download-bar { display: none; }
-            .header { border-radius: 0; }
-            .document { box-shadow: none; margin: 0; padding: 30px 40px; border-radius: 0; }
-            .footer { display: none; }
+            .header { margin-left: 0; border-radius: 0; }
+            .document { box-shadow: none; margin: 0; padding: 30px 40px; border-radius: 0; margin-left: 0; }
+            .footer { display: none; margin-left: 0; }
             .stat-card { border: 1px solid #ccc; }
+        }
+
+        /* Tablet */
+        @media (max-width: 1100px) {
+            .document {
+                margin-left: 270px;
+                margin-right: 20px;
+                max-width: none;
+            }
         }
 
         /* Mobile */
         @media (max-width: 768px) {
-            .header { padding: 30px 20px 25px; }
+            .cv-sidebar {
+                position: sticky;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: auto;
+                max-height: none;
+                overflow: visible;
+                padding: 10px 12px;
+                border-right: none;
+                border-bottom: 1px solid #86efac;
+                border-radius: 0;
+                background: rgba(240, 253, 244, 0.98);
+                backdrop-filter: blur(10px);
+                box-shadow: 0 2px 10px rgba(34, 197, 94, 0.1);
+            }
+
+            .sidebar-title {
+                display: none;
+            }
+
+            .mobile-sidebar-toggle {
+                display: flex;
+            }
+
+            .sidebar-nav {
+                display: none;
+                margin-top: 10px;
+                max-height: 50vh;
+                overflow-y: auto;
+                padding-right: 5px;
+            }
+
+            .sidebar-nav.mobile-visible {
+                display: flex;
+            }
+
+            .sidebar-btn {
+                font-size: 12px;
+                padding: 10px 12px;
+            }
+
+            .header {
+                margin-left: 0;
+                padding: 30px 20px 25px;
+            }
             .header h1 { font-size: 1.6rem; }
-            .download-bar { padding: 10px 16px; }
-            .document { margin: 15px 10px; padding: 25px 20px; }
+            .download-bar {
+                margin-left: 0;
+                padding: 10px 16px;
+            }
+            .document {
+                margin-left: 10px;
+                margin-right: 10px;
+                padding: 25px 20px;
+                max-width: none;
+            }
+            .footer { margin-left: 0; }
             .job-header { flex-direction: column; }
             .job-date { margin-top: 2px; }
-            .stats-bar { grid-template-columns: repeat(2, 1fr); }
+            .stats-bar { grid-template-columns: repeat(3, 1fr); }
             .download-btn { padding: 8px 16px; font-size: 13px; }
         }
     </style>
 </head>
 <body>
+
+    <!-- Sidebar Navigation -->
+    <div class="cv-sidebar">
+        <div class="sidebar-title">CV Sections</div>
+        <button class="mobile-sidebar-toggle" onclick="toggleSidebarNav()">
+            <span class="current-section-label">
+                <span>&#9776;</span>
+                <span id="current-section-text">Professional Summary</span>
+            </span>
+            <span class="arrow">&#9660;</span>
+        </button>
+        <div class="sidebar-nav" id="sidebar-nav">
+            <button class="sidebar-btn active" onclick="scrollToSection('summary')">Professional Summary</button>
+            <button class="sidebar-btn" onclick="scrollToSection('experience')">Experience &amp; Employment</button>
+            <button class="sidebar-btn" onclick="scrollToSection('ml-comp-bio')">ML &amp; Computational Biology</button>
+            <button class="sidebar-btn" onclick="scrollToSection('statistical-analysis')">Statistical Analysis</button>
+            <button class="sidebar-btn" onclick="scrollToSection('mass-spec')">Mass Spectrometry Skills</button>
+            <button class="sidebar-btn" onclick="scrollToSection('molecular-bio')">Molecular Biology Skills</button>
+            <button class="sidebar-btn" onclick="scrollToSection('animal-skills')">Laboratory Animal Skills</button>
+            <button class="sidebar-btn" onclick="scrollToSection('material-science')">Material Science Skills</button>
+            <button class="sidebar-btn" onclick="scrollToSection('computer-skills')">Computer Program Skills</button>
+            <button class="sidebar-btn" onclick="scrollToSection('patents')">Patent Applications</button>
+            <button class="sidebar-btn" onclick="scrollToSection('awards')">Awards</button>
+            <button class="sidebar-btn" onclick="scrollToSection('grants')">Grants</button>
+            <button class="sidebar-btn" onclick="scrollToSection('presentations')">Presentations Given</button>
+            <button class="sidebar-btn" onclick="scrollToSection('publications')">Publications</button>
+            <button class="sidebar-btn" onclick="scrollToSection('conferences')">Conferences &amp; Seminars</button>
+            <button class="sidebar-btn" onclick="scrollToSection('training')">Training &amp; Certifications</button>
+            <button class="sidebar-btn" onclick="scrollToSection('education')">Education</button>
+            <button class="sidebar-btn" onclick="scrollToSection('memberships')">Professional Memberships</button>
+            <button class="sidebar-btn" onclick="scrollToSection('guest-editor')">Guest Editor Role</button>
+        </div>
+    </div>
 
     <!-- Header -->
     <div class="header">
@@ -480,7 +696,7 @@
     <div class="document">
 
         <!-- Professional Summary -->
-        <div class="section">
+        <div class="section" id="summary">
             <h2>Professional Summary</h2>
             <div class="summary-box">
                 Translational scientist and physician with 13+ years of research experience, including 5+ years of biomarker discovery and 2+ years of hands-on AI/ML development across ophthalmology research. Developed blood-based disease prediction platforms integrating cutting-edge mass spectrometry biomarker discovery with machine learning classification (XGBoost, Random Forest, neural networks), achieving >95% accuracy in clinical studies. Discovered novel native peptide-based inflammation and immune-related biomarkers with significant differential expression (p&lt;0.005, fold change >10) in wet AMD patient populations. Experienced in small biotech environments, regulatory pathway analysis (FDA, CLIA), and translating research into clinical applications. Eager to apply AI-driven biomarker expertise to advance next-generation therapeutics development.
@@ -499,20 +715,16 @@
                     <span class="number">20+</span>
                     <span class="label">Publications</span>
                 </div>
-                <div class="stat-card">
-                    <span class="number">3</span>
-                    <span class="label">Patents</span>
-                </div>
             </div>
         </div>
 
         <!-- Professional Experience -->
-        <div class="section">
+        <div class="section" id="experience">
             <h2>Professional Experience &amp; Employment</h2>
 
             <div class="job-entry">
                 <div class="job-header">
-                    <span class="job-title">Founder &amp; Lead Scientist</span>
+                    <span class="job-title">Founder &amp; CEO</span>
                     <span class="job-date">January 2025 &ndash; Present</span>
                 </div>
                 <div class="job-org">A1 Diagnosis (Pre-seed), Irvine, California</div>
@@ -630,7 +842,7 @@
         </div>
 
         <!-- Machine Learning & Computational Biology -->
-        <div class="section skills-section">
+        <div class="section skills-section" id="ml-comp-bio">
             <h2>Machine Learning &amp; Computational Biology</h2>
             <ul class="cv-list">
                 <li>Predicted 3D molecular structures of therapeutic peptides (Humanin-G, SHLP1-6) using AlphaFold-2 and UCSF Chimera to guide AMD drug formulation design.</li>
@@ -642,7 +854,7 @@
         </div>
 
         <!-- Statistical Analysis -->
-        <div class="section skills-section">
+        <div class="section skills-section" id="statistical-analysis">
             <h2>Statistical Analysis and Data Visualization</h2>
             <ul class="cv-list">
                 <li>Developed automated statistical analysis pipelines that select appropriate tests (Student's t-test, Welch's t-test, Mann-Whitney U, Kruskal-Wallis H, ANOVA) based on normality (Shapiro-Wilk) and variance homogeneity (Levene's test) for rigorous clinical data analysis.</li>
@@ -653,7 +865,7 @@
         </div>
 
         <!-- Mass Spectrometry Skills -->
-        <div class="section skills-section">
+        <div class="section skills-section" id="mass-spec">
             <h2>Mass Spectrometry Based Laboratory Skills</h2>
             <ul class="cv-list">
                 <li>Using EvoSep Ultra-HPLC &ndash; timsTOF Pro 2 and Peaks &reg; Studio Pro software to identify amino acid sequences of native peptides and their posttranslational modifications (oxidation, amidation, phosphorylation etc.) and degradation products in human blood plasma samples.</li>
@@ -666,7 +878,7 @@
         </div>
 
         <!-- Molecular Biology Skills -->
-        <div class="section skills-section">
+        <div class="section skills-section" id="molecular-bio">
             <h2>Molecular Biology Based Laboratory Skills</h2>
             <ul class="cv-list">
                 <li>Analyzing PCR for genotyping of genetically engineered mice</li>
@@ -681,7 +893,7 @@
         </div>
 
         <!-- Laboratory Animal Skills -->
-        <div class="section skills-section">
+        <div class="section skills-section" id="animal-skills">
             <h2>Laboratory Animal-Based Skills</h2>
             <ul class="cv-list">
                 <li>Administrate subconjunctival injections</li>
@@ -695,7 +907,7 @@
         </div>
 
         <!-- Material Science Skills -->
-        <div class="section skills-section">
+        <div class="section skills-section" id="material-science">
             <h2>Material Science Based Laboratory Skills</h2>
             <ul class="cv-list">
                 <li>Routinely prepared and characterized: PLGA microspheres and nanospheres, Humanin-G loaded PLGA microspheres/nanospheres, Cisplatin loaded PLGA microspheres/nanospheres, Paclitaxel loaded PLGA nanospheres, Thymoquinone loaded nano-sized micelles, Curcumin loaded nano-sized micelles</li>
@@ -707,7 +919,7 @@
         </div>
 
         <!-- Computer Skills -->
-        <div class="section skills-section">
+        <div class="section skills-section" id="computer-skills">
             <h2>Computer Based Program Skills</h2>
             <ul class="cv-list">
                 <li><strong>AlphaFold3 and Google Research Colaboratory</strong> &ndash; Routinely generate highly accurate predicted three-dimensional peptide and protein structures.</li>
@@ -722,7 +934,7 @@
         </div>
 
         <!-- Patent Applications -->
-        <div class="section">
+        <div class="section" id="patents">
             <h2>Patent Applications</h2>
             <div class="patent-item">
                 Identifications Potential Biomarkers and Therapeutics Peptides for Age-Related Macular Degeneration. <strong>Ozgul M.</strong> Submitted to UCI Beall Applied Innovation, UC Case number 2024-9AI, UCI Licensing Officer: Patricia Chan, Ph.D.
@@ -736,7 +948,7 @@
         </div>
 
         <!-- Awards -->
-        <div class="section">
+        <div class="section" id="awards">
             <h2>Awards</h2>
             <div class="award-item">
                 Identification of Potential Biomarkers for Age-Related Macular Degeneration. (<em>Discovery Center for Eye Research Bridge-Funding Support, DCER, 2023</em>)
@@ -747,7 +959,7 @@
         </div>
 
         <!-- Grants -->
-        <div class="section">
+        <div class="section" id="grants">
             <h2>Grants</h2>
 
             <div class="grant-entry">
@@ -767,7 +979,7 @@
         </div>
 
         <!-- Presentations Given -->
-        <div class="section">
+        <div class="section" id="presentations">
             <h2>Presentations Given</h2>
 
             <div class="presentation-item">
@@ -804,7 +1016,7 @@
                 Analysis of 1-month-old MOTS-c in H2O: Using High Resolution Mass Spectrometry. <span class="venue">ARVO 2022. Virtual Meeting, May 11-12, 2022.</span>
             </div>
             <div class="presentation-item">
-                11-month-old Humanin-G in H₂O using High Resolution Mass Spectrometry Analysis. <span class="venue">ARVO 2021. Virtual Meeting, May 1-7, 2021.</span>
+                11-month-old Humanin-G in H&#x2082;O using High Resolution Mass Spectrometry Analysis. <span class="venue">ARVO 2021. Virtual Meeting, May 1-7, 2021.</span>
             </div>
             <div class="presentation-item">
                 Rapid Label-Free Immunoassays Using U-Shaped Tapered Optical Fibers. <span class="venue">99th Annual Meeting Pacific Division of AAAS, June 12-15, 2018, Pomona, CA, USA.</span>
@@ -821,7 +1033,7 @@
         </div>
 
         <!-- Publications -->
-        <div class="section">
+        <div class="section" id="publications">
             <h2>Publications</h2>
 
             <div class="publication">
@@ -873,7 +1085,7 @@
                 Analysis of 1-month-old Humanin-G in H2O and PBS Using High Resolution Mass Spectrometry. <span class="author-highlight">Ozgul M.</span>, Katz B., Taylan E., Kenney M.C., Invest. Ophthalmol. Vis. Sci. June 2022, Vol.63, 309 &ndash; F0112.
             </div>
             <div class="publication">
-                11-month-old Humanin-G in H₂O using High Resolution Mass Spectrometry Analysis. <span class="author-highlight">Ozgul M.</span>, Katz B., Kenney M.C., Invest. Ophthalmol. Vis. Sci. June 2021; 62(8):250.
+                11-month-old Humanin-G in H&#x2082;O using High Resolution Mass Spectrometry Analysis. <span class="author-highlight">Ozgul M.</span>, Katz B., Kenney M.C., Invest. Ophthalmol. Vis. Sci. June 2021; 62(8):250.
             </div>
             <div class="publication">
                 Protective Effect of Nigella Sativa on Renal Reperfusion Injury in Rats. Caskurlu T., Kanter M., Erboga M., Erboga Z. F., <span class="author-highlight">Ozgul M.</span>, Atis G. IJKD. 2016 May;10(3):135-43.
@@ -887,7 +1099,7 @@
         </div>
 
         <!-- Conferences -->
-        <div class="section">
+        <div class="section" id="conferences">
             <h2>Conferences, Symposiums, Seminars Attended</h2>
             <ul class="conference-list">
                 <li>The Vision Research Mixer, May 2024, Irvine, CA, US</li>
@@ -910,10 +1122,10 @@
         </div>
 
         <!-- Training & Certifications -->
-        <div class="section">
+        <div class="section" id="training">
             <h2>Training Courses and Certifications</h2>
             <ul class="training-list">
-                <li>CO₂ Critical Point Dryer, February 2023, University of California, Irvine, CA, USA</li>
+                <li>CO&#x2082; Critical Point Dryer, February 2023, University of California, Irvine, CA, USA</li>
                 <li>The Agilent 1200 Series Gradient system, August 2022, Kiser Lab, University of California, Irvine, CA, USA</li>
                 <li>JEOL JEM-2800 Transmission Electron Microscopy, May 2022, University of California, Irvine, CA, USA</li>
                 <li>Collaborative Institutional Training Initiative (Citi Program), June 2021, University of California, Irvine, CA, USA</li>
@@ -934,7 +1146,7 @@
         </div>
 
         <!-- Education -->
-        <div class="section">
+        <div class="section" id="education">
             <h2>Education</h2>
             <div class="job-entry">
                 <div class="job-header">
@@ -946,7 +1158,7 @@
         </div>
 
         <!-- Professional Memberships -->
-        <div class="section">
+        <div class="section" id="memberships">
             <h2>Professional Memberships</h2>
             <ul class="cv-list">
                 <li>The Association for Research in Vision and Ophthalmology (ARVO)</li>
@@ -956,7 +1168,7 @@
         </div>
 
         <!-- Guest Editor -->
-        <div class="section">
+        <div class="section" id="guest-editor">
             <h2>Guest Editor Role</h2>
             <p>As a Guest Editor, organizing a Methods Collection on <em>Innovative Strategies in Drug Delivery: Navigating Future Therapeutics</em>. Journal of Visualized Experiments (JoVE) is the leading peer-reviewed scientific methods video journal.</p>
         </div>
@@ -967,6 +1179,74 @@
     <div class="footer">
         <p>&copy; 2025 Dr. Mustafa Ozgul, M.D. &nbsp;|&nbsp; <a href="/">A1 Diagnosis</a> &nbsp;|&nbsp; <a href="CV-Dr-Mustafa-Ozgul.pdf" target="_blank">Download PDF</a></p>
     </div>
+
+    <script>
+        // Mobile sidebar toggle
+        function toggleSidebarNav() {
+            const nav = document.getElementById('sidebar-nav');
+            const toggle = document.querySelector('.mobile-sidebar-toggle');
+            if (nav.classList.contains('mobile-visible')) {
+                nav.classList.remove('mobile-visible');
+                toggle.classList.remove('open');
+            } else {
+                nav.classList.add('mobile-visible');
+                toggle.classList.add('open');
+            }
+        }
+
+        // Scroll to section
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+
+            // Close mobile nav after selection
+            const nav = document.getElementById('sidebar-nav');
+            const toggle = document.querySelector('.mobile-sidebar-toggle');
+            if (nav && nav.classList.contains('mobile-visible')) {
+                nav.classList.remove('mobile-visible');
+                toggle.classList.remove('open');
+            }
+        }
+
+        // Scroll spy - update active sidebar button based on scroll position
+        function updateActiveButton() {
+            const sections = document.querySelectorAll('.section[id]');
+            const buttons = document.querySelectorAll('.sidebar-btn');
+            const sectionIds = Array.from(sections).map(s => s.id);
+
+            let currentSectionId = sectionIds[0];
+
+            sections.forEach(section => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top <= 120) {
+                    currentSectionId = section.id;
+                }
+            });
+
+            buttons.forEach(btn => {
+                const onclickAttr = btn.getAttribute('onclick');
+                if (onclickAttr && onclickAttr.includes(currentSectionId)) {
+                    btn.classList.add('active');
+                    // Update mobile current section text
+                    const textEl = document.getElementById('current-section-text');
+                    if (textEl) {
+                        textEl.textContent = btn.textContent;
+                    }
+                    // Scroll active button into view in sidebar
+                    if (window.innerWidth > 768) {
+                        btn.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    }
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', updateActiveButton);
+        window.addEventListener('load', updateActiveButton);
+    </script>
 
 </body>
 </html>
