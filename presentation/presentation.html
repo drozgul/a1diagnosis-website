@@ -36,6 +36,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
     <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
 
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <style>
         * {
             margin: 0;
@@ -2385,6 +2387,510 @@
                 grid-template-columns: repeat(2, 1fr) !important;
             }
         }
+
+        /* ============================================
+           UNIT ECONOMICS CALCULATOR — Tab 4
+           All rules scoped under #tab-calculator
+           ============================================ */
+        #tab-calculator {
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: #1e293b;
+        }
+        #tab-calculator .calc-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        #tab-calculator .calc-header h2 {
+            font-size: 32px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+        #tab-calculator .calc-header p {
+            font-size: 15px;
+            color: #64748b;
+        }
+
+        /* Steps */
+        #tab-calculator .calc-step {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 28px 32px;
+            margin-bottom: 24px;
+            transition: box-shadow 0.2s;
+        }
+        #tab-calculator .calc-step:hover {
+            box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+        }
+        #tab-calculator .calc-step-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 16px;
+        }
+        #tab-calculator .calc-step-number {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: #fff;
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 15px;
+            flex-shrink: 0;
+        }
+        #tab-calculator .calc-step-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #0f172a;
+        }
+        #tab-calculator .calc-step-subtitle {
+            font-size: 13px;
+            color: #64748b;
+            margin-left: auto;
+            font-weight: 500;
+        }
+
+        /* Result boxes */
+        #tab-calculator .calc-result-box {
+            background: linear-gradient(135deg, #eff6ff, #dbeafe);
+            border: 1px solid #93c5fd;
+            border-radius: 12px;
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 12px;
+        }
+        #tab-calculator .calc-result-box .calc-label {
+            font-size: 14px;
+            color: #1e40af;
+            font-weight: 600;
+        }
+        #tab-calculator .calc-result-box .calc-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 28px;
+            font-weight: 700;
+            color: #1e40af;
+        }
+
+        /* Cost grid */
+        #tab-calculator .calc-cost-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 12px;
+        }
+        #tab-calculator .calc-cost-card {
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 16px 20px;
+        }
+        #tab-calculator .calc-cost-card .calc-cost-label {
+            font-size: 12px;
+            color: #64748b;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+        #tab-calculator .calc-cost-card .calc-cost-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 20px;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        /* Breakdown table */
+        #tab-calculator .calc-breakdown-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 12px;
+            font-size: 14px;
+        }
+        #tab-calculator .calc-breakdown-table th {
+            text-align: left;
+            padding: 10px 16px;
+            background: #f1f5f9;
+            color: #475569;
+            font-weight: 600;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        #tab-calculator .calc-breakdown-table th:last-child {
+            text-align: right;
+        }
+        #tab-calculator .calc-breakdown-table td {
+            padding: 10px 16px;
+            border-bottom: 1px solid #f1f5f9;
+            color: #334155;
+        }
+        #tab-calculator .calc-breakdown-table td:last-child {
+            text-align: right;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 600;
+            color: #0f172a;
+        }
+        #tab-calculator .calc-breakdown-table tr.calc-total-row td {
+            font-weight: 700;
+            border-top: 2px solid #e2e8f0;
+            background: #f8fafc;
+            color: #0f172a;
+        }
+
+        /* Margin result (green) */
+        #tab-calculator .calc-margin-box {
+            background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+            border: 1px solid #86efac;
+            border-radius: 12px;
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 12px;
+        }
+        #tab-calculator .calc-margin-box .calc-label {
+            font-size: 14px;
+            color: #166534;
+            font-weight: 600;
+        }
+        #tab-calculator .calc-margin-box .calc-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 28px;
+            font-weight: 700;
+            color: #166534;
+        }
+        #tab-calculator .calc-margin-box .calc-pct {
+            font-size: 16px;
+            color: #16a34a;
+            font-weight: 600;
+            margin-left: 8px;
+        }
+
+        /* Formula */
+        #tab-calculator .calc-formula {
+            background: #f8fafc;
+            border: 1px dashed #cbd5e1;
+            border-radius: 10px;
+            padding: 14px 20px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            color: #475569;
+            text-align: center;
+            margin-top: 12px;
+        }
+
+        /* Fixed cost split */
+        #tab-calculator .calc-fixed-split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 12px;
+        }
+        #tab-calculator .calc-fixed-card {
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 20px;
+        }
+        #tab-calculator .calc-fixed-card .calc-fixed-label {
+            font-size: 12px;
+            color: #64748b;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+        #tab-calculator .calc-fixed-card .calc-fixed-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 22px;
+            font-weight: 700;
+            color: #0f172a;
+        }
+        #tab-calculator .calc-fixed-card .calc-fixed-detail {
+            font-size: 12px;
+            color: #94a3b8;
+            margin-top: 4px;
+        }
+        #tab-calculator .calc-breakeven-box {
+            background: linear-gradient(135deg, #fefce8, #fef9c3);
+            border: 1px solid #fde047;
+            border-radius: 12px;
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 16px;
+        }
+        #tab-calculator .calc-breakeven-box .calc-label {
+            font-size: 14px;
+            color: #854d0e;
+            font-weight: 600;
+        }
+        #tab-calculator .calc-breakeven-box .calc-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 22px;
+            font-weight: 700;
+            color: #854d0e;
+        }
+
+        /* Interactive slider section */
+        #tab-calculator .calc-slider-section {
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            border-radius: 20px;
+            padding: 36px;
+            margin-top: 32px;
+            color: #fff;
+        }
+        #tab-calculator .calc-slider-section h3 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: #fff;
+        }
+        #tab-calculator .calc-slider-section > p {
+            font-size: 14px;
+            color: #94a3b8;
+            margin-bottom: 24px;
+        }
+        #tab-calculator .calc-slider-wrap {
+            position: relative;
+            margin-bottom: 32px;
+        }
+        #tab-calculator .calc-slider-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        #tab-calculator .calc-slider-label span {
+            font-size: 13px;
+            color: #94a3b8;
+        }
+        #tab-calculator .calc-slider-label .calc-vol-display {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 20px;
+            font-weight: 700;
+            color: #38bdf8;
+        }
+        #tab-calculator #calcVolumeSlider {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            background: linear-gradient(90deg, #ef4444 0%, #f59e0b 12%, #22c55e 30%, #22c55e 100%);
+            outline: none;
+            cursor: pointer;
+        }
+        #tab-calculator #calcVolumeSlider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            cursor: grab;
+        }
+        #tab-calculator #calcVolumeSlider::-moz-range-thumb {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            cursor: grab;
+            border: none;
+        }
+        #tab-calculator .calc-marks {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 8px;
+            position: relative;
+            height: 20px;
+        }
+        #tab-calculator .calc-marks span {
+            font-size: 11px;
+            color: #64748b;
+            position: absolute;
+            transform: translateX(-50%);
+        }
+
+        /* Result cards grid */
+        #tab-calculator .calc-results-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        #tab-calculator .calc-result-card {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 14px;
+            padding: 20px;
+            text-align: center;
+            transition: background 0.2s;
+        }
+        #tab-calculator .calc-result-card:hover {
+            background: rgba(255,255,255,0.1);
+        }
+        #tab-calculator .calc-result-card .calc-rc-label {
+            font-size: 11px;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        #tab-calculator .calc-result-card .calc-rc-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        #tab-calculator .calc-result-card .calc-rc-sub {
+            font-size: 12px;
+            color: #64748b;
+        }
+
+        /* Per-test breakdown table (dark) */
+        #tab-calculator .calc-dark-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 24px;
+            font-size: 14px;
+        }
+        #tab-calculator .calc-dark-table th {
+            text-align: left;
+            padding: 10px 16px;
+            color: #64748b;
+            font-weight: 600;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        #tab-calculator .calc-dark-table th:nth-child(2),
+        #tab-calculator .calc-dark-table th:nth-child(3) {
+            text-align: right;
+        }
+        #tab-calculator .calc-dark-table td {
+            padding: 10px 16px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            color: #e2e8f0;
+        }
+        #tab-calculator .calc-dark-table td:nth-child(2),
+        #tab-calculator .calc-dark-table td:nth-child(3) {
+            text-align: right;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 600;
+        }
+        #tab-calculator .calc-dark-table tr.calc-dark-total td {
+            font-weight: 700;
+            border-top: 2px solid rgba(255,255,255,0.15);
+            color: #fff;
+            padding-top: 12px;
+        }
+
+        /* Status bar */
+        #tab-calculator .calc-status-bar {
+            border-radius: 12px;
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+            font-weight: 600;
+            font-size: 15px;
+        }
+        #tab-calculator .calc-status-bar.calc-status-profit {
+            background: rgba(34,197,94,0.15);
+            border: 1px solid rgba(34,197,94,0.3);
+            color: #4ade80;
+        }
+        #tab-calculator .calc-status-bar.calc-status-breakeven {
+            background: rgba(245,158,11,0.15);
+            border: 1px solid rgba(245,158,11,0.3);
+            color: #fbbf24;
+        }
+        #tab-calculator .calc-status-bar.calc-status-loss {
+            background: rgba(239,68,68,0.15);
+            border: 1px solid rgba(239,68,68,0.3);
+            color: #f87171;
+        }
+
+        /* Benchmarks */
+        #tab-calculator .calc-benchmarks {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 14px;
+            padding: 20px 24px;
+        }
+        #tab-calculator .calc-benchmarks h4 {
+            font-size: 13px;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+        #tab-calculator .calc-bench-items {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+        #tab-calculator .calc-bench-item {
+            flex: 1;
+            min-width: 140px;
+        }
+        #tab-calculator .calc-bench-item .calc-bench-name {
+            font-size: 12px;
+            color: #94a3b8;
+            margin-bottom: 6px;
+        }
+        #tab-calculator .calc-bench-bar {
+            background: rgba(255,255,255,0.08);
+            border-radius: 6px;
+            height: 28px;
+            position: relative;
+            overflow: hidden;
+        }
+        #tab-calculator .calc-bench-fill {
+            height: 100%;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            padding-left: 10px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            font-weight: 700;
+            color: #fff;
+            transition: width 0.4s ease;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            #tab-calculator .calc-cost-grid,
+            #tab-calculator .calc-fixed-split {
+                grid-template-columns: 1fr;
+            }
+            #tab-calculator .calc-results-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            #tab-calculator .calc-bench-items {
+                flex-direction: column;
+            }
+            #tab-calculator .calc-slider-section {
+                padding: 24px 20px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -3987,6 +4493,10 @@
                     <span style="display: block; font-size: 12px; opacity: 0.8; margin-bottom: 3px;">Slide 3</span>
                     Go-to-Market Execution
                 </button>
+                <button class="financial-tab" data-tab="tab-calculator" onclick="switchFinancialTab('tab-calculator')" style="padding: 15px 30px; background: #dcfce7; color: #166534; border: none; border-radius: 8px 8px 0 0; font-size: 15px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; position: relative; top: 2px;">
+                    <span style="display: block; font-size: 12px; opacity: 0.8; margin-bottom: 3px;">Slide 4</span>
+                    Unit Economics Calculator
+                </button>
             </div>
 
             <!-- Tab Content Container -->
@@ -4501,6 +5011,266 @@
                             </p>
                         </div>
                     </div>
+                </div>
+
+                <!-- Tab Panel 4: Unit Economics Calculator -->
+                <div class="financial-tab-panel" id="tab-calculator" style="padding: 40px; display: none;">
+
+                    <div class="calc-header">
+                        <h2>A1 Diagnosis — Unit Economics Calculator</h2>
+                        <p>Step-by-step breakdown of how costs and margins work per test</p>
+                    </div>
+
+                    <!-- STEP 1: Revenue -->
+                    <div class="calc-step">
+                        <div class="calc-step-header">
+                            <div class="calc-step-number">1</div>
+                            <div class="calc-step-title">Revenue per Test = $250</div>
+                        </div>
+                        <p style="font-size: 15px; color: #64748b; line-height: 1.6; margin-bottom: 16px; max-width: 800px;">
+                            This is what A1 Diagnosis charges per test. In a B2B model, <strong style="color:#334155;">A1 invoices the clinic $250 per test</strong>. The clinic then bills the patient's insurance or collects payment and keeps the reimbursement margin. A1's only customer is the clinic — clean, simple, one invoice relationship.
+                        </p>
+                        <div class="calc-result-box">
+                            <span class="calc-label">Revenue per test</span>
+                            <span class="calc-value">$250</span>
+                        </div>
+                    </div>
+
+                    <!-- STEP 2: Variable COGS -->
+                    <div class="calc-step">
+                        <div class="calc-step-header">
+                            <div class="calc-step-number">2</div>
+                            <div class="calc-step-title">Variable COGS = $60 per test</div>
+                        </div>
+                        <p style="font-size: 15px; color: #64748b; line-height: 1.6; margin-bottom: 16px; max-width: 800px;">
+                            These are costs that happen <strong style="color:#334155;">every time you run a test</strong>. Run zero tests = $0. Run 500 tests = 500 &times; $60 = $30,000. They scale directly with volume.
+                        </p>
+
+                        <table class="calc-breakdown-table">
+                            <thead>
+                                <tr>
+                                    <th>Cost Item</th>
+                                    <th style="text-align: right;">Per Test</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Reagents &amp; consumables <span style="font-size:12px; color:#94a3b8;">(solvents, buffers, LC column wear, calibrants)</span></td>
+                                    <td>$26</td>
+                                </tr>
+                                <tr>
+                                    <td>Sample collection kit <span style="font-size:12px; color:#94a3b8;">(blood tubes, labels, packaging)</span></td>
+                                    <td>$7</td>
+                                </tr>
+                                <tr>
+                                    <td>Shipping (cold chain) <span style="font-size:12px; color:#94a3b8;">(temperature-controlled transport)</span></td>
+                                    <td>$23</td>
+                                </tr>
+                                <tr>
+                                    <td>AI/ML compute <span style="font-size:12px; color:#94a3b8;">(cloud processing per sample)</span></td>
+                                    <td>$3</td>
+                                </tr>
+                                <tr>
+                                    <td>Report generation <span style="font-size:12px; color:#94a3b8;">(risk report creation &amp; delivery)</span></td>
+                                    <td>$1</td>
+                                </tr>
+                                <tr class="calc-total-row">
+                                    <td>Total Variable COGS</td>
+                                    <td>$60</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <p style="font-size: 14px; color: #64748b; margin-top: 16px;">
+                            <strong style="color:#334155;">Native peptide advantage:</strong> Skipping the trypsin digestion step saves $10–15/test vs traditional proteomics.
+                        </p>
+                    </div>
+
+                    <!-- STEP 3: Contribution Margin -->
+                    <div class="calc-step">
+                        <div class="calc-step-header">
+                            <div class="calc-step-number">3</div>
+                            <div class="calc-step-title">Contribution Margin = $190 per test (76%)</div>
+                        </div>
+                        <p style="font-size: 15px; color: #64748b; line-height: 1.6; margin-bottom: 16px; max-width: 800px;">
+                            <strong style="color:#334155;">Revenue minus Variable COGS.</strong> This is how much each test "contributes" toward paying your fixed overhead and eventually becoming profit. This number is the same whether you run 10 tests or 10,000 tests.
+                        </p>
+
+                        <div class="calc-formula">
+                            Revenue <strong>$250</strong> &minus; Variable COGS <strong>$60</strong> = Contribution Margin <strong style="font-size:20px;">$190</strong>
+                        </div>
+
+                        <div class="calc-margin-box">
+                            <div>
+                                <span class="calc-label">Contribution Margin per test</span>
+                                <div style="font-size: 13px; color: #16a34a; margin-top: 2px;">Every test sold puts $190 toward overhead &amp; profit</div>
+                            </div>
+                            <div>
+                                <span class="calc-value">$190</span>
+                                <span class="calc-pct">76%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- STEP 4: Fixed Costs -->
+                    <div class="calc-step">
+                        <div class="calc-step-header">
+                            <div class="calc-step-number">4</div>
+                            <div class="calc-step-title">Monthly Fixed Costs = $34,700/month</div>
+                        </div>
+                        <p style="font-size: 15px; color: #64748b; line-height: 1.6; margin-bottom: 16px; max-width: 800px;">
+                            These costs exist <strong style="color:#334155;">whether you run 1 test or 1,000 tests</strong>. They split into two categories: <strong style="color:#334155;">production costs (COGS)</strong> that directly relate to running the lab, and <strong style="color:#334155;">SG&amp;A</strong> (selling, general &amp; administrative) that are overhead.
+                        </p>
+
+                        <div class="calc-fixed-split">
+                            <div class="calc-fixed-card">
+                                <div class="calc-fixed-label">Production Fixed (COGS)</div>
+                                <div class="calc-fixed-value">$23,200</div>
+                                <div class="calc-fixed-detail">LC-MS/MS lease $15K + CLS tech $3.2K + QC $5K</div>
+                            </div>
+                            <div class="calc-fixed-card">
+                                <div class="calc-fixed-label">SG&amp;A Fixed Costs</div>
+                                <div class="calc-fixed-value">$11,500</div>
+                                <div class="calc-fixed-detail">Lab director $5K + Lab space $4K + LIS/IT $2.5K</div>
+                            </div>
+                        </div>
+
+                        <div style="background: #fffbeb; border: 1px solid #fde68a; border-radius: 10px; padding: 16px 20px; margin-top: 16px; font-size: 14px; color: #92400e; line-height: 1.5;">
+                            <strong style="color:#78350f;">Why this split matters:</strong> Gross margin on the pitch slide uses only production COGS ($23,200/mo). At 500 tests/month: $23,200 &divide; 500 = <strong>$46/test</strong> in fixed production costs. So gross margin = $250 &minus; $60 &minus; $46 = <strong>$144/test (58%)</strong>. The remaining $11,500/mo SG&amp;A sits below the gross margin line.
+                        </div>
+
+                        <div class="calc-formula" style="margin-top: 16px;">
+                            Total Fixed <strong>$34,700</strong> &divide; Contribution Margin <strong>$190</strong> = Breakeven <strong style="font-size:20px;">~183 tests/mo</strong>
+                        </div>
+
+                        <div class="calc-breakeven-box">
+                            <span class="calc-label">Breakeven Point</span>
+                            <span class="calc-value">~183 tests/mo (~9 tests/business day)</span>
+                        </div>
+
+                        <p style="font-size: 14px; color: #64748b; margin-top: 12px;">
+                            If 20 optometry clinics each order ~2 tests/week, you're at breakeven.
+                        </p>
+                    </div>
+
+                    <!-- STEP 5: Interactive Slider -->
+                    <div class="calc-slider-section">
+                        <h3>Drag to see how volume changes everything</h3>
+                        <p>Move the slider to see how fixed costs per test shrink and margins grow</p>
+
+                        <div class="calc-slider-wrap">
+                            <div class="calc-slider-label">
+                                <span>Monthly Test Volume</span>
+                                <span class="calc-vol-display"><span id="calcVolumeDisplay">500</span> tests/month</span>
+                            </div>
+                            <input type="range" id="calcVolumeSlider" min="10" max="1500" value="500" step="10">
+                            <div class="calc-marks" id="calcSliderMarks"></div>
+                        </div>
+
+                        <!-- Result Cards -->
+                        <div class="calc-results-grid">
+                            <div class="calc-result-card">
+                                <div class="calc-rc-label">Monthly Revenue</div>
+                                <div class="calc-rc-value" id="calcRcRevenue" style="color: #38bdf8;">$125,000</div>
+                                <div class="calc-rc-sub" id="calcRcRevenueTests">500 &times; $250</div>
+                            </div>
+                            <div class="calc-result-card">
+                                <div class="calc-rc-label">Variable Costs</div>
+                                <div class="calc-rc-value" id="calcRcVariable" style="color: #f87171;">$30,000</div>
+                                <div class="calc-rc-sub" id="calcRcVariableTests">500 &times; $60</div>
+                            </div>
+                            <div class="calc-result-card">
+                                <div class="calc-rc-label">Fixed Costs / Test</div>
+                                <div class="calc-rc-value" id="calcRcFixedPerTest" style="color: #fbbf24;">$69</div>
+                                <div class="calc-rc-sub" id="calcRcFixedCalc">$34,700 &divide; 500</div>
+                            </div>
+                            <div class="calc-result-card" id="calcMarginCard">
+                                <div class="calc-rc-label">Net Margin (all costs)</div>
+                                <div class="calc-rc-value" id="calcRcMargin" style="color: #4ade80;">48%</div>
+                                <div class="calc-rc-sub" id="calcRcMarginDollar">$121 / test</div>
+                            </div>
+                        </div>
+
+                        <!-- Per-test breakdown table -->
+                        <table class="calc-dark-table">
+                            <thead>
+                                <tr>
+                                    <th>Per-Test Breakdown</th>
+                                    <th>Per Test</th>
+                                    <th>Monthly Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Revenue</td>
+                                    <td>$250</td>
+                                    <td id="calcFbRevTotal">$125,000</td>
+                                </tr>
+                                <tr>
+                                    <td>&minus; Variable COGS</td>
+                                    <td style="color: #f87171;">($60)</td>
+                                    <td style="color: #f87171;" id="calcFbVarTotal">($30,000)</td>
+                                </tr>
+                                <tr>
+                                    <td>&minus; Production fixed costs (COGS)</td>
+                                    <td style="color: #f87171;" id="calcFbProdFixedPer">($46)</td>
+                                    <td style="color: #f87171;">($23,200)</td>
+                                </tr>
+                                <tr class="calc-dark-total">
+                                    <td>Gross Profit</td>
+                                    <td id="calcFbGrossPerTest">$144</td>
+                                    <td id="calcFbGrossTotal">$71,800</td>
+                                </tr>
+                                <tr>
+                                    <td style="color: #94a3b8; font-size: 12px;">SG&amp;A (below gross margin line)</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>&minus; SG&amp;A fixed costs</td>
+                                    <td style="color: #f87171;" id="calcFbSgaPer">($23)</td>
+                                    <td style="color: #f87171;">($11,500)</td>
+                                </tr>
+                                <tr class="calc-dark-total" id="calcFbTotalRow">
+                                    <td id="calcFbTotalLabel">Net Profit (after ALL costs)</td>
+                                    <td id="calcFbTotalPer">$121</td>
+                                    <td id="calcFbTotalMonth">$60,300</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <!-- Status Bar -->
+                        <div class="calc-status-bar calc-status-profit" id="calcStatusBar">
+                            <span style="font-size: 18px;">&#x2713;</span>
+                            <span id="calcStatusText">Profitable — generating $60,300/month net after all costs</span>
+                        </div>
+
+                        <!-- Benchmarks -->
+                        <div class="calc-benchmarks">
+                            <h4>Industry Benchmarks — Gross Margin Comparison</h4>
+                            <div class="calc-bench-items">
+                                <div class="calc-bench-item">
+                                    <div class="calc-bench-name">Your Gross Margin</div>
+                                    <div class="calc-bench-bar">
+                                        <div class="calc-bench-fill" id="calcBenchYours" style="width: 58%; background: linear-gradient(90deg, #3b82f6, #2563eb);"><span id="calcBenchYoursVal">58%</span></div>
+                                    </div>
+                                </div>
+                                <div class="calc-bench-item">
+                                    <div class="calc-bench-name">Exact Sciences (at $2.76B rev)</div>
+                                    <div class="calc-bench-bar">
+                                        <div class="calc-bench-fill" style="width: 69%; background: linear-gradient(90deg, #14b8a6, #0d9488);">69%</div>
+                                    </div>
+                                </div>
+                                <div class="calc-bench-item">
+                                    <div class="calc-bench-name">Guardant Health (at $622M rev)</div>
+                                    <div class="calc-bench-bar">
+                                        <div class="calc-bench-fill" style="width: 62%; background: linear-gradient(90deg, #8b5cf6, #7c3aed);">62%</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
 
             </div>
@@ -7701,6 +8471,135 @@
                         }
                     }
                 });
+            }
+
+            // ============================================
+            // UNIT ECONOMICS CALCULATOR — Tab 4
+            // ============================================
+            if (document.getElementById('calcVolumeSlider')) {
+                const CALC_PRICE = 250;
+                const CALC_VARIABLE_COGS = 60;
+                const CALC_PROD_FIXED = 23200;
+                const CALC_SGA_FIXED = 11500;
+                const CALC_TOTAL_FIXED = CALC_PROD_FIXED + CALC_SGA_FIXED;
+                const CALC_CONTRIBUTION = CALC_PRICE - CALC_VARIABLE_COGS;
+                const calcSlider = document.getElementById('calcVolumeSlider');
+                const CALC_MIN = 10;
+                const CALC_MAX = 1500;
+
+                function calcFmt(n) {
+                    if (n < 0) return '-$' + Math.abs(Math.round(n)).toLocaleString();
+                    return '$' + Math.round(n).toLocaleString();
+                }
+                function calcFmtParen(n) {
+                    return '(' + calcFmt(Math.abs(n)) + ')';
+                }
+
+                function calcPositionMarks() {
+                    var marks = [
+                        { val: 10,   label: '10' },
+                        { val: 183,  label: '183 (BE)' },
+                        { val: 500,  label: '500' },
+                        { val: 1000, label: '1,000' },
+                        { val: 1500, label: '1,500' }
+                    ];
+                    var container = document.getElementById('calcSliderMarks');
+                    if (!container) return;
+                    container.innerHTML = '';
+                    marks.forEach(function(m) {
+                        var pct = ((m.val - CALC_MIN) / (CALC_MAX - CALC_MIN)) * 100;
+                        var el = document.createElement('span');
+                        el.textContent = m.label;
+                        el.style.left = pct + '%';
+                        container.appendChild(el);
+                    });
+                }
+
+                function calcUpdate() {
+                    var vol = parseInt(calcSlider.value);
+                    document.getElementById('calcVolumeDisplay').textContent = vol.toLocaleString();
+
+                    var monthlyRevenue = vol * CALC_PRICE;
+                    var monthlyVariable = vol * CALC_VARIABLE_COGS;
+                    var prodFixedPerTest = CALC_PROD_FIXED / vol;
+                    var sgaPerTest = CALC_SGA_FIXED / vol;
+                    var totalFixedPerTest = CALC_TOTAL_FIXED / vol;
+
+                    var grossProfitPerTest = CALC_PRICE - CALC_VARIABLE_COGS - prodFixedPerTest;
+                    var grossMarginPct = (grossProfitPerTest / CALC_PRICE) * 100;
+                    var monthlyGrossProfit = monthlyRevenue - monthlyVariable - CALC_PROD_FIXED;
+
+                    var netProfitPerTest = CALC_PRICE - CALC_VARIABLE_COGS - totalFixedPerTest;
+                    var netMarginPct = (netProfitPerTest / CALC_PRICE) * 100;
+                    var monthlyNetProfit = monthlyRevenue - monthlyVariable - CALC_TOTAL_FIXED;
+
+                    // Result cards
+                    document.getElementById('calcRcRevenue').textContent = calcFmt(monthlyRevenue);
+                    document.getElementById('calcRcRevenueTests').innerHTML = vol.toLocaleString() + ' &times; $250';
+                    document.getElementById('calcRcVariable').textContent = calcFmt(monthlyVariable);
+                    document.getElementById('calcRcVariableTests').innerHTML = vol.toLocaleString() + ' &times; $60';
+                    document.getElementById('calcRcFixedPerTest').textContent = calcFmt(totalFixedPerTest);
+                    document.getElementById('calcRcFixedCalc').innerHTML = '$34,700 &divide; ' + vol.toLocaleString();
+
+                    var marginCard = document.getElementById('calcMarginCard');
+                    document.getElementById('calcRcMargin').textContent = Math.round(netMarginPct) + '%';
+                    document.getElementById('calcRcMarginDollar').textContent = calcFmt(netProfitPerTest) + ' / test';
+                    if (netProfitPerTest < 0) {
+                        document.getElementById('calcRcMargin').style.color = '#f87171';
+                    } else {
+                        document.getElementById('calcRcMargin').style.color = '#4ade80';
+                    }
+
+                    // Breakdown table
+                    document.getElementById('calcFbRevTotal').textContent = calcFmt(monthlyRevenue);
+                    document.getElementById('calcFbVarTotal').textContent = calcFmtParen(monthlyVariable);
+                    document.getElementById('calcFbProdFixedPer').textContent = calcFmtParen(prodFixedPerTest);
+                    document.getElementById('calcFbGrossPerTest').textContent = calcFmt(grossProfitPerTest);
+                    document.getElementById('calcFbGrossTotal').textContent = calcFmt(monthlyGrossProfit);
+                    document.getElementById('calcFbSgaPer').textContent = calcFmtParen(sgaPerTest);
+                    document.getElementById('calcFbTotalPer').textContent = calcFmt(netProfitPerTest);
+                    document.getElementById('calcFbTotalMonth').textContent = calcFmt(monthlyNetProfit);
+
+                    var totalRow = document.getElementById('calcFbTotalRow');
+                    if (netProfitPerTest < 0) {
+                        document.getElementById('calcFbTotalLabel').textContent = 'Net Loss (after ALL costs)';
+                        document.getElementById('calcFbTotalPer').style.color = '#f87171';
+                        document.getElementById('calcFbTotalMonth').style.color = '#f87171';
+                    } else {
+                        document.getElementById('calcFbTotalLabel').textContent = 'Net Profit (after ALL costs)';
+                        document.getElementById('calcFbTotalPer').style.color = '#e2e8f0';
+                        document.getElementById('calcFbTotalMonth').style.color = '#e2e8f0';
+                    }
+
+                    // Status bar
+                    var statusBar = document.getElementById('calcStatusBar');
+                    var statusText = document.getElementById('calcStatusText');
+                    var breakeven = Math.ceil(CALC_TOTAL_FIXED / CALC_CONTRIBUTION);
+
+                    if (vol >= breakeven * 1.1) {
+                        statusBar.className = 'calc-status-bar calc-status-profit';
+                        statusText.textContent = 'Profitable — generating ' + calcFmt(monthlyNetProfit) + '/month net after all costs';
+                    } else if (vol >= breakeven * 0.9) {
+                        statusBar.className = 'calc-status-bar calc-status-breakeven';
+                        statusText.textContent = 'Near breakeven — approximately covering all costs at this volume';
+                    } else {
+                        statusBar.className = 'calc-status-bar calc-status-loss';
+                        statusText.textContent = 'Pre-breakeven — burning ~' + calcFmt(Math.abs(monthlyNetProfit)) + '/month. Need ' + breakeven + ' tests/mo to break even';
+                    }
+
+                    // Benchmarks
+                    var benchFill = document.getElementById('calcBenchYours');
+                    var benchVal = document.getElementById('calcBenchYoursVal');
+                    if (benchFill && benchVal) {
+                        var gmPct = Math.max(0, Math.min(100, Math.round(grossMarginPct)));
+                        benchFill.style.width = gmPct + '%';
+                        benchVal.textContent = gmPct + '%';
+                    }
+                }
+
+                calcSlider.addEventListener('input', calcUpdate);
+                calcPositionMarks();
+                calcUpdate();
             }
 
             // Glucose Chart Initialization
