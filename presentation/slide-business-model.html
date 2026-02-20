@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slide 7 - Business Model</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 1920px;
+            height: 1080px;
+            overflow: hidden;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #f0fdfa 0%, #e6fffa 30%, #ffffff 70%, #f0fdfa 100%);
+        }
+
+        .slide-container {
+            width: 1920px;
+            height: 1080px;
+            padding: 48px 80px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Title Section */
+        .title-section {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 48px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #0d9488 0%, #14b8a6 50%, #06b6d4 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 12px;
+        }
+
+        .title-underline {
+            width: 120px;
+            height: 5px;
+            background: linear-gradient(135deg, #0d9488 0%, #14b8a6 100%);
+            margin: 0 auto;
+            border-radius: 3px;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        /* Revenue Channels */
+        .channels-section {
+            display: flex;
+            gap: 32px;
+        }
+
+        .channel-card {
+            flex: 1;
+            background: white;
+            border-radius: 24px;
+            padding: 32px;
+            box-shadow: 0 4px 20px rgba(255, 255, 255, 0.8), 0 2px 10px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(20, 184, 166, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .channel-card.primary {
+            border: 2px solid #14b8a6;
+        }
+
+        .channel-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #0d9488 0%, #14b8a6 100%);
+            color: white;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 6px 14px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .channel-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .channel-icon.teal {
+            background: linear-gradient(135deg, #0d9488 0%, #14b8a6 100%);
+        }
+
+        .channel-icon.cyan {
+            background: linear-gradient(135deg, #0891b2 0%, #06b6d4 100%);
+        }
+
+        .channel-icon.green {
+            background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+        }
+
+        .channel-icon svg {
+            width: 28px;
+            height: 28px;
+            stroke: white;
+            fill: none;
+        }
+
+        .channel-name {
+            font-family: 'Poppins', sans-serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: #0f766e;
+            margin-bottom: 8px;
+        }
+
+        .channel-price {
+            font-family: 'Poppins', sans-serif;
+            font-size: 36px;
+            font-weight: 800;
+            color: #0d9488;
+            margin-bottom: 16px;
+        }
+
+        .channel-details {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .channel-detail {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 15px;
+            color: #115e59;
+            line-height: 1.4;
+        }
+
+        .detail-dot {
+            width: 6px;
+            height: 6px;
+            background: #14b8a6;
+            border-radius: 50%;
+            flex-shrink: 0;
+            margin-top: 7px;
+        }
+
+        /* Precedent Section */
+        .precedent-section {
+            background: linear-gradient(135deg, #ecfeff 0%, #cffafe 100%);
+            border-left: 5px solid #06b6d4;
+            border-radius: 16px;
+            padding: 28px 36px;
+        }
+
+        .precedent-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 20px;
+        }
+
+        .precedent-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #0891b2 0%, #06b6d4 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .precedent-icon svg {
+            width: 24px;
+            height: 24px;
+            stroke: white;
+            fill: none;
+        }
+
+        .precedent-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: #0891b2;
+        }
+
+        .precedent-content {
+            display: flex;
+            gap: 48px;
+            padding-left: 62px;
+        }
+
+        .precedent-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .precedent-dot {
+            width: 8px;
+            height: 8px;
+            background: #06b6d4;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .precedent-text {
+            font-size: 16px;
+            color: #0e7490;
+        }
+
+        .precedent-highlight {
+            font-weight: 700;
+            color: #0891b2;
+        }
+
+        /* AMD Screening Landscape */
+        .landscape-section {
+            background: linear-gradient(135deg, #fef3c7 0%, #fffbeb 100%);
+            border-left: 5px solid #f59e0b;
+            border-radius: 16px;
+            padding: 24px 36px;
+        }
+
+        .landscape-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 16px;
+        }
+
+        .landscape-icon {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, #d97706 0%, #f59e0b 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .landscape-icon svg {
+            width: 22px;
+            height: 22px;
+            stroke: white;
+            fill: none;
+        }
+
+        .landscape-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: #92400e;
+        }
+
+        .landscape-grid {
+            display: flex;
+            gap: 24px;
+            padding-left: 58px;
+            align-items: stretch;
+        }
+
+        .landscape-card {
+            flex: 1;
+            background: white;
+            border-radius: 12px;
+            padding: 16px 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .landscape-card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .landscape-company {
+            font-size: 16px;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        .landscape-tag {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .landscape-tag.imaging {
+            background: #e0e7ff;
+            color: #3730a3;
+        }
+
+        .landscape-tag.blood {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .landscape-card-details {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .landscape-detail {
+            font-size: 13px;
+            color: #64748b;
+            line-height: 1.4;
+        }
+
+        .landscape-detail strong {
+            color: #334155;
+        }
+
+        .landscape-advantage {
+            font-size: 13px;
+            font-weight: 600;
+            color: #059669;
+            margin-top: 2px;
+        }
+
+        /* Platform Expansion */
+        .expansion-section {
+            background: linear-gradient(135deg, #ccfbf1 0%, #f0fdfa 100%);
+            border-left: 5px solid #14b8a6;
+            border-radius: 16px;
+            padding: 24px 36px;
+        }
+
+        .expansion-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 16px;
+        }
+
+        .expansion-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #0d9488 0%, #14b8a6 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .expansion-icon svg {
+            width: 24px;
+            height: 24px;
+            stroke: white;
+            fill: none;
+        }
+
+        .expansion-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: #0f766e;
+        }
+
+        .expansion-content {
+            display: flex;
+            gap: 32px;
+            padding-left: 62px;
+        }
+
+        .expansion-item {
+            background: white;
+            border-radius: 12px;
+            padding: 16px 24px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .expansion-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: #0f766e;
+        }
+
+        /* Bottom Banner */
+        .bottom-banner {
+            background: linear-gradient(135deg, #0d9488 0%, #14b8a6 50%, #06b6d4 100%);
+            border-radius: 16px;
+            padding: 24px 40px;
+            text-align: center;
+            margin-top: auto;
+        }
+
+        .banner-text {
+            font-family: 'Poppins', sans-serif;
+            font-size: 22px;
+            font-weight: 600;
+            color: white;
+        }
+
+        .banner-highlight {
+            font-weight: 800;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+
+        <!-- Title -->
+        <div class="title-section">
+            <h1 class="title">Business Model</h1>
+            <div class="title-underline"></div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+
+            <!-- Revenue Channels -->
+            <div class="channels-section">
+
+                <!-- DTC -->
+                <div class="channel-card primary">
+                    <div class="channel-badge">Primary</div>
+                    <div class="channel-icon teal">
+                        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                    </div>
+                    <div class="channel-name">Direct-to-Consumer</div>
+                    <div class="channel-price">$250</div>
+                    <div class="channel-details">
+                        <div class="channel-detail">
+                            <div class="detail-dot"></div>
+                            <span>Primary care access - no specialist referral needed</span>
+                        </div>
+                        <div class="channel-detail">
+                            <div class="detail-dot"></div>
+                            <span>Simple blood draw at local lab</span>
+                        </div>
+                        <div class="channel-detail">
+                            <div class="detail-dot"></div>
+                            <span>Results in 7-10 business days</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- B2B Healthcare -->
+                <div class="channel-card">
+                    <div class="channel-icon cyan">
+                        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                        </svg>
+                    </div>
+                    <div class="channel-name">B2B Healthcare</div>
+                    <div class="channel-price">Volume Pricing</div>
+                    <div class="channel-details">
+                        <div class="channel-detail">
+                            <div class="detail-dot"></div>
+                            <span>Optometry &amp; ophthalmology clinics</span>
+                        </div>
+                        <div class="channel-detail">
+                            <div class="detail-dot"></div>
+                            <span>Primary care physician networks</span>
+                        </div>
+                        <div class="channel-detail">
+                            <div class="detail-dot"></div>
+                            <span>Integrated health systems</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pharma Partnerships -->
+                <div class="channel-card">
+                    <div class="channel-icon green">
+                        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
+                            <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
+                            <line x1="6" y1="1" x2="6" y2="4"></line>
+                            <line x1="10" y1="1" x2="10" y2="4"></line>
+                            <line x1="14" y1="1" x2="14" y2="4"></line>
+                        </svg>
+                    </div>
+                    <div class="channel-name">Pharma Partnerships</div>
+                    <div class="channel-price">Strategic</div>
+                    <div class="channel-details">
+                        <div class="channel-detail">
+                            <div class="detail-dot"></div>
+                            <span>Patient identification for clinical trials</span>
+                        </div>
+                        <div class="channel-detail">
+                            <div class="detail-dot"></div>
+                            <span>Companion diagnostic development</span>
+                        </div>
+                        <div class="channel-detail">
+                            <div class="detail-dot"></div>
+                            <span>Prevention therapy launch partner</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Precedent -->
+            <div class="precedent-section">
+                <div class="precedent-header">
+                    <div class="precedent-icon">
+                        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="16" x2="12" y2="12"></line>
+                            <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                        </svg>
+                    </div>
+                    <div class="precedent-title">Validated Precedent</div>
+                </div>
+                <div class="precedent-content">
+                    <div class="precedent-item">
+                        <div class="precedent-dot"></div>
+                        <span class="precedent-text"><span class="precedent-highlight">Exact Sciences CancerGuard:</span> $689 CLIA LDT model</span>
+                    </div>
+                    <div class="precedent-item">
+                        <div class="precedent-dot"></div>
+                        <span class="precedent-text"><span class="precedent-highlight">Grail Galleri:</span> $949 multi-cancer early detection</span>
+                    </div>
+                    <div class="precedent-item">
+                        <div class="precedent-dot"></div>
+                        <span class="precedent-text"><span class="precedent-highlight">23andMe:</span> DTC genetic testing precedent</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AMD Screening Landscape — Why Blood Wins -->
+            <div class="landscape-section">
+                <div class="landscape-header">
+                    <div class="landscape-icon">
+                        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                            <circle cx="12" cy="12" r="3"></circle>
+                        </svg>
+                    </div>
+                    <div class="landscape-title">AMD Screening Landscape &mdash; Why Blood-Based Wins</div>
+                </div>
+                <div class="landscape-grid">
+                    <div class="landscape-card">
+                        <div class="landscape-card-header">
+                            <span class="landscape-company">iHealthScreen &mdash; iPredict-AMD</span>
+                            <span class="landscape-tag imaging">Fundus Imaging</span>
+                        </div>
+                        <div class="landscape-card-details">
+                            <span class="landscape-detail"><strong>510(k) submitted May 2023</strong> &mdash; no FDA clearance yet (CE/TGA/MHRA approved)</span>
+                            <span class="landscape-detail">AI analysis of retinal photos &mdash; 86.9% sensitivity, 94.1% specificity</span>
+                            <span class="landscape-detail">Requires fundus camera hardware + trained operator in eye care setting</span>
+                        </div>
+                    </div>
+                    <div class="landscape-card" style="border: 2px solid #14b8a6;">
+                        <div class="landscape-card-header">
+                            <span class="landscape-company">A1 Diagnosis &mdash; Blood Test</span>
+                            <span class="landscape-tag blood">Blood-Based</span>
+                        </div>
+                        <div class="landscape-card-details">
+                            <span class="landscape-detail"><strong>CLIA LDT pathway</strong> &mdash; faster to market, no device clearance required</span>
+                            <span class="landscape-detail">Simple blood draw at any clinic &mdash; 94-95% accuracy via ML proteomics</span>
+                            <span class="landscape-advantage">&#x2713; No camera hardware &bull; Any primary care setting &bull; Catches risk before retinal changes visible</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Platform Expansion -->
+            <div class="expansion-section">
+                <div class="expansion-header">
+                    <div class="expansion-icon">
+                        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="3"></circle>
+                            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                        </svg>
+                    </div>
+                    <div class="expansion-title">Platform Expansion Beyond AMD</div>
+                </div>
+                <div class="expansion-content">
+                    <div class="expansion-item">
+                        <div class="expansion-name">Alzheimer's Disease</div>
+                    </div>
+                    <div class="expansion-item">
+                        <div class="expansion-name">Autism Spectrum</div>
+                    </div>
+                    <div class="expansion-item">
+                        <div class="expansion-name">Endometriosis</div>
+                    </div>
+                    <div class="expansion-item">
+                        <div class="expansion-name">+ Additional Applications</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Bottom Banner -->
+        <div class="bottom-banner">
+            <div class="banner-text"><span class="banner-highlight">Revenue starts Q4 2026</span> with CLIA-certified LDT launch</div>
+        </div>
+
+    </div>
+
+    <script>
+        function scaleToFit() {
+            const scale = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
+            document.body.style.transform = `scale(${scale})`;
+            document.body.style.transformOrigin = 'top left';
+        }
+        window.addEventListener('resize', scaleToFit);
+        scaleToFit();
+    </script>
+</body>
+</html>
