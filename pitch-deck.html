@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A1 Diagnosis - Investor Pitch Deck</title>
+    <meta name="description" content="A1 Diagnosis Investor Pitch Deck - The world's first blood-based AMD risk assessment test.">
+    <link rel="icon" type="image/png" href="A1_Favicon_V2.png">
+    <link rel="shortcut icon" type="image/png" href="A1_Favicon_V2.png">
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f5f8fa;
+            color: #2d3748;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #e0f7f5 0%, #e8f5e9 35%, #e3f2fd 70%, #e0f7f5 100%);
+            border-bottom: 1px solid rgba(0, 150, 136, 0.15);
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-shrink: 0;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .header-logo {
+            height: 36px;
+            width: auto;
+        }
+
+        .header-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1a5c53;
+        }
+
+        .header-subtitle {
+            font-size: 13px;
+            color: #4a8a82;
+            margin-top: 1px;
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #009688, #26a69a);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .download-btn:hover {
+            background: linear-gradient(135deg, #00897b, #009688);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 150, 136, 0.3);
+        }
+
+        .download-btn svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* Main slide area */
+        .slide-area {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+        }
+
+        .slide-container {
+            position: relative;
+            width: 100%;
+            max-width: 1100px;
+            aspect-ratio: 16 / 9;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1), 0 2px 8px rgba(0, 0, 0, 0.06);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide-container canvas {
+            display: block;
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        /* Loading state */
+        .loading-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: #fff;
+            border-radius: 12px;
+            z-index: 5;
+        }
+
+        .loading-overlay.hidden {
+            display: none;
+        }
+
+        .spinner {
+            width: 48px;
+            height: 48px;
+            border: 4px solid #e0f2f1;
+            border-top-color: #009688;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            margin-top: 16px;
+            font-size: 14px;
+            color: #607d8b;
+        }
+
+        /* Navigation buttons */
+        .nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: none;
+            background: rgba(255, 255, 255, 0.92);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            z-index: 10;
+            color: #37474f;
+        }
+
+        .nav-btn:hover {
+            background: #fff;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
+            transform: translateY(-50%) scale(1.08);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.3;
+            cursor: default;
+            pointer-events: none;
+        }
+
+        .nav-btn svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .nav-prev {
+            left: max(8px, calc((100% - 1100px) / 2 - 60px));
+        }
+
+        .nav-next {
+            right: max(8px, calc((100% - 1100px) / 2 - 60px));
+        }
+
+        /* Bottom controls */
+        .controls {
+            flex-shrink: 0;
+            padding: 14px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            background: #fff;
+            border-top: 1px solid #e8ecef;
+        }
+
+        .page-indicator {
+            font-size: 14px;
+            font-weight: 500;
+            color: #546e7a;
+            min-width: 100px;
+            text-align: center;
+        }
+
+        .controls .nav-ctrl-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1.5px solid #b2dfdb;
+            background: #fff;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            color: #009688;
+        }
+
+        .controls .nav-ctrl-btn:hover {
+            background: #e0f2f1;
+            border-color: #009688;
+        }
+
+        .controls .nav-ctrl-btn:disabled {
+            opacity: 0.3;
+            cursor: default;
+            pointer-events: none;
+        }
+
+        .controls .nav-ctrl-btn svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Progress bar */
+        .progress-bar {
+            width: 200px;
+            height: 4px;
+            background: #e0f2f1;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #80cbc4, #4db6ac, #81c784);
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+
+        /* Fullscreen button */
+        .fullscreen-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1.5px solid #b2dfdb;
+            background: #fff;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            color: #009688;
+        }
+
+        .fullscreen-btn:hover {
+            background: #e0f2f1;
+            border-color: #009688;
+        }
+
+        .fullscreen-btn svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* Slide transition */
+        .slide-container canvas {
+            transition: opacity 0.2s ease;
+        }
+
+        .slide-container canvas.fading {
+            opacity: 0.3;
+        }
+
+        /* Mobile styles */
+        @media (max-width: 768px) {
+            .header {
+                padding: 10px 16px;
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+
+            .header-title {
+                font-size: 15px;
+            }
+
+            .header-subtitle {
+                display: none;
+            }
+
+            .download-btn {
+                padding: 8px 14px;
+                font-size: 13px;
+            }
+
+            .download-btn span {
+                display: none;
+            }
+
+            .slide-area {
+                padding: 12px;
+            }
+
+            .nav-prev {
+                left: 4px;
+            }
+
+            .nav-next {
+                right: 4px;
+            }
+
+            .nav-btn {
+                width: 40px;
+                height: 40px;
+            }
+
+            .nav-btn svg {
+                width: 20px;
+                height: 20px;
+            }
+
+            .controls {
+                padding: 10px 16px;
+                gap: 12px;
+            }
+
+            .progress-bar {
+                width: 120px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header-logo {
+                height: 28px;
+            }
+
+            .slide-container {
+                border-radius: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="header">
+        <div class="header-left">
+            <img src="Logo_No_background.png" alt="A1 Diagnosis" class="header-logo">
+            <div>
+                <div class="header-title">Investor Pitch Deck</div>
+                <div class="header-subtitle">A1 Diagnosis - Blood-Based AMD Risk Assessment</div>
+            </div>
+        </div>
+        <a href="A1-Diagnosis-Investor-Pitch-Deck.pdf" download class="download-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5m0 0l5-5m-5 5V3"/>
+            </svg>
+            <span>Download PDF</span>
+        </a>
+    </div>
+
+    <!-- Slide Viewer -->
+    <div class="slide-area">
+        <button class="nav-btn nav-prev" id="prevBtn" aria-label="Previous slide">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
+            </svg>
+        </button>
+
+        <div class="slide-container" id="slideContainer">
+            <canvas id="slideCanvas"></canvas>
+            <div class="loading-overlay" id="loadingOverlay">
+                <div class="spinner"></div>
+                <div class="loading-text">Loading pitch deck...</div>
+            </div>
+        </div>
+
+        <button class="nav-btn nav-next" id="nextBtn" aria-label="Next slide">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Bottom Controls -->
+    <div class="controls">
+        <button class="nav-ctrl-btn" id="prevBtnCtrl" aria-label="Previous slide">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
+            </svg>
+        </button>
+
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+
+        <div class="page-indicator" id="pageIndicator">Slide 1 / --</div>
+
+        <button class="nav-ctrl-btn" id="nextBtnCtrl" aria-label="Next slide">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+            </svg>
+        </button>
+
+        <button class="fullscreen-btn" id="fullscreenBtn" aria-label="Toggle fullscreen">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4 8V4h4M20 8V4h-4M4 16v4h4M20 16v4h-4"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- PDF.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.min.mjs" type="module"></script>
+    <script type="module">
+        import * as pdfjsLib from 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.min.mjs';
+
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.worker.min.mjs';
+
+        const PDF_URL = 'A1-Diagnosis-Investor-Pitch-Deck.pdf';
+
+        const canvas = document.getElementById('slideCanvas');
+        const ctx = canvas.getContext('2d');
+        const container = document.getElementById('slideContainer');
+        const loadingOverlay = document.getElementById('loadingOverlay');
+        const pageIndicator = document.getElementById('pageIndicator');
+        const progressFill = document.getElementById('progressFill');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const prevBtnCtrl = document.getElementById('prevBtnCtrl');
+        const nextBtnCtrl = document.getElementById('nextBtnCtrl');
+        const fullscreenBtn = document.getElementById('fullscreenBtn');
+
+        let pdfDoc = null;
+        let currentPage = 1;
+        let totalPages = 0;
+        let rendering = false;
+        let pendingPage = null;
+
+        async function loadPDF() {
+            try {
+                pdfDoc = await pdfjsLib.getDocument(PDF_URL).promise;
+                totalPages = pdfDoc.numPages;
+                updateUI();
+                await renderPage(currentPage);
+                loadingOverlay.classList.add('hidden');
+            } catch (err) {
+                loadingOverlay.querySelector('.loading-text').textContent = 'Failed to load PDF. Please try refreshing.';
+                loadingOverlay.querySelector('.spinner').style.display = 'none';
+                console.error('PDF load error:', err);
+            }
+        }
+
+        async function renderPage(pageNum) {
+            if (rendering) {
+                pendingPage = pageNum;
+                return;
+            }
+            rendering = true;
+
+            canvas.classList.add('fading');
+
+            const page = await pdfDoc.getPage(pageNum);
+            const containerWidth = container.clientWidth;
+            const containerHeight = container.clientHeight;
+
+            const originalViewport = page.getViewport({ scale: 1 });
+            const scaleX = containerWidth / originalViewport.width;
+            const scaleY = containerHeight / originalViewport.height;
+            const scale = Math.min(scaleX, scaleY);
+
+            // Render at 2x for sharpness, capped for performance
+            const dpr = Math.min(window.devicePixelRatio || 1, 2);
+            const viewport = page.getViewport({ scale: scale * dpr });
+
+            canvas.width = viewport.width;
+            canvas.height = viewport.height;
+            canvas.style.width = (viewport.width / dpr) + 'px';
+            canvas.style.height = (viewport.height / dpr) + 'px';
+
+            await page.render({ canvasContext: ctx, viewport: viewport }).promise;
+
+            canvas.classList.remove('fading');
+            rendering = false;
+
+            if (pendingPage !== null) {
+                const next = pendingPage;
+                pendingPage = null;
+                await renderPage(next);
+            }
+        }
+
+        function updateUI() {
+            pageIndicator.textContent = `Slide ${currentPage} / ${totalPages}`;
+            progressFill.style.width = `${(currentPage / totalPages) * 100}%`;
+
+            const atFirst = currentPage <= 1;
+            const atLast = currentPage >= totalPages;
+            prevBtn.disabled = atFirst;
+            nextBtn.disabled = atLast;
+            prevBtnCtrl.disabled = atFirst;
+            nextBtnCtrl.disabled = atLast;
+        }
+
+        function goToPage(num) {
+            if (num < 1 || num > totalPages || num === currentPage) return;
+            currentPage = num;
+            updateUI();
+            renderPage(currentPage);
+        }
+
+        function prevPage() { goToPage(currentPage - 1); }
+        function nextPage() { goToPage(currentPage + 1); }
+
+        // Button clicks
+        prevBtn.addEventListener('click', prevPage);
+        nextBtn.addEventListener('click', nextPage);
+        prevBtnCtrl.addEventListener('click', prevPage);
+        nextBtnCtrl.addEventListener('click', nextPage);
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                e.preventDefault();
+                prevPage();
+            } else if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') {
+                e.preventDefault();
+                nextPage();
+            } else if (e.key === 'Home') {
+                e.preventDefault();
+                goToPage(1);
+            } else if (e.key === 'End') {
+                e.preventDefault();
+                goToPage(totalPages);
+            }
+        });
+
+        // Touch/swipe support
+        let touchStartX = 0;
+        let touchStartY = 0;
+        container.addEventListener('touchstart', (e) => {
+            touchStartX = e.touches[0].clientX;
+            touchStartY = e.touches[0].clientY;
+        }, { passive: true });
+
+        container.addEventListener('touchend', (e) => {
+            const dx = e.changedTouches[0].clientX - touchStartX;
+            const dy = e.changedTouches[0].clientY - touchStartY;
+            if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 50) {
+                if (dx < 0) nextPage();
+                else prevPage();
+            }
+        }, { passive: true });
+
+        // Fullscreen
+        fullscreenBtn.addEventListener('click', () => {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(() => {});
+            } else {
+                document.exitFullscreen().catch(() => {});
+            }
+        });
+
+        // Resize handling
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                if (pdfDoc) renderPage(currentPage);
+            }, 200);
+        });
+
+        // Init
+        loadPDF();
+    </script>
+</body>
+</html>
