@@ -14,21 +14,24 @@
             box-sizing: border-box;
         }
 
+        html, body {
+            height: 100%;
+            overflow: hidden;
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: #f5f8fa;
+            background: #ffffff;
             color: #2d3748;
-            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            overflow-x: hidden;
         }
 
         /* Header */
         .header {
             background: linear-gradient(135deg, #e0f7f5 0%, #e8f5e9 35%, #e3f2fd 70%, #e0f7f5 100%);
             border-bottom: 1px solid rgba(0, 150, 136, 0.15);
-            padding: 12px 24px;
+            padding: 10px 24px;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -42,18 +45,18 @@
         }
 
         .header-logo {
-            height: 36px;
+            height: 34px;
             width: auto;
         }
 
         .header-title {
-            font-size: 18px;
+            font-size: 17px;
             font-weight: 600;
             color: #1a5c53;
         }
 
         .header-subtitle {
-            font-size: 13px;
+            font-size: 12px;
             color: #4a8a82;
             margin-top: 1px;
         }
@@ -62,7 +65,7 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 10px 20px;
+            padding: 9px 18px;
             background: linear-gradient(135deg, #009688, #26a69a);
             color: #fff;
             text-decoration: none;
@@ -85,24 +88,116 @@
             height: 18px;
         }
 
-        /* Main slide area */
+        /* Main layout: sidebar + slide */
+        .main-layout {
+            flex: 1;
+            display: flex;
+            overflow: hidden;
+        }
+
+        /* Thumbnail sidebar */
+        .sidebar {
+            width: 180px;
+            flex-shrink: 0;
+            background: #ffffff;
+            border-right: 1px solid #e8ecef;
+            overflow-y: auto;
+            padding: 16px 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .sidebar::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        .sidebar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .sidebar::-webkit-scrollbar-thumb {
+            background: #c8e6c9;
+            border-radius: 3px;
+        }
+
+        .sidebar::-webkit-scrollbar-thumb:hover {
+            background: #a5d6a7;
+        }
+
+        .thumb-item {
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 8px 6px;
+            border-radius: 8px;
+            transition: background 0.15s ease;
+        }
+
+        .thumb-item:hover {
+            background: #f0faf9;
+        }
+
+        .thumb-item.active {
+            background: #e0f2f1;
+        }
+
+        .thumb-item.active .thumb-wrapper {
+            border-color: #009688;
+            box-shadow: 0 0 0 2px rgba(0, 150, 136, 0.2);
+        }
+
+        .thumb-wrapper {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            border: 1.5px solid #e0e0e0;
+            border-radius: 4px;
+            overflow: hidden;
+            background: #fff;
+            transition: border-color 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        .thumb-wrapper canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        .thumb-number {
+            margin-top: 5px;
+            font-size: 13px;
+            font-weight: 500;
+            color: #78909c;
+            transition: color 0.15s ease;
+        }
+
+        .thumb-item.active .thumb-number {
+            color: #00796b;
+            font-weight: 600;
+        }
+
+        /* Slide viewer area */
         .slide-area {
             flex: 1;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 20px;
+            padding: 20px 24px;
             position: relative;
+            background: #ffffff;
+            min-width: 0;
         }
 
         .slide-container {
             position: relative;
             width: 100%;
-            max-width: 1100px;
+            max-width: none;
             aspect-ratio: 16 / 9;
+            max-height: calc(100vh - 120px);
             background: #fff;
-            border-radius: 12px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1), 0 2px 8px rgba(0, 0, 0, 0.06);
+            border-radius: 10px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08), 0 1px 6px rgba(0, 0, 0, 0.04);
             overflow: hidden;
             display: flex;
             align-items: center;
@@ -113,6 +208,11 @@
             display: block;
             max-width: 100%;
             max-height: 100%;
+            transition: opacity 0.15s ease;
+        }
+
+        .slide-container canvas.fading {
+            opacity: 0.3;
         }
 
         /* Loading state */
@@ -124,7 +224,7 @@
             align-items: center;
             justify-content: center;
             background: #fff;
-            border-radius: 12px;
+            border-radius: 10px;
             z-index: 5;
         }
 
@@ -133,8 +233,8 @@
         }
 
         .spinner {
-            width: 48px;
-            height: 48px;
+            width: 44px;
+            height: 44px;
             border: 4px solid #e0f2f1;
             border-top-color: #009688;
             border-radius: 50%;
@@ -146,22 +246,22 @@
         }
 
         .loading-text {
-            margin-top: 16px;
+            margin-top: 14px;
             font-size: 14px;
             color: #607d8b;
         }
 
-        /* Navigation buttons */
+        /* Navigation arrow buttons overlaid on slide area */
         .nav-btn {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            width: 48px;
-            height: 48px;
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
             border: none;
-            background: rgba(255, 255, 255, 0.92);
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             cursor: pointer;
             display: flex;
             align-items: center;
@@ -173,52 +273,47 @@
 
         .nav-btn:hover {
             background: #fff;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
-            transform: translateY(-50%) scale(1.08);
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.16);
+            transform: translateY(-50%) scale(1.06);
         }
 
         .nav-btn:disabled {
-            opacity: 0.3;
+            opacity: 0.25;
             cursor: default;
             pointer-events: none;
         }
 
         .nav-btn svg {
-            width: 24px;
-            height: 24px;
+            width: 22px;
+            height: 22px;
         }
 
-        .nav-prev {
-            left: max(8px, calc((100% - 1100px) / 2 - 60px));
-        }
-
-        .nav-next {
-            right: max(8px, calc((100% - 1100px) / 2 - 60px));
-        }
+        .nav-prev { left: 12px; }
+        .nav-next { right: 12px; }
 
         /* Bottom controls */
         .controls {
             flex-shrink: 0;
-            padding: 14px 24px;
+            padding: 10px 24px;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 20px;
-            background: #fff;
-            border-top: 1px solid #e8ecef;
+            gap: 18px;
+            background: #ffffff;
+            border-top: 1px solid #eef1f3;
         }
 
         .page-indicator {
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 500;
             color: #546e7a;
-            min-width: 100px;
+            min-width: 90px;
             text-align: center;
         }
 
         .controls .nav-ctrl-btn {
-            width: 40px;
-            height: 40px;
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
             border: 1.5px solid #b2dfdb;
             background: #fff;
@@ -242,13 +337,12 @@
         }
 
         .controls .nav-ctrl-btn svg {
-            width: 20px;
-            height: 20px;
+            width: 18px;
+            height: 18px;
         }
 
-        /* Progress bar */
         .progress-bar {
-            width: 200px;
+            width: 180px;
             height: 4px;
             background: #e0f2f1;
             border-radius: 2px;
@@ -262,10 +356,9 @@
             transition: width 0.3s ease;
         }
 
-        /* Fullscreen button */
         .fullscreen-btn {
-            width: 40px;
-            height: 40px;
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
             border: 1.5px solid #b2dfdb;
             background: #fff;
@@ -283,25 +376,18 @@
         }
 
         .fullscreen-btn svg {
-            width: 18px;
-            height: 18px;
+            width: 16px;
+            height: 16px;
         }
 
-        /* Slide transition */
-        .slide-container canvas {
-            transition: opacity 0.2s ease;
-        }
-
-        .slide-container canvas.fading {
-            opacity: 0.3;
-        }
-
-        /* Mobile styles */
+        /* Mobile: hide sidebar, full-width slide */
         @media (max-width: 768px) {
+            .sidebar {
+                display: none;
+            }
+
             .header {
-                padding: 10px 16px;
-                flex-wrap: wrap;
-                gap: 8px;
+                padding: 8px 14px;
             }
 
             .header-title {
@@ -313,7 +399,7 @@
             }
 
             .download-btn {
-                padding: 8px 14px;
+                padding: 8px 12px;
                 font-size: 13px;
             }
 
@@ -322,44 +408,29 @@
             }
 
             .slide-area {
-                padding: 12px;
+                padding: 10px;
             }
 
-            .nav-prev {
-                left: 4px;
-            }
-
-            .nav-next {
-                right: 4px;
-            }
+            .nav-prev { left: 6px; }
+            .nav-next { right: 6px; }
 
             .nav-btn {
-                width: 40px;
-                height: 40px;
+                width: 38px;
+                height: 38px;
             }
 
             .nav-btn svg {
-                width: 20px;
-                height: 20px;
+                width: 18px;
+                height: 18px;
             }
 
             .controls {
-                padding: 10px 16px;
-                gap: 12px;
+                padding: 8px 14px;
+                gap: 10px;
             }
 
             .progress-bar {
-                width: 120px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .header-logo {
-                height: 28px;
-            }
-
-            .slide-container {
-                border-radius: 8px;
+                width: 100px;
             }
         }
     </style>
@@ -383,27 +454,34 @@
         </a>
     </div>
 
-    <!-- Slide Viewer -->
-    <div class="slide-area">
-        <button class="nav-btn nav-prev" id="prevBtn" aria-label="Previous slide">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
-            </svg>
-        </button>
+    <!-- Main layout -->
+    <div class="main-layout">
 
-        <div class="slide-container" id="slideContainer">
-            <canvas id="slideCanvas"></canvas>
-            <div class="loading-overlay" id="loadingOverlay">
-                <div class="spinner"></div>
-                <div class="loading-text">Loading pitch deck...</div>
+        <!-- Thumbnail sidebar -->
+        <div class="sidebar" id="sidebar"></div>
+
+        <!-- Slide viewer -->
+        <div class="slide-area">
+            <button class="nav-btn nav-prev" id="prevBtn" aria-label="Previous slide">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
+                </svg>
+            </button>
+
+            <div class="slide-container" id="slideContainer">
+                <canvas id="slideCanvas"></canvas>
+                <div class="loading-overlay" id="loadingOverlay">
+                    <div class="spinner"></div>
+                    <div class="loading-text">Loading pitch deck...</div>
+                </div>
             </div>
-        </div>
 
-        <button class="nav-btn nav-next" id="nextBtn" aria-label="Next slide">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
-            </svg>
-        </button>
+            <button class="nav-btn nav-next" id="nextBtn" aria-label="Next slide">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+                </svg>
+            </button>
+        </div>
     </div>
 
     <!-- Bottom Controls -->
@@ -434,7 +512,6 @@
     </div>
 
     <!-- PDF.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.min.mjs" type="module"></script>
     <script type="module">
         import * as pdfjsLib from 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.min.mjs';
 
@@ -445,6 +522,7 @@
         const canvas = document.getElementById('slideCanvas');
         const ctx = canvas.getContext('2d');
         const container = document.getElementById('slideContainer');
+        const sidebar = document.getElementById('sidebar');
         const loadingOverlay = document.getElementById('loadingOverlay');
         const pageIndicator = document.getElementById('pageIndicator');
         const progressFill = document.getElementById('progressFill');
@@ -459,6 +537,7 @@
         let totalPages = 0;
         let rendering = false;
         let pendingPage = null;
+        let thumbItems = [];
 
         async function loadPDF() {
             try {
@@ -467,10 +546,51 @@
                 updateUI();
                 await renderPage(currentPage);
                 loadingOverlay.classList.add('hidden');
+                // Render all thumbnails
+                renderAllThumbnails();
             } catch (err) {
                 loadingOverlay.querySelector('.loading-text').textContent = 'Failed to load PDF. Please try refreshing.';
                 loadingOverlay.querySelector('.spinner').style.display = 'none';
                 console.error('PDF load error:', err);
+            }
+        }
+
+        async function renderAllThumbnails() {
+            for (let i = 1; i <= totalPages; i++) {
+                const item = document.createElement('div');
+                item.className = 'thumb-item' + (i === currentPage ? ' active' : '');
+                item.dataset.page = i;
+
+                const wrapper = document.createElement('div');
+                wrapper.className = 'thumb-wrapper';
+
+                const thumbCanvas = document.createElement('canvas');
+                wrapper.appendChild(thumbCanvas);
+
+                const number = document.createElement('div');
+                number.className = 'thumb-number';
+                number.textContent = i;
+
+                item.appendChild(wrapper);
+                item.appendChild(number);
+                sidebar.appendChild(item);
+                thumbItems.push(item);
+
+                item.addEventListener('click', () => goToPage(i));
+
+                // Render thumbnail
+                const page = await pdfDoc.getPage(i);
+                const vp = page.getViewport({ scale: 1 });
+                const thumbScale = 152 / vp.width; // fit sidebar width
+                const viewport = page.getViewport({ scale: thumbScale });
+
+                thumbCanvas.width = viewport.width;
+                thumbCanvas.height = viewport.height;
+
+                await page.render({
+                    canvasContext: thumbCanvas.getContext('2d'),
+                    viewport: viewport
+                }).promise;
             }
         }
 
@@ -480,7 +600,6 @@
                 return;
             }
             rendering = true;
-
             canvas.classList.add('fading');
 
             const page = await pdfDoc.getPage(pageNum);
@@ -492,7 +611,6 @@
             const scaleY = containerHeight / originalViewport.height;
             const scale = Math.min(scaleX, scaleY);
 
-            // Render at 2x for sharpness, capped for performance
             const dpr = Math.min(window.devicePixelRatio || 1, 2);
             const viewport = page.getViewport({ scale: scale * dpr });
 
@@ -523,6 +641,17 @@
             nextBtn.disabled = atLast;
             prevBtnCtrl.disabled = atFirst;
             nextBtnCtrl.disabled = atLast;
+
+            // Update sidebar active state
+            thumbItems.forEach((item, idx) => {
+                item.classList.toggle('active', idx + 1 === currentPage);
+            });
+
+            // Scroll active thumbnail into view
+            const activeThumb = thumbItems[currentPage - 1];
+            if (activeThumb) {
+                activeThumb.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+            }
         }
 
         function goToPage(num) {
@@ -558,7 +687,7 @@
             }
         });
 
-        // Touch/swipe support
+        // Touch/swipe on main slide
         let touchStartX = 0;
         let touchStartY = 0;
         container.addEventListener('touchstart', (e) => {
