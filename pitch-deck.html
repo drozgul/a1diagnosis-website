@@ -25,6 +25,7 @@
             color: #2d3748;
             display: flex;
             flex-direction: column;
+            cursor: none;
         }
 
         /* Header */
@@ -552,6 +553,120 @@
             height: 16px;
         }
 
+        /* Custom Cursor — mouse pointer shape */
+        .cursor {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            width: 28px;
+            height: 34px;
+            transition: filter 0.15s ease, transform 0.1s ease;
+            filter: drop-shadow(0 0 6px rgba(109, 214, 109, 0.4))
+                    drop-shadow(0 0 14px rgba(109, 214, 109, 0.15));
+        }
+
+        .cursor svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .cursor.hover {
+            transform: scale(1.2);
+            filter: drop-shadow(0 0 10px rgba(144, 238, 144, 0.6))
+                    drop-shadow(0 0 22px rgba(144, 238, 144, 0.25));
+        }
+
+        .cursor.click {
+            transform: scale(0.85);
+            filter: drop-shadow(0 0 8px rgba(168, 240, 168, 0.7))
+                    drop-shadow(0 0 18px rgba(168, 240, 168, 0.3));
+        }
+
+        .cursor-trail {
+            width: 6px;
+            height: 6px;
+            background: rgba(109, 214, 109, 0.35);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9998;
+            animation: trail 0.5s ease-out forwards;
+            box-shadow: 0 0 6px rgba(109, 214, 109, 0.2);
+        }
+
+        @keyframes trail {
+            0% {
+                opacity: 0.6;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0.3);
+            }
+        }
+
+        /* Cursor speech bubble */
+        .cursor-bubble {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            background: #ffffff;
+            color: #2d3748;
+            font-size: 17px;
+            font-weight: 500;
+            line-height: 1.45;
+            padding: 14px 22px;
+            border-radius: 12px;
+            border: 1.5px solid #b2dfdb;
+            box-shadow: 0 4px 20px rgba(0, 150, 136, 0.12),
+                        0 1px 6px rgba(0, 0, 0, 0.06);
+            white-space: nowrap;
+            opacity: 0;
+            transform: translateY(4px) scale(0.92);
+            transition: opacity 0.35s ease, transform 0.35s ease;
+        }
+
+        .cursor-bubble.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        .cursor-bubble.fade-out {
+            opacity: 0;
+            transform: translateY(-4px) scale(0.92);
+        }
+
+        /* Small triangle pointer toward cursor */
+        .cursor-bubble::before {
+            content: '';
+            position: absolute;
+            left: -7px;
+            top: 12px;
+            width: 12px;
+            height: 12px;
+            background: #ffffff;
+            border-left: 1.5px solid #b2dfdb;
+            border-bottom: 1.5px solid #b2dfdb;
+            transform: rotate(45deg);
+        }
+
+        .cursor-bubble a {
+            color: #009688;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* Hide custom cursor on mobile */
+        @media (max-width: 768px) {
+            .cursor,
+            .cursor-trail {
+                display: none !important;
+            }
+            body {
+                cursor: default;
+            }
+        }
+
         /* Mobile: hide sidebar, full-width slide */
         @media (max-width: 768px) {
             .sidebar {
@@ -608,6 +723,15 @@
     </style>
 </head>
 <body>
+
+    <!-- Custom Cursor -->
+    <div class="cursor" id="customCursor">
+        <svg viewBox="0 0 28 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2 2L2 26L8.5 19.5L14 31L18.5 29L13 17L22 17L2 2Z"
+                  fill="white" stroke="#6dd66d" stroke-width="2" stroke-linejoin="round"/>
+        </svg>
+    </div>
+    <div class="cursor-bubble" id="cursorBubble"></div>
 
     <!-- Header -->
     <div class="header">
@@ -990,6 +1114,90 @@
 
         // Init
         loadPDF();
+
+        // === Custom Cursor ===
+        const cursorEl = document.getElementById('customCursor');
+        let mouseX = 0, mouseY = 0, cursorX = 0, cursorY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            createTrail(e.clientX, e.clientY);
+        });
+
+        function animateCursor() {
+            const speed = 0.15;
+            cursorX += (mouseX - cursorX) * speed;
+            cursorY += (mouseY - cursorY) * speed;
+            if (cursorEl) {
+                cursorEl.style.left = cursorX + 'px';
+                cursorEl.style.top = cursorY + 'px';
+            }
+            requestAnimationFrame(animateCursor);
+        }
+
+        let trailThrottle = 0;
+        function createTrail(x, y) {
+            const now = Date.now();
+            if (now - trailThrottle < 40) return;
+            trailThrottle = now;
+            const t = document.createElement('div');
+            t.className = 'cursor-trail';
+            t.style.left = x + 'px';
+            t.style.top = y + 'px';
+            document.body.appendChild(t);
+            setTimeout(() => { if (t.parentNode) t.remove(); }, 500);
+        }
+
+        // Hover effect on interactive elements
+        document.querySelectorAll('a, button, .thumb-item, .nav-btn, .nav-ctrl-btn, .fullscreen-btn, .download-btn').forEach(el => {
+            el.addEventListener('mouseenter', () => { if (cursorEl) cursorEl.classList.add('hover'); });
+            el.addEventListener('mouseleave', () => { if (cursorEl) cursorEl.classList.remove('hover'); });
+        });
+
+        document.addEventListener('mousedown', () => { if (cursorEl) cursorEl.classList.add('click'); });
+        document.addEventListener('mouseup', () => { if (cursorEl) cursorEl.classList.remove('click'); });
+        document.addEventListener('mouseleave', () => { if (cursorEl) cursorEl.style.opacity = '0'; });
+        document.addEventListener('mouseenter', () => { if (cursorEl) cursorEl.style.opacity = '1'; });
+
+        if (cursorEl) animateCursor();
+
+        // === Cursor Speech Bubbles ===
+        const bubbleEl = document.getElementById('cursorBubble');
+        let bubbleX = 0, bubbleY = 0;
+
+        // Keep bubble position synced with cursor
+        function animateBubble() {
+            bubbleX += (mouseX - bubbleX) * 0.12;
+            bubbleY += (mouseY - bubbleY) * 0.12;
+            if (bubbleEl) {
+                bubbleEl.style.left = (bubbleX + 32) + 'px';
+                bubbleEl.style.top = (bubbleY - 8) + 'px';
+            }
+            requestAnimationFrame(animateBubble);
+        }
+        animateBubble();
+
+        function showBubble(html, duration) {
+            bubbleEl.innerHTML = html;
+            bubbleEl.classList.remove('fade-out');
+            bubbleEl.classList.add('visible');
+
+            setTimeout(() => {
+                bubbleEl.classList.add('fade-out');
+                bubbleEl.classList.remove('visible');
+            }, duration);
+        }
+
+        // Bubble 1: appears at 0.5s, visible for 10 seconds
+        setTimeout(() => {
+            showBubble('Welcome to Our Pitch!', 10000);
+        }, 500);
+
+        // Bubble 2: 15 seconds after first disappears (0.5s + 10s + 15s = 25.5s)
+        setTimeout(() => {
+            showBubble('If you have any question, my email is <a>ozgul@A1Diagnosis.com</a>', 9000);
+        }, 25500);
     </script>
 </body>
 </html>
