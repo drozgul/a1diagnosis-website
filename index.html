@@ -24,14 +24,18 @@
     <meta name="development-timeline" content="Q1 2027 CLIA Launch">
     <meta name="regulatory-details" content="CLIA certification, CAP compliance">
     
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-27QM6KXY13"></script>
+    <!-- Google tag (gtag.js) - loaded conditionally based on cookie consent -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-27QM6KXY13');
+      if (localStorage.getItem('a1_cookie_consent') === 'accepted') {
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=G-27QM6KXY13';
+        document.head.appendChild(s);
+        gtag('js', new Date());
+        gtag('config', 'G-27QM6KXY13');
+      }
     </script>
     
     <!-- AI Model Performance Meta Tags -->
@@ -3381,6 +3385,8 @@
                         <a href="#investors">Investor Relations</a>
                         <a href="#physicians">For Physicians</a>
                         <a href="/investor-contact.html">Investor Presentation</a>
+                        <a href="/privacy-policy.html">Privacy Policy</a>
+                        <a href="#" onclick="window.a1ShowCookieConsent(); return false;">Cookie Settings</a>
                     </div>
                 </div>
 
@@ -3843,6 +3849,9 @@
             });
         });
     </script>
+
+    <!-- Cookie Consent Banner -->
+    <script src="js/cookie-consent.js"></script>
 
     <!-- A1 Diagnosis Custom Analytics - Section Timing & User Behavior -->
     <script src="js/section-analytics.js"></script>

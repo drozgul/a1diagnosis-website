@@ -43,6 +43,12 @@ class A1DiagnosisAnalytics {
     }
     
     init() {
+        // Respect cookie consent — skip analytics if user declined
+        if (localStorage.getItem('a1_cookie_consent') === 'declined') {
+            console.log('📊 A1 Diagnosis Analytics skipped (cookie consent declined)');
+            return;
+        }
+
         console.log('🚀 A1 Diagnosis Analytics initialized:', this.sessionId);
         
         // Set up intersection observer for section tracking
