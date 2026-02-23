@@ -212,7 +212,179 @@
         }
 
         .slide-container canvas.fading {
-            opacity: 0.3;
+            opacity: 0;
+        }
+
+        /* === AI Healthcare Transition Overlay === */
+        .transition-overlay {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 4;
+            overflow: hidden;
+            opacity: 0;
+            border-radius: 10px;
+        }
+
+        .transition-overlay.active {
+            opacity: 1;
+        }
+
+        /* Scanning curve — organic DNA / helix wave */
+        .scan-line {
+            position: absolute;
+            top: 0;
+            left: -15%;
+            width: 80px;
+            height: 100%;
+            filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.9))
+                    drop-shadow(0 0 25px rgba(255, 255, 255, 0.6))
+                    drop-shadow(0 0 40px rgba(144, 238, 144, 0.3));
+        }
+
+        .scan-line svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .transition-overlay.active .scan-line {
+            animation: scanSweep 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+
+        .transition-overlay.active.reverse .scan-line {
+            animation: scanSweepReverse 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+
+        @keyframes scanSweep {
+            0%   { left: -15%; opacity: 0; }
+            8%   { opacity: 1; }
+            92%  { opacity: 1; }
+            100% { left: 110%; opacity: 0; }
+        }
+
+        @keyframes scanSweepReverse {
+            0%   { left: 110%; opacity: 0; }
+            8%   { opacity: 1; }
+            92%  { opacity: 1; }
+            100% { left: -15%; opacity: 0; }
+        }
+
+        /* Subtle grid that appears behind scan line */
+        .scan-grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(0, 150, 136, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 150, 136, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            opacity: 0;
+        }
+
+        .transition-overlay.active .scan-grid {
+            animation: gridPulse 0.55s ease-out forwards;
+        }
+
+        @keyframes gridPulse {
+            0%   { opacity: 0; }
+            30%  { opacity: 1; }
+            70%  { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        /* Floating particles — DNA / data-node feel */
+        .particle-field {
+            position: absolute;
+            inset: 0;
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0;
+        }
+
+        .transition-overlay.active .particle {
+            animation: particleFloat 0.6s ease-out forwards;
+        }
+
+        @keyframes particleFloat {
+            0%   { opacity: 0; transform: scale(0) translateY(0); }
+            30%  { opacity: 0.7; transform: scale(1) translateY(-4px); }
+            100% { opacity: 0; transform: scale(0.3) translateY(-16px); }
+        }
+
+        /* Center pulse ripple — heartbeat / vitals */
+        .pulse-ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 80px;
+            height: 80px;
+            margin: -40px 0 0 -40px;
+            border-radius: 50%;
+            border: 2px solid rgba(0, 150, 136, 0.25);
+            opacity: 0;
+        }
+
+        .transition-overlay.active .pulse-ring {
+            animation: pulseExpand 0.6s ease-out forwards;
+        }
+
+        .transition-overlay.active .pulse-ring:nth-child(2) {
+            animation-delay: 0.08s;
+        }
+
+        @keyframes pulseExpand {
+            0%   { opacity: 0.5; transform: scale(0.3); }
+            100% { opacity: 0; transform: scale(4); }
+        }
+
+        /* Horizontal vitals line across center */
+        .vitals-line {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            overflow: hidden;
+            opacity: 0;
+        }
+
+        .vitals-line-inner {
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 40%;
+            height: 100%;
+            background: linear-gradient(90deg,
+                transparent,
+                rgba(0, 150, 136, 0.15),
+                rgba(129, 199, 132, 0.3),
+                rgba(0, 150, 136, 0.15),
+                transparent
+            );
+        }
+
+        .transition-overlay.active .vitals-line {
+            opacity: 1;
+        }
+
+        .transition-overlay.active .vitals-line-inner {
+            animation: vitalsTrace 0.5s ease-out forwards;
+        }
+
+        .transition-overlay.active.reverse .vitals-line-inner {
+            animation: vitalsTraceReverse 0.5s ease-out forwards;
+        }
+
+        @keyframes vitalsTrace {
+            0%   { left: -40%; }
+            100% { left: 100%; }
+        }
+
+        @keyframes vitalsTraceReverse {
+            0%   { left: 100%; }
+            100% { left: -40%; }
         }
 
         /* Loading state */
@@ -470,6 +642,42 @@
 
             <div class="slide-container" id="slideContainer">
                 <canvas id="slideCanvas"></canvas>
+
+                <!-- AI Healthcare Transition -->
+                <div class="transition-overlay" id="transitionOverlay">
+                    <div class="scan-grid"></div>
+                    <div class="scan-line">
+                        <svg viewBox="0 0 80 600" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="curveGrad" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0%" stop-color="#90ee90" stop-opacity="0"/>
+                                    <stop offset="15%" stop-color="#90ee90" stop-opacity="0.15"/>
+                                    <stop offset="40%" stop-color="#7ddf7d" stop-opacity="0.7"/>
+                                    <stop offset="50%" stop-color="#6dd66d" stop-opacity="1"/>
+                                    <stop offset="60%" stop-color="#7ddf7d" stop-opacity="0.7"/>
+                                    <stop offset="85%" stop-color="#90ee90" stop-opacity="0.15"/>
+                                    <stop offset="100%" stop-color="#90ee90" stop-opacity="0"/>
+                                </linearGradient>
+                                <filter id="glowFilter">
+                                    <feGaussianBlur stdDeviation="3" result="blur"/>
+                                    <feMerge>
+                                        <feMergeNode in="blur"/>
+                                        <feMergeNode in="SourceGraphic"/>
+                                    </feMerge>
+                                </filter>
+                            </defs>
+                            <path d="M40,0 C60,50 20,100 40,150 C60,200 20,250 40,300 C60,350 20,400 40,450 C60,500 20,550 40,600"
+                                  fill="none" stroke="url(#curveGrad)" stroke-width="3" filter="url(#glowFilter)"/>
+                            <path d="M40,0 C60,50 20,100 40,150 C60,200 20,250 40,300 C60,350 20,400 40,450 C60,500 20,550 40,600"
+                                  fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"/>
+                        </svg>
+                    </div>
+                    <div class="particle-field" id="particleField"></div>
+                    <div class="pulse-ring"></div>
+                    <div class="pulse-ring"></div>
+                    <div class="vitals-line"><div class="vitals-line-inner"></div></div>
+                </div>
+
                 <div class="loading-overlay" id="loadingOverlay">
                     <div class="spinner"></div>
                     <div class="loading-text">Loading pitch deck...</div>
@@ -532,12 +740,16 @@
         const nextBtnCtrl = document.getElementById('nextBtnCtrl');
         const fullscreenBtn = document.getElementById('fullscreenBtn');
 
+        const transitionOverlay = document.getElementById('transitionOverlay');
+        const particleField = document.getElementById('particleField');
+
         let pdfDoc = null;
         let currentPage = 1;
         let totalPages = 0;
         let rendering = false;
         let pendingPage = null;
         let thumbItems = [];
+        let transitionBusy = false;
 
         async function loadPDF() {
             try {
@@ -654,10 +866,64 @@
             }
         }
 
+        // Generate random particles for the transition
+        function spawnParticles() {
+            particleField.innerHTML = '';
+            const count = 18;
+            for (let i = 0; i < count; i++) {
+                const p = document.createElement('div');
+                p.className = 'particle';
+                const size = 3 + Math.random() * 6;
+                const x = 10 + Math.random() * 80;
+                const y = 10 + Math.random() * 80;
+                const delay = Math.random() * 0.25;
+                const green = 180 + Math.floor(Math.random() * 60); // light green range
+                const rb = 100 + Math.floor(Math.random() * 50);
+                const alpha = 0.4 + Math.random() * 0.3;
+                p.style.cssText = `
+                    width: ${size}px; height: ${size}px;
+                    left: ${x}%; top: ${y}%;
+                    background: rgba(${rb}, ${green}, ${rb}, ${alpha});
+                    animation-delay: ${delay}s;
+                    box-shadow: 0 0 ${size * 2}px rgba(${rb}, ${green}, ${rb}, 0.35),
+                                0 0 ${size * 4}px rgba(255, 255, 255, 0.25);
+                `;
+                particleField.appendChild(p);
+            }
+        }
+
+        function playTransition(direction) {
+            return new Promise(resolve => {
+                if (transitionBusy) { resolve(); return; }
+                transitionBusy = true;
+
+                spawnParticles();
+                transitionOverlay.classList.remove('active', 'reverse');
+
+                // Force reflow so animation restarts
+                void transitionOverlay.offsetWidth;
+
+                if (direction === 'prev') {
+                    transitionOverlay.classList.add('reverse');
+                }
+                transitionOverlay.classList.add('active');
+
+                setTimeout(() => {
+                    transitionOverlay.classList.remove('active', 'reverse');
+                    transitionBusy = false;
+                    resolve();
+                }, 600);
+            });
+        }
+
         function goToPage(num) {
-            if (num < 1 || num > totalPages || num === currentPage) return;
+            if (num < 1 || num > totalPages || num === currentPage || transitionBusy) return;
+            const direction = num > currentPage ? 'next' : 'prev';
             currentPage = num;
             updateUI();
+
+            // Start transition + render in parallel
+            playTransition(direction);
             renderPage(currentPage);
         }
 
