@@ -320,6 +320,48 @@
     transform: scale(1.5);
     box-shadow: 0 0 12px rgba(13, 148, 136, 0.4);
   }
+
+  /* ═══ RESPONSIVE: Laptops ≤1440px ═══ */
+  @media (max-width: 1440px) {
+    #s0 .title { font-size: 56px; }
+    #s1 .section-title { font-size: 42px; margin-bottom: 48px; }
+    .workflow-grid { gap: 24px; max-width: 1000px; }
+    .step-card { padding: 32px 20px 24px; }
+  }
+
+  /* ═══ RESPONSIVE: Small laptops ≤1280px ═══ */
+  @media (max-width: 1280px) {
+    #s0 .title { font-size: 48px; }
+    #s0 .badge { left: 42%; }
+    #s0 .divider-tagline-group { left: 36%; }
+    #s0 .tagline { font-size: 18px; }
+    #s1 { padding: 0 48px; }
+    #s1 .section-title { font-size: 36px; margin-bottom: 40px; }
+    .workflow-grid { gap: 20px; max-width: 900px; }
+    .step-card .name { font-size: 16px; }
+    .step-card .desc { font-size: 13px; }
+    .step-card .icon { width: 56px; height: 56px; }
+    #s2 .message { font-size: 36px; }
+  }
+
+  /* ═══ RESPONSIVE: ≤1024px ═══ */
+  @media (max-width: 1024px) {
+    #s0 .title { font-size: 40px; }
+    #s0 .badge { left: 44%; }
+    #s0 .badge span { font-size: 16px; }
+    #s0 .divider-tagline-group { left: 38%; }
+    #s0 .tagline { font-size: 16px; }
+    #s0 .logo { height: 55px; right: 24px; top: 24px; }
+    #s1 { padding: 0 32px; }
+    #s1 .section-title { font-size: 32px; margin-bottom: 32px; }
+    .workflow-grid { gap: 16px; max-width: 800px; }
+    .step-card { padding: 28px 16px 20px; border-radius: 16px; }
+    .step-card .icon { width: 48px; height: 48px; border-radius: 12px; }
+    .step-card .icon svg { width: 24px; height: 24px; }
+    .step-card .name { font-size: 15px; }
+    .step-card .desc { font-size: 12px; }
+    #s2 .message { font-size: 30px; }
+  }
 </style>
 </head>
 <body>
