@@ -2939,6 +2939,8 @@
             <button class="nav-button" onclick="showSection('clia-related-info')" style="background: linear-gradient(135deg, #e0f7ff 0%, #b3e5fc 100%); border: 1px solid #80deea; color: #01579b; opacity: 0.9; font-size: 12px; font-style: italic;">📋 Appendix - CLIA Related Info</button>
             <button class="nav-button" onclick="showSection('power-of-peptides')" style="background: linear-gradient(135deg, #f0fdfa 0%, #ccfbf1 100%); border: 1px solid #5eead4; color: #0d9488; opacity: 0.9; font-size: 12px; font-style: italic;">📋 Appendix - Power of Peptides</button>
             <button class="nav-button" onclick="showSection('cancerguard-clia')" style="background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%); border: 1px solid #7dd3fc; color: #0c4a6e; opacity: 0.9; font-size: 12px; font-style: italic;">📋 Appendix - CancerGuard CLIA Document</button>
+            <button class="nav-button" onclick="showSection('undiagnosed-amd-studies')" style="background: linear-gradient(135deg, #e0fff4 0%, #b2f5ea 100%); border: 1px solid #38d9a9; color: #087f5b; opacity: 0.9; font-size: 12px; font-style: italic;">📋 Appendix - Undiagnosed AMD Studies</button>
+            <button class="nav-button" onclick="showSection('amd-epidemiology')" style="background: linear-gradient(135deg, #e0f2fe 0%, #bfdbfe 100%); border: 1px solid #93c5fd; color: #1e40af; opacity: 0.9; font-size: 12px; font-style: italic;">📋 Appendix - AMD Epidemiology by Age</button>
         </div>
     </div>
     
@@ -7546,9 +7548,928 @@
                 </div>
             </div>
         </div>
-        
+
+        <!-- ==================== APPENDIX: UNDIAGNOSED AMD STUDIES ==================== -->
+        <div class="section" id="undiagnosed-amd-studies">
+            <h2>📋 Appendix - Undiagnosed AMD: Published Evidence</h2>
+            <p style="margin-bottom: 10px; color: #374151; font-size: 14px; line-height: 1.7;">
+                A growing body of peer-reviewed research demonstrates that age-related macular degeneration is dramatically underdiagnosed worldwide. These studies validate the urgent need for accessible, scalable screening tools — the core mission of A1 Diagnosis.
+            </p>
+
+            <!-- Key Takeaway Banner -->
+            <div style="background: linear-gradient(135deg, #0d9488 0%, #14b8a6 50%, #06b6d4 100%); border-radius: 16px; padding: 24px 35px; margin-bottom: 30px; display: flex; align-items: center; gap: 20px; box-shadow: 0 8px 25px rgba(13, 148, 136, 0.25);">
+                <div style="flex-shrink: 0; width: 56px; height: 56px; background: rgba(255,255,255,0.18); border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 2px solid rgba(255,255,255,0.25);">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                </div>
+                <div>
+                    <p style="color: white; font-size: 16px; font-weight: 700; margin: 0 0 4px 0;">The Evidence Is Clear</p>
+                    <p style="color: rgba(255,255,255,0.92); font-size: 14px; margin: 0; line-height: 1.5;">25% of AMD cases are missed by eye doctors in the U.S. &bull; 19.8M Americans have AMD — 2.75x higher than previous estimates &bull; 70% of patients are unaware until late-stage disease</p>
+                </div>
+            </div>
+
+            <!-- Studies Grid -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-bottom: 30px;">
+
+                <!-- Study 1 -->
+                <div style="background: white; border-radius: 18px; padding: 28px; border: 1px solid #5eead4; box-shadow: 0 4px 15px rgba(20, 184, 166, 0.08); transition: all 0.3s ease; position: relative; overflow: hidden;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 12px 35px rgba(20, 184, 166, 0.18)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(20, 184, 166, 0.08)'">
+                    <div style="position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #14b8a6, #0d9488);"></div>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                        <span style="background: linear-gradient(135deg, #14b8a6, #0d9488); color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; flex-shrink: 0;">1</span>
+                        <span style="background: linear-gradient(135deg, #f0fdfa, #ccfbf1); color: #0d9488; padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 600;">U.S. Primary Eye Care</span>
+                    </div>
+                    <h4 style="color: #134e4a; font-size: 15px; font-weight: 700; margin-bottom: 8px; line-height: 1.4;">Prevalence of Undiagnosed AMD in Primary Eye Care</h4>
+                    <p style="color: #0f766e; font-size: 12px; font-weight: 600; margin-bottom: 12px;">Neely et al. &bull; JAMA Ophthalmology &bull; 2017</p>
+                    <div style="background: linear-gradient(135deg, #f0fdfa, #ccfbf1); border-radius: 12px; padding: 14px; margin-bottom: 14px;">
+                        <div style="display: flex; align-items: baseline; gap: 8px; margin-bottom: 6px;">
+                            <span style="font-size: 28px; font-weight: 800; color: #0d9488;">25%</span>
+                            <span style="font-size: 12px; color: #115e59; font-weight: 500;">of eyes had undiagnosed AMD</span>
+                        </div>
+                        <p style="font-size: 12px; color: #115e59; margin: 0; line-height: 1.5;">644 patients aged 60+ deemed "normal" by eye doctors. 30% of undiagnosed eyes had large drusen treatable with AREDS supplements.</p>
+                    </div>
+                    <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px;">
+                        <span style="background: linear-gradient(135deg, rgba(20,184,166,0.08), rgba(20,184,166,0.15)); color: #0d9488; padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 600;">n = 1,288 eyes</span>
+                        <span style="background: linear-gradient(135deg, rgba(20,184,166,0.08), rgba(20,184,166,0.15)); color: #0d9488; padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 600;">Cross-sectional</span>
+                        <span style="background: linear-gradient(135deg, rgba(20,184,166,0.08), rgba(20,184,166,0.15)); color: #0d9488; padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 600;">Birmingham, AL</span>
+                    </div>
+                    <a href="https://jamanetwork.com/journals/jamaophthalmology/fullarticle/2621881" target="_blank" style="display: inline-flex; align-items: center; gap: 6px; color: #0d9488; font-size: 12px; font-weight: 600; text-decoration: none; padding: 6px 14px; border: 1px solid #5eead4; border-radius: 20px; transition: all 0.2s ease;" onmouseover="this.style.background='#f0fdfa'; this.style.borderColor='#14b8a6'" onmouseout="this.style.background='transparent'; this.style.borderColor='#5eead4'">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+                        JAMA Ophthalmology
+                    </a>
+                    <a href="https://pubmed.ncbi.nlm.nih.gov/28448669/" target="_blank" style="display: inline-flex; align-items: center; gap: 6px; color: #0891b2; font-size: 12px; font-weight: 600; text-decoration: none; padding: 6px 14px; border: 1px solid #67e8f9; border-radius: 20px; margin-left: 6px; transition: all 0.2s ease;" onmouseover="this.style.background='#ecfeff'; this.style.borderColor='#06b6d4'" onmouseout="this.style.background='transparent'; this.style.borderColor='#67e8f9'">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+                        PubMed
+                    </a>
+                </div>
+
+                <!-- Study 2 -->
+                <div style="background: white; border-radius: 18px; padding: 28px; border: 1px solid #86efac; box-shadow: 0 4px 15px rgba(34, 197, 94, 0.08); transition: all 0.3s ease; position: relative; overflow: hidden;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 12px 35px rgba(34, 197, 94, 0.18)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(34, 197, 94, 0.08)'">
+                    <div style="position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #22c55e, #16a34a);"></div>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                        <span style="background: linear-gradient(135deg, #22c55e, #16a34a); color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; flex-shrink: 0;">2</span>
+                        <span style="background: linear-gradient(135deg, #f0fdf4, #dcfce7); color: #16a34a; padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 600;">U.S. Prevalence</span>
+                    </div>
+                    <h4 style="color: #14532d; font-size: 15px; font-weight: 700; margin-bottom: 8px; line-height: 1.4;">Prevalence of Age-Related Macular Degeneration in the US in 2019</h4>
+                    <p style="color: #15803d; font-size: 12px; font-weight: 600; margin-bottom: 12px;">Rein et al. &bull; JAMA Ophthalmology &bull; 2022</p>
+                    <div style="background: linear-gradient(135deg, #f0fdf4, #dcfce7); border-radius: 12px; padding: 14px; margin-bottom: 14px;">
+                        <div style="display: flex; align-items: baseline; gap: 8px; margin-bottom: 6px;">
+                            <span style="font-size: 28px; font-weight: 800; color: #16a34a;">19.8M</span>
+                            <span style="font-size: 12px; color: #166534; font-weight: 500;">Americans living with AMD</span>
+                        </div>
+                        <p style="font-size: 12px; color: #166534; margin: 0; line-height: 1.5;">2.75x higher than previous estimates. 18.34M with early-stage AMD, 1.49M with late-stage. Claims-based data systematically miss undiagnosed cases.</p>
+                    </div>
+                    <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px;">
+                        <span style="background: linear-gradient(135deg, rgba(34,197,94,0.08), rgba(34,197,94,0.15)); color: #16a34a; padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 600;">12.6% prevalence</span>
+                        <span style="background: linear-gradient(135deg, rgba(34,197,94,0.08), rgba(34,197,94,0.15)); color: #16a34a; padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 600;">Ages 40+</span>
+                        <span style="background: linear-gradient(135deg, rgba(34,197,94,0.08), rgba(34,197,94,0.15)); color: #16a34a; padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 600;">NORC Analysis</span>
+                    </div>
+                    <a href="https://jamanetwork.com/journals/jamaophthalmology/fullarticle/2797921" target="_blank" style="display: inline-flex; align-items: center; gap: 6px; color: #16a34a; font-size: 12px; font-weight: 600; text-decoration: none; padding: 6px 14px; border: 1px solid #86efac; border-radius: 20px; transition: all 0.2s ease;" onmouseover="this.style.background='#f0fdf4'; this.style.borderColor='#22c55e'" onmouseout="this.style.background='transparent'; this.style.borderColor='#86efac'">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+                        JAMA Ophthalmology
+                    </a>
+                    <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9634594/" target="_blank" style="display: inline-flex; align-items: center; gap: 6px; color: #0891b2; font-size: 12px; font-weight: 600; text-decoration: none; padding: 6px 14px; border: 1px solid #67e8f9; border-radius: 20px; margin-left: 6px; transition: all 0.2s ease;" onmouseover="this.style.background='#ecfeff'; this.style.borderColor='#06b6d4'" onmouseout="this.style.background='transparent'; this.style.borderColor='#67e8f9'">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+                        PMC
+                    </a>
+                </div>
+
+                <!-- Study 4 -->
+                <div style="background: white; border-radius: 18px; padding: 28px; border: 1px solid #93c5fd; box-shadow: 0 4px 15px rgba(59, 130, 246, 0.08); transition: all 0.3s ease; position: relative; overflow: hidden;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 12px 35px rgba(59, 130, 246, 0.18)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(59, 130, 246, 0.08)'">
+                    <div style="position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #3b82f6, #1d4ed8);"></div>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                        <span style="background: linear-gradient(135deg, #3b82f6, #1d4ed8); color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; flex-shrink: 0;">3</span>
+                        <span style="background: linear-gradient(135deg, #eff6ff, #dbeafe); color: #1d4ed8; padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 600;">Global Meta-Analysis</span>
+                    </div>
+                    <h4 style="color: #1e3a5f; font-size: 15px; font-weight: 700; margin-bottom: 8px; line-height: 1.4;">Global Prevalence of AMD and Disease Burden Projection for 2020 and 2040</h4>
+                    <p style="color: #1d4ed8; font-size: 12px; font-weight: 600; margin-bottom: 12px;">Wong et al. &bull; The Lancet Global Health &bull; 2014</p>
+                    <div style="background: linear-gradient(135deg, #eff6ff, #dbeafe); border-radius: 12px; padding: 14px; margin-bottom: 14px;">
+                        <div style="display: flex; align-items: baseline; gap: 8px; margin-bottom: 6px;">
+                            <span style="font-size: 28px; font-weight: 800; color: #1d4ed8;">288M</span>
+                            <span style="font-size: 12px; color: #1e40af; font-weight: 500;">projected cases globally by 2040</span>
+                        </div>
+                        <p style="font-size: 12px; color: #1e40af; margin: 0; line-height: 1.5;">39 studies, 129,664 individuals. Early AMD prevalence 8.01%. 196M affected in 2020. Higher prevalence in Europeans than Asians or Africans.</p>
+                    </div>
+                    <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px;">
+                        <span style="background: linear-gradient(135deg, rgba(59,130,246,0.08), rgba(59,130,246,0.15)); color: #1d4ed8; padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 600;">39 studies</span>
+                        <span style="background: linear-gradient(135deg, rgba(59,130,246,0.08), rgba(59,130,246,0.15)); color: #1d4ed8; padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 600;">Systematic review</span>
+                        <span style="background: linear-gradient(135deg, rgba(59,130,246,0.08), rgba(59,130,246,0.15)); color: #1d4ed8; padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 600;">n = 129,664</span>
+                    </div>
+                    <a href="https://www.thelancet.com/journals/langlo/article/PIIS2214-109X(13)70145-1/fulltext" target="_blank" style="display: inline-flex; align-items: center; gap: 6px; color: #1d4ed8; font-size: 12px; font-weight: 600; text-decoration: none; padding: 6px 14px; border: 1px solid #93c5fd; border-radius: 20px; transition: all 0.2s ease;" onmouseover="this.style.background='#eff6ff'; this.style.borderColor='#3b82f6'" onmouseout="this.style.background='transparent'; this.style.borderColor='#93c5fd'">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+                        The Lancet Global Health
+                    </a>
+                </div>
+
+                <!-- Study 5 -->
+                <div style="background: white; border-radius: 18px; padding: 28px; border: 1px solid #5eead4; box-shadow: 0 4px 15px rgba(20, 184, 166, 0.08); transition: all 0.3s ease; position: relative; overflow: hidden;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 12px 35px rgba(20, 184, 166, 0.18)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(20, 184, 166, 0.08)'">
+                    <div style="position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #14b8a6, #0d9488);"></div>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                        <span style="background: linear-gradient(135deg, #14b8a6, #0d9488); color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; flex-shrink: 0;">4</span>
+                        <span style="background: linear-gradient(135deg, #f0fdfa, #ccfbf1); color: #0d9488; padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 600;">Dark Adaptation Screening</span>
+                    </div>
+                    <h4 style="color: #134e4a; font-size: 15px; font-weight: 700; margin-bottom: 8px; line-height: 1.4;">Diagnostic Sensitivity and Specificity of Dark Adaptometry for Detection of AMD</h4>
+                    <p style="color: #0f766e; font-size: 12px; font-weight: 600; margin-bottom: 12px;">Jackson et al. &bull; Invest. Ophthalmol. Vis. Sci. &bull; 2014</p>
+                    <div style="background: linear-gradient(135deg, #f0fdfa, #ccfbf1); border-radius: 12px; padding: 14px; margin-bottom: 14px;">
+                        <div style="display: flex; align-items: baseline; gap: 8px; margin-bottom: 6px;">
+                            <span style="font-size: 28px; font-weight: 800; color: #0d9488;">>90%</span>
+                            <span style="font-size: 12px; color: #115e59; font-weight: 500;">sensitivity &amp; specificity</span>
+                        </div>
+                        <p style="font-size: 12px; color: #115e59; margin: 0; line-height: 1.5;">Outperformed slit lamp biomicroscopy by retina specialists (~82% sensitivity). Up to 70% of patients unaware they have AMD until late-stage. Functional deficits exist before structural changes.</p>
+                    </div>
+                    <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px;">
+                        <span style="background: linear-gradient(135deg, rgba(20,184,166,0.08), rgba(20,184,166,0.15)); color: #0d9488; padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 600;">n = 148 patients</span>
+                        <span style="background: linear-gradient(135deg, rgba(20,184,166,0.08), rgba(20,184,166,0.15)); color: #0d9488; padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 600;">Multicenter</span>
+                        <span style="background: linear-gradient(135deg, rgba(20,184,166,0.08), rgba(20,184,166,0.15)); color: #0d9488; padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 600;">Rapid test ≤6.5 min</span>
+                    </div>
+                    <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3954002/" target="_blank" style="display: inline-flex; align-items: center; gap: 6px; color: #0d9488; font-size: 12px; font-weight: 600; text-decoration: none; padding: 6px 14px; border: 1px solid #5eead4; border-radius: 20px; transition: all 0.2s ease;" onmouseover="this.style.background='#f0fdfa'; this.style.borderColor='#14b8a6'" onmouseout="this.style.background='transparent'; this.style.borderColor='#5eead4'">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+                        PMC Full Text
+                    </a>
+                </div>
+
+                <!-- Study 6 -->
+                <div style="background: white; border-radius: 18px; padding: 28px; border: 1px solid #67e8f9; box-shadow: 0 4px 15px rgba(6, 182, 212, 0.08); transition: all 0.3s ease; position: relative; overflow: hidden;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 12px 35px rgba(6, 182, 212, 0.18)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(6, 182, 212, 0.08)'">
+                    <div style="position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #06b6d4, #0891b2);"></div>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                        <span style="background: linear-gradient(135deg, #06b6d4, #0891b2); color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; flex-shrink: 0;">5</span>
+                        <span style="background: linear-gradient(135deg, #ecfeff, #cffafe); color: #0891b2; padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 600;">Screening Effectiveness</span>
+                    </div>
+                    <h4 style="color: #164e63; font-size: 15px; font-weight: 700; margin-bottom: 8px; line-height: 1.4;">Clinical Effectiveness of Screening for AMD: A Systematic Review</h4>
+                    <p style="color: #0e7490; font-size: 12px; font-weight: 600; margin-bottom: 12px;">PLOS ONE &bull; 2023</p>
+                    <div style="background: linear-gradient(135deg, #ecfeff, #cffafe); border-radius: 12px; padding: 14px; margin-bottom: 14px;">
+                        <div style="display: flex; align-items: baseline; gap: 8px; margin-bottom: 6px;">
+                            <span style="font-size: 28px; font-weight: 800; color: #0891b2;">3 of 5,290</span>
+                            <span style="font-size: 12px; color: #155e75; font-weight: 500;">studies met inclusion criteria</span>
+                        </div>
+                        <p style="font-size: 12px; color: #155e75; margin: 0; line-height: 1.5;">8,733 individuals (16,780 eyes) analyzed. OCT and telemedicine showed promising screening results. Evidence for effective AMD screening remains extremely limited.</p>
+                    </div>
+                    <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px;">
+                        <span style="background: linear-gradient(135deg, rgba(6,182,212,0.08), rgba(6,182,212,0.15)); color: #0891b2; padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 600;">Systematic review</span>
+                        <span style="background: linear-gradient(135deg, rgba(6,182,212,0.08), rgba(6,182,212,0.15)); color: #0891b2; padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 600;">16,780 eyes</span>
+                        <span style="background: linear-gradient(135deg, rgba(6,182,212,0.08), rgba(6,182,212,0.15)); color: #0891b2; padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 600;">OCT + Telemedicine</span>
+                    </div>
+                    <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0294398" target="_blank" style="display: inline-flex; align-items: center; gap: 6px; color: #0891b2; font-size: 12px; font-weight: 600; text-decoration: none; padding: 6px 14px; border: 1px solid #67e8f9; border-radius: 20px; transition: all 0.2s ease;" onmouseover="this.style.background='#ecfeff'; this.style.borderColor='#06b6d4'" onmouseout="this.style.background='transparent'; this.style.borderColor='#67e8f9'">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+                        PLOS ONE
+                    </a>
+                    <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10653496/" target="_blank" style="display: inline-flex; align-items: center; gap: 6px; color: #0d9488; font-size: 12px; font-weight: 600; text-decoration: none; padding: 6px 14px; border: 1px solid #5eead4; border-radius: 20px; margin-left: 6px; transition: all 0.2s ease;" onmouseover="this.style.background='#f0fdfa'; this.style.borderColor='#14b8a6'" onmouseout="this.style.background='transparent'; this.style.borderColor='#5eead4'">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+                        PMC
+                    </a>
+                </div>
+
+                <!-- Study 7 -->
+                <div style="background: white; border-radius: 18px; padding: 28px; border: 1px solid #86efac; box-shadow: 0 4px 15px rgba(34, 197, 94, 0.08); transition: all 0.3s ease; position: relative; overflow: hidden;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 12px 35px rgba(34, 197, 94, 0.18)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(34, 197, 94, 0.08)'">
+                    <div style="position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #22c55e, #16a34a);"></div>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                        <span style="background: linear-gradient(135deg, #22c55e, #16a34a); color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; flex-shrink: 0;">6</span>
+                        <span style="background: linear-gradient(135deg, #f0fdf4, #dcfce7); color: #16a34a; padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 600;">CDC Surveillance</span>
+                    </div>
+                    <h4 style="color: #14532d; font-size: 15px; font-weight: 700; margin-bottom: 8px; line-height: 1.4;">VEHSS Modeled Estimates: Age-Related Macular Degeneration Prevalence</h4>
+                    <p style="color: #15803d; font-size: 12px; font-weight: 600; margin-bottom: 12px;">CDC &bull; Vision and Eye Health Surveillance System &bull; Ongoing</p>
+                    <div style="background: linear-gradient(135deg, #f0fdf4, #dcfce7); border-radius: 12px; padding: 14px; margin-bottom: 14px;">
+                        <div style="display: flex; align-items: baseline; gap: 8px; margin-bottom: 6px;">
+                            <span style="font-size: 28px; font-weight: 800; color: #16a34a;">6.2–18.3%</span>
+                            <span style="font-size: 12px; color: #166534; font-weight: 500;">prevalence range by U.S. state</span>
+                        </div>
+                        <p style="font-size: 12px; color: #166534; margin: 0; line-height: 1.5;">Early AMD: 9.9%–19.5% for ages 50+. Late-stage AMD: 1.1%–3.9%. Diagnosed prevalence misses undiagnosed conditions and patients without visits in the calendar year.</p>
+                    </div>
+                    <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px;">
+                        <span style="background: linear-gradient(135deg, rgba(34,197,94,0.08), rgba(34,197,94,0.15)); color: #16a34a; padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 600;">National data</span>
+                        <span style="background: linear-gradient(135deg, rgba(34,197,94,0.08), rgba(34,197,94,0.15)); color: #16a34a; padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 600;">State-level</span>
+                        <span style="background: linear-gradient(135deg, rgba(34,197,94,0.08), rgba(34,197,94,0.15)); color: #16a34a; padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 600;">Ages 50+</span>
+                    </div>
+                    <a href="https://www.cdc.gov/vision-health-data/prevalence-estimates/amd-prevalence.html" target="_blank" style="display: inline-flex; align-items: center; gap: 6px; color: #16a34a; font-size: 12px; font-weight: 600; text-decoration: none; padding: 6px 14px; border: 1px solid #86efac; border-radius: 20px; transition: all 0.2s ease;" onmouseover="this.style.background='#f0fdf4'; this.style.borderColor='#22c55e'" onmouseout="this.style.background='transparent'; this.style.borderColor='#86efac'">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+                        CDC VEHSS
+                    </a>
+                    <a href="https://preventblindness.org/amd-prevalence-vehss/" target="_blank" style="display: inline-flex; align-items: center; gap: 6px; color: #0891b2; font-size: 12px; font-weight: 600; text-decoration: none; padding: 6px 14px; border: 1px solid #67e8f9; border-radius: 20px; margin-left: 6px; transition: all 0.2s ease;" onmouseover="this.style.background='#ecfeff'; this.style.borderColor='#06b6d4'" onmouseout="this.style.background='transparent'; this.style.borderColor='#67e8f9'">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+                        Prevent Blindness
+                    </a>
+                </div>
+
+                <!-- Study 8 -->
+                <div style="background: white; border-radius: 18px; padding: 28px; border: 1px solid #93c5fd; box-shadow: 0 4px 15px rgba(59, 130, 246, 0.08); transition: all 0.3s ease; position: relative; overflow: hidden;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 12px 35px rgba(59, 130, 246, 0.18)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(59, 130, 246, 0.08)'">
+                    <div style="position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #3b82f6, #0891b2);"></div>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                        <span style="background: linear-gradient(135deg, #3b82f6, #0891b2); color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; flex-shrink: 0;">7</span>
+                        <span style="background: linear-gradient(135deg, #eff6ff, #dbeafe); color: #1d4ed8; padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 600;">Global Burden</span>
+                    </div>
+                    <h4 style="color: #1e3a5f; font-size: 15px; font-weight: 700; margin-bottom: 8px; line-height: 1.4;">Global Burden of Low Vision and Blindness Due to AMD from 1990 to 2021</h4>
+                    <p style="color: #1d4ed8; font-size: 12px; font-weight: 600; margin-bottom: 12px;">BMC Public Health &bull; 2024</p>
+                    <div style="background: linear-gradient(135deg, #eff6ff, #dbeafe); border-radius: 12px; padding: 14px; margin-bottom: 14px;">
+                        <div style="display: flex; align-items: baseline; gap: 8px; margin-bottom: 6px;">
+                            <span style="font-size: 28px; font-weight: 800; color: #1d4ed8;">1990–2021</span>
+                            <span style="font-size: 12px; color: #1e40af; font-weight: 500;">30+ years of burden data</span>
+                        </div>
+                        <p style="font-size: 12px; color: #1e40af; margin: 0; line-height: 1.5;">Increasing global burden driven by aging populations. Insufficient screening efforts contribute to underdiagnosis. Anti-VEGF slows progression but cannot reverse the trend.</p>
+                    </div>
+                    <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px;">
+                        <span style="background: linear-gradient(135deg, rgba(59,130,246,0.08), rgba(59,130,246,0.15)); color: #1d4ed8; padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 600;">Global scope</span>
+                        <span style="background: linear-gradient(135deg, rgba(59,130,246,0.08), rgba(59,130,246,0.15)); color: #1d4ed8; padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 600;">GBD 2021 data</span>
+                        <span style="background: linear-gradient(135deg, rgba(59,130,246,0.08), rgba(59,130,246,0.15)); color: #1d4ed8; padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 600;">Projections to 2050</span>
+                    </div>
+                    <a href="https://bmcpublichealth.biomedcentral.com/articles/10.1186/s12889-024-21047-x" target="_blank" style="display: inline-flex; align-items: center; gap: 6px; color: #1d4ed8; font-size: 12px; font-weight: 600; text-decoration: none; padding: 6px 14px; border: 1px solid #93c5fd; border-radius: 20px; transition: all 0.2s ease;" onmouseover="this.style.background='#eff6ff'; this.style.borderColor='#3b82f6'" onmouseout="this.style.background='transparent'; this.style.borderColor='#93c5fd'">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+                        BMC Public Health
+                    </a>
+                </div>
+
+            </div>
+
+            <!-- Implication for A1 Diagnosis -->
+            <div style="background: linear-gradient(135deg, #ffffff 0%, #f0fdfa 25%, #ccfbf1 50%, #99f6e4 75%, #5eead4 100%); border-radius: 20px; padding: 35px; margin-bottom: 30px; position: relative; overflow: hidden; border: 1px solid rgba(94, 234, 212, 0.3); box-shadow: 0 12px 40px rgba(20, 184, 166, 0.12);">
+                <div style="position: absolute; top: -30px; right: -30px; width: 100px; height: 100px; background: radial-gradient(circle, rgba(20,184,166,0.08) 0%, transparent 70%); border-radius: 50%;"></div>
+                <h3 style="font-size: 18px; font-weight: 700; color: #134e4a; margin-bottom: 16px; display: flex; align-items: center; gap: 10px;">
+                    <span style="background: linear-gradient(135deg, #14b8a6, #0d9488); color: white; width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                    </span>
+                    Why This Matters for A1 Diagnosis
+                </h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px;">
+                    <div style="background: white; border-radius: 14px; padding: 20px; border: 1px solid rgba(20,184,166,0.15); text-align: center;">
+                        <div style="font-size: 32px; font-weight: 800; background: linear-gradient(135deg, #0d9488, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 6px;">Massive Gap</div>
+                        <p style="font-size: 12px; color: #115e59; margin: 0; line-height: 1.5;">Current screening tools are insufficient — only 3 of 5,290 studies showed effective screening methods</p>
+                    </div>
+                    <div style="background: white; border-radius: 14px; padding: 20px; border: 1px solid rgba(20,184,166,0.15); text-align: center;">
+                        <div style="font-size: 32px; font-weight: 800; background: linear-gradient(135deg, #0d9488, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 6px;">Blood Test</div>
+                        <p style="font-size: 12px; color: #115e59; margin: 0; line-height: 1.5;">A simple blood draw can be done at any primary care visit — no eye exam equipment needed</p>
+                    </div>
+                    <div style="background: white; border-radius: 14px; padding: 20px; border: 1px solid rgba(20,184,166,0.15); text-align: center;">
+                        <div style="font-size: 32px; font-weight: 800; background: linear-gradient(135deg, #0d9488, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 6px;">Early Detect</div>
+                        <p style="font-size: 12px; color: #115e59; margin: 0; line-height: 1.5;">Peptide biomarkers can detect AMD risk before symptoms appear — when intervention is most effective</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Full References List -->
+            <div style="background: white; border-radius: 18px; padding: 30px; border: 1px solid #5eead4; box-shadow: 0 4px 15px rgba(20, 184, 166, 0.06);">
+                <h3 style="font-size: 17px; font-weight: 700; color: #134e4a; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 2px solid #5eead4; display: flex; align-items: center; gap: 8px;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="#0d9488"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg>
+                    References
+                </h3>
+                <ol style="padding-left: 20px; margin: 0; list-style: none; counter-reset: ref-counter;">
+                    <li style="counter-increment: ref-counter; margin-bottom: 16px; padding: 14px 16px; border-radius: 12px; border-left: 3px solid #14b8a6; background: linear-gradient(135deg, #f0fdfa, #ffffff); position: relative; padding-left: 45px;">
+                        <span style="position: absolute; left: 12px; top: 14px; background: linear-gradient(135deg, #14b8a6, #0d9488); color: white; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700;">1</span>
+                        <p style="margin: 0; font-size: 13px; color: #1e293b; line-height: 1.6;">Neely DC, Bray KJ, Huisingh CE, Clark ME, McGwin G Jr, Owsley C. <strong>Prevalence of Undiagnosed Age-Related Macular Degeneration in Primary Eye Care.</strong> <em>JAMA Ophthalmology.</em> 2017;135(6):570-575.</p>
+                        <div style="margin-top: 8px; display: flex; gap: 8px; flex-wrap: wrap;">
+                            <a href="https://jamanetwork.com/journals/jamaophthalmology/fullarticle/2621881" target="_blank" style="color: #0d9488; font-size: 11px; font-weight: 600; text-decoration: none; padding: 3px 10px; border: 1px solid #5eead4; border-radius: 12px; transition: all 0.2s ease;" onmouseover="this.style.background='#f0fdfa'" onmouseout="this.style.background='transparent'">JAMA Ophthalmology</a>
+                            <a href="https://pubmed.ncbi.nlm.nih.gov/28448669/" target="_blank" style="color: #0891b2; font-size: 11px; font-weight: 600; text-decoration: none; padding: 3px 10px; border: 1px solid #67e8f9; border-radius: 12px; transition: all 0.2s ease;" onmouseover="this.style.background='#ecfeff'" onmouseout="this.style.background='transparent'">PubMed: 28448669</a>
+                            <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5847085/" target="_blank" style="color: #16a34a; font-size: 11px; font-weight: 600; text-decoration: none; padding: 3px 10px; border: 1px solid #86efac; border-radius: 12px; transition: all 0.2s ease;" onmouseover="this.style.background='#f0fdf4'" onmouseout="this.style.background='transparent'">PMC: 5847085</a>
+                        </div>
+                    </li>
+                    <li style="counter-increment: ref-counter; margin-bottom: 16px; padding: 14px 16px; border-radius: 12px; border-left: 3px solid #22c55e; background: linear-gradient(135deg, #f0fdf4, #ffffff); position: relative; padding-left: 45px;">
+                        <span style="position: absolute; left: 12px; top: 14px; background: linear-gradient(135deg, #22c55e, #16a34a); color: white; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700;">2</span>
+                        <p style="margin: 0; font-size: 13px; color: #1e293b; line-height: 1.6;">Rein DB, Wittenborn JS, Burke-Conte Z, et al. <strong>Prevalence of Age-Related Macular Degeneration in the US in 2019.</strong> <em>JAMA Ophthalmology.</em> 2022;140(12):1202-1208.</p>
+                        <div style="margin-top: 8px; display: flex; gap: 8px; flex-wrap: wrap;">
+                            <a href="https://jamanetwork.com/journals/jamaophthalmology/fullarticle/2797921" target="_blank" style="color: #16a34a; font-size: 11px; font-weight: 600; text-decoration: none; padding: 3px 10px; border: 1px solid #86efac; border-radius: 12px; transition: all 0.2s ease;" onmouseover="this.style.background='#f0fdf4'" onmouseout="this.style.background='transparent'">JAMA Ophthalmology</a>
+                            <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9634594/" target="_blank" style="color: #0891b2; font-size: 11px; font-weight: 600; text-decoration: none; padding: 3px 10px; border: 1px solid #67e8f9; border-radius: 12px; transition: all 0.2s ease;" onmouseover="this.style.background='#ecfeff'" onmouseout="this.style.background='transparent'">PMC: 9634594</a>
+                        </div>
+                    </li>
+                    <li style="counter-increment: ref-counter; margin-bottom: 16px; padding: 14px 16px; border-radius: 12px; border-left: 3px solid #3b82f6; background: linear-gradient(135deg, #eff6ff, #ffffff); position: relative; padding-left: 45px;">
+                        <span style="position: absolute; left: 12px; top: 14px; background: linear-gradient(135deg, #3b82f6, #1d4ed8); color: white; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700;">3</span>
+                        <p style="margin: 0; font-size: 13px; color: #1e293b; line-height: 1.6;">Wong WL, Su X, Li X, et al. <strong>Global prevalence of age-related macular degeneration and disease burden projection for 2020 and 2040: a systematic review and meta-analysis.</strong> <em>The Lancet Global Health.</em> 2014;2(2):e106-e116.</p>
+                        <div style="margin-top: 8px;">
+                            <a href="https://www.thelancet.com/journals/langlo/article/PIIS2214-109X(13)70145-1/fulltext" target="_blank" style="color: #1d4ed8; font-size: 11px; font-weight: 600; text-decoration: none; padding: 3px 10px; border: 1px solid #93c5fd; border-radius: 12px; transition: all 0.2s ease;" onmouseover="this.style.background='#eff6ff'" onmouseout="this.style.background='transparent'">The Lancet Global Health</a>
+                        </div>
+                    </li>
+                    <li style="counter-increment: ref-counter; margin-bottom: 16px; padding: 14px 16px; border-radius: 12px; border-left: 3px solid #14b8a6; background: linear-gradient(135deg, #f0fdfa, #ffffff); position: relative; padding-left: 45px;">
+                        <span style="position: absolute; left: 12px; top: 14px; background: linear-gradient(135deg, #14b8a6, #0d9488); color: white; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700;">4</span>
+                        <p style="margin: 0; font-size: 13px; color: #1e293b; line-height: 1.6;">Jackson GR, Scott IU, Kim IK, Quillen DA, Iannaccone A, Edwards JG. <strong>Diagnostic sensitivity and specificity of dark adaptometry for detection of age-related macular degeneration.</strong> <em>Investigative Ophthalmology &amp; Visual Science.</em> 2014;55(3):1427-1431.</p>
+                        <div style="margin-top: 8px;">
+                            <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3954002/" target="_blank" style="color: #0d9488; font-size: 11px; font-weight: 600; text-decoration: none; padding: 3px 10px; border: 1px solid #5eead4; border-radius: 12px; transition: all 0.2s ease;" onmouseover="this.style.background='#f0fdfa'" onmouseout="this.style.background='transparent'">PMC: 3954002</a>
+                        </div>
+                    </li>
+                    <li style="counter-increment: ref-counter; margin-bottom: 16px; padding: 14px 16px; border-radius: 12px; border-left: 3px solid #06b6d4; background: linear-gradient(135deg, #ecfeff, #ffffff); position: relative; padding-left: 45px;">
+                        <span style="position: absolute; left: 12px; top: 14px; background: linear-gradient(135deg, #06b6d4, #0891b2); color: white; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700;">5</span>
+                        <p style="margin: 0; font-size: 13px; color: #1e293b; line-height: 1.6;"><strong>Clinical effectiveness of screening for age-related macular degeneration: A systematic review.</strong> <em>PLOS ONE.</em> 2023;18(11):e0294398.</p>
+                        <div style="margin-top: 8px; display: flex; gap: 8px; flex-wrap: wrap;">
+                            <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0294398" target="_blank" style="color: #0891b2; font-size: 11px; font-weight: 600; text-decoration: none; padding: 3px 10px; border: 1px solid #67e8f9; border-radius: 12px; transition: all 0.2s ease;" onmouseover="this.style.background='#ecfeff'" onmouseout="this.style.background='transparent'">PLOS ONE</a>
+                            <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10653496/" target="_blank" style="color: #0d9488; font-size: 11px; font-weight: 600; text-decoration: none; padding: 3px 10px; border: 1px solid #5eead4; border-radius: 12px; transition: all 0.2s ease;" onmouseover="this.style.background='#f0fdfa'" onmouseout="this.style.background='transparent'">PMC: 10653496</a>
+                        </div>
+                    </li>
+                    <li style="counter-increment: ref-counter; margin-bottom: 16px; padding: 14px 16px; border-radius: 12px; border-left: 3px solid #22c55e; background: linear-gradient(135deg, #f0fdf4, #ffffff); position: relative; padding-left: 45px;">
+                        <span style="position: absolute; left: 12px; top: 14px; background: linear-gradient(135deg, #22c55e, #16a34a); color: white; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700;">6</span>
+                        <p style="margin: 0; font-size: 13px; color: #1e293b; line-height: 1.6;"><strong>VEHSS Modeled Estimates: Age-Related Macular Degeneration (AMD).</strong> <em>Centers for Disease Control and Prevention, Vision and Eye Health Surveillance System.</em> Updated 2024.</p>
+                        <div style="margin-top: 8px; display: flex; gap: 8px; flex-wrap: wrap;">
+                            <a href="https://www.cdc.gov/vision-health-data/prevalence-estimates/amd-prevalence.html" target="_blank" style="color: #16a34a; font-size: 11px; font-weight: 600; text-decoration: none; padding: 3px 10px; border: 1px solid #86efac; border-radius: 12px; transition: all 0.2s ease;" onmouseover="this.style.background='#f0fdf4'" onmouseout="this.style.background='transparent'">CDC VEHSS</a>
+                            <a href="https://preventblindness.org/amd-prevalence-vehss/" target="_blank" style="color: #0891b2; font-size: 11px; font-weight: 600; text-decoration: none; padding: 3px 10px; border: 1px solid #67e8f9; border-radius: 12px; transition: all 0.2s ease;" onmouseover="this.style.background='#ecfeff'" onmouseout="this.style.background='transparent'">Prevent Blindness</a>
+                        </div>
+                    </li>
+                    <li style="counter-increment: ref-counter; padding: 14px 16px; border-radius: 12px; border-left: 3px solid #3b82f6; background: linear-gradient(135deg, #eff6ff, #ffffff); position: relative; padding-left: 45px;">
+                        <span style="position: absolute; left: 12px; top: 14px; background: linear-gradient(135deg, #3b82f6, #1d4ed8); color: white; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700;">7</span>
+                        <p style="margin: 0; font-size: 13px; color: #1e293b; line-height: 1.6;"><strong>Global burden of low vision and blindness due to age-related macular degeneration from 1990 to 2021 and projections for 2050.</strong> <em>BMC Public Health.</em> 2024;24:3568.</p>
+                        <div style="margin-top: 8px;">
+                            <a href="https://bmcpublichealth.biomedcentral.com/articles/10.1186/s12889-024-21047-x" target="_blank" style="color: #1d4ed8; font-size: 11px; font-weight: 600; text-decoration: none; padding: 3px 10px; border: 1px solid #93c5fd; border-radius: 12px; transition: all 0.2s ease;" onmouseover="this.style.background='#eff6ff'" onmouseout="this.style.background='transparent'">BMC Public Health</a>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+
+        </div>
+
+        <!-- ==================== APPENDIX: AMD EPIDEMIOLOGY BY AGE ==================== -->
+        <div class="section" id="amd-epidemiology">
+            <h2>📋 Appendix - AMD Epidemiology by Age Group</h2>
+            <p style="margin-bottom: 10px; color: #374151; font-size: 14px; line-height: 1.7;">
+                Comprehensive epidemiological data demonstrating how AMD prevalence escalates dramatically with age across the U.S. population — and why early, proactive screening starting at age 35+ can change outcomes.
+            </p>
+
+            <!-- Critical Quote Banner -->
+            <div style="background: linear-gradient(135deg, #0d9488 0%, #14b8a6 40%, #06b6d4 100%); border-radius: 18px; padding: 30px 35px; margin-bottom: 30px; position: relative; overflow: hidden; box-shadow: 0 8px 25px rgba(13, 148, 136, 0.25);">
+                <div style="position: absolute; top: -30px; right: -30px; width: 120px; height: 120px; background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%); border-radius: 50%;"></div>
+                <div style="position: absolute; bottom: -20px; left: -20px; width: 80px; height: 80px; background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 70%); border-radius: 50%;"></div>
+                <div style="position: relative; z-index: 2;">
+                    <div style="display: flex; align-items: flex-start; gap: 16px; margin-bottom: 16px;">
+                        <div style="flex-shrink: 0; width: 44px; height: 44px; background: rgba(255,255,255,0.18); border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 2px solid rgba(255,255,255,0.25); margin-top: 2px;">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M6 17h3l2-4V7H5v6h3zm8 0h3l2-4V7h-6v6h3z"/></svg>
+                        </div>
+                        <div>
+                            <p style="color: white; font-size: 15px; line-height: 1.6; margin: 0; font-style: italic;">"Early detection is critical to slowing the progression of AMD and protecting vision. An eye doctor may be able to detect early signs of AMD before symptoms appear, so it is critical to have regular, dilated eye examinations to detect these signs as soon as possible."</p>
+                            <p style="color: rgba(255,255,255,0.85); font-size: 13px; margin: 10px 0 0 0; font-weight: 600;">— Dr. Subramanian, BrightFocus Foundation</p>
+                        </div>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.12); border-radius: 12px; padding: 14px 20px; border: 1px solid rgba(255,255,255,0.15);">
+                        <p style="color: white; font-size: 13px; margin: 0; line-height: 1.6;">AMD is the <strong>leading cause of vision loss</strong> in people over 60, and advanced AMD is a <strong>leading cause of irreversible blindness</strong> worldwide. Half of those affected may not even know it because there are often no noticeable symptoms in the early stages.</p>
+                        <a href="https://www.brightfocus.org/news/nearly-20-million-american-adults-have-age-related-macular-degeneration-new-data-shows/" target="_blank" style="display: inline-flex; align-items: center; gap: 5px; color: rgba(255,255,255,0.9); font-size: 11px; font-weight: 600; text-decoration: none; margin-top: 8px; padding: 4px 12px; border: 1px solid rgba(255,255,255,0.3); border-radius: 16px; transition: all 0.2s ease;" onmouseover="this.style.background='rgba(255,255,255,0.15)'" onmouseout="this.style.background='transparent'">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+                            BrightFocus Foundation
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- The Age Curve: Key Insight -->
+            <div style="background: white; border: 1px solid #5eead4; border-radius: 18px; padding: 28px; margin-bottom: 28px; box-shadow: 0 4px 15px rgba(20, 184, 166, 0.08);">
+                <h3 style="font-size: 17px; font-weight: 700; color: #134e4a; margin-bottom: 6px; display: flex; align-items: center; gap: 10px;">
+                    <span style="background: linear-gradient(135deg, #14b8a6, #0d9488); color: white; width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M3.5 18.49l6-6.01 4 4L22 6.92l-1.41-1.41-7.09 7.97-4-4L2 16.99z"/></svg>
+                    </span>
+                    AMD Follows an Exponential Age Curve
+                </h3>
+                <p style="color: #115e59; font-size: 13px; margin-bottom: 20px;">Prevalence increases <strong>30x</strong> from age 40 to age 95+ — from 2.02% to 60.35%</p>
+
+                <!-- Visual Age Bar Chart — 12 Age Groups from CDC VEHSS -->
+                <div style="display: flex; flex-direction: column; gap: 7px;">
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <span style="width: 70px; font-size: 11px; font-weight: 600; color: #0f766e; text-align: right; flex-shrink: 0;">40–44</span>
+                        <div style="flex: 1; background: linear-gradient(135deg, #f0fdfa, #e6fffa); border-radius: 7px; height: 28px; position: relative; overflow: hidden;">
+                            <div style="width: 3.3%; height: 100%; background: linear-gradient(90deg, #22c55e, #16a34a); border-radius: 7px; display: flex; align-items: center; justify-content: flex-end; padding-right: 8px; min-width: 52px;">
+                                <span style="color: white; font-size: 10px; font-weight: 700;">2.02%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <span style="width: 70px; font-size: 11px; font-weight: 600; color: #0f766e; text-align: right; flex-shrink: 0;">45–49</span>
+                        <div style="flex: 1; background: linear-gradient(135deg, #f0fdfa, #e6fffa); border-radius: 7px; height: 28px; position: relative; overflow: hidden;">
+                            <div style="width: 8.9%; height: 100%; background: linear-gradient(90deg, #14b8a6, #0d9488); border-radius: 7px; display: flex; align-items: center; justify-content: flex-end; padding-right: 8px; min-width: 52px;">
+                                <span style="color: white; font-size: 10px; font-weight: 700;">5.38%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <span style="width: 70px; font-size: 11px; font-weight: 600; color: #0f766e; text-align: right; flex-shrink: 0;">50–54</span>
+                        <div style="flex: 1; background: linear-gradient(135deg, #f0fdfa, #e6fffa); border-radius: 7px; height: 28px; position: relative; overflow: hidden;">
+                            <div style="width: 13%; height: 100%; background: linear-gradient(90deg, #14b8a6, #0891b2); border-radius: 7px; display: flex; align-items: center; justify-content: flex-end; padding-right: 8px; min-width: 52px;">
+                                <span style="color: white; font-size: 10px; font-weight: 700;">7.84%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <span style="width: 70px; font-size: 11px; font-weight: 600; color: #0f766e; text-align: right; flex-shrink: 0;">55–59</span>
+                        <div style="flex: 1; background: linear-gradient(135deg, #f0fdfa, #e6fffa); border-radius: 7px; height: 28px; position: relative; overflow: hidden;">
+                            <div style="width: 16%; height: 100%; background: linear-gradient(90deg, #0891b2, #0e7490); border-radius: 7px; display: flex; align-items: center; justify-content: flex-end; padding-right: 8px; min-width: 52px;">
+                                <span style="color: white; font-size: 10px; font-weight: 700;">9.65%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <span style="width: 70px; font-size: 11px; font-weight: 600; color: #0e7490; text-align: right; flex-shrink: 0;">60–64</span>
+                        <div style="flex: 1; background: linear-gradient(135deg, #f0fdfa, #e6fffa); border-radius: 7px; height: 28px; position: relative; overflow: hidden;">
+                            <div style="width: 19.2%; height: 100%; background: linear-gradient(90deg, #0e7490, #0c4a6e); border-radius: 7px; display: flex; align-items: center; justify-content: flex-end; padding-right: 8px; min-width: 52px;">
+                                <span style="color: white; font-size: 10px; font-weight: 700;">11.57%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <span style="width: 70px; font-size: 11px; font-weight: 600; color: #0e7490; text-align: right; flex-shrink: 0;">65–69</span>
+                        <div style="flex: 1; background: linear-gradient(135deg, #ecfeff, #cffafe); border-radius: 7px; height: 28px; position: relative; overflow: hidden;">
+                            <div style="width: 22.1%; height: 100%; background: linear-gradient(90deg, #0891b2, #1d4ed8); border-radius: 7px; display: flex; align-items: center; justify-content: flex-end; padding-right: 8px; min-width: 52px;">
+                                <span style="color: white; font-size: 10px; font-weight: 700;">13.31%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <span style="width: 70px; font-size: 11px; font-weight: 600; color: #1d4ed8; text-align: right; flex-shrink: 0;">70–74</span>
+                        <div style="flex: 1; background: linear-gradient(135deg, #ecfeff, #cffafe); border-radius: 7px; height: 28px; position: relative; overflow: hidden;">
+                            <div style="width: 29.8%; height: 100%; background: linear-gradient(90deg, #3b82f6, #1d4ed8); border-radius: 7px; display: flex; align-items: center; justify-content: flex-end; padding-right: 8px; min-width: 52px;">
+                                <span style="color: white; font-size: 10px; font-weight: 700;">17.96%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <span style="width: 70px; font-size: 11px; font-weight: 600; color: #1d4ed8; text-align: right; flex-shrink: 0;">75–79</span>
+                        <div style="flex: 1; background: linear-gradient(135deg, #eff6ff, #dbeafe); border-radius: 7px; height: 28px; position: relative; overflow: hidden;">
+                            <div style="width: 39.8%; height: 100%; background: linear-gradient(90deg, #1d4ed8, #4338ca); border-radius: 7px; display: flex; align-items: center; justify-content: flex-end; padding-right: 8px; min-width: 52px;">
+                                <span style="color: white; font-size: 10px; font-weight: 700;">23.99%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <span style="width: 70px; font-size: 11px; font-weight: 700; color: #1e40af; text-align: right; flex-shrink: 0;">80–84</span>
+                        <div style="flex: 1; background: linear-gradient(135deg, #eff6ff, #dbeafe); border-radius: 7px; height: 30px; position: relative; overflow: hidden;">
+                            <div style="width: 53.6%; height: 100%; background: linear-gradient(90deg, #4338ca, #6d28d9); border-radius: 7px; display: flex; align-items: center; justify-content: flex-end; padding-right: 8px; min-width: 52px;">
+                                <span style="color: white; font-size: 11px; font-weight: 700;">32.35%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <span style="width: 70px; font-size: 11px; font-weight: 700; color: #6d28d9; text-align: right; flex-shrink: 0;">85–89</span>
+                        <div style="flex: 1; background: linear-gradient(135deg, #ede9fe, #ddd6fe); border-radius: 7px; height: 32px; position: relative; overflow: hidden;">
+                            <div style="width: 70%; height: 100%; background: linear-gradient(90deg, #6d28d9, #7c3aed); border-radius: 7px; display: flex; align-items: center; justify-content: flex-end; padding-right: 8px; min-width: 52px;">
+                                <span style="color: white; font-size: 11px; font-weight: 700;">42.22%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <span style="width: 70px; font-size: 11px; font-weight: 700; color: #7c3aed; text-align: right; flex-shrink: 0;">90–94</span>
+                        <div style="flex: 1; background: linear-gradient(135deg, #ede9fe, #ddd6fe); border-radius: 7px; height: 34px; position: relative; overflow: hidden;">
+                            <div style="width: 85%; height: 100%; background: linear-gradient(90deg, #7c3aed, #9333ea); border-radius: 7px; display: flex; align-items: center; justify-content: flex-end; padding-right: 10px; min-width: 52px;">
+                                <span style="color: white; font-size: 12px; font-weight: 800;">51.30%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <span style="width: 70px; font-size: 12px; font-weight: 800; color: #7c2d12; text-align: right; flex-shrink: 0;">95–99</span>
+                        <div style="flex: 1; background: linear-gradient(135deg, #fef2f2, #fee2e2); border-radius: 7px; height: 36px; position: relative; overflow: hidden;">
+                            <div style="width: 100%; height: 100%; background: linear-gradient(90deg, #9333ea, #dc2626); border-radius: 7px; display: flex; align-items: center; justify-content: flex-end; padding-right: 12px; min-width: 52px;">
+                                <span style="color: white; font-size: 13px; font-weight: 800;">60.35%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p style="color: #64748b; font-size: 11px; margin-top: 12px; text-align: right;">Source: <a href="https://www.cdc.gov/vision-health-data/prevalence-estimates/amd-prevalence.html" target="_blank" style="color: #0d9488; text-decoration: underline;">CDC VEHSS</a> — AMD Prevalence Estimates · Accessed: March 2, 2026</p>
+            </div>
+
+            <!-- CDC VEHSS Detailed 5-Year Age Group Table -->
+            <div style="background: white; border-radius: 18px; padding: 28px; border: 1px solid #5eead4; box-shadow: 0 4px 15px rgba(20, 184, 166, 0.08); margin-bottom: 28px;">
+                <h3 style="font-size: 16px; font-weight: 700; color: #134e4a; margin-bottom: 6px; display: flex; align-items: center; gap: 8px;">
+                    <span style="background: linear-gradient(135deg, #14b8a6, #0d9488); color: white; width: 28px; height: 28px; border-radius: 7px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14H7v-2h5v2zm5-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+                    </span>
+                    CDC VEHSS — AMD Prevalence by 5-Year Age Groups
+                </h3>
+                <p style="color: #0f766e; font-size: 12px; font-weight: 600; margin-bottom: 14px;">
+                    Source: <a href="https://www.cdc.gov/vision-health-data/prevalence-estimates/amd-prevalence.html" target="_blank" style="color: #0d9488; text-decoration: underline;">CDC Vision and Eye Health Surveillance System (VEHSS)</a> · Accessed: March 2, 2026
+                </p>
+                <table style="width: 100%; border-collapse: separate; border-spacing: 0;">
+                    <thead>
+                        <tr>
+                            <th style="background: linear-gradient(135deg, #f0fdfa, #ccfbf1); padding: 10px 14px; text-align: left; font-size: 12px; font-weight: 700; color: #134e4a; border-radius: 8px 0 0 0;">Age Group</th>
+                            <th style="background: linear-gradient(135deg, #f0fdfa, #ccfbf1); padding: 10px 14px; text-align: right; font-size: 12px; font-weight: 700; color: #134e4a;">AMD, Any Stage (%)</th>
+                            <th style="background: linear-gradient(135deg, #f0fdfa, #ccfbf1); padding: 10px 14px; text-align: right; font-size: 12px; font-weight: 700; color: #134e4a; border-radius: 0 8px 0 0;">Vision-Threatening (%)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="padding: 9px 14px; font-size: 13px; font-weight: 600; color: #0f766e; border-bottom: 1px solid #e6fffa;">40–44</td>
+                            <td style="padding: 9px 14px; font-size: 13px; color: #1e293b; text-align: right; border-bottom: 1px solid #e6fffa;">2.02</td>
+                            <td style="padding: 9px 14px; font-size: 13px; color: #1e293b; text-align: right; border-bottom: 1px solid #e6fffa;">0.02</td>
+                        </tr>
+                        <tr style="background: #fafffe;">
+                            <td style="padding: 9px 14px; font-size: 13px; font-weight: 600; color: #0f766e; border-bottom: 1px solid #e6fffa;">45–49</td>
+                            <td style="padding: 9px 14px; font-size: 13px; color: #1e293b; text-align: right; border-bottom: 1px solid #e6fffa;">5.38</td>
+                            <td style="padding: 9px 14px; font-size: 13px; color: #1e293b; text-align: right; border-bottom: 1px solid #e6fffa;">0.07</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 9px 14px; font-size: 13px; font-weight: 600; color: #0f766e; border-bottom: 1px solid #e6fffa;">50–54</td>
+                            <td style="padding: 9px 14px; font-size: 13px; color: #1e293b; text-align: right; border-bottom: 1px solid #e6fffa;">7.84</td>
+                            <td style="padding: 9px 14px; font-size: 13px; color: #1e293b; text-align: right; border-bottom: 1px solid #e6fffa;">0.12</td>
+                        </tr>
+                        <tr style="background: #fafffe;">
+                            <td style="padding: 9px 14px; font-size: 13px; font-weight: 600; color: #0f766e; border-bottom: 1px solid #e6fffa;">55–59</td>
+                            <td style="padding: 9px 14px; font-size: 13px; color: #1e293b; text-align: right; border-bottom: 1px solid #e6fffa;">9.65</td>
+                            <td style="padding: 9px 14px; font-size: 13px; color: #1e293b; text-align: right; border-bottom: 1px solid #e6fffa;">0.20</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 9px 14px; font-size: 13px; font-weight: 600; color: #0e7490; border-bottom: 1px solid #e6fffa;">60–64</td>
+                            <td style="padding: 9px 14px; font-size: 13px; color: #1e293b; text-align: right; border-bottom: 1px solid #e6fffa;">11.57</td>
+                            <td style="padding: 9px 14px; font-size: 13px; color: #1e293b; text-align: right; border-bottom: 1px solid #e6fffa;">0.28</td>
+                        </tr>
+                        <tr style="background: #fafffe;">
+                            <td style="padding: 9px 14px; font-size: 13px; font-weight: 600; color: #0e7490; border-bottom: 1px solid #e6fffa;">65–69</td>
+                            <td style="padding: 9px 14px; font-size: 13px; color: #1e293b; text-align: right; border-bottom: 1px solid #e6fffa;">13.31</td>
+                            <td style="padding: 9px 14px; font-size: 13px; color: #1e293b; text-align: right; border-bottom: 1px solid #e6fffa;">0.36</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 9px 14px; font-size: 13px; font-weight: 600; color: #0e7490; border-bottom: 1px solid #e6fffa;">70–74</td>
+                            <td style="padding: 9px 14px; font-size: 13px; font-weight: 600; color: #1e293b; text-align: right; border-bottom: 1px solid #e6fffa;">17.96</td>
+                            <td style="padding: 9px 14px; font-size: 13px; color: #1e293b; text-align: right; border-bottom: 1px solid #e6fffa;">0.81</td>
+                        </tr>
+                        <tr style="background: #fafffe;">
+                            <td style="padding: 9px 14px; font-size: 13px; font-weight: 600; color: #1d4ed8; border-bottom: 1px solid #e6fffa;">75–79</td>
+                            <td style="padding: 9px 14px; font-size: 13px; font-weight: 600; color: #1e293b; text-align: right; border-bottom: 1px solid #e6fffa;">23.99</td>
+                            <td style="padding: 9px 14px; font-size: 13px; color: #dc2626; text-align: right; border-bottom: 1px solid #e6fffa;">1.51</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 9px 14px; font-size: 13px; font-weight: 600; color: #1d4ed8; border-bottom: 1px solid #e6fffa;">80–84</td>
+                            <td style="padding: 9px 14px; font-size: 13px; font-weight: 700; color: #1e293b; text-align: right; border-bottom: 1px solid #e6fffa;">32.35</td>
+                            <td style="padding: 9px 14px; font-size: 13px; font-weight: 600; color: #dc2626; text-align: right; border-bottom: 1px solid #e6fffa;">4.60</td>
+                        </tr>
+                        <tr style="background: #fafffe;">
+                            <td style="padding: 9px 14px; font-size: 13px; font-weight: 600; color: #7c3aed; border-bottom: 1px solid #e6fffa;">85–89</td>
+                            <td style="padding: 9px 14px; font-size: 13px; font-weight: 700; color: #1e293b; text-align: right; border-bottom: 1px solid #e6fffa;">42.22</td>
+                            <td style="padding: 9px 14px; font-size: 13px; font-weight: 700; color: #dc2626; text-align: right; border-bottom: 1px solid #e6fffa;">9.21</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 9px 14px; font-size: 13px; font-weight: 600; color: #7c3aed; border-bottom: 1px solid #e6fffa;">90–94</td>
+                            <td style="padding: 9px 14px; font-size: 13px; font-weight: 700; color: #1e293b; text-align: right; border-bottom: 1px solid #e6fffa;">51.30</td>
+                            <td style="padding: 9px 14px; font-size: 13px; font-weight: 700; color: #dc2626; text-align: right; border-bottom: 1px solid #e6fffa;">13.86</td>
+                        </tr>
+                        <tr style="background: linear-gradient(135deg, #f0fdfa, #ccfbf1);">
+                            <td style="padding: 11px 14px; font-size: 13px; font-weight: 800; color: #7c3aed; border-radius: 0 0 0 8px;">95–99</td>
+                            <td style="padding: 11px 14px; font-size: 14px; font-weight: 800; color: #134e4a; text-align: right;">60.35</td>
+                            <td style="padding: 11px 14px; font-size: 14px; font-weight: 800; color: #dc2626; text-align: right; border-radius: 0 0 8px 0;">18.09</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div style="margin-top: 16px; display: flex; gap: 14px; flex-wrap: wrap;">
+                    <div style="display: flex; align-items: center; gap: 6px; padding: 8px 14px; background: linear-gradient(135deg, #ecfdf5, #d1fae5); border-radius: 10px; border: 1px solid #6ee7b7;">
+                        <span style="font-size: 18px; font-weight: 800; color: #059669;">30x</span>
+                        <span style="font-size: 11px; color: #065f46; line-height: 1.3;">increase in AMD prevalence<br>from age 40 to age 95+</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 6px; padding: 8px 14px; background: linear-gradient(135deg, #fef2f2, #fee2e2); border-radius: 10px; border: 1px solid #fca5a5;">
+                        <span style="font-size: 18px; font-weight: 800; color: #dc2626;">900x</span>
+                        <span style="font-size: 11px; color: #991b1b; line-height: 1.3;">increase in vision-threatening<br>AMD from age 40 to 95+</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 6px; padding: 8px 14px; background: linear-gradient(135deg, #eff6ff, #dbeafe); border-radius: 10px; border: 1px solid #93c5fd;">
+                        <span style="font-size: 18px; font-weight: 800; color: #1d4ed8;">1 in 3</span>
+                        <span style="font-size: 11px; color: #1e3a5f; line-height: 1.3;">Americans age 80-84<br>have some form of AMD</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CDC VEHSS Table 1: AMD Prevalence — Number of People (2019) -->
+            <div style="background: white; border-radius: 18px; padding: 28px; border: 1px solid #5eead4; box-shadow: 0 4px 15px rgba(20, 184, 166, 0.08); margin-bottom: 28px;">
+                <h3 style="font-size: 17px; font-weight: 700; color: #134e4a; margin-bottom: 6px; display: flex; align-items: center; gap: 8px;">
+                    <span style="background: linear-gradient(135deg, #22c55e, #16a34a); color: white; width: 30px; height: 30px; border-radius: 7px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14H7v-2h5v2zm5-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+                    </span>
+                    Prevalence of Early, Late, or Any Stage of AMD in 2019 — Number of People
+                </h3>
+                <p style="color: #0f766e; font-size: 12px; font-weight: 600; margin-bottom: 16px;">
+                    Source: <a href="https://www.cdc.gov/vision-health-data/prevalence-estimates/amd-prevalence.html" target="_blank" style="color: #0d9488; text-decoration: underline;">CDC VEHSS</a> / Rein et al. 2022 · Accessed: March 2, 2026
+                </p>
+                <table style="width: 100%; border-collapse: separate; border-spacing: 0;">
+                    <thead>
+                        <tr>
+                            <th style="background: linear-gradient(135deg, #f0fdfa, #ccfbf1); padding: 10px 14px; text-align: left; font-size: 12px; font-weight: 700; color: #134e4a; border-radius: 8px 0 0 0;"></th>
+                            <th style="background: linear-gradient(135deg, #f0fdfa, #ccfbf1); padding: 10px 14px; text-align: right; font-size: 12px; font-weight: 700; color: #134e4a;">Non-Vision Threatening</th>
+                            <th style="background: linear-gradient(135deg, #f0fdfa, #ccfbf1); padding: 10px 14px; text-align: right; font-size: 12px; font-weight: 700; color: #134e4a;">Vision Threatening</th>
+                            <th style="background: linear-gradient(135deg, #f0fdfa, #ccfbf1); padding: 10px 14px; text-align: right; font-size: 12px; font-weight: 700; color: #134e4a; border-radius: 0 8px 0 0;">Any AMD</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Overall National -->
+                        <tr style="background: linear-gradient(135deg, #f0fdfa, #ccfbf1);">
+                            <td style="padding: 11px 14px; font-size: 13px; font-weight: 800; color: #134e4a; border-bottom: 2px solid #5eead4;">Overall National</td>
+                            <td style="padding: 11px 14px; font-size: 13px; font-weight: 800; color: #134e4a; text-align: right; border-bottom: 2px solid #5eead4;">18,343,000</td>
+                            <td style="padding: 11px 14px; font-size: 13px; font-weight: 800; color: #134e4a; text-align: right; border-bottom: 2px solid #5eead4;">1,486,000</td>
+                            <td style="padding: 11px 14px; font-size: 14px; font-weight: 800; color: #0d9488; text-align: right; border-bottom: 2px solid #5eead4;">19,828,000</td>
+                        </tr>
+                        <!-- By Sex header -->
+                        <tr>
+                            <td colspan="4" style="padding: 10px 14px 4px; font-size: 11px; font-weight: 700; color: #0f766e; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid #e6fffa;">By Sex</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 9px 14px; font-size: 13px; font-weight: 600; color: #0f766e; border-bottom: 1px solid #e6fffa;">Female</td>
+                            <td style="padding: 9px 14px; font-size: 13px; color: #1e293b; text-align: right; border-bottom: 1px solid #e6fffa;">9,205,000</td>
+                            <td style="padding: 9px 14px; font-size: 13px; color: #1e293b; text-align: right; border-bottom: 1px solid #e6fffa;">884,000</td>
+                            <td style="padding: 9px 14px; font-size: 13px; font-weight: 700; color: #0d9488; text-align: right; border-bottom: 1px solid #e6fffa;">10,089,000</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 9px 14px; font-size: 13px; font-weight: 600; color: #0f766e; border-bottom: 1px solid #e6fffa;">Male</td>
+                            <td style="padding: 9px 14px; font-size: 13px; color: #1e293b; text-align: right; border-bottom: 1px solid #e6fffa;">9,137,000</td>
+                            <td style="padding: 9px 14px; font-size: 13px; color: #1e293b; text-align: right; border-bottom: 1px solid #e6fffa;">602,000</td>
+                            <td style="padding: 9px 14px; font-size: 13px; font-weight: 700; color: #0d9488; text-align: right; border-bottom: 1px solid #e6fffa;">9,739,000</td>
+                        </tr>
+                        <!-- By Race/Ethnicity header -->
+                        <tr>
+                            <td colspan="4" style="padding: 10px 14px 4px; font-size: 11px; font-weight: 700; color: #0e7490; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid #e6fffa;">By Race/Ethnicity</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 9px 14px; font-size: 13px; font-weight: 600; color: #0e7490; border-bottom: 1px solid #e6fffa;">Black (Non-Hispanic)</td>
+                            <td style="padding: 9px 14px; font-size: 13px; color: #1e293b; text-align: right; border-bottom: 1px solid #e6fffa;">1,142,000</td>
+                            <td style="padding: 9px 14px; font-size: 13px; color: #1e293b; text-align: right; border-bottom: 1px solid #e6fffa;">88,000</td>
+                            <td style="padding: 9px 14px; font-size: 13px; font-weight: 700; color: #0891b2; text-align: right; border-bottom: 1px solid #e6fffa;">1,230,000</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 9px 14px; font-size: 13px; font-weight: 600; color: #0e7490; border-bottom: 1px solid #e6fffa;">Hispanic</td>
+                            <td style="padding: 9px 14px; font-size: 13px; color: #1e293b; text-align: right; border-bottom: 1px solid #e6fffa;">2,061,000</td>
+                            <td style="padding: 9px 14px; font-size: 13px; color: #1e293b; text-align: right; border-bottom: 1px solid #e6fffa;">51,000</td>
+                            <td style="padding: 9px 14px; font-size: 13px; font-weight: 700; color: #0891b2; text-align: right; border-bottom: 1px solid #e6fffa;">2,111,000</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 9px 14px; font-size: 13px; font-weight: 600; color: #0e7490; border-bottom: 1px solid #e6fffa;">White (Non-Hispanic)</td>
+                            <td style="padding: 9px 14px; font-size: 13px; color: #1e293b; text-align: right; border-bottom: 1px solid #e6fffa;">14,035,000</td>
+                            <td style="padding: 9px 14px; font-size: 13px; color: #1e293b; text-align: right; border-bottom: 1px solid #e6fffa;">1,254,000</td>
+                            <td style="padding: 9px 14px; font-size: 13px; font-weight: 700; color: #0891b2; text-align: right; border-bottom: 1px solid #e6fffa;">15,289,000</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 9px 14px; font-size: 13px; font-weight: 600; color: #0e7490; border-bottom: 1px solid #e6fffa;">Other Race/Ethnicity</td>
+                            <td style="padding: 9px 14px; font-size: 13px; color: #1e293b; text-align: right; border-bottom: 1px solid #e6fffa;">1,105,000</td>
+                            <td style="padding: 9px 14px; font-size: 13px; color: #1e293b; text-align: right; border-bottom: 1px solid #e6fffa;">93,000</td>
+                            <td style="padding: 9px 14px; font-size: 13px; font-weight: 700; color: #0891b2; text-align: right; border-bottom: 1px solid #e6fffa;">1,199,000</td>
+                        </tr>
+                        <!-- By Age Group header -->
+                        <tr>
+                            <td colspan="4" style="padding: 10px 14px 4px; font-size: 11px; font-weight: 700; color: #1d4ed8; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid #e6fffa;">By Age Group</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 9px 14px; font-size: 13px; font-weight: 600; color: #1d4ed8; border-bottom: 1px solid #e6fffa;">40–64 Years</td>
+                            <td style="padding: 9px 14px; font-size: 13px; color: #1e293b; text-align: right; border-bottom: 1px solid #e6fffa;">7,460,000</td>
+                            <td style="padding: 9px 14px; font-size: 13px; color: #1e293b; text-align: right; border-bottom: 1px solid #e6fffa;">146,000</td>
+                            <td style="padding: 9px 14px; font-size: 13px; font-weight: 700; color: #1d4ed8; text-align: right; border-bottom: 1px solid #e6fffa;">7,605,000</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 9px 14px; font-size: 13px; font-weight: 600; color: #1d4ed8; border-bottom: 1px solid #e6fffa;">65–84 Years</td>
+                            <td style="padding: 9px 14px; font-size: 13px; color: #1e293b; text-align: right; border-bottom: 1px solid #e6fffa;">8,650,000</td>
+                            <td style="padding: 9px 14px; font-size: 13px; color: #1e293b; text-align: right; border-bottom: 1px solid #e6fffa;">618,000</td>
+                            <td style="padding: 9px 14px; font-size: 13px; font-weight: 700; color: #1d4ed8; text-align: right; border-bottom: 1px solid #e6fffa;">9,269,000</td>
+                        </tr>
+                        <tr style="background: linear-gradient(135deg, #f0fdfa, #ccfbf1);">
+                            <td style="padding: 11px 14px; font-size: 13px; font-weight: 800; color: #134e4a; border-radius: 0 0 0 8px;">85+ Years</td>
+                            <td style="padding: 11px 14px; font-size: 13px; font-weight: 800; color: #134e4a; text-align: right;">2,232,000</td>
+                            <td style="padding: 11px 14px; font-size: 13px; font-weight: 800; color: #134e4a; text-align: right;">722,000</td>
+                            <td style="padding: 11px 14px; font-size: 14px; font-weight: 800; color: #0d9488; text-align: right; border-radius: 0 0 8px 0;">2,954,000</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Friedman 2004 Landmark Table -->
+            <div style="background: white; border-radius: 18px; padding: 28px; border: 1px solid #5eead4; box-shadow: 0 4px 15px rgba(20, 184, 166, 0.08); margin-bottom: 28px;">
+                <h3 style="font-size: 16px; font-weight: 700; color: #134e4a; margin-bottom: 6px; display: flex; align-items: center; gap: 8px;">
+                    <span style="background: linear-gradient(135deg, #0d9488, #06b6d4); color: white; width: 28px; height: 28px; border-radius: 7px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg>
+                    </span>
+                    Friedman et al. 2004 — Advanced AMD by 5-Year Age Group
+                </h3>
+                <p style="color: #0f766e; font-size: 12px; margin-bottom: 16px;">Landmark meta-analysis of population-based studies (JAMA Ophthalmology) — White population</p>
+
+                <table style="width: 100%; border-collapse: separate; border-spacing: 0;">
+                    <thead>
+                        <tr>
+                            <th style="background: linear-gradient(135deg, #f0fdfa, #ccfbf1); padding: 10px 12px; text-align: left; font-size: 12px; font-weight: 700; color: #134e4a; border-radius: 8px 0 0 0;">Age</th>
+                            <th style="background: linear-gradient(135deg, #f0fdfa, #ccfbf1); padding: 10px 12px; text-align: center; font-size: 12px; font-weight: 700; color: #134e4a;">Neovascular AMD</th>
+                            <th style="background: linear-gradient(135deg, #f0fdfa, #ccfbf1); padding: 10px 12px; text-align: center; font-size: 12px; font-weight: 700; color: #134e4a;">Geographic Atrophy</th>
+                            <th style="background: linear-gradient(135deg, #f0fdfa, #ccfbf1); padding: 10px 12px; text-align: center; font-size: 12px; font-weight: 700; color: #134e4a; border-radius: 0 8px 0 0;">Large Drusen (≥125µm)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="padding: 10px 12px; font-size: 13px; font-weight: 600; color: #0f766e; border-bottom: 1px solid #e6fffa;">40–49</td>
+                            <td style="padding: 10px 12px; font-size: 13px; color: #1e293b; text-align: center; border-bottom: 1px solid #e6fffa;">0.31%</td>
+                            <td style="padding: 10px 12px; font-size: 13px; color: #1e293b; text-align: center; border-bottom: 1px solid #e6fffa;">0.31%</td>
+                            <td style="padding: 10px 12px; font-size: 13px; color: #1e293b; text-align: center; border-bottom: 1px solid #e6fffa;">3.9%</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px 12px; font-size: 13px; font-weight: 600; color: #0f766e; border-bottom: 1px solid #e6fffa;">50–54</td>
+                            <td style="padding: 10px 12px; font-size: 13px; color: #1e293b; text-align: center; border-bottom: 1px solid #e6fffa;">0.42%</td>
+                            <td style="padding: 10px 12px; font-size: 13px; color: #1e293b; text-align: center; border-bottom: 1px solid #e6fffa;">0.25%</td>
+                            <td style="padding: 10px 12px; font-size: 13px; color: #1e293b; text-align: center; border-bottom: 1px solid #e6fffa;">4.7%</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px 12px; font-size: 13px; font-weight: 600; color: #0f766e; border-bottom: 1px solid #e6fffa;">55–59</td>
+                            <td style="padding: 10px 12px; font-size: 13px; color: #1e293b; text-align: center; border-bottom: 1px solid #e6fffa;">0.52%</td>
+                            <td style="padding: 10px 12px; font-size: 13px; color: #1e293b; text-align: center; border-bottom: 1px solid #e6fffa;">0.30%</td>
+                            <td style="padding: 10px 12px; font-size: 13px; color: #1e293b; text-align: center; border-bottom: 1px solid #e6fffa;">5.3%</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px 12px; font-size: 13px; font-weight: 600; color: #0f766e; border-bottom: 1px solid #e6fffa;">60–64</td>
+                            <td style="padding: 10px 12px; font-size: 13px; color: #1e293b; text-align: center; border-bottom: 1px solid #e6fffa;">0.63%</td>
+                            <td style="padding: 10px 12px; font-size: 13px; color: #1e293b; text-align: center; border-bottom: 1px solid #e6fffa;">0.37%</td>
+                            <td style="padding: 10px 12px; font-size: 13px; color: #1e293b; text-align: center; border-bottom: 1px solid #e6fffa;">6.0%</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px 12px; font-size: 13px; font-weight: 600; color: #0e7490; border-bottom: 1px solid #e6fffa;">65–69</td>
+                            <td style="padding: 10px 12px; font-size: 13px; color: #1e293b; text-align: center; border-bottom: 1px solid #e6fffa;">0.77%</td>
+                            <td style="padding: 10px 12px; font-size: 13px; color: #1e293b; text-align: center; border-bottom: 1px solid #e6fffa;">0.45%</td>
+                            <td style="padding: 10px 12px; font-size: 13px; color: #1e293b; text-align: center; border-bottom: 1px solid #e6fffa;">6.8%</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px 12px; font-size: 13px; font-weight: 600; color: #0e7490; border-bottom: 1px solid #e6fffa;">70–74</td>
+                            <td style="padding: 10px 12px; font-size: 13px; color: #1e293b; text-align: center; border-bottom: 1px solid #e6fffa;">0.93%</td>
+                            <td style="padding: 10px 12px; font-size: 13px; color: #1e293b; text-align: center; border-bottom: 1px solid #e6fffa;">0.55%</td>
+                            <td style="padding: 10px 12px; font-size: 13px; color: #1e293b; text-align: center; border-bottom: 1px solid #e6fffa;">7.7%</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px 12px; font-size: 13px; font-weight: 600; color: #1d4ed8; border-bottom: 1px solid #e6fffa;">75–79</td>
+                            <td style="padding: 10px 12px; font-size: 13px; color: #1e293b; text-align: center; border-bottom: 1px solid #e6fffa;">1.14%</td>
+                            <td style="padding: 10px 12px; font-size: 13px; color: #1e293b; text-align: center; border-bottom: 1px solid #e6fffa;">0.67%</td>
+                            <td style="padding: 10px 12px; font-size: 13px; color: #1e293b; text-align: center; border-bottom: 1px solid #e6fffa;">8.7%</td>
+                        </tr>
+                        <tr style="background: linear-gradient(135deg, #f0fdfa, #ccfbf1);">
+                            <td style="padding: 12px; font-size: 13px; font-weight: 800; color: #134e4a; border-radius: 0 0 0 8px;">80+</td>
+                            <td style="padding: 12px; font-size: 13px; font-weight: 800; color: #134e4a; text-align: center;">1.56%</td>
+                            <td style="padding: 12px; font-size: 13px; font-weight: 800; color: #134e4a; text-align: center;">0.92%</td>
+                            <td style="padding: 12px; font-size: 13px; font-weight: 800; color: #0d9488; text-align: center; border-radius: 0 0 8px 0;">10.5%</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p style="color: #64748b; font-size: 11px; margin-top: 10px;">More than 15% of white women older than 80 had neovascular AMD and/or geographic atrophy.</p>
+            </div>
+
+            <!-- Race/Ethnicity + Medicare Diagnosed -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-bottom: 28px;">
+
+                <!-- Race/Ethnicity -->
+                <div style="background: white; border-radius: 18px; padding: 28px; border: 1px solid #86efac; box-shadow: 0 4px 15px rgba(34, 197, 94, 0.08);">
+                    <h3 style="font-size: 16px; font-weight: 700; color: #14532d; margin-bottom: 16px; display: flex; align-items: center; gap: 8px;">
+                        <span style="background: linear-gradient(135deg, #22c55e, #16a34a); color: white; width: 28px; height: 28px; border-radius: 7px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+                        </span>
+                        Prevalence by Race/Ethnicity
+                    </h3>
+                    <p style="color: #15803d; font-size: 12px; font-weight: 600; margin-bottom: 6px;">
+                        Source: <a href="https://www.cdc.gov/vision-health-data/prevalence-estimates/amd-prevalence.html" target="_blank" style="color: #16a34a; text-decoration: underline;">CDC VEHSS</a> · Accessed: March 2, 2026
+                    </p>
+
+                    <!-- Overall National -->
+                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 6px; padding: 8px 12px; background: linear-gradient(135deg, #f0fdf4, #dcfce7); border-radius: 8px; border: 1px solid #86efac;">
+                        <span style="width: 130px; font-size: 12px; font-weight: 800; color: #14532d; flex-shrink: 0;">Overall National</span>
+                        <span style="font-size: 18px; font-weight: 800; color: #16a34a;">12.58%</span>
+                        <span style="font-size: 10px; color: #166534; margin-left: auto;">(Vision-threatening: 0.94%)</span>
+                    </div>
+
+                    <!-- By Sex -->
+                    <p style="font-size: 10px; font-weight: 700; color: #15803d; text-transform: uppercase; letter-spacing: 0.5px; margin: 10px 0 6px;">By Sex</p>
+                    <div style="display: flex; flex-direction: column; gap: 6px; margin-bottom: 10px;">
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <span style="width: 130px; font-size: 12px; font-weight: 600; color: #166534; flex-shrink: 0;">Male</span>
+                            <div style="flex: 1; background: linear-gradient(135deg, #f0fdf4, #dcfce7); border-radius: 6px; height: 26px; overflow: hidden;">
+                                <div style="width: 100%; height: 100%; background: linear-gradient(90deg, #22c55e, #16a34a); border-radius: 6px; display: flex; align-items: center; justify-content: flex-end; padding-right: 10px;">
+                                    <span style="color: white; font-size: 11px; font-weight: 700;">13.04%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <span style="width: 130px; font-size: 12px; font-weight: 600; color: #166534; flex-shrink: 0;">Female</span>
+                            <div style="flex: 1; background: linear-gradient(135deg, #f0fdf4, #dcfce7); border-radius: 6px; height: 26px; overflow: hidden;">
+                                <div style="width: 93%; height: 100%; background: linear-gradient(90deg, #14b8a6, #0d9488); border-radius: 6px; display: flex; align-items: center; justify-content: flex-end; padding-right: 10px;">
+                                    <span style="color: white; font-size: 11px; font-weight: 700;">12.17%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- By Race/Ethnicity -->
+                    <p style="font-size: 10px; font-weight: 700; color: #15803d; text-transform: uppercase; letter-spacing: 0.5px; margin: 0 0 6px;">By Race/Ethnicity</p>
+                    <div style="display: flex; flex-direction: column; gap: 6px;">
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <span style="width: 130px; font-size: 12px; font-weight: 600; color: #166534; flex-shrink: 0;">White (Non-Hisp.)</span>
+                            <div style="flex: 1; background: linear-gradient(135deg, #f0fdf4, #dcfce7); border-radius: 6px; height: 26px; overflow: hidden;">
+                                <div style="width: 100%; height: 100%; background: linear-gradient(90deg, #22c55e, #16a34a); border-radius: 6px; display: flex; align-items: center; justify-content: flex-end; padding-right: 10px;">
+                                    <span style="color: white; font-size: 11px; font-weight: 700;">14.29%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <span style="width: 130px; font-size: 12px; font-weight: 600; color: #166534; flex-shrink: 0;">Hispanic</span>
+                            <div style="flex: 1; background: linear-gradient(135deg, #f0fdf4, #dcfce7); border-radius: 6px; height: 26px; overflow: hidden;">
+                                <div style="width: 70.5%; height: 100%; background: linear-gradient(90deg, #22c55e, #0891b2); border-radius: 6px; display: flex; align-items: center; justify-content: flex-end; padding-right: 10px;">
+                                    <span style="color: white; font-size: 11px; font-weight: 700;">10.07%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <span style="width: 130px; font-size: 12px; font-weight: 600; color: #166534; flex-shrink: 0;">Other Race</span>
+                            <div style="flex: 1; background: linear-gradient(135deg, #f0fdf4, #dcfce7); border-radius: 6px; height: 26px; overflow: hidden;">
+                                <div style="width: 70%; height: 100%; background: linear-gradient(90deg, #14b8a6, #0d9488); border-radius: 6px; display: flex; align-items: center; justify-content: flex-end; padding-right: 10px;">
+                                    <span style="color: white; font-size: 11px; font-weight: 700;">10.00%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <span style="width: 130px; font-size: 12px; font-weight: 600; color: #166534; flex-shrink: 0;">Black (Non-Hisp.)</span>
+                            <div style="flex: 1; background: linear-gradient(135deg, #f0fdf4, #dcfce7); border-radius: 6px; height: 26px; overflow: hidden;">
+                                <div style="width: 48.8%; height: 100%; background: linear-gradient(90deg, #3b82f6, #1d4ed8); border-radius: 6px; display: flex; align-items: center; justify-content: flex-end; padding-right: 10px;">
+                                    <span style="color: white; font-size: 11px; font-weight: 700;">6.97%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Medicare Diagnosed vs True Prevalence -->
+                <div style="background: white; border-radius: 18px; padding: 28px; border: 1px solid #67e8f9; box-shadow: 0 4px 15px rgba(6, 182, 212, 0.08);">
+                    <h3 style="font-size: 16px; font-weight: 700; color: #164e63; margin-bottom: 16px; display: flex; align-items: center; gap: 8px;">
+                        <span style="background: linear-gradient(135deg, #06b6d4, #0891b2); color: white; width: 28px; height: 28px; border-radius: 7px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg>
+                        </span>
+                        Diagnosed vs. True Prevalence
+                    </h3>
+                    <p style="color: #0e7490; font-size: 12px; font-weight: 600; margin-bottom: 14px;">The Diagnosis Gap — Ages 65+</p>
+
+                    <div style="display: flex; flex-direction: column; gap: 14px;">
+                        <div style="background: linear-gradient(135deg, #ecfeff, #cffafe); border-radius: 12px; padding: 16px; border: 1px solid rgba(6,182,212,0.15);">
+                            <p style="font-size: 11px; color: #0e7490; font-weight: 600; margin: 0 0 4px 0; text-transform: uppercase; letter-spacing: 0.5px;">Medicare Claims (Diagnosed)</p>
+                            <div style="display: flex; align-items: baseline; gap: 6px;">
+                                <span style="font-size: 26px; font-weight: 800; color: #0891b2;">10.4%</span>
+                                <span style="font-size: 12px; color: #155e75;">of 65+ population</span>
+                            </div>
+                            <p style="font-size: 11px; color: #155e75; margin: 6px 0 0 0;">Early 2.87% + Intermediate 6.91% + Wet 2.14% + GA 0.73%</p>
+                        </div>
+                        <div style="background: linear-gradient(135deg, #f0fdfa, #ccfbf1); border-radius: 12px; padding: 16px; border: 1px solid rgba(20,184,166,0.15);">
+                            <p style="font-size: 11px; color: #0f766e; font-weight: 600; margin: 0 0 4px 0; text-transform: uppercase; letter-spacing: 0.5px;">True Prevalence (Imaging-Based)</p>
+                            <div style="display: flex; align-items: baseline; gap: 6px;">
+                                <span style="font-size: 26px; font-weight: 800; color: #0d9488;">~30%</span>
+                                <span style="font-size: 12px; color: #115e59;">of 65+ population</span>
+                            </div>
+                            <p style="font-size: 11px; color: #115e59; margin: 6px 0 0 0;">Based on Rein et al. — 9.27M of ~33M Americans aged 65–84</p>
+                        </div>
+                        <div style="text-align: center; padding: 10px; background: linear-gradient(135deg, #ffffff, #f0fdfa); border-radius: 10px; border: 1px dashed #14b8a6;">
+                            <p style="font-size: 20px; font-weight: 800; color: #0d9488; margin: 0;">~2 in 3 cases undiagnosed</p>
+                            <p style="font-size: 11px; color: #115e59; margin: 4px 0 0 0;">among Americans 65+</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Key Takeaway -->
+            <div style="background: linear-gradient(135deg, #ffffff 0%, #f0fdfa 25%, #ccfbf1 50%, #99f6e4 75%, #5eead4 100%); border-radius: 20px; padding: 30px; margin-bottom: 28px; border: 1px solid rgba(94, 234, 212, 0.3); box-shadow: 0 12px 40px rgba(20, 184, 166, 0.12);">
+                <h3 style="font-size: 17px; font-weight: 700; color: #134e4a; margin-bottom: 14px; display: flex; align-items: center; gap: 10px;">
+                    <span style="background: linear-gradient(135deg, #14b8a6, #0d9488); color: white; width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                    </span>
+                    Why A1 Diagnosis Targets Age 35+
+                </h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px;">
+                    <div style="background: white; border-radius: 14px; padding: 18px; border: 1px solid rgba(20,184,166,0.15); text-align: center;">
+                        <div style="font-size: 28px; font-weight: 800; background: linear-gradient(135deg, #0d9488, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 4px;">Before the Curve</div>
+                        <p style="font-size: 12px; color: #115e59; margin: 0; line-height: 1.5;">AMD prevalence doubles every ~10 years after 40. Catching risk at 35+ means intervening before exponential growth.</p>
+                    </div>
+                    <div style="background: white; border-radius: 14px; padding: 18px; border: 1px solid rgba(20,184,166,0.15); text-align: center;">
+                        <div style="font-size: 28px; font-weight: 800; background: linear-gradient(135deg, #0d9488, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 4px;">7.6M Under 65</div>
+                        <p style="font-size: 12px; color: #115e59; margin: 0; line-height: 1.5;">Millions already have early AMD before they turn 65 — virtually none are diagnosed or treated.</p>
+                    </div>
+                    <div style="background: white; border-radius: 14px; padding: 18px; border: 1px solid rgba(20,184,166,0.15); text-align: center;">
+                        <div style="font-size: 28px; font-weight: 800; background: linear-gradient(135deg, #0d9488, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 4px;">Simple Blood Draw</div>
+                        <p style="font-size: 12px; color: #115e59; margin: 0; line-height: 1.5;">No retinal imaging needed. Any primary care visit can include AMD risk screening via blood test.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- References -->
+            <div style="background: white; border-radius: 18px; padding: 28px; border: 1px solid #5eead4; box-shadow: 0 4px 15px rgba(20, 184, 166, 0.06);">
+                <h3 style="font-size: 16px; font-weight: 700; color: #134e4a; margin-bottom: 16px; padding-bottom: 10px; border-bottom: 2px solid #5eead4; display: flex; align-items: center; gap: 8px;">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="#0d9488"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg>
+                    References
+                </h3>
+                <ol style="padding-left: 20px; margin: 0; list-style: none;">
+                    <li style="margin-bottom: 14px; padding: 12px 14px; border-radius: 10px; border-left: 3px solid #14b8a6; background: linear-gradient(135deg, #f0fdfa, #ffffff); position: relative; padding-left: 42px;">
+                        <span style="position: absolute; left: 10px; top: 12px; background: linear-gradient(135deg, #14b8a6, #0d9488); color: white; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700;">1</span>
+                        <p style="margin: 0; font-size: 12px; color: #1e293b; line-height: 1.6;">Rein DB, Wittenborn JS, Burke-Conte Z, et al. <strong>Prevalence of Age-Related Macular Degeneration in the US in 2019.</strong> <em>JAMA Ophthalmology.</em> 2022;140(12):1202-1208.</p>
+                        <div style="margin-top: 6px; display: flex; gap: 6px; flex-wrap: wrap;">
+                            <a href="https://jamanetwork.com/journals/jamaophthalmology/fullarticle/2797921" target="_blank" style="color: #0d9488; font-size: 11px; font-weight: 600; text-decoration: none; padding: 3px 10px; border: 1px solid #5eead4; border-radius: 12px; transition: all 0.2s ease;" onmouseover="this.style.background='#f0fdfa'" onmouseout="this.style.background='transparent'">JAMA Ophthalmology</a>
+                            <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9634594/" target="_blank" style="color: #0891b2; font-size: 11px; font-weight: 600; text-decoration: none; padding: 3px 10px; border: 1px solid #67e8f9; border-radius: 12px; transition: all 0.2s ease;" onmouseover="this.style.background='#ecfeff'" onmouseout="this.style.background='transparent'">PMC: 9634594</a>
+                        </div>
+                    </li>
+                    <li style="margin-bottom: 14px; padding: 12px 14px; border-radius: 10px; border-left: 3px solid #06b6d4; background: linear-gradient(135deg, #ecfeff, #ffffff); position: relative; padding-left: 42px;">
+                        <span style="position: absolute; left: 10px; top: 12px; background: linear-gradient(135deg, #06b6d4, #0891b2); color: white; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700;">2</span>
+                        <p style="margin: 0; font-size: 12px; color: #1e293b; line-height: 1.6;">Friedman DS, O'Colmain BJ, Munoz B, et al. <strong>Prevalence of Age-Related Macular Degeneration in the United States.</strong> <em>Archives of Ophthalmology.</em> 2004;122(4):564-572.</p>
+                        <div style="margin-top: 6px; display: flex; gap: 6px; flex-wrap: wrap;">
+                            <a href="https://pubmed.ncbi.nlm.nih.gov/15078675/" target="_blank" style="color: #0891b2; font-size: 11px; font-weight: 600; text-decoration: none; padding: 3px 10px; border: 1px solid #67e8f9; border-radius: 12px; transition: all 0.2s ease;" onmouseover="this.style.background='#ecfeff'" onmouseout="this.style.background='transparent'">PubMed: 15078675</a>
+                            <a href="https://jamanetwork.com/journals/jamaophthalmology/fullarticle/416232" target="_blank" style="color: #0d9488; font-size: 11px; font-weight: 600; text-decoration: none; padding: 3px 10px; border: 1px solid #5eead4; border-radius: 12px; transition: all 0.2s ease;" onmouseover="this.style.background='#f0fdfa'" onmouseout="this.style.background='transparent'">JAMA Ophthalmology</a>
+                        </div>
+                    </li>
+                    <li style="margin-bottom: 14px; padding: 12px 14px; border-radius: 10px; border-left: 3px solid #22c55e; background: linear-gradient(135deg, #f0fdf4, #ffffff); position: relative; padding-left: 42px;">
+                        <span style="position: absolute; left: 10px; top: 12px; background: linear-gradient(135deg, #22c55e, #16a34a); color: white; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700;">3</span>
+                        <p style="margin: 0; font-size: 12px; color: #1e293b; line-height: 1.6;"><strong>VEHSS Modeled Estimates: Age-Related Macular Degeneration (AMD) — Prevalence by 5-Year Age Groups.</strong> <em>Centers for Disease Control and Prevention, Vision and Eye Health Surveillance System.</em> Updated 2024. Accessed March 2, 2026.</p>
+                        <div style="margin-top: 6px;">
+                            <a href="https://www.cdc.gov/vision-health-data/prevalence-estimates/amd-prevalence.html" target="_blank" style="color: #16a34a; font-size: 11px; font-weight: 600; text-decoration: none; padding: 3px 10px; border: 1px solid #86efac; border-radius: 12px; transition: all 0.2s ease;" onmouseover="this.style.background='#f0fdf4'" onmouseout="this.style.background='transparent'">CDC VEHSS</a>
+                        </div>
+                    </li>
+                    <li style="margin-bottom: 14px; padding: 12px 14px; border-radius: 10px; border-left: 3px solid #3b82f6; background: linear-gradient(135deg, #eff6ff, #ffffff); position: relative; padding-left: 42px;">
+                        <span style="position: absolute; left: 10px; top: 12px; background: linear-gradient(135deg, #3b82f6, #1d4ed8); color: white; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700;">4</span>
+                        <p style="margin: 0; font-size: 12px; color: #1e293b; line-height: 1.6;"><strong>Prevalence of Age-Related Macular Degeneration in the United States: A Medicare-Based Analysis from 2014 to 2021.</strong> <em>Ophthalmic Research.</em> 2025;68(1):573.</p>
+                        <div style="margin-top: 6px;">
+                            <a href="https://karger.com/ore/article/68/1/573/938564/Prevalence-of-Age-Related-Macular-Degeneration-in" target="_blank" style="color: #1d4ed8; font-size: 11px; font-weight: 600; text-decoration: none; padding: 3px 10px; border: 1px solid #93c5fd; border-radius: 12px; transition: all 0.2s ease;" onmouseover="this.style.background='#eff6ff'" onmouseout="this.style.background='transparent'">Ophthalmic Research (Karger)</a>
+                        </div>
+                    </li>
+                    <li style="padding: 12px 14px; border-radius: 10px; border-left: 3px solid #14b8a6; background: linear-gradient(135deg, #f0fdfa, #ffffff); position: relative; padding-left: 42px;">
+                        <span style="position: absolute; left: 10px; top: 12px; background: linear-gradient(135deg, #14b8a6, #0d9488); color: white; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700;">5</span>
+                        <p style="margin: 0; font-size: 12px; color: #1e293b; line-height: 1.6;">BrightFocus Foundation. <strong>Nearly 20 Million American Adults Have Age-Related Macular Degeneration, New Data Shows.</strong> 2022.</p>
+                        <div style="margin-top: 6px;">
+                            <a href="https://www.brightfocus.org/news/nearly-20-million-american-adults-have-age-related-macular-degeneration-new-data-shows/" target="_blank" style="color: #0d9488; font-size: 11px; font-weight: 600; text-decoration: none; padding: 3px 10px; border: 1px solid #5eead4; border-radius: 12px; transition: all 0.2s ease;" onmouseover="this.style.background='#f0fdfa'" onmouseout="this.style.background='transparent'">BrightFocus Foundation</a>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+        </div>
+
     </div>
-    
+
     <script>
         // Mobile Navigation Toggle
         function toggleMobileNav() {
