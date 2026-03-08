@@ -188,10 +188,10 @@
     100% { background-position: -200% 0; }
   }
 
-  /* ═══ SCENE 1: WORKFLOW ═══ */
-  #s1 { padding: 0 80px; }
+  /* ═══ SCENE 6: WORKFLOW ═══ */
+  #s6 { padding: 0 80px; }
 
-  #s1 .section-title {
+  #s6 .section-title {
     font-size: 48px;
     font-weight: 800;
     letter-spacing: -1.5px;
@@ -204,7 +204,7 @@
     text-align: center;
   }
   
-  #s1 .section-title span {
+  #s6 .section-title span {
     /* Removed to allow the full gradient to show across all words */
   }
 
@@ -284,14 +284,14 @@
     line-height: 1.6;
   }
 
-  /* ═══ SCENE 2: TRANSITION ═══ */
-  #s2 .message {
+  /* ═══ SCENE 7: TRANSITION ═══ */
+  #s7 .message {
     font-size: 42px;
     font-weight: 700;
     color: var(--navy-dark);
     text-align: center;
   }
-  #s2 .message span {
+  #s7 .message span {
     background: linear-gradient(135deg, var(--teal-primary), var(--cyan-secondary));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -321,10 +321,271 @@
     box-shadow: 0 0 12px rgba(13, 148, 136, 0.4);
   }
 
+  /* ═══ EYE-TO-RETINA ANIMATION SCENES ═══ */
+  #s1, #s2, #s3, #s4, #s5 {
+    /* Override the default scene transform for animation scenes */
+    transform: none;
+    flex-direction: row;
+  }
+  #s1.active, #s2.active, #s3.active, #s4.active, #s5.active {
+    transform: none;
+  }
+
+  /* ANATOMY CROSS-SECTION */
+  #s1 { background: #fff; padding: 0; }
+  #s1 .anatomy-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #s1 .img-wrapper {
+    position: relative;
+    max-height: 92%;
+    max-width: 60%;
+    opacity: 0;
+    transform: scale(0.95);
+    will-change: transform, opacity;
+  }
+  #s1.active .img-wrapper {
+    animation: anatomyReveal 1s ease 0.2s forwards;
+  }
+  #s1 .anatomy-img {
+    display: block;
+    max-height: 92vh;
+    max-width: 100%;
+    height: auto;
+    width: auto;
+    object-fit: contain;
+  }
+  @keyframes anatomyReveal {
+    to { opacity: 1; transform: scale(1); }
+  }
+  #s1 .retina-highlight {
+    position: absolute;
+    top: 31%; left: 56%;
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, -50%) scale(0.6);
+  }
+  #s1.active .retina-highlight {
+    animation: highlightPulse 2s ease 1.2s forwards;
+  }
+  @keyframes highlightPulse {
+    0% { opacity: 0; transform: translate(-50%, -50%) scale(0.6); }
+    30% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  }
+
+  /* ZOOM INTO RETINA */
+  #s2 { background: #e8e0d8; padding: 0; }
+  #s2 .zoom-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #s2 .zoom-anatomy {
+    max-height: 92%;
+    max-width: 60%;
+    object-fit: contain;
+    transform-origin: 56% 31%;
+    opacity: 0;
+    transform: scale(1);
+    will-change: transform, opacity, filter;
+    backface-visibility: hidden;
+  }
+  #s2.active .zoom-anatomy {
+    animation: retinaZoom 3s cubic-bezier(0.4, 0, 0.2, 1) 0.1s forwards;
+  }
+  @keyframes retinaZoom {
+    0% { opacity: 0; transform: scale(1); filter: blur(0px); }
+    8% { opacity: 1; transform: scale(1.05); filter: blur(0px); }
+    70% { opacity: 1; transform: scale(5); filter: blur(0px); }
+    100% { opacity: 0; transform: scale(7); filter: blur(8px); }
+  }
+  #s2 .vignette {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 53% 31%, transparent 10%, rgba(0,0,0,0.25) 40%, rgba(0,0,0,0.75) 100%);
+    opacity: 0;
+    z-index: 2;
+  }
+  #s2.active .vignette {
+    animation: vignetteIn 2s ease 0.5s forwards;
+  }
+  @keyframes vignetteIn { to { opacity: 1; } }
+  #s2 .zoom-label {
+    position: absolute;
+    bottom: 15%; left: 50%;
+    transform: translateX(-50%) translateY(12px);
+    font-size: 20px; font-weight: 600;
+    color: #fff;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.5);
+    opacity: 0; z-index: 5;
+    white-space: nowrap;
+  }
+  #s2 .zoom-label span { color: #5eead4; }
+  #s2.active .zoom-label {
+    animation: fadeUpCentered 0.6s ease 0.8s forwards, animFadeOut 0.5s ease 2.2s forwards;
+  }
+  @keyframes fadeUpCentered {
+    from { opacity: 0; transform: translateX(-50%) translateY(12px); }
+    to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+  }
+  @keyframes animFadeOut { to { opacity: 0; } }
+  @keyframes animFadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+  /* FUNDUS PHOTO */
+  #s3 { background: #e8e0d8; padding: 0; }
+  #s3 .rpe-container {
+    position: relative;
+    width: 100%; height: 100%;
+    overflow: hidden;
+  }
+  #s3 .rpe-img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transform: scale(1.15);
+    will-change: transform, opacity, filter;
+    backface-visibility: hidden;
+  }
+  #s3.active .rpe-img {
+    animation: rpeReveal 2.5s cubic-bezier(0.4, 0, 0.2, 1) 0.2s forwards;
+  }
+  @keyframes rpeReveal {
+    0% { opacity: 0; transform: scale(1.3); filter: blur(8px); }
+    40% { opacity: 1; filter: blur(0px); }
+    100% { opacity: 1; transform: scale(1); filter: blur(0px); }
+  }
+  #s3 .rpe-label {
+    position: absolute;
+    top: 8%; left: 50%;
+    transform: translateX(-50%) translateY(12px);
+    text-align: center;
+    z-index: 10; opacity: 0;
+  }
+  #s3.active .rpe-label {
+    animation: fadeUpCentered 0.7s ease 1.5s forwards;
+  }
+  #s3 .rpe-label .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #0d9488;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(10px);
+    padding: 8px 20px;
+    border-radius: 40px;
+    border: 1px solid rgba(13,148,136,0.15);
+    display: inline-block;
+  }
+  #s3 .rpe-title {
+    position: absolute;
+    bottom: 10%; left: 50%;
+    transform: translateX(-50%) translateY(12px);
+    text-align: center;
+    z-index: 10; opacity: 0;
+    white-space: nowrap;
+  }
+  #s3.active .rpe-title {
+    animation: fadeUpCentered 0.7s ease 2s forwards;
+  }
+  #s3 .rpe-title h2 {
+    font-size: 32px; font-weight: 700;
+    color: #fff;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.7), 0 0 40px rgba(0,0,0,0.4);
+  }
+  #s3 .rpe-title h2 span {
+    color: #5eead4;
+    -webkit-text-fill-color: #5eead4;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.7), 0 0 12px rgba(94,234,212,0.3);
+  }
+  #s3 .rpe-title p {
+    font-size: 16px;
+    color: rgba(255,255,255,0.9);
+    margin-top: 8px;
+    text-shadow: 0 2px 16px rgba(0,0,0,0.7), 0 0 30px rgba(0,0,0,0.4);
+  }
+
+  /* ZOOM INTO MACULA */
+  #s4 { background: #000; padding: 0; }
+  #s4 .macula-container {
+    position: relative;
+    width: 100%; height: 100%;
+    overflow: hidden;
+  }
+  #s4 .macula-img {
+    position: absolute;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transform-origin: 40% 45%;
+    opacity: 0;
+    will-change: transform, opacity, filter;
+    backface-visibility: hidden;
+  }
+  #s4.active .macula-img {
+    animation: maculaZoom 3.5s cubic-bezier(0.4, 0, 0.2, 1) 0.1s forwards;
+  }
+  @keyframes maculaZoom {
+    0% { opacity: 1; transform: scale(1); filter: blur(0px); }
+    60% { opacity: 1; transform: scale(6); filter: blur(0px); }
+    100% { opacity: 0; transform: scale(9); filter: blur(10px); }
+  }
+  #s4 .macula-vignette {
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at 40% 45%, transparent 8%, rgba(0,0,0,0.3) 35%, rgba(0,0,0,0.8) 100%);
+    opacity: 0; z-index: 2;
+  }
+  #s4.active .macula-vignette {
+    animation: vignetteIn 2s ease 0.3s forwards;
+  }
+  #s4 .macula-label {
+    position: absolute;
+    bottom: 15%; left: 50%;
+    transform: translateX(-50%) translateY(12px);
+    font-size: 20px; font-weight: 600;
+    color: #fff;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.7);
+    opacity: 0; z-index: 5;
+    white-space: nowrap;
+  }
+  #s4 .macula-label span { color: #5eead4; }
+  #s4.active .macula-label {
+    animation: fadeUpCentered 0.6s ease 0.5s forwards, animFadeOut 0.5s ease 2.5s forwards;
+  }
+
+  /* VIDEO */
+  #s5 { background: #000; padding: 0; }
+  #s5 .video-container {
+    position: relative;
+    width: 100%; height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #s5 video {
+    width: 100%; height: 100%;
+    object-fit: contain;
+    opacity: 0;
+  }
+  #s5.active video {
+    animation: animFadeIn 0.8s ease 0.2s forwards;
+  }
+
   /* ═══ RESPONSIVE: Laptops ≤1440px ═══ */
   @media (max-width: 1440px) {
     #s0 .title { font-size: 56px; }
-    #s1 .section-title { font-size: 42px; margin-bottom: 48px; }
+    #s6 .section-title { font-size: 42px; margin-bottom: 48px; }
     .workflow-grid { gap: 24px; max-width: 1000px; }
     .step-card { padding: 32px 20px 24px; }
   }
@@ -335,13 +596,13 @@
     #s0 .badge { left: 42%; }
     #s0 .divider-tagline-group { left: 36%; }
     #s0 .tagline { font-size: 18px; }
-    #s1 { padding: 0 48px; }
-    #s1 .section-title { font-size: 36px; margin-bottom: 40px; }
+    #s6 { padding: 0 48px; }
+    #s6 .section-title { font-size: 36px; margin-bottom: 40px; }
     .workflow-grid { gap: 20px; max-width: 900px; }
     .step-card .name { font-size: 16px; }
     .step-card .desc { font-size: 13px; }
     .step-card .icon { width: 56px; height: 56px; }
-    #s2 .message { font-size: 36px; }
+    #s7 .message { font-size: 36px; }
   }
 
   /* ═══ RESPONSIVE: ≤1024px ═══ */
@@ -352,15 +613,15 @@
     #s0 .divider-tagline-group { left: 38%; }
     #s0 .tagline { font-size: 16px; }
     #s0 .logo { height: 55px; right: 24px; top: 24px; }
-    #s1 { padding: 0 32px; }
-    #s1 .section-title { font-size: 32px; margin-bottom: 32px; }
+    #s6 { padding: 0 32px; }
+    #s6 .section-title { font-size: 32px; margin-bottom: 32px; }
     .workflow-grid { gap: 16px; max-width: 800px; }
     .step-card { padding: 28px 16px 20px; border-radius: 16px; }
     .step-card .icon { width: 48px; height: 48px; border-radius: 12px; }
     .step-card .icon svg { width: 24px; height: 24px; }
     .step-card .name { font-size: 15px; }
     .step-card .desc { font-size: 12px; }
-    #s2 .message { font-size: 30px; }
+    #s7 .message { font-size: 30px; }
   }
 </style>
 </head>
@@ -385,8 +646,59 @@
     </div>
   </div>
 
-  <!-- SCENE 1: WORKFLOW -->
+  <!-- SCENE 1: ANATOMY CROSS-SECTION -->
   <div id="s1" class="scene">
+    <div class="anatomy-container">
+      <div class="img-wrapper">
+        <img class="anatomy-img" src="NCI Eyes and Retina.jpg" alt="Eye anatomy cross-section">
+        <div class="retina-highlight"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCENE 2: ZOOM INTO RETINA -->
+  <div id="s2" class="scene">
+    <div class="zoom-container">
+      <img class="zoom-anatomy" src="NCI Eyes and Retina.jpg" alt="Zooming into retina">
+      <div class="vignette"></div>
+      <div class="zoom-label">Entering the <span>retinal layer</span>...</div>
+    </div>
+  </div>
+
+  <!-- SCENE 3: FUNDUS PHOTO -->
+  <div id="s3" class="scene">
+    <div class="rpe-container">
+      <img class="rpe-img" src="Fundus - high quality.jpg" alt="Retina fundus photograph">
+      <div class="rpe-label">
+        <span class="tag">Inside the Eye</span>
+      </div>
+      <div class="rpe-title">
+        <h2>The <span>Retina</span></h2>
+        <p>AMD damages this tissue — our blood test detects it early</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCENE 4: ZOOM INTO MACULA -->
+  <div id="s4" class="scene">
+    <div class="macula-container">
+      <img class="macula-img" src="Fundus - high quality.jpg" alt="Zooming into macula">
+      <div class="macula-vignette"></div>
+      <div class="macula-label">Entering the <span>macula</span>...</div>
+    </div>
+  </div>
+
+  <!-- SCENE 5: VIDEO -->
+  <div id="s5" class="scene">
+    <div class="video-container">
+      <video id="mainVideo" preload="auto" playsinline muted autoplay>
+        <source src="Medical_Animation_Retina_to_Lab.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+
+  <!-- SCENE 6: WORKFLOW -->
+  <div id="s6" class="scene">
     <div class="section-title stagger d-1">How it <span>works</span></div>
     <div class="workflow-grid">
       <div class="step-card stagger d-2" id="card-1">
@@ -446,8 +758,8 @@
     </div>
   </div>
 
-  <!-- SCENE 2: TRANSITION -->
-  <div id="s2" class="scene">
+  <!-- SCENE 7: TRANSITION -->
+  <div id="s7" class="scene">
     <div class="message stagger d-1">Let me show you <span>the platform</span></div>
   </div>
 
@@ -456,10 +768,17 @@
     <span class="on" onclick="goTo(0)"></span>
     <span onclick="goTo(1)"></span>
     <span onclick="goTo(2)"></span>
+    <span onclick="goTo(3)"></span>
+    <span onclick="goTo(4)"></span>
+    <span onclick="goTo(5)"></span>
+    <span onclick="goTo(6)"></span>
+    <span onclick="goTo(7)"></span>
   </div>
 
 <script>
-  const sceneIds = ['s0','s1','s2'];
+  const sceneIds = ['s0','s1','s2','s3','s4','s5','s6','s7'];
+  // Scenes with dark backgrounds (need light nav dots)
+  const darkScenes = new Set([2, 4, 5]);
   let current = 0;
   let autoplayTimeouts = [];
 
@@ -469,28 +788,45 @@
     document.querySelectorAll('.step-card').forEach(el => el.classList.remove('active'));
   }
 
-  function goTo(idx) {
-    if (idx < 0 || idx >= sceneIds.length) return;
-    clearAutoplay(); // Stop any running autoplay logic when switching scenes
-    
-    // Remove active state from all scenes to trigger exit
-    sceneIds.forEach(id => {
-      const scene = document.getElementById(id);
-      scene.classList.remove('active');
-    });
-    
-    // Add active state to new scene (this triggers the CSS staggered entry)
-    document.getElementById(sceneIds[idx]).classList.add('active');
-    
-    // Update dots
-    document.querySelectorAll('.dots span').forEach((d, i) => d.classList.toggle('on', i === idx));
-    current = idx;
+  function resetSceneAnimations(sceneEl) {
+    const animated = sceneEl.querySelectorAll('*');
+    animated.forEach(el => { el.style.animation = 'none'; });
+    sceneEl.style.animation = 'none';
+    void sceneEl.offsetHeight;
+    animated.forEach(el => { el.style.animation = ''; });
+    sceneEl.style.animation = '';
   }
 
-  // Click anywhere to advance (unless clicking dots)
+  function goTo(idx) {
+    if (idx < 0 || idx >= sceneIds.length) return;
+    clearAutoplay();
+
+    sceneIds.forEach(id => {
+      document.getElementById(id).classList.remove('active');
+    });
+
+    const target = document.getElementById(sceneIds[idx]);
+    resetSceneAnimations(target);
+    target.classList.add('active');
+
+    document.querySelectorAll('.dots span').forEach((d, i) => d.classList.toggle('on', i === idx));
+    current = idx;
+
+    // Video auto-play
+    const video = document.getElementById('mainVideo');
+    if (sceneIds[idx] === 's5') {
+      video.currentTime = 0;
+      video.play();
+    } else {
+      video.pause();
+    }
+  }
+
+  // Click anywhere to advance
   document.addEventListener('click', (e) => {
-    if(e.target.tagName.toLowerCase() === 'span' && e.target.parentElement.classList.contains('dots')) return;
-    
+    if (e.target.tagName.toLowerCase() === 'span' && e.target.parentElement.classList.contains('dots')) return;
+    if (sceneIds[current] === 's5') return; // don't skip video
+
     if (current === sceneIds.length - 1) {
       window.location.href = 'demo.html';
     } else {
@@ -509,37 +845,47 @@
     if (e.key === 'a' || e.key === 'A') autoPlay();
   });
 
+  // Prime video for autoplay
+  const vid = document.getElementById('mainVideo');
+  vid.muted = true;
+  vid.play().then(() => { vid.pause(); vid.currentTime = 0; }).catch(() => {});
+
   // ═══ CHOREOGRAPHED AUTO-PLAY (press A) ═══
-  // Uses timeouts to cycle through scenes and automatically highlight cards
   function autoPlay() {
     goTo(0);
-    
-    // Scene 1: Workflow (Transition at 4.5s)
+
+    // s0: Opening — 4.5s
     autoplayTimeouts.push(setTimeout(() => goTo(1), 4500));
-    
-    // Highlight Cards Sequentially
-    const baseTime = 4500; 
+    // s1: Anatomy — 4s
+    autoplayTimeouts.push(setTimeout(() => goTo(2), 8500));
+    // s2: Zoom retina — 3.5s
+    autoplayTimeouts.push(setTimeout(() => goTo(3), 12000));
+    // s3: Fundus — 4s
+    autoplayTimeouts.push(setTimeout(() => goTo(4), 16000));
+    // s4: Zoom macula — 4s
+    autoplayTimeouts.push(setTimeout(() => goTo(5), 20000));
+    // s5: Video — 7.4s
+    autoplayTimeouts.push(setTimeout(() => goTo(6), 28000));
+
+    // s6: Workflow — highlight cards
+    const baseTime = 28000;
     autoplayTimeouts.push(setTimeout(() => document.getElementById('card-1').classList.add('active'), baseTime + 1200));
-    
     autoplayTimeouts.push(setTimeout(() => {
       document.getElementById('card-1').classList.remove('active');
       document.getElementById('card-2').classList.add('active');
     }, baseTime + 3200));
-    
     autoplayTimeouts.push(setTimeout(() => {
       document.getElementById('card-2').classList.remove('active');
       document.getElementById('card-3').classList.add('active');
     }, baseTime + 5200));
-    
     autoplayTimeouts.push(setTimeout(() => {
       document.getElementById('card-3').classList.remove('active');
       document.getElementById('card-4').classList.add('active');
     }, baseTime + 7200));
-    
     autoplayTimeouts.push(setTimeout(() => document.getElementById('card-4').classList.remove('active'), baseTime + 9200));
 
-    // Scene 2: Transition (Transition at 14.5s)
-    autoplayTimeouts.push(setTimeout(() => goTo(2), baseTime + 10000));
+    // s7: Transition
+    autoplayTimeouts.push(setTimeout(() => goTo(7), baseTime + 10000));
   }
 </script>
 
