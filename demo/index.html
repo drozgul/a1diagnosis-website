@@ -1,608 +1,456 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A1 Diagnosis — AMD Risk Assessment Platform</title>
-    <link rel="icon" type="image/png" href="A1_Favicon.png">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A1 Diagnosis — Product Workflow</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    <!-- Dependencies -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background: #ffffff;
+    color: #0c1e3a;
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+  }
 
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
+  /* ═══ SCENES ═══ */
+  .scene {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.6s ease;
+  }
+  .scene.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
 
-    <style>
-        * { font-family: 'Inter', system-ui, -apple-system, sans-serif; }
+  /* ═══ SCENE 0: OPENING ═══ */
+  #s0 { background: #ffffff; }
 
-        /* === ANIMATIONS === */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(24px); }
-            to   { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes rowSlideIn {
-            from { opacity: 0; transform: translateX(-12px); }
-            to   { opacity: 1; transform: translateX(0); }
-        }
-        @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50%      { opacity: 0.7; transform: scale(1.04); }
-        }
-        @keyframes checkPop {
-            0%   { opacity: 0; transform: scale(0); }
-            60%  { opacity: 1; transform: scale(1.2); }
-            100% { opacity: 1; transform: scale(1); }
-        }
-        @keyframes shimmerSlide {
-            0%   { transform: translateX(-100%); }
-            100% { transform: translateX(200%); }
-        }
+  #s0 .badge {
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: inline-block;
+    padding: 12px 24px;
+    background: linear-gradient(to right, #14b8a6, #06b6d4);
+    border-radius: 50px;
+    box-shadow: 0 4px 16px rgba(20,184,166,0.3);
+    z-index: 10;
+  }
+  #s0 .badge span {
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 18px;
+  }
 
-        /* Phase visibility */
-        .step-phase         { display: none; }
-        .step-phase.active  { display: block; animation: fadeInUp 0.5s ease-out; }
+  #s0 .logo {
+    position: absolute;
+    top: 24px;
+    right: 32px;
+    height: 80px;
+    width: auto;
+    z-index: 10;
+  }
 
-        /* Table rows */
-        .peptide-row { animation: rowSlideIn 0.4s ease-out both; }
+  #s0 .title {
+    font-size: 56px;
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    line-height: 1.1;
+    text-align: center;
+    background: linear-gradient(135deg, #0d9488, #0891b2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 16px;
+  }
 
-        /* Buttons */
-        .btn-action { transition: all 0.25s ease; }
-        .btn-action:hover  { transform: translateY(-2px); box-shadow: 0 12px 24px -8px rgba(13,148,136,0.4); }
-        .btn-action:active { transform: translateY(0); }
-        .btn-action:focus-visible { outline: 3px solid #0d9488; outline-offset: 2px; }
+  #s0 .subtitle {
+    font-size: 22px;
+    color: #64748b;
+    font-weight: 500;
+    text-align: center;
+    max-width: 650px;
+    margin-bottom: 40px;
+  }
 
-        /* Progress bar */
-        .progress-fill { transition: width 0.6s ease-out; }
+  #s0 .divider {
+    width: 96px;
+    height: 2px;
+    background: linear-gradient(90deg, #0d9488, #0891b2);
+    margin: 0 auto 20px;
+    border-radius: 2px;
+  }
 
-        /* Shimmer overlay for progress bar */
-        .progress-shimmer {
-            position: absolute; inset: 0;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent);
-            animation: shimmerSlide 1.8s infinite;
-        }
+  #s0 .divider-tagline-group {
+    position: absolute;
+    bottom: 25%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    z-index: 10;
+  }
 
-        /* Connector line fill */
-        .connector-fill { transition: width 0.6s ease; }
+  #s0 .tagline {
+    font-size: 18px;
+    font-weight: 300;
+    font-style: italic;
+    color: #94a3b8;
+    text-align: center;
+    background: linear-gradient(90deg, #94a3b8, #0d9488, #94a3b8);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 3s infinite linear;
+    white-space: nowrap;
+  }
+  @keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
 
-        /* Analyzing icon pulse */
-        .analyzing-pulse { animation: pulse 2s ease-in-out infinite; }
+  /* ═══ SCENE 1: WORKFLOW ═══ */
+  #s1 { background: #f0f9ff; padding: 0 80px; }
 
-        /* Check pop */
-        .check-pop { animation: checkPop 0.5s ease-out; }
+  #s1 .section-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: #0d9488;
+    font-weight: 500;
+    margin-bottom: 48px;
+  }
 
-        /* Gradient text */
-        .text-gradient {
-            background: linear-gradient(135deg, #0d9488, #0891b2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
+  .workflow-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    width: 100%;
+    max-width: 1060px;
+  }
 
-        /* Blurred privacy text */
-        .blurred { filter: blur(6px); user-select: none; }
+  .step-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 32px 20px 24px;
+    text-align: center;
+    position: relative;
+    transition: all 0.3s ease;
+  }
+  .step-card.active {
+    border-color: #0d9488;
+    box-shadow: 0 4px 20px rgba(13,148,136,0.12);
+  }
 
-        /* Result stat pop-in */
-        .stat-pop { animation: fadeInUp 0.5s ease-out both; }
-    </style>
+  .step-card .num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: #0d9488;
+    letter-spacing: 1px;
+    position: absolute;
+    top: 14px; left: 16px;
+    font-weight: 500;
+  }
+
+  .step-card .icon {
+    width: 56px; height: 56px;
+    margin: 0 auto 16px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f0fdfa;
+    border: 1px solid #ccfbf1;
+    transition: all 0.3s ease;
+  }
+  .step-card.active .icon {
+    background: linear-gradient(135deg, #0d9488, #0891b2);
+    border-color: transparent;
+    box-shadow: 0 6px 20px rgba(13,148,136,0.25);
+  }
+  .step-card .icon svg { stroke: #0d9488; }
+  .step-card.active .icon svg { stroke: #ffffff; }
+
+  .step-card .name {
+    font-size: 16px;
+    font-weight: 600;
+    color: #0c1e3a;
+    margin-bottom: 6px;
+  }
+  .step-card .desc {
+    font-size: 14px;
+    color: #64748b;
+    line-height: 1.5;
+  }
+
+  /* ═══ SCENE 2: TRANSITION ═══ */
+  #s2 { background: #ffffff; }
+
+  #s2 .message {
+    font-size: 34px;
+    font-weight: 600;
+    color: #0c1e3a;
+    text-align: center;
+  }
+  #s2 .message span {
+    background: linear-gradient(135deg, #0d9488, #0891b2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ═══ BOTTOM BAR ═══ */
+  .bottom-bar {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 40px;
+    background: #f8fafc;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 32px;
+    z-index: 100;
+    border-top: 1px solid #e2e8f0;
+  }
+  .bottom-bar .left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #0d9488;
+  }
+  .bottom-bar .left img { height: 22px; width: auto; }
+  .bottom-bar .right {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: #94a3b8;
+  }
+
+  /* ═══ PROGRESS DOTS ═══ */
+  .dots {
+    position: absolute;
+    bottom: 52px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 100;
+  }
+  .dots span {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: #cbd5e1;
+    transition: all 0.4s ease;
+  }
+  .dots span.on {
+    background: #0d9488;
+    box-shadow: 0 0 8px rgba(13,148,136,0.3);
+  }
+
+  /* ═══ ANIMATIONS (auto-play only) ═══ */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes popIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+</style>
 </head>
+<body>
 
-<body class="bg-white min-h-screen flex flex-col">
-
-    <!-- ===================== HEADER ===================== -->
-    <header class="bg-white border-b border-slate-100 sticky top-0 z-50">
-        <div class="max-w-6xl mx-auto px-8 py-3 flex items-center justify-between">
-            <!-- Logo -->
-            <div class="flex items-center gap-3">
-                <img src="A1_Diagnosis_Logo.jpg" alt="A1 Diagnosis" class="h-10 w-auto object-contain">
-            </div>
-            <!-- Status -->
-            <div class="flex items-center gap-4">
-                <span class="px-3 py-1.5 bg-emerald-50 text-emerald-700 text-[11px] font-bold rounded-full border border-emerald-200 tracking-wide flex items-center gap-1.5">
-                    <span class="w-1.5 h-1.5 bg-emerald-500 rounded-full"></span>
-                    CLIA Laboratory
-                </span>
-            </div>
-        </div>
-    </header>
-
-    <!-- ===================== STEP INDICATOR ===================== -->
-    <div class="bg-white border-b border-slate-50">
-        <div class="max-w-3xl mx-auto px-8 py-5">
-            <div class="flex items-center">
-                <!-- Step 1 -->
-                <div class="flex items-center gap-2.5">
-                    <div id="step-dot-1" class="w-9 h-9 rounded-full bg-gradient-to-br from-teal-500 to-cyan-500 flex items-center justify-center text-white font-bold text-sm shadow-md shadow-teal-500/20 transition-all duration-300">1</div>
-                    <span id="step-text-1" class="text-sm font-semibold text-teal-700 transition-colors duration-300">Load Data</span>
-                </div>
-                <div class="flex-1 h-[2px] bg-slate-200 mx-4 relative overflow-hidden rounded-full">
-                    <div id="line-1" class="absolute inset-y-0 left-0 bg-gradient-to-r from-teal-500 to-cyan-500 connector-fill rounded-full" style="width:0%"></div>
-                </div>
-                <!-- Step 2 -->
-                <div class="flex items-center gap-2.5">
-                    <div id="step-dot-2" class="w-9 h-9 rounded-full bg-slate-200 flex items-center justify-center text-slate-400 font-bold text-sm transition-all duration-300">2</div>
-                    <span id="step-text-2" class="text-sm font-semibold text-slate-400 transition-colors duration-300">Analysis</span>
-                </div>
-                <div class="flex-1 h-[2px] bg-slate-200 mx-4 relative overflow-hidden rounded-full">
-                    <div id="line-2" class="absolute inset-y-0 left-0 bg-gradient-to-r from-teal-500 to-cyan-500 connector-fill rounded-full" style="width:0%"></div>
-                </div>
-                <!-- Step 3 -->
-                <div class="flex items-center gap-2.5">
-                    <div id="step-dot-3" class="w-9 h-9 rounded-full bg-slate-200 flex items-center justify-center text-slate-400 font-bold text-sm transition-all duration-300">3</div>
-                    <span id="step-text-3" class="text-sm font-semibold text-slate-400 transition-colors duration-300">Results</span>
-                </div>
-            </div>
-        </div>
+  <!-- SCENE 0: OPENING -->
+  <div id="s0" class="scene active">
+    <div class="badge"><span>Proactive Vision Health</span></div>
+    <img src="Logo_No_background.png" alt="A1 Diagnosis" class="logo">
+    <div class="title">The First Blood Test for AMD Risk Assessment</div>
+    <div class="divider-tagline-group">
+      <div class="divider"></div>
+      <div class="tagline">Enabling Proactive Care Through Early Detection</div>
     </div>
+  </div>
 
-    <!-- ===================== MAIN CONTENT ===================== -->
-    <main class="flex-1 px-8 py-10">
-
-        <!-- ────── PHASE 1 : LOAD DATA ────── -->
-        <div id="phase-load" class="step-phase active">
-            <div class="max-w-xl mx-auto">
-                <div class="bg-white rounded-2xl border border-slate-200 p-12 text-center shadow-sm hover:shadow-md transition-shadow">
-                    <div class="w-20 h-20 bg-gradient-to-br from-teal-50 to-cyan-50 rounded-2xl flex items-center justify-center mx-auto mb-8 border border-teal-100">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#0d9488" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/>
-                            <polyline points="13 2 13 9 20 9"/>
-                            <line x1="12" y1="18" x2="12" y2="12"/>
-                            <polyline points="9 15 12 12 15 15"/>
-                        </svg>
-                    </div>
-                    <h2 class="text-2xl font-bold text-slate-800 mb-2">Load Patient Sample Data</h2>
-                    <p class="text-slate-400 mb-10 text-base">Upload mass spectrometry output file (.xlsx)</p>
-
-                    <button onclick="document.getElementById('fileInput').click()"
-                            aria-label="Upload patient sample Excel file"
-                            class="btn-action inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-teal-500 to-cyan-600 text-white font-bold text-base rounded-xl shadow-lg shadow-teal-500/25 cursor-pointer">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-                        Load Data
-                    </button>
-                    <input type="file" id="fileInput" accept=".xlsx,.xls" onchange="handleFileUpload(event)" class="hidden">
-
-                    <p class="text-slate-300 text-xs mt-8">Accepts .xlsx files from Bruker timsTOF output</p>
-                </div>
-            </div>
+  <!-- SCENE 1: WORKFLOW -->
+  <div id="s1" class="scene">
+    <div class="section-title">How it works</div>
+    <div class="workflow-grid">
+      <div class="step-card" id="card-1">
+        <div class="num">01</div>
+        <div class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/>
+          </svg>
         </div>
-
-        <!-- ────── PHASE 2 : PEPTIDE PREVIEW ────── -->
-        <div id="phase-preview" class="step-phase">
-            <div class="max-w-4xl mx-auto">
-                <div class="bg-white rounded-2xl border border-slate-200 p-8 shadow-sm">
-                    <!-- Sample metadata bar -->
-                    <div class="flex items-center gap-3 mb-6 p-3 bg-slate-50 rounded-xl border border-slate-100 text-xs text-slate-500">
-                        <span class="font-bold text-slate-600">Sample ID:</span> <span id="metaSampleId">AMD-2026-001</span>
-                        <span class="text-slate-300">|</span>
-                        <span class="font-bold text-slate-600">Date:</span> <span id="metaDate"></span>
-                        <span class="text-slate-300">|</span>
-                        <span class="font-bold text-slate-600">Method:</span> LC-MS/MS Native Peptide Analysis
-                    </div>
-
-                    <!-- Header -->
-                    <div class="flex items-center justify-between mb-6 flex-wrap gap-4">
-                        <h2 class="text-xl font-bold text-slate-800">Native Peptide Signatures Detected</h2>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 bg-cyan-50 text-cyan-700 text-[11px] font-bold rounded-full border border-cyan-200">p &lt; 0.003</span>
-                            <span class="px-3 py-1 bg-amber-50 text-amber-700 text-[11px] font-bold rounded-full border border-amber-200">Fold Change &gt; 10&times;</span>
-                        </div>
-                    </div>
-
-                    <!-- Table -->
-                    <div class="rounded-xl border border-slate-200 overflow-hidden shadow-sm">
-                        <table class="w-full" role="table" aria-label="Detected peptide biomarkers">
-                            <thead>
-                                <tr class="bg-gradient-to-r from-slate-50 to-slate-100 border-b border-slate-200">
-                                    <th class="text-left px-6 py-4 text-[11px] font-extrabold text-slate-600 uppercase tracking-[1.5px]">Biomarker</th>
-                                    <th class="text-left px-6 py-4 text-[11px] font-extrabold text-slate-600 uppercase tracking-[1.5px]">Intensity Value</th>
-                                    <th class="text-left px-6 py-4 text-[11px] font-extrabold text-slate-600 uppercase tracking-[1.5px]">Status</th>
-                                </tr>
-                            </thead>
-                            <tbody id="peptideTableBody"></tbody>
-                        </table>
-                    </div>
-
-                    <!-- Button -->
-                    <div class="mt-8 text-center">
-                        <button onclick="startAnalysis()"
-                                class="btn-action inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-teal-500 to-cyan-600 text-white font-bold text-base rounded-xl shadow-lg shadow-teal-500/25 cursor-pointer">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 15c6.667-6 13.333 0 20-6"/><path d="M9 22c1.798-1.998 2.518-3.995 2.807-5.993"/><path d="M15 2c-1.798 1.998-2.518 3.995-2.807 5.993"/></svg>
-                            Start Machine Learning Analysis
-                        </button>
-                    </div>
-                </div>
-            </div>
+        <div class="name">Routine Eye Visit</div>
+        <div class="desc">Patient visits their eye doctor</div>
+      </div>
+      <div class="step-card" id="card-2">
+        <div class="num">02</div>
+        <div class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14.5 2v6.5a.5.5 0 0 0 .5.5H21"/><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H14l7 7v10.5a2.5 2.5 0 0 1-2.5 2.5h-12A2.5 2.5 0 0 1 4 19.5Z"/><path d="M10 12v5"/><path d="M14 15v2"/><path d="M10 12a2 2 0 1 0 4 0 2 2 0 0 0-4 0Z"/>
+          </svg>
         </div>
-
-        <!-- ────── PHASE 3 : ANALYZING ────── -->
-        <div id="phase-analyzing" class="step-phase">
-            <div class="max-w-2xl mx-auto">
-                <div class="bg-white rounded-2xl border border-slate-200 p-12 text-center shadow-sm">
-                    <!-- Pulsing icon -->
-                    <div class="w-24 h-24 mx-auto mb-8 rounded-full bg-gradient-to-br from-teal-50 to-cyan-50 flex items-center justify-center border-2 border-teal-100 analyzing-pulse">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#0d9488" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M2 15c6.667-6 13.333 0 20-6"/>
-                            <path d="M9 22c1.798-1.998 2.518-3.995 2.807-5.993"/>
-                            <path d="M15 2c-1.798 1.998-2.518 3.995-2.807 5.993"/>
-                            <path d="m17 6-2.5-2.5"/><path d="m14 8-1-1"/>
-                            <path d="m7 18 2.5 2.5"/><path d="m3.5 14.5.5.5"/>
-                            <path d="m20 9 .5.5"/><path d="m6.5 12.5 1 1"/>
-                            <path d="m16.5 10.5 1 1"/><path d="m10 16 1.5 1.5"/>
-                        </svg>
-                    </div>
-
-                    <h2 class="text-2xl font-bold text-slate-800 mb-1">Analyzing Sample</h2>
-                    <p class="text-slate-400 mb-8 h-6" id="analysisStatus">Initializing analysis engine...</p>
-
-                    <!-- Progress bar with shimmer -->
-                    <div class="w-full bg-slate-100 rounded-full h-3 mb-8 overflow-hidden">
-                        <div class="h-full bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full progress-fill relative overflow-hidden" id="progressBar" style="width:0%">
-                            <div class="progress-shimmer"></div>
-                        </div>
-                    </div>
-
-                    <!-- Stats -->
-                    <div class="grid grid-cols-2 gap-5">
-                        <div class="bg-slate-50 rounded-xl p-5 border border-slate-100">
-                            <div class="text-2xl font-black text-teal-600 tabular-nums" id="statPeptides">0</div>
-                            <div class="text-xs text-slate-400 font-semibold mt-1 uppercase tracking-wide">Peptides Processed</div>
-                        </div>
-                        <div class="bg-slate-50 rounded-xl p-5 border border-slate-100">
-                            <div class="text-2xl font-black text-cyan-600 tabular-nums" id="statFeatures">0</div>
-                            <div class="text-xs text-slate-400 font-semibold mt-1 uppercase tracking-wide">Features Analyzed</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="name">Standard Blood Draw</div>
+        <div class="desc">Simple collection, no imaging needed</div>
+      </div>
+      <div class="step-card" id="card-3">
+        <div class="num">03</div>
+        <div class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 15c6.667-6 13.333 0 20-6"/><path d="M9 22c1.798-1.998 2.518-3.995 2.807-5.993"/><path d="M15 2c-1.798 1.998-2.518 3.995-2.807 5.993"/>
+          </svg>
         </div>
-
-        <!-- ────── PHASE 4 : RESULTS READY ────── -->
-        <div id="phase-ready" class="step-phase">
-            <div class="max-w-xl mx-auto">
-                <div class="bg-white rounded-2xl border border-slate-200 p-14 text-center shadow-sm">
-                    <div class="w-20 h-20 bg-emerald-50 rounded-full flex items-center justify-center mx-auto mb-6 border-2 border-emerald-100 check-pop">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-                    </div>
-                    <h2 class="text-2xl font-bold text-slate-800 mb-2">Analysis Complete</h2>
-                    <p class="text-slate-400 mb-10 text-base">10,847 peptide features analyzed successfully.</p>
-
-                    <button onclick="showResults()"
-                            class="btn-action inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-teal-500 to-cyan-600 text-white font-bold text-base rounded-xl shadow-lg shadow-teal-500/25 cursor-pointer">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/><circle cx="12" cy="12" r="1"/><path d="M5 12s2.5-5 7-5 7 5 7 5-2.5 5-7 5-7-5-7-5"/></svg>
-                        View Results
-                    </button>
-                </div>
-            </div>
+        <div class="name">Lab Analysis</div>
+        <div class="desc">Advanced biomarker profiling + ML</div>
+      </div>
+      <div class="step-card" id="card-4">
+        <div class="num">04</div>
+        <div class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/><circle cx="12" cy="12" r="1"/><path d="M5 12s2.5-5 7-5 7 5 7 5-2.5 5-7 5-7-5-7-5"/>
+          </svg>
         </div>
+        <div class="name">Risk Assessment</div>
+        <div class="desc">Report delivered to provider</div>
+      </div>
+    </div>
+  </div>
 
-        <!-- ────── PHASE 5 : FULL RESULTS ────── -->
-        <div id="phase-results" class="step-phase">
-            <div class="max-w-4xl mx-auto">
+  <!-- SCENE 2: TRANSITION -->
+  <div id="s2" class="scene">
+    <div class="message">Let me show you <span>the platform</span></div>
+  </div>
 
-                <!-- Teal gradient header with logo -->
-                <div class="text-center mb-8 p-10 rounded-2xl relative overflow-hidden" style="background:linear-gradient(135deg,#0d9488,#0891b2);">
-                    <div class="absolute inset-0 opacity-10" style="background:radial-gradient(circle at 30% 40%,white,transparent 60%);"></div>
-                    <h1 class="text-4xl font-bold text-white mb-2 relative z-10">AMD Risk Assessment</h1>
-                    <p class="text-teal-100 text-lg relative z-10">Native Peptide Biomarker Analysis Platform</p>
-                </div>
+  <!-- DOTS -->
+  <div class="dots">
+    <span class="on"></span><span></span><span></span>
+  </div>
 
-                <!-- Main result card -->
-                <div class="bg-white rounded-2xl border border-slate-200 p-8 mb-6 shadow-lg">
-                    <h3 class="text-lg font-bold text-slate-600 mb-8">Analysis Result</h3>
 
-                    <div class="flex items-start justify-between mb-6">
-                        <div class="text-7xl font-black text-slate-900 tabular-nums tracking-tight" id="resultPercent">0.0%</div>
-                        <div id="resultBadge" class="px-6 py-3 rounded-xl text-base font-bold text-white shadow-lg" style="background:linear-gradient(135deg,#f59e0b,#d97706);">
-                            ELEVATED
-                        </div>
-                    </div>
+<script>
+  const sceneIds = ['s0','s1','s2'];
+  let current = 0;
 
-                    <!-- Risk bar -->
-                    <div class="w-full h-2.5 bg-slate-200 rounded-full overflow-hidden mb-8">
-                        <div class="h-full rounded-full" id="resultBar" style="background:linear-gradient(90deg,#f59e0b,#d97706); width:0%; transition:width 1.5s ease-out;"></div>
-                    </div>
+  function goTo(idx) {
+    if (idx < 0 || idx >= sceneIds.length) return;
+    sceneIds.forEach(id => document.getElementById(id).classList.remove('active'));
+    document.getElementById(sceneIds[idx]).classList.add('active');
+    document.querySelectorAll('.dots span').forEach((d, i) => d.classList.toggle('on', i === idx));
+    current = idx;
+  }
 
-                    <!-- Model stats -->
-                    <div class="grid grid-cols-4 gap-4 mb-10">
-                        <div class="bg-slate-50 rounded-lg p-5 text-center border border-slate-100 stat-pop" style="animation-delay:0.1s">
-                            <div class="text-lg font-black text-slate-800">97.8%</div>
-                            <div class="text-[10px] text-slate-400 uppercase tracking-wider font-bold mt-1">Accuracy</div>
-                        </div>
-                        <div class="bg-slate-50 rounded-lg p-5 text-center border border-slate-100 stat-pop" style="animation-delay:0.2s">
-                            <div class="text-lg font-black text-slate-800">0.987</div>
-                            <div class="text-[10px] text-slate-400 uppercase tracking-wider font-bold mt-1">ROC AUC</div>
-                        </div>
-                        <div class="bg-slate-50 rounded-lg p-5 text-center border border-slate-100 stat-pop" style="animation-delay:0.3s">
-                            <div class="text-lg font-black text-slate-800">398</div>
-                            <div class="text-[10px] text-slate-400 uppercase tracking-wider font-bold mt-1">Biomarkers</div>
-                        </div>
-                        <div class="bg-slate-50 rounded-lg p-5 text-center border border-slate-100 stat-pop" style="animation-delay:0.4s">
-                            <div class="text-lg font-black text-slate-800">10,847</div>
-                            <div class="text-[10px] text-slate-400 uppercase tracking-wider font-bold mt-1">Peptides</div>
-                        </div>
-                    </div>
+  // Click = next, Arrow keys to navigate
+  document.addEventListener('click', () => {
+    if (current === sceneIds.length - 1) {
+      window.location.href = 'demo.html';
+    } else {
+      goTo(current + 1);
+    }
+  });
+  document.addEventListener('keydown', (e) => {
+    if (current === sceneIds.length - 1 && e.key !== 'ArrowLeft' && e.key !== 'a' && e.key !== 'A') {
+      window.location.href = 'demo.html';
+      return;
+    }
+    if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); goTo(current + 1); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); goTo(current - 1); }
+    if (e.key === 'a' || e.key === 'A') autoPlay();
+  });
 
-                    <!-- Patient info grid -->
-                    <div class="grid grid-cols-2 gap-x-8 gap-y-6">
-                        <div class="border-l-[3px] border-teal-500 pl-5 py-1">
-                            <div class="text-[10px] uppercase tracking-[1.5px] text-slate-400 font-bold mb-1.5">Patient Name</div>
-                            <div class="font-semibold text-slate-700 blurred bg-slate-100 inline-block px-3 py-1.5 rounded-lg text-sm">Sarah Wilson Thompson</div>
-                        </div>
-                        <div class="border-l-[3px] border-teal-500 pl-5 py-1">
-                            <div class="text-[10px] uppercase tracking-[1.5px] text-slate-400 font-bold mb-1.5">Patient Number</div>
-                            <div class="font-semibold text-slate-700 blurred bg-slate-100 inline-block px-3 py-1.5 rounded-lg text-sm">AMD-20260209-Sample-1</div>
-                        </div>
-                        <div class="border-l-[3px] border-teal-500 pl-5 py-1">
-                            <div class="text-[10px] uppercase tracking-[1.5px] text-slate-400 font-bold mb-1.5">Sample Collection</div>
-                            <div class="font-semibold text-slate-800 text-base" id="sampleDate"></div>
-                        </div>
-                        <div class="border-l-[3px] border-teal-500 pl-5 py-1">
-                            <div class="text-[10px] uppercase tracking-[1.5px] text-slate-400 font-bold mb-1.5">Analysis Date</div>
-                            <div class="font-semibold text-slate-800 text-base" id="analysisDateField"></div>
-                        </div>
-                    </div>
-                </div>
+  // ═══ AUTO-PLAY for screen recording (press A) ═══
+  function autoPlay() {
+    goTo(0);
+    // Hide content for animated reveal
+    document.querySelectorAll('.scene > *').forEach(el => {
+      el.style.opacity = '0'; el.style.transform = 'translateY(20px)';
+    });
+    document.querySelectorAll('.step-card').forEach(el => {
+      el.style.opacity = '0'; el.style.transform = 'translateY(20px)';
+    });
 
-                <!-- Clinical context -->
-                <div class="bg-white rounded-2xl border border-slate-200 p-8 mb-6 shadow-lg">
-                    <h3 class="text-lg font-bold text-slate-600 mb-6">Clinical Context</h3>
+    function show(sel, ms, type) {
+      setTimeout(() => {
+        const el = document.querySelector(sel);
+        if (!el) return;
+        el.style.transition = 'none';
+        el.style.animation = type === 'pop'
+          ? 'popIn 0.5s ease forwards'
+          : 'fadeUp 0.6s ease forwards';
+      }, ms);
+    }
+    function showCard(id, ms) {
+      setTimeout(() => {
+        const el = document.getElementById(id);
+        el.style.animation = 'fadeUp 0.5s ease forwards';
+      }, ms);
+    }
 
-                    <div class="flex items-center gap-4 p-5 bg-amber-50 rounded-xl border-l-4 border-amber-400 mb-6">
-                        <div class="w-8 h-8 rounded-full bg-amber-100 flex items-center justify-center flex-shrink-0">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="m21.73 18-8-14a2 2 0 0 0-3.46 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/>
-                                <line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <div class="font-bold text-slate-800">Elevated Biomarker Signal Detected</div>
-                            <div class="text-slate-600 text-sm">Further evaluation by an eye care professional may be appropriate to assess retinal health</div>
-                        </div>
-                    </div>
+    // Scene 0: Opening (0–5s)
+    show('#s0 .logo', 200);
+    show('#s0 .title', 500);
+    show('#s0 .subtitle', 900);
 
-                    <div class="bg-teal-50 p-6 rounded-xl border border-teal-100">
-                        <h4 class="font-bold text-slate-700 mb-3 text-sm">About This Result</h4>
-                        <ul class="space-y-2.5 text-slate-600 text-sm">
-                            <li class="flex items-start gap-2.5">
-                                <svg class="mt-0.5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#0d9488" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-                                This result alone does not confirm the presence of AMD
-                            </li>
-                            <li class="flex items-start gap-2.5">
-                                <svg class="mt-0.5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#0d9488" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-                                Clinical evaluation by an eye care professional is needed to assess retinal health
-                            </li>
-                            <li class="flex items-start gap-2.5">
-                                <svg class="mt-0.5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#0d9488" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-                                Results should be interpreted in the context of the patient's medical history and risk factors
-                            </li>
-                            <li class="flex items-start gap-2.5">
-                                <svg class="mt-0.5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#0d9488" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-                                The test may produce false negative or false positive results
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+    // Scene 1: Workflow (5–16s)
+    setTimeout(() => {
+      goTo(1);
+      document.querySelector('#s1 .section-title').style.opacity = '0';
+      document.querySelector('#s1 .section-title').style.transform = 'translateY(20px)';
+      document.querySelectorAll('.step-card').forEach(el => {
+        el.style.opacity = '0'; el.style.transform = 'translateY(20px)';
+      });
+    }, 5000);
+    show('#s1 .section-title', 5300);
+    showCard('card-1', 5800);
+    showCard('card-2', 6000);
+    showCard('card-3', 6200);
+    showCard('card-4', 6400);
+    // Highlight each
+    setTimeout(() => document.getElementById('card-1').classList.add('active'), 7000);
+    setTimeout(() => {
+      document.getElementById('card-1').classList.remove('active');
+      document.getElementById('card-2').classList.add('active');
+    }, 9000);
+    setTimeout(() => {
+      document.getElementById('card-2').classList.remove('active');
+      document.getElementById('card-3').classList.add('active');
+    }, 11000);
+    setTimeout(() => {
+      document.getElementById('card-3').classList.remove('active');
+      document.getElementById('card-4').classList.add('active');
+    }, 13000);
+    setTimeout(() => document.getElementById('card-4').classList.remove('active'), 15000);
 
-                <div class="text-center text-slate-300 text-xs py-4">
-                    &copy; 2026 A1 Diagnosis &mdash; AMD Risk Assessment Platform
-                </div>
-            </div>
-        </div>
-
-    </main>
-
-    <!-- ===================== REGULATORY FOOTER ===================== -->
-    <footer class="bg-slate-50 border-t border-slate-100 py-4 px-8 mt-auto">
-        <p class="text-center text-[11px] text-slate-500 max-w-4xl mx-auto leading-relaxed">
-            <strong class="text-slate-600">Regulatory Notice:</strong> This test has not been cleared or approved by the US Food and Drug Administration. The test was developed and its performance characteristics determined by A1 Diagnosis Laboratory, which is certified under CLIA regulations to perform high-complexity clinical laboratory testing. The A1 Diagnosis test does not detect all AMD cases and is not a replacement for comprehensive eye examinations. Targeting launch as a CLIA-certified laboratory-developed test in Q1 2027.
-        </p>
-    </footer>
-
-    <!-- ===================== JAVASCRIPT ===================== -->
-    <script>
-        // ===== CONFIGURATION =====
-        const RESULT_PROBABILITY = 78.6;
-        const RESULT_RISK_LEVEL = "ELEVATED";
-        const STAGE_DURATION_MS = 800;
-
-        // ===== DATE =====
-        const today = new Date();
-        const dateFormatted = today.toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' });
-
-        // Fill metadata date on load
-        document.addEventListener('DOMContentLoaded', () => {
-            const el = document.getElementById('metaDate');
-            if (el) el.textContent = dateFormatted;
-        });
-
-        // ===== STATE =====
-        let peptideData = [];
-
-        // ===== PHASE MANAGEMENT =====
-        function showPhase(id) {
-            document.querySelectorAll('.step-phase').forEach(el => el.classList.remove('active'));
-            requestAnimationFrame(() => {
-                document.getElementById('phase-' + id).classList.add('active');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-        }
-
-        // ===== STEP INDICATOR =====
-        const checkSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>';
-
-        function setStep(n) {
-            for (let i = 1; i <= 3; i++) {
-                const dot = document.getElementById('step-dot-' + i);
-                const txt = document.getElementById('step-text-' + i);
-                if (i < n) {
-                    dot.className = 'w-9 h-9 rounded-full bg-gradient-to-br from-teal-500 to-cyan-500 flex items-center justify-center text-white font-bold text-sm shadow-md shadow-teal-500/20 transition-all duration-300';
-                    dot.innerHTML = checkSvg;
-                    txt.className = 'text-sm font-semibold text-teal-700 transition-colors duration-300';
-                } else if (i === n) {
-                    dot.className = 'w-9 h-9 rounded-full bg-gradient-to-br from-teal-500 to-cyan-500 flex items-center justify-center text-white font-bold text-sm shadow-md shadow-teal-500/20 transition-all duration-300';
-                    dot.textContent = i;
-                    txt.className = 'text-sm font-semibold text-teal-700 transition-colors duration-300';
-                } else {
-                    dot.className = 'w-9 h-9 rounded-full bg-slate-200 flex items-center justify-center text-slate-400 font-bold text-sm transition-all duration-300';
-                    dot.textContent = i;
-                    txt.className = 'text-sm font-semibold text-slate-400 transition-colors duration-300';
-                }
-            }
-            document.getElementById('line-1').style.width = (n > 1) ? '100%' : '0%';
-            document.getElementById('line-2').style.width = (n > 2) ? '100%' : '0%';
-        }
-
-        // ===== FILE UPLOAD =====
-        function handleFileUpload(event) {
-            const file = event.target.files[0];
-            if (!file) return;
-
-            // Check SheetJS loaded
-            if (typeof XLSX === 'undefined') {
-                alert('Excel library failed to load. Please refresh the page and ensure internet connectivity.');
-                return;
-            }
-
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                try {
-                    const data = new Uint8Array(e.target.result);
-                    const workbook = XLSX.read(data, { type: 'array' });
-                    const sheet = workbook.Sheets[workbook.SheetNames[0]];
-                    const rows = XLSX.utils.sheet_to_json(sheet);
-
-                    peptideData = [];
-                    rows.forEach(row => {
-                        const name = row['Products'];
-                        if (!name || typeof name !== 'string' || !name.startsWith('Peptide')) return;
-                        // Find the numeric value column
-                        const valKey = Object.keys(row).find(k =>
-                            k !== 'Products' && !isNaN(parseFloat(row[k]))
-                        );
-                        if (!valKey) return;
-                        const val = parseFloat(row[valKey]) || 0;
-                        peptideData.push({ name, value: val });
-                    });
-
-                    if (peptideData.length === 0) {
-                        alert('No peptide data found. Ensure the file has a "Products" column with Peptide names.');
-                        showPhase('load');
-                        return;
-                    }
-
-                    // Percentile-based status thresholds
-                    const sorted = peptideData.map(p => p.value).sort((a, b) => a - b);
-                    const p40 = sorted[Math.floor(sorted.length * 0.40)];
-                    const p75 = sorted[Math.floor(sorted.length * 0.75)];
-
-                    // Build table
-                    const tbody = document.getElementById('peptideTableBody');
-                    tbody.innerHTML = '';
-
-                    peptideData.forEach((p, i) => {
-                        let statusHtml;
-                        if (p.value >= p75) {
-                            statusHtml = '<span class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-red-50 text-red-700 text-xs font-extrabold rounded-full border border-red-300 shadow-sm">&#9650; Significantly Elevated</span>';
-                        } else if (p.value >= p40) {
-                            statusHtml = '<span class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-amber-50 text-amber-700 text-xs font-extrabold rounded-full border border-amber-300 shadow-sm">&#9650; Elevated</span>';
-                        } else {
-                            statusHtml = '<span class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-emerald-50 text-emerald-700 text-xs font-extrabold rounded-full border border-emerald-300 shadow-sm">&mdash; Normal</span>';
-                        }
-
-                        const tr = document.createElement('tr');
-                        tr.className = `peptide-row border-t border-slate-100 hover:bg-teal-50/30 transition-colors ${i % 2 === 0 ? 'bg-white' : 'bg-slate-50/30'}`;
-                        tr.style.animationDelay = `${i * 0.07}s`;
-                        tr.innerHTML = `
-                            <td class="px-6 py-3.5 font-semibold text-slate-800 text-sm">${p.name}</td>
-                            <td class="px-6 py-3.5 text-slate-600 font-mono text-sm">${p.value.toLocaleString(undefined, { minimumFractionDigits: 4, maximumFractionDigits: 4 })}</td>
-                            <td class="px-6 py-3.5">${statusHtml}</td>
-                        `;
-                        tbody.appendChild(tr);
-                    });
-
-                    // Update metadata
-                    document.getElementById('metaDate').textContent = dateFormatted;
-
-                    showPhase('preview');
-                    setStep(1);
-
-                } catch (err) {
-                    alert('Error reading file: ' + err.message);
-                    showPhase('load');
-                }
-            };
-            reader.readAsArrayBuffer(file);
-        }
-
-        // ===== ML ANALYSIS =====
-        function startAnalysis() {
-            showPhase('analyzing');
-            setStep(2);
-
-            const stages = [
-                { text: "Processing native peptide signatures...",       pct: 12,  pep: "2,143",  feat: "0" },
-                { text: "Detecting post-translational modifications...", pct: 28,  pep: "4,891",  feat: "1,247" },
-                { text: "Scanning 10,847 peptide features...",           pct: 48,  pep: "7,503",  feat: "3,891" },
-                { text: "Running XGBoost classification algorithm...",   pct: 68,  pep: "9,847",  feat: "7,234" },
-                { text: "Computing risk probability...",                 pct: 88,  pep: "10,847", feat: "9,847" },
-                { text: "Finalizing risk assessment...",                 pct: 100, pep: "10,847", feat: "10,847" }
-            ];
-
-            let i = 0;
-            function next() {
-                if (i < stages.length) {
-                    const s = stages[i];
-                    document.getElementById('progressBar').style.width   = s.pct + '%';
-                    document.getElementById('analysisStatus').textContent = s.text;
-                    document.getElementById('statPeptides').textContent   = s.pep;
-                    document.getElementById('statFeatures').textContent   = s.feat;
-                    i++;
-                    setTimeout(next, STAGE_DURATION_MS);
-                } else {
-                    setTimeout(() => {
-                        showPhase('ready');
-                        setStep(3);
-                    }, 600);
-                }
-            }
-            next();
-        }
-
-        // ===== SHOW RESULTS =====
-        function showResults() {
-            showPhase('results');
-
-            // Set dates
-            document.getElementById('sampleDate').textContent       = dateFormatted;
-            document.getElementById('analysisDateField').textContent = dateFormatted;
-
-            // Animate percentage counter
-            const target = RESULT_PROBABILITY;
-            let current = 0;
-            const step = target / 50;
-            const timer = setInterval(() => {
-                current = Math.min(current + step, target);
-                document.getElementById('resultPercent').textContent = current.toFixed(1) + '%';
-                if (current >= target) clearInterval(timer);
-            }, 40);
-
-            // Animate result bar
-            setTimeout(() => {
-                document.getElementById('resultBar').style.width = RESULT_PROBABILITY + '%';
-            }, 300);
-        }
-    </script>
+    // Scene 2: Transition (16–18s)
+    setTimeout(() => {
+      goTo(2);
+      document.querySelectorAll('#s2 > *').forEach(el => {
+        el.style.opacity = '0'; el.style.transform = 'translateY(20px)';
+      });
+    }, 16000);
+    show('#s2 .message', 16400);
+  }
+</script>
 
 </body>
 </html>

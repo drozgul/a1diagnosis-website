@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A1 Diagnosis — AMD Risk Assessment Platform</title>
+    <link rel="icon" type="image/png" href="A1_Favicon.png">
+
+    <!-- Dependencies -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        * { font-family: 'Inter', system-ui, -apple-system, sans-serif; }
+
+        /* === ANIMATIONS === */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes rowSlideIn {
+            from { opacity: 0; transform: translateX(-12px); }
+            to   { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50%      { opacity: 0.7; transform: scale(1.04); }
+        }
+        @keyframes checkPop {
+            0%   { opacity: 0; transform: scale(0); }
+            60%  { opacity: 1; transform: scale(1.2); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        @keyframes shimmerSlide {
+            0%   { transform: translateX(-100%); }
+            100% { transform: translateX(200%); }
+        }
+
+        /* Phase visibility */
+        .step-phase         { display: none; }
+        .step-phase.active  { display: block; animation: fadeInUp 0.5s ease-out; }
+
+        /* Table rows */
+        .peptide-row { animation: rowSlideIn 0.4s ease-out both; }
+
+        /* Buttons */
+        .btn-action { transition: all 0.25s ease; }
+        .btn-action:hover  { transform: translateY(-2px); box-shadow: 0 12px 24px -8px rgba(13,148,136,0.4); }
+        .btn-action:active { transform: translateY(0); }
+        .btn-action:focus-visible { outline: 3px solid #0d9488; outline-offset: 2px; }
+
+        /* Progress bar */
+        .progress-fill { transition: width 0.6s ease-out; }
+
+        /* Shimmer overlay for progress bar */
+        .progress-shimmer {
+            position: absolute; inset: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent);
+            animation: shimmerSlide 1.8s infinite;
+        }
+
+        /* Connector line fill */
+        .connector-fill { transition: width 0.6s ease; }
+
+        /* Analyzing icon pulse */
+        .analyzing-pulse { animation: pulse 2s ease-in-out infinite; }
+
+        /* Check pop */
+        .check-pop { animation: checkPop 0.5s ease-out; }
+
+        /* Gradient text */
+        .text-gradient {
+            background: linear-gradient(135deg, #0d9488, #0891b2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Blurred privacy text */
+        .blurred { filter: blur(6px); user-select: none; }
+
+        /* Result stat pop-in */
+        .stat-pop { animation: fadeInUp 0.5s ease-out both; }
+    </style>
+</head>
+
+<body class="bg-white min-h-screen flex flex-col">
+
+    <!-- ===================== HEADER ===================== -->
+    <header class="bg-white border-b border-slate-100 sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-8 py-3 flex items-center justify-between">
+            <!-- Logo -->
+            <div class="flex items-center gap-3">
+                <img src="A1_Diagnosis_Logo.jpg" alt="A1 Diagnosis" class="h-10 w-auto object-contain">
+            </div>
+            <!-- Status -->
+            <div class="flex items-center gap-4">
+                <span class="px-3 py-1.5 bg-emerald-50 text-emerald-700 text-[11px] font-bold rounded-full border border-emerald-200 tracking-wide flex items-center gap-1.5">
+                    <span class="w-1.5 h-1.5 bg-emerald-500 rounded-full"></span>
+                    CLIA Laboratory
+                </span>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===================== STEP INDICATOR ===================== -->
+    <div class="bg-white border-b border-slate-50">
+        <div class="max-w-3xl mx-auto px-8 py-5">
+            <div class="flex items-center">
+                <!-- Step 1 -->
+                <div class="flex items-center gap-2.5">
+                    <div id="step-dot-1" class="w-9 h-9 rounded-full bg-gradient-to-br from-teal-500 to-cyan-500 flex items-center justify-center text-white font-bold text-sm shadow-md shadow-teal-500/20 transition-all duration-300">1</div>
+                    <span id="step-text-1" class="text-sm font-semibold text-teal-700 transition-colors duration-300">Load Data</span>
+                </div>
+                <div class="flex-1 h-[2px] bg-slate-200 mx-4 relative overflow-hidden rounded-full">
+                    <div id="line-1" class="absolute inset-y-0 left-0 bg-gradient-to-r from-teal-500 to-cyan-500 connector-fill rounded-full" style="width:0%"></div>
+                </div>
+                <!-- Step 2 -->
+                <div class="flex items-center gap-2.5">
+                    <div id="step-dot-2" class="w-9 h-9 rounded-full bg-slate-200 flex items-center justify-center text-slate-400 font-bold text-sm transition-all duration-300">2</div>
+                    <span id="step-text-2" class="text-sm font-semibold text-slate-400 transition-colors duration-300">Analysis</span>
+                </div>
+                <div class="flex-1 h-[2px] bg-slate-200 mx-4 relative overflow-hidden rounded-full">
+                    <div id="line-2" class="absolute inset-y-0 left-0 bg-gradient-to-r from-teal-500 to-cyan-500 connector-fill rounded-full" style="width:0%"></div>
+                </div>
+                <!-- Step 3 -->
+                <div class="flex items-center gap-2.5">
+                    <div id="step-dot-3" class="w-9 h-9 rounded-full bg-slate-200 flex items-center justify-center text-slate-400 font-bold text-sm transition-all duration-300">3</div>
+                    <span id="step-text-3" class="text-sm font-semibold text-slate-400 transition-colors duration-300">Results</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================== MAIN CONTENT ===================== -->
+    <main class="flex-1 px-8 py-10">
+
+        <!-- ────── PHASE 1 : LOAD DATA ────── -->
+        <div id="phase-load" class="step-phase active">
+            <div class="max-w-xl mx-auto">
+                <div class="bg-white rounded-2xl border border-slate-200 p-12 text-center shadow-sm hover:shadow-md transition-shadow">
+                    <div class="w-20 h-20 bg-gradient-to-br from-teal-50 to-cyan-50 rounded-2xl flex items-center justify-center mx-auto mb-8 border border-teal-100">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#0d9488" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/>
+                            <polyline points="13 2 13 9 20 9"/>
+                            <line x1="12" y1="18" x2="12" y2="12"/>
+                            <polyline points="9 15 12 12 15 15"/>
+                        </svg>
+                    </div>
+                    <h2 class="text-2xl font-bold text-slate-800 mb-2">Load Patient Sample Data</h2>
+                    <p class="text-slate-400 mb-10 text-base">Upload mass spectrometry output file (.xlsx)</p>
+
+                    <button onclick="document.getElementById('fileInput').click()"
+                            aria-label="Upload patient sample Excel file"
+                            class="btn-action inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-teal-500 to-cyan-600 text-white font-bold text-base rounded-xl shadow-lg shadow-teal-500/25 cursor-pointer">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                        Load Data
+                    </button>
+                    <input type="file" id="fileInput" accept=".xlsx,.xls" onchange="handleFileUpload(event)" class="hidden">
+
+                    <p class="text-slate-300 text-xs mt-8">Accepts .xlsx files from Bruker timsTOF output</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ────── PHASE 2 : PEPTIDE PREVIEW ────── -->
+        <div id="phase-preview" class="step-phase">
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-white rounded-2xl border border-slate-200 p-8 shadow-sm">
+                    <!-- Sample metadata bar -->
+                    <div class="flex items-center gap-3 mb-6 p-3 bg-slate-50 rounded-xl border border-slate-100 text-xs text-slate-500">
+                        <span class="font-bold text-slate-600">Sample ID:</span> <span id="metaSampleId">AMD-2026-001</span>
+                        <span class="text-slate-300">|</span>
+                        <span class="font-bold text-slate-600">Date:</span> <span id="metaDate"></span>
+                        <span class="text-slate-300">|</span>
+                        <span class="font-bold text-slate-600">Method:</span> LC-MS/MS Native Peptide Analysis
+                    </div>
+
+                    <!-- Header -->
+                    <div class="flex items-center justify-between mb-6 flex-wrap gap-4">
+                        <h2 class="text-xl font-bold text-slate-800">Native Peptide Signatures Detected</h2>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-cyan-50 text-cyan-700 text-[11px] font-bold rounded-full border border-cyan-200">p &lt; 0.003</span>
+                            <span class="px-3 py-1 bg-amber-50 text-amber-700 text-[11px] font-bold rounded-full border border-amber-200">Fold Change &gt; 10&times;</span>
+                        </div>
+                    </div>
+
+                    <!-- Table -->
+                    <div class="rounded-xl border border-slate-200 overflow-hidden shadow-sm">
+                        <table class="w-full" role="table" aria-label="Detected peptide biomarkers">
+                            <thead>
+                                <tr class="bg-gradient-to-r from-slate-50 to-slate-100 border-b border-slate-200">
+                                    <th class="text-left px-6 py-4 text-[11px] font-extrabold text-slate-600 uppercase tracking-[1.5px]">Biomarker</th>
+                                    <th class="text-left px-6 py-4 text-[11px] font-extrabold text-slate-600 uppercase tracking-[1.5px]">Intensity Value</th>
+                                    <th class="text-left px-6 py-4 text-[11px] font-extrabold text-slate-600 uppercase tracking-[1.5px]">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="peptideTableBody"></tbody>
+                        </table>
+                    </div>
+
+                    <!-- Button -->
+                    <div class="mt-8 text-center">
+                        <button onclick="startAnalysis()"
+                                class="btn-action inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-teal-500 to-cyan-600 text-white font-bold text-base rounded-xl shadow-lg shadow-teal-500/25 cursor-pointer">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 15c6.667-6 13.333 0 20-6"/><path d="M9 22c1.798-1.998 2.518-3.995 2.807-5.993"/><path d="M15 2c-1.798 1.998-2.518 3.995-2.807 5.993"/></svg>
+                            Start Machine Learning Analysis
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ────── PHASE 3 : ANALYZING ────── -->
+        <div id="phase-analyzing" class="step-phase">
+            <div class="max-w-2xl mx-auto">
+                <div class="bg-white rounded-2xl border border-slate-200 p-12 text-center shadow-sm">
+                    <!-- Pulsing icon -->
+                    <div class="w-24 h-24 mx-auto mb-8 rounded-full bg-gradient-to-br from-teal-50 to-cyan-50 flex items-center justify-center border-2 border-teal-100 analyzing-pulse">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#0d9488" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M2 15c6.667-6 13.333 0 20-6"/>
+                            <path d="M9 22c1.798-1.998 2.518-3.995 2.807-5.993"/>
+                            <path d="M15 2c-1.798 1.998-2.518 3.995-2.807 5.993"/>
+                            <path d="m17 6-2.5-2.5"/><path d="m14 8-1-1"/>
+                            <path d="m7 18 2.5 2.5"/><path d="m3.5 14.5.5.5"/>
+                            <path d="m20 9 .5.5"/><path d="m6.5 12.5 1 1"/>
+                            <path d="m16.5 10.5 1 1"/><path d="m10 16 1.5 1.5"/>
+                        </svg>
+                    </div>
+
+                    <h2 class="text-2xl font-bold text-slate-800 mb-1">Analyzing Sample</h2>
+                    <p class="text-slate-400 mb-8 h-6" id="analysisStatus">Initializing analysis engine...</p>
+
+                    <!-- Progress bar with shimmer -->
+                    <div class="w-full bg-slate-100 rounded-full h-3 mb-8 overflow-hidden">
+                        <div class="h-full bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full progress-fill relative overflow-hidden" id="progressBar" style="width:0%">
+                            <div class="progress-shimmer"></div>
+                        </div>
+                    </div>
+
+                    <!-- Stats -->
+                    <div class="grid grid-cols-2 gap-5">
+                        <div class="bg-slate-50 rounded-xl p-5 border border-slate-100">
+                            <div class="text-2xl font-black text-teal-600 tabular-nums" id="statPeptides">0</div>
+                            <div class="text-xs text-slate-400 font-semibold mt-1 uppercase tracking-wide">Peptides Processed</div>
+                        </div>
+                        <div class="bg-slate-50 rounded-xl p-5 border border-slate-100">
+                            <div class="text-2xl font-black text-cyan-600 tabular-nums" id="statFeatures">0</div>
+                            <div class="text-xs text-slate-400 font-semibold mt-1 uppercase tracking-wide">Features Analyzed</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ────── PHASE 4 : RESULTS READY ────── -->
+        <div id="phase-ready" class="step-phase">
+            <div class="max-w-xl mx-auto">
+                <div class="bg-white rounded-2xl border border-slate-200 p-14 text-center shadow-sm">
+                    <div class="w-20 h-20 bg-emerald-50 rounded-full flex items-center justify-center mx-auto mb-6 border-2 border-emerald-100 check-pop">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                    </div>
+                    <h2 class="text-2xl font-bold text-slate-800 mb-2">Analysis Complete</h2>
+                    <p class="text-slate-400 mb-10 text-base">10,847 peptide features analyzed successfully.</p>
+
+                    <button onclick="showResults()"
+                            class="btn-action inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-teal-500 to-cyan-600 text-white font-bold text-base rounded-xl shadow-lg shadow-teal-500/25 cursor-pointer">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/><circle cx="12" cy="12" r="1"/><path d="M5 12s2.5-5 7-5 7 5 7 5-2.5 5-7 5-7-5-7-5"/></svg>
+                        View Results
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ────── PHASE 5 : FULL RESULTS ────── -->
+        <div id="phase-results" class="step-phase">
+            <div class="max-w-4xl mx-auto">
+
+                <!-- Teal gradient header with logo -->
+                <div class="text-center mb-8 p-10 rounded-2xl relative overflow-hidden" style="background:linear-gradient(135deg,#0d9488,#0891b2);">
+                    <div class="absolute inset-0 opacity-10" style="background:radial-gradient(circle at 30% 40%,white,transparent 60%);"></div>
+                    <h1 class="text-4xl font-bold text-white mb-2 relative z-10">AMD Risk Assessment</h1>
+                    <p class="text-teal-100 text-lg relative z-10">Native Peptide Biomarker Analysis Platform</p>
+                </div>
+
+                <!-- Main result card -->
+                <div class="bg-white rounded-2xl border border-slate-200 p-8 mb-6 shadow-lg">
+                    <h3 class="text-lg font-bold text-slate-600 mb-8">Analysis Result</h3>
+
+                    <div class="flex items-start justify-between mb-6">
+                        <div class="text-7xl font-black text-slate-900 tabular-nums tracking-tight" id="resultPercent">0.0%</div>
+                        <div id="resultBadge" class="px-6 py-3 rounded-xl text-base font-bold text-white shadow-lg" style="background:linear-gradient(135deg,#f59e0b,#d97706);">
+                            ELEVATED
+                        </div>
+                    </div>
+
+                    <!-- Risk bar -->
+                    <div class="w-full h-2.5 bg-slate-200 rounded-full overflow-hidden mb-8">
+                        <div class="h-full rounded-full" id="resultBar" style="background:linear-gradient(90deg,#f59e0b,#d97706); width:0%; transition:width 1.5s ease-out;"></div>
+                    </div>
+
+                    <!-- Model stats -->
+                    <div class="grid grid-cols-4 gap-4 mb-10">
+                        <div class="bg-slate-50 rounded-lg p-5 text-center border border-slate-100 stat-pop" style="animation-delay:0.1s">
+                            <div class="text-lg font-black text-slate-800">97.8%</div>
+                            <div class="text-[10px] text-slate-400 uppercase tracking-wider font-bold mt-1">Accuracy</div>
+                        </div>
+                        <div class="bg-slate-50 rounded-lg p-5 text-center border border-slate-100 stat-pop" style="animation-delay:0.2s">
+                            <div class="text-lg font-black text-slate-800">0.987</div>
+                            <div class="text-[10px] text-slate-400 uppercase tracking-wider font-bold mt-1">ROC AUC</div>
+                        </div>
+                        <div class="bg-slate-50 rounded-lg p-5 text-center border border-slate-100 stat-pop" style="animation-delay:0.3s">
+                            <div class="text-lg font-black text-slate-800">398</div>
+                            <div class="text-[10px] text-slate-400 uppercase tracking-wider font-bold mt-1">Biomarkers</div>
+                        </div>
+                        <div class="bg-slate-50 rounded-lg p-5 text-center border border-slate-100 stat-pop" style="animation-delay:0.4s">
+                            <div class="text-lg font-black text-slate-800">10,847</div>
+                            <div class="text-[10px] text-slate-400 uppercase tracking-wider font-bold mt-1">Peptides</div>
+                        </div>
+                    </div>
+
+                    <!-- Patient info grid -->
+                    <div class="grid grid-cols-2 gap-x-8 gap-y-6">
+                        <div class="border-l-[3px] border-teal-500 pl-5 py-1">
+                            <div class="text-[10px] uppercase tracking-[1.5px] text-slate-400 font-bold mb-1.5">Patient Name</div>
+                            <div class="font-semibold text-slate-700 blurred bg-slate-100 inline-block px-3 py-1.5 rounded-lg text-sm">Sarah Wilson Thompson</div>
+                        </div>
+                        <div class="border-l-[3px] border-teal-500 pl-5 py-1">
+                            <div class="text-[10px] uppercase tracking-[1.5px] text-slate-400 font-bold mb-1.5">Patient Number</div>
+                            <div class="font-semibold text-slate-700 blurred bg-slate-100 inline-block px-3 py-1.5 rounded-lg text-sm">AMD-20260209-Sample-1</div>
+                        </div>
+                        <div class="border-l-[3px] border-teal-500 pl-5 py-1">
+                            <div class="text-[10px] uppercase tracking-[1.5px] text-slate-400 font-bold mb-1.5">Sample Collection</div>
+                            <div class="font-semibold text-slate-800 text-base" id="sampleDate"></div>
+                        </div>
+                        <div class="border-l-[3px] border-teal-500 pl-5 py-1">
+                            <div class="text-[10px] uppercase tracking-[1.5px] text-slate-400 font-bold mb-1.5">Analysis Date</div>
+                            <div class="font-semibold text-slate-800 text-base" id="analysisDateField"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Clinical context -->
+                <div class="bg-white rounded-2xl border border-slate-200 p-8 mb-6 shadow-lg">
+                    <h3 class="text-lg font-bold text-slate-600 mb-6">Clinical Context</h3>
+
+                    <div class="flex items-center gap-4 p-5 bg-amber-50 rounded-xl border-l-4 border-amber-400 mb-6">
+                        <div class="w-8 h-8 rounded-full bg-amber-100 flex items-center justify-center flex-shrink-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="m21.73 18-8-14a2 2 0 0 0-3.46 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/>
+                                <line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <div class="font-bold text-slate-800">Elevated Biomarker Signal Detected</div>
+                            <div class="text-slate-600 text-sm">Further evaluation by an eye care professional may be appropriate to assess retinal health</div>
+                        </div>
+                    </div>
+
+                    <div class="bg-teal-50 p-6 rounded-xl border border-teal-100">
+                        <h4 class="font-bold text-slate-700 mb-3 text-sm">About This Result</h4>
+                        <ul class="space-y-2.5 text-slate-600 text-sm">
+                            <li class="flex items-start gap-2.5">
+                                <svg class="mt-0.5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#0d9488" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                                This result alone does not confirm the presence of AMD
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <svg class="mt-0.5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#0d9488" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                                Clinical evaluation by an eye care professional is needed to assess retinal health
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <svg class="mt-0.5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#0d9488" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                                Results should be interpreted in the context of the patient's medical history and risk factors
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <svg class="mt-0.5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#0d9488" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                                The test may produce false negative or false positive results
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="text-center text-slate-300 text-xs py-4">
+                    &copy; 2026 A1 Diagnosis &mdash; AMD Risk Assessment Platform
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- ===================== REGULATORY FOOTER ===================== -->
+    <footer class="bg-slate-50 border-t border-slate-100 py-4 px-8 mt-auto">
+        <p class="text-center text-[11px] text-slate-500 max-w-4xl mx-auto leading-relaxed">
+            <strong class="text-slate-600">Regulatory Notice:</strong> This test has not been cleared or approved by the US Food and Drug Administration. The test was developed and its performance characteristics determined by A1 Diagnosis Laboratory, which is certified under CLIA regulations to perform high-complexity clinical laboratory testing. The A1 Diagnosis test does not detect all AMD cases and is not a replacement for comprehensive eye examinations. Targeting launch as a CLIA-certified laboratory-developed test in Q1 2027.
+        </p>
+    </footer>
+
+    <!-- ===================== JAVASCRIPT ===================== -->
+    <script>
+        // ===== CONFIGURATION =====
+        const RESULT_PROBABILITY = 78.6;
+        const RESULT_RISK_LEVEL = "ELEVATED";
+        const STAGE_DURATION_MS = 800;
+
+        // ===== DATE =====
+        const today = new Date();
+        const dateFormatted = today.toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' });
+
+        // Fill metadata date on load
+        document.addEventListener('DOMContentLoaded', () => {
+            const el = document.getElementById('metaDate');
+            if (el) el.textContent = dateFormatted;
+        });
+
+        // ===== STATE =====
+        let peptideData = [];
+
+        // ===== PHASE MANAGEMENT =====
+        function showPhase(id) {
+            document.querySelectorAll('.step-phase').forEach(el => el.classList.remove('active'));
+            requestAnimationFrame(() => {
+                document.getElementById('phase-' + id).classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+
+        // ===== STEP INDICATOR =====
+        const checkSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>';
+
+        function setStep(n) {
+            for (let i = 1; i <= 3; i++) {
+                const dot = document.getElementById('step-dot-' + i);
+                const txt = document.getElementById('step-text-' + i);
+                if (i < n) {
+                    dot.className = 'w-9 h-9 rounded-full bg-gradient-to-br from-teal-500 to-cyan-500 flex items-center justify-center text-white font-bold text-sm shadow-md shadow-teal-500/20 transition-all duration-300';
+                    dot.innerHTML = checkSvg;
+                    txt.className = 'text-sm font-semibold text-teal-700 transition-colors duration-300';
+                } else if (i === n) {
+                    dot.className = 'w-9 h-9 rounded-full bg-gradient-to-br from-teal-500 to-cyan-500 flex items-center justify-center text-white font-bold text-sm shadow-md shadow-teal-500/20 transition-all duration-300';
+                    dot.textContent = i;
+                    txt.className = 'text-sm font-semibold text-teal-700 transition-colors duration-300';
+                } else {
+                    dot.className = 'w-9 h-9 rounded-full bg-slate-200 flex items-center justify-center text-slate-400 font-bold text-sm transition-all duration-300';
+                    dot.textContent = i;
+                    txt.className = 'text-sm font-semibold text-slate-400 transition-colors duration-300';
+                }
+            }
+            document.getElementById('line-1').style.width = (n > 1) ? '100%' : '0%';
+            document.getElementById('line-2').style.width = (n > 2) ? '100%' : '0%';
+        }
+
+        // ===== FILE UPLOAD =====
+        function handleFileUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            // Check SheetJS loaded
+            if (typeof XLSX === 'undefined') {
+                alert('Excel library failed to load. Please refresh the page and ensure internet connectivity.');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const data = new Uint8Array(e.target.result);
+                    const workbook = XLSX.read(data, { type: 'array' });
+                    const sheet = workbook.Sheets[workbook.SheetNames[0]];
+                    const rows = XLSX.utils.sheet_to_json(sheet);
+
+                    peptideData = [];
+                    rows.forEach(row => {
+                        const name = row['Products'];
+                        if (!name || typeof name !== 'string' || !name.startsWith('Peptide')) return;
+                        // Find the numeric value column
+                        const valKey = Object.keys(row).find(k =>
+                            k !== 'Products' && !isNaN(parseFloat(row[k]))
+                        );
+                        if (!valKey) return;
+                        const val = parseFloat(row[valKey]) || 0;
+                        peptideData.push({ name, value: val });
+                    });
+
+                    if (peptideData.length === 0) {
+                        alert('No peptide data found. Ensure the file has a "Products" column with Peptide names.');
+                        showPhase('load');
+                        return;
+                    }
+
+                    // Percentile-based status thresholds
+                    const sorted = peptideData.map(p => p.value).sort((a, b) => a - b);
+                    const p40 = sorted[Math.floor(sorted.length * 0.40)];
+                    const p75 = sorted[Math.floor(sorted.length * 0.75)];
+
+                    // Build table
+                    const tbody = document.getElementById('peptideTableBody');
+                    tbody.innerHTML = '';
+
+                    peptideData.forEach((p, i) => {
+                        let statusHtml;
+                        if (p.value >= p75) {
+                            statusHtml = '<span class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-red-50 text-red-700 text-xs font-extrabold rounded-full border border-red-300 shadow-sm">&#9650; Significantly Elevated</span>';
+                        } else if (p.value >= p40) {
+                            statusHtml = '<span class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-amber-50 text-amber-700 text-xs font-extrabold rounded-full border border-amber-300 shadow-sm">&#9650; Elevated</span>';
+                        } else {
+                            statusHtml = '<span class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-emerald-50 text-emerald-700 text-xs font-extrabold rounded-full border border-emerald-300 shadow-sm">&mdash; Normal</span>';
+                        }
+
+                        const tr = document.createElement('tr');
+                        tr.className = `peptide-row border-t border-slate-100 hover:bg-teal-50/30 transition-colors ${i % 2 === 0 ? 'bg-white' : 'bg-slate-50/30'}`;
+                        tr.style.animationDelay = `${i * 0.07}s`;
+                        tr.innerHTML = `
+                            <td class="px-6 py-3.5 font-semibold text-slate-800 text-sm">${p.name}</td>
+                            <td class="px-6 py-3.5 text-slate-600 font-mono text-sm">${p.value.toLocaleString(undefined, { minimumFractionDigits: 4, maximumFractionDigits: 4 })}</td>
+                            <td class="px-6 py-3.5">${statusHtml}</td>
+                        `;
+                        tbody.appendChild(tr);
+                    });
+
+                    // Update metadata
+                    document.getElementById('metaDate').textContent = dateFormatted;
+
+                    showPhase('preview');
+                    setStep(1);
+
+                } catch (err) {
+                    alert('Error reading file: ' + err.message);
+                    showPhase('load');
+                }
+            };
+            reader.readAsArrayBuffer(file);
+        }
+
+        // ===== ML ANALYSIS =====
+        function startAnalysis() {
+            showPhase('analyzing');
+            setStep(2);
+
+            const stages = [
+                { text: "Processing native peptide signatures...",       pct: 12,  pep: "2,143",  feat: "0" },
+                { text: "Detecting post-translational modifications...", pct: 28,  pep: "4,891",  feat: "1,247" },
+                { text: "Scanning 10,847 peptide features...",           pct: 48,  pep: "7,503",  feat: "3,891" },
+                { text: "Running XGBoost classification algorithm...",   pct: 68,  pep: "9,847",  feat: "7,234" },
+                { text: "Computing risk probability...",                 pct: 88,  pep: "10,847", feat: "9,847" },
+                { text: "Finalizing risk assessment...",                 pct: 100, pep: "10,847", feat: "10,847" }
+            ];
+
+            let i = 0;
+            function next() {
+                if (i < stages.length) {
+                    const s = stages[i];
+                    document.getElementById('progressBar').style.width   = s.pct + '%';
+                    document.getElementById('analysisStatus').textContent = s.text;
+                    document.getElementById('statPeptides').textContent   = s.pep;
+                    document.getElementById('statFeatures').textContent   = s.feat;
+                    i++;
+                    setTimeout(next, STAGE_DURATION_MS);
+                } else {
+                    setTimeout(() => {
+                        showPhase('ready');
+                        setStep(3);
+                    }, 600);
+                }
+            }
+            next();
+        }
+
+        // ===== SHOW RESULTS =====
+        function showResults() {
+            showPhase('results');
+
+            // Set dates
+            document.getElementById('sampleDate').textContent       = dateFormatted;
+            document.getElementById('analysisDateField').textContent = dateFormatted;
+
+            // Animate percentage counter
+            const target = RESULT_PROBABILITY;
+            let current = 0;
+            const step = target / 50;
+            const timer = setInterval(() => {
+                current = Math.min(current + step, target);
+                document.getElementById('resultPercent').textContent = current.toFixed(1) + '%';
+                if (current >= target) clearInterval(timer);
+            }, 40);
+
+            // Animate result bar
+            setTimeout(() => {
+                document.getElementById('resultBar').style.width = RESULT_PROBABILITY + '%';
+            }, 300);
+        }
+    </script>
+
+    <!-- Back navigation to intro -->
+    <script>
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' || e.key === 'Backspace') {
+                e.preventDefault();
+                window.location.href = 'index.html';
+            }
+        });
+    </script>
+
+</body>
+</html>
