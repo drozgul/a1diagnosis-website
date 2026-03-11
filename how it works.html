@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How It Works - A1 Diagnosis</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+
+        /* 16:9 Container */
+        .slide {
+            width: 100vw;
+            height: 56.25vw; /* 16:9 */
+            max-height: 100vh;
+            max-width: 177.78vh; /* 16:9 */
+            margin: auto;
+            position: absolute;
+            top: 0; bottom: 0; left: 0; right: 0;
+            background: linear-gradient(135deg, #f0fdfa 0%, #ffffff 50%, #eff6ff 100%);
+            overflow: hidden;
+        }
+
+        /* Blobs */
+        .blob-teal {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 30%;
+            height: 50%;
+            background: #ccfbf1;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.3;
+            transform: translate(-50%, -50%);
+        }
+
+        .blob-blue {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 35%;
+            height: 60%;
+            background: #dbeafe;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.4;
+            transform: translate(30%, 30%);
+        }
+
+        /* Content wrapper */
+        .content {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            padding: 3.5% 5% 3% 5%;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: auto;
+            flex-shrink: 0;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.4em 1em;
+            background: white;
+            border-radius: 50px;
+            border: 1px solid #ccfbf1;
+            margin-bottom: 0.8em;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+        }
+
+        .badge span {
+            font-size: 0.7vw;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            background: linear-gradient(90deg, #0d9488, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header h2 {
+            font-size: 2.8vw;
+            font-weight: 900;
+            margin-bottom: 0.5em;
+            color: #1e293b;
+        }
+
+        .header h2 span {
+            background: linear-gradient(90deg, #0d9488, #06b6d4, #2563eb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header p {
+            font-size: 1.05vw;
+            color: #64748b;
+            line-height: 1.5;
+            max-width: 55%;
+            margin: 0 auto;
+        }
+
+        /* Grid */
+        .hiw-grid {
+            display: flex;
+            gap: 1.8vw;
+            position: relative;
+            flex: 1;
+            align-items: center;
+            justify-content: center;
+            margin: 2% 0;
+        }
+
+        /* Connecting Line */
+        .hiw-line {
+            position: absolute;
+            top: 3.8vw;
+            left: 12%;
+            right: 12%;
+            height: 2px;
+            background: linear-gradient(90deg, #99f6e4, #bfdbfe, #bbf7d0);
+            z-index: 0;
+        }
+
+        /* Card wrapper - image above, card below */
+        .hiw-card-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 10;
+            flex: 1;
+        }
+
+        /* Floating image above card */
+        .hiw-floating-img {
+            width: 13vw;
+            height: 13vw;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid white;
+            box-shadow: 0 8px 20px rgba(255, 255, 255, 0.8);
+            margin-bottom: 0.8vw;
+            z-index: 20;
+            position: relative;
+            transition: all 0.4s ease;
+        }
+
+        .hiw-card-wrapper:hover .hiw-floating-img {
+            transform: scale(1.08);
+            box-shadow: 0 12px 28px rgba(255, 255, 255, 0.9);
+        }
+
+        .hiw-floating-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Cover vertical text on mass spectrometry image */
+        .hiw-floating-img.cover-text {
+            position: relative;
+        }
+        .hiw-floating-img.cover-text::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 45%;
+            height: 100%;
+            background: linear-gradient(to left, rgba(255,255,255,0) 0%, rgba(255,255,255,0.85) 30%, rgba(255,255,255,1) 100%);
+            pointer-events: none;
+        }
+
+        /* Cards */
+        .hiw-card {
+            background: white;
+            border-radius: 1vw;
+            padding: 1.5vw;
+            box-shadow: 0 10px 15px -3px rgba(255, 255, 255, 0.8);
+            border: 1px solid #f1f5f9;
+            position: relative;
+            z-index: 10;
+            transition: all 0.3s ease;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 5.5vw;
+        }
+
+        .hiw-card-wrapper:hover .hiw-card {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(255, 255, 255, 0.9);
+        }
+
+        .step-number {
+            display: none;
+        }
+
+        .step-badge {
+            width: 2.2vw;
+            height: 2.2vw;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #0d9488, #06b6d4);
+            color: white;
+            font-size: 1vw;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 0.5vw;
+            box-shadow: 0 4px 10px rgba(13, 148, 136, 0.3);
+        }
+
+        /* Icon circles (for SVG icon cards) */
+        .hiw-icon-circle {
+            width: 13vw;
+            height: 13vw;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 8px 20px rgba(255, 255, 255, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0.8vw;
+            z-index: 20;
+            position: relative;
+            transition: all 0.4s ease;
+            overflow: hidden;
+        }
+
+        .hiw-card-wrapper:hover .hiw-icon-circle {
+            transform: scale(1.08);
+            box-shadow: 0 12px 28px rgba(20, 184, 166, 0.3);
+        }
+
+        .hiw-icon-circle svg {
+            width: 5.5vw;
+            height: 5.5vw;
+        }
+
+        .icon-teal { background: #f0fdfa; color: #0d9488; }
+        .hiw-card:hover .icon-teal { background: #0d9488; color: white; }
+
+        .icon-cyan { background: #ecfeff; color: #0891b2; }
+        .hiw-card:hover .icon-cyan { background: #0891b2; color: white; }
+
+        .icon-blue { background: #eff6ff; color: #2563eb; }
+        .hiw-card:hover .icon-blue { background: #2563eb; color: white; }
+
+        .icon-indigo { background: #eef2ff; color: #4f46e5; }
+        .hiw-card:hover .icon-indigo { background: #4f46e5; color: white; }
+
+        .icon-green { background: #f0fdf4; color: #16a34a; }
+        .hiw-card:hover .icon-green { background: #16a34a; color: white; }
+
+        /* Image icon circle */
+        .hiw-icon-circle.icon-img {
+            border: none;
+            box-shadow: none;
+            background: transparent;
+            overflow: hidden;
+        }
+        .hiw-icon-circle.icon-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .hiw-card h3 {
+            font-size: 1.1vw;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 0.5vw;
+        }
+
+        .hiw-card p {
+            font-size: 0.82vw;
+            color: #64748b;
+            line-height: 1.5;
+        }
+
+        /* Bottom CTA - removed */
+
+        .cta-icon {
+            display: none;
+            flex-shrink: 0;
+        }
+
+        .cta-icon svg {
+            width: 1.3vw;
+            height: 1.3vw;
+        }
+
+        .cta-text {
+            flex-grow: 1;
+            text-align: center;
+            padding: 0 0.5vw;
+        }
+
+        .cta-text .title {
+            display: block;
+            font-size: 0.75vw;
+            font-weight: 700;
+            color: #1e293b;
+        }
+
+        .cta-text .subtitle {
+            display: block;
+            font-size: 0.65vw;
+            color: #64748b;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 0.5vw;
+        }
+
+        .hiw-btn {
+            padding: 0.45vw 1vw;
+            border-radius: 9999px;
+            font-weight: 700;
+            font-size: 0.7vw;
+            display: flex;
+            align-items: center;
+            gap: 0.4vw;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .hiw-btn svg {
+            width: 0.85vw;
+            height: 0.85vw;
+        }
+
+        .hiw-btn-primary {
+            background: #0d9488;
+            color: white;
+            box-shadow: 0 10px 15px -3px rgba(20, 184, 166, 0.3);
+        }
+
+        .hiw-btn-primary:hover { background: #0f766e; }
+
+        .hiw-btn-secondary {
+            background: #f0fdfa;
+            color: #0f766e;
+            border: 1px solid #ccfbf1;
+        }
+
+        .hiw-btn-secondary:hover { background: #ccfbf1; }
+
+        /* Watch Video Button */
+        .watch-video-btn {
+            position: absolute;
+            top: 3.5%;
+            right: 5%;
+            z-index: 20;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5vw;
+            padding: 0.6vw 1.2vw;
+            background: linear-gradient(135deg, #0d9488 0%, #06b6d4 100%);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 0.75vw;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(13, 148, 136, 0.3);
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+
+        .watch-video-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(13, 148, 136, 0.4);
+        }
+
+        .play-icon {
+            width: 1.2vw;
+            height: 1.2vw;
+            border-radius: 50%;
+            background: white;
+            color: #0d9488;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.55vw;
+        }
+
+        /* Video Modal */
+        .video-modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .video-modal.active {
+            display: flex;
+        }
+
+        .video-modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            width: 1200px;
+        }
+
+        .video-modal video {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .video-modal-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: white;
+            font-size: 35px;
+            font-weight: bold;
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .video-modal-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(90deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <!-- Background Blobs -->
+        <div class="blob-teal"></div>
+        <div class="blob-blue"></div>
+
+
+        <!-- Content -->
+        <div class="content">
+
+            <!-- Header -->
+            <div class="header">
+                <h2>
+                    <span>How It Works?</span>
+                </h2>
+            </div>
+
+            <!-- Process Grid -->
+            <div class="hiw-grid">
+
+                <!-- Step 1: Eye Doctor Visit -->
+                <div class="hiw-card-wrapper">
+                    <div class="hiw-floating-img">
+                        <img src="Doctor.png" alt="Eye Doctor Visit">
+                    </div>
+                    <div class="hiw-card">
+                        <h3>Eye Doctor Visit</h3>
+                    </div>
+                    <div class="step-badge">1</div>
+                </div>
+
+                <!-- Step 2: Sample Collection -->
+                <div class="hiw-card-wrapper">
+                    <div class="hiw-floating-img">
+                        <img src="Tube.png" alt="Blood Sample Collection">
+                    </div>
+                    <div class="hiw-card">
+                        <h3>Sample Collection</h3>
+                    </div>
+                    <div class="step-badge">2</div>
+                </div>
+
+                <!-- Step 3: High-end Mass Spectrometry -->
+                <div class="hiw-card-wrapper">
+                    <div class="hiw-floating-img cover-text">
+                        <img src="High-end Mass Spectromy.png" alt="High-end Mass Spectrometry">
+                    </div>
+                    <div class="hiw-card">
+                        <h3>Mass Spectrometry with Attomole Sensitivity</h3>
+                    </div>
+                    <div class="step-badge">3</div>
+                </div>
+
+                <!-- Step 4: Machine Learning Analysis -->
+                <div class="hiw-card-wrapper">
+                    <div class="hiw-floating-img">
+                        <img src="machine learning.png" alt="Machine Learning Analysis">
+                    </div>
+                    <div class="hiw-card">
+                        <h3>Machine Learning Analysis</h3>
+                    </div>
+                    <div class="step-badge">4</div>
+                </div>
+
+                <!-- Step 5: Risk Assessment -->
+                <div class="hiw-card-wrapper">
+                    <div class="hiw-floating-img">
+                        <img src="Risk Assessment.png" alt="Risk Assessment">
+                    </div>
+                    <div class="hiw-card">
+                        <h3>Risk Assessment</h3>
+                    </div>
+                    <div class="step-badge">5</div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <!-- Video Modal -->
+    <div id="howItWorksVideoModal" class="video-modal" onclick="closeVideoModal(event)">
+        <div class="video-modal-content">
+            <span class="video-modal-close" onclick="closeVideoModal(event)">&times;</span>
+            <video id="howItWorksVideo" controls>
+                <source src="How_It_Works.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+
+    <script>
+        function openVideoModal() {
+            const modal = document.getElementById('howItWorksVideoModal');
+            const video = document.getElementById('howItWorksVideo');
+            modal.classList.add('active');
+            video.play();
+        }
+
+        function closeVideoModal(event) {
+            if (event.target.id === 'howItWorksVideoModal' || event.target.className === 'video-modal-close') {
+                const modal = document.getElementById('howItWorksVideoModal');
+                const video = document.getElementById('howItWorksVideo');
+                modal.classList.remove('active');
+                video.pause();
+                video.currentTime = 0;
+            }
+        }
+    </script>
+</body>
+</html>
