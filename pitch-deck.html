@@ -216,184 +216,8 @@
             display: block;
             max-width: 100%;
             max-height: 100%;
-            transition: opacity 0.15s ease;
         }
 
-        .slide-container canvas.fading {
-            opacity: 0;
-        }
-
-        /* === AI Healthcare Transition Overlay === */
-        .transition-overlay {
-            position: absolute;
-            inset: 0;
-            pointer-events: none;
-            z-index: 4;
-            overflow: hidden;
-            opacity: 0;
-            border-radius: 10px;
-        }
-
-        .transition-overlay.active {
-            opacity: 1;
-        }
-
-        /* Scanning curve — organic DNA / helix wave */
-        .scan-line {
-            position: absolute;
-            top: 0;
-            left: -15%;
-            width: 80px;
-            height: 100%;
-            filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.9))
-                    drop-shadow(0 0 25px rgba(255, 255, 255, 0.6))
-                    drop-shadow(0 0 40px rgba(144, 238, 144, 0.3));
-        }
-
-        .scan-line svg {
-            width: 100%;
-            height: 100%;
-        }
-
-        .transition-overlay.active .scan-line {
-            animation: scanSweep 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-        }
-
-        .transition-overlay.active.reverse .scan-line {
-            animation: scanSweepReverse 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-        }
-
-        @keyframes scanSweep {
-            0%   { left: -15%; opacity: 0; }
-            8%   { opacity: 1; }
-            92%  { opacity: 1; }
-            100% { left: 110%; opacity: 0; }
-        }
-
-        @keyframes scanSweepReverse {
-            0%   { left: 110%; opacity: 0; }
-            8%   { opacity: 1; }
-            92%  { opacity: 1; }
-            100% { left: -15%; opacity: 0; }
-        }
-
-        /* Subtle grid that appears behind scan line */
-        .scan-grid {
-            position: absolute;
-            inset: 0;
-            background-image:
-                linear-gradient(rgba(0, 150, 136, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 150, 136, 0.03) 1px, transparent 1px);
-            background-size: 40px 40px;
-            opacity: 0;
-        }
-
-        .transition-overlay.active .scan-grid {
-            animation: gridPulse 0.55s ease-out forwards;
-        }
-
-        @keyframes gridPulse {
-            0%   { opacity: 0; }
-            30%  { opacity: 1; }
-            70%  { opacity: 1; }
-            100% { opacity: 0; }
-        }
-
-        /* Floating particles — DNA / data-node feel */
-        .particle-field {
-            position: absolute;
-            inset: 0;
-        }
-
-        .particle {
-            position: absolute;
-            border-radius: 50%;
-            opacity: 0;
-        }
-
-        .transition-overlay.active .particle {
-            animation: particleFloat 0.6s ease-out forwards;
-        }
-
-        @keyframes particleFloat {
-            0%   { opacity: 0; transform: scale(0) translateY(0); }
-            30%  { opacity: 0.7; transform: scale(1) translateY(-4px); }
-            100% { opacity: 0; transform: scale(0.3) translateY(-16px); }
-        }
-
-        /* Center pulse ripple — heartbeat / vitals */
-        .pulse-ring {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 80px;
-            height: 80px;
-            margin: -40px 0 0 -40px;
-            border-radius: 50%;
-            border: 2px solid rgba(0, 150, 136, 0.25);
-            opacity: 0;
-        }
-
-        .transition-overlay.active .pulse-ring {
-            animation: pulseExpand 0.6s ease-out forwards;
-        }
-
-        .transition-overlay.active .pulse-ring:nth-child(2) {
-            animation-delay: 0.08s;
-        }
-
-        @keyframes pulseExpand {
-            0%   { opacity: 0.5; transform: scale(0.3); }
-            100% { opacity: 0; transform: scale(4); }
-        }
-
-        /* Horizontal vitals line across center */
-        .vitals-line {
-            position: absolute;
-            top: 50%;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            overflow: hidden;
-            opacity: 0;
-        }
-
-        .vitals-line-inner {
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 40%;
-            height: 100%;
-            background: linear-gradient(90deg,
-                transparent,
-                rgba(0, 150, 136, 0.15),
-                rgba(129, 199, 132, 0.3),
-                rgba(0, 150, 136, 0.15),
-                transparent
-            );
-        }
-
-        .transition-overlay.active .vitals-line {
-            opacity: 1;
-        }
-
-        .transition-overlay.active .vitals-line-inner {
-            animation: vitalsTrace 0.5s ease-out forwards;
-        }
-
-        .transition-overlay.active.reverse .vitals-line-inner {
-            animation: vitalsTraceReverse 0.5s ease-out forwards;
-        }
-
-        @keyframes vitalsTrace {
-            0%   { left: -40%; }
-            100% { left: 100%; }
-        }
-
-        @keyframes vitalsTraceReverse {
-            0%   { left: 100%; }
-            100% { left: -40%; }
-        }
 
         /* Loading state */
         .loading-overlay {
@@ -663,127 +487,6 @@
             font-weight: 600;
         }
 
-        /* Watch How It Works button — overlays on Slide 3 */
-        .slide-overlay-btn {
-            position: absolute;
-            bottom: 14%;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 6;
-            display: none;
-            pointer-events: auto;
-        }
-
-        .slide-overlay-btn.visible {
-            display: block;
-            animation: btnFadeIn 0.4s ease forwards;
-        }
-
-        @keyframes btnFadeIn {
-            from { opacity: 0; transform: translateX(-50%) translateY(8px); }
-            to   { opacity: 1; transform: translateX(-50%) translateY(0); }
-        }
-
-        .watch-video-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 14px 28px;
-            background: linear-gradient(135deg, #0d9488 0%, #06b6d4 100%);
-            color: white;
-            border: none;
-            border-radius: 50px;
-            font-size: 15px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 18px rgba(13, 148, 136, 0.35);
-            pointer-events: auto;
-        }
-
-        .watch-video-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 28px rgba(13, 148, 136, 0.45);
-        }
-
-        .play-icon {
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.95);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-
-        .play-icon svg {
-            width: 12px;
-            height: 12px;
-            margin-left: 2px;
-        }
-
-        /* Video Modal */
-        .video-modal {
-            display: none;
-            position: fixed;
-            z-index: 10000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
-            align-items: center;
-            justify-content: center;
-        }
-
-        .video-modal.active {
-            display: flex;
-            cursor: default;
-        }
-
-        .video-modal-content {
-            position: relative;
-            max-width: 90%;
-            max-height: 90%;
-            width: 1100px;
-        }
-
-        .video-modal video {
-            width: 100%;
-            height: auto;
-            border-radius: 12px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-        }
-
-        .video-modal video {
-            cursor: default;
-        }
-
-        .video-modal-close {
-            position: absolute;
-            top: -44px;
-            right: 0;
-            color: white;
-            font-size: 32px;
-            font-weight: bold;
-            cursor: pointer !important;
-            background: rgba(255, 255, 255, 0.1);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s;
-            border: none;
-        }
-
-        .video-modal-close:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: rotate(90deg);
-        }
-
         /* Hide custom cursor on mobile */
         @media (max-width: 768px) {
             .cursor,
@@ -895,52 +598,6 @@
             <div class="slide-container" id="slideContainer">
                 <canvas id="slideCanvas"></canvas>
 
-                <!-- AI Healthcare Transition -->
-                <div class="transition-overlay" id="transitionOverlay">
-                    <div class="scan-grid"></div>
-                    <div class="scan-line">
-                        <svg viewBox="0 0 80 600" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-                            <defs>
-                                <linearGradient id="curveGrad" x1="0" y1="0" x2="0" y2="1">
-                                    <stop offset="0%" stop-color="#90ee90" stop-opacity="0"/>
-                                    <stop offset="15%" stop-color="#90ee90" stop-opacity="0.15"/>
-                                    <stop offset="40%" stop-color="#7ddf7d" stop-opacity="0.7"/>
-                                    <stop offset="50%" stop-color="#6dd66d" stop-opacity="1"/>
-                                    <stop offset="60%" stop-color="#7ddf7d" stop-opacity="0.7"/>
-                                    <stop offset="85%" stop-color="#90ee90" stop-opacity="0.15"/>
-                                    <stop offset="100%" stop-color="#90ee90" stop-opacity="0"/>
-                                </linearGradient>
-                                <filter id="glowFilter">
-                                    <feGaussianBlur stdDeviation="3" result="blur"/>
-                                    <feMerge>
-                                        <feMergeNode in="blur"/>
-                                        <feMergeNode in="SourceGraphic"/>
-                                    </feMerge>
-                                </filter>
-                            </defs>
-                            <path d="M40,0 C60,50 20,100 40,150 C60,200 20,250 40,300 C60,350 20,400 40,450 C60,500 20,550 40,600"
-                                  fill="none" stroke="url(#curveGrad)" stroke-width="3" filter="url(#glowFilter)"/>
-                            <path d="M40,0 C60,50 20,100 40,150 C60,200 20,250 40,300 C60,350 20,400 40,450 C60,500 20,550 40,600"
-                                  fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"/>
-                        </svg>
-                    </div>
-                    <div class="particle-field" id="particleField"></div>
-                    <div class="pulse-ring"></div>
-                    <div class="pulse-ring"></div>
-                    <div class="vitals-line"><div class="vitals-line-inner"></div></div>
-                </div>
-
-                <!-- Watch How It Works button (Slide 3 only) -->
-                <div class="slide-overlay-btn" id="watchBtn">
-                    <button class="watch-video-btn" id="watchVideoBtn">
-                        <span class="play-icon">
-                            <svg viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M1 1L11 7L1 13V1Z" fill="#0d9488"/>
-                            </svg>
-                        </span>
-                        Watch "How It Works" Video
-                    </button>
-                </div>
 
                 <div class="loading-overlay" id="loadingOverlay">
                     <div class="spinner"></div>
@@ -1004,16 +661,12 @@
         const nextBtnCtrl = document.getElementById('nextBtnCtrl');
         const fullscreenBtn = document.getElementById('fullscreenBtn');
 
-        const transitionOverlay = document.getElementById('transitionOverlay');
-        const particleField = document.getElementById('particleField');
-
         let pdfDoc = null;
         let currentPage = 1;
         let totalPages = 0;
         let rendering = false;
         let pendingPage = null;
         let thumbItems = [];
-        let transitionBusy = false;
 
         async function loadPDF() {
             try {
@@ -1076,7 +729,6 @@
                 return;
             }
             rendering = true;
-            canvas.classList.add('fading');
 
             const page = await pdfDoc.getPage(pageNum);
             const containerWidth = container.clientWidth;
@@ -1097,7 +749,6 @@
 
             await page.render({ canvasContext: ctx, viewport: viewport }).promise;
 
-            canvas.classList.remove('fading');
             rendering = false;
 
             if (pendingPage !== null) {
@@ -1130,46 +781,10 @@
             }
         }
 
-        // Generate random particles for the transition
-        function spawnParticles() {
-            particleField.innerHTML = '';
-            const count = 18;
-            for (let i = 0; i < count; i++) {
-                const p = document.createElement('div');
-                p.className = 'particle';
-                const size = 3 + Math.random() * 6;
-                const x = 10 + Math.random() * 80;
-                const y = 10 + Math.random() * 80;
-                const delay = Math.random() * 0.25;
-                const green = 180 + Math.floor(Math.random() * 60); // light green range
-                const rb = 100 + Math.floor(Math.random() * 50);
-                const alpha = 0.4 + Math.random() * 0.3;
-                p.style.cssText = `
-                    width: ${size}px; height: ${size}px;
-                    left: ${x}%; top: ${y}%;
-                    background: rgba(${rb}, ${green}, ${rb}, ${alpha});
-                    animation-delay: ${delay}s;
-                    box-shadow: 0 0 ${size * 2}px rgba(${rb}, ${green}, ${rb}, 0.35),
-                                0 0 ${size * 4}px rgba(255, 255, 255, 0.25);
-                `;
-                particleField.appendChild(p);
-            }
-        }
-
-        function playTransition(direction) {
-            return new Promise(resolve => {
-                resolve();
-            });
-        }
-
         function goToPage(num) {
-            if (num < 1 || num > totalPages || num === currentPage || transitionBusy) return;
-            const direction = num > currentPage ? 'next' : 'prev';
+            if (num < 1 || num > totalPages || num === currentPage) return;
             currentPage = num;
             updateUI();
-
-            // Start transition + render in parallel
-            playTransition(direction);
             renderPage(currentPage);
         }
 
@@ -1321,62 +936,6 @@
             showBubble('If you have any question, my email is <a>ozgul@A1Diagnosis.com</a>', 9000);
         }, 25500);
 
-        // === Watch How It Works — Slide 3 only ===
-        const watchBtn = document.getElementById('watchBtn');
-        const watchVideoBtn = document.getElementById('watchVideoBtn');
-        const videoModal = document.getElementById('videoModal');
-        const videoEl = document.getElementById('hiwVideo');
-        const videoCloseBtn = document.getElementById('videoCloseBtn');
-
-        function updateWatchBtn() {
-            if (currentPage === 5) {
-                watchBtn.classList.add('visible');
-            } else {
-                watchBtn.classList.remove('visible');
-            }
-        }
-
-        // Patch updateUI to also toggle the button
-        const _origUpdateUI = updateUI;
-        updateUI = function() {
-            _origUpdateUI();
-            updateWatchBtn();
-        };
-
-        watchVideoBtn.addEventListener('click', () => {
-            videoModal.classList.add('active');
-            videoEl.play();
-        });
-
-        function closeVideoModal(e) {
-            if (e.target === videoModal || e.target === videoCloseBtn) {
-                videoModal.classList.remove('active');
-                videoEl.pause();
-                videoEl.currentTime = 0;
-            }
-        }
-
-        videoModal.addEventListener('click', closeVideoModal);
-        videoCloseBtn.addEventListener('click', closeVideoModal);
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && videoModal.classList.contains('active')) {
-                videoModal.classList.remove('active');
-                videoEl.pause();
-                videoEl.currentTime = 0;
-            }
-        });
     </script>
-
-    <!-- Video Modal -->
-    <div id="videoModal" class="video-modal">
-        <div class="video-modal-content">
-            <button class="video-modal-close" id="videoCloseBtn">&times;</button>
-            <video id="hiwVideo" controls>
-                <source src="How_It_Works.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-        </div>
-    </div>
 </body>
 </html>
