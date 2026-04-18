@@ -2620,8 +2620,7 @@
             margin-top: 4px;
         }
         #tab-calculator .calc-breakeven-box {
-            background: linear-gradient(135deg, #fefce8, #fef9c3);
-            border: 1px solid #fde047;
+            background: linear-gradient(135deg, #0d9488, #14b8a6);
             border-radius: 12px;
             padding: 16px 24px;
             display: flex;
@@ -2631,14 +2630,73 @@
         }
         #tab-calculator .calc-breakeven-box .calc-label {
             font-size: 14px;
-            color: #854d0e;
+            color: white;
             font-weight: 600;
         }
         #tab-calculator .calc-breakeven-box .calc-value {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 22px;
+            font-size: 20px;
             font-weight: 700;
-            color: #854d0e;
+            color: white;
+        }
+
+        /* Flow of Funds */
+        #tab-calculator .flow-of-funds {
+            background: white;
+            border-radius: 20px;
+            padding: 28px 40px;
+            box-shadow: 0 4px 20px rgba(255,255,255,0.8), 0 2px 12px rgba(0,0,0,0.05);
+            border: 2px solid rgba(20,184,166,0.15);
+            margin-bottom: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        #tab-calculator .flow-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+        #tab-calculator .flow-label {
+            font-size: 16px;
+            font-weight: 700;
+            color: #64748b;
+        }
+        #tab-calculator .flow-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 32px;
+            font-weight: 800;
+            color: #0f766e;
+        }
+        #tab-calculator .flow-value.highlight {
+            color: #0d9488;
+        }
+        #tab-calculator .flow-arrow {
+            color: #14b8a6;
+            font-size: 36px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        #tab-calculator .flow-sub {
+            font-size: 12px;
+            color: #94a3b8;
+        }
+
+        /* Info box */
+        #tab-calculator .info-box {
+            background: #fffbeb;
+            border: 1px solid #fde68a;
+            border-radius: 10px;
+            padding: 16px 20px;
+            font-size: 14px;
+            color: #92400e;
+            line-height: 1.5;
+        }
+        #tab-calculator .info-box strong {
+            color: #78350f;
         }
 
         /* Interactive slider section */
@@ -4525,7 +4583,7 @@
                 </div>
                 <div style="display: flex; align-items: flex-start; gap: 12px;">
                     <span style="color: #3b82f6; font-size: 18px; flex-shrink: 0; margin-top: 2px;">✨</span>
-                    <p style="margin: 0; color: #374151; font-size: 14px; line-height: 1.6;">Explore the three tabs below to see our unit economics, growth projections with FDA clearance as the Year 3 inflection point, and our proven go-to-market execution strategy.</p>
+                    <p style="margin: 0; color: #374151; font-size: 14px; line-height: 1.6;">Explore the three tabs below to see our unit economics, growth projections with FDA clearance as the Year 4 inflection point, and our proven go-to-market execution strategy.</p>
                 </div>
             </div>
 
@@ -4771,7 +4829,7 @@
                         <div style="padding: 20px 15px; background: linear-gradient(135deg, #f0fdfa 0%, #ccfbf1 100%); border-radius: 12px; border-top: 3px solid #14b8a6; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); text-align: center;">
                             <p style="color: #64748b; margin: 0 0 4px 0; font-size: 11px; font-weight: 600; text-transform: uppercase;">Year 3 Revenue</p>
                             <p style="color: #374151; margin: 0; font-size: 22px; font-weight: bold;">$14.0M</p>
-                            <p style="color: #64748b; margin: 4px 0 0 0; font-size: 11px;">FDA clearance Q3</p>
+                            <p style="color: #64748b; margin: 4px 0 0 0; font-size: 11px;">De Novo Submission</p>
                         </div>
                         <div style="padding: 20px 15px; background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%); border-radius: 12px; border-top: 3px solid #0284c7; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); text-align: center;">
                             <p style="color: #64748b; margin: 0 0 4px 0; font-size: 11px; font-weight: 600; text-transform: uppercase;">Year 5 Revenue</p>
@@ -5071,18 +5129,41 @@
                         <p>Step-by-step breakdown of how costs and margins work per test</p>
                     </div>
 
+                    <!-- FLOW OF FUNDS -->
+                    <div class="flow-of-funds">
+                        <div class="flow-item">
+                            <span class="flow-label">Patient Pays</span>
+                            <span class="flow-value">$350</span>
+                        </div>
+                        <span class="flow-arrow">&#10132;</span>
+                        <div class="flow-item">
+                            <span class="flow-label">Clinic Retains</span>
+                            <span class="flow-value">$50</span>
+                        </div>
+                        <span class="flow-arrow">&#10132;</span>
+                        <div class="flow-item">
+                            <span class="flow-label">A1 CLIA Lab</span>
+                            <span class="flow-sub">Analyzes &amp; Reports</span>
+                        </div>
+                        <span class="flow-arrow">&#10132;</span>
+                        <div class="flow-item">
+                            <span class="flow-label">A1 Revenue</span>
+                            <span class="flow-value highlight">$300</span>
+                        </div>
+                    </div>
+
                     <!-- STEP 1: Revenue -->
                     <div class="calc-step">
                         <div class="calc-step-header">
                             <div class="calc-step-number">1</div>
-                            <div class="calc-step-title">Revenue per Test = $250</div>
+                            <div class="calc-step-title">Revenue per Test = $300</div>
                         </div>
                         <p style="font-size: 15px; color: #64748b; line-height: 1.6; margin-bottom: 16px; max-width: 800px;">
-                            This is what A1 Diagnosis charges per test. In a B2B model, <strong style="color:#334155;">A1 invoices the clinic $250 per test</strong>. The clinic then bills the patient's insurance or collects payment and keeps the reimbursement margin. A1's only customer is the clinic — clean, simple, one invoice relationship.
+                            Patient pays clinic $350. Clinic retains $50 for specimen collection, counseling, and follow-up. <strong style="color:#334155;">A1 receives $300 per test</strong>. A1's only customer is the clinic — clean, simple, one invoice relationship.
                         </p>
                         <div class="calc-result-box">
-                            <span class="calc-label">Revenue per test</span>
-                            <span class="calc-value">$250</span>
+                            <span class="calc-label">A1 Revenue per test</span>
+                            <span class="calc-value">$300</span>
                         </div>
                     </div>
 
@@ -5093,7 +5174,7 @@
                             <div class="calc-step-title">Variable COGS = $60 per test</div>
                         </div>
                         <p style="font-size: 15px; color: #64748b; line-height: 1.6; margin-bottom: 16px; max-width: 800px;">
-                            These are costs that happen <strong style="color:#334155;">every time you run a test</strong>. Run zero tests = $0. Run 500 tests = 500 &times; $60 = $30,000. They scale directly with volume.
+                            These are costs that happen <strong style="color:#334155;">every time you run a test</strong>. Run zero tests = $0. Run 1,200 tests = 1,200 &times; $60 = $72,000. They scale directly with volume.
                         </p>
 
                         <table class="calc-breakdown-table">
@@ -5130,34 +5211,30 @@
                                 </tr>
                             </tbody>
                         </table>
-
-                        <p style="font-size: 14px; color: #64748b; margin-top: 16px;">
-                            <strong style="color:#334155;">Native peptide advantage:</strong> Skipping the trypsin digestion step saves $10–15/test vs traditional proteomics.
-                        </p>
                     </div>
 
                     <!-- STEP 3: Contribution Margin -->
                     <div class="calc-step">
                         <div class="calc-step-header">
                             <div class="calc-step-number">3</div>
-                            <div class="calc-step-title">Contribution Margin = $190 per test (76%)</div>
+                            <div class="calc-step-title">Contribution Margin = $240 per test (80%)</div>
                         </div>
                         <p style="font-size: 15px; color: #64748b; line-height: 1.6; margin-bottom: 16px; max-width: 800px;">
                             <strong style="color:#334155;">Revenue minus Variable COGS.</strong> This is how much each test "contributes" toward paying your fixed overhead and eventually becoming profit. This number is the same whether you run 10 tests or 10,000 tests.
                         </p>
 
                         <div class="calc-formula">
-                            Revenue <strong>$250</strong> &minus; Variable COGS <strong>$60</strong> = Contribution Margin <strong style="font-size:20px;">$190</strong>
+                            Revenue <strong>$300</strong> &minus; Variable COGS <strong>$60</strong> = Contribution Margin <strong style="font-size:20px;">$240</strong>
                         </div>
 
                         <div class="calc-margin-box">
                             <div>
                                 <span class="calc-label">Contribution Margin per test</span>
-                                <div style="font-size: 13px; color: #16a34a; margin-top: 2px;">Every test sold puts $190 toward overhead &amp; profit</div>
+                                <div style="font-size: 13px; color: #16a34a; margin-top: 2px;">Every test sold puts $240 toward overhead &amp; profit</div>
                             </div>
                             <div>
-                                <span class="calc-value">$190</span>
-                                <span class="calc-pct">76%</span>
+                                <span class="calc-value">$240</span>
+                                <span class="calc-pct">80%</span>
                             </div>
                         </div>
                     </div>
@@ -5166,17 +5243,17 @@
                     <div class="calc-step">
                         <div class="calc-step-header">
                             <div class="calc-step-number">4</div>
-                            <div class="calc-step-title">Monthly Fixed Costs = $34,700/month</div>
+                            <div class="calc-step-title">Monthly Fixed Costs = $49,700/month</div>
                         </div>
                         <p style="font-size: 15px; color: #64748b; line-height: 1.6; margin-bottom: 16px; max-width: 800px;">
-                            These costs exist <strong style="color:#334155;">whether you run 1 test or 1,000 tests</strong>. They split into two categories: <strong style="color:#334155;">production costs (COGS)</strong> that directly relate to running the lab, and <strong style="color:#334155;">SG&amp;A</strong> (selling, general &amp; administrative) that are overhead.
+                            These costs exist <strong style="color:#334155;">whether you run 1 test or 1,000 tests</strong>. They split into two categories: <strong style="color:#334155;">production costs</strong> that directly relate to running the lab, and <strong style="color:#334155;">SG&amp;A</strong> (selling, general &amp; administrative) that are overhead.
                         </p>
 
                         <div class="calc-fixed-split">
                             <div class="calc-fixed-card">
-                                <div class="calc-fixed-label">Production Fixed (COGS)</div>
-                                <div class="calc-fixed-value">$23,200</div>
-                                <div class="calc-fixed-detail">LC-MS/MS lease $15K + CLS tech $3.2K + QC $5K</div>
+                                <div class="calc-fixed-label">Production Fixed (Lab Costs)</div>
+                                <div class="calc-fixed-value">$38,200</div>
+                                <div class="calc-fixed-detail">timsTOF lease $30K + CLS tech $3.2K + QC $5K</div>
                             </div>
                             <div class="calc-fixed-card">
                                 <div class="calc-fixed-label">SG&amp;A Fixed Costs</div>
@@ -5185,21 +5262,21 @@
                             </div>
                         </div>
 
-                        <div style="background: #fffbeb; border: 1px solid #fde68a; border-radius: 10px; padding: 16px 20px; margin-top: 16px; font-size: 14px; color: #92400e; line-height: 1.5;">
-                            <strong style="color:#78350f;">Why this split matters:</strong> Gross margin on the pitch slide uses only production COGS ($23,200/mo). At 500 tests/month: $23,200 &divide; 500 = <strong>$46/test</strong> in fixed production costs. So gross margin = $250 &minus; $60 &minus; $46 = <strong>$144/test (58%)</strong>. The remaining $11,500/mo SG&amp;A sits below the gross margin line.
+                        <div class="info-box" style="margin-top: 16px;">
+                            <strong>Why this split matters:</strong> Lab operating margin on the pitch slide uses all fixed costs ($49,700/mo). At 1,200 tests/month: $49,700 &divide; 1,200 = <strong>$41/test</strong> in lab fixed costs. So operating contribution = $300 &minus; $60 &minus; $41 = <strong>$199/test (66%)</strong>. R&amp;D and clinical validation costs are separately funded through investment and grants.
                         </div>
 
                         <div class="calc-formula" style="margin-top: 16px;">
-                            Total Fixed <strong>$34,700</strong> &divide; Contribution Margin <strong>$190</strong> = Breakeven <strong style="font-size:20px;">~183 tests/mo</strong>
+                            Total Fixed <strong>$49,700</strong> &divide; Contribution Margin <strong>$240</strong> = Breakeven <strong style="font-size:20px;">~207 tests/mo</strong>
                         </div>
 
                         <div class="calc-breakeven-box">
                             <span class="calc-label">Breakeven Point</span>
-                            <span class="calc-value">~183 tests/mo (~9 tests/business day)</span>
+                            <span class="calc-value">~207 tests/mo (~10 tests/business day)</span>
                         </div>
 
                         <p style="font-size: 14px; color: #64748b; margin-top: 12px;">
-                            If 20 optometry clinics each order ~2 tests/week, you're at breakeven.
+                            If 10 optometry clinics each order ~5 tests/week, you're at breakeven.
                         </p>
                     </div>
 
@@ -5211,9 +5288,9 @@
                         <div class="calc-slider-wrap">
                             <div class="calc-slider-label">
                                 <span>Monthly Test Volume</span>
-                                <span class="calc-vol-display"><span id="calcVolumeDisplay">500</span> tests/month</span>
+                                <span class="calc-vol-display"><span id="calcVolumeDisplay">1,200</span> <span style="font-size: 16px; color: #94a3b8;">tests/month</span></span>
                             </div>
-                            <input type="range" id="calcVolumeSlider" min="10" max="1500" value="500" step="10">
+                            <input type="range" id="calcVolumeSlider" min="10" max="1500" value="1200" step="10">
                             <div class="calc-marks" id="calcSliderMarks"></div>
                         </div>
 
@@ -5221,23 +5298,23 @@
                         <div class="calc-results-grid">
                             <div class="calc-result-card">
                                 <div class="calc-rc-label">Monthly Revenue</div>
-                                <div class="calc-rc-value" id="calcRcRevenue" style="color: #38bdf8;">$125,000</div>
-                                <div class="calc-rc-sub" id="calcRcRevenueTests">500 &times; $250</div>
+                                <div class="calc-rc-value" id="calcRcRevenue" style="color: #38bdf8;">$360,000</div>
+                                <div class="calc-rc-sub" id="calcRcRevenueTests">1,200 &times; $300</div>
                             </div>
                             <div class="calc-result-card">
                                 <div class="calc-rc-label">Variable Costs</div>
-                                <div class="calc-rc-value" id="calcRcVariable" style="color: #f87171;">$30,000</div>
-                                <div class="calc-rc-sub" id="calcRcVariableTests">500 &times; $60</div>
+                                <div class="calc-rc-value" id="calcRcVariable" style="color: #f87171;">$72,000</div>
+                                <div class="calc-rc-sub" id="calcRcVariableTests">1,200 &times; $60</div>
                             </div>
                             <div class="calc-result-card">
                                 <div class="calc-rc-label">Fixed Costs / Test</div>
-                                <div class="calc-rc-value" id="calcRcFixedPerTest" style="color: #fbbf24;">$69</div>
-                                <div class="calc-rc-sub" id="calcRcFixedCalc">$34,700 &divide; 500</div>
+                                <div class="calc-rc-value" id="calcRcFixedPerTest" style="color: #fbbf24;">$41</div>
+                                <div class="calc-rc-sub" id="calcRcFixedCalc">$49,700 &divide; 1,200</div>
                             </div>
                             <div class="calc-result-card" id="calcMarginCard">
-                                <div class="calc-rc-label">Net Margin (all costs)</div>
-                                <div class="calc-rc-value" id="calcRcMargin" style="color: #4ade80;">48%</div>
-                                <div class="calc-rc-sub" id="calcRcMarginDollar">$121 / test</div>
+                                <div class="calc-rc-label">Lab Operating Margin</div>
+                                <div class="calc-rc-value" id="calcRcMargin" style="color: #4ade80;">66%</div>
+                                <div class="calc-rc-sub" id="calcRcMarginDollar">$199 / test</div>
                             </div>
                         </div>
 
@@ -5253,23 +5330,23 @@
                             <tbody>
                                 <tr>
                                     <td>Revenue</td>
-                                    <td>$250</td>
-                                    <td id="calcFbRevTotal">$125,000</td>
+                                    <td>$300</td>
+                                    <td id="calcFbRevTotal">$360,000</td>
                                 </tr>
                                 <tr>
                                     <td>&minus; Variable COGS</td>
                                     <td style="color: #f87171;">($60)</td>
-                                    <td style="color: #f87171;" id="calcFbVarTotal">($30,000)</td>
+                                    <td style="color: #f87171;" id="calcFbVarTotal">($72,000)</td>
                                 </tr>
                                 <tr>
-                                    <td>&minus; Production fixed costs (COGS)</td>
-                                    <td style="color: #f87171;" id="calcFbProdFixedPer">($46)</td>
-                                    <td style="color: #f87171;">($23,200)</td>
+                                    <td>&minus; Production fixed costs</td>
+                                    <td style="color: #f87171;" id="calcFbProdFixedPer">($32)</td>
+                                    <td style="color: #f87171;">($38,200)</td>
                                 </tr>
                                 <tr class="calc-dark-total">
                                     <td>Gross Profit</td>
-                                    <td id="calcFbGrossPerTest">$144</td>
-                                    <td id="calcFbGrossTotal">$71,800</td>
+                                    <td id="calcFbGrossPerTest">$208</td>
+                                    <td id="calcFbGrossTotal">$249,600</td>
                                 </tr>
                                 <tr>
                                     <td style="color: #94a3b8; font-size: 12px;">SG&amp;A (below gross margin line)</td>
@@ -5278,13 +5355,13 @@
                                 </tr>
                                 <tr>
                                     <td>&minus; SG&amp;A fixed costs</td>
-                                    <td style="color: #f87171;" id="calcFbSgaPer">($23)</td>
+                                    <td style="color: #f87171;" id="calcFbSgaPer">($10)</td>
                                     <td style="color: #f87171;">($11,500)</td>
                                 </tr>
                                 <tr class="calc-dark-total" id="calcFbTotalRow">
-                                    <td id="calcFbTotalLabel">Net Profit (after ALL costs)</td>
-                                    <td id="calcFbTotalPer">$121</td>
-                                    <td id="calcFbTotalMonth">$60,300</td>
+                                    <td>Operating Contribution per Test</td>
+                                    <td id="calcFbTotalPer">$199</td>
+                                    <td id="calcFbTotalMonth">$238,800</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -5292,31 +5369,129 @@
                         <!-- Status Bar -->
                         <div class="calc-status-bar calc-status-profit" id="calcStatusBar">
                             <span style="font-size: 18px;">&#x2713;</span>
-                            <span id="calcStatusText">Profitable — generating $60,300/month net after all costs</span>
+                            <span id="calcStatusText">Unit contribution: $238,800/month at 1,200 tests above lab overhead</span>
                         </div>
 
-                        <!-- Benchmarks -->
-                        <div class="calc-benchmarks">
-                            <h4>Industry Benchmarks — Gross Margin Comparison</h4>
-                            <div class="calc-bench-items">
-                                <div class="calc-bench-item">
-                                    <div class="calc-bench-name">Your Gross Margin</div>
-                                    <div class="calc-bench-bar">
-                                        <div class="calc-bench-fill" id="calcBenchYours" style="width: 58%; background: linear-gradient(90deg, #3b82f6, #2563eb);"><span id="calcBenchYoursVal">58%</span></div>
-                                    </div>
-                                </div>
-                                <div class="calc-bench-item">
-                                    <div class="calc-bench-name">Exact Sciences (at $2.76B rev)</div>
-                                    <div class="calc-bench-bar">
-                                        <div class="calc-bench-fill" style="width: 69%; background: linear-gradient(90deg, #14b8a6, #0d9488);">69%</div>
-                                    </div>
-                                </div>
-                                <div class="calc-bench-item">
-                                    <div class="calc-bench-name">Guardant Health (at $622M rev)</div>
-                                    <div class="calc-bench-bar">
-                                        <div class="calc-bench-fill" style="width: 62%; background: linear-gradient(90deg, #8b5cf6, #7c3aed);">62%</div>
-                                    </div>
-                                </div>
+                        <!-- Scaling Section -->
+                        <div style="margin-top: 28px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 24px 28px;">
+                            <h4 style="font-family: 'Poppins', sans-serif; font-size: 18px; font-weight: 700; color: white; margin-bottom: 6px;">Scaling Beyond 1,200 Tests/Month</h4>
+                            <p style="font-size: 14px; color: #94a3b8; margin-bottom: 16px;">One timsTOF handles ~1,200 samples/month running 7 days/week. Each additional instrument adds ~1,100 samples capacity.</p>
+
+                            <div style="font-size: 14px; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px;">Cost per Additional Instrument Unit: $43,000/month</div>
+
+                            <table style="width: 100%; border-collapse: separate; border-spacing: 0; border-radius: 10px; overflow: hidden;">
+                                <thead>
+                                    <tr>
+                                        <th style="background: linear-gradient(135deg, #0d9488, #14b8a6); color: white; font-size: 13px; font-weight: 700; padding: 10px 16px; text-align: left;">Cost Item</th>
+                                        <th style="background: linear-gradient(135deg, #0d9488, #14b8a6); color: white; font-size: 13px; font-weight: 700; padding: 10px 16px; text-align: right;">Per Month</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="padding: 10px 16px; font-size: 14px; color: #e2e8f0; border-bottom: 1px solid rgba(255,255,255,0.05);">timsTOF instrument lease</td>
+                                        <td style="padding: 10px 16px; font-size: 14px; color: #38bdf8; font-weight: 700; text-align: right; border-bottom: 1px solid rgba(255,255,255,0.05);">$30,000</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 10px 16px; font-size: 14px; color: #e2e8f0; border-bottom: 1px solid rgba(255,255,255,0.05);">Additional CLS technologist</td>
+                                        <td style="padding: 10px 16px; font-size: 14px; color: #38bdf8; font-weight: 700; text-align: right; border-bottom: 1px solid rgba(255,255,255,0.05);">$8,000</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 10px 16px; font-size: 14px; color: #e2e8f0; border-bottom: 1px solid rgba(255,255,255,0.05);">Additional QC/consumables overhead</td>
+                                        <td style="padding: 10px 16px; font-size: 14px; color: #38bdf8; font-weight: 700; text-align: right; border-bottom: 1px solid rgba(255,255,255,0.05);">$5,000</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 10px 16px; font-size: 15px; color: white; font-weight: 700; border-top: 2px solid rgba(20,184,166,0.3);">Total per instrument unit</td>
+                                        <td style="padding: 10px 16px; font-size: 15px; color: #4ade80; font-weight: 800; text-align: right; border-top: 2px solid rgba(20,184,166,0.3);">$43,000</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <p style="font-size: 13px; color: #64748b; margin-top: 12px;">Scaling is linear: second instrument + second tech doubles capacity to ~2,400 tests/month. Autosampler runs unattended overnight — no additional staffing required for off-hours operation.</p>
+
+                            <!-- 5-Year Ramp Table -->
+                            <div style="margin-top: 24px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px;">
+                                <h4 style="font-family: 'Poppins', sans-serif; font-size: 18px; font-weight: 700; color: white; margin-bottom: 16px;">5-Year Growth Ramp</h4>
+
+                                <table style="width: 100%; border-collapse: separate; border-spacing: 0; border-radius: 10px; overflow: hidden;">
+                                    <thead>
+                                        <tr>
+                                            <th style="background: linear-gradient(135deg, #0d9488, #14b8a6); color: white; font-size: 13px; font-weight: 700; padding: 10px 14px; text-align: left;"></th>
+                                            <th style="background: linear-gradient(135deg, #0d9488, #14b8a6); color: white; font-size: 13px; font-weight: 700; padding: 10px 14px; text-align: center;">Year 1</th>
+                                            <th style="background: linear-gradient(135deg, #0d9488, #14b8a6); color: white; font-size: 13px; font-weight: 700; padding: 10px 14px; text-align: center;">Year 2</th>
+                                            <th style="background: linear-gradient(135deg, #0d9488, #14b8a6); color: white; font-size: 13px; font-weight: 700; padding: 10px 14px; text-align: center;">Year 3</th>
+                                            <th style="background: linear-gradient(135deg, #0d9488, #14b8a6); color: white; font-size: 13px; font-weight: 700; padding: 10px 14px; text-align: center;">Year 4</th>
+                                            <th style="background: linear-gradient(135deg, #0d9488, #14b8a6); color: white; font-size: 13px; font-weight: 700; padding: 10px 14px; text-align: center;">Year 5</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td style="padding: 10px 14px; font-size: 13px; color: #94a3b8; font-weight: 600; border-bottom: 1px solid rgba(255,255,255,0.05);">Phase</td>
+                                            <td style="padding: 10px 14px; font-size: 12px; color: #e2e8f0; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05);">CLIA LDT Launch</td>
+                                            <td style="padding: 10px 14px; font-size: 12px; color: #e2e8f0; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05);">CLIA LDT Scale</td>
+                                            <td style="padding: 10px 14px; font-size: 12px; color: #e2e8f0; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05);">De Novo Sub.</td>
+                                            <td style="padding: 10px 14px; font-size: 12px; color: #e2e8f0; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05);">FDA + Insurance</td>
+                                            <td style="padding: 10px 14px; font-size: 12px; color: #e2e8f0; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05);">National Scale</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding: 10px 14px; font-size: 13px; color: #94a3b8; font-weight: 600; border-bottom: 1px solid rgba(255,255,255,0.05);">Partner Clinics</td>
+                                            <td style="padding: 10px 14px; font-size: 14px; color: #e2e8f0; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05);">15&#8594;30</td>
+                                            <td style="padding: 10px 14px; font-size: 14px; color: #e2e8f0; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05);">75</td>
+                                            <td style="padding: 10px 14px; font-size: 14px; color: #e2e8f0; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05);">150&#8594;300</td>
+                                            <td style="padding: 10px 14px; font-size: 14px; color: #e2e8f0; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05);">600</td>
+                                            <td style="padding: 10px 14px; font-size: 14px; color: #e2e8f0; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05);">1,200</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding: 10px 14px; font-size: 13px; color: #94a3b8; font-weight: 600; border-bottom: 1px solid rgba(255,255,255,0.05);">Tests/Mo</td>
+                                            <td style="padding: 10px 14px; font-size: 14px; color: #e2e8f0; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05);">450</td>
+                                            <td style="padding: 10px 14px; font-size: 14px; color: #e2e8f0; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05);">1,125</td>
+                                            <td style="padding: 10px 14px; font-size: 14px; color: #e2e8f0; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05);">6,600</td>
+                                            <td style="padding: 10px 14px; font-size: 14px; color: #e2e8f0; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05);">15,000</td>
+                                            <td style="padding: 10px 14px; font-size: 14px; color: #e2e8f0; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05);">33,000</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding: 10px 14px; font-size: 13px; color: #94a3b8; font-weight: 600; border-bottom: 1px solid rgba(255,255,255,0.05);">Annual Tests</td>
+                                            <td style="padding: 10px 14px; font-size: 14px; color: #e2e8f0; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05);">4,050</td>
+                                            <td style="padding: 10px 14px; font-size: 14px; color: #e2e8f0; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05);">13,500</td>
+                                            <td style="padding: 10px 14px; font-size: 14px; color: #e2e8f0; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05);">55,800</td>
+                                            <td style="padding: 10px 14px; font-size: 14px; color: #e2e8f0; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05);">180,000</td>
+                                            <td style="padding: 10px 14px; font-size: 14px; color: white; font-weight: 700; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05);">400,000</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding: 10px 14px; font-size: 13px; color: #94a3b8; font-weight: 600; border-bottom: 1px solid rgba(255,255,255,0.05);">Instruments</td>
+                                            <td style="padding: 10px 14px; font-size: 14px; color: #38bdf8; font-weight: 600; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05);">1</td>
+                                            <td style="padding: 10px 14px; font-size: 14px; color: #38bdf8; font-weight: 600; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05);">1</td>
+                                            <td style="padding: 10px 14px; font-size: 14px; color: #38bdf8; font-weight: 600; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05);">6</td>
+                                            <td style="padding: 10px 14px; font-size: 14px; color: #38bdf8; font-weight: 600; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05);">14</td>
+                                            <td style="padding: 10px 14px; font-size: 14px; color: #38bdf8; font-weight: 600; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05);">30</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding: 10px 14px; font-size: 13px; color: #94a3b8; font-weight: 600; border-bottom: 1px solid rgba(255,255,255,0.05);">Instrument Cost/Mo</td>
+                                            <td style="padding: 10px 14px; font-size: 14px; color: #f87171; font-weight: 600; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05);">$43K</td>
+                                            <td style="padding: 10px 14px; font-size: 14px; color: #f87171; font-weight: 600; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05);">$43K</td>
+                                            <td style="padding: 10px 14px; font-size: 14px; color: #f87171; font-weight: 600; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05);">$258K</td>
+                                            <td style="padding: 10px 14px; font-size: 14px; color: #f87171; font-weight: 600; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05);">$602K</td>
+                                            <td style="padding: 10px 14px; font-size: 14px; color: #f87171; font-weight: 600; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05);">$1.29M</td>
+                                        </tr>
+                                        <tr style="border-top: 2px solid rgba(20,184,166,0.3);">
+                                            <td style="padding: 10px 14px; font-size: 13px; color: white; font-weight: 700; border-bottom: 1px solid rgba(255,255,255,0.05);">Annual Revenue</td>
+                                            <td style="padding: 10px 14px; font-size: 14px; color: #4ade80; font-weight: 700; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05);">$1.2M</td>
+                                            <td style="padding: 10px 14px; font-size: 14px; color: #4ade80; font-weight: 700; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05);">$4.1M</td>
+                                            <td style="padding: 10px 14px; font-size: 14px; color: #4ade80; font-weight: 700; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05);">$16.7M</td>
+                                            <td style="padding: 10px 14px; font-size: 14px; color: #4ade80; font-weight: 700; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05);">$54M</td>
+                                            <td style="padding: 10px 14px; font-size: 15px; color: #4ade80; font-weight: 800; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05);">$120M</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding: 10px 14px; font-size: 13px; color: #94a3b8; font-weight: 600;">Instrument Cost % Rev</td>
+                                            <td style="padding: 10px 14px; font-size: 14px; color: #fbbf24; font-weight: 600; text-align: center;">32%</td>
+                                            <td style="padding: 10px 14px; font-size: 14px; color: #4ade80; font-weight: 600; text-align: center;">13%</td>
+                                            <td style="padding: 10px 14px; font-size: 14px; color: #4ade80; font-weight: 600; text-align: center;">13%</td>
+                                            <td style="padding: 10px 14px; font-size: 14px; color: #4ade80; font-weight: 600; text-align: center;">13%</td>
+                                            <td style="padding: 10px 14px; font-size: 14px; color: #4ade80; font-weight: 600; text-align: center;">13%</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <p style="font-size: 13px; color: #64748b; margin-top: 12px;">Instrument costs flatten at 13% of revenue from Year 2 onward. At Year 5: 1,200 clinics, 400,000 annual tests, $120M revenue.</p>
                             </div>
                         </div>
                     </div>
@@ -8846,12 +9021,13 @@
             // UNIT ECONOMICS CALCULATOR — Tab 4
             // ============================================
             if (document.getElementById('calcVolumeSlider')) {
-                const CALC_PRICE = 250;
+                const CALC_PRICE = 300;
                 const CALC_VARIABLE_COGS = 60;
-                const CALC_PROD_FIXED = 23200;
+                const CALC_PROD_FIXED = 38200;
                 const CALC_SGA_FIXED = 11500;
                 const CALC_TOTAL_FIXED = CALC_PROD_FIXED + CALC_SGA_FIXED;
                 const CALC_CONTRIBUTION = CALC_PRICE - CALC_VARIABLE_COGS;
+                const CALC_BREAKEVEN = Math.ceil(CALC_TOTAL_FIXED / CALC_CONTRIBUTION);
                 const calcSlider = document.getElementById('calcVolumeSlider');
                 const CALC_MIN = 10;
                 const CALC_MAX = 1500;
@@ -8864,10 +9040,20 @@
                     return '(' + calcFmt(Math.abs(n)) + ')';
                 }
 
+                function calcUpdateSliderBg(vol) {
+                    var pct = ((vol - CALC_MIN) / (CALC_MAX - CALC_MIN)) * 100;
+                    var bePct = ((CALC_BREAKEVEN - CALC_MIN) / (CALC_MAX - CALC_MIN)) * 100;
+                    if (pct <= bePct) {
+                        calcSlider.style.background = 'linear-gradient(to right, #ef4444 0%, #ef4444 ' + pct + '%, #334155 ' + pct + '%, #334155 100%)';
+                    } else {
+                        calcSlider.style.background = 'linear-gradient(to right, #ef4444 0%, #ef4444 ' + bePct + '%, #22c55e ' + bePct + '%, #22c55e ' + pct + '%, #334155 ' + pct + '%, #334155 100%)';
+                    }
+                }
+
                 function calcPositionMarks() {
                     var marks = [
                         { val: 10,   label: '10' },
-                        { val: 183,  label: '183 (BE)' },
+                        { val: CALC_BREAKEVEN, label: CALC_BREAKEVEN + ' (BE)' },
                         { val: 500,  label: '500' },
                         { val: 1000, label: '1,000' },
                         { val: 1500, label: '1,500' }
@@ -8880,6 +9066,7 @@
                         var el = document.createElement('span');
                         el.textContent = m.label;
                         el.style.left = pct + '%';
+                        if (m.val === CALC_BREAKEVEN) el.style.color = '#f87171';
                         container.appendChild(el);
                     });
                 }
@@ -8895,29 +9082,23 @@
                     var totalFixedPerTest = CALC_TOTAL_FIXED / vol;
 
                     var grossProfitPerTest = CALC_PRICE - CALC_VARIABLE_COGS - prodFixedPerTest;
-                    var grossMarginPct = (grossProfitPerTest / CALC_PRICE) * 100;
                     var monthlyGrossProfit = monthlyRevenue - monthlyVariable - CALC_PROD_FIXED;
 
-                    var netProfitPerTest = CALC_PRICE - CALC_VARIABLE_COGS - totalFixedPerTest;
-                    var netMarginPct = (netProfitPerTest / CALC_PRICE) * 100;
-                    var monthlyNetProfit = monthlyRevenue - monthlyVariable - CALC_TOTAL_FIXED;
+                    var opContribPerTest = CALC_PRICE - CALC_VARIABLE_COGS - totalFixedPerTest;
+                    var opMarginPct = (opContribPerTest / CALC_PRICE) * 100;
+                    var opContribTotal = opContribPerTest * vol;
 
                     // Result cards
                     document.getElementById('calcRcRevenue').textContent = calcFmt(monthlyRevenue);
-                    document.getElementById('calcRcRevenueTests').innerHTML = vol.toLocaleString() + ' &times; $250';
+                    document.getElementById('calcRcRevenueTests').innerHTML = vol.toLocaleString() + ' &times; $300';
                     document.getElementById('calcRcVariable').textContent = calcFmt(monthlyVariable);
                     document.getElementById('calcRcVariableTests').innerHTML = vol.toLocaleString() + ' &times; $60';
                     document.getElementById('calcRcFixedPerTest').textContent = calcFmt(totalFixedPerTest);
-                    document.getElementById('calcRcFixedCalc').innerHTML = '$34,700 &divide; ' + vol.toLocaleString();
+                    document.getElementById('calcRcFixedCalc').innerHTML = '$49,700 &divide; ' + vol.toLocaleString();
 
-                    var marginCard = document.getElementById('calcMarginCard');
-                    document.getElementById('calcRcMargin').textContent = Math.round(netMarginPct) + '%';
-                    document.getElementById('calcRcMarginDollar').textContent = calcFmt(netProfitPerTest) + ' / test';
-                    if (netProfitPerTest < 0) {
-                        document.getElementById('calcRcMargin').style.color = '#f87171';
-                    } else {
-                        document.getElementById('calcRcMargin').style.color = '#4ade80';
-                    }
+                    document.getElementById('calcRcMargin').textContent = Math.round(opMarginPct) + '%';
+                    document.getElementById('calcRcMarginDollar').textContent = calcFmt(opContribPerTest) + ' / test';
+                    document.getElementById('calcRcMargin').style.color = opMarginPct >= 0 ? '#4ade80' : '#f87171';
 
                     // Breakdown table
                     document.getElementById('calcFbRevTotal').textContent = calcFmt(monthlyRevenue);
@@ -8926,44 +9107,31 @@
                     document.getElementById('calcFbGrossPerTest').textContent = calcFmt(grossProfitPerTest);
                     document.getElementById('calcFbGrossTotal').textContent = calcFmt(monthlyGrossProfit);
                     document.getElementById('calcFbSgaPer').textContent = calcFmtParen(sgaPerTest);
-                    document.getElementById('calcFbTotalPer').textContent = calcFmt(netProfitPerTest);
-                    document.getElementById('calcFbTotalMonth').textContent = calcFmt(monthlyNetProfit);
+                    document.getElementById('calcFbTotalPer').textContent = calcFmt(opContribPerTest);
+                    document.getElementById('calcFbTotalMonth').textContent = calcFmt(opContribTotal);
 
                     var totalRow = document.getElementById('calcFbTotalRow');
-                    if (netProfitPerTest < 0) {
-                        document.getElementById('calcFbTotalLabel').textContent = 'Net Loss (after ALL costs)';
-                        document.getElementById('calcFbTotalPer').style.color = '#f87171';
-                        document.getElementById('calcFbTotalMonth').style.color = '#f87171';
+                    if (opContribPerTest < 0) {
+                        totalRow.querySelectorAll('td').forEach(function(td) { td.style.color = '#f87171'; });
                     } else {
-                        document.getElementById('calcFbTotalLabel').textContent = 'Net Profit (after ALL costs)';
-                        document.getElementById('calcFbTotalPer').style.color = '#e2e8f0';
-                        document.getElementById('calcFbTotalMonth').style.color = '#e2e8f0';
+                        totalRow.querySelectorAll('td').forEach(function(td) { td.style.color = ''; });
                     }
 
                     // Status bar
                     var statusBar = document.getElementById('calcStatusBar');
                     var statusText = document.getElementById('calcStatusText');
-                    var breakeven = Math.ceil(CALC_TOTAL_FIXED / CALC_CONTRIBUTION);
 
-                    if (vol >= breakeven * 1.1) {
+                    if (vol >= CALC_BREAKEVEN) {
                         statusBar.className = 'calc-status-bar calc-status-profit';
-                        statusText.textContent = 'Profitable — generating ' + calcFmt(monthlyNetProfit) + '/month net after all costs';
-                    } else if (vol >= breakeven * 0.9) {
-                        statusBar.className = 'calc-status-bar calc-status-breakeven';
-                        statusText.textContent = 'Near breakeven — approximately covering all costs at this volume';
+                        statusBar.querySelector('span:first-child').innerHTML = '&#x2713;';
+                        statusText.textContent = 'Unit contribution: ' + calcFmt(opContribTotal) + '/month at ' + vol.toLocaleString() + ' tests above lab overhead';
                     } else {
                         statusBar.className = 'calc-status-bar calc-status-loss';
-                        statusText.textContent = 'Pre-breakeven — burning ~' + calcFmt(Math.abs(monthlyNetProfit)) + '/month. Need ' + breakeven + ' tests/mo to break even';
+                        statusBar.querySelector('span:first-child').innerHTML = '&#x2717;';
+                        statusText.textContent = 'Below breakeven — need ' + (CALC_BREAKEVEN - vol) + ' more tests/month to cover lab fixed costs';
                     }
 
-                    // Benchmarks
-                    var benchFill = document.getElementById('calcBenchYours');
-                    var benchVal = document.getElementById('calcBenchYoursVal');
-                    if (benchFill && benchVal) {
-                        var gmPct = Math.max(0, Math.min(100, Math.round(grossMarginPct)));
-                        benchFill.style.width = gmPct + '%';
-                        benchVal.textContent = gmPct + '%';
-                    }
+                    calcUpdateSliderBg(vol);
                 }
 
                 calcSlider.addEventListener('input', calcUpdate);

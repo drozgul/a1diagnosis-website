@@ -187,8 +187,9 @@
             display: flex;
             border: 1px solid #d1d5db;
             border-radius: 4px;
-            overflow: hidden;
+            overflow: visible;
             transition: all 0.2s ease;
+            position: relative;
         }
 
         .phone-input-wrapper:focus-within {
@@ -205,21 +206,115 @@
             border: none;
             border-right: 1px solid #d1d5db;
             cursor: pointer;
-            min-width: 80px;
+            min-width: 100px;
+            position: relative;
+            user-select: none;
+            border-radius: 4px 0 0 4px;
         }
 
-        .country-select img {
-            width: 24px;
-            height: auto;
+        .country-select:hover {
+            background: #f3f4f6;
+        }
+
+        .country-select .country-flag {
+            font-size: 20px;
+            line-height: 1;
+        }
+
+        .country-select .country-code {
+            font-size: 14px;
+            color: #374151;
+            font-weight: 500;
         }
 
         .country-select svg {
             width: 12px;
             height: 12px;
             color: #6b7280;
+            transition: transform 0.2s ease;
+            flex-shrink: 0;
         }
 
-        .phone-input-wrapper input {
+        .country-select.open svg {
+            transform: rotate(180deg);
+        }
+
+        .country-dropdown {
+            position: absolute;
+            top: 100%;
+            left: -1px;
+            width: 300px;
+            max-height: 280px;
+            overflow-y: auto;
+            background: white;
+            border: 1px solid #d1d5db;
+            border-radius: 0 0 8px 8px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+            z-index: 100;
+            display: none;
+        }
+
+        .country-dropdown.show {
+            display: block;
+        }
+
+        .country-dropdown-search {
+            position: sticky;
+            top: 0;
+            background: white;
+            padding: 8px 12px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .country-dropdown-search input {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            font-size: 14px;
+            font-family: inherit;
+            outline: none;
+        }
+
+        .country-dropdown-search input:focus {
+            border-color: #0f766e;
+        }
+
+        .country-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 14px;
+            cursor: pointer;
+            font-size: 14px;
+            color: #374151;
+            transition: background 0.15s;
+        }
+
+        .country-option:hover {
+            background: #f0fdfa;
+        }
+
+        .country-option.selected {
+            background: #f0fdfa;
+            font-weight: 600;
+        }
+
+        .country-option .co-flag {
+            font-size: 20px;
+            line-height: 1;
+        }
+
+        .country-option .co-name {
+            flex: 1;
+        }
+
+        .country-option .co-dial {
+            color: #6b7280;
+            font-size: 13px;
+        }
+
+        .phone-input-wrapper input[type="tel"] {
             flex: 1;
             border: none;
             padding: 0.875rem 1rem;
@@ -227,7 +322,7 @@
             font-family: inherit;
         }
 
-        .phone-input-wrapper input:focus {
+        .phone-input-wrapper input[type="tel"]:focus {
             outline: none;
             box-shadow: none;
         }
@@ -582,11 +677,19 @@
             <div class="form-group">
                 <label for="phone">Phone<span>*</span></label>
                 <div class="phone-input-wrapper">
-                    <div class="country-select">
-                        <img src="US_Flag.svg" alt="US">
+                    <div class="country-select" id="countrySelect" onclick="toggleCountryDropdown()">
+                        <span class="country-flag" id="selectedFlag">&#x1F1FA;&#x1F1F8;</span>
+                        <span class="country-code" id="selectedCode">+1</span>
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
                     </div>
+                    <div class="country-dropdown" id="countryDropdown">
+                        <div class="country-dropdown-search">
+                            <input type="text" id="countrySearch" placeholder="Search country..." oninput="filterCountries(this.value)">
+                        </div>
+                        <div id="countryList"></div>
+                    </div>
                     <input type="tel" id="phone" name="phone" placeholder="(555) 555-5555" required>
+                    <input type="hidden" id="dialCode" name="dialCode" value="+1">
                 </div>
                 <span class="error-message">Please enter your phone number</span>
             </div>
@@ -693,6 +796,106 @@
     </footer>
 
     <script>
+        // Country data: [emoji flag, country name, dial code, placeholder]
+        const countries = [
+            ['\u{1F1FA}\u{1F1F8}', 'United States', '+1', '(555) 555-5555'],
+            ['\u{1F1F9}\u{1F1F7}', 'Turkey', '+90', '5XX XXX XXXX'],
+            ['\u{1F1EC}\u{1F1E7}', 'United Kingdom', '+44', '7XXX XXXXXX'],
+            ['\u{1F1E8}\u{1F1E6}', 'Canada', '+1', '(555) 555-5555'],
+            ['\u{1F1E9}\u{1F1EA}', 'Germany', '+49', '1XX XXXXXXX'],
+            ['\u{1F1EB}\u{1F1F7}', 'France', '+33', '6 XX XX XX XX'],
+            ['\u{1F1EE}\u{1F1F9}', 'Italy', '+39', '3XX XXX XXXX'],
+            ['\u{1F1EA}\u{1F1F8}', 'Spain', '+34', '6XX XXX XXX'],
+            ['\u{1F1F3}\u{1F1F1}', 'Netherlands', '+31', '6 XXXXXXXX'],
+            ['\u{1F1E8}\u{1F1ED}', 'Switzerland', '+41', '7X XXX XX XX'],
+            ['\u{1F1E6}\u{1F1FA}', 'Australia', '+61', '4XX XXX XXX'],
+            ['\u{1F1EF}\u{1F1F5}', 'Japan', '+81', '90-XXXX-XXXX'],
+            ['\u{1F1F0}\u{1F1F7}', 'South Korea', '+82', '10-XXXX-XXXX'],
+            ['\u{1F1E8}\u{1F1F3}', 'China', '+86', '1XX XXXX XXXX'],
+            ['\u{1F1EE}\u{1F1F3}', 'India', '+91', '9XXX XXX XXX'],
+            ['\u{1F1E7}\u{1F1F7}', 'Brazil', '+55', '11 9XXXX-XXXX'],
+            ['\u{1F1F2}\u{1F1FD}', 'Mexico', '+52', '55 XXXX XXXX'],
+            ['\u{1F1EE}\u{1F1F1}', 'Israel', '+972', '5X-XXX-XXXX'],
+            ['\u{1F1F8}\u{1F1E6}', 'Saudi Arabia', '+966', '5X XXX XXXX'],
+            ['\u{1F1E6}\u{1F1EA}', 'UAE', '+971', '5X XXX XXXX'],
+            ['\u{1F1F8}\u{1F1EC}', 'Singapore', '+65', '9XXX XXXX'],
+            ['\u{1F1F8}\u{1F1EA}', 'Sweden', '+46', '7X XXX XX XX'],
+            ['\u{1F1F3}\u{1F1F4}', 'Norway', '+47', '4XX XX XXX'],
+            ['\u{1F1E9}\u{1F1F0}', 'Denmark', '+45', 'XX XX XX XX'],
+            ['\u{1F1E6}\u{1F1F9}', 'Austria', '+43', '6XX XXXXXXX'],
+            ['\u{1F1E7}\u{1F1EA}', 'Belgium', '+32', '4XX XX XX XX'],
+            ['\u{1F1F5}\u{1F1F1}', 'Poland', '+48', '5XX XXX XXX'],
+            ['\u{1F1EE}\u{1F1EA}', 'Ireland', '+353', '8X XXX XXXX'],
+            ['\u{1F1F5}\u{1F1F9}', 'Portugal', '+351', '9XX XXX XXX'],
+            ['\u{1F1EC}\u{1F1F7}', 'Greece', '+30', '6XX XXX XXXX'],
+            ['\u{1F1FF}\u{1F1E6}', 'South Africa', '+27', '7X XXX XXXX'],
+            ['\u{1F1F3}\u{1F1FF}', 'New Zealand', '+64', '2X XXX XXXX'],
+            ['\u{1F1EB}\u{1F1EE}', 'Finland', '+358', '4X XXX XXXX'],
+            ['\u{1F1E8}\u{1F1FF}', 'Czech Republic', '+420', '7XX XXX XXX'],
+            ['\u{1F1F7}\u{1F1F4}', 'Romania', '+40', '7XX XXX XXX'],
+            ['\u{1F1ED}\u{1F1FA}', 'Hungary', '+36', '30 XXX XXXX'],
+        ];
+
+        let selectedCountryIndex = 0;
+
+        function renderCountryList(filter) {
+            var list = document.getElementById('countryList');
+            list.innerHTML = '';
+            var lower = (filter || '').toLowerCase();
+            countries.forEach(function(c, i) {
+                if (lower && c[1].toLowerCase().indexOf(lower) === -1 && c[2].indexOf(lower) === -1) return;
+                var div = document.createElement('div');
+                div.className = 'country-option' + (i === selectedCountryIndex ? ' selected' : '');
+                div.innerHTML = '<span class="co-flag">' + c[0] + '</span><span class="co-name">' + c[1] + '</span><span class="co-dial">' + c[2] + '</span>';
+                div.onclick = function(e) { e.stopPropagation(); selectCountry(i); };
+                list.appendChild(div);
+            });
+        }
+
+        function toggleCountryDropdown() {
+            var dd = document.getElementById('countryDropdown');
+            var sel = document.getElementById('countrySelect');
+            var isOpen = dd.classList.contains('show');
+            if (isOpen) {
+                dd.classList.remove('show');
+                sel.classList.remove('open');
+            } else {
+                dd.classList.add('show');
+                sel.classList.add('open');
+                document.getElementById('countrySearch').value = '';
+                renderCountryList('');
+                setTimeout(function() { document.getElementById('countrySearch').focus(); }, 50);
+            }
+        }
+
+        function selectCountry(i) {
+            selectedCountryIndex = i;
+            var c = countries[i];
+            document.getElementById('selectedFlag').textContent = c[0];
+            document.getElementById('selectedCode').textContent = c[2];
+            document.getElementById('dialCode').value = c[2];
+            document.getElementById('phone').placeholder = c[3];
+            document.getElementById('countryDropdown').classList.remove('show');
+            document.getElementById('countrySelect').classList.remove('open');
+            document.getElementById('phone').focus();
+        }
+
+        function filterCountries(val) {
+            renderCountryList(val);
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            var wrapper = document.querySelector('.phone-input-wrapper');
+            if (wrapper && !wrapper.contains(e.target)) {
+                document.getElementById('countryDropdown').classList.remove('show');
+                document.getElementById('countrySelect').classList.remove('open');
+            }
+        });
+
+        // Initialize country list
+        renderCountryList('');
+
         const form = document.getElementById('investorForm');
         const submitBtn = document.getElementById('submitBtn');
         const successMessage = document.getElementById('successMessage');
