@@ -2701,21 +2701,23 @@
 
         /* Interactive slider section */
         #tab-calculator .calc-slider-section {
-            background: linear-gradient(135deg, #0f172a, #1e293b);
+            background: white;
             border-radius: 20px;
             padding: 36px;
             margin-top: 32px;
-            color: #fff;
+            color: #1e293b;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
         }
         #tab-calculator .calc-slider-section h3 {
             font-size: 22px;
             font-weight: 700;
             margin-bottom: 6px;
-            color: #fff;
+            color: #0f172a;
         }
         #tab-calculator .calc-slider-section > p {
             font-size: 14px;
-            color: #94a3b8;
+            color: #64748b;
             margin-bottom: 24px;
         }
         #tab-calculator .calc-slider-wrap {
@@ -2730,13 +2732,13 @@
         }
         #tab-calculator .calc-slider-label span {
             font-size: 13px;
-            color: #94a3b8;
+            color: #64748b;
         }
         #tab-calculator .calc-slider-label .calc-vol-display {
             font-family: 'JetBrains Mono', monospace;
             font-size: 20px;
             font-weight: 700;
-            color: #38bdf8;
+            color: #0284c7;
         }
         #tab-calculator #calcVolumeSlider {
             -webkit-appearance: none;
@@ -2755,7 +2757,8 @@
             height: 28px;
             border-radius: 50%;
             background: #fff;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            border: 3px solid #14b8a6;
             cursor: grab;
         }
         #tab-calculator #calcVolumeSlider::-moz-range-thumb {
@@ -2763,9 +2766,9 @@
             height: 28px;
             border-radius: 50%;
             background: #fff;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            border: 3px solid #14b8a6;
             cursor: grab;
-            border: none;
         }
         #tab-calculator .calc-marks {
             display: flex;
@@ -2789,19 +2792,19 @@
             margin-bottom: 24px;
         }
         #tab-calculator .calc-result-card {
-            background: rgba(255,255,255,0.06);
-            border: 1px solid rgba(255,255,255,0.1);
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
             border-radius: 14px;
             padding: 20px;
             text-align: center;
-            transition: background 0.2s;
+            transition: box-shadow 0.2s;
         }
         #tab-calculator .calc-result-card:hover {
-            background: rgba(255,255,255,0.1);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.06);
         }
         #tab-calculator .calc-result-card .calc-rc-label {
             font-size: 11px;
-            color: #94a3b8;
+            color: #64748b;
             text-transform: uppercase;
             letter-spacing: 0.5px;
             margin-bottom: 8px;
@@ -2815,10 +2818,10 @@
         }
         #tab-calculator .calc-result-card .calc-rc-sub {
             font-size: 12px;
-            color: #64748b;
+            color: #94a3b8;
         }
 
-        /* Per-test breakdown table (dark) */
+        /* Per-test breakdown table */
         #tab-calculator .calc-dark-table {
             width: 100%;
             border-collapse: collapse;
@@ -2828,12 +2831,12 @@
         #tab-calculator .calc-dark-table th {
             text-align: left;
             padding: 10px 16px;
-            color: #64748b;
+            color: #475569;
             font-weight: 600;
             font-size: 12px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 2px solid #e2e8f0;
         }
         #tab-calculator .calc-dark-table th:nth-child(2),
         #tab-calculator .calc-dark-table th:nth-child(3) {
@@ -2841,8 +2844,8 @@
         }
         #tab-calculator .calc-dark-table td {
             padding: 10px 16px;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            color: #e2e8f0;
+            border-bottom: 1px solid #f1f5f9;
+            color: #334155;
         }
         #tab-calculator .calc-dark-table td:nth-child(2),
         #tab-calculator .calc-dark-table td:nth-child(3) {
@@ -2852,8 +2855,8 @@
         }
         #tab-calculator .calc-dark-table tr.calc-dark-total td {
             font-weight: 700;
-            border-top: 2px solid rgba(255,255,255,0.15);
-            color: #fff;
+            border-top: 2px solid #e2e8f0;
+            color: #0f172a;
             padding-top: 12px;
         }
 
@@ -2869,19 +2872,19 @@
             font-size: 15px;
         }
         #tab-calculator .calc-status-bar.calc-status-profit {
-            background: rgba(34,197,94,0.15);
-            border: 1px solid rgba(34,197,94,0.3);
-            color: #4ade80;
+            background: #f0fdf4;
+            border: 1px solid #86efac;
+            color: #166534;
         }
         #tab-calculator .calc-status-bar.calc-status-breakeven {
-            background: rgba(245,158,11,0.15);
-            border: 1px solid rgba(245,158,11,0.3);
-            color: #fbbf24;
+            background: #fffbeb;
+            border: 1px solid #fde68a;
+            color: #92400e;
         }
         #tab-calculator .calc-status-bar.calc-status-loss {
-            background: rgba(239,68,68,0.15);
-            border: 1px solid rgba(239,68,68,0.3);
-            color: #f87171;
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            color: #991b1b;
         }
 
         /* Benchmarks */
@@ -5298,22 +5301,22 @@
                         <div class="calc-results-grid">
                             <div class="calc-result-card">
                                 <div class="calc-rc-label">Monthly Revenue</div>
-                                <div class="calc-rc-value" id="calcRcRevenue" style="color: #38bdf8;">$360,000</div>
+                                <div class="calc-rc-value" id="calcRcRevenue" style="color: #0284c7;">$360,000</div>
                                 <div class="calc-rc-sub" id="calcRcRevenueTests">1,200 &times; $300</div>
                             </div>
                             <div class="calc-result-card">
                                 <div class="calc-rc-label">Variable Costs</div>
-                                <div class="calc-rc-value" id="calcRcVariable" style="color: #f87171;">$72,000</div>
+                                <div class="calc-rc-value" id="calcRcVariable" style="color: #dc2626;">$72,000</div>
                                 <div class="calc-rc-sub" id="calcRcVariableTests">1,200 &times; $60</div>
                             </div>
                             <div class="calc-result-card">
                                 <div class="calc-rc-label">Fixed Costs / Test</div>
-                                <div class="calc-rc-value" id="calcRcFixedPerTest" style="color: #fbbf24;">$41</div>
+                                <div class="calc-rc-value" id="calcRcFixedPerTest" style="color: #d97706;">$41</div>
                                 <div class="calc-rc-sub" id="calcRcFixedCalc">$49,700 &divide; 1,200</div>
                             </div>
                             <div class="calc-result-card" id="calcMarginCard">
                                 <div class="calc-rc-label">Lab Operating Margin</div>
-                                <div class="calc-rc-value" id="calcRcMargin" style="color: #4ade80;">66%</div>
+                                <div class="calc-rc-value" id="calcRcMargin" style="color: #0f766e;">66%</div>
                                 <div class="calc-rc-sub" id="calcRcMarginDollar">$199 / test</div>
                             </div>
                         </div>
@@ -5335,13 +5338,13 @@
                                 </tr>
                                 <tr>
                                     <td>&minus; Variable COGS</td>
-                                    <td style="color: #f87171;">($60)</td>
-                                    <td style="color: #f87171;" id="calcFbVarTotal">($72,000)</td>
+                                    <td style="color: #dc2626;">($60)</td>
+                                    <td style="color: #dc2626;" id="calcFbVarTotal">($72,000)</td>
                                 </tr>
                                 <tr>
                                     <td>&minus; Production fixed costs</td>
-                                    <td style="color: #f87171;" id="calcFbProdFixedPer">($32)</td>
-                                    <td style="color: #f87171;">($38,200)</td>
+                                    <td style="color: #dc2626;" id="calcFbProdFixedPer">($32)</td>
+                                    <td style="color: #dc2626;">($38,200)</td>
                                 </tr>
                                 <tr class="calc-dark-total">
                                     <td>Gross Profit</td>
@@ -5355,8 +5358,8 @@
                                 </tr>
                                 <tr>
                                     <td>&minus; SG&amp;A fixed costs</td>
-                                    <td style="color: #f87171;" id="calcFbSgaPer">($10)</td>
-                                    <td style="color: #f87171;">($11,500)</td>
+                                    <td style="color: #dc2626;" id="calcFbSgaPer">($10)</td>
+                                    <td style="color: #dc2626;">($11,500)</td>
                                 </tr>
                                 <tr class="calc-dark-total" id="calcFbTotalRow">
                                     <td>Operating Contribution per Test</td>
@@ -5373,11 +5376,11 @@
                         </div>
 
                         <!-- Scaling Section -->
-                        <div style="margin-top: 28px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 24px 28px;">
-                            <h4 style="font-family: 'Poppins', sans-serif; font-size: 18px; font-weight: 700; color: white; margin-bottom: 6px;">Scaling Beyond 1,200 Tests/Month</h4>
-                            <p style="font-size: 14px; color: #94a3b8; margin-bottom: 16px;">One timsTOF handles ~1,200 samples/month running 7 days/week. Each additional instrument adds ~1,100 samples capacity.</p>
+                        <div style="margin-top: 28px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 16px; padding: 24px 28px;">
+                            <h4 style="font-family: 'Poppins', sans-serif; font-size: 18px; font-weight: 700; color: #0f172a; margin-bottom: 6px;">Scaling Beyond 1,200 Tests/Month</h4>
+                            <p style="font-size: 14px; color: #64748b; margin-bottom: 16px;">One timsTOF handles ~1,200 samples/month running 7 days/week. Each additional instrument adds ~1,100 samples capacity.</p>
 
-                            <div style="font-size: 14px; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px;">Cost per Additional Instrument Unit: $43,000/month</div>
+                            <div style="font-size: 14px; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px;">Cost per Additional Instrument Unit: $43,000/month</div>
 
                             <table style="width: 100%; border-collapse: separate; border-spacing: 0; border-radius: 10px; overflow: hidden;">
                                 <thead>
@@ -5388,20 +5391,20 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td style="padding: 10px 16px; font-size: 14px; color: #e2e8f0; border-bottom: 1px solid rgba(255,255,255,0.05);">timsTOF instrument lease</td>
-                                        <td style="padding: 10px 16px; font-size: 14px; color: #38bdf8; font-weight: 700; text-align: right; border-bottom: 1px solid rgba(255,255,255,0.05);">$30,000</td>
+                                        <td style="padding: 10px 16px; font-size: 14px; color: #334155; border-bottom: 1px solid #e2e8f0;">timsTOF instrument lease</td>
+                                        <td style="padding: 10px 16px; font-size: 14px; color: #0284c7; font-weight: 700; text-align: right; border-bottom: 1px solid #e2e8f0;">$30,000</td>
                                     </tr>
                                     <tr>
-                                        <td style="padding: 10px 16px; font-size: 14px; color: #e2e8f0; border-bottom: 1px solid rgba(255,255,255,0.05);">Additional CLS technologist</td>
-                                        <td style="padding: 10px 16px; font-size: 14px; color: #38bdf8; font-weight: 700; text-align: right; border-bottom: 1px solid rgba(255,255,255,0.05);">$8,000</td>
+                                        <td style="padding: 10px 16px; font-size: 14px; color: #334155; border-bottom: 1px solid #e2e8f0;">Additional CLS technologist</td>
+                                        <td style="padding: 10px 16px; font-size: 14px; color: #0284c7; font-weight: 700; text-align: right; border-bottom: 1px solid #e2e8f0;">$8,000</td>
                                     </tr>
                                     <tr>
-                                        <td style="padding: 10px 16px; font-size: 14px; color: #e2e8f0; border-bottom: 1px solid rgba(255,255,255,0.05);">Additional QC/consumables overhead</td>
-                                        <td style="padding: 10px 16px; font-size: 14px; color: #38bdf8; font-weight: 700; text-align: right; border-bottom: 1px solid rgba(255,255,255,0.05);">$5,000</td>
+                                        <td style="padding: 10px 16px; font-size: 14px; color: #334155; border-bottom: 1px solid #e2e8f0;">Additional QC/consumables overhead</td>
+                                        <td style="padding: 10px 16px; font-size: 14px; color: #0284c7; font-weight: 700; text-align: right; border-bottom: 1px solid #e2e8f0;">$5,000</td>
                                     </tr>
                                     <tr>
-                                        <td style="padding: 10px 16px; font-size: 15px; color: white; font-weight: 700; border-top: 2px solid rgba(20,184,166,0.3);">Total per instrument unit</td>
-                                        <td style="padding: 10px 16px; font-size: 15px; color: #4ade80; font-weight: 800; text-align: right; border-top: 2px solid rgba(20,184,166,0.3);">$43,000</td>
+                                        <td style="padding: 10px 16px; font-size: 15px; color: #0f172a; font-weight: 700; border-top: 2px solid #14b8a6;">Total per instrument unit</td>
+                                        <td style="padding: 10px 16px; font-size: 15px; color: #0f766e; font-weight: 800; text-align: right; border-top: 2px solid #14b8a6;">$43,000</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -5409,8 +5412,8 @@
                             <p style="font-size: 13px; color: #64748b; margin-top: 12px;">Scaling is linear: second instrument + second tech doubles capacity to ~2,400 tests/month. Autosampler runs unattended overnight — no additional staffing required for off-hours operation.</p>
 
                             <!-- 5-Year Ramp Table -->
-                            <div style="margin-top: 24px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px;">
-                                <h4 style="font-family: 'Poppins', sans-serif; font-size: 18px; font-weight: 700; color: white; margin-bottom: 16px;">5-Year Growth Ramp</h4>
+                            <div style="margin-top: 24px; border-top: 1px solid #e2e8f0; padding-top: 24px;">
+                                <h4 style="font-family: 'Poppins', sans-serif; font-size: 18px; font-weight: 700; color: #0f172a; margin-bottom: 16px;">5-Year Growth Ramp</h4>
 
                                 <table style="width: 100%; border-collapse: separate; border-spacing: 0; border-radius: 10px; overflow: hidden;">
                                     <thead>
@@ -5425,68 +5428,68 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td style="padding: 10px 14px; font-size: 13px; color: #94a3b8; font-weight: 600; border-bottom: 1px solid rgba(255,255,255,0.05);">Phase</td>
-                                            <td style="padding: 10px 14px; font-size: 12px; color: #e2e8f0; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05);">CLIA LDT Launch</td>
-                                            <td style="padding: 10px 14px; font-size: 12px; color: #e2e8f0; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05);">CLIA LDT Scale</td>
-                                            <td style="padding: 10px 14px; font-size: 12px; color: #e2e8f0; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05);">De Novo Sub.</td>
-                                            <td style="padding: 10px 14px; font-size: 12px; color: #e2e8f0; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05);">FDA + Insurance</td>
-                                            <td style="padding: 10px 14px; font-size: 12px; color: #e2e8f0; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05);">National Scale</td>
+                                            <td style="padding: 10px 14px; font-size: 13px; color: #64748b; font-weight: 600; border-bottom: 1px solid #e2e8f0;">Phase</td>
+                                            <td style="padding: 10px 14px; font-size: 12px; color: #334155; text-align: center; border-bottom: 1px solid #e2e8f0;">CLIA LDT Launch</td>
+                                            <td style="padding: 10px 14px; font-size: 12px; color: #334155; text-align: center; border-bottom: 1px solid #e2e8f0;">CLIA LDT Scale</td>
+                                            <td style="padding: 10px 14px; font-size: 12px; color: #334155; text-align: center; border-bottom: 1px solid #e2e8f0;">De Novo Sub.</td>
+                                            <td style="padding: 10px 14px; font-size: 12px; color: #334155; text-align: center; border-bottom: 1px solid #e2e8f0;">FDA + Insurance</td>
+                                            <td style="padding: 10px 14px; font-size: 12px; color: #334155; text-align: center; border-bottom: 1px solid #e2e8f0;">National Scale</td>
                                         </tr>
                                         <tr>
-                                            <td style="padding: 10px 14px; font-size: 13px; color: #94a3b8; font-weight: 600; border-bottom: 1px solid rgba(255,255,255,0.05);">Partner Clinics</td>
-                                            <td style="padding: 10px 14px; font-size: 14px; color: #e2e8f0; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05);">15&#8594;30</td>
-                                            <td style="padding: 10px 14px; font-size: 14px; color: #e2e8f0; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05);">75</td>
-                                            <td style="padding: 10px 14px; font-size: 14px; color: #e2e8f0; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05);">150&#8594;300</td>
-                                            <td style="padding: 10px 14px; font-size: 14px; color: #e2e8f0; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05);">600</td>
-                                            <td style="padding: 10px 14px; font-size: 14px; color: #e2e8f0; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05);">1,200</td>
+                                            <td style="padding: 10px 14px; font-size: 13px; color: #64748b; font-weight: 600; border-bottom: 1px solid #e2e8f0;">Partner Clinics</td>
+                                            <td style="padding: 10px 14px; font-size: 14px; color: #334155; text-align: center; border-bottom: 1px solid #e2e8f0;">15&#8594;30</td>
+                                            <td style="padding: 10px 14px; font-size: 14px; color: #334155; text-align: center; border-bottom: 1px solid #e2e8f0;">75</td>
+                                            <td style="padding: 10px 14px; font-size: 14px; color: #334155; text-align: center; border-bottom: 1px solid #e2e8f0;">150&#8594;300</td>
+                                            <td style="padding: 10px 14px; font-size: 14px; color: #334155; text-align: center; border-bottom: 1px solid #e2e8f0;">600</td>
+                                            <td style="padding: 10px 14px; font-size: 14px; color: #334155; text-align: center; border-bottom: 1px solid #e2e8f0;">1,200</td>
                                         </tr>
                                         <tr>
-                                            <td style="padding: 10px 14px; font-size: 13px; color: #94a3b8; font-weight: 600; border-bottom: 1px solid rgba(255,255,255,0.05);">Tests/Mo</td>
-                                            <td style="padding: 10px 14px; font-size: 14px; color: #e2e8f0; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05);">450</td>
-                                            <td style="padding: 10px 14px; font-size: 14px; color: #e2e8f0; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05);">1,125</td>
-                                            <td style="padding: 10px 14px; font-size: 14px; color: #e2e8f0; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05);">6,600</td>
-                                            <td style="padding: 10px 14px; font-size: 14px; color: #e2e8f0; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05);">15,000</td>
-                                            <td style="padding: 10px 14px; font-size: 14px; color: #e2e8f0; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05);">33,000</td>
+                                            <td style="padding: 10px 14px; font-size: 13px; color: #64748b; font-weight: 600; border-bottom: 1px solid #e2e8f0;">Tests/Mo</td>
+                                            <td style="padding: 10px 14px; font-size: 14px; color: #334155; text-align: center; border-bottom: 1px solid #e2e8f0;">450</td>
+                                            <td style="padding: 10px 14px; font-size: 14px; color: #334155; text-align: center; border-bottom: 1px solid #e2e8f0;">1,125</td>
+                                            <td style="padding: 10px 14px; font-size: 14px; color: #334155; text-align: center; border-bottom: 1px solid #e2e8f0;">6,600</td>
+                                            <td style="padding: 10px 14px; font-size: 14px; color: #334155; text-align: center; border-bottom: 1px solid #e2e8f0;">15,000</td>
+                                            <td style="padding: 10px 14px; font-size: 14px; color: #334155; text-align: center; border-bottom: 1px solid #e2e8f0;">33,000</td>
                                         </tr>
                                         <tr>
-                                            <td style="padding: 10px 14px; font-size: 13px; color: #94a3b8; font-weight: 600; border-bottom: 1px solid rgba(255,255,255,0.05);">Annual Tests</td>
-                                            <td style="padding: 10px 14px; font-size: 14px; color: #e2e8f0; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05);">4,050</td>
-                                            <td style="padding: 10px 14px; font-size: 14px; color: #e2e8f0; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05);">13,500</td>
-                                            <td style="padding: 10px 14px; font-size: 14px; color: #e2e8f0; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05);">55,800</td>
-                                            <td style="padding: 10px 14px; font-size: 14px; color: #e2e8f0; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05);">180,000</td>
-                                            <td style="padding: 10px 14px; font-size: 14px; color: white; font-weight: 700; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05);">400,000</td>
+                                            <td style="padding: 10px 14px; font-size: 13px; color: #64748b; font-weight: 600; border-bottom: 1px solid #e2e8f0;">Annual Tests</td>
+                                            <td style="padding: 10px 14px; font-size: 14px; color: #334155; text-align: center; border-bottom: 1px solid #e2e8f0;">4,050</td>
+                                            <td style="padding: 10px 14px; font-size: 14px; color: #334155; text-align: center; border-bottom: 1px solid #e2e8f0;">13,500</td>
+                                            <td style="padding: 10px 14px; font-size: 14px; color: #334155; text-align: center; border-bottom: 1px solid #e2e8f0;">55,800</td>
+                                            <td style="padding: 10px 14px; font-size: 14px; color: #334155; text-align: center; border-bottom: 1px solid #e2e8f0;">180,000</td>
+                                            <td style="padding: 10px 14px; font-size: 14px; color: #0f172a; font-weight: 700; text-align: center; border-bottom: 1px solid #e2e8f0;">400,000</td>
                                         </tr>
                                         <tr>
-                                            <td style="padding: 10px 14px; font-size: 13px; color: #94a3b8; font-weight: 600; border-bottom: 1px solid rgba(255,255,255,0.05);">Instruments</td>
-                                            <td style="padding: 10px 14px; font-size: 14px; color: #38bdf8; font-weight: 600; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05);">1</td>
-                                            <td style="padding: 10px 14px; font-size: 14px; color: #38bdf8; font-weight: 600; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05);">1</td>
-                                            <td style="padding: 10px 14px; font-size: 14px; color: #38bdf8; font-weight: 600; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05);">6</td>
-                                            <td style="padding: 10px 14px; font-size: 14px; color: #38bdf8; font-weight: 600; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05);">14</td>
-                                            <td style="padding: 10px 14px; font-size: 14px; color: #38bdf8; font-weight: 600; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05);">30</td>
+                                            <td style="padding: 10px 14px; font-size: 13px; color: #64748b; font-weight: 600; border-bottom: 1px solid #e2e8f0;">Instruments</td>
+                                            <td style="padding: 10px 14px; font-size: 14px; color: #0284c7; font-weight: 600; text-align: center; border-bottom: 1px solid #e2e8f0;">1</td>
+                                            <td style="padding: 10px 14px; font-size: 14px; color: #0284c7; font-weight: 600; text-align: center; border-bottom: 1px solid #e2e8f0;">1</td>
+                                            <td style="padding: 10px 14px; font-size: 14px; color: #0284c7; font-weight: 600; text-align: center; border-bottom: 1px solid #e2e8f0;">6</td>
+                                            <td style="padding: 10px 14px; font-size: 14px; color: #0284c7; font-weight: 600; text-align: center; border-bottom: 1px solid #e2e8f0;">14</td>
+                                            <td style="padding: 10px 14px; font-size: 14px; color: #0284c7; font-weight: 600; text-align: center; border-bottom: 1px solid #e2e8f0;">30</td>
                                         </tr>
                                         <tr>
-                                            <td style="padding: 10px 14px; font-size: 13px; color: #94a3b8; font-weight: 600; border-bottom: 1px solid rgba(255,255,255,0.05);">Instrument Cost/Mo</td>
-                                            <td style="padding: 10px 14px; font-size: 14px; color: #f87171; font-weight: 600; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05);">$43K</td>
-                                            <td style="padding: 10px 14px; font-size: 14px; color: #f87171; font-weight: 600; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05);">$43K</td>
-                                            <td style="padding: 10px 14px; font-size: 14px; color: #f87171; font-weight: 600; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05);">$258K</td>
-                                            <td style="padding: 10px 14px; font-size: 14px; color: #f87171; font-weight: 600; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05);">$602K</td>
-                                            <td style="padding: 10px 14px; font-size: 14px; color: #f87171; font-weight: 600; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05);">$1.29M</td>
+                                            <td style="padding: 10px 14px; font-size: 13px; color: #64748b; font-weight: 600; border-bottom: 1px solid #e2e8f0;">Instrument Cost/Mo</td>
+                                            <td style="padding: 10px 14px; font-size: 14px; color: #dc2626; font-weight: 600; text-align: center; border-bottom: 1px solid #e2e8f0;">$43K</td>
+                                            <td style="padding: 10px 14px; font-size: 14px; color: #dc2626; font-weight: 600; text-align: center; border-bottom: 1px solid #e2e8f0;">$43K</td>
+                                            <td style="padding: 10px 14px; font-size: 14px; color: #dc2626; font-weight: 600; text-align: center; border-bottom: 1px solid #e2e8f0;">$258K</td>
+                                            <td style="padding: 10px 14px; font-size: 14px; color: #dc2626; font-weight: 600; text-align: center; border-bottom: 1px solid #e2e8f0;">$602K</td>
+                                            <td style="padding: 10px 14px; font-size: 14px; color: #dc2626; font-weight: 600; text-align: center; border-bottom: 1px solid #e2e8f0;">$1.29M</td>
                                         </tr>
-                                        <tr style="border-top: 2px solid rgba(20,184,166,0.3);">
-                                            <td style="padding: 10px 14px; font-size: 13px; color: white; font-weight: 700; border-bottom: 1px solid rgba(255,255,255,0.05);">Annual Revenue</td>
-                                            <td style="padding: 10px 14px; font-size: 14px; color: #4ade80; font-weight: 700; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05);">$1.2M</td>
-                                            <td style="padding: 10px 14px; font-size: 14px; color: #4ade80; font-weight: 700; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05);">$4.1M</td>
-                                            <td style="padding: 10px 14px; font-size: 14px; color: #4ade80; font-weight: 700; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05);">$16.7M</td>
-                                            <td style="padding: 10px 14px; font-size: 14px; color: #4ade80; font-weight: 700; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05);">$54M</td>
-                                            <td style="padding: 10px 14px; font-size: 15px; color: #4ade80; font-weight: 800; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05);">$120M</td>
+                                        <tr style="border-top: 2px solid #14b8a6;">
+                                            <td style="padding: 10px 14px; font-size: 13px; color: #0f172a; font-weight: 700; border-bottom: 1px solid #e2e8f0;">Annual Revenue</td>
+                                            <td style="padding: 10px 14px; font-size: 14px; color: #0f766e; font-weight: 700; text-align: center; border-bottom: 1px solid #e2e8f0;">$1.2M</td>
+                                            <td style="padding: 10px 14px; font-size: 14px; color: #0f766e; font-weight: 700; text-align: center; border-bottom: 1px solid #e2e8f0;">$4.1M</td>
+                                            <td style="padding: 10px 14px; font-size: 14px; color: #0f766e; font-weight: 700; text-align: center; border-bottom: 1px solid #e2e8f0;">$16.7M</td>
+                                            <td style="padding: 10px 14px; font-size: 14px; color: #0f766e; font-weight: 700; text-align: center; border-bottom: 1px solid #e2e8f0;">$54M</td>
+                                            <td style="padding: 10px 14px; font-size: 15px; color: #0f766e; font-weight: 800; text-align: center; border-bottom: 1px solid #e2e8f0;">$120M</td>
                                         </tr>
                                         <tr>
-                                            <td style="padding: 10px 14px; font-size: 13px; color: #94a3b8; font-weight: 600;">Instrument Cost % Rev</td>
-                                            <td style="padding: 10px 14px; font-size: 14px; color: #fbbf24; font-weight: 600; text-align: center;">32%</td>
-                                            <td style="padding: 10px 14px; font-size: 14px; color: #4ade80; font-weight: 600; text-align: center;">13%</td>
-                                            <td style="padding: 10px 14px; font-size: 14px; color: #4ade80; font-weight: 600; text-align: center;">13%</td>
-                                            <td style="padding: 10px 14px; font-size: 14px; color: #4ade80; font-weight: 600; text-align: center;">13%</td>
-                                            <td style="padding: 10px 14px; font-size: 14px; color: #4ade80; font-weight: 600; text-align: center;">13%</td>
+                                            <td style="padding: 10px 14px; font-size: 13px; color: #64748b; font-weight: 600;">Instrument Cost % Rev</td>
+                                            <td style="padding: 10px 14px; font-size: 14px; color: #d97706; font-weight: 600; text-align: center;">32%</td>
+                                            <td style="padding: 10px 14px; font-size: 14px; color: #0f766e; font-weight: 600; text-align: center;">13%</td>
+                                            <td style="padding: 10px 14px; font-size: 14px; color: #0f766e; font-weight: 600; text-align: center;">13%</td>
+                                            <td style="padding: 10px 14px; font-size: 14px; color: #0f766e; font-weight: 600; text-align: center;">13%</td>
+                                            <td style="padding: 10px 14px; font-size: 14px; color: #0f766e; font-weight: 600; text-align: center;">13%</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -9098,7 +9101,7 @@
 
                     document.getElementById('calcRcMargin').textContent = Math.round(opMarginPct) + '%';
                     document.getElementById('calcRcMarginDollar').textContent = calcFmt(opContribPerTest) + ' / test';
-                    document.getElementById('calcRcMargin').style.color = opMarginPct >= 0 ? '#4ade80' : '#f87171';
+                    document.getElementById('calcRcMargin').style.color = opMarginPct >= 0 ? '#0f766e' : '#dc2626';
 
                     // Breakdown table
                     document.getElementById('calcFbRevTotal').textContent = calcFmt(monthlyRevenue);
@@ -9112,7 +9115,7 @@
 
                     var totalRow = document.getElementById('calcFbTotalRow');
                     if (opContribPerTest < 0) {
-                        totalRow.querySelectorAll('td').forEach(function(td) { td.style.color = '#f87171'; });
+                        totalRow.querySelectorAll('td').forEach(function(td) { td.style.color = '#dc2626'; });
                     } else {
                         totalRow.querySelectorAll('td').forEach(function(td) { td.style.color = ''; });
                     }
