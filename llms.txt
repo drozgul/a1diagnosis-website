@@ -1,49 +1,45 @@
 # A1 Diagnosis
 
-> A1 Diagnosis is a US-based medical diagnostics startup developing the world's first blood-based risk assessment test for age-related macular degeneration (AMD).
+> A1 Diagnosis is a US-based medical diagnostics company developing a blood-based risk assessment platform for age-related macular degeneration (AMD).
 
-A1 Diagnosis uses machine learning and mass spectrometry to analyze blood biomarkers, enabling detection of AMD risk years before vision loss occurs. The platform achieved 94-95% proof-of-concept accuracy using a Gradient Boosting Classifier with 5-fold cross-validation.
+A1 Diagnosis uses AI and blood biomarker analysis to help identify signals associated with AMD risk years before vision symptoms appear. The platform aims to enable earlier, more proactive eye care.
 
 ## Company Details
 
 - **Founded:** 2024
 - **Location:** Orange County, California, USA
 - **Website:** https://a1diagnosis.com
-- **Contact:** ozgul@A1Diagnosis.com | (949) 381-1966
-- **Stage:** Pre-clinical validation, targeting CLIA laboratory launch Q1 2027
-- **Price:** $250 per test
-- **Regulatory Pathway:** CLIA-certified Laboratory Developed Test (LDT)
+- **Contact:** ozgul@A1Diagnosis.com
+- **Stage:** Pre-clinical validation
+- **Regulatory Pathway:** Laboratory Developed Test (LDT)
 
 ## Founders
 
-- **Dr. Mustafa Ozgul, MD** — CEO & Co-Founder. 6 years of AMD research at UC Irvine Gavin Herbert Eye Institute. 24 peer-reviewed publications. LinkedIn: https://www.linkedin.com/in/drozgul
-- **Dr. Murat Baday, PhD** — Co-Founder. Stanford researcher and Synapses Ventures founder. Led Smartlens to $6.1M Series A in July 2023. LinkedIn: https://www.linkedin.com/in/muratbaday
+- **Dr. Mustafa Ozgul, MD** — CEO & Co-Founder. Six years of AMD research at UC Irvine Gavin Herbert Eye Institute. 24 peer-reviewed publications. LinkedIn: https://www.linkedin.com/in/drozgul
+- **Dr. Murat Baday, PhD** — Co-Founder. Stanford researcher and Synapses Ventures founder. LinkedIn: https://www.linkedin.com/in/muratbaday
 
 ## Key Pages
 
 - [Home](https://a1diagnosis.com/): Overview of A1 Diagnosis and the proactive vision risk analysis platform
 - [What is AMD?](https://a1diagnosis.com/what-is-amd.html): Education on age-related macular degeneration
-- [How It Works](https://a1diagnosis.com/how-it-works.html): Blood-based AMD risk detection technology explained
+- [How It Works](https://a1diagnosis.com/how-it-works.html): How the blood-based AMD risk assessment works
 - [Proactive Vision Platform](https://a1diagnosis.com/proactive-vision-platform.html): Details on the blood-based AMD risk assessment platform
 - [Publications](https://a1diagnosis.com/publications.html): Peer-reviewed research from the founding team
-- [Validation Study](https://a1diagnosis.com/validation-study.html): 240-sample cross-sectional study design
+- [Validation Study](https://a1diagnosis.com/validation-study.html): Validation study design
 - [Pipeline](https://a1diagnosis.com/pipeline.html): Multi-disease expansion roadmap beyond AMD
-- [FAQs](https://a1diagnosis.com/faqs.html): Frequently asked questions about AMD and the test
-- [Early Risk Assessment](https://a1diagnosis.com/early-risk-assessment.html): Why early detection of AMD matters
+- [FAQs](https://a1diagnosis.com/faqs.html): Frequently asked questions about AMD and risk assessment
+- [Early Risk Assessment](https://a1diagnosis.com/early-risk-assessment.html): Why early AMD risk assessment matters
 - [AMD Stages](https://a1diagnosis.com/amd-stages.html): Stages and progression of macular degeneration
 - [Risk Factors](https://a1diagnosis.com/risk-factors.html): Known risk factors for AMD
-- [Treatment Landscape](https://a1diagnosis.com/treatment-landscape.html): Current AMD treatment options
-- [Investor Contact](https://a1diagnosis.com/investor-contact.html): Investment inquiries
+- [Treatment Landscape](https://a1diagnosis.com/treatment-landscape.html): Current and emerging AMD therapies
 
-## Market
+## About AMD
 
-- Total Addressable Market: $42.3 billion
-- US target population (age 35+): 169 million
+- Age-related macular degeneration is a leading cause of vision loss in people over 50
 - AMD affects approximately 196 million people globally
+- Early identification of risk may enable monitoring, lifestyle changes, and access to emerging preventive therapies
+- Current detection typically occurs after vision loss has begun
 
-## Technology
+## Disclaimer
 
-- Blood-based biomarker analysis using mass spectrometry
-- Machine learning algorithms analyzing 10,000+ molecules
-- Gradient Boosting Classifier with 95.45% cross-validation accuracy
-- Non-invasive alternative to current imaging-based AMD screening
+This test has not been cleared or approved by the U.S. Food and Drug Administration.
