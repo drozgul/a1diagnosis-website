@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Explore current AMD treatment options — anti-VEGF injections, gene therapy, and emerging therapies — and see how A1 Diagnosis fits into the AMD care continuum.">
+<link rel="canonical" href="https://a1diagnosis.com/treatment-landscape.html">
+<meta property="og:title" content="A1 Diagnosis — Treatment Landscape Alignment">
+<meta property="og:description" content="Explore current AMD treatment options — anti-VEGF injections, gene therapy, and emerging therapies — and see how A1 Diagnosis fits into the AMD care continuum.">
+<meta property="og:image" content="https://a1diagnosis.com/A1_Diagnosis_Logo.jpg">
+<meta property="og:url" content="https://a1diagnosis.com/treatment-landscape.html">
+<meta property="og:type" content="website">
+<title>A1 Diagnosis — Treatment Landscape Alignment</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #ffffff;
+    --surface: #f0fdfa;
+    --surface2: #ecfeff;
+    --border: #99f6e4;
+    --text: #064e3b;
+    --text-dim: #0f766e;
+    --text-muted: #0d9488;
+    --accent-teal: #0d9488;
+    --accent-teal-dim: rgba(13,148,136,0.1);
+    --accent-blue: #0284c7;
+    --tier1: #0d9488;
+    --oral: #0891b2;
+    --ivt: #2563eb;
+    --sc: #059669;
+    --light: #0d9488;
+    --drops: #06b6d4;
+    --gene: #1d4ed8;
+    --other: #0e7490;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #000;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .slide {
+    width: 1920px;
+    height: 1080px;
+    position: relative;
+    overflow: hidden;
+    background: var(--bg);
+    transform-origin: center center;
+  }
+
+  /* --- Background texture --- */
+  .slide::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 900px 600px at 15% 20%, rgba(13,148,136,0.05) 0%, transparent 70%),
+      radial-gradient(ellipse 800px 500px at 85% 80%, rgba(6,182,212,0.04) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .slide > * { position: relative; z-index: 1; }
+
+  /* --- Header --- */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 36px 56px 0;
+  }
+
+  .logo-area h1 {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    color: var(--text);
+  }
+
+  .logo-area h1 span { color: var(--accent-teal); }
+
+  .header-subtitle {
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-top: 2px;
+    letter-spacing: 0.3px;
+  }
+
+  .title-area {
+    text-align: right;
+  }
+
+  .title-area h2 {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: -0.3px;
+  }
+
+  .title-area p {
+    font-size: 12.5px;
+    color: var(--text-dim);
+    margin-top: 3px;
+  }
+
+  /* --- Tier Section --- */
+  .tier-section {
+    padding: 20px 56px 0;
+  }
+
+  .tier-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .tier-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    padding: 3px 8px;
+    border-radius: 4px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    background: rgba(13,148,136,0.1);
+    color: var(--tier1);
+    border: 1px solid rgba(13,148,136,0.3);
+  }
+
+  .tier-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .tier-desc {
+    font-size: 11px;
+    color: var(--text-dim);
+    margin-left: auto;
+  }
+
+  /* --- Table --- */
+  .tier-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 12px;
+  }
+
+  .tier-table thead th {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9.5px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--text-muted);
+    padding: 6px 10px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .tier-table tbody tr {
+    transition: background 0.15s;
+  }
+
+  .tier-table tbody tr:hover {
+    background: rgba(13,148,136,0.04);
+  }
+
+  .tier-table tbody td {
+    padding: 7px 10px;
+    vertical-align: middle;
+    border-bottom: 1px solid rgba(153,246,228,0.5);
+    line-height: 1.35;
+  }
+
+  .drug-name {
+    font-weight: 600;
+    color: var(--text);
+    font-size: 12.5px;
+  }
+
+  .company {
+    color: var(--text-dim);
+    font-size: 11.5px;
+  }
+
+  .phase-pill {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    padding: 2px 7px;
+    border-radius: 3px;
+    background: var(--surface2);
+    color: var(--text);
+    border: 1px solid var(--border);
+    white-space: nowrap;
+    display: inline-block;
+  }
+
+  .phase-pill.authorized {
+    background: rgba(13,148,136,0.12);
+    color: #0d9488;
+    border-color: rgba(13,148,136,0.35);
+  }
+
+  .phase-pill.phase3 {
+    background: rgba(2,132,199,0.1);
+    color: #0284c7;
+    border-color: rgba(2,132,199,0.3);
+  }
+
+  .route-tag {
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-weight: 500;
+    white-space: nowrap;
+    display: inline-block;
+  }
+
+  .route-oral { background: rgba(8,145,178,0.1); color: var(--oral); }
+  .route-ivt { background: rgba(37,99,235,0.08); color: var(--ivt); }
+  .route-sc { background: rgba(5,150,105,0.1); color: var(--sc); }
+  .route-light { background: rgba(13,148,136,0.1); color: var(--light); }
+  .route-drops { background: rgba(6,182,212,0.1); color: var(--drops); }
+  .route-gene { background: rgba(29,78,216,0.08); color: var(--gene); }
+  .route-other { background: rgba(14,116,144,0.1); color: var(--other); }
+
+  .enrollment {
+    font-size: 11px;
+    color: var(--text);
+  }
+
+  .a1-why {
+    font-size: 11px;
+    color: var(--text);
+  }
+
+  .a1-why.not-critical {
+    color: var(--text-dim);
+    font-style: italic;
+  }
+
+  .th-enroll {
+    color: var(--accent-teal) !important;
+  }
+
+  .th-a1 {
+    color: var(--accent-teal) !important;
+  }
+
+  /* --- Callout box --- */
+  .callout {
+    position: absolute;
+    bottom: 52px;
+    left: 56px;
+    right: 56px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 12px 20px;
+    background: linear-gradient(135deg, rgba(13,148,136,0.06), rgba(6,182,212,0.06));
+    border: 1px solid rgba(13,148,136,0.2);
+    border-radius: 8px;
+  }
+
+  .callout-icon {
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+
+  .callout-text {
+    font-size: 12.5px;
+    color: var(--text-dim);
+    line-height: 1.45;
+  }
+
+  .callout-text strong {
+    color: var(--accent-teal);
+    font-weight: 600;
+  }
+
+  .callout-stat {
+    margin-left: auto;
+    text-align: center;
+    flex-shrink: 0;
+    padding-left: 20px;
+    border-left: 1px solid var(--border);
+  }
+
+  .callout-stat + .callout-stat {
+    margin-left: 0;
+  }
+
+  .callout-stat .num {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--accent-teal);
+    line-height: 1;
+  }
+
+  .callout-stat .label {
+    font-size: 10px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 2px;
+  }
+
+  /* --- Footer --- */
+  .footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 56px;
+    border-top: 1px solid var(--border);
+    background: rgba(240,253,250,0.9);
+  }
+
+  .footer-left {
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+
+  .footer-right {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 10px;
+    color: var(--text-dim);
+  }
+
+  .legend-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+  }
+
+  /* --- 16:9 responsive scaling --- */
+  @media screen {
+    .slide {
+      transform: scale(var(--scale, 1));
+    }
+  }
+
+  @media print {
+    html, body {
+      background: #fff;
+      overflow: visible;
+    }
+    .slide {
+      transform: none !important;
+      width: 100%;
+      height: auto;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="slide" id="slide">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="logo-area">
+      <h1><span>A1</span> Diagnosis</h1>
+      <div class="header-subtitle">Blood-based AMD risk stratification for ophthalmology practices</div>
+    </div>
+    <div class="title-area">
+      <h2>Emerging Treatment Landscape Alignment</h2>
+      <p>Drugs targeting early/intermediate AMD — Ophthalmologist-first strategy — March 2026</p>
+    </div>
+  </div>
+
+  <!-- Tier 1 -->
+  <div class="tier-section">
+    <div class="tier-header">
+      <span class="tier-badge">Tier 1</span>
+      <span class="tier-title">Directly Targeting Early / Intermediate AMD</span>
+      <span class="tier-desc">25% of AMD cases missed at dilated eye exam (Neely et al., JAMA Ophthalmology 2017) — A1 closes the diagnostic gap</span>
+    </div>
+    <table class="tier-table">
+      <thead>
+        <tr>
+          <th style="width:11%">Drug</th>
+          <th style="width:10%">Sponsor</th>
+          <th style="width:10%">Phase</th>
+          <th style="width:6%">Route</th>
+          <th style="width:30%" class="th-enroll">Enrollment Criteria</th>
+          <th style="width:33%" class="th-a1">Why A1 Diagnosis Matters</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Most relevant to A1 -->
+        <tr>
+          <td><span class="drug-name">Iptacopan</span></td>
+          <td><span class="company">Novartis</span></td>
+          <td><span class="phase-pill">Phase 2</span></td>
+          <td><span class="route-tag route-oral">Oral</span></td>
+          <td><span class="enrollment">Early/iAMD in study eye; <strong>requires wet AMD in fellow eye</strong>; high-risk OCT features; age 50+</span></td>
+          <td><span class="a1-why">Trial uses wet AMD in fellow eye as a workaround to find high-risk patients. A1 blood test could identify high-risk early AMD patients directly, expanding the eligible pool beyond this restrictive criterion.</span></td>
+        </tr>
+        <tr>
+          <td><span class="drug-name">Risuteganib</span></td>
+          <td><span class="company">Allegro Ophthalmics</span></td>
+          <td><span class="phase-pill">Phase 2a Complete</span></td>
+          <td><span class="route-tag route-ivt">Intravitreal</span></td>
+          <td><span class="enrollment">Intermediate dry AMD; OCT threshold screening (EZ and photoreceptor layer thickness); SPA granted, Phase 2b/3 not yet started</span></td>
+          <td><span class="a1-why">Phase 2b/3 pivotal trial needs to enroll intermediate AMD patients. A1 could help ophthalmologists identify and refer candidates who might otherwise be missed (25% miss rate at eye exams).</span></td>
+        </tr>
+        <tr>
+          <td><span class="drug-name">Ocustatin</span></td>
+          <td><span class="company">Drusolv Therapeutics</span></td>
+          <td><span class="phase-pill">Pre-Phase 2</span></td>
+          <td><span class="route-tag route-oral">Oral</span></td>
+          <td><span class="enrollment">Intermediate AMD with soft lipid-like drusen; 300-patient Phase 2 planned; IND in preparation</span></td>
+          <td><span class="a1-why">Small company (BrightFocus-funded) needs to find 300 intermediate AMD patients with drusen for Phase 2. A1 could accelerate enrollment by identifying candidates from ophthalmology practices.</span></td>
+        </tr>
+        <tr>
+          <td><span class="drug-name">Xiflam</span></td>
+          <td><span class="company">InflammX / B+L</span></td>
+          <td><span class="phase-pill">Phase 2 Planned</span></td>
+          <td><span class="route-tag route-oral">Oral</span></td>
+          <td><span class="enrollment">Intermediate AMD (iAMD); early stage prior to vision loss; iAMD trial initiating (active Phase 2 is for DME)</span></td>
+          <td><span class="a1-why">Oral drug treating both eyes — ideal for asymptomatic iAMD patients. A1 blood biomarkers (complement, inflammation) could help stratify which patients are most likely to respond.</span></td>
+        </tr>
+        <tr>
+          <td><span class="drug-name">Valeda PBM</span></td>
+          <td><span class="company">Alcon</span></td>
+          <td><span class="phase-pill authorized">FDA Authorized</span></td>
+          <td><span class="route-tag route-light">Light</span></td>
+          <td><span class="enrollment">Early/intermediate dry AMD; drusen &#8805;63&#181;m on imaging; BCVA 20/32&#8211;20/100; no wet AMD or central GA</span></td>
+          <td><span class="a1-why">Patients are identified via standard imaging. However, most intermediate AMD patients are asymptomatic and never visit an ophthalmologist. A1 could flag high-risk individuals who should be referred for imaging.</span></td>
+        </tr>
+        <!-- Too early to determine -->
+        <tr>
+          <td><span class="drug-name">ALG-1007</span></td>
+          <td><span class="company">Allegro Ophthalmics</span></td>
+          <td><span class="phase-pill">Development</span></td>
+          <td><span class="route-tag route-drops">Eye Drops</span></td>
+          <td><span class="enrollment">Not yet defined for AMD (Phase 2 completed for dry eye disease only)</span></td>
+          <td><span class="a1-why not-critical">Too early to determine. AMD-specific development has not started; enrollment criteria not yet defined.</span></td>
+        </tr>
+        <tr>
+          <td><span class="drug-name">Undisclosed</span></td>
+          <td><span class="company">OphtiMed Rx</span></td>
+          <td><span class="phase-pill">Preclinical</span></td>
+          <td><span class="route-tag route-other">TBD</span></td>
+          <td><span class="enrollment">Early/intermediate dry AMD; criteria TBD; first-in-human planned mid-2026</span></td>
+          <td><span class="a1-why not-critical">Too early to determine. Preclinical stage with no published enrollment criteria yet.</span></td>
+        </tr>
+        <tr>
+          <td><span class="drug-name">IKAR-003</span></td>
+          <td><span class="company">Ikarovec</span></td>
+          <td><span class="phase-pill">Preclinical</span></td>
+          <td><span class="route-tag route-gene">Intravitreal Gene Therapy</span></td>
+          <td><span class="enrollment">Intermediate AMD; designed to prevent progression to GA or wet AMD; VectorBuilder capsid deal Jan 2026</span></td>
+          <td><span class="a1-why not-critical">Too early to determine. Preclinical with lead program (IKAR-001 for GA) targeting clinical trials late 2026.</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Callout -->
+  <div class="callout">
+    <span class="callout-icon">&#x1F441;</span>
+    <span class="callout-text">
+      <strong>The diagnostic gap in ophthalmology:</strong> 25% of AMD cases are missed during dilated eye exams (Neely et al., JAMA Ophthalmology 2017) — both ophthalmologists and optometrists miss at equal rates. Among missed cases, 30% had large drusen consistent with intermediate AMD. A1 Diagnosis provides a complementary blood-based risk stratification tool that helps eye care providers catch what imaging alone misses and prioritize high-risk patients for closer monitoring.
+    </span>
+    <div class="callout-stat">
+      <div class="num">25%</div>
+      <div class="label">AMD missed at eye exam</div>
+    </div>
+    <div class="callout-stat">
+      <div class="num">5</div>
+      <div class="label">Drugs A1 clearly helps</div>
+    </div>
+    <div class="callout-stat">
+      <div class="num">0</div>
+      <div class="label">Blood-based Dx exist</div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <span class="footer-left">Sources: ClinicalTrials.gov, JAMA Ophthalmology, company disclosures — Verified March 2026</span>
+    <div class="footer-right">
+      <div class="legend-item"><span class="legend-dot" style="background:var(--oral)"></span> Oral</div>
+      <div class="legend-item"><span class="legend-dot" style="background:var(--ivt)"></span> Intravitreal</div>
+      <div class="legend-item"><span class="legend-dot" style="background:var(--light)"></span> Light / PBM</div>
+      <div class="legend-item"><span class="legend-dot" style="background:var(--drops)"></span> Eye Drops</div>
+      <div class="legend-item"><span class="legend-dot" style="background:var(--gene)"></span> Gene Therapy</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // Scale 1920x1080 slide to fit viewport while maintaining 16:9
+  function scaleSlide() {
+    const slide = document.getElementById('slide');
+    const scaleX = window.innerWidth / 1920;
+    const scaleY = window.innerHeight / 1080;
+    const scale = Math.min(scaleX, scaleY);
+    slide.style.setProperty('--scale', scale);
+  }
+  window.addEventListener('resize', scaleSlide);
+  scaleSlide();
+</script>
+
+</body>
+</html>

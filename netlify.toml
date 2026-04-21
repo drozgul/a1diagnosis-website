@@ -54,6 +54,107 @@
   to = "/postop_weight_prediction/index.html"
   status = 200
 
+# Clean URL redirects for public content pages
+[[redirects]]
+  from = "/what-is-amd"
+  to = "/what-is-amd.html"
+  status = 200
+
+[[redirects]]
+  from = "/faqs"
+  to = "/faqs.html"
+  status = 200
+
+[[redirects]]
+  from = "/publications"
+  to = "/publications.html"
+  status = 200
+
+[[redirects]]
+  from = "/proactive-vision-platform"
+  to = "/proactive-vision-platform.html"
+  status = 200
+
+[[redirects]]
+  from = "/how-it-works"
+  to = "/how-it-works.html"
+  status = 200
+
+[[redirects]]
+  from = "/how it works"
+  to = "/how-it-works.html"
+  status = 301
+
+[[redirects]]
+  from = "/how%20it%20works.html"
+  to = "/how-it-works.html"
+  status = 301
+
+[[redirects]]
+  from = "/how it works.html"
+  to = "/how-it-works.html"
+  status = 301
+
+[[redirects]]
+  from = "/validation-study"
+  to = "/validation-study.html"
+  status = 200
+
+[[redirects]]
+  from = "/pipeline"
+  to = "/pipeline.html"
+  status = 200
+
+[[redirects]]
+  from = "/early-risk-assessment"
+  to = "/early-risk-assessment.html"
+  status = 200
+
+[[redirects]]
+  from = "/risk-factors"
+  to = "/risk-factors.html"
+  status = 200
+
+[[redirects]]
+  from = "/amd-stages"
+  to = "/amd-stages.html"
+  status = 200
+
+[[redirects]]
+  from = "/future-of-amd-prevention"
+  to = "/future-of-amd-prevention.html"
+  status = 200
+
+[[redirects]]
+  from = "/treatment-landscape"
+  to = "/treatment-landscape.html"
+  status = 200
+
+[[redirects]]
+  from = "/what-is-proactive-health"
+  to = "/what-is-proactive-health.html"
+  status = 200
+
+[[redirects]]
+  from = "/test-information"
+  to = "/test-information.html"
+  status = 200
+
+[[redirects]]
+  from = "/history"
+  to = "/history.html"
+  status = 200
+
+[[redirects]]
+  from = "/investor-contact"
+  to = "/investor-contact.html"
+  status = 200
+
+[[redirects]]
+  from = "/privacy-policy"
+  to = "/privacy-policy.html"
+  status = 200
+
 # SPA fallback (must be last)
 [[redirects]]
   from = "/*"

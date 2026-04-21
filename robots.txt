@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+
+Disallow: /analytics-dashboard.html
+Disallow: /investor-login.html
+Disallow: /pitch-deck.html
+Disallow: /SAFE.html
+Disallow: /A1_Diagnosis_Execution_Roadmap_5Year.html
+Disallow: /a16z/
+Disallow: /demo/
+Disallow: /postop_weight_prediction/
+Disallow: /presentation/
+
+Sitemap: https://a1diagnosis.com/sitemap.xml
