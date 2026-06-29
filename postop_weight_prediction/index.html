@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Post-Op Weight Prediction Tool | A1 Diagnosis</title>
-    <meta name="description" content="AI-powered weight loss prediction after Laparoscopic Sleeve Gastrectomy. Enter patient age, height, and pre-op weight to predict weight trajectory over 12 months.">
+    <meta name="description" content="Sex-aware AI weight-loss prediction after Laparoscopic Sleeve Gastrectomy. Enter age, sex, height and pre-op weight (plus any known post-op weights) to predict the 12-month weight trajectory with calibrated 95% intervals.">
 
     <link rel="icon" type="image/png" href="/A1_Favicon_V2.png">
     <link rel="apple-touch-icon" href="/A1_Favicon_V2.png">
 
     <meta property="og:type" content="website">
     <meta property="og:title" content="Post-Op Weight Prediction Tool">
-    <meta property="og:description" content="AI-powered weight prediction after Sleeve Gastrectomy. XGBoost ML models trained on 2,014 patients.">
+    <meta property="og:description" content="Sex-aware Bayesian weight prediction after Sleeve Gastrectomy, with calibrated 95% intervals and optional cascade refinement from known post-op weights.">
     <meta property="og:image" content="https://a1diagnosis.com/Logo_Proactive.png">
 
     <!-- Google tag (gtag.js) -->
@@ -49,7 +49,7 @@
         }
 
         /* ================================================
-           NAV BAR — sits above header, clean white strip
+           NAV BAR
         ================================================ */
         .nav-bar {
             background: #ffffff;
@@ -95,7 +95,7 @@
         }
 
         /* ================================================
-           HEADER — refined gradient, lighter feel
+           HEADER
         ================================================ */
         .header {
             background: linear-gradient(160deg, #0ea5e9 0%, #0284c7 45%, #0369a1 100%);
@@ -106,7 +106,6 @@
             overflow: hidden;
         }
 
-        /* Subtle shimmer, not distracting */
         .header::before {
             content: '';
             position: absolute;
@@ -164,7 +163,7 @@
             font-size: 1rem;
             font-weight: 400;
             color: rgba(255,255,255,0.8);
-            max-width: 520px;
+            max-width: 540px;
             margin: 0 auto;
             opacity: 0;
             animation: slideDown 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.3s forwards;
@@ -247,10 +246,9 @@
             padding: 40px 48px 60px;
         }
 
-        /* Two-column layout: form left, everything else right */
         .workspace {
             display: grid;
-            grid-template-columns: 340px 1fr;
+            grid-template-columns: 360px 1fr;
             gap: 32px;
             align-items: start;
         }
@@ -260,7 +258,7 @@
         ================================================ */
         .form-panel {
             position: sticky;
-            top: 52px; /* matches nav height */
+            top: 52px;
         }
 
         .section-label {
@@ -272,7 +270,6 @@
             margin-bottom: 14px;
         }
 
-        /* Form card — borderless, no shadow header */
         .form-card {
             background: #ffffff;
             border: 1.5px solid #e8edf2;
@@ -306,6 +303,8 @@
             color: #94a3b8;
         }
 
+        .req-star { color: #ef4444; font-weight: 700; }
+
         .form-input {
             width: 100%;
             padding: 11px 14px;
@@ -335,6 +334,35 @@
             margin-top: 5px;
             letter-spacing: 0.01em;
         }
+
+        /* Sex selector — segmented control */
+        .sex-toggle {
+            display: flex;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1.5px solid #e2e8f0;
+        }
+        .sex-btn {
+            flex: 1;
+            padding: 11px 10px;
+            border: none;
+            background: #f8fafc;
+            font-size: 13.5px;
+            font-weight: 600;
+            color: #64748b;
+            cursor: pointer;
+            font-family: inherit;
+            transition: background 0.15s, color 0.15s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+        }
+        .sex-btn:not(:last-child) { border-right: 1.5px solid #e2e8f0; }
+        .sex-btn.active.female { background: #ec4899; color: #fff; }
+        .sex-btn.active.male { background: #0ea5e9; color: #fff; }
+        .sex-btn:not(.active):hover { background: #f1f5f9; }
+        .sex-btn svg { width: 15px; height: 15px; }
 
         /* Unit toggles */
         .unit-toggle {
@@ -372,7 +400,6 @@
             background: #f1f5f9;
         }
 
-        /* Ft / in row */
         .ft-in-row {
             display: flex;
             gap: 8px;
@@ -382,7 +409,49 @@
             width: 50%;
         }
 
-        /* Predict button */
+        /* Cascade (optional) section */
+        .cascade-toggle {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #f8fafc;
+            border: 1.5px dashed #cbd5e1;
+            border-radius: 10px;
+            padding: 12px 14px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 12.5px;
+            font-weight: 600;
+            color: #475569;
+            transition: background 0.15s, border-color 0.15s;
+            margin-bottom: 4px;
+        }
+        .cascade-toggle:hover { background: #f1f5f9; border-color: #94a3b8; }
+        .cascade-toggle .chev { transition: transform 0.2s; width: 16px; height: 16px; color: #94a3b8; }
+        .cascade-toggle.open .chev { transform: rotate(180deg); }
+        .cascade-body {
+            display: none;
+            padding: 16px 2px 4px;
+            animation: fadeIn 0.25s ease;
+        }
+        .cascade-body.open { display: block; }
+        .cascade-hint {
+            font-size: 11.5px;
+            color: #94a3b8;
+            margin-bottom: 16px;
+            line-height: 1.5;
+        }
+        .cascade-field { margin-bottom: 14px; }
+        .cascade-field label {
+            display: block;
+            font-size: 11.5px;
+            font-weight: 600;
+            color: #475569;
+            margin-bottom: 5px;
+        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
         .predict-btn {
             width: 100%;
             padding: 14px 20px;
@@ -397,7 +466,7 @@
             letter-spacing: -0.01em;
             transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
             box-shadow: 0 4px 14px rgba(14,165,233,0.35);
-            margin-top: 4px;
+            margin-top: 12px;
         }
 
         .predict-btn:hover:not(:disabled) {
@@ -415,7 +484,7 @@
             cursor: not-allowed;
         }
 
-        /* Model performance mini section inside form panel */
+        /* Model performance mini section */
         .perf-panel {
             background: #f8fafc;
             border: 1.5px solid #e8edf2;
@@ -430,6 +499,11 @@
             letter-spacing: 0.08em;
             text-transform: uppercase;
             color: #64748b;
+            margin-bottom: 6px;
+        }
+        .perf-panel-sub {
+            font-size: 10.5px;
+            color: #a3b1c0;
             margin-bottom: 14px;
         }
 
@@ -448,12 +522,27 @@
             border-radius: 8px;
             border: 1px solid #e8edf2;
         }
+        .perf-row.cascade { border-color: #bbf7d0; background: #f0fdf4; }
+        .perf-row.measured { border-color: #ddd6fe; background: #f5f3ff; }
 
         .perf-row-label {
             font-size: 12px;
             font-weight: 600;
             color: #475569;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
+        .perf-tag {
+            font-size: 9px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            padding: 2px 6px;
+            border-radius: 5px;
+        }
+        .perf-tag.casc { background: #dcfce7; color: #15803d; }
+        .perf-tag.meas { background: #ede9fe; color: #6d28d9; }
 
         .perf-row-right {
             display: flex;
@@ -489,7 +578,6 @@
             min-width: 0;
         }
 
-        /* ---- Chart panel ---- */
         .chart-panel {
             background: #ffffff;
             border: 1.5px solid #e8edf2;
@@ -528,7 +616,6 @@
             flex-shrink: 0;
         }
 
-        /* Placeholder state */
         .chart-placeholder {
             display: flex;
             flex-direction: column;
@@ -558,7 +645,6 @@
             text-align: center;
         }
 
-        /* Loading state */
         .chart-loading {
             display: none;
             flex-direction: column;
@@ -587,7 +673,6 @@
             font-weight: 500;
         }
 
-        /* Chart canvas */
         .chart-wrap {
             display: none;
             padding: 20px 24px 24px;
@@ -595,7 +680,20 @@
             position: relative;
         }
 
-        /* ---- BMI summary strip ---- */
+        /* ---- Out-of-range advisory ---- */
+        .range-warning {
+            background: #fffbeb;
+            border: 1.5px solid #fde68a;
+            border-radius: 12px;
+            padding: 12px 18px;
+            font-size: 12.5px;
+            color: #92400e;
+            line-height: 1.5;
+        }
+        .range-warning strong { color: #b45309; }
+        .range-warning ul { margin: 4px 0 0 18px; padding: 0; }
+
+        /* ---- BMI / clinical summary strip ---- */
         .bmi-strip {
             display: none;
             background: #f0f9ff;
@@ -635,6 +733,11 @@
             margin-top: 5px;
             letter-spacing: 0.01em;
         }
+        .bmi-item-sub {
+            font-size: 10px;
+            color: #60a5fa;
+            margin-top: 2px;
+        }
 
         /* ---- Result cards strip ---- */
         .results-strip {
@@ -646,15 +749,6 @@
             align-items: center;
             justify-content: space-between;
             margin-bottom: 14px;
-        }
-
-        .results-strip-title {
-            font-size: 13px;
-            font-weight: 700;
-            color: #475569;
-            letter-spacing: 0.02em;
-            text-transform: uppercase;
-            font-size: 11px;
         }
 
         .results-grid {
@@ -670,6 +764,7 @@
             padding: 16px 12px;
             text-align: center;
             transition: border-color 0.2s, box-shadow 0.2s;
+            position: relative;
         }
 
         .result-card:hover {
@@ -685,6 +780,10 @@
         .result-card.highlight:hover {
             border-color: #4ade80;
             box-shadow: 0 4px 16px rgba(34,197,94,0.12);
+        }
+        .result-card.measured {
+            background: linear-gradient(160deg, #faf5ff, #f3e8ff);
+            border-color: #d8b4fe;
         }
 
         .result-time {
@@ -708,6 +807,9 @@
         .result-card.highlight .result-weight {
             color: #166534;
         }
+        .result-card.measured .result-weight {
+            color: #7c3aed;
+        }
 
         .result-loss {
             font-size: 11.5px;
@@ -722,6 +824,18 @@
             font-weight: 500;
             line-height: 1.4;
         }
+        .result-badge {
+            position: absolute;
+            top: 8px; right: 8px;
+            font-size: 8px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            padding: 2px 5px;
+            border-radius: 5px;
+        }
+        .result-badge.casc { background: #dcfce7; color: #15803d; }
+        .result-badge.meas { background: #ede9fe; color: #6d28d9; }
 
         /* ================================================
            FOOTER
@@ -775,10 +889,6 @@
                 position: static;
             }
 
-            .perf-panel {
-                display: none; /* on mobile, hide detailed perf; could show a toggle */
-            }
-
             .results-grid {
                 grid-template-columns: repeat(3, 1fr);
             }
@@ -801,6 +911,7 @@
         @media (max-width: 600px) {
             .header h1 { font-size: 1.7rem; }
             .header-stats { display: none; }
+            .perf-panel { display: none; }
 
             .results-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -828,7 +939,7 @@
             </svg>
             Back to A1 Diagnosis
         </a>
-        <span class="nav-badge">Bayesian Ridge &middot; 2,014 Patients</span>
+        <span class="nav-badge">Sex-Aware Bayesian Ridge</span>
     </nav>
 
     <!-- Hero header -->
@@ -836,11 +947,11 @@
         <div class="header-content">
             <div class="header-eyebrow">Bariatric Surgery Analytics</div>
             <h1>Post-Operative <strong>Weight Prediction</strong></h1>
-            <div class="header-subtitle">AI-powered weight loss trajectory after Laparoscopic Sleeve Gastrectomy, with 95% confidence intervals at five clinical timepoints</div>
+            <div class="header-subtitle">Sex-aware weight-loss trajectory after Laparoscopic Sleeve Gastrectomy, with calibrated 95% intervals at five clinical timepoints &mdash; refine further with any known post-op weight.</div>
             <div class="header-stats">
                 <div class="header-stat">
-                    <div class="header-stat-value">2,014</div>
-                    <div class="header-stat-label">Training Patients</div>
+                    <div class="header-stat-value" id="statCohort">502</div>
+                    <div class="header-stat-label">Sex-Recorded Patients</div>
                 </div>
                 <div class="header-stat-divider"></div>
                 <div class="header-stat">
@@ -849,8 +960,8 @@
                 </div>
                 <div class="header-stat-divider"></div>
                 <div class="header-stat">
-                    <div class="header-stat-value">5-Fold CV</div>
-                    <div class="header-stat-label">Validation</div>
+                    <div class="header-stat-value">Calibrated</div>
+                    <div class="header-stat-label">95% Intervals</div>
                 </div>
                 <div class="header-stat-divider"></div>
                 <div class="header-stat">
@@ -861,31 +972,55 @@
         </div>
     </header>
 
+    <!-- Disclaimer -->
+    <div class="disclaimer-wrap">
+        <div class="disclaimer">
+            <svg class="disclaimer-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+            </svg>
+            <span><strong>Research tool only.</strong> Predictions are statistical estimates with calibrated 95% intervals and must not replace clinical judgement. Sex-aware models are trained on the 502 patients with recorded sex from a 2,014-patient cohort.</span>
+        </div>
+    </div>
+
     <!-- Main workspace -->
     <main class="main">
         <div class="workspace">
 
-            <!-- ==========================================
-                 LEFT: Input form + model performance
-            =========================================== -->
+            <!-- LEFT: Input form + model performance -->
             <div class="form-panel">
 
                 <div class="form-card">
                     <div class="form-card-title">Enter Patient Details</div>
 
+                    <!-- Sex (required) -->
+                    <div class="form-group">
+                        <label class="form-label">Sex <span class="req-star">*</span></label>
+                        <div class="sex-toggle" id="sex-toggle" role="radiogroup" aria-label="Sex (required)">
+                            <button type="button" class="sex-btn female" data-sex="female" role="radio" aria-checked="false" onclick="setSex('female')">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><circle cx="12" cy="9" r="5"/><path stroke-linecap="round" d="M12 14v7M9 18h6"/></svg>
+                                Female
+                            </button>
+                            <button type="button" class="sex-btn male" data-sex="male" role="radio" aria-checked="false" onclick="setSex('male')">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><circle cx="10" cy="14" r="5"/><path stroke-linecap="round" stroke-linejoin="round" d="M14 10l6-6m0 0h-5m5 0v5"/></svg>
+                                Male
+                            </button>
+                        </div>
+                        <div class="form-hint">Required &mdash; models are sex-specific</div>
+                    </div>
+
                     <!-- Age -->
                     <div class="form-group">
-                        <label class="form-label" for="age">Age <span class="unit-hint">(years)</span></label>
+                        <label class="form-label" for="age">Age <span class="unit-hint">(years)</span> <span class="req-star">*</span></label>
                         <input type="number" id="age" class="form-input" placeholder="e.g. 42" min="12" max="80" step="1">
                         <div class="form-hint">Training range: 12 &ndash; 73 years</div>
                     </div>
 
                     <!-- Height -->
                     <div class="form-group">
-                        <label class="form-label">Height</label>
-                        <div class="unit-toggle" id="height-toggle">
-                            <button class="unit-btn active" data-unit="cm" onclick="setHeightUnit('cm')">cm</button>
-                            <button class="unit-btn" data-unit="ft" onclick="setHeightUnit('ft')">ft / in</button>
+                        <label class="form-label">Height <span class="req-star">*</span></label>
+                        <div class="unit-toggle" id="height-toggle" role="radiogroup" aria-label="Height unit">
+                            <button class="unit-btn active" data-unit="cm" role="radio" aria-checked="true" onclick="setHeightUnit('cm')">cm</button>
+                            <button class="unit-btn" data-unit="ft" role="radio" aria-checked="false" onclick="setHeightUnit('ft')">ft / in</button>
                         </div>
                         <div id="height-cm-input">
                             <input type="number" id="height_cm" class="form-input" placeholder="e.g. 170" min="130" max="220" step="1">
@@ -901,13 +1036,36 @@
 
                     <!-- Weight -->
                     <div class="form-group">
-                        <label class="form-label">Pre-Operative Weight</label>
-                        <div class="unit-toggle" id="weight-toggle">
-                            <button class="unit-btn active" data-unit="kg" onclick="setWeightUnit('kg')">kg</button>
-                            <button class="unit-btn" data-unit="lbs" onclick="setWeightUnit('lbs')">lbs</button>
+                        <label class="form-label">Pre-Operative Weight <span class="req-star">*</span></label>
+                        <div class="unit-toggle" id="weight-toggle" role="radiogroup" aria-label="Weight unit">
+                            <button class="unit-btn active" data-unit="kg" role="radio" aria-checked="true" onclick="setWeightUnit('kg')">kg</button>
+                            <button class="unit-btn" data-unit="lbs" role="radio" aria-checked="false" onclick="setWeightUnit('lbs')">lbs</button>
                         </div>
                         <input type="number" id="weight" class="form-input" placeholder="e.g. 120" min="50" max="300" step="0.1">
                         <div class="form-hint">Training range: 72 &ndash; 276 kg</div>
+                    </div>
+
+                    <!-- Optional cascade inputs -->
+                    <div class="form-group" style="margin-bottom:8px;">
+                        <button type="button" class="cascade-toggle" id="cascadeToggle" aria-expanded="false" aria-controls="cascadeBody" onclick="toggleCascade()">
+                            <span>+ Add known post-op weights <span style="color:#94a3b8;font-weight:500;">(optional)</span></span>
+                            <svg class="chev" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
+                        </button>
+                        <div class="cascade-body" id="cascadeBody">
+                            <div class="cascade-hint">If you already know the patient's weight at any of these visits, enter it to lock that point and sharpen the later predictions (cascade model). Units follow the weight selector above (<span id="cascadeUnitLabel">kg</span>).</div>
+                            <div class="cascade-field">
+                                <label for="w_1month">Actual weight at 1 month</label>
+                                <input type="number" id="w_1month" class="form-input" placeholder="optional" min="40" max="300" step="0.1">
+                            </div>
+                            <div class="cascade-field">
+                                <label for="w_3month">Actual weight at 3 months</label>
+                                <input type="number" id="w_3month" class="form-input" placeholder="optional" min="40" max="300" step="0.1">
+                            </div>
+                            <div class="cascade-field" style="margin-bottom:4px;">
+                                <label for="w_6month">Actual weight at 6 months</label>
+                                <input type="number" id="w_6month" class="form-input" placeholder="optional" min="40" max="300" step="0.1">
+                            </div>
+                        </div>
                     </div>
 
                     <button class="predict-btn" id="predictBtn" onclick="runPrediction()" disabled>
@@ -915,30 +1073,27 @@
                     </button>
                 </div>
 
-                <!-- Model performance — integrated in left panel -->
+                <!-- Model performance -->
                 <div class="perf-panel">
                     <div class="perf-panel-title">Model Performance &mdash; 5-Fold CV</div>
+                    <div class="perf-panel-sub" id="perfSub">Sex-aware baseline models</div>
                     <div class="perf-rows" id="metricsGrid"></div>
                 </div>
 
             </div>
 
-            <!-- ==========================================
-                 RIGHT: Chart + BMI + Result cards
-            =========================================== -->
+            <!-- RIGHT: Chart + clinical strip + result cards -->
             <div class="results-col">
 
-                <!-- Chart card -->
                 <div class="chart-panel">
                     <div class="chart-panel-header">
                         <div>
                             <div class="chart-panel-title">Predicted Weight Trajectory</div>
                             <div class="chart-panel-subtitle">Pre-operative through 12 months post-surgery</div>
                         </div>
-                        <span class="chart-ci-badge">95% CI shown</span>
+                        <span class="chart-ci-badge" title="Intervals use empirically-calibrated multipliers (per timepoint) tuned so that ~95% of held-out patients fall within the band — rather than a fixed &plusmn;1.96&sigma;.">Calibrated 95% CI</span>
                     </div>
 
-                    <!-- Placeholder -->
                     <div class="chart-placeholder" id="placeholder">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5" />
@@ -949,19 +1104,20 @@
                         </div>
                     </div>
 
-                    <!-- Loading -->
                     <div class="chart-loading" id="loading">
                         <div class="spinner"></div>
                         <p>Calculating predictions&hellip;</p>
                     </div>
 
-                    <!-- Canvas -->
                     <div class="chart-wrap" id="chartContainer">
                         <canvas id="predictionChart"></canvas>
                     </div>
                 </div>
 
-                <!-- BMI strip — shown after prediction -->
+                <!-- Out-of-range / plausibility advisory -->
+                <div class="range-warning" id="rangeWarning" role="alert" style="display:none;"></div>
+
+                <!-- Clinical summary strip -->
                 <div class="bmi-strip" id="bmiRow">
                     <div class="bmi-strip-inner" id="bmiInner"></div>
                 </div>
@@ -981,7 +1137,7 @@
 
     <!-- Footer -->
     <footer class="footer">
-        <strong>Research Tool Only:</strong> This prediction tool is based on a machine learning model trained on retrospective clinical data. Predictions are estimates with confidence intervals and should not replace clinical judgment. For research and educational purposes only.<br><br>
+        <strong>Research Tool Only:</strong> This prediction tool is based on sex-aware Bayesian machine-learning models trained on retrospective clinical data. Predictions are estimates with calibrated confidence intervals and should not replace clinical judgment. For research and educational purposes only.<br><br>
         <strong>Reference:</strong> Kankaya B, Buyukasik S, Altundal YE, Ozgul M, Etemad A.<br>
         <em>Weight Loss Dynamics After Laparoscopic Sleeve Gastrectomy: A Retrospective Single Center Analysis</em>. Sci Rep. 2025;15(1):8771.<br><br>
         &copy; 2025 A1 Diagnosis &nbsp;&middot;&nbsp; <a href="/">Home</a>
@@ -989,77 +1145,128 @@
 
 <script>
 // =====================================================
-// Bayesian Ridge Predictor (Pure JavaScript)
+// Sex-Aware Bayesian Predictor (Pure JavaScript, schema v3)
 // =====================================================
 let modelData = null;
+const TIME_LABELS = ['1_week', '1_month', '3_month', '6_month', '12_month'];
+const DISPLAY = { '1_week': '1 Week', '1_month': '1 Month', '3_month': '3 Months', '6_month': '6 Months', '12_month': '12 Months' };
+// Timepoints that have an optional measured-weight input
+const CASCADE_INPUTS = { '1_month': 'w_1month', '3_month': 'w_3month', '6_month': 'w_6month' };
 
-// Load model (5 KB instead of 1 MB)
+let selectedSex = null;   // 'female' | 'male'
+let heightUnit = 'cm';
+let weightUnit = 'kg';
+
 fetch('models_bayesian.json')
     .then(r => r.json())
     .then(data => {
         modelData = data;
         document.getElementById('predictBtn').disabled = false;
         document.getElementById('predictBtn').textContent = 'Predict Weight Trajectory';
-        renderMetrics(data.time_points);
+        if (data.n_cohort) document.getElementById('statCohort').textContent = data.n_cohort.toLocaleString();
+        renderBaselineMetrics();
     })
     .catch(err => {
         console.error('Model load error:', err);
         document.getElementById('predictBtn').textContent = 'Error Loading Model';
     });
 
-// Bayesian Ridge prediction: y = intercept + age*coef_age + height*coef_height + weight*coef_weight
-function predictBayesian(tp, features) {
-    const coefs = tp.coefficients;
-    const pred = tp.intercept
-        + coefs.age * features[0]
-        + coefs.height_cm * features[1]
-        + coefs.preop_weight_kg * features[2];
-    return pred;
+// --- Generalized linear prediction + native Bayesian CI ---
+function predictWithModel(M, featVals) {
+    // Point estimate from unscaled closed form
+    let pred = M.intercept;
+    for (let i = 0; i < M.coef_list.length; i++) pred += M.coef_list[i] * featVals[i];
+
+    // Scaled features -> native predictive variance: 1/alpha + x' Sigma x
+    const mean = M.scaler_mean, scale = M.scaler_scale, sigma = M.model_sigma, alpha = M.model_alpha;
+    const xs = featVals.map((v, i) => (v - mean[i]) / scale[i]);
+    let xSx = 0;
+    for (let i = 0; i < xs.length; i++)
+        for (let j = 0; j < xs.length; j++)
+            xSx += xs[i] * sigma[i][j] * xs[j];
+    const nativeStd = Math.sqrt(Math.max(1.0 / alpha + xSx, 0));
+    const ciStd = Math.max(nativeStd, M.residual_std);
+    const margin = M.ci_mult_95 * ciStd;
+    return { pred, lower: pred - margin, upper: pred + margin };
 }
 
-// Bayesian Ridge native confidence interval using stored Sigma matrix
-function predictBayesianCI(tp, features) {
-    const pred = predictBayesian(tp, features);
+// Build the feature vector a model expects, from raw inputs.
+function featuresFor(M, base, anchorWeight) {
+    const map = {
+        age: base.age,
+        height_cm: base.height,
+        preop_weight_kg: base.weight,
+        sex: base.sex,
+        anchor_weight_kg: anchorWeight
+    };
+    return M.features.map(f => map[f]);
+}
 
-    // Scale features using stored scaler parameters
-    const mean = tp.scaler_mean;
-    const scale = tp.scaler_scale;
-    const x_scaled = features.map((v, i) => (v - mean[i]) / scale[i]);
-
-    // Prediction variance: sigma² = 1/alpha + x_scaled' @ Sigma @ x_scaled
-    const sigma = tp.model_sigma;
-    const alpha = tp.model_alpha;
-
-    let xSx = 0;
-    for (let i = 0; i < 3; i++) {
-        for (let j = 0; j < 3; j++) {
-            xSx += x_scaled[i] * sigma[i][j] * x_scaled[j];
+// Choose the best validated model for a target given which prior weights were entered.
+// Candidates: baseline + any anchored model whose anchor weight the user supplied.
+// Pick the lowest cross-validated MAE so cascade never does worse than baseline.
+function selectBestModel(target, enteredPriors) {
+    const entry = modelData.targets && modelData.targets[target];
+    if (!entry || !entry.baseline) throw new Error('Model data missing for timepoint: ' + target);
+    let best = { M: entry.baseline, anchor: null, anchorWeight: null, mae: entry.baseline.metrics.mae };
+    const anchors = modelData.anchors[target] || [];
+    for (const a of anchors) {
+        if (enteredPriors[a] != null && entry.anchored && entry.anchored[a]) {
+            const cand = entry.anchored[a];
+            if (cand.metrics.mae < best.mae) {
+                best = { M: cand, anchor: a, anchorWeight: enteredPriors[a], mae: cand.metrics.mae };
+            }
         }
     }
-    const predVar = 1.0 / alpha + xSx;
-    const predStd = Math.sqrt(Math.max(predVar, 0));
-
-    return { pred, predStd };
+    return best;
 }
 
-// Unit state
-let heightUnit = 'cm';
-let weightUnit = 'kg';
+// --- Sex selector ---
+function setSex(sex) {
+    selectedSex = sex;
+    document.querySelectorAll('#sex-toggle .sex-btn').forEach(b => {
+        const on = b.dataset.sex === sex;
+        b.classList.toggle('active', on);
+        b.setAttribute('aria-checked', on ? 'true' : 'false');
+    });
+}
 
+// --- Cascade panel ---
+function toggleCascade() {
+    const btn = document.getElementById('cascadeToggle');
+    const open = btn.classList.toggle('open');
+    document.getElementById('cascadeBody').classList.toggle('open');
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+}
+
+// --- Units ---
 function setHeightUnit(unit) {
     heightUnit = unit;
     document.querySelectorAll('#height-toggle .unit-btn').forEach(b => {
         b.classList.toggle('active', b.dataset.unit === unit);
+    });
+    document.querySelectorAll('#height-toggle .unit-btn').forEach(b => {
+        b.setAttribute('aria-checked', b.dataset.unit === unit ? 'true' : 'false');
     });
     document.getElementById('height-cm-input').style.display = unit === 'cm' ? 'block' : 'none';
     document.getElementById('height-ft-input').style.display = unit === 'ft' ? 'block' : 'none';
 }
 
 function setWeightUnit(unit) {
+    if (unit === weightUnit) return;
+    // Convert any already-entered values so the physical weight is preserved.
+    const factor = unit === 'lbs' ? 2.20462 : (1 / 2.20462);
+    ['weight', 'w_1month', 'w_3month', 'w_6month'].forEach(id => {
+        const el = document.getElementById(id);
+        const v = parseFloat(el.value);
+        if (!isNaN(v)) el.value = (v * factor).toFixed(1);
+    });
     weightUnit = unit;
     document.querySelectorAll('#weight-toggle .unit-btn').forEach(b => {
         b.classList.toggle('active', b.dataset.unit === unit);
+        b.setAttribute('aria-checked', b.dataset.unit === unit ? 'true' : 'false');
     });
+    document.getElementById('cascadeUnitLabel').textContent = unit;
 }
 
 function getHeightCm() {
@@ -1072,72 +1279,94 @@ function getHeightCm() {
     }
 }
 
-function getWeightKg() {
-    const val = parseFloat(document.getElementById('weight').value);
-    if (weightUnit === 'lbs') return val * 0.453592;
-    return val;
-}
+function toKg(val) { return weightUnit === 'lbs' ? val * 0.453592 : val; }
+function getWeightKg() { return toKg(parseFloat(document.getElementById('weight').value)); }
 
-// Main prediction
+// --- Main prediction ---
 function runPrediction() {
     if (!modelData) return;
+
+    if (!selectedSex) { alert('Please select Sex (Female or Male) — the models are sex-specific.'); return; }
 
     const age = parseFloat(document.getElementById('age').value);
     const heightCm = getHeightCm();
     const weightKg = getWeightKg();
 
-    if (isNaN(age) || isNaN(heightCm) || isNaN(weightKg)) {
-        alert('Please fill in all fields.');
-        return;
+    if (isNaN(age) || isNaN(heightCm) || isNaN(weightKg)) { alert('Please fill in age, height and pre-op weight.'); return; }
+    if (age < 10 || age > 90) { alert('Please enter a valid age (10-90 years).'); return; }
+    if (heightCm < 100 || heightCm > 250) { alert('Please enter a valid height.'); return; }
+    if (weightKg < 50 || weightKg > 350) { alert('Please enter a valid weight.'); return; }
+
+    // Collect optional measured post-op weights (converted to kg)
+    const enteredPriors = {};
+    const measured = {};
+    let prevKg = weightKg;
+    const warns = [];
+    for (const [tp, inputId] of Object.entries(CASCADE_INPUTS)) {
+        const raw = parseFloat(document.getElementById(inputId).value);
+        if (isNaN(raw)) continue;
+        const kg = toKg(raw);
+        if (kg < 30 || kg > 350) { alert(`The entered ${DISPLAY[tp]} weight looks out of range — please check it.`); return; }
+        enteredPriors[tp] = kg;
+        measured[tp] = kg;
+        // Plausibility (non-blocking): weight should generally fall after surgery
+        if (kg > weightKg + 2) warns.push(`${DISPLAY[tp]} weight is above the pre-op weight`);
+        else if (kg > prevKg + 2) warns.push(`${DISPLAY[tp]} weight is higher than an earlier visit`);
+        prevKg = kg;
     }
 
-    if (age < 10 || age > 90) {
-        alert('Please enter a valid age (10-90 years).');
-        return;
+    // Out-of-training-range advisory (non-blocking) using the model's data ranges
+    const dr = modelData.data_ranges;
+    if (dr) {
+        if (age < dr.age.min || age > dr.age.max) warns.push(`age ${age} yr is outside the training range (${dr.age.min}–${dr.age.max})`);
+        if (heightCm < dr.height.min || heightCm > dr.height.max) warns.push(`height ${heightCm.toFixed(0)} cm is outside the training range (${dr.height.min}–${dr.height.max})`);
+        if (weightKg < dr.weight.min || weightKg > dr.weight.max) warns.push(`pre-op weight ${weightKg.toFixed(0)} kg is outside the training range (${dr.weight.min}–${dr.weight.max})`);
     }
-    if (heightCm < 100 || heightCm > 250) {
-        alert('Please enter a valid height.');
-        return;
-    }
-    if (weightKg < 50 || weightKg > 350) {
-        alert('Please enter a valid weight.');
-        return;
-    }
+    showRangeWarning(warns);
 
-    // Show loading
+    const base = { age, height: heightCm, weight: weightKg, sex: modelData.sex_encoding[selectedSex] };
+
     document.getElementById('placeholder').style.display = 'none';
     document.getElementById('loading').style.display = 'flex';
     document.getElementById('chartContainer').style.display = 'none';
     document.getElementById('resultsStripWrapper').style.display = 'none';
     document.getElementById('bmiRow').style.display = 'none';
 
-    // Predict with slight delay for UI
     setTimeout(() => {
-        const features = [age, heightCm, weightKg];
-        const timeLabels = ['1_week', '1_month', '3_month', '6_month', '12_month'];
-        const displayLabels = ['1 Week', '1 Month', '3 Months', '6 Months', '12 Months'];
-
         const predictions = {};
-        for (const t of timeLabels) {
-            const tp = modelData.time_points[t];
-            const { pred, predStd } = predictBayesianCI(tp, features);
-            // Use the larger of native Bayesian std and CV residual std for conservative CI
-            const ciStd = Math.max(predStd, tp.residual_std);
-            predictions[t] = {
-                weight: Math.round(pred * 10) / 10,
-                lower: Math.round((pred - 1.96 * ciStd) * 10) / 10,
-                upper: Math.round((pred + 1.96 * ciStd) * 10) / 10
-            };
+        const usage = {};   // per timepoint: {type:'measured'|'cascade'|'baseline', anchor, M}
+
+        for (const t of TIME_LABELS) {
+            if (measured[t] != null) {
+                // User supplied this weight -> lock it (no uncertainty)
+                predictions[t] = { weight: round1(measured[t]), lower: round1(measured[t]), upper: round1(measured[t]) };
+                usage[t] = { type: 'measured', M: null };
+                continue;
+            }
+            const sel = selectBestModel(t, enteredPriors);
+            const fv = featuresFor(sel.M, base, sel.anchorWeight);
+            const r = predictWithModel(sel.M, fv);
+            // Safety rail: keep the estimate and its interval inside a plausible band
+            // [25 kg, pre-op + 5 kg], then GUARANTEE lower <= point <= upper so the
+            // displayed interval can never be inverted by asymmetric clamping.
+            const FLOOR = 25, CEIL = weightKg + 5;
+            let w  = Math.min(Math.max(r.pred,  FLOOR), CEIL);
+            let lo = Math.min(Math.max(r.lower, FLOOR), CEIL);
+            let hi = Math.min(Math.max(r.upper, FLOOR), CEIL);
+            lo = Math.min(lo, w);   // lower bound never above the point estimate
+            hi = Math.max(hi, w);   // upper bound never below the point estimate
+            predictions[t] = { weight: round1(w), lower: round1(lo), upper: round1(hi) };
+            usage[t] = { type: sel.anchor ? 'cascade' : 'baseline', anchor: sel.anchor, M: sel.M };
         }
 
-        // BMI calculation
         const heightM = heightCm / 100;
         const preBMI = weightKg / (heightM * heightM);
         const postBMI_12 = predictions['12_month'].weight / (heightM * heightM);
 
-        renderResults(predictions, weightKg, timeLabels, displayLabels);
-        renderChart(predictions, weightKg, timeLabels, displayLabels);
-        renderBMI(preBMI, postBMI_12, weightKg, predictions['12_month'].weight);
+        renderResults(predictions, weightKg, usage);
+        renderChart(predictions, weightKg, measured);
+        renderClinical(preBMI, postBMI_12, weightKg, predictions['12_month'].weight, heightCm);
+        renderActiveMetrics(usage);
 
         document.getElementById('loading').style.display = 'none';
         document.getElementById('chartContainer').style.display = 'block';
@@ -1146,133 +1375,117 @@ function runPrediction() {
     }, 300);
 }
 
-// Render result cards
-function renderResults(predictions, preOpWeight, timeLabels, displayLabels) {
+function round1(x) { return Math.round(x * 10) / 10; }
+
+// Show / hide the non-blocking advisory for out-of-range or implausible inputs
+function showRangeWarning(warns) {
+    const el = document.getElementById('rangeWarning');
+    if (!warns || warns.length === 0) { el.style.display = 'none'; el.innerHTML = ''; return; }
+    el.innerHTML = '<strong>&#9888; Please interpret with caution:</strong><ul>' +
+        warns.map(w => `<li>${w}</li>`).join('') +
+        '</ul><div style="margin-top:4px;">Predictions outside the training distribution are extrapolations and may be less reliable.</div>';
+    el.style.display = 'block';
+}
+
+// --- Result cards ---
+function renderResults(predictions, preOpWeight, usage) {
     const grid = document.getElementById('resultsGrid');
     grid.innerHTML = '';
 
-    for (let i = 0; i < timeLabels.length; i++) {
-        const t = timeLabels[i];
+    for (let i = 0; i < TIME_LABELS.length; i++) {
+        const t = TIME_LABELS[i];
         const p = predictions[t];
+        const u = usage[t];
         const loss = preOpWeight - p.weight;
         const lossPct = (loss / preOpWeight * 100);
-        const isLast = i === timeLabels.length - 1;
+        const isLast = i === TIME_LABELS.length - 1;
+        const isMeasured = u.type === 'measured';
 
-        const displayWeight = weightUnit === 'lbs'
-            ? (p.weight * 2.20462).toFixed(1) + ' lbs'
-            : p.weight.toFixed(1) + ' kg';
-        const displayLoss = weightUnit === 'lbs'
-            ? (loss * 2.20462).toFixed(1) + ' lbs'
-            : loss.toFixed(1) + ' kg';
-        const displayLower = weightUnit === 'lbs'
-            ? (p.lower * 2.20462).toFixed(0)
-            : p.lower.toFixed(1);
-        const displayUpper = weightUnit === 'lbs'
-            ? (p.upper * 2.20462).toFixed(0)
-            : p.upper.toFixed(1);
+        const displayWeight = weightUnit === 'lbs' ? (p.weight * 2.20462).toFixed(1) + ' lbs' : p.weight.toFixed(1) + ' kg';
+        const displayLoss = weightUnit === 'lbs' ? (loss * 2.20462).toFixed(1) + ' lbs' : loss.toFixed(1) + ' kg';
+        const displayLower = weightUnit === 'lbs' ? (p.lower * 2.20462).toFixed(1) : p.lower.toFixed(1);
+        const displayUpper = weightUnit === 'lbs' ? (p.upper * 2.20462).toFixed(1) : p.upper.toFixed(1);
         const unitLabel = weightUnit === 'lbs' ? 'lbs' : 'kg';
 
+        let cls = 'result-card';
+        if (isMeasured) cls += ' measured';
+        else if (isLast) cls += ' highlight';
+
+        let badge = '';
+        if (isMeasured) badge = '<div class="result-badge meas">Measured</div>';
+        else if (u.type === 'cascade') badge = '<div class="result-badge casc">Cascade</div>';
+
+        const ciLine = isMeasured
+            ? '<div class="result-ci">Entered measurement</div>'
+            : `<div class="result-ci">95% CI: ${displayLower}&ndash;${displayUpper} ${unitLabel}</div>`;
+
         const card = document.createElement('div');
-        card.className = 'result-card' + (isLast ? ' highlight' : '');
+        card.className = cls;
         card.innerHTML = `
-            <div class="result-time">${displayLabels[i]}</div>
+            ${badge}
+            <div class="result-time">${DISPLAY[t]}</div>
             <div class="result-weight">${displayWeight}</div>
             <div class="result-loss">&darr; ${displayLoss} (${lossPct.toFixed(1)}%)</div>
-            <div class="result-ci">95% CI: ${displayLower}&ndash;${displayUpper} ${unitLabel}</div>
+            ${ciLine}
         `;
         grid.appendChild(card);
     }
 }
 
-// Render chart
+// --- Chart ---
 let chartInstance = null;
-function renderChart(predictions, preOpWeight, timeLabels, displayLabels) {
+function renderChart(predictions, preOpWeight, measured) {
     const ctx = document.getElementById('predictionChart').getContext('2d');
-
     if (chartInstance) chartInstance.destroy();
 
-    const labels = ['Pre-Op', ...displayLabels];
+    const labels = ['Pre-Op', ...TIME_LABELS.map(t => DISPLAY[t])];
     const mult = weightUnit === 'lbs' ? 2.20462 : 1;
     const unitLabel = weightUnit === 'lbs' ? 'lbs' : 'kg';
 
-    const mainData = [preOpWeight * mult, ...timeLabels.map(t => predictions[t].weight * mult)];
-    const upperData = [preOpWeight * mult, ...timeLabels.map(t => predictions[t].upper * mult)];
-    const lowerData = [preOpWeight * mult, ...timeLabels.map(t => predictions[t].lower * mult)];
+    const mainData = [preOpWeight * mult, ...TIME_LABELS.map(t => predictions[t].weight * mult)];
+    const upperData = [preOpWeight * mult, ...TIME_LABELS.map(t => predictions[t].upper * mult)];
+    const lowerData = [preOpWeight * mult, ...TIME_LABELS.map(t => predictions[t].lower * mult)];
+
+    // Mark measured points distinctly: purple DIAMOND (shape + colour, not colour alone),
+    // predicted points blue circle, pre-op green circle — distinguishable in greyscale too.
+    const ptColor = ['#16a34a', ...TIME_LABELS.map(t => measured[t] != null ? '#7c3aed' : '#0284c7')];
+    const ptRadius = [6, ...TIME_LABELS.map(t => measured[t] != null ? 8 : 6)];
+    const ptStyle = ['circle', ...TIME_LABELS.map(t => measured[t] != null ? 'rectRot' : 'circle')];
 
     chartInstance = new Chart(ctx, {
         type: 'line',
         data: {
             labels: labels,
             datasets: [
+                { label: '95% CI Upper', data: upperData, borderColor: 'transparent', backgroundColor: 'rgba(14, 165, 233, 0.08)', fill: '+1', pointRadius: 0, tension: 0.4 },
                 {
-                    label: '95% CI Upper',
-                    data: upperData,
-                    borderColor: 'transparent',
-                    backgroundColor: 'rgba(14, 165, 233, 0.08)',
-                    fill: '+1',
-                    pointRadius: 0,
-                    tension: 0.4
+                    label: 'Predicted Weight', data: mainData,
+                    borderColor: '#0284c7', backgroundColor: 'rgba(14, 165, 233, 0.06)', borderWidth: 2.5,
+                    pointBackgroundColor: ptColor, pointBorderColor: 'white', pointBorderWidth: 2.5,
+                    pointStyle: ptStyle, pointRadius: ptRadius, pointHoverRadius: 9, fill: false, tension: 0.4
                 },
-                {
-                    label: 'Predicted Weight',
-                    data: mainData,
-                    borderColor: '#0284c7',
-                    backgroundColor: 'rgba(14, 165, 233, 0.06)',
-                    borderWidth: 2.5,
-                    pointBackgroundColor: '#0284c7',
-                    pointBorderColor: 'white',
-                    pointBorderWidth: 2.5,
-                    pointRadius: 6,
-                    pointHoverRadius: 8,
-                    fill: false,
-                    tension: 0.4
-                },
-                {
-                    label: '95% CI Lower',
-                    data: lowerData,
-                    borderColor: 'transparent',
-                    backgroundColor: 'rgba(14, 165, 233, 0.08)',
-                    fill: '-1',
-                    pointRadius: 0,
-                    tension: 0.4
-                }
+                { label: '95% CI Lower', data: lowerData, borderColor: 'transparent', backgroundColor: 'rgba(14, 165, 233, 0.08)', fill: '-1', pointRadius: 0, tension: 0.4 }
             ]
         },
         options: {
             responsive: true,
             maintainAspectRatio: false,
-            interaction: {
-                intersect: false,
-                mode: 'index'
-            },
+            interaction: { intersect: false, mode: 'index' },
             plugins: {
                 legend: {
                     display: true,
                     labels: {
-                        filter: function(item) {
-                            return item.text === 'Predicted Weight';
-                        },
-                        font: {
-                            family: "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-                            size: 12
-                        },
-                        color: '#475569',
-                        boxWidth: 12,
-                        boxHeight: 12,
-                        borderRadius: 3
+                        filter: function(item) { return item.text === 'Predicted Weight'; },
+                        font: { family: "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif", size: 12 },
+                        color: '#475569', boxWidth: 12, boxHeight: 12, borderRadius: 3
                     }
                 },
                 tooltip: {
-                    backgroundColor: 'rgba(15, 23, 42, 0.92)',
-                    titleColor: '#e2e8f0',
-                    bodyColor: '#cbd5e1',
-                    padding: 12,
-                    cornerRadius: 10,
+                    backgroundColor: 'rgba(15, 23, 42, 0.92)', titleColor: '#e2e8f0', bodyColor: '#cbd5e1',
+                    padding: 12, cornerRadius: 10,
                     callbacks: {
                         label: function(ctx) {
-                            if (ctx.dataset.label === 'Predicted Weight') {
-                                return `  Predicted: ${ctx.parsed.y.toFixed(1)} ${unitLabel}`;
-                            }
+                            if (ctx.dataset.label === 'Predicted Weight') return `  ${ctx.parsed.y.toFixed(1)} ${unitLabel}`;
                             if (ctx.dataset.label === '95% CI Upper') return `  Upper CI: ${ctx.parsed.y.toFixed(1)} ${unitLabel}`;
                             if (ctx.dataset.label === '95% CI Lower') return `  Lower CI: ${ctx.parsed.y.toFixed(1)} ${unitLabel}`;
                             return '';
@@ -1282,95 +1495,117 @@ function renderChart(predictions, preOpWeight, timeLabels, displayLabels) {
             },
             scales: {
                 y: {
-                    title: {
-                        display: true,
-                        text: `Weight (${unitLabel})`,
-                        font: {
-                            family: "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-                            size: 12,
-                            weight: '600'
-                        },
-                        color: '#64748b'
-                    },
-                    ticks: {
-                        font: { family: "-apple-system, sans-serif", size: 11 },
-                        color: '#94a3b8'
-                    },
-                    grid: { color: 'rgba(0,0,0,0.04)' },
-                    border: { display: false }
+                    title: { display: true, text: `Weight (${unitLabel})`, font: { family: "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif", size: 12, weight: '600' }, color: '#64748b' },
+                    ticks: { font: { family: "-apple-system, sans-serif", size: 11 }, color: '#94a3b8' },
+                    grid: { color: 'rgba(0,0,0,0.04)' }, border: { display: false }
                 },
                 x: {
-                    title: {
-                        display: true,
-                        text: 'Time After Surgery',
-                        font: {
-                            family: "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-                            size: 12,
-                            weight: '600'
-                        },
-                        color: '#64748b'
-                    },
-                    ticks: {
-                        font: { family: "-apple-system, sans-serif", size: 11 },
-                        color: '#94a3b8'
-                    },
-                    grid: { display: false },
-                    border: { display: false }
+                    title: { display: true, text: 'Time After Surgery', font: { family: "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif", size: 12, weight: '600' }, color: '#64748b' },
+                    ticks: { font: { family: "-apple-system, sans-serif", size: 11 }, color: '#94a3b8' },
+                    grid: { display: false }, border: { display: false }
                 }
             }
         }
     });
 }
 
-// Render BMI
-function renderBMI(preBMI, postBMI, preWeight, postWeight) {
+// --- Clinical summary (sex-aware) ---
+function renderClinical(preBMI, postBMI, preWeight, postWeight, heightCm) {
     const inner = document.getElementById('bmiInner');
-    const totalLoss = preWeight - postWeight;
-    const ewl = totalLoss / (preWeight - (25 * Math.pow(getHeightCm()/100, 2))) * 100;
-    const ewlDisplay = isFinite(ewl) && ewl > 0 ? ewl.toFixed(1) : 'N/A';
+    const heightM = heightCm / 100;
+
+    // %EWL relative to ideal weight at BMI 25 (standard bariatric convention)
+    const idealBMI25 = 25 * heightM * heightM;
+    const ewl = (preWeight - postWeight) / (preWeight - idealBMI25) * 100;
+    const ewlDisplay = isFinite(ewl) && ewl > 0 ? ewl.toFixed(0) + '%' : 'N/A';
+
+    // Sex-specific ideal body weight (Devine formula)
+    const heightIn = heightCm / 2.54;
+    const ibwBase = selectedSex === 'male' ? 50 : 45.5;
+    let ibw = ibwBase + 2.3 * (heightIn - 60);
+    ibw = Math.max(ibw, 30);
+    const mult = weightUnit === 'lbs' ? 2.20462 : 1;
+    const u = weightUnit === 'lbs' ? 'lbs' : 'kg';
 
     inner.innerHTML = `
         <div class="bmi-item">
             <div class="bmi-item-value">${preBMI.toFixed(1)}</div>
-            <div class="bmi-item-label">Pre-Op BMI (kg/m&sup2;)</div>
+            <div class="bmi-item-label">Pre-Op BMI</div>
+            <div class="bmi-item-sub">kg/m&sup2;</div>
         </div>
         <div class="bmi-item">
             <div class="bmi-item-value">${postBMI.toFixed(1)}</div>
             <div class="bmi-item-label">Predicted 12-Mo BMI</div>
+            <div class="bmi-item-sub">kg/m&sup2;</div>
         </div>
         <div class="bmi-item">
-            <div class="bmi-item-value">${ewlDisplay}%</div>
+            <div class="bmi-item-value">${ewlDisplay}</div>
             <div class="bmi-item-label">%EWL at 12 Months</div>
+            <div class="bmi-item-sub">vs BMI 25</div>
+        </div>
+        <div class="bmi-item" title="Sex-specific estimate via the Devine formula. It is best validated for heights ≥ 5 ft (152 cm); treat results for very short patients as approximate.">
+            <div class="bmi-item-value">${(ibw * mult).toFixed(0)}</div>
+            <div class="bmi-item-label">Ideal Body Weight</div>
+            <div class="bmi-item-sub">${selectedSex === 'male' ? 'male' : 'female'} &middot; ${u} (Devine, est.)</div>
         </div>
     `;
 }
 
-// Render model metrics — now as clean rows in left panel
-function renderMetrics(timePoints) {
+// --- Metrics: baseline (on load) ---
+function renderBaselineMetrics() {
+    document.getElementById('perfSub').textContent = 'Sex-aware baseline models';
     const grid = document.getElementById('metricsGrid');
-    const labels = {
-        '1_week': '1 Week',
-        '1_month': '1 Month',
-        '3_month': '3 Months',
-        '6_month': '6 Months',
-        '12_month': '12 Months'
-    };
-
-    for (const [key, label] of Object.entries(labels)) {
-        const m = timePoints[key].metrics;
-        const row = document.createElement('div');
-        row.className = 'perf-row';
-        row.innerHTML = `
-            <div class="perf-row-label">${label}</div>
-            <div class="perf-row-right">
-                <span class="perf-r2">R&sup2; ${m.r2.toFixed(2)}</span>
-                <span class="perf-mae">MAE &plusmn;${m.mae} kg</span>
-                <span class="perf-n">n=${m.n_samples}</span>
-            </div>
-        `;
-        grid.appendChild(row);
+    grid.innerHTML = '';
+    for (const t of TIME_LABELS) {
+        const M = modelData.targets[t].baseline;
+        grid.appendChild(metricRow(DISPLAY[t], M.metrics, null, false));
     }
 }
+
+// --- Metrics: reflect the models actually used in the last prediction ---
+function renderActiveMetrics(usage) {
+    const anyCascade = Object.values(usage).some(u => u.type === 'cascade');
+    document.getElementById('perfSub').textContent = anyCascade ? 'Models used for this prediction (cascade active)' : 'Sex-aware baseline models';
+    const grid = document.getElementById('metricsGrid');
+    grid.innerHTML = '';
+    for (const t of TIME_LABELS) {
+        const u = usage[t];
+        if (u.type === 'measured') {
+            grid.appendChild(metricRow(DISPLAY[t], null, 'measured', false));
+        } else {
+            grid.appendChild(metricRow(DISPLAY[t], u.M.metrics, u.type === 'cascade' ? ('anchor ' + DISPLAY[u.anchor]) : null, u.type === 'cascade'));
+        }
+    }
+}
+
+function metricRow(label, metrics, tagText, isCascade) {
+    const row = document.createElement('div');
+    if (metrics === null) {
+        row.className = 'perf-row measured';
+        row.innerHTML = `
+            <div class="perf-row-label">${label} <span class="perf-tag meas">Measured</span></div>
+            <div class="perf-row-right"><span class="perf-mae">entered value</span></div>`;
+        return row;
+    }
+    row.className = 'perf-row' + (isCascade ? ' cascade' : '');
+    const tag = tagText ? `<span class="perf-tag ${isCascade ? 'casc' : 'meas'}">${tagText}</span>` : '';
+    if (isCascade) row.title = `Cascade model: conditioned on the known ${tagText.replace('anchor ', '')} weight. Trained on n=${metrics.n} patients who had that measurement (fewer than baseline), and automatically selected only because its validated error is lower.`;
+    row.innerHTML = `
+        <div class="perf-row-label">${label} ${tag}</div>
+        <div class="perf-row-right">
+            <span class="perf-r2">R&sup2; ${metrics.r2.toFixed(2)}</span>
+            <span class="perf-mae">MAE &plusmn;${metrics.mae} kg</span>
+            <span class="perf-n">n=${metrics.n}</span>
+        </div>`;
+    return row;
+}
+
+// Submit on Enter from any input in the form card
+document.querySelectorAll('.form-card input').forEach(el => {
+    el.addEventListener('keydown', e => {
+        if (e.key === 'Enter') { e.preventDefault(); runPrediction(); }
+    });
+});
 </script>
 
 </body>
