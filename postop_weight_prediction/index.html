@@ -94,6 +94,30 @@
             letter-spacing: 0.01em;
         }
 
+        /* Language toggle (EN / TR) */
+        .lang-toggle {
+            display: flex;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 8px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        .lang-btn {
+            padding: 4px 12px;
+            border: none;
+            background: #f8fafc;
+            font-size: 12px;
+            font-weight: 700;
+            color: #64748b;
+            cursor: pointer;
+            font-family: inherit;
+            letter-spacing: 0.02em;
+            transition: background 0.15s, color 0.15s;
+        }
+        .lang-btn:not(:last-child) { border-right: 1.5px solid #e2e8f0; }
+        .lang-btn.active { background: #0284c7; color: #ffffff; }
+        .lang-btn:not(.active):hover { background: #eef2f6; }
+
         /* ================================================
            HEADER
         ================================================ */
@@ -937,35 +961,39 @@
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
             </svg>
-            Back to A1 Diagnosis
+            <span data-i18n="nav_back">Back to A1 Diagnosis</span>
         </a>
+        <div class="lang-toggle" role="group" aria-label="Language / Dil">
+            <button type="button" class="lang-btn" id="lang-en" onclick="setLang('en')">EN</button>
+            <button type="button" class="lang-btn" id="lang-tr" onclick="setLang('tr')">TR</button>
+        </div>
     </nav>
 
     <!-- Hero header -->
     <header class="header">
         <div class="header-content">
-            <div class="header-eyebrow">Bariatric Surgery Analytics</div>
-            <h1>Post-Operative <strong>Weight Prediction</strong></h1>
-            <div class="header-subtitle">Sex-aware weight-loss trajectory after Laparoscopic Sleeve Gastrectomy, with calibrated 95% intervals at five clinical timepoints &mdash; refine further with any known post-op weight.</div>
+            <div class="header-eyebrow" data-i18n="hdr_eyebrow">Bariatric Surgery Analytics</div>
+            <h1 data-i18n-html="hdr_title">Post-Operative <strong>Weight Prediction</strong></h1>
+            <div class="header-subtitle" data-i18n="hdr_subtitle">Sex-aware weight-loss trajectory after Laparoscopic Sleeve Gastrectomy, with calibrated 95% intervals at five clinical timepoints &mdash; refine further with any known post-op weight.</div>
             <div class="header-stats">
                 <div class="header-stat">
                     <div class="header-stat-value" id="statCohort">502</div>
-                    <div class="header-stat-label">Sex-Recorded Patients</div>
+                    <div class="header-stat-label" data-i18n="hdr_stat_cohort">Sex-Recorded Patients</div>
                 </div>
                 <div class="header-stat-divider"></div>
                 <div class="header-stat">
                     <div class="header-stat-value">Bayesian Ridge</div>
-                    <div class="header-stat-label">ML Algorithm</div>
+                    <div class="header-stat-label" data-i18n="hdr_stat_algo">ML Algorithm</div>
                 </div>
                 <div class="header-stat-divider"></div>
                 <div class="header-stat">
-                    <div class="header-stat-value">Calibrated</div>
-                    <div class="header-stat-label">95% Intervals</div>
+                    <div class="header-stat-value" data-i18n="hdr_stat_calibrated">Calibrated</div>
+                    <div class="header-stat-label" data-i18n="hdr_stat_intervals">95% Intervals</div>
                 </div>
                 <div class="header-stat-divider"></div>
                 <div class="header-stat">
-                    <div class="header-stat-value">12 Mo</div>
-                    <div class="header-stat-label">Prediction Range</div>
+                    <div class="header-stat-value" data-i18n="hdr_stat_12mo">12 Mo</div>
+                    <div class="header-stat-label" data-i18n="hdr_stat_range">Prediction Range</div>
                 </div>
             </div>
         </div>
@@ -977,7 +1005,7 @@
             <svg class="disclaimer-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
             </svg>
-            <span><strong>Research tool only.</strong> Predictions are statistical estimates with calibrated 95% intervals and must not replace clinical judgement. Sex-aware models are trained on the 502 patients with recorded sex from a 2,014-patient cohort.</span>
+            <span data-i18n-html="disclaimer"><strong>Research tool only.</strong> Predictions are statistical estimates with calibrated 95% intervals and must not replace clinical judgement. Sex-aware models are trained on the 502 patients with recorded sex from a 2,014-patient cohort.</span>
         </div>
     </div>
 
@@ -989,80 +1017,80 @@
             <div class="form-panel">
 
                 <div class="form-card">
-                    <div class="form-card-title">Enter Patient Details</div>
+                    <div class="form-card-title" data-i18n="form_title">Enter Patient Details</div>
 
                     <!-- Sex (required) -->
                     <div class="form-group">
-                        <label class="form-label">Sex <span class="req-star">*</span></label>
+                        <label class="form-label"><span data-i18n="form_sex">Sex</span> <span class="req-star">*</span></label>
                         <div class="sex-toggle" id="sex-toggle" role="radiogroup" aria-label="Sex (required)">
                             <button type="button" class="sex-btn female" data-sex="female" role="radio" aria-checked="false" onclick="setSex('female')">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><circle cx="12" cy="9" r="5"/><path stroke-linecap="round" d="M12 14v7M9 18h6"/></svg>
-                                Female
+                                <span data-i18n="sex_female">Female</span>
                             </button>
                             <button type="button" class="sex-btn male" data-sex="male" role="radio" aria-checked="false" onclick="setSex('male')">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><circle cx="10" cy="14" r="5"/><path stroke-linecap="round" stroke-linejoin="round" d="M14 10l6-6m0 0h-5m5 0v5"/></svg>
-                                Male
+                                <span data-i18n="sex_male">Male</span>
                             </button>
                         </div>
-                        <div class="form-hint">Required &mdash; models are sex-specific</div>
+                        <div class="form-hint" data-i18n="form_sex_hint">Required &mdash; models are sex-specific</div>
                     </div>
 
                     <!-- Age -->
                     <div class="form-group">
-                        <label class="form-label" for="age">Age <span class="unit-hint">(years)</span> <span class="req-star">*</span></label>
-                        <input type="number" id="age" class="form-input" placeholder="e.g. 42" min="12" max="80" step="1">
-                        <div class="form-hint">Training range: 12 &ndash; 73 years</div>
+                        <label class="form-label" for="age"><span data-i18n="form_age">Age</span> <span class="unit-hint" data-i18n="form_age_unit">(years)</span> <span class="req-star">*</span></label>
+                        <input type="number" id="age" class="form-input" data-i18n-ph="ph_age" placeholder="e.g. 42" min="12" max="80" step="1">
+                        <div class="form-hint" data-i18n="form_age_hint">Training range: 12 &ndash; 73 years</div>
                     </div>
 
                     <!-- Height -->
                     <div class="form-group">
-                        <label class="form-label">Height <span class="req-star">*</span></label>
+                        <label class="form-label"><span data-i18n="form_height">Height</span> <span class="req-star">*</span></label>
                         <div class="unit-toggle" id="height-toggle" role="radiogroup" aria-label="Height unit">
                             <button class="unit-btn active" data-unit="cm" role="radio" aria-checked="true" onclick="setHeightUnit('cm')">cm</button>
                             <button class="unit-btn" data-unit="ft" role="radio" aria-checked="false" onclick="setHeightUnit('ft')">ft / in</button>
                         </div>
                         <div id="height-cm-input">
-                            <input type="number" id="height_cm" class="form-input" placeholder="e.g. 170" min="130" max="220" step="1">
+                            <input type="number" id="height_cm" class="form-input" data-i18n-ph="ph_height_cm" placeholder="e.g. 170" min="130" max="220" step="1">
                         </div>
                         <div id="height-ft-input" style="display:none;">
                             <div class="ft-in-row">
-                                <input type="number" id="height_ft" class="form-input" placeholder="ft" min="4" max="7" step="1">
-                                <input type="number" id="height_in" class="form-input" placeholder="in" min="0" max="11" step="1">
+                                <input type="number" id="height_ft" class="form-input" data-i18n-ph="ph_ft" placeholder="ft" min="4" max="7" step="1">
+                                <input type="number" id="height_in" class="form-input" data-i18n-ph="ph_in" placeholder="in" min="0" max="11" step="1">
                             </div>
                         </div>
-                        <div class="form-hint">Training range: 137 &ndash; 205 cm</div>
+                        <div class="form-hint" data-i18n="form_height_hint">Training range: 137 &ndash; 205 cm</div>
                     </div>
 
                     <!-- Weight -->
                     <div class="form-group">
-                        <label class="form-label">Pre-Operative Weight <span class="req-star">*</span></label>
+                        <label class="form-label"><span data-i18n="form_weight">Pre-Operative Weight</span> <span class="req-star">*</span></label>
                         <div class="unit-toggle" id="weight-toggle" role="radiogroup" aria-label="Weight unit">
                             <button class="unit-btn active" data-unit="kg" role="radio" aria-checked="true" onclick="setWeightUnit('kg')">kg</button>
                             <button class="unit-btn" data-unit="lbs" role="radio" aria-checked="false" onclick="setWeightUnit('lbs')">lbs</button>
                         </div>
-                        <input type="number" id="weight" class="form-input" placeholder="e.g. 120" min="50" max="300" step="0.1">
-                        <div class="form-hint">Training range: 72 &ndash; 276 kg</div>
+                        <input type="number" id="weight" class="form-input" data-i18n-ph="ph_weight" placeholder="e.g. 120" min="50" max="300" step="0.1">
+                        <div class="form-hint" data-i18n="form_weight_hint">Training range: 72 &ndash; 276 kg</div>
                     </div>
 
                     <!-- Optional cascade inputs -->
                     <div class="form-group" style="margin-bottom:8px;">
                         <button type="button" class="cascade-toggle" id="cascadeToggle" aria-expanded="false" aria-controls="cascadeBody" onclick="toggleCascade()">
-                            <span>+ Add known post-op weights <span style="color:#94a3b8;font-weight:500;">(optional)</span></span>
+                            <span><span data-i18n="cascade_toggle">+ Add known post-op weights</span> <span style="color:#94a3b8;font-weight:500;" data-i18n="cascade_optional">(optional)</span></span>
                             <svg class="chev" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
                         </button>
                         <div class="cascade-body" id="cascadeBody">
-                            <div class="cascade-hint">If you already know the patient's weight at any of these visits, enter it to lock that point and sharpen the later predictions (cascade model). Units follow the weight selector above (<span id="cascadeUnitLabel">kg</span>).</div>
+                            <div class="cascade-hint"><span data-i18n="cascade_hint">If you already know the patient's weight at any of these visits, enter it to lock that point and sharpen the later predictions (cascade model). Units follow the weight selector above</span> (<span id="cascadeUnitLabel">kg</span>).</div>
                             <div class="cascade-field">
-                                <label for="w_1month">Actual weight at 1 month</label>
-                                <input type="number" id="w_1month" class="form-input" placeholder="optional" min="40" max="300" step="0.1">
+                                <label for="w_1month" data-i18n="cascade_w1">Actual weight at 1 month</label>
+                                <input type="number" id="w_1month" class="form-input" data-i18n-ph="ph_optional" placeholder="optional" min="40" max="300" step="0.1">
                             </div>
                             <div class="cascade-field">
-                                <label for="w_3month">Actual weight at 3 months</label>
-                                <input type="number" id="w_3month" class="form-input" placeholder="optional" min="40" max="300" step="0.1">
+                                <label for="w_3month" data-i18n="cascade_w3">Actual weight at 3 months</label>
+                                <input type="number" id="w_3month" class="form-input" data-i18n-ph="ph_optional" placeholder="optional" min="40" max="300" step="0.1">
                             </div>
                             <div class="cascade-field" style="margin-bottom:4px;">
-                                <label for="w_6month">Actual weight at 6 months</label>
-                                <input type="number" id="w_6month" class="form-input" placeholder="optional" min="40" max="300" step="0.1">
+                                <label for="w_6month" data-i18n="cascade_w6">Actual weight at 6 months</label>
+                                <input type="number" id="w_6month" class="form-input" data-i18n-ph="ph_optional" placeholder="optional" min="40" max="300" step="0.1">
                             </div>
                         </div>
                     </div>
@@ -1074,8 +1102,8 @@
 
                 <!-- Model performance -->
                 <div class="perf-panel">
-                    <div class="perf-panel-title">Model Performance &mdash; 5-Fold CV</div>
-                    <div class="perf-panel-sub" id="perfSub">Sex-aware baseline models</div>
+                    <div class="perf-panel-title" data-i18n="perf_title">Model Performance &mdash; 5-Fold CV</div>
+                    <div class="perf-panel-sub" id="perfSub" data-i18n="perf_sub_baseline">Sex-aware baseline models</div>
                     <div class="perf-rows" id="metricsGrid"></div>
                 </div>
 
@@ -1087,10 +1115,10 @@
                 <div class="chart-panel">
                     <div class="chart-panel-header">
                         <div>
-                            <div class="chart-panel-title">Predicted Weight Trajectory</div>
-                            <div class="chart-panel-subtitle">Pre-operative through 12 months post-surgery</div>
+                            <div class="chart-panel-title" data-i18n="chart_title">Predicted Weight Trajectory</div>
+                            <div class="chart-panel-subtitle" data-i18n="chart_subtitle">Pre-operative through 12 months post-surgery</div>
                         </div>
-                        <span class="chart-ci-badge" title="Intervals use empirically-calibrated multipliers (per timepoint) tuned so that ~95% of held-out patients fall within the band — rather than a fixed &plusmn;1.96&sigma;.">Calibrated 95% CI</span>
+                        <span class="chart-ci-badge" data-i18n="chart_ci_badge" data-i18n-title="chart_ci_title" title="Intervals use empirically-calibrated multipliers (per timepoint) tuned so that ~95% of held-out patients fall within the band — rather than a fixed &plusmn;1.96&sigma;.">Calibrated 95% CI</span>
                     </div>
 
                     <div class="chart-placeholder" id="placeholder">
@@ -1098,14 +1126,14 @@
                             <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5" />
                         </svg>
                         <div>
-                            <div class="chart-placeholder-text">Enter patient details to generate prediction</div>
-                            <div class="chart-placeholder-sub">Weight trajectory with confidence intervals will appear here</div>
+                            <div class="chart-placeholder-text" data-i18n="chart_ph">Enter patient details to generate prediction</div>
+                            <div class="chart-placeholder-sub" data-i18n="chart_ph_sub">Weight trajectory with confidence intervals will appear here</div>
                         </div>
                     </div>
 
                     <div class="chart-loading" id="loading">
                         <div class="spinner"></div>
-                        <p>Calculating predictions&hellip;</p>
+                        <p data-i18n="chart_loading">Calculating predictions&hellip;</p>
                     </div>
 
                     <div class="chart-wrap" id="chartContainer">
@@ -1124,7 +1152,7 @@
                 <!-- Result cards -->
                 <div class="results-strip" id="resultsStripWrapper">
                     <div class="results-strip-header">
-                        <div class="section-label" style="margin-bottom:0;">Predicted Weight at Each Timepoint</div>
+                        <div class="section-label" style="margin-bottom:0;" data-i18n="results_section">Predicted Weight at Each Timepoint</div>
                     </div>
                     <div class="results-grid" id="resultsGrid"></div>
                 </div>
@@ -1136,19 +1164,270 @@
 
     <!-- Footer -->
     <footer class="footer">
-        <strong>Research Tool Only:</strong> This prediction tool is based on sex-aware Bayesian machine-learning models trained on retrospective clinical data. Predictions are estimates with calibrated confidence intervals and should not replace clinical judgment. For research and educational purposes only.<br><br>
-        <strong>Reference:</strong> Kankaya B, Buyukasik S, Altundal YE, Ozgul M, Etemad A.<br>
+        <span data-i18n-html="footer_research"><strong>Research Tool Only:</strong> This prediction tool is based on sex-aware Bayesian machine-learning models trained on retrospective clinical data. Predictions are estimates with calibrated confidence intervals and should not replace clinical judgment. For research and educational purposes only.</span><br><br>
+        <strong data-i18n="footer_reference_label">Reference:</strong> Kankaya B, Buyukasik S, Altundal YE, Ozgul M, Etemad A.<br>
         <em>Weight Loss Dynamics After Laparoscopic Sleeve Gastrectomy: A Retrospective Single Center Analysis</em>. Sci Rep. 2025;15(1):8771.<br><br>
-        &copy; 2025 A1 Diagnosis &nbsp;&middot;&nbsp; <a href="/">Home</a>
+        &copy; 2025 A1 Diagnosis &nbsp;&middot;&nbsp; <a href="/" data-i18n="footer_home">Home</a>
     </footer>
 
 <script>
 // =====================================================
 // Sex-Aware Bayesian Predictor (Pure JavaScript, schema v3)
 // =====================================================
+
+// ===================== i18n (EN / TR) =====================
+const I18N = {
+  en: {
+    nav_back: "Back to A1 Diagnosis",
+    hdr_eyebrow: "Bariatric Surgery Analytics",
+    hdr_title: "Post-Operative <strong>Weight Prediction</strong>",
+    hdr_subtitle: "Sex-aware weight-loss trajectory after Laparoscopic Sleeve Gastrectomy, with calibrated 95% intervals at five clinical timepoints — refine further with any known post-op weight.",
+    hdr_stat_cohort: "Sex-Recorded Patients",
+    hdr_stat_algo: "ML Algorithm",
+    hdr_stat_calibrated: "Calibrated",
+    hdr_stat_intervals: "95% Intervals",
+    hdr_stat_12mo: "12 Mo",
+    hdr_stat_range: "Prediction Range",
+    disclaimer: "<strong>Research tool only.</strong> Predictions are statistical estimates with calibrated 95% intervals and must not replace clinical judgement. Sex-aware models are trained on the 502 patients with recorded sex from a 2,014-patient cohort.",
+    form_title: "Enter Patient Details",
+    form_sex: "Sex",
+    sex_female: "Female",
+    sex_male: "Male",
+    form_sex_hint: "Required — models are sex-specific",
+    form_age: "Age",
+    form_age_unit: "(years)",
+    form_age_hint: "Training range: 12 – 73 years",
+    ph_age: "e.g. 42",
+    form_height: "Height",
+    form_height_hint: "Training range: 137 – 205 cm",
+    ph_height_cm: "e.g. 170",
+    ph_ft: "ft",
+    ph_in: "in",
+    form_weight: "Pre-Operative Weight",
+    form_weight_hint: "Training range: 72 – 276 kg",
+    ph_weight: "e.g. 120",
+    cascade_toggle: "+ Add known post-op weights",
+    cascade_optional: "(optional)",
+    cascade_hint: "If you already know the patient's weight at any of these visits, enter it to lock that point and sharpen the later predictions (cascade model). Units follow the weight selector above",
+    cascade_w1: "Actual weight at 1 month",
+    cascade_w3: "Actual weight at 3 months",
+    cascade_w6: "Actual weight at 6 months",
+    ph_optional: "optional",
+    btn_loading: "Loading Model…",
+    btn_predict: "Predict Weight Trajectory",
+    btn_error: "Error Loading Model",
+    perf_title: "Model Performance — 5-Fold CV",
+    perf_sub_baseline: "Sex-aware baseline models",
+    perf_sub_cascade: "Models used for this prediction (cascade active)",
+    chart_title: "Predicted Weight Trajectory",
+    chart_subtitle: "Pre-operative through 12 months post-surgery",
+    chart_ci_badge: "Calibrated 95% CI",
+    chart_ci_title: "Intervals use empirically-calibrated multipliers (per timepoint) tuned so that ~95% of held-out patients fall within the band — rather than a fixed ±1.96σ.",
+    chart_ph: "Enter patient details to generate prediction",
+    chart_ph_sub: "Weight trajectory with confidence intervals will appear here",
+    chart_loading: "Calculating predictions…",
+    results_section: "Predicted Weight at Each Timepoint",
+    footer_research: "<strong>Research Tool Only:</strong> This prediction tool is based on sex-aware Bayesian machine-learning models trained on retrospective clinical data. Predictions are estimates with calibrated confidence intervals and should not replace clinical judgment. For research and educational purposes only.",
+    footer_reference_label: "Reference:",
+    footer_home: "Home",
+    t_1_week: "1 Week",
+    t_1_month: "1 Month",
+    t_3_month: "3 Months",
+    t_6_month: "6 Months",
+    t_12_month: "12 Months",
+    alert_sex: "Please select Sex (Female or Male) — the models are sex-specific.",
+    alert_fill: "Please fill in age, height and pre-op weight.",
+    alert_age: "Please enter a valid age (10-90 years).",
+    alert_height: "Please enter a valid height.",
+    alert_weight: "Please enter a valid weight.",
+    alert_cascade_range: "The entered {tp} weight looks out of range — please check it.",
+    warn_above_preop: "{tp} weight is above the pre-op weight",
+    warn_above_prev: "{tp} weight is higher than an earlier visit",
+    warn_age_range: "age {v} yr is outside the training range ({min}–{max})",
+    warn_height_range: "height {v} cm is outside the training range ({min}–{max})",
+    warn_weight_range: "pre-op weight {v} kg is outside the training range ({min}–{max})",
+    warn_caution: "Please interpret with caution:",
+    warn_extrapolation: "Predictions outside the training distribution are extrapolations and may be less reliable.",
+    card_measured: "Measured",
+    card_cascade: "Cascade",
+    card_entered: "Entered measurement",
+    card_ci: "95% CI:",
+    chart_preop: "Pre-Op",
+    chart_legend: "Predicted Weight",
+    chart_tt_upper: "Upper CI:",
+    chart_tt_lower: "Lower CI:",
+    chart_y: "Weight",
+    chart_x: "Time After Surgery",
+    clin_prebmi: "Pre-Op BMI",
+    clin_postbmi: "Predicted 12-Mo BMI",
+    clin_ewl: "%EWL at 12 Months",
+    clin_ewl_sub: "vs BMI 25",
+    clin_ibw: "Ideal Body Weight",
+    clin_male: "male",
+    clin_female: "female",
+    clin_ibw_sub: "(Devine, est.)",
+    clin_ibw_title: "Sex-specific estimate via the Devine formula. It is best validated for heights ≥ 5 ft (152 cm); treat results for very short patients as approximate.",
+    clin_na: "N/A",
+    metric_measured: "Measured",
+    metric_entered: "entered value",
+    metric_anchor: "anchor",
+    metric_cascade_title: "Cascade model: conditioned on the known {anchor} weight. Trained on n={n} patients who had that measurement (fewer than baseline), and automatically selected only because its validated error is lower.",
+  },
+  tr: {
+    nav_back: "A1 Diagnosis'e Dön",
+    hdr_eyebrow: "Bariatrik Cerrahi Analitiği",
+    hdr_title: "Ameliyat Sonrası <strong>Kilo Tahmini</strong>",
+    hdr_subtitle: "Laparoskopik Sleeve Gastrektomi sonrası cinsiyete duyarlı kilo kaybı seyri; beş klinik zaman noktasında kalibre edilmiş %95 aralıklarla — bilinen herhangi bir ameliyat sonrası kilo ile daha da hassaslaştırın.",
+    hdr_stat_cohort: "Cinsiyeti Kayıtlı Hasta",
+    hdr_stat_algo: "ML Algoritması",
+    hdr_stat_calibrated: "Kalibre",
+    hdr_stat_intervals: "%95 Aralık",
+    hdr_stat_12mo: "12 Ay",
+    hdr_stat_range: "Tahmin Aralığı",
+    disclaimer: "<strong>Yalnızca araştırma aracı.</strong> Tahminler, kalibre edilmiş %95 aralıklara sahip istatistiksel kestirimlerdir ve klinik değerlendirmenin yerini almamalıdır. Cinsiyete duyarlı modeller, 2.014 hastalık bir kohorttan cinsiyeti kayıtlı 502 hasta üzerinde eğitilmiştir.",
+    form_title: "Hasta Bilgilerini Girin",
+    form_sex: "Cinsiyet",
+    sex_female: "Kadın",
+    sex_male: "Erkek",
+    form_sex_hint: "Zorunlu — modeller cinsiyete özgüdür",
+    form_age: "Yaş",
+    form_age_unit: "(yıl)",
+    form_age_hint: "Eğitim aralığı: 12 – 73 yıl",
+    ph_age: "örn. 42",
+    form_height: "Boy",
+    form_height_hint: "Eğitim aralığı: 137 – 205 cm",
+    ph_height_cm: "örn. 170",
+    ph_ft: "ft",
+    ph_in: "inç",
+    form_weight: "Ameliyat Öncesi Kilo",
+    form_weight_hint: "Eğitim aralığı: 72 – 276 kg",
+    ph_weight: "örn. 120",
+    cascade_toggle: "+ Bilinen ameliyat sonrası kiloları ekle",
+    cascade_optional: "(isteğe bağlı)",
+    cascade_hint: "Hastanın bu ziyaretlerden herhangi birindeki kilosunu zaten biliyorsanız, o noktayı sabitlemek ve sonraki tahminleri keskinleştirmek için girin (kademeli model). Birimler yukarıdaki kilo seçicisini izler",
+    cascade_w1: "1. aydaki gerçek kilo",
+    cascade_w3: "3. aydaki gerçek kilo",
+    cascade_w6: "6. aydaki gerçek kilo",
+    ph_optional: "isteğe bağlı",
+    btn_loading: "Model Yükleniyor…",
+    btn_predict: "Kilo Seyrini Tahmin Et",
+    btn_error: "Model Yüklenemedi",
+    perf_title: "Model Performansı — 5 Katlı ÇD",
+    perf_sub_baseline: "Cinsiyete duyarlı temel modeller",
+    perf_sub_cascade: "Bu tahmin için kullanılan modeller (kademeli etkin)",
+    chart_title: "Tahmini Kilo Seyri",
+    chart_subtitle: "Ameliyat öncesinden ameliyat sonrası 12. aya kadar",
+    chart_ci_badge: "Kalibre %95 GA",
+    chart_ci_title: "Aralıklar, sabit bir ±1.96σ yerine, ayrılan hastaların ~%95'inin bant içinde kalmasını sağlayacak şekilde (her zaman noktası için) ampirik olarak kalibre edilmiş çarpanlar kullanır.",
+    chart_ph: "Tahmin oluşturmak için hasta bilgilerini girin",
+    chart_ph_sub: "Güven aralıklarıyla birlikte kilo seyri burada görünecek",
+    chart_loading: "Tahminler hesaplanıyor…",
+    results_section: "Her Zaman Noktasında Tahmini Kilo",
+    footer_research: "<strong>Yalnızca Araştırma Aracı:</strong> Bu tahmin aracı, geriye dönük klinik veriler üzerinde eğitilmiş cinsiyete duyarlı Bayesian makine öğrenmesi modellerine dayanır. Tahminler, kalibre edilmiş güven aralıklarına sahip kestirimlerdir ve klinik değerlendirmenin yerini almamalıdır. Yalnızca araştırma ve eğitim amaçlıdır.",
+    footer_reference_label: "Kaynak:",
+    footer_home: "Ana Sayfa",
+    t_1_week: "1 Hafta",
+    t_1_month: "1 Ay",
+    t_3_month: "3 Ay",
+    t_6_month: "6 Ay",
+    t_12_month: "12 Ay",
+    alert_sex: "Lütfen Cinsiyet seçin (Kadın veya Erkek) — modeller cinsiyete özgüdür.",
+    alert_fill: "Lütfen yaş, boy ve ameliyat öncesi kiloyu girin.",
+    alert_age: "Lütfen geçerli bir yaş girin (10-90 yıl).",
+    alert_height: "Lütfen geçerli bir boy girin.",
+    alert_weight: "Lütfen geçerli bir kilo girin.",
+    alert_cascade_range: "Girilen {tp} kilosu aralık dışı görünüyor — lütfen kontrol edin.",
+    warn_above_preop: "{tp} kilosu ameliyat öncesi kilonun üzerinde",
+    warn_above_prev: "{tp} kilosu daha önceki bir ziyaretten daha yüksek",
+    warn_age_range: "yaş {v} yıl, eğitim aralığının dışında ({min}–{max})",
+    warn_height_range: "boy {v} cm, eğitim aralığının dışında ({min}–{max})",
+    warn_weight_range: "ameliyat öncesi kilo {v} kg, eğitim aralığının dışında ({min}–{max})",
+    warn_caution: "Lütfen dikkatli yorumlayın:",
+    warn_extrapolation: "Eğitim dağılımının dışındaki tahminler dışdeğerlemedir (ekstrapolasyon) ve daha az güvenilir olabilir.",
+    card_measured: "Ölçülen",
+    card_cascade: "Kademeli",
+    card_entered: "Girilen ölçüm",
+    card_ci: "%95 GA:",
+    chart_preop: "Ameliyat Öncesi",
+    chart_legend: "Tahmini Kilo",
+    chart_tt_upper: "Üst GA:",
+    chart_tt_lower: "Alt GA:",
+    chart_y: "Kilo",
+    chart_x: "Ameliyattan Sonraki Süre",
+    clin_prebmi: "Ameliyat Öncesi VKİ",
+    clin_postbmi: "Tahmini 12. Ay VKİ",
+    clin_ewl: "12. Ayda %EWL",
+    clin_ewl_sub: "VKİ 25'e göre",
+    clin_ibw: "İdeal Vücut Ağırlığı",
+    clin_male: "erkek",
+    clin_female: "kadın",
+    clin_ibw_sub: "(Devine, tahmini)",
+    clin_ibw_title: "Devine formülü ile cinsiyete özgü tahmin. En iyi ≥ 5 ft (152 cm) boylar için doğrulanmıştır; çok kısa boylu hastalarda sonuçları yaklaşık olarak değerlendirin.",
+    clin_na: "Yok",
+    metric_measured: "Ölçülen",
+    metric_entered: "girilen değer",
+    metric_anchor: "çıpa",
+    metric_cascade_title: "Kademeli model: bilinen {anchor} kilosuna göre koşullandırılmıştır. Bu ölçüme sahip n={n} hasta üzerinde eğitilmiştir (temel modelden daha az) ve yalnızca doğrulanmış hatası daha düşük olduğu için otomatik seçilmiştir.",
+  }
+};
+
+let LANG = 'en';
+let btnState = 'loading';      // 'loading' | 'ready' | 'error'
+let lastPrediction = null;     // stored so we can re-render on language switch
+
+function tr(key, vars) {
+  let s = (I18N[LANG] && I18N[LANG][key] != null) ? I18N[LANG][key]
+        : (I18N.en[key] != null ? I18N.en[key] : key);
+  if (vars) for (const k in vars) s = s.split('{' + k + '}').join(vars[k]);
+  return s;
+}
+function disp(tp) { return tr('t_' + tp); }
+
+function applyStaticI18n() {
+  document.querySelectorAll('[data-i18n]').forEach(el => { el.textContent = tr(el.getAttribute('data-i18n')); });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => { el.innerHTML = tr(el.getAttribute('data-i18n-html')); });
+  document.querySelectorAll('[data-i18n-ph]').forEach(el => { el.setAttribute('placeholder', tr(el.getAttribute('data-i18n-ph'))); });
+  document.querySelectorAll('[data-i18n-title]').forEach(el => { el.setAttribute('title', tr(el.getAttribute('data-i18n-title'))); });
+}
+
+function setLang(lang) {
+  if (lang !== 'en' && lang !== 'tr') lang = 'en';
+  LANG = lang;
+  try { localStorage.setItem('a1_lang', lang); } catch (e) {}
+  document.documentElement.lang = lang;
+  const be = document.getElementById('lang-en'), bt = document.getElementById('lang-tr');
+  if (be) be.classList.toggle('active', lang === 'en');
+  if (bt) bt.classList.toggle('active', lang === 'tr');
+  applyStaticI18n();
+  const btn = document.getElementById('predictBtn');
+  if (btn) btn.textContent = tr(btnState === 'ready' ? 'btn_predict' : btnState === 'error' ? 'btn_error' : 'btn_loading');
+  // Re-render any dynamic content currently on screen in the new language
+  if (modelData) {
+    if (lastPrediction) {
+      const p = lastPrediction;
+      renderResults(p.predictions, p.weightKg, p.usage);
+      renderChart(p.predictions, p.weightKg, p.measured);
+      renderClinical(p.preBMI, p.postBMI12, p.weightKg, p.predictions['12_month'].weight, p.heightCm);
+      renderActiveMetrics(p.usage);
+    } else {
+      renderBaselineMetrics();
+    }
+  }
+}
+
+function initLang() {
+  let lang = 'en';
+  try {
+    lang = localStorage.getItem('a1_lang')
+        || ((navigator.language || '').toLowerCase().startsWith('tr') ? 'tr' : 'en');
+  } catch (e) {}
+  setLang(lang);
+}
+// =====================================================
+
 let modelData = null;
 const TIME_LABELS = ['1_week', '1_month', '3_month', '6_month', '12_month'];
-const DISPLAY = { '1_week': '1 Week', '1_month': '1 Month', '3_month': '3 Months', '6_month': '6 Months', '12_month': '12 Months' };
+// Timepoint display labels come from i18n via disp(tp)
 // Timepoints that have an optional measured-weight input
 const CASCADE_INPUTS = { '1_month': 'w_1month', '3_month': 'w_3month', '6_month': 'w_6month' };
 
@@ -1160,14 +1439,16 @@ fetch('models_bayesian.json')
     .then(r => r.json())
     .then(data => {
         modelData = data;
+        btnState = 'ready';
         document.getElementById('predictBtn').disabled = false;
-        document.getElementById('predictBtn').textContent = 'Predict Weight Trajectory';
+        document.getElementById('predictBtn').textContent = tr('btn_predict');
         if (data.n_cohort) document.getElementById('statCohort').textContent = data.n_cohort.toLocaleString();
         renderBaselineMetrics();
     })
     .catch(err => {
         console.error('Model load error:', err);
-        document.getElementById('predictBtn').textContent = 'Error Loading Model';
+        btnState = 'error';
+        document.getElementById('predictBtn').textContent = tr('btn_error');
     });
 
 // --- Generalized linear prediction + native Bayesian CI ---
@@ -1285,16 +1566,16 @@ function getWeightKg() { return toKg(parseFloat(document.getElementById('weight'
 function runPrediction() {
     if (!modelData) return;
 
-    if (!selectedSex) { alert('Please select Sex (Female or Male) — the models are sex-specific.'); return; }
+    if (!selectedSex) { alert(tr('alert_sex')); return; }
 
     const age = parseFloat(document.getElementById('age').value);
     const heightCm = getHeightCm();
     const weightKg = getWeightKg();
 
-    if (isNaN(age) || isNaN(heightCm) || isNaN(weightKg)) { alert('Please fill in age, height and pre-op weight.'); return; }
-    if (age < 10 || age > 90) { alert('Please enter a valid age (10-90 years).'); return; }
-    if (heightCm < 100 || heightCm > 250) { alert('Please enter a valid height.'); return; }
-    if (weightKg < 50 || weightKg > 350) { alert('Please enter a valid weight.'); return; }
+    if (isNaN(age) || isNaN(heightCm) || isNaN(weightKg)) { alert(tr('alert_fill')); return; }
+    if (age < 10 || age > 90) { alert(tr('alert_age')); return; }
+    if (heightCm < 100 || heightCm > 250) { alert(tr('alert_height')); return; }
+    if (weightKg < 50 || weightKg > 350) { alert(tr('alert_weight')); return; }
 
     // Collect optional measured post-op weights (converted to kg)
     const enteredPriors = {};
@@ -1305,21 +1586,21 @@ function runPrediction() {
         const raw = parseFloat(document.getElementById(inputId).value);
         if (isNaN(raw)) continue;
         const kg = toKg(raw);
-        if (kg < 30 || kg > 350) { alert(`The entered ${DISPLAY[tp]} weight looks out of range — please check it.`); return; }
+        if (kg < 30 || kg > 350) { alert(tr('alert_cascade_range', { tp: disp(tp) })); return; }
         enteredPriors[tp] = kg;
         measured[tp] = kg;
         // Plausibility (non-blocking): weight should generally fall after surgery
-        if (kg > weightKg + 2) warns.push(`${DISPLAY[tp]} weight is above the pre-op weight`);
-        else if (kg > prevKg + 2) warns.push(`${DISPLAY[tp]} weight is higher than an earlier visit`);
+        if (kg > weightKg + 2) warns.push(tr('warn_above_preop', { tp: disp(tp) }));
+        else if (kg > prevKg + 2) warns.push(tr('warn_above_prev', { tp: disp(tp) }));
         prevKg = kg;
     }
 
     // Out-of-training-range advisory (non-blocking) using the model's data ranges
     const dr = modelData.data_ranges;
     if (dr) {
-        if (age < dr.age.min || age > dr.age.max) warns.push(`age ${age} yr is outside the training range (${dr.age.min}–${dr.age.max})`);
-        if (heightCm < dr.height.min || heightCm > dr.height.max) warns.push(`height ${heightCm.toFixed(0)} cm is outside the training range (${dr.height.min}–${dr.height.max})`);
-        if (weightKg < dr.weight.min || weightKg > dr.weight.max) warns.push(`pre-op weight ${weightKg.toFixed(0)} kg is outside the training range (${dr.weight.min}–${dr.weight.max})`);
+        if (age < dr.age.min || age > dr.age.max) warns.push(tr('warn_age_range', { v: age, min: dr.age.min, max: dr.age.max }));
+        if (heightCm < dr.height.min || heightCm > dr.height.max) warns.push(tr('warn_height_range', { v: heightCm.toFixed(0), min: dr.height.min, max: dr.height.max }));
+        if (weightKg < dr.weight.min || weightKg > dr.weight.max) warns.push(tr('warn_weight_range', { v: weightKg.toFixed(0), min: dr.weight.min, max: dr.weight.max }));
     }
     showRangeWarning(warns);
 
@@ -1362,6 +1643,8 @@ function runPrediction() {
         const preBMI = weightKg / (heightM * heightM);
         const postBMI_12 = predictions['12_month'].weight / (heightM * heightM);
 
+        lastPrediction = { predictions, weightKg, usage, measured, preBMI, postBMI12: postBMI_12, heightCm };
+
         renderResults(predictions, weightKg, usage);
         renderChart(predictions, weightKg, measured);
         renderClinical(preBMI, postBMI_12, weightKg, predictions['12_month'].weight, heightCm);
@@ -1380,9 +1663,9 @@ function round1(x) { return Math.round(x * 10) / 10; }
 function showRangeWarning(warns) {
     const el = document.getElementById('rangeWarning');
     if (!warns || warns.length === 0) { el.style.display = 'none'; el.innerHTML = ''; return; }
-    el.innerHTML = '<strong>&#9888; Please interpret with caution:</strong><ul>' +
+    el.innerHTML = '<strong>&#9888; ' + tr('warn_caution') + '</strong><ul>' +
         warns.map(w => `<li>${w}</li>`).join('') +
-        '</ul><div style="margin-top:4px;">Predictions outside the training distribution are extrapolations and may be less reliable.</div>';
+        '</ul><div style="margin-top:4px;">' + tr('warn_extrapolation') + '</div>';
     el.style.display = 'block';
 }
 
@@ -1411,18 +1694,18 @@ function renderResults(predictions, preOpWeight, usage) {
         else if (isLast) cls += ' highlight';
 
         let badge = '';
-        if (isMeasured) badge = '<div class="result-badge meas">Measured</div>';
-        else if (u.type === 'cascade') badge = '<div class="result-badge casc">Cascade</div>';
+        if (isMeasured) badge = `<div class="result-badge meas">${tr('card_measured')}</div>`;
+        else if (u.type === 'cascade') badge = `<div class="result-badge casc">${tr('card_cascade')}</div>`;
 
         const ciLine = isMeasured
-            ? '<div class="result-ci">Entered measurement</div>'
-            : `<div class="result-ci">95% CI: ${displayLower}&ndash;${displayUpper} ${unitLabel}</div>`;
+            ? `<div class="result-ci">${tr('card_entered')}</div>`
+            : `<div class="result-ci">${tr('card_ci')} ${displayLower}&ndash;${displayUpper} ${unitLabel}</div>`;
 
         const card = document.createElement('div');
         card.className = cls;
         card.innerHTML = `
             ${badge}
-            <div class="result-time">${DISPLAY[t]}</div>
+            <div class="result-time">${disp(t)}</div>
             <div class="result-weight">${displayWeight}</div>
             <div class="result-loss">&darr; ${displayLoss} (${lossPct.toFixed(1)}%)</div>
             ${ciLine}
@@ -1437,7 +1720,7 @@ function renderChart(predictions, preOpWeight, measured) {
     const ctx = document.getElementById('predictionChart').getContext('2d');
     if (chartInstance) chartInstance.destroy();
 
-    const labels = ['Pre-Op', ...TIME_LABELS.map(t => DISPLAY[t])];
+    const labels = [tr('chart_preop'), ...TIME_LABELS.map(t => disp(t))];
     const mult = weightUnit === 'lbs' ? 2.20462 : 1;
     const unitLabel = weightUnit === 'lbs' ? 'lbs' : 'kg';
 
@@ -1458,7 +1741,7 @@ function renderChart(predictions, preOpWeight, measured) {
             datasets: [
                 { label: '95% CI Upper', data: upperData, borderColor: 'transparent', backgroundColor: 'rgba(14, 165, 233, 0.08)', fill: '+1', pointRadius: 0, tension: 0.4 },
                 {
-                    label: 'Predicted Weight', data: mainData,
+                    label: tr('chart_legend'), data: mainData,
                     borderColor: '#0284c7', backgroundColor: 'rgba(14, 165, 233, 0.06)', borderWidth: 2.5,
                     pointBackgroundColor: ptColor, pointBorderColor: 'white', pointBorderWidth: 2.5,
                     pointStyle: ptStyle, pointRadius: ptRadius, pointHoverRadius: 9, fill: false, tension: 0.4
@@ -1474,7 +1757,7 @@ function renderChart(predictions, preOpWeight, measured) {
                 legend: {
                     display: true,
                     labels: {
-                        filter: function(item) { return item.text === 'Predicted Weight'; },
+                        filter: function(item) { return item.datasetIndex === 1; },
                         font: { family: "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif", size: 12 },
                         color: '#475569', boxWidth: 12, boxHeight: 12, borderRadius: 3
                     }
@@ -1484,9 +1767,9 @@ function renderChart(predictions, preOpWeight, measured) {
                     padding: 12, cornerRadius: 10,
                     callbacks: {
                         label: function(ctx) {
-                            if (ctx.dataset.label === 'Predicted Weight') return `  ${ctx.parsed.y.toFixed(1)} ${unitLabel}`;
-                            if (ctx.dataset.label === '95% CI Upper') return `  Upper CI: ${ctx.parsed.y.toFixed(1)} ${unitLabel}`;
-                            if (ctx.dataset.label === '95% CI Lower') return `  Lower CI: ${ctx.parsed.y.toFixed(1)} ${unitLabel}`;
+                            if (ctx.datasetIndex === 1) return `  ${ctx.parsed.y.toFixed(1)} ${unitLabel}`;
+                            if (ctx.datasetIndex === 0) return `  ${tr('chart_tt_upper')} ${ctx.parsed.y.toFixed(1)} ${unitLabel}`;
+                            if (ctx.datasetIndex === 2) return `  ${tr('chart_tt_lower')} ${ctx.parsed.y.toFixed(1)} ${unitLabel}`;
                             return '';
                         }
                     }
@@ -1494,12 +1777,12 @@ function renderChart(predictions, preOpWeight, measured) {
             },
             scales: {
                 y: {
-                    title: { display: true, text: `Weight (${unitLabel})`, font: { family: "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif", size: 12, weight: '600' }, color: '#64748b' },
+                    title: { display: true, text: `${tr('chart_y')} (${unitLabel})`, font: { family: "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif", size: 12, weight: '600' }, color: '#64748b' },
                     ticks: { font: { family: "-apple-system, sans-serif", size: 11 }, color: '#94a3b8' },
                     grid: { color: 'rgba(0,0,0,0.04)' }, border: { display: false }
                 },
                 x: {
-                    title: { display: true, text: 'Time After Surgery', font: { family: "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif", size: 12, weight: '600' }, color: '#64748b' },
+                    title: { display: true, text: tr('chart_x'), font: { family: "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif", size: 12, weight: '600' }, color: '#64748b' },
                     ticks: { font: { family: "-apple-system, sans-serif", size: 11 }, color: '#94a3b8' },
                     grid: { display: false }, border: { display: false }
                 }
@@ -1516,7 +1799,7 @@ function renderClinical(preBMI, postBMI, preWeight, postWeight, heightCm) {
     // %EWL relative to ideal weight at BMI 25 (standard bariatric convention)
     const idealBMI25 = 25 * heightM * heightM;
     const ewl = (preWeight - postWeight) / (preWeight - idealBMI25) * 100;
-    const ewlDisplay = isFinite(ewl) && ewl > 0 ? ewl.toFixed(0) + '%' : 'N/A';
+    const ewlDisplay = isFinite(ewl) && ewl > 0 ? ewl.toFixed(0) + '%' : tr('clin_na');
 
     // Sex-specific ideal body weight (Devine formula)
     const heightIn = heightCm / 2.54;
@@ -1529,50 +1812,50 @@ function renderClinical(preBMI, postBMI, preWeight, postWeight, heightCm) {
     inner.innerHTML = `
         <div class="bmi-item">
             <div class="bmi-item-value">${preBMI.toFixed(1)}</div>
-            <div class="bmi-item-label">Pre-Op BMI</div>
+            <div class="bmi-item-label">${tr('clin_prebmi')}</div>
             <div class="bmi-item-sub">kg/m&sup2;</div>
         </div>
         <div class="bmi-item">
             <div class="bmi-item-value">${postBMI.toFixed(1)}</div>
-            <div class="bmi-item-label">Predicted 12-Mo BMI</div>
+            <div class="bmi-item-label">${tr('clin_postbmi')}</div>
             <div class="bmi-item-sub">kg/m&sup2;</div>
         </div>
         <div class="bmi-item">
             <div class="bmi-item-value">${ewlDisplay}</div>
-            <div class="bmi-item-label">%EWL at 12 Months</div>
-            <div class="bmi-item-sub">vs BMI 25</div>
+            <div class="bmi-item-label">${tr('clin_ewl')}</div>
+            <div class="bmi-item-sub">${tr('clin_ewl_sub')}</div>
         </div>
-        <div class="bmi-item" title="Sex-specific estimate via the Devine formula. It is best validated for heights ≥ 5 ft (152 cm); treat results for very short patients as approximate.">
+        <div class="bmi-item" title="${tr('clin_ibw_title')}">
             <div class="bmi-item-value">${(ibw * mult).toFixed(0)}</div>
-            <div class="bmi-item-label">Ideal Body Weight</div>
-            <div class="bmi-item-sub">${selectedSex === 'male' ? 'male' : 'female'} &middot; ${u} (Devine, est.)</div>
+            <div class="bmi-item-label">${tr('clin_ibw')}</div>
+            <div class="bmi-item-sub">${selectedSex === 'male' ? tr('clin_male') : tr('clin_female')} &middot; ${u} ${tr('clin_ibw_sub')}</div>
         </div>
     `;
 }
 
 // --- Metrics: baseline (on load) ---
 function renderBaselineMetrics() {
-    document.getElementById('perfSub').textContent = 'Sex-aware baseline models';
+    document.getElementById('perfSub').textContent = tr('perf_sub_baseline');
     const grid = document.getElementById('metricsGrid');
     grid.innerHTML = '';
     for (const t of TIME_LABELS) {
         const M = modelData.targets[t].baseline;
-        grid.appendChild(metricRow(DISPLAY[t], M.metrics, null, false));
+        grid.appendChild(metricRow(disp(t), M.metrics, null, false));
     }
 }
 
 // --- Metrics: reflect the models actually used in the last prediction ---
 function renderActiveMetrics(usage) {
     const anyCascade = Object.values(usage).some(u => u.type === 'cascade');
-    document.getElementById('perfSub').textContent = anyCascade ? 'Models used for this prediction (cascade active)' : 'Sex-aware baseline models';
+    document.getElementById('perfSub').textContent = anyCascade ? tr('perf_sub_cascade') : tr('perf_sub_baseline');
     const grid = document.getElementById('metricsGrid');
     grid.innerHTML = '';
     for (const t of TIME_LABELS) {
         const u = usage[t];
         if (u.type === 'measured') {
-            grid.appendChild(metricRow(DISPLAY[t], null, 'measured', false));
+            grid.appendChild(metricRow(disp(t), null, 'measured', false));
         } else {
-            grid.appendChild(metricRow(DISPLAY[t], u.M.metrics, u.type === 'cascade' ? ('anchor ' + DISPLAY[u.anchor]) : null, u.type === 'cascade'));
+            grid.appendChild(metricRow(disp(t), u.M.metrics, u.type === 'cascade' ? (tr('metric_anchor') + ' ' + disp(u.anchor)) : null, u.type === 'cascade'));
         }
     }
 }
@@ -1582,13 +1865,13 @@ function metricRow(label, metrics, tagText, isCascade) {
     if (metrics === null) {
         row.className = 'perf-row measured';
         row.innerHTML = `
-            <div class="perf-row-label">${label} <span class="perf-tag meas">Measured</span></div>
-            <div class="perf-row-right"><span class="perf-mae">entered value</span></div>`;
+            <div class="perf-row-label">${label} <span class="perf-tag meas">${tr('metric_measured')}</span></div>
+            <div class="perf-row-right"><span class="perf-mae">${tr('metric_entered')}</span></div>`;
         return row;
     }
     row.className = 'perf-row' + (isCascade ? ' cascade' : '');
     const tag = tagText ? `<span class="perf-tag ${isCascade ? 'casc' : 'meas'}">${tagText}</span>` : '';
-    if (isCascade) row.title = `Cascade model: conditioned on the known ${tagText.replace('anchor ', '')} weight. Trained on n=${metrics.n} patients who had that measurement (fewer than baseline), and automatically selected only because its validated error is lower.`;
+    if (isCascade) row.title = tr('metric_cascade_title', { anchor: tagText.replace(tr('metric_anchor') + ' ', ''), n: metrics.n });
     row.innerHTML = `
         <div class="perf-row-label">${label} ${tag}</div>
         <div class="perf-row-right">
@@ -1605,6 +1888,9 @@ document.querySelectorAll('.form-card input').forEach(el => {
         if (e.key === 'Enter') { e.preventDefault(); runPrediction(); }
     });
 });
+
+// Initialize language (saved choice, else browser language, else English)
+initLang();
 </script>
 
 </body>
