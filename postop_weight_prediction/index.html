@@ -385,8 +385,10 @@
         .sex-btn:not(:last-child) { border-right: 1.5px solid #e2e8f0; }
         .sex-btn.active.female { background: #ec4899; color: #fff; }
         .sex-btn.active.male { background: #0ea5e9; color: #fff; }
+        .sex-btn.active.unspecified { background: #64748b; color: #fff; }
         .sex-btn:not(.active):hover { background: #f1f5f9; }
         .sex-btn svg { width: 15px; height: 15px; }
+        .sex-btn.unspecified { font-size: 12px; }
 
         /* Unit toggles */
         .unit-toggle {
@@ -1021,8 +1023,8 @@
 
                     <!-- Sex (required) -->
                     <div class="form-group">
-                        <label class="form-label"><span data-i18n="form_sex">Sex</span> <span class="req-star">*</span></label>
-                        <div class="sex-toggle" id="sex-toggle" role="radiogroup" aria-label="Sex (required)">
+                        <label class="form-label"><span data-i18n="form_sex">Sex</span></label>
+                        <div class="sex-toggle" id="sex-toggle" role="radiogroup" aria-label="Sex">
                             <button type="button" class="sex-btn female" data-sex="female" role="radio" aria-checked="false" onclick="setSex('female')">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><circle cx="12" cy="9" r="5"/><path stroke-linecap="round" d="M12 14v7M9 18h6"/></svg>
                                 <span data-i18n="sex_female">Female</span>
@@ -1031,8 +1033,11 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><circle cx="10" cy="14" r="5"/><path stroke-linecap="round" stroke-linejoin="round" d="M14 10l6-6m0 0h-5m5 0v5"/></svg>
                                 <span data-i18n="sex_male">Male</span>
                             </button>
+                            <button type="button" class="sex-btn unspecified" data-sex="unspecified" role="radio" aria-checked="false" onclick="setSex('unspecified')">
+                                <span data-i18n="sex_unspecified">Not specified</span>
+                            </button>
                         </div>
-                        <div class="form-hint" data-i18n="form_sex_hint">Required &mdash; models are sex-specific</div>
+                        <div class="form-hint" data-i18n="form_sex_hint">Optional &mdash; a sex-specific model is used when you pick Female or Male; otherwise a sex-neutral model is used.</div>
                     </div>
 
                     <!-- Age -->
@@ -1118,7 +1123,7 @@
                             <div class="chart-panel-title" data-i18n="chart_title">Predicted Weight Trajectory</div>
                             <div class="chart-panel-subtitle" data-i18n="chart_subtitle">Pre-operative through 12 months post-surgery</div>
                         </div>
-                        <span class="chart-ci-badge" data-i18n="chart_ci_badge" data-i18n-title="chart_ci_title" title="Intervals use empirically-calibrated multipliers (per timepoint) tuned so that ~95% of held-out patients fall within the band — rather than a fixed &plusmn;1.96&sigma;.">Calibrated 95% CI</span>
+                        <span class="chart-ci-badge" data-i18n="chart_ci_badge" data-i18n-title="chart_ci_title" title="Prediction intervals use empirically-calibrated multipliers (per timepoint) tuned so that ~95% of held-out patients fall within the band — rather than a fixed &plusmn;1.96&sigma;.">Calibrated 95% PI</span>
                     </div>
 
                     <div class="chart-placeholder" id="placeholder">
@@ -1181,19 +1186,20 @@ const I18N = {
     nav_back: "Back to A1 Diagnosis",
     hdr_eyebrow: "Bariatric Surgery Analytics",
     hdr_title: "Post-Operative <strong>Weight Prediction</strong>",
-    hdr_subtitle: "Sex-aware weight-loss trajectory after Laparoscopic Sleeve Gastrectomy, with calibrated 95% intervals at five clinical timepoints — refine further with any known post-op weight.",
+    hdr_subtitle: "Weight-loss trajectory after Laparoscopic Sleeve Gastrectomy with calibrated 95% prediction intervals at five clinical timepoints — sex-aware when sex is given, refined further with any known post-op weight.",
     hdr_stat_cohort: "Sex-Recorded Patients",
     hdr_stat_algo: "ML Algorithm",
     hdr_stat_calibrated: "Calibrated",
     hdr_stat_intervals: "95% Intervals",
     hdr_stat_12mo: "12 Mo",
     hdr_stat_range: "Prediction Range",
-    disclaimer: "<strong>Research tool only.</strong> Predictions are statistical estimates with calibrated 95% intervals and must not replace clinical judgement. Sex-aware models are trained on the 502 patients with recorded sex from a 2,014-patient cohort.",
+    disclaimer: "<strong>Research tool only.</strong> Predictions are statistical estimates with calibrated 95% prediction intervals and must not replace clinical judgement. A sex-specific model is used when sex is provided; a sex-neutral model is used otherwise.",
     form_title: "Enter Patient Details",
     form_sex: "Sex",
     sex_female: "Female",
     sex_male: "Male",
-    form_sex_hint: "Required — models are sex-specific",
+    sex_unspecified: "Not specified",
+    form_sex_hint: "Optional — a sex-specific model is used when you pick Female or Male; otherwise a sex-neutral model is used.",
     form_age: "Age",
     form_age_unit: "(years)",
     form_age_hint: "Training range: 12 – 73 years",
@@ -1218,16 +1224,18 @@ const I18N = {
     btn_error: "Error Loading Model",
     perf_title: "Model Performance — 5-Fold CV",
     perf_sub_baseline: "Sex-aware baseline models",
+    perf_sub_sexaware: "Sex-aware baseline models (sex provided)",
+    perf_sub_sexoptional: "Sex-neutral baseline models (no sex provided)",
     perf_sub_cascade: "Models used for this prediction (cascade active)",
     chart_title: "Predicted Weight Trajectory",
     chart_subtitle: "Pre-operative through 12 months post-surgery",
-    chart_ci_badge: "Calibrated 95% CI",
-    chart_ci_title: "Intervals use empirically-calibrated multipliers (per timepoint) tuned so that ~95% of held-out patients fall within the band — rather than a fixed ±1.96σ.",
+    chart_ci_badge: "Calibrated 95% PI",
+    chart_ci_title: "Prediction intervals use empirically-calibrated multipliers (per timepoint) tuned so that ~95% of held-out patients fall within the band — rather than a fixed ±1.96σ.",
     chart_ph: "Enter patient details to generate prediction",
     chart_ph_sub: "Weight trajectory with confidence intervals will appear here",
     chart_loading: "Calculating predictions…",
     results_section: "Predicted Weight at Each Timepoint",
-    footer_research: "<strong>Research Tool Only:</strong> This prediction tool is based on sex-aware Bayesian machine-learning models trained on retrospective clinical data. Predictions are estimates with calibrated confidence intervals and should not replace clinical judgment. For research and educational purposes only.",
+    footer_research: "<strong>Research Tool Only:</strong> This prediction tool is based on Bayesian machine-learning models trained on retrospective clinical data. A sex-aware model is used when sex is provided; a sex-neutral model is used otherwise. Predictions are estimates with calibrated 95% prediction intervals and should not replace clinical judgment. For research and educational purposes only.",
     footer_reference_label: "Reference:",
     footer_home: "Home",
     t_1_week: "1 Week",
@@ -1251,11 +1259,11 @@ const I18N = {
     card_measured: "Measured",
     card_cascade: "Cascade",
     card_entered: "Entered measurement",
-    card_ci: "95% CI:",
+    card_ci: "95% PI:",
     chart_preop: "Pre-Op",
     chart_legend: "Predicted Weight",
-    chart_tt_upper: "Upper CI:",
-    chart_tt_lower: "Lower CI:",
+    chart_tt_upper: "Upper PI:",
+    chart_tt_lower: "Lower PI:",
     chart_y: "Weight",
     chart_x: "Time After Surgery",
     clin_prebmi: "Pre-Op BMI",
@@ -1267,6 +1275,7 @@ const I18N = {
     clin_female: "female",
     clin_ibw_sub: "(Devine, est.)",
     clin_ibw_title: "Sex-specific estimate via the Devine formula. It is best validated for heights ≥ 5 ft (152 cm); treat results for very short patients as approximate.",
+    clin_ibw_na: "select sex",
     clin_na: "N/A",
     metric_measured: "Measured",
     metric_entered: "entered value",
@@ -1277,19 +1286,20 @@ const I18N = {
     nav_back: "A1 Diagnosis'e Dön",
     hdr_eyebrow: "Bariatrik Cerrahi Analitiği",
     hdr_title: "Ameliyat Sonrası <strong>Kilo Tahmini</strong>",
-    hdr_subtitle: "Laparoskopik Sleeve Gastrektomi sonrası cinsiyete duyarlı kilo kaybı seyri; beş klinik zaman noktasında kalibre edilmiş %95 aralıklarla — bilinen herhangi bir ameliyat sonrası kilo ile daha da hassaslaştırın.",
+    hdr_subtitle: "Laparoskopik Sleeve Gastrektomi sonrası kilo kaybı seyri; beş klinik zaman noktasında kalibre edilmiş %95 tahmin aralıklarıyla — cinsiyet girildiğinde cinsiyete duyarlı, bilinen herhangi bir ameliyat sonrası kilo ile daha da hassaslaştırın.",
     hdr_stat_cohort: "Cinsiyeti Kayıtlı Hasta",
     hdr_stat_algo: "ML Algoritması",
     hdr_stat_calibrated: "Kalibre",
     hdr_stat_intervals: "%95 Aralık",
     hdr_stat_12mo: "12 Ay",
     hdr_stat_range: "Tahmin Aralığı",
-    disclaimer: "<strong>Yalnızca araştırma aracı.</strong> Tahminler, kalibre edilmiş %95 aralıklara sahip istatistiksel kestirimlerdir ve klinik değerlendirmenin yerini almamalıdır. Cinsiyete duyarlı modeller, 2.014 hastalık bir kohorttan cinsiyeti kayıtlı 502 hasta üzerinde eğitilmiştir.",
+    disclaimer: "<strong>Yalnızca araştırma aracı.</strong> Tahminler, kalibre edilmiş %95 tahmin aralıklarına sahip istatistiksel kestirimlerdir ve klinik değerlendirmenin yerini almamalıdır. Cinsiyet girildiğinde cinsiyete özgü, girilmediğinde cinsiyetten bağımsız bir model kullanılır.",
     form_title: "Hasta Bilgilerini Girin",
     form_sex: "Cinsiyet",
     sex_female: "Kadın",
     sex_male: "Erkek",
-    form_sex_hint: "Zorunlu — modeller cinsiyete özgüdür",
+    sex_unspecified: "Belirtilmemiş",
+    form_sex_hint: "İsteğe bağlı — Kadın veya Erkek seçilirse cinsiyete özgü, seçilmezse cinsiyetten bağımsız bir model kullanılır.",
     form_age: "Yaş",
     form_age_unit: "(yıl)",
     form_age_hint: "Eğitim aralığı: 12 – 73 yıl",
@@ -1314,16 +1324,18 @@ const I18N = {
     btn_error: "Model Yüklenemedi",
     perf_title: "Model Performansı — 5 Katlı ÇD",
     perf_sub_baseline: "Cinsiyete duyarlı temel modeller",
+    perf_sub_sexaware: "Cinsiyete duyarlı temel modeller (cinsiyet girildi)",
+    perf_sub_sexoptional: "Cinsiyetten bağımsız temel modeller (cinsiyet girilmedi)",
     perf_sub_cascade: "Bu tahmin için kullanılan modeller (kademeli etkin)",
     chart_title: "Tahmini Kilo Seyri",
     chart_subtitle: "Ameliyat öncesinden ameliyat sonrası 12. aya kadar",
-    chart_ci_badge: "Kalibre %95 GA",
-    chart_ci_title: "Aralıklar, sabit bir ±1.96σ yerine, ayrılan hastaların ~%95'inin bant içinde kalmasını sağlayacak şekilde (her zaman noktası için) ampirik olarak kalibre edilmiş çarpanlar kullanır.",
+    chart_ci_badge: "Kalibre %95 TA",
+    chart_ci_title: "Tahmin aralıkları, sabit bir ±1.96σ yerine, ayrılan hastaların ~%95'inin bant içinde kalmasını sağlayacak şekilde (her zaman noktası için) ampirik olarak kalibre edilmiş çarpanlar kullanır.",
     chart_ph: "Tahmin oluşturmak için hasta bilgilerini girin",
     chart_ph_sub: "Güven aralıklarıyla birlikte kilo seyri burada görünecek",
     chart_loading: "Tahminler hesaplanıyor…",
     results_section: "Her Zaman Noktasında Tahmini Kilo",
-    footer_research: "<strong>Yalnızca Araştırma Aracı:</strong> Bu tahmin aracı, geriye dönük klinik veriler üzerinde eğitilmiş cinsiyete duyarlı Bayesian makine öğrenmesi modellerine dayanır. Tahminler, kalibre edilmiş güven aralıklarına sahip kestirimlerdir ve klinik değerlendirmenin yerini almamalıdır. Yalnızca araştırma ve eğitim amaçlıdır.",
+    footer_research: "<strong>Yalnızca Araştırma Aracı:</strong> Bu tahmin aracı, geriye dönük klinik veriler üzerinde eğitilmiş Bayesian makine öğrenmesi modellerine dayanır. Cinsiyet girildiğinde cinsiyete duyarlı, girilmediğinde cinsiyetten bağımsız model kullanılır. Tahminler, kalibre edilmiş %95 tahmin aralıklarına sahip kestirimlerdir ve klinik değerlendirmenin yerini almamalıdır. Yalnızca araştırma ve eğitim amaçlıdır.",
     footer_reference_label: "Kaynak:",
     footer_home: "Ana Sayfa",
     t_1_week: "1 Hafta",
@@ -1347,11 +1359,11 @@ const I18N = {
     card_measured: "Ölçülen",
     card_cascade: "Kademeli",
     card_entered: "Girilen ölçüm",
-    card_ci: "%95 GA:",
+    card_ci: "%95 TA:",
     chart_preop: "Ameliyat Öncesi",
     chart_legend: "Tahmini Kilo",
-    chart_tt_upper: "Üst GA:",
-    chart_tt_lower: "Alt GA:",
+    chart_tt_upper: "Üst TA:",
+    chart_tt_lower: "Alt TA:",
     chart_y: "Kilo",
     chart_x: "Ameliyattan Sonraki Süre",
     clin_prebmi: "Ameliyat Öncesi VKİ",
@@ -1363,6 +1375,7 @@ const I18N = {
     clin_female: "kadın",
     clin_ibw_sub: "(Devine, tahmini)",
     clin_ibw_title: "Devine formülü ile cinsiyete özgü tahmin. En iyi ≥ 5 ft (152 cm) boylar için doğrulanmıştır; çok kısa boylu hastalarda sonuçları yaklaşık olarak değerlendirin.",
+    clin_ibw_na: "cinsiyet seçin",
     clin_na: "Yok",
     metric_measured: "Ölçülen",
     metric_entered: "girilen değer",
@@ -1431,9 +1444,19 @@ const TIME_LABELS = ['1_week', '1_month', '3_month', '6_month', '12_month'];
 // Timepoints that have an optional measured-weight input
 const CASCADE_INPUTS = { '1_month': 'w_1month', '3_month': 'w_3month', '6_month': 'w_6month' };
 
-let selectedSex = null;   // 'female' | 'male'
+let selectedSex = null;   // 'female' | 'male' | 'unspecified' | null
 let heightUnit = 'cm';
 let weightUnit = 'kg';
+
+// True only when a concrete sex was chosen (drives which model family is used).
+function sexed() { return selectedSex === 'female' || selectedSex === 'male'; }
+
+// Resolve the active model family: sex chosen -> sex-aware; otherwise sex-neutral.
+function currentFamily() {
+    return sexed()
+        ? { targets: modelData.targets, anchors: modelData.anchors, name: 'sex_aware' }
+        : { targets: modelData.targets_sex_optional, anchors: modelData.anchors_sex_optional, name: 'sex_optional' };
+}
 
 fetch('models_bayesian.json')
     .then(r => r.json())
@@ -1485,11 +1508,11 @@ function featuresFor(M, base, anchorWeight) {
 // Choose the best validated model for a target given which prior weights were entered.
 // Candidates: baseline + any anchored model whose anchor weight the user supplied.
 // Pick the lowest cross-validated MAE so cascade never does worse than baseline.
-function selectBestModel(target, enteredPriors) {
-    const entry = modelData.targets && modelData.targets[target];
+function selectBestModel(target, enteredPriors, fam) {
+    const entry = fam.targets && fam.targets[target];
     if (!entry || !entry.baseline) throw new Error('Model data missing for timepoint: ' + target);
     let best = { M: entry.baseline, anchor: null, anchorWeight: null, mae: entry.baseline.metrics.mae };
-    const anchors = modelData.anchors[target] || [];
+    const anchors = (fam.anchors && fam.anchors[target]) || [];
     for (const a of anchors) {
         if (enteredPriors[a] != null && entry.anchored && entry.anchored[a]) {
             const cand = entry.anchored[a];
@@ -1509,6 +1532,9 @@ function setSex(sex) {
         b.classList.toggle('active', on);
         b.setAttribute('aria-checked', on ? 'true' : 'false');
     });
+    // Reflect the newly-selected family in the performance panel (unless a
+    // live prediction is on screen, which re-renders its own metrics).
+    if (modelData && !lastPrediction) renderBaselineMetrics();
 }
 
 // --- Cascade panel ---
@@ -1566,8 +1592,7 @@ function getWeightKg() { return toKg(parseFloat(document.getElementById('weight'
 function runPrediction() {
     if (!modelData) return;
 
-    if (!selectedSex) { alert(tr('alert_sex')); return; }
-
+    // Sex is optional: when it is not chosen we fall back to the sex-neutral model.
     const age = parseFloat(document.getElementById('age').value);
     const heightCm = getHeightCm();
     const weightKg = getWeightKg();
@@ -1604,7 +1629,9 @@ function runPrediction() {
     }
     showRangeWarning(warns);
 
-    const base = { age, height: heightCm, weight: weightKg, sex: modelData.sex_encoding[selectedSex] };
+    const base = { age, height: heightCm, weight: weightKg,
+                   sex: sexed() ? modelData.sex_encoding[selectedSex] : undefined };
+    const fam = currentFamily();
 
     document.getElementById('placeholder').style.display = 'none';
     document.getElementById('loading').style.display = 'flex';
@@ -1623,7 +1650,7 @@ function runPrediction() {
                 usage[t] = { type: 'measured', M: null };
                 continue;
             }
-            const sel = selectBestModel(t, enteredPriors);
+            const sel = selectBestModel(t, enteredPriors, fam);
             const fv = featuresFor(sel.M, base, sel.anchorWeight);
             const r = predictWithModel(sel.M, fv);
             // Safety rail: keep the estimate and its interval inside a plausible band
@@ -1739,14 +1766,14 @@ function renderChart(predictions, preOpWeight, measured) {
         data: {
             labels: labels,
             datasets: [
-                { label: '95% CI Upper', data: upperData, borderColor: 'transparent', backgroundColor: 'rgba(14, 165, 233, 0.08)', fill: '+1', pointRadius: 0, tension: 0.4 },
+                { label: '95% PI Upper', data: upperData, borderColor: 'transparent', backgroundColor: 'rgba(14, 165, 233, 0.08)', fill: '+1', pointRadius: 0, tension: 0.4 },
                 {
                     label: tr('chart_legend'), data: mainData,
                     borderColor: '#0284c7', backgroundColor: 'rgba(14, 165, 233, 0.06)', borderWidth: 2.5,
                     pointBackgroundColor: ptColor, pointBorderColor: 'white', pointBorderWidth: 2.5,
                     pointStyle: ptStyle, pointRadius: ptRadius, pointHoverRadius: 9, fill: false, tension: 0.4
                 },
-                { label: '95% CI Lower', data: lowerData, borderColor: 'transparent', backgroundColor: 'rgba(14, 165, 233, 0.08)', fill: '-1', pointRadius: 0, tension: 0.4 }
+                { label: '95% PI Lower', data: lowerData, borderColor: 'transparent', backgroundColor: 'rgba(14, 165, 233, 0.08)', fill: '-1', pointRadius: 0, tension: 0.4 }
             ]
         },
         options: {
@@ -1801,13 +1828,21 @@ function renderClinical(preBMI, postBMI, preWeight, postWeight, heightCm) {
     const ewl = (preWeight - postWeight) / (preWeight - idealBMI25) * 100;
     const ewlDisplay = isFinite(ewl) && ewl > 0 ? ewl.toFixed(0) + '%' : tr('clin_na');
 
-    // Sex-specific ideal body weight (Devine formula)
+    // Sex-specific ideal body weight (Devine formula). Requires a chosen sex;
+    // when none is given we show N/A rather than guessing.
     const heightIn = heightCm / 2.54;
-    const ibwBase = selectedSex === 'male' ? 50 : 45.5;
-    let ibw = ibwBase + 2.3 * (heightIn - 60);
-    ibw = Math.max(ibw, 30);
     const mult = weightUnit === 'lbs' ? 2.20462 : 1;
     const u = weightUnit === 'lbs' ? 'lbs' : 'kg';
+    let ibwValue, ibwSub;
+    if (sexed()) {
+        const ibwBase = selectedSex === 'male' ? 50 : 45.5;
+        const ibw = Math.max(ibwBase + 2.3 * (heightIn - 60), 30);
+        ibwValue = (ibw * mult).toFixed(0);
+        ibwSub = `${selectedSex === 'male' ? tr('clin_male') : tr('clin_female')} &middot; ${u} ${tr('clin_ibw_sub')}`;
+    } else {
+        ibwValue = tr('clin_na');
+        ibwSub = tr('clin_ibw_na');
+    }
 
     inner.innerHTML = `
         <div class="bmi-item">
@@ -1826,20 +1861,23 @@ function renderClinical(preBMI, postBMI, preWeight, postWeight, heightCm) {
             <div class="bmi-item-sub">${tr('clin_ewl_sub')}</div>
         </div>
         <div class="bmi-item" title="${tr('clin_ibw_title')}">
-            <div class="bmi-item-value">${(ibw * mult).toFixed(0)}</div>
+            <div class="bmi-item-value">${ibwValue}</div>
             <div class="bmi-item-label">${tr('clin_ibw')}</div>
-            <div class="bmi-item-sub">${selectedSex === 'male' ? tr('clin_male') : tr('clin_female')} &middot; ${u} ${tr('clin_ibw_sub')}</div>
+            <div class="bmi-item-sub">${ibwSub}</div>
         </div>
     `;
 }
 
 // --- Metrics: baseline (on load) ---
 function renderBaselineMetrics() {
-    document.getElementById('perfSub').textContent = tr('perf_sub_baseline');
+    if (!modelData) return;
+    const fam = currentFamily();
+    document.getElementById('perfSub').textContent =
+        tr(fam.name === 'sex_aware' ? 'perf_sub_sexaware' : 'perf_sub_sexoptional');
     const grid = document.getElementById('metricsGrid');
     grid.innerHTML = '';
     for (const t of TIME_LABELS) {
-        const M = modelData.targets[t].baseline;
+        const M = fam.targets[t].baseline;
         grid.appendChild(metricRow(disp(t), M.metrics, null, false));
     }
 }
@@ -1847,7 +1885,10 @@ function renderBaselineMetrics() {
 // --- Metrics: reflect the models actually used in the last prediction ---
 function renderActiveMetrics(usage) {
     const anyCascade = Object.values(usage).some(u => u.type === 'cascade');
-    document.getElementById('perfSub').textContent = anyCascade ? tr('perf_sub_cascade') : tr('perf_sub_baseline');
+    const fam = currentFamily();
+    document.getElementById('perfSub').textContent = anyCascade
+        ? tr('perf_sub_cascade')
+        : tr(fam.name === 'sex_aware' ? 'perf_sub_sexaware' : 'perf_sub_sexoptional');
     const grid = document.getElementById('metricsGrid');
     grid.innerHTML = '';
     for (const t of TIME_LABELS) {

@@ -1,11 +1,7 @@
 {
-  "schema_version": 3,
+  "schema_version": 6,
   "model_type": "BayesianRidge",
-  "sex_required": true,
-  "sex_encoding": {
-    "female": 0,
-    "male": 1
-  },
+  "deliverable": "post_op_weight_kg",
   "n_cohort": 502,
   "n_total": 2014,
   "cleaned_1month_rows": 121,
@@ -23,6 +19,11 @@
       "max": 276.0
     }
   },
+  "optional_libs": {
+    "XGBoost": true,
+    "LightGBM": true,
+    "CatBoost": true
+  },
   "anchors": {
     "1_week": [],
     "1_month": [],
@@ -33,6 +34,22 @@
       "3_month"
     ],
     "12_month": [
+      "3_month",
+      "6_month"
+    ]
+  },
+  "anchors_sex_optional": {
+    "1_week": [],
+    "1_month": [],
+    "3_month": [
+      "1_month"
+    ],
+    "6_month": [
+      "1_month",
+      "3_month"
+    ],
+    "12_month": [
+      "1_month",
       "3_month",
       "6_month"
     ]
@@ -104,10 +121,33 @@
         "metrics": {
           "mae": 1.704,
           "rmse": 2.241,
-          "r2": 0.988,
+          "r2_postop_weight": 0.988,
           "mape": 1.67,
           "coverage95": 95.0,
-          "n": 119
+          "coverage95_conformal": 95.0,
+          "conformal_halfwidth_kg": 4.125,
+          "n": 119,
+          "reference_baseline_mae": 1.663,
+          "gain_vs_reference_pct": -2.49,
+          "r2": 0.988
+        },
+        "shap_like": {
+          "age": {
+            "importance": 0.2880001653790585,
+            "coef": 0.030078251976022565
+          },
+          "height_cm": {
+            "importance": 0.18426809498290841,
+            "coef": 0.027259265957555585
+          },
+          "preop_weight_kg": {
+            "importance": 16.50684950003543,
+            "coef": 0.9615441397486395
+          },
+          "sex": {
+            "importance": 0.5364596743873002,
+            "coef": -1.6659661072365277
+          }
         }
       },
       "anchored": {}
@@ -178,10 +218,33 @@
         "metrics": {
           "mae": 3.182,
           "rmse": 4.039,
-          "r2": 0.9651,
+          "r2_postop_weight": 0.9651,
           "mape": 2.7,
           "coverage95": 94.8,
-          "n": 382
+          "coverage95_conformal": 94.8,
+          "conformal_halfwidth_kg": 8.51,
+          "n": 382,
+          "reference_baseline_mae": 3.284,
+          "gain_vs_reference_pct": 3.1,
+          "r2": 0.9651
+        },
+        "shap_like": {
+          "age": {
+            "importance": 0.6874986010941916,
+            "coef": 0.07817714862170201
+          },
+          "height_cm": {
+            "importance": 0.033332079428400024,
+            "coef": -0.004493514047464934
+          },
+          "preop_weight_kg": {
+            "importance": 16.771652648389573,
+            "coef": 0.9349313566486547
+          },
+          "sex": {
+            "importance": 0.13099673592750705,
+            "coef": -0.3211944700992293
+          }
         }
       },
       "anchored": {}
@@ -252,10 +315,33 @@
         "metrics": {
           "mae": 4.187,
           "rmse": 5.402,
-          "r2": 0.9376,
+          "r2_postop_weight": 0.9376,
           "mape": 4.16,
           "coverage95": 95.0,
-          "n": 479
+          "coverage95_conformal": 95.0,
+          "conformal_halfwidth_kg": 11.176,
+          "n": 479,
+          "reference_baseline_mae": 4.394,
+          "gain_vs_reference_pct": 4.71,
+          "r2": 0.9376
+        },
+        "shap_like": {
+          "age": {
+            "importance": 1.0506357544240474,
+            "coef": 0.11547964947357388
+          },
+          "height_cm": {
+            "importance": 0.17777146328210033,
+            "coef": -0.024402246565280977
+          },
+          "preop_weight_kg": {
+            "importance": 16.595619070083163,
+            "coef": 0.8618724135804097
+          },
+          "sex": {
+            "importance": 0.3959500013262268,
+            "coef": -1.0060594048094251
+          }
         }
       },
       "anchored": {
@@ -340,10 +426,37 @@
           "metrics": {
             "mae": 3.736,
             "rmse": 4.753,
-            "r2": 0.9459,
+            "r2_postop_weight": 0.9459,
             "mape": 3.62,
             "coverage95": 95.0,
-            "n": 360
+            "coverage95_conformal": 95.0,
+            "conformal_halfwidth_kg": 8.867,
+            "n": 360,
+            "reference_baseline_mae": 4.742,
+            "gain_vs_reference_pct": 21.22,
+            "r2": 0.9459
+          },
+          "shap_like": {
+            "age": {
+              "importance": 0.5775636800626536,
+              "coef": 0.06507872936072602
+            },
+            "height_cm": {
+              "importance": 0.29205188904527,
+              "coef": -0.039397949033699094
+            },
+            "preop_weight_kg": {
+              "importance": 2.3904008590751533,
+              "coef": 0.1333247051308475
+            },
+            "sex": {
+              "importance": 0.18721734445975388,
+              "coef": -0.45309743869251307
+            },
+            "anchor_weight_kg": {
+              "importance": 13.507023117183254,
+              "coef": 0.7991912697077684
+            }
           }
         }
       }
@@ -414,10 +527,33 @@
         "metrics": {
           "mae": 5.561,
           "rmse": 7.115,
-          "r2": 0.8619,
+          "r2_postop_weight": 0.8619,
           "mape": 6.42,
           "coverage95": 94.9,
-          "n": 452
+          "coverage95_conformal": 94.9,
+          "conformal_halfwidth_kg": 14.595,
+          "n": 452,
+          "reference_baseline_mae": 5.801,
+          "gain_vs_reference_pct": 4.13,
+          "r2": 0.8619
+        },
+        "shap_like": {
+          "age": {
+            "importance": 1.8857981396210477,
+            "coef": 0.20567364732609708
+          },
+          "height_cm": {
+            "importance": 0.7050320428150728,
+            "coef": 0.09676238037469381
+          },
+          "preop_weight_kg": {
+            "importance": 13.642759947557973,
+            "coef": 0.6991403961767084
+          },
+          "sex": {
+            "importance": 0.5163895114371772,
+            "coef": -1.296966497156036
+          }
         }
       },
       "anchored": {
@@ -502,10 +638,37 @@
           "metrics": {
             "mae": 4.151,
             "rmse": 5.518,
-            "r2": 0.9169,
+            "r2_postop_weight": 0.9169,
             "mape": 4.75,
             "coverage95": 94.9,
-            "n": 452
+            "coverage95_conformal": 94.9,
+            "conformal_halfwidth_kg": 11.403,
+            "n": 452,
+            "reference_baseline_mae": 5.801,
+            "gain_vs_reference_pct": 28.44,
+            "r2": 0.9169
+          },
+          "shap_like": {
+            "age": {
+              "importance": 1.0159770022899453,
+              "coef": 0.11080703245491488
+            },
+            "height_cm": {
+              "importance": 0.951169481752736,
+              "coef": 0.1305436031342191
+            },
+            "preop_weight_kg": {
+              "importance": 0.5229089488620916,
+              "coef": -0.026797126906658517
+            },
+            "sex": {
+              "importance": 0.21868401473044202,
+              "coef": -0.5492478725595992
+            },
+            "anchor_weight_kg": {
+              "importance": 14.482880270842967,
+              "coef": 0.8410365416730188
+            }
           }
         }
       }
@@ -576,10 +739,33 @@
         "metrics": {
           "mae": 7.051,
           "rmse": 9.075,
-          "r2": 0.7352,
+          "r2_postop_weight": 0.7352,
           "mape": 9.23,
           "coverage95": 94.9,
-          "n": 350
+          "coverage95_conformal": 94.9,
+          "conformal_halfwidth_kg": 17.193,
+          "n": 350,
+          "reference_baseline_mae": 7.446,
+          "gain_vs_reference_pct": 5.31,
+          "r2": 0.7352
+        },
+        "shap_like": {
+          "age": {
+            "importance": 2.6041330661633464,
+            "coef": 0.28306849111059185
+          },
+          "height_cm": {
+            "importance": 0.7638361865259825,
+            "coef": 0.10489667591470236
+          },
+          "preop_weight_kg": {
+            "importance": 11.158350285643603,
+            "coef": 0.5602633024276097
+          },
+          "sex": {
+            "importance": 0.09542893294029309,
+            "coef": 0.23817375586133177
+          }
         }
       },
       "anchored": {
@@ -664,10 +850,37 @@
           "metrics": {
             "mae": 6.599,
             "rmse": 8.57,
-            "r2": 0.7639,
+            "r2_postop_weight": 0.7639,
             "mape": 8.63,
             "coverage95": 94.9,
-            "n": 350
+            "coverage95_conformal": 94.9,
+            "conformal_halfwidth_kg": 16.591,
+            "n": 350,
+            "reference_baseline_mae": 7.446,
+            "gain_vs_reference_pct": 11.38,
+            "r2": 0.7639
+          },
+          "shap_like": {
+            "age": {
+              "importance": 2.0636732274776595,
+              "coef": 0.22432066711094256
+            },
+            "height_cm": {
+              "importance": 1.0176628117415703,
+              "coef": 0.1397543714696333
+            },
+            "preop_weight_kg": {
+              "importance": 1.765400810089141,
+              "coef": 0.08864117568001852
+            },
+            "sex": {
+              "importance": 0.42748271898869294,
+              "coef": 1.0669213372746589
+            },
+            "anchor_weight_kg": {
+              "importance": 9.520454989757463,
+              "coef": 0.541912043192019
+            }
           }
         },
         "6_month": {
@@ -751,46 +964,1204 @@
           "metrics": {
             "mae": 5.571,
             "rmse": 7.267,
-            "r2": 0.8302,
+            "r2_postop_weight": 0.8302,
             "mape": 7.29,
             "coverage95": 94.9,
-            "n": 350
+            "coverage95_conformal": 94.9,
+            "conformal_halfwidth_kg": 14.538,
+            "n": 350,
+            "reference_baseline_mae": 7.446,
+            "gain_vs_reference_pct": 25.18,
+            "r2": 0.8302
+          },
+          "shap_like": {
+            "age": {
+              "importance": 1.135665302063894,
+              "coef": 0.1234464811490998
+            },
+            "height_cm": {
+              "importance": 0.4970928345819917,
+              "coef": 0.06826514230207165
+            },
+            "preop_weight_kg": {
+              "importance": 0.513831926587906,
+              "coef": 0.025799617749343362
+            },
+            "sex": {
+              "importance": 0.4444055169877174,
+              "coef": 1.1091576510939918
+            },
+            "anchor_weight_kg": {
+              "importance": 11.659701435698684,
+              "coef": 0.7602347704435618
+            }
           }
         }
       }
     }
   },
-  "notes": "Sex-aware Bayesian Ridge per timepoint, trained on the sex-recorded cohort. Cascade models condition on a known post-op weight (anchor) and are exported only when they beat baseline. 95% intervals are empirically calibrated (ci_mult_95). Note: the 1-week model uses a small cohort (n=119); its later-timepoint counterparts are better powered.",
-  "model_comparison_mae": {
+  "targets_sex_optional": {
     "1_week": {
-      "BayesianRidge": 1.709,
-      "RandomForest": 2.825,
-      "GradientBoosting": 2.358,
-      "XGBoost": 3.662
+      "baseline": {
+        "features": [
+          "age",
+          "height_cm",
+          "preop_weight_kg"
+        ],
+        "anchor": null,
+        "coef": {
+          "age": 0.04035624948418775,
+          "height_cm": -0.013741826824736743,
+          "preop_weight_kg": 0.9448335965110206
+        },
+        "coef_list": [
+          0.04035624948418775,
+          -0.013741826824736743,
+          0.9448335965110206
+        ],
+        "intercept": 0.7508038822104197,
+        "scaler_mean": [
+          37.21981004070556,
+          167.81723202170963,
+          116.42455902306654
+        ],
+        "scaler_scale": [
+          11.635718575804109,
+          9.218816751492067,
+          27.765657884823206
+        ],
+        "model_alpha": 0.06964680293004157,
+        "model_sigma": [
+          [
+            0.01977550289994332,
+            0.0029721050101365596,
+            -0.0018033541580454928
+          ],
+          [
+            0.00297210501013656,
+            0.029943576070501826,
+            -0.017459976556337208
+          ],
+          [
+            -0.0018033541580454926,
+            -0.017459976556337204,
+            0.029661341934653036
+          ]
+        ],
+        "residual_std": 3.8294,
+        "ci_mult_95": 1.2728,
+        "metrics": {
+          "mae": 1.861,
+          "rmse": 3.829,
+          "r2_postop_weight": 0.979,
+          "mape": 1.71,
+          "coverage95": 95.0,
+          "coverage95_conformal": 95.0,
+          "conformal_halfwidth_kg": 4.989,
+          "n": 737,
+          "reference_baseline_mae": 1.872,
+          "gain_vs_reference_pct": 0.61,
+          "r2": 0.979
+        },
+        "shap_like": {
+          "age": {
+            "importance": 0.3929973508873225,
+            "coef": 0.04035624948418775
+          },
+          "height_cm": {
+            "importance": 0.10156297617568803,
+            "coef": -0.013741826824736743
+          },
+          "preop_weight_kg": {
+            "importance": 20.124905682503876,
+            "coef": 0.9448335965110206
+          }
+        }
+      },
+      "anchored": {}
     },
     "1_month": {
-      "BayesianRidge": 3.186,
-      "RandomForest": 3.668,
-      "GradientBoosting": 3.826,
-      "XGBoost": 4.129
+      "baseline": {
+        "features": [
+          "age",
+          "height_cm",
+          "preop_weight_kg"
+        ],
+        "anchor": null,
+        "coef": {
+          "age": 0.04940961033704008,
+          "height_cm": -0.06040350021966377,
+          "preop_weight_kg": 0.9306917992815037
+        },
+        "coef_list": [
+          0.04940961033704008,
+          -0.06040350021966377,
+          0.9306917992815037
+        ],
+        "intercept": 3.446279375239797,
+        "scaler_mean": [
+          37.91086956521739,
+          167.00347826086957,
+          124.84717391304362
+        ],
+        "scaler_scale": [
+          11.454859008125341,
+          9.291622504776354,
+          27.883827957768812
+        ],
+        "model_alpha": 0.06330210548801483,
+        "model_sigma": [
+          [
+            0.017479558034044478,
+            0.002723670692897526,
+            -0.001479904478545216
+          ],
+          [
+            0.0027236706928975263,
+            0.023953258721626597,
+            -0.012462745005854977
+          ],
+          [
+            -0.0014799044785452162,
+            -0.012462745005854977,
+            0.02365415134330803
+          ]
+        ],
+        "residual_std": 3.9899,
+        "ci_mult_95": 2.1559,
+        "metrics": {
+          "mae": 3.005,
+          "rmse": 3.99,
+          "r2_postop_weight": 0.9764,
+          "mape": 2.76,
+          "coverage95": 95.0,
+          "coverage95_conformal": 95.0,
+          "conformal_halfwidth_kg": 8.604,
+          "n": 920,
+          "reference_baseline_mae": 3.144,
+          "gain_vs_reference_pct": 4.42,
+          "r2": 0.9764
+        },
+        "shap_like": {
+          "age": {
+            "importance": 0.4688350898284267,
+            "coef": 0.04940961033704008
+          },
+          "height_cm": {
+            "importance": 0.4494235082846608,
+            "coef": -0.06040350021966377
+          },
+          "preop_weight_kg": {
+            "importance": 20.080553920879925,
+            "coef": 0.9306917992815037
+          }
+        }
+      },
+      "anchored": {}
     },
     "3_month": {
-      "BayesianRidge": 4.195,
-      "RandomForest": 4.61,
-      "GradientBoosting": 4.694,
-      "XGBoost": 4.923
+      "baseline": {
+        "features": [
+          "age",
+          "height_cm",
+          "preop_weight_kg"
+        ],
+        "anchor": null,
+        "coef": {
+          "age": 0.10353021376920168,
+          "height_cm": -0.08036000414825706,
+          "preop_weight_kg": 0.8338479688704645
+        },
+        "coef_list": [
+          0.10353021376920168,
+          -0.08036000414825706,
+          0.8338479688704645
+        ],
+        "intercept": 4.648811148059778,
+        "scaler_mean": [
+          37.6546511627907,
+          166.85023255813954,
+          123.79558139534895
+        ],
+        "scaler_scale": [
+          11.42876986784955,
+          9.151580747525246,
+          26.953917245820474
+        ],
+        "model_alpha": 0.033017601873723504,
+        "model_sigma": [
+          [
+            0.03607798409290287,
+            0.006349582626995592,
+            -0.004423838129452561
+          ],
+          [
+            0.006349582626995592,
+            0.04861160137181127,
+            -0.024932749964459353
+          ],
+          [
+            -0.004423838129452563,
+            -0.024932749964459357,
+            0.04803654552367912
+          ]
+        ],
+        "residual_std": 5.5204,
+        "ci_mult_95": 2.0462,
+        "metrics": {
+          "mae": 4.06,
+          "rmse": 5.52,
+          "r2_postop_weight": 0.9417,
+          "mape": 4.19,
+          "coverage95": 95.0,
+          "coverage95_conformal": 95.0,
+          "conformal_halfwidth_kg": 11.317,
+          "n": 860,
+          "reference_baseline_mae": 4.261,
+          "gain_vs_reference_pct": 4.72,
+          "r2": 0.9417
+        },
+        "shap_like": {
+          "age": {
+            "importance": 0.9827998889662714,
+            "coef": 0.10353021376920168
+          },
+          "height_cm": {
+            "importance": 0.5855444523355895,
+            "coef": -0.08036000414825706
+          },
+          "preop_weight_kg": {
+            "importance": 17.522082558241774,
+            "coef": 0.8338479688704645
+          }
+        }
+      },
+      "anchored": {
+        "1_month": {
+          "features": [
+            "age",
+            "height_cm",
+            "preop_weight_kg",
+            "anchor_weight_kg"
+          ],
+          "anchor": "1_month",
+          "coef": {
+            "age": 0.07080493272158409,
+            "height_cm": -0.04679358063877323,
+            "preop_weight_kg": 0.15676112950602392,
+            "anchor_weight_kg": 0.7384027043935926
+          },
+          "coef_list": [
+            0.07080493272158409,
+            -0.04679358063877323,
+            0.15676112950602392,
+            0.7384027043935926
+          ],
+          "intercept": 2.4876955633890674,
+          "scaler_mean": [
+            38.054363376251786,
+            166.59971387696712,
+            126.45937052932774,
+            113.03433476394854
+          ],
+          "scaler_scale": [
+            11.432700019895785,
+            9.173617077019648,
+            27.255480899972117,
+            25.285874979610625
+          ],
+          "model_alpha": 0.04494289076292015,
+          "model_sigma": [
+            [
+              0.03357406222702941,
+              0.00531676737035304,
+              0.03150245501106973,
+              -0.03500762396939309
+            ],
+            [
+              0.00531676737035304,
+              0.04599242033614281,
+              -0.05316727731951926,
+              0.02915653871625097
+            ],
+            [
+              0.03150245501106973,
+              -0.05316727731951926,
+              1.355340094307824,
+              -1.3124040042847764
+            ],
+            [
+              -0.03500762396939309,
+              0.02915653871625097,
+              -1.3124040042847764,
+              1.3140449703377295
+            ]
+          ],
+          "residual_std": 4.7417,
+          "ci_mult_95": 1.898,
+          "metrics": {
+            "mae": 3.501,
+            "rmse": 4.742,
+            "r2_postop_weight": 0.9583,
+            "mape": 3.62,
+            "coverage95": 95.0,
+            "coverage95_conformal": 95.0,
+            "conformal_halfwidth_kg": 9.039,
+            "n": 699,
+            "reference_baseline_mae": 4.392,
+            "gain_vs_reference_pct": 20.29,
+            "r2": 0.9583
+          },
+          "shap_like": {
+            "age": {
+              "importance": 0.6714369047031808,
+              "coef": 0.07080493272158409
+            },
+            "height_cm": {
+              "importance": 0.34115748806272317,
+              "coef": -0.04679358063877323
+            },
+            "preop_weight_kg": {
+              "importance": 3.314122093183203,
+              "coef": 0.15676112950602392
+            },
+            "anchor_weight_kg": {
+              "importance": 14.554707223613324,
+              "coef": 0.7384027043935926
+            }
+          }
+        }
+      }
     },
     "6_month": {
-      "BayesianRidge": 5.571,
-      "RandomForest": 5.992,
-      "GradientBoosting": 6.11,
-      "XGBoost": 6.173
+      "baseline": {
+        "features": [
+          "age",
+          "height_cm",
+          "preop_weight_kg"
+        ],
+        "anchor": null,
+        "coef": {
+          "age": 0.18985767307801563,
+          "height_cm": 0.02627053262046407,
+          "preop_weight_kg": 0.669212513972987
+        },
+        "coef_list": [
+          0.18985767307801563,
+          0.02627053262046407,
+          0.669212513972987
+        ],
+        "intercept": -8.581778671168166,
+        "scaler_mean": [
+          37.7797833935018,
+          167.01829121540314,
+          124.39253910950669
+        ],
+        "scaler_scale": [
+          11.562975705816319,
+          9.15183081073718,
+          28.275874783219223
+        ],
+        "model_alpha": 0.0158711073911527,
+        "model_sigma": [
+          [
+            0.07764131210336113,
+            0.014006196642487888,
+            -0.007632741421263717
+          ],
+          [
+            0.014006196642487888,
+            0.10520512198497936,
+            -0.0539365454523733
+          ],
+          [
+            -0.007632741421263717,
+            -0.05393654545237331,
+            0.1034288150286962
+          ]
+        ],
+        "residual_std": 8.0205,
+        "ci_mult_95": 1.8256,
+        "metrics": {
+          "mae": 5.51,
+          "rmse": 8.021,
+          "r2_postop_weight": 0.8508,
+          "mape": 6.48,
+          "coverage95": 94.9,
+          "coverage95_conformal": 94.9,
+          "conformal_halfwidth_kg": 14.721,
+          "n": 831,
+          "reference_baseline_mae": 5.788,
+          "gain_vs_reference_pct": 4.8,
+          "r2": 0.8508
+        },
+        "shap_like": {
+          "age": {
+            "importance": 1.8304237094260551,
+            "coef": 0.18985767307801563
+          },
+          "height_cm": {
+            "importance": 0.19221573377975873,
+            "coef": 0.02627053262046407
+          },
+          "preop_weight_kg": {
+            "importance": 14.68769733639833,
+            "coef": 0.669212513972987
+          }
+        }
+      },
+      "anchored": {
+        "1_month": {
+          "features": [
+            "age",
+            "height_cm",
+            "preop_weight_kg",
+            "anchor_weight_kg"
+          ],
+          "anchor": "1_month",
+          "coef": {
+            "age": 0.15364721825897668,
+            "height_cm": 0.055480436738570296,
+            "preop_weight_kg": 0.04344960911784161,
+            "anchor_weight_kg": 0.6720243412421134
+          },
+          "coef_list": [
+            0.15364721825897668,
+            0.055480436738570296,
+            0.04344960911784161,
+            0.6720243412421134
+          ],
+          "intercept": -8.780106504111757,
+          "scaler_mean": [
+            38.271364317841076,
+            166.90884557721142,
+            127.22263868065971,
+            113.63508245877063
+          ],
+          "scaler_scale": [
+            11.603124938288797,
+            9.273778368821668,
+            28.671583708921542,
+            26.76692108878812
+          ],
+          "model_alpha": 0.01620888189576946,
+          "model_sigma": [
+            [
+              0.09620263711998141,
+              0.014977814506281936,
+              0.07037560514926004,
+              -0.07812824175086468
+            ],
+            [
+              0.014977814506281932,
+              0.13321073587837637,
+              -0.16872609213014841,
+              0.10021995921524172
+            ],
+            [
+              0.07037560514926006,
+              -0.16872609213014841,
+              3.996542920208892,
+              -3.863330400965543
+            ],
+            [
+              -0.07812824175086468,
+              0.10021995921524172,
+              -3.863330400965543,
+              3.8583269210041267
+            ]
+          ],
+          "residual_std": 7.9942,
+          "ci_mult_95": 1.7389,
+          "metrics": {
+            "mae": 5.345,
+            "rmse": 7.994,
+            "r2_postop_weight": 0.8565,
+            "mape": 6.21,
+            "coverage95": 94.9,
+            "coverage95_conformal": 94.9,
+            "conformal_halfwidth_kg": 14.002,
+            "n": 667,
+            "reference_baseline_mae": 6.04,
+            "gain_vs_reference_pct": 11.51,
+            "r2": 0.8565
+          },
+          "shap_like": {
+            "age": {
+              "importance": 1.4848227851331728,
+              "coef": 0.15364721825897668
+            },
+            "height_cm": {
+              "importance": 0.41149249906339497,
+              "coef": 0.055480436738570296
+            },
+            "preop_weight_kg": {
+              "importance": 0.9621057956618742,
+              "coef": 0.04344960911784161
+            },
+            "anchor_weight_kg": {
+              "importance": 13.925381973315432,
+              "coef": 0.6720243412421134
+            }
+          }
+        },
+        "3_month": {
+          "features": [
+            "age",
+            "height_cm",
+            "preop_weight_kg",
+            "anchor_weight_kg"
+          ],
+          "anchor": "3_month",
+          "coef": {
+            "age": 0.11693085259391897,
+            "height_cm": 0.09926851010369553,
+            "preop_weight_kg": -0.03426595929970166,
+            "anchor_weight_kg": 0.8520564465581751
+          },
+          "coef_list": [
+            0.11693085259391897,
+            0.09926851010369553,
+            -0.03426595929970166,
+            0.8520564465581751
+          ],
+          "intercept": -14.740347597705764,
+          "scaler_mean": [
+            37.87394957983193,
+            166.8140056022409,
+            125.23557422969198,
+            99.6039215686274
+          ],
+          "scaler_scale": [
+            11.391348593391804,
+            9.085558148419734,
+            27.56277013471962,
+            23.381332902954412
+          ],
+          "model_alpha": 0.03805740375553669,
+          "model_sigma": [
+            [
+              0.039681434119440265,
+              0.0060193437278535135,
+              0.03142785914405521,
+              -0.035859296693612756
+            ],
+            [
+              0.006019343727853517,
+              0.05136217433234168,
+              -0.04928124930565602,
+              0.024179117690608903
+            ],
+            [
+              0.03142785914405521,
+              -0.049281249305656014,
+              0.7296231122548029,
+              -0.6882967160730696
+            ],
+            [
+              -0.03585929669361275,
+              0.024179117690608896,
+              -0.6882967160730696,
+              0.6966216398986628
+            ]
+          ],
+          "residual_std": 5.1584,
+          "ci_mult_95": 2.0871,
+          "metrics": {
+            "mae": 3.852,
+            "rmse": 5.158,
+            "r2_postop_weight": 0.9349,
+            "mape": 4.51,
+            "coverage95": 95.0,
+            "coverage95_conformal": 95.0,
+            "conformal_halfwidth_kg": 10.781,
+            "n": 714,
+            "reference_baseline_mae": 5.653,
+            "gain_vs_reference_pct": 31.86,
+            "r2": 0.9349
+          },
+          "shap_like": {
+            "age": {
+              "importance": 1.108997605287683,
+              "coef": 0.11693085259391897
+            },
+            "height_cm": {
+              "importance": 0.7162659687597749,
+              "coef": 0.09926851010369553
+            },
+            "preop_weight_kg": {
+              "importance": 0.7331256691771951,
+              "coef": -0.03426595929970166
+            },
+            "anchor_weight_kg": {
+              "importance": 15.537818136190246,
+              "coef": 0.8520564465581751
+            }
+          }
+        }
+      }
     },
     "12_month": {
-      "BayesianRidge": 7.062,
-      "RandomForest": 7.416,
-      "GradientBoosting": 8.112,
-      "XGBoost": 8.18
+      "baseline": {
+        "features": [
+          "age",
+          "height_cm",
+          "preop_weight_kg"
+        ],
+        "anchor": null,
+        "coef": {
+          "age": 0.31874154923970677,
+          "height_cm": 0.13379422874554497,
+          "preop_weight_kg": 0.5211176634285872
+        },
+        "coef_list": [
+          0.31874154923970677,
+          0.13379422874554497,
+          0.5211176634285872
+        ],
+        "intercept": -22.335646490538167,
+        "scaler_mean": [
+          37.96715328467153,
+          166.91806569343066,
+          123.58996350364956
+        ],
+        "scaler_scale": [
+          11.442286851524134,
+          9.113010186136005,
+          27.388723597324482
+        ],
+        "model_alpha": 0.012095221238381446,
+        "model_sigma": [
+          [
+            0.15560237410110186,
+            0.032254403052851675,
+            -0.02105108726059396
+          ],
+          [
+            0.03225440305285167,
+            0.21148895748780536,
+            -0.10976361940132996
+          ],
+          [
+            -0.02105108726059396,
+            -0.10976361940132999,
+            0.20765098107586055
+          ]
+        ],
+        "residual_std": 9.15,
+        "ci_mult_95": 1.8708,
+        "metrics": {
+          "mae": 6.96,
+          "rmse": 9.15,
+          "r2_postop_weight": 0.7395,
+          "mape": 9.26,
+          "coverage95": 94.9,
+          "coverage95_conformal": 94.9,
+          "conformal_halfwidth_kg": 17.118,
+          "n": 548,
+          "reference_baseline_mae": 7.721,
+          "gain_vs_reference_pct": 9.85,
+          "r2": 0.7395
+        },
+        "shap_like": {
+          "age": {
+            "importance": 3.0453794418640823,
+            "coef": 0.31874154923970677
+          },
+          "height_cm": {
+            "importance": 0.9737301101172676,
+            "coef": 0.13379422874554497
+          },
+          "preop_weight_kg": {
+            "importance": 11.3195292786615,
+            "coef": 0.5211176634285872
+          }
+        }
+      },
+      "anchored": {
+        "1_month": {
+          "features": [
+            "age",
+            "height_cm",
+            "preop_weight_kg",
+            "anchor_weight_kg"
+          ],
+          "anchor": "1_month",
+          "coef": {
+            "age": 0.3200028449759041,
+            "height_cm": 0.15160106066655318,
+            "preop_weight_kg": 0.08368214055875497,
+            "anchor_weight_kg": 0.4731472325548757
+          },
+          "coef_list": [
+            0.3200028449759041,
+            0.15160106066655318,
+            0.08368214055875497,
+            0.4731472325548757
+          ],
+          "intercept": -23.442971031136153,
+          "scaler_mean": [
+            38.62303664921466,
+            166.4675392670157,
+            127.89319371727743,
+            114.72460732984293
+          ],
+          "scaler_scale": [
+            11.363314408172073,
+            9.21796241680167,
+            27.02851908127545,
+            25.333679375678628
+          ],
+          "model_alpha": 0.012107328210038296,
+          "model_sigma": [
+            [
+              0.2281104939920237,
+              0.04491041980072859,
+              0.1504625386637864,
+              -0.17979156421900797
+            ],
+            [
+              0.044910419800728595,
+              0.328886342523312,
+              -0.4079030366935895,
+              0.2300763994845092
+            ],
+            [
+              0.1504625386637864,
+              -0.4079030366935894,
+              7.060334795994903,
+              -6.735959549558614
+            ],
+            [
+              -0.17979156421900794,
+              0.2300763994845092,
+              -6.735959549558613,
+              6.724871795428143
+            ]
+          ],
+          "residual_std": 9.2074,
+          "ci_mult_95": 2.0411,
+          "metrics": {
+            "mae": 6.941,
+            "rmse": 9.207,
+            "r2_postop_weight": 0.738,
+            "mape": 8.93,
+            "coverage95": 94.8,
+            "coverage95_conformal": 94.8,
+            "conformal_halfwidth_kg": 18.793,
+            "n": 382,
+            "reference_baseline_mae": 8.017,
+            "gain_vs_reference_pct": 13.42,
+            "r2": 0.738
+          },
+          "shap_like": {
+            "age": {
+              "importance": 3.0249352015321826,
+              "coef": 0.3200028449759041
+            },
+            "height_cm": {
+              "importance": 1.1187585633180763,
+              "coef": 0.15160106066655318
+            },
+            "preop_weight_kg": {
+              "importance": 1.8163745255759558,
+              "coef": 0.08368214055875497
+            },
+            "anchor_weight_kg": {
+              "importance": 9.5579930185704,
+              "coef": 0.4731472325548757
+            }
+          }
+        },
+        "3_month": {
+          "features": [
+            "age",
+            "height_cm",
+            "preop_weight_kg",
+            "anchor_weight_kg"
+          ],
+          "anchor": "3_month",
+          "coef": {
+            "age": 0.23076644151278586,
+            "height_cm": 0.195460588591704,
+            "preop_weight_kg": 0.021620338068299397,
+            "anchor_weight_kg": 0.6015169573287833
+          },
+          "coef_list": [
+            0.23076644151278586,
+            0.195460588591704,
+            0.021620338068299397,
+            0.6015169573287833
+          ],
+          "intercept": -27.006400750806634,
+          "scaler_mean": [
+            37.72371134020619,
+            166.679587628866,
+            123.84247422680411,
+            98.90989690721652
+          ],
+          "scaler_scale": [
+            11.335463675625173,
+            9.12065379252748,
+            26.598727394987158,
+            22.798518331981604
+          ],
+          "model_alpha": 0.014654534272141431,
+          "model_sigma": [
+            [
+              0.1546749458205963,
+              0.026122968970815084,
+              0.12508961006924318,
+              -0.1477805527064933
+            ],
+            [
+              0.02612296897081509,
+              0.20272870944418386,
+              -0.2135695942159228,
+              0.11248685680217041
+            ],
+            [
+              0.12508961006924318,
+              -0.2135695942159228,
+              2.6266835438606644,
+              -2.458658815228335
+            ],
+            [
+              -0.1477805527064933,
+              0.11248685680217041,
+              -2.458658815228335,
+              2.484223380856399
+            ]
+          ],
+          "residual_std": 8.3498,
+          "ci_mult_95": 1.9561,
+          "metrics": {
+            "mae": 6.408,
+            "rmse": 8.35,
+            "r2_postop_weight": 0.7761,
+            "mape": 8.53,
+            "coverage95": 94.8,
+            "coverage95_conformal": 94.8,
+            "conformal_halfwidth_kg": 16.358,
+            "n": 485,
+            "reference_baseline_mae": 7.577,
+            "gain_vs_reference_pct": 15.43,
+            "r2": 0.7761
+          },
+          "shap_like": {
+            "age": {
+              "importance": 2.176010063259932,
+              "coef": 0.23076644151278586
+            },
+            "height_cm": {
+              "importance": 1.4263835855063989,
+              "coef": 0.195460588591704
+            },
+            "preop_weight_kg": {
+              "importance": 0.4581840500379538,
+              "coef": 0.021620338068299397
+            },
+            "anchor_weight_kg": {
+              "importance": 10.942654818942417,
+              "coef": 0.6015169573287833
+            }
+          }
+        },
+        "6_month": {
+          "features": [
+            "age",
+            "height_cm",
+            "preop_weight_kg",
+            "anchor_weight_kg"
+          ],
+          "anchor": "6_month",
+          "coef": {
+            "age": 0.12798313997091162,
+            "height_cm": 0.1090034325468094,
+            "preop_weight_kg": -0.028968459935969807,
+            "anchor_weight_kg": 0.8051106013190926
+          },
+          "coef_list": [
+            0.12798313997091162,
+            0.1090034325468094,
+            -0.028968459935969807,
+            0.8051106013190926
+          ],
+          "intercept": -12.817632739418926,
+          "scaler_mean": [
+            37.871428571428574,
+            166.7991836734694,
+            124.19653061224487,
+            86.78448979591836
+          ],
+          "scaler_scale": [
+            11.357358488519004,
+            9.096354918482383,
+            26.969378103884544,
+            20.2741688534666
+          ],
+          "model_alpha": 0.02016775107765898,
+          "model_sigma": [
+            [
+              0.11922604430421736,
+              0.021930530387614312,
+              0.09425075739063687,
+              -0.11640595046117913
+            ],
+            [
+              0.021930530387614312,
+              0.13926750374275465,
+              -0.06993805287521673,
+              -0.0003682511233570225
+            ],
+            [
+              0.09425075739063687,
+              -0.06993805287521673,
+              0.9388826103963915,
+              -0.8614463001788604
+            ],
+            [
+              -0.11640595046117913,
+              -0.00036825112335702945,
+              -0.8614463001788604,
+              0.9249787681795829
+            ]
+          ],
+          "residual_std": 7.115,
+          "ci_mult_95": 2.1301,
+          "metrics": {
+            "mae": 5.323,
+            "rmse": 7.115,
+            "r2_postop_weight": 0.8402,
+            "mape": 7.04,
+            "coverage95": 94.9,
+            "coverage95_conformal": 94.9,
+            "conformal_halfwidth_kg": 15.325,
+            "n": 490,
+            "reference_baseline_mae": 7.501,
+            "gain_vs_reference_pct": 29.04,
+            "r2": 0.8402
+          },
+          "shap_like": {
+            "age": {
+              "importance": 1.2096906689460494,
+              "coef": 0.12798313997091162
+            },
+            "height_cm": {
+              "importance": 0.7926522594540582,
+              "coef": 0.1090034325468094
+            },
+            "preop_weight_kg": {
+              "importance": 0.6211842114563921,
+              "coef": -0.028968459935969807
+            },
+            "anchor_weight_kg": {
+              "importance": 13.013788981632002,
+              "coef": 0.8051106013190926
+            }
+          }
+        }
+      }
     }
-  }
+  },
+  "model_comparison_mae": {
+    "1_week": {
+      "sex_aware": {
+        "BayesianRidge": 1.709,
+        "Ridge": 1.709,
+        "Lasso": 1.708,
+        "ElasticNet": 1.704,
+        "Huber": 1.723,
+        "LinearReg": 1.709,
+        "RandomForest": 2.854,
+        "ExtraTrees": 3.743,
+        "GradientBoost": 2.314,
+        "HistGBM": 4.811,
+        "kNN": 5.494,
+        "SVR_rbf": 2.77,
+        "MLP": 2.586,
+        "XGBoost": 3.643,
+        "LightGBM": 5.138,
+        "CatBoost": 2.469
+      },
+      "sex_optional": {
+        "BayesianRidge": 1.861,
+        "Ridge": 1.866,
+        "Lasso": 1.862,
+        "ElasticNet": 1.88,
+        "Huber": 1.845,
+        "LinearReg": 1.861,
+        "RandomForest": 2.321,
+        "ExtraTrees": 2.445,
+        "GradientBoost": 2.207,
+        "HistGBM": 3.183,
+        "kNN": 3.656,
+        "SVR_rbf": 2.571,
+        "MLP": 2.044,
+        "XGBoost": 2.899,
+        "LightGBM": 3.297,
+        "CatBoost": 2.23
+      }
+    },
+    "1_month": {
+      "sex_aware": {
+        "BayesianRidge": 3.173,
+        "Ridge": 3.172,
+        "Lasso": 3.171,
+        "ElasticNet": 3.17,
+        "Huber": 3.162,
+        "LinearReg": 3.173,
+        "RandomForest": 3.667,
+        "ExtraTrees": 3.847,
+        "GradientBoost": 3.779,
+        "HistGBM": 4.274,
+        "kNN": 4.89,
+        "SVR_rbf": 3.877,
+        "MLP": 3.518,
+        "XGBoost": 4.212,
+        "LightGBM": 4.424,
+        "CatBoost": 3.587
+      },
+      "sex_optional": {
+        "BayesianRidge": 3.011,
+        "Ridge": 3.011,
+        "Lasso": 3.012,
+        "ElasticNet": 3.014,
+        "Huber": 2.995,
+        "LinearReg": 3.011,
+        "RandomForest": 3.269,
+        "ExtraTrees": 3.339,
+        "GradientBoost": 3.301,
+        "HistGBM": 3.585,
+        "kNN": 4.302,
+        "SVR_rbf": 3.548,
+        "MLP": 3.148,
+        "XGBoost": 3.572,
+        "LightGBM": 3.657,
+        "CatBoost": 3.208
+      }
+    },
+    "3_month": {
+      "sex_aware": {
+        "BayesianRidge": 4.186,
+        "Ridge": 4.184,
+        "Lasso": 4.186,
+        "ElasticNet": 4.181,
+        "Huber": 4.195,
+        "LinearReg": 4.187,
+        "RandomForest": 4.577,
+        "ExtraTrees": 4.786,
+        "GradientBoost": 4.682,
+        "HistGBM": 4.968,
+        "kNN": 5.645,
+        "SVR_rbf": 4.882,
+        "MLP": 4.43,
+        "XGBoost": 4.951,
+        "LightGBM": 5.059,
+        "CatBoost": 4.453
+      },
+      "sex_optional": {
+        "BayesianRidge": 4.062,
+        "Ridge": 4.062,
+        "Lasso": 4.062,
+        "ElasticNet": 4.063,
+        "Huber": 4.062,
+        "LinearReg": 4.062,
+        "RandomForest": 4.343,
+        "ExtraTrees": 4.433,
+        "GradientBoost": 4.442,
+        "HistGBM": 4.651,
+        "kNN": 5.012,
+        "SVR_rbf": 4.379,
+        "MLP": 4.204,
+        "XGBoost": 4.785,
+        "LightGBM": 4.662,
+        "CatBoost": 4.245
+      }
+    },
+    "6_month": {
+      "sex_aware": {
+        "BayesianRidge": 5.568,
+        "Ridge": 5.568,
+        "Lasso": 5.567,
+        "ElasticNet": 5.569,
+        "Huber": 5.568,
+        "LinearReg": 5.567,
+        "RandomForest": 6.036,
+        "ExtraTrees": 6.093,
+        "GradientBoost": 6.173,
+        "HistGBM": 6.13,
+        "kNN": 6.598,
+        "SVR_rbf": 6.165,
+        "MLP": 5.832,
+        "XGBoost": 6.278,
+        "LightGBM": 6.234,
+        "CatBoost": 5.935
+      },
+      "sex_optional": {
+        "BayesianRidge": 5.504,
+        "Ridge": 5.506,
+        "Lasso": 5.503,
+        "ElasticNet": 5.513,
+        "Huber": 5.463,
+        "LinearReg": 5.503,
+        "RandomForest": 5.77,
+        "ExtraTrees": 5.758,
+        "GradientBoost": 5.833,
+        "HistGBM": 5.869,
+        "kNN": 6.185,
+        "SVR_rbf": 5.702,
+        "MLP": 5.652,
+        "XGBoost": 6.111,
+        "LightGBM": 6.008,
+        "CatBoost": 5.614
+      }
+    },
+    "12_month": {
+      "sex_aware": {
+        "BayesianRidge": 7.064,
+        "Ridge": 7.065,
+        "Lasso": 7.066,
+        "ElasticNet": 7.063,
+        "Huber": 7.092,
+        "LinearReg": 7.069,
+        "RandomForest": 7.452,
+        "ExtraTrees": 7.248,
+        "GradientBoost": 8.172,
+        "HistGBM": 7.678,
+        "kNN": 7.73,
+        "SVR_rbf": 7.538,
+        "MLP": 7.375,
+        "XGBoost": 8.336,
+        "LightGBM": 7.915,
+        "CatBoost": 7.61
+      },
+      "sex_optional": {
+        "BayesianRidge": 6.955,
+        "Ridge": 6.955,
+        "Lasso": 6.955,
+        "ElasticNet": 6.954,
+        "Huber": 6.967,
+        "LinearReg": 6.955,
+        "RandomForest": 7.504,
+        "ExtraTrees": 7.274,
+        "GradientBoost": 7.998,
+        "HistGBM": 7.852,
+        "kNN": 7.661,
+        "SVR_rbf": 7.419,
+        "MLP": 7.132,
+        "XGBoost": 8.385,
+        "LightGBM": 7.953,
+        "CatBoost": 7.49
+      }
+    }
+  },
+  "notes": "v7 extended. Deliverable identical to v6.2 (sex-aware/sex-optional BayesianRidge with calibrated 95% prediction intervals). Adds a 14-16 learner model-selection experiment (repeated 5-fold CV) to justify the chosen model.",
+  "sex_encoding": {
+    "female": 0,
+    "male": 1
+  },
+  "sex_required": false,
+  "sex_optional_available": true,
+  "deployment_note": "Generated by build_website_model.py from models_v7_CANDIDATE.json. Closed-form models unchanged; only sex_encoding, metrics.r2 alias, and deployment flags added."
 }
