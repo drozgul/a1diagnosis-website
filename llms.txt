@@ -13,14 +13,14 @@ A1 Diagnosis uses AI and blood biomarker analysis to help identify signals assoc
 - **Stage:** Pre-clinical validation
 - **Regulatory Pathway:** Laboratory Developed Test (LDT)
 
-## Founders
+## Founder
 
-- **Dr. Mustafa Ozgul, MD** — CEO & Co-Founder. Six years of AMD research at UC Irvine Gavin Herbert Eye Institute. 24 peer-reviewed publications. LinkedIn: https://www.linkedin.com/in/drozgul
-- **Dr. Murat Baday, PhD** — Co-Founder. Stanford researcher and Synapses Ventures founder. LinkedIn: https://www.linkedin.com/in/muratbaday
+- **Dr. Mustafa Ozgul, MD** — Founder & CEO. Six years of AMD research at UC Irvine Gavin Herbert Eye Institute. 24 peer-reviewed publications. LinkedIn: https://www.linkedin.com/in/drozgul
 
 ## Key Pages
 
 - [Home](https://a1diagnosis.com/): Overview of A1 Diagnosis and the proactive vision risk analysis platform
+- [About](https://a1diagnosis.com/about.html): Purpose, leadership, history, corporate impact, and collaborations
 - [What is AMD?](https://a1diagnosis.com/what-is-amd.html): Education on age-related macular degeneration
 - [How It Works](https://a1diagnosis.com/how-it-works.html): How the blood-based AMD risk assessment works
 - [Proactive Vision Platform](https://a1diagnosis.com/proactive-vision-platform.html): Details on the blood-based AMD risk assessment platform

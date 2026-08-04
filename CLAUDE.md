@@ -57,18 +57,24 @@
 - Interactive hover effects and transitions
 - Print optimization for PDF export
 
-### **Team & Leadership (8 Key Members)**
+### **Team & Leadership**
+> **⚠️ As of 2026-08-03, Dr. Murat Baday is no longer a co-founder.** He has been removed from all
+> public surfaces (`about.html`, `index.html`, `history.html`, `llms.txt`,
+> `netlify/functions/claude-chat.js`). He is **still present** in the internal investor decks under
+> `/presentation/` and `/a16z/` — remove him there too before either deck is shared again.
+> The only person shown publicly is Dr. Mustafa Özgül. Do not re-add advisors to public pages:
+> none of them appear on any public page today, and the decks label several as *potential* advisors.
+
 **Core Team**:
 1. **Dr. Mustafa Özgül** - Founder & CEO, UC Irvine AMD Researcher (6 years)
-2. **Dr. Murat Baday** - Co-founder, Stanford & Synapses Ventures ($6.1M Series A)
-3. **Daniel Chatelain** - Strategic Business Advisor, BayPay Forum Founder (20+ years Fintech)
-4. **Prof. Prashanth Asuri** - Health Innovation Advisor, Santa Clara University, Ex-Genentech
+2. **Daniel Chatelain** - Strategic Business Advisor, BayPay Forum Founder (20+ years Fintech) *(deck only)*
+3. **Prof. Prashanth Asuri** - Health Innovation Advisor, Santa Clara University, Ex-Genentech *(deck only)*
 
-**Scientific Advisors**:
-5. **Prof. Ramasamy Paulmurugan** - Stanford Professor, $10M+ NIH, 203+ Publications
-6. **Danny Seth** - Neurology Diagnostics Expert, Redwood Bio CEO (Alzheimer Blood Test), Harvard MBA + MIT + $5M
-7. **Dr. Chirag Patel** - Neuro-Oncology Specialist, MD Anderson Cancer Center, MD/PhD
-8. **Prof. Emre Araci** - Technology Advisor, Santa Clara University, Smartlens Inc. Co-founder
+**Scientific Advisors** *(deck only — not on any public page)*:
+4. **Prof. Ramasamy Paulmurugan** - Stanford Professor, $10M+ NIH, 203+ Publications
+5. **Danny Seth** - Neurology Diagnostics Expert, Redwood Bio CEO (Alzheimer Blood Test), Harvard MBA + MIT + $5M
+6. **Dr. Chirag Patel** - Neuro-Oncology Specialist, MD Anderson Cancer Center, MD/PhD
+7. **Prof. Emre Araci** - Technology Advisor, Santa Clara University, Smartlens Inc. Co-founder
 
 **Team Metrics**:
 - **Combined Experience**: 108+ years

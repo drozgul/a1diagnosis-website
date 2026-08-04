@@ -141,6 +141,11 @@
   status = 200
 
 [[redirects]]
+  from = "/about"
+  to = "/about.html"
+  status = 200
+
+[[redirects]]
   from = "/history"
   to = "/history.html"
   status = 200
