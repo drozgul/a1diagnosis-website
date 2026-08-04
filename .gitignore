@@ -146,3 +146,9 @@ dist
 # Vite logs files
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
+# Local working files - never publish to the website
+Local files (not on website)/
+
+# Claude Code: share project settings, keep machine-local permissions out
+.claude/settings.local.json
