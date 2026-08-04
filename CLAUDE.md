@@ -58,12 +58,15 @@
 - Print optimization for PDF export
 
 ### **Team & Leadership**
-> **⚠️ As of 2026-08-03, Dr. Murat Baday is no longer a co-founder.** He has been removed from all
-> public surfaces (`about.html`, `index.html`, `history.html`, `llms.txt`,
-> `netlify/functions/claude-chat.js`). He is **still present** in the internal investor decks under
-> `/presentation/` and `/a16z/` — remove him there too before either deck is shared again.
-> The only person shown publicly is Dr. Mustafa Özgül. Do not re-add advisors to public pages:
-> none of them appear on any public page today, and the decks label several as *potential* advisors.
+> **⚠️ As of 2026-08-03, Dr. Murat Baday is no longer a co-founder.** A1 Diagnosis has a single
+> founder, Dr. Mustafa Özgül (**Founder & CEO**) — there is no co-founder. Baday has been removed
+> from every surface: `about.html`, `index.html`, `history.html`, `llms.txt`,
+> `netlify/functions/claude-chat.js`, and the `/presentation/` deck.
+> Do not re-add him, and do not re-add advisors to public pages: none of them appear on any public
+> page, and the deck labels several as *potential* advisors.
+>
+> **The `/a16z/` investor deck was deleted on 2026-08-03** (recoverable from git history before that
+> date). `/a16z/*` now 301-redirects to the homepage.
 
 **Core Team**:
 1. **Dr. Mustafa Özgül** - Founder & CEO, UC Irvine AMD Researcher (6 years)

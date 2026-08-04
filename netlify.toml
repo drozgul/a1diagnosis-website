@@ -26,11 +26,6 @@
   to = "/presentation/presentation.html"
   status = 200
 
-[[redirects]]
-  from = "/a16z"
-  to = "/a16z/index.html"
-  status = 200
-
 # CORS headers for analytics function
 [[headers]]
   for = "/.netlify/functions/*"
@@ -159,6 +154,17 @@
   from = "/privacy-policy"
   to = "/privacy-policy.html"
   status = 200
+
+# Retired a16z investor deck (removed 2026-08-03)
+[[redirects]]
+  from = "/a16z/*"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/a16z"
+  to = "/"
+  status = 301
 
 # SPA fallback (must be last)
 [[redirects]]
