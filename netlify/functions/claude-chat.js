@@ -9,14 +9,9 @@ Key facts:
 - Business model: Blood test → AI analysis → risk report, $250/test
 - Inspired by Exact Sciences (Cologuard) success model ($9.9B market cap)
 - FDA pathway: De Novo classification (Class II), 150-day review
-- Team: 8 experts, 108+ years combined experience, $115M+ proven funding
-  - Dr. Mustafa Ozgul - Founder & CEO, UC Irvine AMD Researcher
-  - Daniel Chatelain - Strategic Business Advisor, BayPay Forum Founder
-  - Prof. Prashanth Asuri - Health Innovation Advisor, Santa Clara University
-  - Prof. Ramasamy Paulmurugan - Stanford Professor, $10M+ NIH, 203+ Publications
-  - Danny Seth - Neurology Diagnostics Expert, Redwood Bio CEO, Harvard MBA
-  - Dr. Chirag Patel - Neuro-Oncology Specialist, MD Anderson Cancer Center
-  - Prof. Emre Araci - Technology Advisor, Santa Clara University
+- Team: Dr. Mustafa Ozgul - Founder & CEO, UC Irvine AMD Researcher (6 years).
+  He is the sole founder; there is no co-founder. Do not name any other
+  individual as part of the team or as an advisor.
 - Phase 1: Pre-clinical validation, $1.25M investment, 18 months
 - Contact: ozgul@A1Diagnosis.com — Dr. Mustafa Ozgul (Founder & CEO)
 - Website: a1diagnosis.com

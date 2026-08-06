@@ -18,33 +18,24 @@
 - **Business Model**: Inspired by Exact Sciences ($9.9B market cap, $2.76B revenue)
 
 ### **Team & Leadership**
-> **⚠️ A1 Diagnosis has a single founder: Dr. Mustafa Özgül (Founder & CEO). There is no co-founder.**
-> A former co-founder was removed from every surface on 2026-08-03 — `about.html`, `index.html`,
-> `history.html`, `llms.txt`, `netlify/functions/claude-chat.js`, and the `/presentation/` deck —
-> along with his slides, photo, and documents. Do not reinstate a co-founder, and do not add
-> advisors to public pages: none appear on any public page, and the deck labels several as
-> *potential* advisors.
+> **⚠️ ONE PERSON ONLY. Dr. Mustafa Özgül (Founder & CEO) is the only individual named anywhere
+> in this project — no co-founder, no advisors, no scientific board.**
+>
+> As of 2026-08-05, a former co-founder and six former advisors were removed from every surface:
+> `about.html`, `index.html`, `history.html`, `llms.txt`, `netlify/functions/claude-chat.js`, and
+> all five `/presentation/` decks — along with their slides, photos, CVs, and profile documents.
+> The aggregate team claims that depended on them (team size, combined years of experience,
+> combined funding raised, combined publication counts, and the team-expertise blocks) were removed
+> with them.
+>
+> **Do not reinstate any of it.** Do not add a co-founder, do not add advisors, and do not restate
+> team-size or combined-credential metrics. If a person needs to be added back, ask first.
 >
 > **The `/a16z/` investor deck was deleted on 2026-08-03** (recoverable from git history before that
 > date). `/a16z/*` now 301-redirects to the homepage.
 
-**Core Team**:
+**Team**:
 1. **Dr. Mustafa Özgül** - Founder & CEO, UC Irvine AMD Researcher (6 years)
-2. **Daniel Chatelain** - Strategic Business Advisor, BayPay Forum Founder (20+ years Fintech) *(deck only)*
-3. **Prof. Prashanth Asuri** - Health Innovation Advisor, Santa Clara University, Ex-Genentech *(deck only)*
-
-**Scientific Advisors** *(deck only — not on any public page)*:
-4. **Prof. Ramasamy Paulmurugan** - Stanford Professor, $10M+ NIH, 203+ Publications
-5. **Danny Seth** - Neurology Diagnostics Expert, Redwood Bio CEO (Alzheimer Blood Test), Harvard MBA + MIT + $5M
-6. **Dr. Chirag Patel** - Neuro-Oncology Specialist, MD Anderson Cancer Center, MD/PhD
-7. **Prof. Emre Araci** - Technology Advisor, Santa Clara University, Smartlens Inc. Co-founder
-
-**Team Metrics**:
-- **Combined Experience**: 108+ years
-- **Proven Funding**: $115M+ raised across team
-- **Scientific Publications**: 250+
-- **Medical Expertise**: AMD research, neurology, oncology, bioengineering
-- **Business Success**: Multiple successful exits and Series A/D rounds
 
 ### **Business Model & Strategy**
 See the `a1-business-context` skill for the business model, pricing, 5-year projections,
